@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 19: Dispositivos de Red</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 19</h1>
+            <h2>Dispositivos de Red: El Cerebro de la Conexión</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Caja Negra con Luces</h3>
+            <p><strong>Objetivo:</strong> Identificar que no todas las "cajas con antenas" son iguales. Cada una tiene un coeficiente intelectual (CI) diferente.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>🤖 Jerarquía de Inteligencia</h4>
+                <p>En redes, la inteligencia se mide por la capacidad de tomar decisiones.</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 30%; background: white; padding: 15px; border-radius: 8px; opacity: 0.7;">
+                        <span class="stat-number" style="color: #a0aec0; font-size: 1.5rem;">Hub</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">CI: 0 (Tonto)</p>
+                        <p style="font-size: 0.7rem;">Repite todo lo que oye a gritos.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 15px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #3182ce; font-size: 1.5rem;">Switch</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">CI: 100 (Listo)</p>
+                        <p style="font-size: 0.7rem;">Sabe quién es quién en la sala.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 15px; border-radius: 8px; border: 2px solid #2b6cb0;">
+                        <span class="stat-number" style="color: #2b6cb0; font-size: 1.5rem;">Router</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">CI: 200 (Genio)</p>
+                        <p style="font-size: 0.7rem;">Conoce el mapa del mundo entero.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía del Hardware</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">🔀 El Switch (Conmutador)</h4>
+                    <p><strong>Función:</strong> Conecta dispositivos en una misma red (LAN).</p>
+                    <p>Usa la dirección MAC para enviar datos <strong>solo al destinatario</strong>.</p>
+                    <ul>
+                        <li>Eficiente y seguro.</li>
+                        <li>Es como un policía de tránsito en una rotonda.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2c5282; border-bottom: 2px solid #2c5282;">🌐 El Router (Enrutador)</h4>
+                    <p><strong>Función:</strong> Conecta redes diferentes (Tu LAN con la WAN de Internet).</p>
+                    <p>Usa la dirección IP para trazar la mejor ruta.</p>
+                    <ul>
+                        <li>Asigna IPs (DHCP).</li>
+                        <li>Es tu frontera de seguridad (Firewall básico).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🆚 Batalla Visual: Hub vs Switch</h4>
+                <p>Imagina que la PC 1 quiere enviar un mensaje a la PC 3.</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; width: 45%; text-align: center; border: 1px solid #cbd5e1;">
+                        <h5 style="color: #e53e3e; margin-bottom: 10px;">HUB (El Chismoso)</h5>
+                        <div style="position: relative; height: 100px;">
+                            <div style="width: 40px; height: 40px; background: #e53e3e; margin: 0 auto; border-radius: 4px; line-height: 40px; color: white; font-size: 0.8rem;">HUB</div>
+                            <div style="position: absolute; bottom: 0; left: 10px;">💻1</div>
+                            <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">💻2</div>
+                            <div style="position: absolute; bottom: 0; right: 10px;">💻3</div>
+                            
+                            <div class="packet-hub" style="position: absolute; width: 10px; height: 10px; background: orange; border-radius: 50%; top: 40px; left: 50%; animation: hubBroadcast 2s infinite;"></div>
+                            <div class="packet-hub" style="position: absolute; width: 10px; height: 10px; background: orange; border-radius: 50%; top: 40px; left: 50%; animation: hubBroadcastLeft 2s infinite;"></div>
+                            <div class="packet-hub" style="position: absolute; width: 10px; height: 10px; background: orange; border-radius: 50%; top: 40px; left: 50%; animation: hubBroadcastRight 2s infinite;"></div>
+                        </div>
+                        <p style="font-size: 0.7rem; margin-top: 5px; color: #e53e3e;">¡Envía a todos! Inseguro y lento.</p>
+                    </div>
+
+                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; width: 45%; text-align: center; border: 1px solid #9ae6b4;">
+                        <h5 style="color: #38a169; margin-bottom: 10px;">SWITCH (El Cartero)</h5>
+                        <div style="position: relative; height: 100px;">
+                            <div style="width: 40px; height: 40px; background: #38a169; margin: 0 auto; border-radius: 4px; line-height: 40px; color: white; font-size: 0.8rem;">SW</div>
+                            <div style="position: absolute; bottom: 0; left: 10px;">💻1</div>
+                            <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); opacity: 0.3;">💻2</div>
+                            <div style="position: absolute; bottom: 0; right: 10px;">💻3</div>
+                            
+                            <div class="packet-switch" style="position: absolute; width: 10px; height: 10px; background: #3182ce; border-radius: 50%; top: 40px; left: 50%; animation: switchDirect 2s infinite;"></div>
+                        </div>
+                        <p style="font-size: 0.7rem; margin-top: 5px; color: #38a169;">¡Solo a PC 3! Rápido y privado.</p>
+                    </div>
+                </div>
+
+                <style>
+                    @keyframes hubBroadcast { 0% {top: 20px; left: 48%; opacity:1;} 100% {top: 80px; left: 48%; opacity:0;} }
+                    @keyframes hubBroadcastLeft { 0% {top: 20px; left: 48%; opacity:1;} 100% {top: 80px; left: 10px; opacity:0;} }
+                    @keyframes hubBroadcastRight { 0% {top: 20px; left: 48%; opacity:1;} 100% {top: 80px; left: 90%; opacity:0;} }
+                    @keyframes switchDirect { 0% {top: 20px; left: 48%; opacity:1;} 50% {top: 20px; left: 48%;} 100% {top: 80px; left: 90%; opacity:0;} }
+                </style>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. ¿Y el Modem?</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>El Traductor Universal</h5>
+                    <p>Tu computadora habla Digital (1 y 0). El cable telefónico habla Analógico (Ondas de sonido). ¿Quién traduce?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>El MODEM (MOdulador-DEModulador).</strong> Convierte digital a analógico para salir, y analógico a digital para entrar.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>El "Todo en Uno" de tu casa</h5>
+                    <p>La caja que te da Telmex/Izzi hace todo. ¿Qué aparatos tiene dentro?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p>Es un Frankenstein: Es <strong>Modem</strong> (recibe señal) + <strong>Router</strong> (crea la red) + <strong>Switch</strong> (puertos traseros) + <strong>Access Point</strong> (WiFi).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🔌 <strong>Misión del Día:</strong> Ve a tu router, cuenta cuántos cables tiene conectados (puertos Switch) y cuántas antenas tiene (Access Point).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 19 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

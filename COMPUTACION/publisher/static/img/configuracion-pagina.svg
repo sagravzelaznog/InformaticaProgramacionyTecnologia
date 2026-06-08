@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo de la ventana -->
+    <rect x="0" y="0" width="500" height="400" fill="#f8f9fa" rx="8"/>
+    
+    <!-- Barra de título -->
+    <rect x="0" y="0" width="500" height="40" fill="#2b579a"/>
+    <text x="10" y="25" font-family="Arial, sans-serif" font-size="14" fill="white">Configuración de página</text>
+    
+    <!-- Pestañas -->
+    <rect x="10" y="50" width="100" height="30" fill="#e9ecef" rx="4" ry="4"/>
+    <rect x="120" y="50" width="100" height="30" fill="#0078d7" rx="4" ry="4"/>
+    <text x="30" y="70" font-family="Arial, sans-serif" font-size="12">Diseño</text>
+    <text x="140" y="70" font-family="Arial, sans-serif" font-size="12" fill="white">Tamaño</text>
+    
+    <!-- Opciones de tamaño -->
+    <rect x="20" y="90" width="460" height="40" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <text x="30" y="115" font-family="Arial, sans-serif" font-size="12">Tamaño de página: </text>
+    <rect x="150" y="100" width="120" height="25" fill="white" rx="4" stroke="#adb5bd" stroke-width="1"/>
+    <text x="160" y="118" font-family="Arial, sans-serif" font-size="12">Carta (8.5" x 11")</text>
+    <polygon points="250,110 260,100 270,110" fill="#495057"/>
+    
+    <!-- Orientación -->
+    <rect x="20" y="150" width="220" height="120" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <text x="30" y="170" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Orientación</text>
+    
+    <!-- Opción Vertical -->
+    <rect x="40" y="185" width="180" height="30" fill="#e7f5ff" rx="4" stroke="#4dabf7" stroke-width="1"/>
+    <rect x="50" y="190" width="20" height="20" fill="white" stroke="#4dabf7" stroke-width="1"/>
+    <circle cx="60" cy="200" r="5" fill="#1971c2"/>
+    <text x="80" y="205" font-family="Arial, sans-serif" font-size="12">Vertical</text>
+    
+    <!-- Opción Horizontal -->
+    <rect x="40" y="225" width="180" height="30" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <rect x="50" y="230" width="20" height="20" fill="white" stroke="#adb5bd" stroke-width="1"/>
+    <text x="80" y="245" font-family="Arial, sans-serif" font-size="12">Horizontal</text>
+    
+    <!-- Márgenes -->
+    <rect x="260" y="150" width="220" height="120" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <text x="270" y="170" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Márgenes (pulgadas)</text>
+    
+    <text x="280" y="195" font-family="Arial, sans-serif" font-size="11">Superior:</text>
+    <rect x="340" y="180" width="60" height="20" fill="white" rx="2" stroke="#adb5bd" stroke-width="1"/>
+    <text x="350" y="195" font-family="Arial, sans-serif" font-size="11">1.0"</text>
+    
+    <text x="280" y="220" font-family="Arial, sans-serif" font-size="11">Inferior:</text>
+    <rect x="340" y="205" width="60" height="20" fill="white" rx="2" stroke="#adb5bd" stroke-width="1"/>
+    <text x="350" y="220" font-family="Arial, sans-serif" font-size="11">1.0"</text>
+    
+    <text x="280" y="245" font-family="Arial, sans-serif" font-size="11">Izquierdo:</text>
+    <rect x="340" y="230" width="60" height="20" fill="white" rx="2" stroke="#adb5bd" stroke-width="1"/>
+    <text x="350" y="245" font-family="Arial, sans-serif" font-size="11">0.75"</text>
+    
+    <text x="280" y="270" font-family="Arial, sans-serif" font-size="11">Derecho:</text>
+    <rect x="340" y="255" width="60" height="20" fill="white" rx="2" stroke="#adb5bd" stroke-width="1"/>
+    <text x="350" y="270" font-family="Arial, sans-serif" font-size="11">0.75"</text>
+    
+    <!-- Botones -->
+    <g transform="translate(300, 350)">
+        <rect x="0" y="0" width="80" height="30" rx="4" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+        <text x="40" y="20" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">Cancelar</text>
+        
+        <rect x="100" y="0" width="80" height="30" rx="4" fill="#0078d7"/>
+        <text x="140" y="20" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">Aceptar</text>
+    </g>
+    
+    <!-- Vista previa -->
+    <rect x="20" y="290" width="150" height="80" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <text x="30" y="310" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Vista previa</text>
+    <rect x="40" y="320" width="130" height="40" fill="#f8f9fa" stroke="#adb5bd" stroke-width="1" stroke-dasharray="2,2"/>
+    <rect x="45" y="325" width="120" height="30" fill="#e7f5ff" fill-opacity="0.5" stroke="#4dabf7" stroke-width="1"/>
+</svg>

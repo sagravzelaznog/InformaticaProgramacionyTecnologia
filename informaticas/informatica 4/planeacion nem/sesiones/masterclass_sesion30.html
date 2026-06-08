@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 30: Entrada y Salida</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 30</h1>
+            <h2>Input / Output: La Computadora te Escucha</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Diálogo Digital (I/O)</h3>
+            <p><strong>Objetivo:</strong> Entender que un programa útil necesita recibir datos (Entrada) y mostrar resultados (Salida).</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4> vending_machine.exe</h4>
+                <p>Tu programa funciona igual que una máquina de refrescos:</p>
+                
+                <div class="stats-grid" style="align-items: center; gap: 5px;">
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px; border-bottom: 4px solid #3182ce;">
+                        <span class="stat-number" style="color: #3182ce; font-size: 1.2rem;">📥 INPUT</span>
+                        <p style="font-size: 0.7rem;">(Entrada)</p>
+                        <p style="font-size: 0.7rem;">Metes moneda y presionas "B4".</p>
+                    </div>
+
+                    <div style="font-size: 1.5rem;">➡️</div>
+
+                    <div class="stat-item" style="width: 30%; background: #2d3748; color: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #9f7aea; font-size: 1.2rem;">⚙️ CPU</span>
+                        <p style="font-size: 0.7rem;">(Proceso)</p>
+                        <p style="font-size: 0.7rem;">Calcula cambio y mueve el motor.</p>
+                    </div>
+
+                    <div style="font-size: 1.5rem;">➡️</div>
+
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px; border-bottom: 4px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.2rem;">📤 OUTPUT</span>
+                        <p style="font-size: 0.7rem;">(Salida)</p>
+                        <p style="font-size: 0.7rem;">Cae tu refresco.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Los Comandos Mágicos</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #48bb78; border-bottom: 2px solid #48bb78;">🗣️ print() - Hablar</h4>
+                    <p>Muestra información en la pantalla.</p>
+                    <div style="background: #2d3748; padding: 10px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.8rem; color: #e2e8f0;">
+                        print(<span style="color: #f6e05e;">"Hola Clase"</span>)
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">(Output: Hola Clase)</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">👂 input() - Escuchar</h4>
+                    <p>Detiene el programa y espera a que el usuario escriba algo.</p>
+                    <div style="background: #2d3748; padding: 10px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.8rem; color: #e2e8f0;">
+                        nombre = input(<span style="color: #f6e05e;">"¿Quién eres?"</span>)
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>⚠️ ¡Peligro! Todo es Texto</h4>
+                <p>Por defecto, <code>input()</code> recibe todo como letras (String), incluso los números.</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    
+                    <div style="width: 45%; background: #fff5f5; border: 1px solid #fc8181; padding: 10px; border-radius: 8px;">
+                        <p style="color: #e53e3e; font-weight: bold; font-size: 0.8rem;">❌ Sin Convertir</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.8rem; color: #333;">
+                            a = input("Dame num:") <span style="color: #718096;"># Escribes 5</span><br>
+                            b = input("Dame num:") <span style="color: #718096;"># Escribes 5</span><br>
+                            print(a + b)
+                        </div>
+                        <div style="background: #e53e3e; color: white; text-align: center; margin-top: 5px; border-radius: 4px;">Resultado: "55"</div>
+                        <p style="font-size: 0.7rem;">(Los pegó como palabras)</p>
+                    </div>
+
+                    <div style="width: 45%; background: #f0fff4; border: 1px solid #68d391; padding: 10px; border-radius: 8px;">
+                        <p style="color: #2f855a; font-weight: bold; font-size: 0.8rem;">✅ Con int()</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.8rem; color: #333;">
+                            a = <span style="color: #805ad5; font-weight: bold;">int</span>(input(...)) <span style="color: #718096;"># Convierte a 5</span><br>
+                            b = <span style="color: #805ad5; font-weight: bold;">int</span>(input(...)) <span style="color: #718096;"># Convierte a 5</span><br>
+                            print(a + b)
+                        </div>
+                        <div style="background: #38a169; color: white; text-align: center; margin-top: 5px; border-radius: 4px;">Resultado: 10</div>
+                        <p style="font-size: 0.7rem;">(Hizo matemáticas)</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. La Calculadora Básica</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Operadores Básicos</h5>
+                    <p>Símbolos que debes conocer:</p>
+                    <ul style="list-style: none; padding: 0; display: flex; gap: 10px; justify-content: center; font-family: 'Fira Code'; font-size: 1.2rem;">
+                        <li style="background: #edf2f7; padding: 5px 10px; border-radius: 5px;">+</li>
+                        <li style="background: #edf2f7; padding: 5px 10px; border-radius: 5px;">-</li>
+                        <li style="background: #edf2f7; padding: 5px 10px; border-radius: 5px;">*</li>
+                        <li style="background: #edf2f7; padding: 5px 10px; border-radius: 5px;">/</li>
+                    </ul>
+                </div>
+
+                <div class="question-card">
+                    <h5>El Operador Extraño (%)</h5>
+                    <p>¿Qué hace el símbolo de porcentaje en programación?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Magia</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Módulo (Residuo).</strong> Te da lo que sobra de una división.</p>
+                        <p><code>10 % 3 = 1</code> (Porque 3 cabe 3 veces en 10 y sobra 1).</p>
+                        <p><em>Tip: Se usa para saber si un número es par o impar.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🧮 <strong>Misión del Día:</strong> Escribe un código en papel que pida el año de nacimiento (`nacimiento = int(input...)`) y calcule la edad actual (`2026 - nacimiento`).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 30 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

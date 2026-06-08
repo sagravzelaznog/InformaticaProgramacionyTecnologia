@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S9 E36: Práctica Integral de Routing y Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>	
+
+    <header>
+        <h1>Semana 9, Sesión 36: Práctica Integral Avanzada ⚙️</h1>
+        <p class="subtitle">Configuración de Router con NAT, DHCP y Rutas Estáticas</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Escenario de Práctica: Red de Dos Sucursales</h2>
+            <p>Debes configurar el Router principal de una sucursal para que pueda comunicarse con una segunda sucursal y proveer servicios a su LAN.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Requisitos de la Sucursal Principal (R1)</h3>
+                    <ul>
+                        <li>IP Interna (LAN): **192.168.10.1 /24**.</li>
+                        <li>Servicio **DHCP** para clientes.</li>
+                        <li>Configuración de **NAT** para Internet (simulada).</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Requisitos de Conectividad WAN</h3>
+                    <ul>
+                        <li>R1 conectado a Internet (simulado).</li>
+                        <li>R1 debe conocer la red de la Sucursal B: **192.168.20.0 /24**.</li>
+                        <li>Se debe crear una **Ruta Estática** para alcanzar la Sucursal B.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Pasos de Implementación en Packet Tracer</h2>
+            <p>Esta práctica integra NAT, DHCP y el enrutamiento manual:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Configuración de Servicios (R1)</h3>
+                    <ol>
+                        <li>Asigna la IP 192.168.10.1 al Router.</li>
+                        <li>Habilita DHCP en R1 para la LAN 192.168.10.x.</li>
+                        <li>Configura la Interfaz WAN y simula el NAT hacia Internet (marcando la interfaz como *outside*).</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Implementación de Ruta Estática</h3>
+                    <p>En R1, el comando de ruta estática para alcanzar la Sucursal B (192.168.20.0/24) debe ser configurado, apuntando al siguiente salto (la IP del Router 2).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Prueba de Conectividad Integral</h2>
+            <p><strong>Tarea Práctica (Diagnóstico Final):</strong></p>
+            <ol>
+                <li>Verifica que los PCs de la Sucursal 1 reciban IP por DHCP.</li>
+                <li>Verifica que los PCs de la Sucursal 1 puedan hacer **ping** a un PC de la Sucursal 2.</li>
+                <li>(Teórico): ¿Qué pasaría si la **Ruta Estática** se borra del R1?</li>
+            </ol>
+            <button id="routingProjectCheckBtn">Terminar Proyecto de Routing</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S9 E36</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion35.html" class="nav-button">Anterior</a>
+        <a href="sesion37.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

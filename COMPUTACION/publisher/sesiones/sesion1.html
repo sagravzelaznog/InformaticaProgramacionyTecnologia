@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: Introducción a Publisher - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .user-info {
+            text-align: right;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .user-info span {
+            margin-right: 1rem;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <header>
+            <h1 class="titulo-principal">Sesión 1: Introducción a Publisher</h1>
+            <p class="fecha">Publicado el 24 de agosto de 2025</p>
+        </header>
+
+        <nav aria-label="Navegación">
+            <a href="../index.html" class="volver-inicio">← Volver al índice</a>
+        </nav>
+
+        <main>
+            <section class="objetivos">
+                <h2>Objetivos de Aprendizaje</h2>
+                <ul>
+                    <li>Conocer la interfaz de Microsoft Publisher</li>
+                    <li>Identificar las herramientas básicas</li>
+                    <li>Crear un documento básico</li>
+                </ul>
+            </section>
+
+            <section class="contenido">
+                <h2>¿Qué es Microsoft Publisher?</h2>
+                <p>Microsoft Publisher es una aplicación de autoedición que permite crear, personalizar y compartir una amplia variedad de publicaciones y materiales de marketing. A diferencia de otros programas de Microsoft Office, Publisher está diseñado específicamente para el diseño de página, lo que lo hace ideal para crear folletos, boletines, tarjetas de presentación y más.</p>
+                
+                <div class="imagen-contenedor">
+                    <img src="/static/img/interfaz-publisher.svg" alt="Interfaz de Microsoft Publisher" class="img-fluid">
+                </div>
+
+                <h3>Elementos principales de la interfaz</h3>
+                <ul>
+                    <li><strong>Cinta de opciones:</strong> Contiene todas las herramientas organizadas en pestañas.</li>
+                    <li><strong>Barra de herramientas de acceso rápido:</strong> Acceso rápido a funciones comunes como Guardar y Deshacer.</li>
+                    <li><strong>Panel de navegación:</strong> Muestra las páginas de tu publicación.</li>
+                    <li><strong>Área de trabajo:</strong> Donde creas y editas tu publicación.</li>
+                    <li><strong>Panel de tareas:</strong> Muestra opciones adicionales según la herramienta seleccionada.</li>
+                </ul>
+
+                <div class="ejercicio-practico">
+                    <h3>Ejercicio Práctico: Explorando la interfaz</h3>
+                    <div class="paso">
+                        <h4>Paso 1: Iniciar Publisher</h4>
+                        <p>Haz clic en el menú Inicio de Windows, busca "Microsoft Publisher" y ábrelo.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h4>Paso 2: Explorar las pestañas</h4>
+                        <p>Haz clic en cada pestaña de la cinta de opciones (Inicio, Insertar, Diseño de página, etc.) y observa las herramientas disponibles en cada una.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h4>Paso 3: Personalizar la barra de herramientas de acceso rápido</h4>
+                        <p>Haz clic en la flecha desplegable junto a la barra de herramientas de acceso rápido y selecciona "Más comandos". Agrega tus herramientas favoritas.</p>
+                    </div>
+                    
+                    <div class="consejo">
+                        <strong>Consejo:</strong> Puedes personalizar la cinta de opciones haciendo clic derecho sobre ella y seleccionando "Personalizar la cinta de opciones".
+                    </div>
+                </div>
+
+                <h3>Creando tu primer documento</h3>
+                <p>Vamos a crear un folleto sencillo para practicar:</p>
+                
+                <div class="paso">
+                    <h4>Paso 1: Seleccionar una plantilla</h4>
+                    <p>Al abrir Publisher, verás varias plantillas. Selecciona "Folleto" y elige un diseño que te guste.</p>
+                </div>
+                
+                <div class="paso">
+                    <h4>Paso 2: Personalizar el texto</h4>
+                    <p>Haz clic en los cuadros de texto y reemplaza el texto de ejemplo con tu propio contenido.</p>
+                </div>
+                
+                <div class="paso">
+                    <h4>Paso 3: Guardar el documento</h4>
+                    <p>Haz clic en "Archivo" > "Guardar como" y elige una ubicación en tu computadora. Nombra tu archivo como "MiPrimerFolleto".</p>
+                </div>
+
+                <div class="imagen-contenedor">
+                    <img src="/static/img/ejemplo-folleto.svg" alt="Ejemplo de folleto en Publisher" class="img-fluid">
+                </div>
+
+                <div class="ejercicio-practico">
+                    <h3>Actividad Práctica</h3>
+                    <p>Crea un folleto para un evento de tu elección (ejemplo: taller de computación, feria escolar, etc.) siguiendo estos pasos:</p>
+                    <ol>
+                        <li>Selecciona una plantilla de folleto</li>
+                        <li>Cambia el título principal</li>
+                        <li>Agrega la fecha, hora y lugar del evento</li>
+                        <li>Incluye una breve descripción</li>
+                        <li>Guarda tu trabajo</li>
+                    </ol>
+                </div>
+
+                <h3>Resumen de la sesión</h3>
+                <p>En esta sesión aprendiste:</p>
+                <ul>
+                    <li>Los componentes principales de la interfaz de Publisher</li>
+                    <li>Cómo navegar por las diferentes pestañas y herramientas</li>
+                    <li>A crear y guardar un documento básico</li>
+                    <li>A personalizar una plantilla de folleto</li>
+                </ul>
+
+                <div class="consejo">
+                    <strong>Para la próxima sesión:</strong> Trae ideas para un proyecto personal donde puedas aplicar lo aprendido hoy. Estaremos trabajando con plantillas y diseños más avanzados.
+                </div>
+            </section>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+    <!-- Incluir el script de autenticación -->
+    <script src="../js/auth.js"></script>
+</body>
+</html>

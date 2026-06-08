@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 33: Debugging</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 33</h1>
+            <h2>Debugging: Cazadores de Bugs</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Historia del "Bicho"</h3>
+            <p><strong>Objetivo:</strong> Normalizar el error. Entender que hasta los genios de la NASA tienen errores en su código.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🐞 El Primer Bug de la Historia (1947)</h4>
+                <p>Grace Hopper encontró una polilla real atrapada en los relevadores de la Mark II.</p>
+                
+                <div class="stats-grid" style="gap: 15px; margin-top: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.5rem;">El Mito</span>
+                        <p style="font-size: 0.8rem;">"Si mi código falla, soy mal programador."</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.5rem;">La Realidad</span>
+                        <p style="font-size: 0.8rem;">"Programar es 10% escribir y 90% arreglar lo que escribiste."</p>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #553c9a;">"Debugging es como ser el detective de un crimen donde tú también eres el asesino."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Los 3 Villanos del Código</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #e53e3e; border-bottom: 2px solid #e53e3e;">🔴 Sintaxis (Gramática)</h4>
+                    <p>Escribiste mal el idioma. La computadora no entiende.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        print "Hola" <span style="color: #fc8181;">(Faltan paréntesis)</span>
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">El programa NI SIQUIERA arranca.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #d69e2e; border-bottom: 2px solid #d69e2e;">🟡 Lógico (Semántica)</h4>
+                    <p>El programa funciona, pero hace lo que quiere, no lo que tú quieres.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        area = base + altura <span style="color: #f6e05e;">(Era multiplicar *)</span>
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">El más difícil de encontrar.</p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🩸 Disección de un Error en Python</h4>
+                <p>Aprende a leer el mensaje rojo de la muerte.</p>
+                
+                <div style="background: #1a202c; padding: 15px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin-top: 15px; position: relative; border-left: 4px solid #e53e3e;">
+                    
+                    <div style="color: #fc8181;">Traceback (most recent call last):</div>
+                    <div style="color: #a0aec0;">&nbsp;&nbsp;File "juego.py", line <span style="color: #63b3ed; font-weight: bold; text-decoration: underline;">10</span>, in &lt;module&gt;</div>
+                    <div style="color: #e2e8f0;">&nbsp;&nbsp;&nbsp;&nbsp;if numero = 5:</div>
+                    <div style="color: #fc8181; font-weight: bold;">SyntaxError: invalid syntax</div>
+
+                    <div style="position: absolute; top: 10px; right: 10px; background: #2b6cb0; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.6rem;">1. ¿Dónde? (Línea 10)</div>
+                    <div style="position: absolute; bottom: 10px; right: 10px; background: #c53030; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.6rem;">2. ¿Qué pasó?</div>
+                    
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 10px;">El error te dice exactamente dónde buscar. ¡Lee la línea!</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Buenas Prácticas (Vacunas)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Los Comentarios (#)</h5>
+                    <p>¿Para qué sirve poner mensajes que la computadora ignora?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Para tu "Yo del Futuro".</strong> Dentro de 3 meses olvidarás qué hace tu código. El comentario <code># Esto calcula la vida</code> te salvará.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Nombres de Variables</h5>
+                    <p>¿Qué es mejor: <code>x = 10</code> o <code>vidas_jugador = 10</code>?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Siempre sé descriptivo.</strong> El código se lee más veces de las que se escribe. <code>vidas_jugador</code> se explica solo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🕵️‍♂️ <strong>Misión del Día:</strong> Toma el código del "Juego Adivina" de ayer y bórrasle dos puntos <code>:</code> o un paréntesis. Ejecútalo y mira qué error sale. Familiarízate con él.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 33 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

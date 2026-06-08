@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12: Trabajando con Eventos - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 12: Trabajando con Eventos</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a utilizar eventos de Excel para automatizar tareas.</p>
+            </header>
+            
+            <div class="session-content">
+                <section class="concept">
+                    <h2>¿Qué son los Eventos en Excel?</h2>
+                    <p>Los eventos en Excel son acciones que ocurren cuando interactúas con un libro, una hoja o un control. Imagina que son como interruptores que se activan cuando haces algo específico, como abrir un archivo, cambiar una celda o hacer clic en un botón.</p>
+                    
+                    <div class="example">
+                        <h3>Ejemplo de la vida real:</h3>
+                        <p>Es como cuando tu teléfono suena cuando recibes un mensaje. El evento es el mensaje entrante, y la acción es que suene el teléfono.</p>
+                    </div>
+                </section>
+
+                <section class="types">
+                    <h2>Tipos de Eventos</h2>
+                    <div class="types-grid">
+                        <div class="type-card">
+                            <h3>📂 Eventos de Libro</h3>
+                            <p>Ocurren a nivel de libro completo:</p>
+                            <ul>
+                                <li><strong>Open</strong>: Al abrir el libro</li>
+                                <li><strong>BeforeSave</strong>: Antes de guardar</li>
+                                <li><strong>BeforeClose</strong>: Antes de cerrar</li>
+                            </ul>
+                        </div>
+                        <div class="type-card">
+                            <h3>📝 Eventos de Hoja</h3>
+                            <p>Ocurren en hojas específicas:</p>
+                            <ul>
+                                <li><strong>Change</strong>: Al cambiar una celda</li>
+                                <li><strong>SelectionChange</strong>: Al cambiar la selección</li>
+                                <li><strong>Activate/Deactivate</strong>: Al activar/desactivar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tutorial">
+                    <h2>📝 Tutorial: Crear un Evento de Hoja</h2>
+                    <p>Vamos a crear un evento que muestre un mensaje cuando cambies una celda en la columna A:</p>
+                    
+                    <div class="steps">
+                        <div class="step">
+                            <h3>Paso 1: Abrir el Editor VBA</h3>
+                            <p>Presiona <kbd>Alt</kbd> + <kbd>F11</kbd> para abrir el Editor VBA.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h3>Paso 2: Seleccionar la hoja</h3>
+                            <p>En el Explorador de Proyectos (izquierda), haz doble clic en la hoja donde quieras agregar el evento.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h3>Paso 3: Crear el evento</h3>
+                            <p>En el editor de código, selecciona <code>Worksheet</code> en el menú desplegable superior izquierdo y <code>Change</code> en el derecho.</p>
+                            <pre><code>Private Sub Worksheet_Change(ByVal Target As Range)
+    ' Verificar si el cambio fue en la columna A
+    If Not Intersect(Target, Range("A:A")) Is Nothing Then
+        ' Mostrar mensaje con la celda cambiada
+        MsgBox "Cambiaste la celda: " & Target.Address & _
+               "\nNuevo valor: " & Target.Value
+    End If
+End Sub</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="activity">
+                    <h2>🛠️ Actividad Práctica</h2>
+                    <p>Crea un libro de Excel con dos hojas: "Ventas" y "Resumen". Sigue estos pasos:</p>
+                    
+                    <ol>
+                        <li>En la hoja "Ventas", crea una tabla con las columnas: Producto, Cantidad, Precio y Total.</li>
+                        <li>Agrega un evento que calcule automáticamente la columna Total (Cantidad * Precio) cuando se ingresen valores.</li>
+                        <li>Crea un evento en el libro que actualice automáticamente un resumen en la hoja "Resumen" cada vez que se guarde el libro.</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h4>💡 Pista:</h4>
+                        <p>Usa el evento <code>Workbook_BeforeSave</code> para actualizar el resumen. Puedes usar la función <code>WorksheetFunction.Sum</code> para calcular totales.</p>
+                    </div>
+                </section>
+
+                <section class="best-practices">
+                    <h2>⭐ Buenas Prácticas</h2>
+                    <div class="tips">
+                        <div class="tip">
+                            <h3>1. Manejo de Errores</h3>
+                            <p>Siempre incluye manejo de errores en tus eventos para evitar mensajes de error inesperados.</p>
+                            <pre><code>Private Sub Worksheet_Change(ByVal Target As Range)
+    On Error GoTo ErrorHandler
+    ' Tu código aquí
+    Exit Sub
+    
+ErrorHandler:
+    MsgBox "Ocurrió un error: " & Err.Description
+End Sub</code></pre>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3>2. Desactivar Eventos</h3>
+                            <p>Usa <code>Application.EnableEvents = False</code> para evitar bucles infinitos cuando tu código modifica celdas.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3>3. Documentación</h3>
+                            <p>Comenta siempre tus eventos para que otros (o tú en el futuro) entiendan su propósito.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <h2>📌 Resumen de la Sesión</h2>
+                    <ul>
+                        <li>Los eventos son acciones que ocurren en Excel y pueden ser detectados por VBA</li>
+                        <li>Existen eventos de libro, hoja y aplicación</li>
+                        <li>Se pueden usar para automatizar tareas como validación de datos o actualización de resúmenes</li>
+                        <li>Es importante incluir manejo de errores y documentación</li>
+                    </ul>
+                    
+                    <div class="key-points">
+                        <h3>📋 Puntos Clave:</h3>
+                        <ul>
+                            <li>Usa <code>Worksheet_Change</code> para detectar cambios en celdas</li>
+                            <li>Usa <code>Workbook_Open</code> para ejecutar código al abrir el libro</li>
+                            <li>No olvides <code>Application.EnableEvents = False</code> cuando modifiques celdas desde código</li>
+                        </ul>
+                    </div>
+                </section>
+
+               
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S9 E33: Puertos de Red y NAT (Traducción de Direcciones)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 9, Sesión 33: Puertos y NAT 🧭</h1>
+        <p class="subtitle">Identificando Servicios y Traducción de Direcciones IP</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Puertos de Red (Sockets): Puertas a los Servicios</h2>
+            <p>Los **Puertos** son números (del 0 al 65535) que se utilizan para identificar qué aplicación o servicio debe recibir los datos en un host específico. El número de puerto se combina con la IP para formar un **Socket**.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Puertos Bien Conocidos (0 a 1023)</h3>
+                    <p>Reservados para servicios comunes y estándar de Internet. Ejemplos: HTTP (80), HTTPS (443), FTP (21), DNS (53).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Puertos Dinámicos/Privados (49152 a 65535)</h3>
+                    <p>Utilizados por los clientes (tu PC) para iniciar conexiones salientes. Son temporales y se asignan al azar.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. NAT: El Traductor de Direcciones IP</h2>
+            <p>El **NAT (Network Address Translation)** es el proceso por el cual un router modifica la dirección IP de los paquetes. Su uso más importante es permitir que **múltiples IPs privadas (LAN)** compartan una **única IP pública (WAN)** para acceder a Internet. Sin NAT, cada dispositivo necesitaría su propia IP pública, algo costoso y limitado.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>IPs Privadas vs. Públicas</h3>
+                    <p>Las **IPs Privadas** (ej. 192.168.x.x, 10.x.x.x) solo son válidas dentro de tu red local. Las **IPs Públicas** son únicas en Internet.</p>
+                </div>
+                <div>
+                    <h3>Port Address Translation (PAT)</h3>
+                    <p>La forma más común de NAT es **PAT** (o NAPT), que usa diferentes números de puerto para distinguir qué host interno inició cada conexión saliente, permitiendo que miles de dispositivos compartan una sola IP pública.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. NAT Estático: Reenvío de Puertos (Port Forwarding)</h2>
+            <p>El **Port Forwarding** es una configuración que le dice al router: "Si alguien de Internet intenta conectarse a mi IP pública en el Puerto X, redirige ese tráfico a la IP privada Y". Esto se usa para hacer que un servidor o una consola de juegos interna sea accesible desde Internet.</p>
+            
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>En la simulación del Router (o real), busca la configuración de **"Port Forwarding"** o **"NAT"**.</li>
+                <li>Crea una regla que redirija el **Puerto 80** de tu IP pública al Servidor de Archivos (ej. IP interna 192.168.10.5).</li>
+                <li>(Teórico): ¿Por qué esta acción representa un riesgo de seguridad?</li>
+            </ol>
+            <button id="natPortQuizBtn">Verificar Puertos y NAT</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S9 E33</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion32.html" class="nav-button">Anterior</a>
+        <a href="sesion34.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

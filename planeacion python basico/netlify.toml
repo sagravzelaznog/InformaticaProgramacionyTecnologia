@@ -1,0 +1,83 @@
+[build]
+  # Netlify no necesita build step para sitio estático
+  command = "echo 'Static site build completed'"
+  
+  # Directorio de publicación (raíz del proyecto)
+  publish = "."
+
+# Redirecciones para SPA (Single Page Application)
+[[redirects]]
+  # Redirigir todas las rutas API a index.html (para manejo en frontend)
+  from = "/api/*"
+  to = "/index.html"
+  status = 200
+
+# Redirecciones principales
+[[redirects]]
+  # Redirigir todas las demás rutas a index.html para SPA
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevenir clickjacking
+    X-Frame-Options = "DENY"
+    # Protección XSS
+    X-XSS-Protection = "1; mode=block"
+    # Prevenir MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    # Política de referrer
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Content Security Policy básico
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self';"
+
+# Headers para archivos JavaScript
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    # Cache agresivo para JS (1 año)
+    Cache-Control = "public, max-age=31536000, immutable"
+    # Tipo de contenido
+    Content-Type = "application/javascript; charset=utf-8"
+
+# Headers para archivos CSS
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    # Cache agresivo para CSS (1 año)
+    Cache-Control = "public, max-age=31536000, immutable"
+    # Tipo de contenido
+    Content-Type = "text/css; charset=utf-8"
+
+# Headers para archivos HTML
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    # Cache moderado para HTML (1 hora)
+    Cache-Control = "public, max-age=3600"
+    # Tipo de contenido
+    Content-Type = "text/html; charset=utf-8"
+
+# Headers para archivos de imagen
+[[headers]]
+  for = "*.{jpg,jpeg,png,gif,webp,svg,ico}"
+  [headers.values]
+    # Cache agresivo para imágenes (1 año)
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Variables de entorno (opcional)
+[context.production.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Configuración de funciones (si se usan Netlify Functions en el futuro)
+[functions]
+  directory = "netlify/functions"
+
+# Configuración de plugins (opcional)
+# [[plugins]]
+#   package = "@netlify/plugin-sitemap"
+

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 6: Tablas y Filtros en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .tabla-ejemplo th, .tabla-ejemplo td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-ejemplo th {
+            background-color: #f2f2f2;
+        }
+        .tabla-ejemplo tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 6: Tablas y Filtros en Excel</h1>
+    
+    <div id="sesion6.1" class="sesion">
+        <h2>Sesión 6.1: Creación y formato de tablas</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Convertir rangos de datos en tablas de Excel</li>
+                <li>Personalizar el formato de las tablas</li>
+                <li>Utilizar las ventajas de trabajar con tablas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Creación de una tabla:
+                    <ul>
+                        <li>Selección del rango de datos</li>
+                        <li>Conversión a tabla (Ctrl + T)</li>
+                        <li>Inclusión de encabezados</li>
+                    </ul>
+                </li>
+                <li>Elementos de una tabla:
+                    <ul>
+                        <li>Encabezados de columna</li>
+                        <li>Filas con bandas</li>
+                        <li>Fila de totales</li>
+                        <li>Botones de filtro</li>
+                    </ul>
+                </li>
+                <li>Estilos y formato:
+                    <ul>
+                        <li>Estilos predefinidos</li>
+                        <li>Personalización de colores y fuentes</li>
+                        <li>Opciones de estilo de tabla</li>
+                    </ul>
+                </li>
+                <li>Ventajas de usar tablas:
+                    <ul>
+                        <li>Expansión automática</li>
+                        <li>Fórmulas estructuradas</li>
+                        <li>Filtros integrados</li>
+                        <li>Tablas dinámicas mejoradas</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Convertir un rango de datos de ventas en una tabla y aplicar formato profesional:</p>
+                <ol>
+                    <li>Seleccionar los datos (incluyendo encabezados)</li>
+                    <li>Insertar > Tabla (o Ctrl + T)</li>
+                    <li>Verificar "La tabla tiene encabezados"</li>
+                    <li>Aplicar un estilo de tabla</li>
+                    <li>Activar la fila de totales</li>
+                </ol>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Tomar un conjunto de datos sin formato, convertirlo en una tabla y aplicar un formato profesional que incluya bandas de fila, estilos de encabezado y una fila de totales con fórmulas básicas.</p>
+        </div>
+    </div>
+    
+    <div id="sesion6.2" class="sesion">
+        <h2>Sesión 6.2: Ordenamiento de datos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Ordenar datos en una tabla de Excel</li>
+                <li>Crear criterios de ordenamiento personalizados</li>
+                <li>Ordenar por color o formato</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Ordenamiento básico:
+                    <ul>
+                        <li>Orden ascendente/descendente</li>
+                        <li>Ordenamiento por una columna</li>
+                        <li>Uso de los botones de ordenamiento</li>
+                    </ul>
+                </li>
+                <li>Ordenamiento avanzado:
+                    <ul>
+                        <li>Ordenamiento por múltiples columnas</li>
+                        <li>Ordenamiento personalizado (meses, días, etc.)</li>
+                        <li>Ordenamiento por color de celda o fuente</li>
+                        <li>Ordenamiento por formato condicional</li>
+                    </ul>
+                </li>
+                <li>Consideraciones:
+                    <ul>
+                        <li>Mantener filas juntas al ordenar</li>
+                        <li>Ordenamiento de rangos vs. tablas</li>
+                        <li>Problemas comunes y soluciones</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejercicio práctico:</h4>
+                <p>Dada la siguiente tabla de ventas:</p>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Vendedor</th>
+                        <th>Región</th>
+                        <th>Ventas</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Ana</td>
+                        <td>Norte</td>
+                        <td>$1,250</td>
+                        <td>15/03/2023</td>
+                    </tr>
+                    <tr>
+                        <td>Carlos</td>
+                        <td>Sur</td>
+                        <td>$890</td>
+                        <td>16/03/2023</td>
+                    </tr>
+                </table>
+                <p>Realizar los siguientes ordenamientos:</p>
+                <ol>
+                    <li>Ordenar por Vendedor (A-Z)</li>
+                    <li>Ordenar por Ventas (de mayor a menor)</li>
+                    <li>Ordenar primero por Región y luego por Ventas</li>
+                </ol>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear un informe de ventas con datos de todo el año y practicar diferentes tipos de ordenamiento para analizar los datos desde diferentes perspectivas.</p>
+        </div>
+    </div>
+    
+    <div id="sesion6.3" class="sesion">
+        <h2>Sesión 6.3: Filtros básicos y avanzados</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Aplicar filtros a conjuntos de datos</li>
+                <li>Utilizar criterios de filtrado avanzados</li>
+                <li>Trabajar con filtros por color y formato</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Filtros básicos:
+                    <ul>
+                        <li>Activación/desactivación de filtros</li>
+                        <li>Filtrado por valores específicos</li>
+                        <li>Búsqueda en filtros</li>
+                    </ul>
+                </li>
+                <li>Criterios de filtrado avanzados:
+                    <ul>
+                        <li>Filtros de texto (contiene, comienza con, termina con)</li>
+                        <li>Filtros numéricos (mayor que, entre, los 10 principales)</li>
+                        <li>Filtros de fecha (hoy, esta semana, este mes, trimestre, año)</li>
+                        <li>Filtros personalizados</li>
+                    </ul>
+                </li>
+                <li>Filtros especiales:
+                    <ul>
+                        <li>Filtrado por color de celda o fuente</li>
+                        <li>Filtrado por formato condicional</li>
+                        <li>Filtros en tablas dinámicas</li>
+                    </ul>
+                </li>
+                <li>Consejos avanzados:
+                    <ul>
+                        <li>Copiar datos filtrados</li>
+                        <li>Contar y sumar datos filtrados</li>
+                        <li>Uso de SUBTOTAL con filtros</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Dada una base de datos de empleados con las columnas: Nombre, Departamento, Salario, Fecha de Ingreso, Evaluación.</p>
+                <p>Crear los siguientes filtros:</p>
+                <ol>
+                    <li>Mostrar solo empleados del departamento de Ventas</li>
+                    <li>Mostrar empleados con salario mayor a $50,000</li>
+                    <li>Mostrar empleados que ingresaron en el último año</li>
+                    <li>Mostrar empleados con evaluaciones altas (usando filtro por color)</li>
+                </ol>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Tomar un conjunto de datos grande (más de 100 filas) y practicar diferentes técnicas de filtrado para extraer información específica, como ventas por región, productos con bajo inventario, o clientes inactivos.</p>
+        </div>
+    </div>
+    
+    <div id="sesion6.4" class="sesion">
+        <h2>Sesión 6.4: Práctica guiada - Análisis de base de datos</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar los conocimientos de tablas y filtros en un caso real</li>
+                <li>Crear un sistema de análisis de datos completo</li>
+                <li>Extraer conclusiones a partir de datos filtrados</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Crear un nuevo libro llamado "Analisis_Base_Datos"</li>
+                <li>En la primera hoja, importar o crear un conjunto de datos con al menos 100 registros que incluya:
+                    <ul>
+                        <li>Información de clientes (ID, nombre, ciudad, estado, código postal)</li>
+                        <li>Información de productos (ID, categoría, precio, costo)</li>
+                        <li>Registros de ventas (ID venta, ID cliente, ID producto, cantidad, fecha, descuento)</li>
+                    </ul>
+                </li>
+                <li>Convertir cada conjunto de datos en una tabla con formato profesional</li>
+                <li>Realizar las siguientes tareas de análisis:
+                    <ol>
+                        <li>Crear una tabla de resumen que muestre las ventas totales por cliente</li>
+                        <li>Identificar los 5 productos más vendidos</li>
+                        <li>Calcular el margen de beneficio por producto</li>
+                        <li>Identificar patrones de compra por región geográfica</li>
+                        <li>Crear un análisis de ventas por período (mensual/trimestral)</li>
+                    </ol>
+                </li>
+                <li>Para cada análisis:
+                    <ul>
+                        <li>Utilizar tablas para organizar los datos</li>
+                        <li>Aplicar filtros para segmentar la información</li>
+                        <li>Usar ordenamiento para identificar tendencias</li>
+                        <li>Crear gráficos para visualizar los hallazgos</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>Requisitos adicionales:</h3>
+            <ul>
+                <li>Crear un panel de control con segmentación de datos para filtrar la información</li>
+                <li>Incluir al menos un filtro avanzado con criterios personalizados</li>
+                <li>Usar fórmulas como SUBTOTAL para trabajar con datos filtrados</li>
+                <li>Crear un resumen ejecutivo con los hallazgos más importantes</li>
+            </ul>
+            
+            <div class="consejo">
+                <h4>Consejo profesional:</h4>
+                <p>Utiliza la función <strong>TABLAS DINÁMICAS</strong> junto con los filtros estándar para un análisis más potente. Las tablas dinámicas te permitirán resumir y analizar grandes cantidades de datos de manera eficiente.</p>
+            </div>
+            
+            <h3>Entrega:</h3>
+            <p>Guardar el archivo con el nombre "Apellido_Nombre_AnalisisBD.xlsx" y asegurarse de que todas las tablas y filtros funcionen correctamente. Incluir una hoja de respuestas con las conclusiones del análisis.</p>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

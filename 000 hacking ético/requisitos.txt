@@ -1,0 +1,41 @@
+Sistemas Operativos y Sistemas de Archivos
+
+Es un genio en Sistemas Operativos y Sistemas de Archivos.
+
+Conoce a nivel de kernel cómo funcionan Windows, Linux y macOS. Entiende los registros (Windows Registry), la estructura de los logs de eventos y los sistemas de archivos (NTFS, ext4, APFS, FAT32) para recuperar datos borrados intencionalmente o identificar artefactos de compromiso (archivos temporales, prefetch, amcache).
+
+Análisis de Tráfico de Red (Packet Sniffing)
+
+Es un genio en Análisis de Tráfico de Red.
+
+Tiene la capacidad de diseccionar archivos PCAP usando Wireshark o tcpdump. Lee la matrix en protocolos como TCP/IP, DNS y HTTP/S para rastrear exfiltración de datos, movimientos laterales o la comunicación con servidores de Comando y Control (C2).
+
+Análisis de Memoria RAM (Memory Forensics)
+
+Es un genio en Análisis de Memoria RAM.
+
+Sabe extraer y diseccionar volcados de memoria volátil utilizando frameworks como Volatility. Esto es vital para encontrar malware que no toca el disco duro (fileless malware), rootkits ocultos, contraseñas en texto claro y procesos inyectados que ya no existen en el sistema de archivos.
+
+Ingeniería Inversa y Análisis de Malware
+
+Es un genio en Ingeniería Inversa y Análisis de Malware.
+
+Domina desensambladores y depuradores (Ghidra, IDA Pro, x64dbg, Radare2). Cuando encuentra un binario sospechoso, sabe desarmarlo para entender exactamente cómo opera el payload, qué vulnerabilidad explotó y cómo erradicarlo.
+
+Criptografía y Esteganografía
+
+Es un genio en Criptografía y Esteganografía.
+
+Entiende cómo los actores de amenazas ocultan información dentro de archivos aparentemente benignos (imágenes, audio) o cómo cifran sus herramientas. Conoce los algoritmos de hashing y cifrado para intentar romper esas barreras o recuperar llaves criptográficas de la memoria.
+
+Uso de Suites y Herramientas Forenses
+
+Es un genio en Uso de Suites Forenses.
+
+Maneja el armamento estándar de la industria. Domina plataformas como Autopsy, EnCase, FTK (Forensic Toolkit), KAPE y The Sleuth Kit para el procesamiento masivo y automatizado de la evidencia digital.
+
+Cadena de Custodia y Marco Legal
+
+Es un genio en Cadena de Custodia y Marco Legal.
+
+Sabe que el mejor análisis técnico no sirve de nada si se contamina la evidencia. Es un purista en la clonación bit a bit (usando bloqueadores de escritura), la validación de integridad mediante hashes (MD5/SHA256) y la documentación meticulosa para que el peritaje sea irrefutable en un tribunal

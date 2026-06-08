@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S14 E53: Documentación del Proyecto (Diagrama Lógico)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 14, Sesión 53: Documentación Lógica 🗺️</h1>
+        <p class="subtitle">Creación de un Mapa de Red Profesional con Esquema de Direccionamiento</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. El Diagrama Lógico: El Alma de la Red</h2>
+            <p>El **Diagrama Lógico** es una representación abstracta que muestra la estructura de la red en términos de direcciones IP, subredes, dominios de broadcast y cómo se agrupan los dispositivos. Para el proyecto PyME, es esencial mostrar el esquema de direccionamiento completo.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Capa de Abstracción</h3>
+                    <p>No se preocupa por dónde está el cable o el color; solo le importa que la **Red 192.168.10.0 /24** se conecte a Internet a través del **Gateway 192.168.10.1**.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Herramientas Gratuitas</h3>
+                    <p>Utiliza **Draw.io / Diagrams.net** o las capacidades de diagrama de **Packet Tracer** para crear tu mapa. Asegúrate de usar los símbolos estándar (ej. nube para Internet, cilindro para Servidor).</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Elementos Clave en el Diagrama Lógico del Proyecto</h2>
+            <p>Tu diagrama debe comunicar la siguiente información vital del proyecto:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>El Router (Gateway)</h3>
+                    <p>Muestra las IPs de sus dos interfaces: la **IP Privada** (Gateway LAN) y la **IP Pública** (WAN/Internet, usa una ficticia como 203.0.113.1 si es necesario).</p>
+                </div>
+                <div>
+                    <h3>Los Rangos</h3>
+                    <p>Etiqueta la subred principal (`192.168.10.0/24`). Indica dónde se encuentran las **IPs Estáticas** (.1, .2, .3) y el rango de **DHCP** (ej. .50 - .75).</p>
+                </div>
+                <div>
+                    <h3>Conectividad Lógica</h3>
+                    <p>Muestra que los PCs (clientes DHCP) se conectan al Switch, y este conecta al Gateway, el cual se conecta a Internet.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Creación del Diagrama</h2>
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <ol>
+                <li>Abre Draw.io o Packet Tracer y dibuja los componentes principales.</li>
+                <li>Etiqueta claramente la IP del Router, el Servidor y la Impresora.</li>
+                <li>Utiliza flechas para mostrar el flujo de tráfico de un PC a Internet.</li>
+            </ol>
+            <button id="logicalDiagramCheckBtn">Finalizar Diagrama Lógico</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S14 E53</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion52.html" class="nav-button">Anterior</a>
+        <a href="sesion54.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

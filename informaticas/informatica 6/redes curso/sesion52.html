@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S13 E52: Implementación del Proyecto (Fase II: DHCP, DNS y SSH)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 13, Sesión 52: Implementación del Proyecto (II) ⚙️</h1>
+        <p class="subtitle">Configuración del Router como Servidor DHCP y Acceso SSH</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Configuración del Servicio DHCP en el Router</h2>
+            <p>Ahora que los dispositivos estáticos están configurados, activaremos el **DHCP** para que los 20 PCs de los empleados obtengan su IP automáticamente.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>El Pool de Direcciones</h3>
+                    <p>Configura el rango DHCP para que inicie después de la última IP estática (192.168.10.3) y use el Pool de **192.168.10.50 a 192.168.10.75**.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Verificación de Clientes</h3>
+                    <p>En todos los PCs, cambia la configuración de IP de "Estática" a **"DHCP"**. Verifica que reciban una IP dentro del rango del Pool (entre .50 y .75).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Implementación de SSH (Acceso Remoto Seguro)</h2>
+            <p>Para la administración remota, el Router debe ser accedido de forma segura. Usaremos **SSH** y deshabilitaremos el inseguro Telnet.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Pasos Clave (CLI en Router)</h3>
+                    <ol>
+                        <li>Asigna un nombre de dominio (`ip domain-name tech.com`).</li>
+                        <li>Genera las claves de cifrado (`crypto key generate rsa`).</li>
+                        <li>Configura usuarios y aplica el transporte SSH a las líneas VTY (`transport input ssh`).</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Prueba de SSH</h3>
+                    <p>Desde un PC (en el *Desktop* del PC en Packet Tracer), usa el cliente **SSH** para intentar conectarte a la IP del Router (192.168.10.1). Debe pedirte usuario y contraseña y mostrar la línea de comandos del Router.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Configuración Final y Backup</h2>
+            <p><strong>Tarea Práctica (Configuración Final):</strong></p>
+            <ol>
+                <li>Habilita el servicio DHCP en el Router con el Pool correcto.</li>
+                <li>Verifica que los PCs reciban IPs del Pool.</li>
+                <li>Configura y prueba el acceso **SSH**.</li>
+                <li>¡Guarda la configuración! (**`copy running-config startup-config`**).</li>
+            </ol>
+            <button id="projectEndWeek13Btn">Finalizar Configuración de Servicios</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S13 E52</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion51.html" class="nav-button">Anterior</a>
+        <a href="sesion53.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

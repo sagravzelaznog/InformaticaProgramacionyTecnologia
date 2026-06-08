@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 12 - Hacking Ético Forense">
+    <title>Sesión 12: Listado y Recuperación de Inodos | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header module-two">
+        <div class="container">
+            <h1>Módulo 2: Sistemas de Archivos</h1>
+            <nav>
+                <div class="status-badge forensic-scan">ESTADO: RASTREO DE INODOS ACTIVO</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 12: Los Fantasmas del NTFS</h2>
+            <p><strong>Situación:</strong> El sospechoso vació la papelera de reciclaje justo antes del secuestro del equipo. Cree que la información se ha esfumado. Sin embargo, tú sabes que el sistema operativo simplemente desvincula el archivo de la tabla maestra (MFT), dejando los datos reales intactos en el disco hasta que sean sobrescritos.</p>
+            <p>Tu misión es utilizar tu bisturí digital (<code>fls</code> de The Sleuth Kit) para listar el contenido de la partición NTFS, encontrar esos "fantasmas" (archivos eliminados) y capturar sus metadatos vitales (inodos) para su posterior resurrección.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Extracción con `fls`</h2>
+            <p>Inicia tu máquina virtual con Kali Linux. Ejecuta los siguientes comandos sobre la imagen que mapeaste en la sesión anterior y valida cada paso.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Listar Archivos de la Imagen (`fls`)</h3>
+                    <p>Usa la herramienta <code>fls</code> para listar archivos y directorios de la imagen NTFS. Usaremos el flag de recursividad para buscar en todas las carpetas.</p>
+                    <div class="terminal">
+                        <code># Asegúrate de usar el offset (sector de inicio) descubierto en la Sesión 11<br>
+                        # Reemplaza '2048' por tu sector real y 'imagen.dd' por tu evidencia.<br>
+                        fls -o 2048 -r ~/DFIR/Casos/Caso_001/Evidencia/imagen_evidencia.dd</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Listado</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Identificar Inodos Eliminados</h3>
+                    <p>Filtra el volumen de datos. En <code>fls</code>, los archivos eliminados se marcan con un asterisco (<code>*</code>). Encuentra el archivo sospechoso que fue borrado.</p>
+                    <div class="terminal">
+                        <code># Pipa (|) el resultado hacia grep para buscar solo los eliminados<br>
+                        fls -o 2048 -r ~/DFIR/Casos/Caso_001/Evidencia/imagen_evidencia.dd | grep "*"</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Confirmar Hallazgo</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Capturar Metadatos del Inodo</h3>
+                    <p>Apunta el número de inodo (metadato) asociado al archivo eliminado. Este número es la llave que usarás en la siguiente sesión para extraer los datos.</p>
+                    <div class="terminal">
+                        <code># Registra el hallazgo en tu cadena de custodia<br>
+                        echo "[EVIDENCIA OCULTA] - Archivo 'finanzas_ocultas.xlsx' (Eliminado) encontrado." >> ~/DFIR/Casos/Caso_001/metadatos.txt<br>
+                        echo "Número de Inodo (MFT Record): 14582-128-1" >> ~/DFIR/Casos/Caso_001/metadatos.txt<br>
+                        cat ~/DFIR/Casos/Caso_001/metadatos.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Sellar Metadatos</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Inodos Asegurados!</h3>
+                <p>Excelente trabajo. Has demostrado que presionar "Eliminar" no borra la huella de un cibercriminal. Tienes las coordenadas exactas (metadatos) listas. Prepárate para la Sesión 13, donde ejecutaremos la recuperación total del payload.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 12. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

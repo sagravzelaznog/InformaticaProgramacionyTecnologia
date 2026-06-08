@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 17: Medios Inalámbricos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 17</h1>
+            <h2>Medios No Guiados: Autopistas Invisibles</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Aire no está Vacío</h3>
+            <p><strong>Objetivo:</strong> Comprender que estamos rodeados de datos viajando en forma de ondas electromagnéticas.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>📡 El Espectro Electromagnético</h4>
+                <p>El WiFi, la Radio FM, el Microondas de la cocina y la Luz visible son lo mismo: <strong>Energía vibrando a diferentes velocidades.</strong></p>
+                
+                <div class="stats-grid" style="gap: 10px;">
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #2b6cb0; font-size: 1.5rem;">Radio</span>
+                        <p style="font-size: 0.7rem;">Ondas GIGANTES (KMs). Viajan lejos, cargan pocos datos.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px; border: 2px solid #3182ce;">
+                        <span class="stat-number" style="color: #2c5282; font-size: 1.5rem;">Microondas</span>
+                        <p style="font-size: 0.7rem;">Ondas MEDIANAS (cms). WiFi y Celulares. Equilibrio perfecto.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #4a5568; font-size: 1.5rem;">Infrarrojo</span>
+                        <p style="font-size: 0.7rem;">Ondas PEQUEÑAS. Control remoto TV. No atraviesan nada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Tecnologías sin Cables</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2b6cb0; border-bottom: 2px solid #2b6cb0;">📶 Wi-Fi (WLAN)</h4>
+                    <p><strong>Radio de acción:</strong> ~50 metros.</p>
+                    <p>Usa ondas de radio para conectar dispositivos a un Punto de Acceso (Router).</p>
+                    <ul>
+                        <li><strong>2.4 GHz:</strong> Lenta, pero atraviesa paredes (Largo alcance).</li>
+                        <li><strong>5 GHz:</strong> Rapidísima, pero una pared la detiene (Corto alcance).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">🛰️ Satelital</h4>
+                    <p><strong>Radio de acción:</strong> Global.</p>
+                    <p>La señal viaja al espacio y regresa.</p>
+                    <ul>
+                        <li><strong>Ventaja:</strong> Llega a desiertos y montañas.</li>
+                        <li><strong>Desventaja:</strong> Latencia (Lag) alta por la distancia.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #38a169; border-bottom: 2px solid #38a169;">🦷 Bluetooth / NFC</h4>
+                    <p><strong>Radio de acción:</strong> Personal.</p>
+                    <p>Diseñados para gastar poca batería.</p>
+                    <ul>
+                        <li><strong>Bluetooth:</strong> Audífonos, teclados (10m).</li>
+                        <li><strong>NFC:</strong> Pagos con celular (¡Tocar para conectar!).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🌊 Física de Ondas: Paredes vs Señal</h4>
+                <p>¿Por qué el WiFi 5G no llega a mi cuarto?</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+                    <div style="display: flex; align-items: center;">
+                        <span style="width: 60px; font-size: 0.8rem; font-weight: bold;">2.4 GHz</span>
+                        <div style="flex-grow: 1; height: 40px; position: relative; overflow: hidden; background: #edf2f7; border-radius: 4px; display: flex; align-items: center;">
+                            <div style="width: 10px; height: 100%; background: #2d3748; position: absolute; left: 50%; z-index: 10;"></div>
+                            <svg width="100%" height="40" style="position: absolute;">
+                                <path d="M0 20 Q 50 5 100 20 T 200 20 T 300 20 T 400 20 T 500 20" stroke="#3182ce" fill="transparent" stroke-width="3" style="animation: moveWave 2s linear infinite;"/>
+                            </svg>
+                            <span style="position: absolute; right: 10px; font-size: 0.7rem; color: #2b6cb0; font-weight: bold;">¡Pasó!</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <span style="width: 60px; font-size: 0.8rem; font-weight: bold;">5 GHz</span>
+                        <div style="flex-grow: 1; height: 40px; position: relative; overflow: hidden; background: #edf2f7; border-radius: 4px; display: flex; align-items: center;">
+                            <div style="width: 10px; height: 100%; background: #2d3748; position: absolute; left: 50%; z-index: 10;"></div>
+                            <svg width="50%" height="40" style="position: absolute; left: 0;">
+                                <path d="M0 20 Q 25 5 50 20 T 100 20 T 150 20 T 200 20 T 250 20" stroke="#e53e3e" fill="transparent" stroke-width="3" style="animation: moveWave 1s linear infinite;"/>
+                            </svg>
+                            <span style="position: absolute; right: 10px; font-size: 0.7rem; color: #e53e3e; font-weight: bold;">Bloqueada 🚫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    @keyframes moveWave {
+                        from { transform: translateX(0); }
+                        to { transform: translateX(-100px); }
+                    }
+                </style>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Debate de Actualidad</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Mito: "El 5G es malo para la salud"</h5>
+                    <p>¿Es verdad que las antenas nos hacen daño?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Ciencia</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>FALSO.</strong> Son ondas "No Ionizantes". No tienen energía suficiente para dañar el ADN (a diferencia de los Rayos X o UV del sol, que sí queman).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Li-Fi (El Futuro)</h5>
+                    <p>¿Te imaginas tener internet a través de los focos de tu casa?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Concepto</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Light Fidelity.</strong> Transmitir datos apagando y prendiendo luces LED millones de veces por segundo. ¡Internet a la velocidad de la luz real!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>📡 <strong>Misión del Día:</strong> Descarga una App de "WiFi Analyzer" en tu celular y encuentra el lugar de tu casa con la señal más fuerte (dBm más cercano a 0).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 17 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion02: Manipulación Segura</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 02: Manipulación Segura en el Sandbox</h1>
+            <p class="intro-text">Ya tienes VirtualBox y Kali Linux. Hoy encendemos la máquina. En el análisis forense, la regla de oro es: <strong>NUNCA se trabaja sobre la evidencia original</strong>. Aprenderemos a crear, copiar y aislar archivos de forma quirúrgica usando la terminal, sin tocar tu sistema operativo anfitrión (Windows/Mac).</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Arranque y Primer Contacto</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Inicia tu máquina virtual Kali en VirtualBox. Abre la aplicación de terminal (el ícono negro en la barra superior). Estás viendo el intérprete de comandos ZSH. Vamos a crear nuestro directorio de evidencia aislado.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> mkdir -p /home/kali/Desktop/evidencia_lab02
+<span class="prompt">-(kali㉿kali)-[~]$</span> cd /home/kali/Desktop/evidencia_lab02</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Generación de Archivos "Señuelo" (touch)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El comando <code>touch</code> sirve para actualizar la fecha de modificación de un archivo, pero si el archivo no existe, lo crea vacío. Crearemos tres archivos simulando registros extraídos de un servidor vulnerado.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> touch log_acceso.txt
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> touch config_sospechosa.conf
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> ls -la</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Clonación Quirúrgica (cp)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Si alteras la evidencia original, arruinas el caso judicial. Siempre hacemos una copia de trabajo. Usaremos <code>cp</code> para duplicar nuestro log y <code>mv</code> para renombrarlo o aislarlo en una subcarpeta.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> mkdir analisis
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> cp log_acceso.txt analisis/log_trabajo.txt
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> mv config_sospechosa.conf analisis/aislado.conf</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El peligro de 'rm' en Forense</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En Linux de escritorio, eliminar envía a la papelera. En la terminal, <code>rm</code> destruye el enlace al archivo casi irreversiblemente. En forense rara vez eliminamos, pero debes saber cómo limpiar tus copias de trabajo.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> rm analisis/log_trabajo.txt
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> rmdir analisis/  <span class="comment"># Fallará porque no está vacía</span>
+<span class="prompt">-(kali㉿kali)-[~/.../evidencia_lab02]$</span> rm -r analisis/ <span class="comment"># Borrado recursivo (Peligro)</span></code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #02. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

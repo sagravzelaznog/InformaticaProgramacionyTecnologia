@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Práctica 01 U2: Variables y Tipos de Datos</title>
+    
+    <style>
+       /* Prevención de selección y copiado */
+       body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* Mensaje al intentar copiar */
+        body::selection {
+            background: transparent;
+        }
+        
+        /* Prevención de captura de pantalla (soporte limitado) */
+        @media print {
+            body { display: none !important; }
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background-color: #0c82f0; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .instructions { border: 2px solid #0c82f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        /* Estilo mejorado para bloques de código */
+        .code {
+            background-color: #282c34;
+            color: #abb2bf;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3e4451;
+            position: relative;
+        }
+        
+        /* Estilo para títulos de sección en el código */
+        .code .section-title {
+            color: #61afef;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            display: block;
+        }
+        
+        /* Colores para la sintaxis */
+        .code .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+        
+        .code .string {
+            color: #98c379;
+        }
+        
+        .code .number {
+            color: #d19a66;
+        }
+        
+        .code .keyword {
+            color: #c678dd;
+        }
+        
+        .code .function {
+            color: #61afef;
+        }
+        
+        .code .builtin {
+            color: #e5c07b;
+        }
+        
+        .code .operator {
+            color: #56b6c2;
+        }
+        
+        /* Barra de título del bloque de código */
+        .code::before {
+            content: 'Código Python';
+            display: block;
+            background: #21252b;
+            color: #9da5b4;
+            padding: 8px 15px;
+            margin: -20px -20px 15px -20px;
+            border-radius: 8px 8px 0 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            border-bottom: 1px solid #3e4451;
+        }
+        
+        /* Botones de control (simulados) */
+        .code::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            background: #ff5f56;
+            border-radius: 50%;
+            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+        }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>3. Práctica 01 U2: Variables y Tipos de Datos</h1>
+    <p>Fundamentos de la asignación y tipos de datos en Python.</p>
+</header>
+
+<div class="instructions">
+    <h2>Instrucciones para la Actividad</h2>
+    <p><strong>Paso 1: Celda de Código</strong> | Añade una celda de <strong>Código</strong>.</p>
+    <p><strong>Paso 2: Copiar y Ejecutar</strong> | Copia el código Python en la celda y ejecútalo (`Shift + Enter`).</p>
+    <p><strong>Paso 3: Modificación</strong> | Intenta cambiar los valores de las variables y vuelve a ejecutar para ver los nuevos resultados.</p>
+</div>
+
+<section>
+    <h2>Definición de Variables</h2>
+    <p>En esta práctica, exploraremos los diferentes tipos de datos en Python y cómo trabajar con ellos. Cubriremos:</p>
+<ul>
+    <li>Tipos de datos básicos: enteros, flotantes, cadenas y booleanos</li>
+    <li>Operaciones comunes con variables</li>
+    <li>Conversión entre diferentes tipos de datos</li>
+</ul>
+<p>Ejecuta cada sección del código y observa los resultados. Luego, intenta modificar los valores y experimenta con diferentes operaciones.</p>
+    <pre class="code">
+<span class="comment"># Práctica 01 U2: Variables y Tipos de Datos</span>
+
+<span class="section-title"># ===== 1. Tipos de Datos Básicos =====</span>
+<span class="comment"># Variable de tipo entero (int)</span>
+edad = <span class="number">30</span>
+
+<span class="comment"># Variable de tipo flotante (float)</span>
+precio = <span class="number">19.99</span>
+
+<span class="comment"># Variable de tipo cadena de texto (str)</span>
+nombre = <span class="string">"Ana García"</span>
+
+<span class="comment"># Variable de tipo booleano (bool)</span>
+es_estudiante = <span class="keyword">True</span>
+
+<span class="comment"># Variable de tipo NoneType</span>
+valor_nulo = <span class="keyword">None</span>
+
+<span class="section-title"># ===== 2. Estructuras de Datos =====</span>
+<span class="comment"># Lista (mutable, ordenada, permite duplicados)</span>
+frutas = [<span class="string">"manzana"</span>, <span class="string">"banana"</span>, <span class="string">"cereza"</span>]
+
+<span class="comment"># Tupla (inmutable, ordenada, permite duplicados)</span>
+coordenadas = (<span class="number">40.7128</span>, <span class="number">-74.0060</span>)
+
+<span class="comment"># Conjunto (mutable, no ordenado, no permite duplicados)</span>
+colores = {<span class="string">"rojo"</span>, <span class="string">"verde"</span>, <span class="string">"azul"</span>}
+
+<span class="comment"># Diccionario (mutable, ordenado desde Python 3.7, pares clave-valor)</span>
+estudiante = {
+    <span class="string">"nombre"</span>: <span class="string">"Carlos"</span>,
+    <span class="string">"edad"</span>: <span class="number">22</span>,
+    <span class="string">"carrera"</span>: <span class="string">"Informática"</span>
+}
+
+<span class="section-title"># ===== 3. Operaciones con Variables =====</span>
+<span class="comment"># Operaciones aritméticas</span>
+suma = <span class="number">5</span> <span class="operator">+</span> <span class="number">3.2</span>
+resta = <span class="number">10</span> <span class="operator">-</span> <span class="number">4</span>
+multiplicacion = <span class="number">6</span> <span class="operator">*</span> <span class="number">7</span>
+division = <span class="number">15</span> <span class="operator">/</span> <span class="number">3</span>
+potencia = <span class="number">2</span> <span class="operator">**</span> <span class="number">3</span>
+
+<span class="comment"># Operaciones con cadenas</span>
+saludo = <span class="string">"Hola, "</span> <span class="operator">+</span> nombre <span class="operator">+</span> <span class="string">"!"</span> 
+longitud_nombre = <span class="builtin">len</span>(nombre)
+mayusculas = nombre<span class="operator">.</span><span class="function">upper</span>()
+
+<span class="comment"># Operaciones con listas</span>
+frutas<span class="operator">.</span><span class="function">append</span>(<span class="string">"naranja"</span>)  <span class="comment"># Añadir elemento</span>
+ultima_fruta = frutas[<span class="number">-1</span>]  <span class="comment"># Último elemento</span>
+
+<span class="section-title"># ===== 4. Conversión de Tipos =====</span>
+numero_texto = <span class="string">"123"</span>
+numero_entero = <span class="builtin">int</span>(numero_texto)
+numero_decimal = <span class="builtin">float</span>(<span class="string">"45.67"</span>)
+texto_numero = <span class="builtin">str</span>(<span class="number">123</span>)
+
+<span class="section-title"># ===== 5. Mostrar Resultados =====</span>
+print("\n=== Tipos Básicos ===")
+<span class="function">print</span>(<span class="string">f"Nombre: {nombre}, Tipo: {<span class="builtin">type</span>(nombre)}"</span>)
+<span class="function">print</span>(<span class="string">f"Edad: {edad}, Tipo: {<span class="builtin">type</span>(edad)}"</span>)
+<span class="function">print</span>(<span class="string">f"Precio: {precio}, Tipo: {<span class="builtin">type</span>(precio)}"</span>)
+<span class="function">print</span>(<span class="string">f"¿Es estudiante?: {es_estudiante}, Tipo: {<span class="builtin">type</span>(es_estudiante)}"</span>)
+
+print("\n=== Estructuras de Datos ===")
+<span class="function">print</span>(<span class="string">f"Lista de frutas: {frutas}, Tipo: {<span class="builtin">type</span>(frutas)}"</span>)
+<span class="function">print</span>(<span class="string">f"Coordenadas: {coordenadas}, Tipo: {<span class="builtin">type</span>(coordenadas)}"</span>)
+<span class="function">print</span>(<span class="string">f"Colores: {colores}, Tipo: {<span class="builtin">type</span>(colores)}"</span>)
+<span class="function">print</span>(<span class="string">f"Datos del estudiante: {estudiante}, Tipo: {<span class="builtin">type</span>(estudiante)}"</span>)
+
+print("\n=== Operaciones ===")
+<span class="function">print</span>(<span class="string">f"Suma: 5 + 3.2 = {suma}"</span>)
+<span class="function">print</span>(<span class="string">f"Saludo personalizado: {saludo}"</span>)
+<span class="function">print</span>(<span class="string">f"Longitud del nombre: {longitud_nombre} caracteres"</span>)
+<span class="function">print</span>(<span class="string">f"Última fruta añadida: {ultima_fruta}"</span>)
+
+print("\n=== Conversión de Tipos ===")
+<span class="function">print</span>(<span class="string">f"'123' como entero: {numero_entero}, Tipo: {<span class="builtin">type</span>(numero_entero)}"</span>)
+<span class="function">print</span>(<span class="string">f"'45.67' como float: {numero_decimal}, Tipo: {<span class="builtin">type</span>(numero_decimal)}"</span>)
+<span class="function">print</span>(<span class="string">f"123 como texto: {texto_numero}, Tipo: {<span class="builtin">type</span>(texto_numero)}"</span>)
+    </pre>
+</section>
+
+</body>
+<footer>
+        <a href="S2.HTML" style="margin: 0 15px;">&larr; Anterior</a>
+        <a href="index.html" style="margin: 0 15px;">Volver al Índice</a>
+        <a href="S4.HTML" style="margin: 0 15px;">Siguiente &rarr;</a>
+    </div>
+	<p style="text-align: center; font-size: 0.8em; color: #666;">© 2025 JMGVPTEL TUTORIAL GOOGLE COLAB. Todos los derechos reservados.</p>
+</footer>
+</html>

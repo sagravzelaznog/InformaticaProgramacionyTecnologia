@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 20: Servicios DNS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 20</h1>
+            <h2>DNS: La Agenda Telefónica de Internet</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Humanos vs Máquinas</h3>
+            <p><strong>Objetivo:</strong> Entender que los humanos memorizamos nombres, pero las máquinas solo entienden números.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>🧠 El Problema de la Memoria</h4>
+                <p>Intenta memorizar esto:</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border: 1px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.2rem;">142.250.189.206</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Lo que ve la computadora</p>
+                        <p style="font-size: 0.7rem;">(Imposible de recordar)</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border: 1px solid #38a169;">
+                        <span class="stat-number" style="color: #38a169; font-size: 1.2rem;">google.com</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Lo que ve el humano</p>
+                        <p style="font-size: 0.7rem;">(Fácil y lógico)</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"El Sistema de Nombres de Dominio (DNS) es el traductor que convierte tus palabras en direcciones IP."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía de una URL</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2b6cb0; border-bottom: 2px solid #2b6cb0;">🌐 El Nombre de Dominio</h4>
+                    <p>Es tu dirección digital.</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; margin: 10px 0; border-radius: 4px; font-size: 0.9rem;">
+                        <span style="color: #999;">www.</span><span style="color: #2b6cb0; font-weight:bold;">miempresa</span><span style="color: #e53e3e;">.com</span>
+                    </div>
+                    <ul>
+                        <li><span style="color: #2b6cb0;">Nombre:</span> Identidad única.</li>
+                        <li><span style="color: #e53e3e;">TLD (Extensión):</span> Tipo (.com, .edu, .mx).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">📚 El Servidor DNS</h4>
+                    <p>Es una computadora gigante que solo tiene una lista:</p>
+                    <table style="width: 100%; font-size: 0.8rem; border-collapse: collapse; margin-top: 5px;">
+                        <tr style="background: #f7fafc;">
+                            <td style="padding: 4px; border: 1px solid #ddd;">facebook.com</td>
+                            <td style="padding: 4px; border: 1px solid #ddd;">➡</td>
+                            <td style="padding: 4px; border: 1px solid #ddd;">157.240.22.35</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px; border: 1px solid #ddd;">uadec.mx</td>
+                            <td style="padding: 4px; border: 1px solid #ddd;">➡</td>
+                            <td style="padding: 4px; border: 1px solid #ddd;">200.23.1.5</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🔄 ¿Qué pasa cuando das ENTER?</h4>
+                <p>Viaje de una petición DNS en milisegundos:</p>
+                
+                <div style="position: relative; margin-top: 20px; height: 120px; background: #1a202c; border-radius: 8px; overflow: hidden;">
+                    
+                    <div style="position: absolute; left: 10px; top: 40px; text-align: center;">
+                        <div style="font-size: 1.5rem;">💻</div>
+                        <p style="color: white; font-size: 0.6rem;">TÚ</p>
+                    </div>
+
+                    <div style="position: absolute; right: 10px; top: 40px; text-align: center;">
+                        <div style="font-size: 1.5rem;">🏢</div>
+                        <p style="color: white; font-size: 0.6rem;">SERVER</p>
+                    </div>
+
+                    <div style="position: absolute; left: 50%; top: 10px; transform: translateX(-50%); text-align: center;">
+                        <div style="font-size: 1.5rem;">📚</div>
+                        <p style="color: #f6ad55; font-size: 0.6rem;">DNS</p>
+                    </div>
+
+                    <div class="dns-dot" style="background: #4fd1c5; animation: askDNS 3s infinite;"></div>
+                    <div class="dns-dot" style="background: #f6ad55; animation: answerDNS 3s infinite;"></div>
+                    <div class="dns-dot" style="background: #63b3ed; animation: connectServer 3s infinite;"></div>
+
+                </div>
+
+                <div style="display: flex; justify-content: space-around; font-size: 0.7rem; color: #718096; margin-top: 5px;">
+                    <span style="color: #4fd1c5;">1. "¿Quién es google.com?"</span>
+                    <span style="color: #f6ad55;">2. "Es 142.250.x.x"</span>
+                    <span style="color: #63b3ed;">3. "¡Hola 142.250.x.x!"</span>
+                </div>
+
+                <style>
+                    .dns-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; top: 50px; opacity: 0; }
+                    @keyframes askDNS { 0% {left: 30px; top: 50px; opacity: 1;} 30% {left: 50%; top: 30px; opacity: 1;} 31% {opacity: 0;} 100% {opacity: 0;} }
+                    @keyframes answerDNS { 0% {opacity: 0;} 30% {left: 50%; top: 30px; opacity: 0;} 31% {left: 50%; top: 30px; opacity: 1;} 60% {left: 30px; top: 50px; opacity: 1;} 61% {opacity: 0;} 100% {opacity: 0;} }
+                    @keyframes connectServer { 0% {opacity: 0;} 60% {left: 30px; top: 50px; opacity: 0;} 61% {left: 30px; top: 50px; opacity: 1;} 100% {left: 90%; top: 50px; opacity: 1;} }
+                </style>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Errores Comunes</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Error: DNS_PROBE_FINISHED_NXDOMAIN</h5>
+                    <p>Ves esto en Chrome. ¿Qué significa?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Traducción</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>"Dominio No Existe".</strong> Escribiste mal la dirección web o el dueño del sitio no pagó la renovación de su nombre.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Quién es el dueño? (WHOIS)</h5>
+                    <p>¿Es posible saber quién registró un dominio?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Sí, con herramientas WHOIS.</strong> Aunque hoy en día muchos pagan por "Privacidad de Dominio" para ocultar sus datos personales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🔍 <strong>Misión del Día:</strong> Entra a <em>who.is</em> y busca "uadec.mx". ¿Cuándo caduca el dominio de la universidad?</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 20 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

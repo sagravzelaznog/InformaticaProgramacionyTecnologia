@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 9: Herramientas de productividad</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .shortcut {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 8px 12px;
+            margin: 5px 0;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+        }
+        .tool {
+            background-color: #f0f7ff;
+            border-left: 4px solid #64b5f6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 9: Herramientas de productividad</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 33 -->
+        <div id="sesion33" class="session">
+            <h2>Sesión 33: Personalización de la interfaz</h2>
+            <div class="content">
+                <p>En esta sesión aprenderemos a personalizar la interfaz de AutoCAD para adaptarla a nuestro flujo de trabajo y mejorar la productividad.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Personalizar la cinta de opciones</li>
+                        <li>Crear y gestionar espacios de trabajo</li>
+                        <li>Configurar accesos rápidos</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                
+                <div class="activity">
+                    <h4>Taller Práctico: Personalización de la Interfaz (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Optimizar el entorno de trabajo de AutoCAD mediante la personalización de la interfaz para mejorar la eficiencia en el dibujo 2D.</p>
+                    
+                    <h5>Parte 1: Personalización de la Cinta de Opciones (40 min)</h5>
+                    <ol>
+                        <li><strong>Exploración de la interfaz</strong>
+                            <ul>
+                                <li>Acceso al Editor de Interfaz de Usuario (comando <span class="command">CUI</span>)</li>
+                                <li>Estructura de pestañas, paneles y herramientas</li>
+                                <li>Personalización de la cinta de opciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Creación de pestañas personalizadas</strong>
+                            <ul>
+                                <li>Nueva pestaña para herramientas 2D</li>
+                                <li>Agregar comandos frecuentes</li>
+                                <li>Organización de iconos y grupos</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Parte 2: Configuración de Espacios de Trabajo (40 min)</h5>
+                    <ol start="3">
+                        <li><strong>Creación de espacios personalizados</strong>
+                            <ul>
+                                <li>Guardar configuración actual como nuevo espacio</li>
+                                <li>Personalización de barras de herramientas</li>
+                                <li>Configuración de paletas de herramientas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Accesos rápidos y atajos</strong>
+                            <ul>
+                                <li>Personalización de teclas de acceso rápido</li>
+                                <li>Creación de alias de comandos</li>
+                                <li>Importar/exportar configuraciones</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise">
+                    <h4>Proyecto: Configuración de Entorno Personalizado</h4>
+                    <p><strong>Requisitos:</strong> Crea un entorno de trabajo optimizado para diseño arquitectónico 2D.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Elementos Requeridos:</h5>
+                            <ul>
+                                <li>Pestaña personalizada "Arquitectura 2D"</li>
+                                <li>Barra de herramientas de dibujo rápido</li>
+                                <li>Paletas de herramientas organizadas</li>
+                                <li>Atajos de teclado personalizados</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Comandos Esenciales:</h5>
+                            <ul>
+                                <li><span class="command">CUI</span> - Personalización de interfaz</li>
+                                <li><span class="command">OPTIONS</span> - Opciones generales</li>
+                                <li><span class="command">WSSETTINGS</span> - Configuración de espacios</li>
+                                <li><span class="command">SAVEWORKSPACE</span> - Guardar espacio</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Archivo de perfil</strong> (.arg) con:
+                                <ul>
+                                    <li>Configuración de espacios de trabajo</li>
+                                    <li>Pestañas personalizadas</li>
+                                    <li>Atajos de teclado</li>
+                                </ul>
+                            </li>
+                            <li><strong>Documento PDF</strong> con:
+                                <ul>
+                                    <li>Capturas de la interfaz personalizada</li>
+                                    <li>Lista de comandos personalizados</li>
+                                    <li>Explicación de la organización</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Personalización de Interfaz (40 puntos)</strong></p>
+                    <ul>
+                        <li>Organización de herramientas (15pts)</li>
+                        <li>Accesibilidad de comandos (15pts)</li>
+                        <li>Optimización del espacio (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Funcionalidad (30 puntos)</strong>
+                    <ul>
+                        <li>Atajos de teclado (10pts)</li>
+                        <li>Barras de herramientas (10pts)</li>
+                        <li>Paletas personalizadas (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Archivos de configuración (10pts)</li>
+                        <li>Manual de usuario (10pts)</li>
+                        <li>Presentación (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea perfiles separados para diferentes tipos de proyectos (arquitectura, ingeniería, diseño). Usa <span class="command">PROFILES</span> para gestionar múltiples configuraciones. Recuerda hacer respaldo de tus archivos .arg regularmente.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 34 -->
+        <div id="sesion34" class="session">
+            <h2>Sesión 34: Bloques y bibliotecas personalizadas</h2>
+            <div class="content">
+                <p>Exploraremos cómo crear y gestionar bibliotecas de bloques personalizadas para agilizar el trabajo en proyectos recurrentes.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear bibliotecas de bloques</li>
+                        <li>Implementar bloques dinámicos avanzados</li>
+                        <li>Gestionar bloques con el Centro de diseño</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                
+                <div class="activity">
+                    <h4>Taller Práctico: Creación de Bibliotecas de Bloques (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Desarrollar una biblioteca organizada de bloques dinámicos para proyectos de diseño arquitectónico.</p>
+                    
+                    <h5>Parte 1: Fundamentos de Bloques (40 min)</h5>
+                    <ol>
+                        <li><strong>Creación de Bloques Básicos</strong>
+                            <ul>
+                                <li>Comando <span class="command">BLOCK</span> vs <span class="command">WBLOCK</span></li>
+                                <li>Definición de puntos de inserción</li>
+                                <li>Escalas y rotaciones predefinidas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Atributos de Bloque</strong>
+                            <ul>
+                                <li>Definición de atributos con <span class="command">ATTDEF</span></li>
+                                <li>Campos dinámicos en atributos</li>
+                                <li>Formato y edición de atributos</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Parte 2: Bloques Dinámicos Avanzados (50 min)</h5>
+                    <ol start="3">
+                        <li><strong>Parámetros y Acciones</strong>
+                            <ul>
+                                <li>Parámetros lineales y de rotación</li>
+                                <li>Acciones de estiramiento, matriz y escala</li>
+                                <li>Conjuntos de parámetros</li>
+                            </ul>
+                        </li>
+                        <li><strong>Estados de Visibilidad</strong>
+                            <ul>
+                                <li>Creación de estados múltiples</li>
+                                <li>Visibilidad condicional</li>
+                                <li>Uso de parámetros de consulta</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise">
+                    <h4>Proyecto: Biblioteca de Mobiliario Arquitectónico</h4>
+                    <p><strong>Requisitos Específicos:</strong> Desarrolla una biblioteca de bloques profesionales para un proyecto de vivienda.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Bloques Requeridos:</h5>
+                            <ul>
+                                <li>Mueble de cocina (con opciones de ancho)</li>
+                                <li>Puerta de acceso (izquierda/derecha, abatimiento)</li>
+                                <li>Ventana corrediza (ancho ajustable)</li>
+                                <li>Mueble de baño (varios diseños)</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Atributos por Bloque:</h5>
+                            <ul>
+                                <li>Código de referencia</li>
+                                <li>Descripción</li>
+                                <li>Materiales</li>
+                                <li>Proveedor (opcional)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Características Dinámicas:</h5>
+                    <ul>
+                        <li>Control de dimensiones</li>
+                        <li>Opciones de configuración</li>
+                        <li>Visibilidad de componentes</li>
+                    </ul>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Archivo DWG</strong> con:
+                                <ul>
+                                    <li>Biblioteca de bloques organizada</li>
+                                    <li>Hoja de presentación</li>
+                                    <li>Tabla de atributos</li>
+                                </ul>
+                            </li>
+                            <li><strong>Documento PDF</strong> con:
+                                <ul>
+                                    <li>Manual de uso de bloques</li>
+                                    <li>Instrucciones de inserción</li>
+                                    <li>Ejemplos de aplicación</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión dimensional (15pts)</li>
+                        <li>Funcionamiento dinámico (15pts)</li>
+                        <li>Organización de capas (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Complejidad y Utilidad (30 puntos)</strong>
+                    <ul>
+                        <li>Variedad de bloques (10pts)</li>
+                        <li>Parámetros dinámicos (10pts)</li>
+                        <li>Aplicación práctica (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Manual de usuario (10pts)</li>
+                        <li>Organización de archivos (10pts)</li>
+                        <li>Presentación (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Mantén una estructura de carpetas clara para tu biblioteca de bloques: <br>
+                    <span class="command">/Bloques_2D</span> (archivos DWG), <span class="command">/Imágenes</span> (vistas previas), <span class="command">/Documentación</span> (especificaciones). Usa el <span class="command">DWG</span> para compartir bloques entre proyectos.
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>Nota:</strong> Mantén una copia de seguridad de tus bibliotecas de bloques en una ubicación segura.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 35 -->
+        <div id="sesion35" class="session">
+            <h2>Sesión 35: Automatización con herramientas de productividad</h2>
+            <div class="content">
+                <p>Aprenderemos a utilizar herramientas avanzadas de AutoCAD para automatizar tareas repetitivas y mejorar la eficiencia.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Usar herramientas de selección avanzada</li>
+                        <li>Implementar herramientas de edición por lotes</li>
+                        <li>Automatizar tareas con la herramienta de acciones</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Automatización en AutoCAD (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Dominar técnicas de automatización para optimizar el flujo de trabajo en proyectos de dibujo técnico.</p>
+                    
+                    <h5>Parte 1: Selección Avanzada (40 min)</h5>
+                    <ol>
+                        <li><strong>Filtros de Selección</strong>
+                            <ul>
+                                <li>Uso de <span class="command">FILTER</span> para crear conjuntos complejos</li>
+                                <li>Guardado y reutilización de filtros</li>
+                                <li>Selección por propiedades con <span class="command">QSELECT</span></li>
+                            </ul>
+                        </li>
+                        <li><strong>Selección por Código</strong>
+                            <ul>
+                                <li>Uso de <span class="command">SELECTSIMILAR</span></li>
+                                <li>Parámetros de selección avanzada</li>
+                                <li>Guardado de selecciones con <span class="command">GROUPDISABLE</span></li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Parte 2: Automatización de Tareas (50 min)</h5>
+                    <ol start="3">
+                        <li><strong>Comandos por Lotes</strong>
+                            <ul>
+                                <li>Uso de <span class="command">-PURGE</span> en modo comando</li>
+                                <li>Scripts con <span class="command">SCRIPT</span></li>
+                                <li>Procesamiento de múltiples archivos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Grabadora de Acciones</strong>
+                            <ul>
+                                <li>Creación de macros con <span class="command">ACTRECORD</span></li>
+                                <li>Edición de acciones grabadas</li>
+                                <li>Asignación a botones personalizados</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise">
+                    <h4>Proyecto: Automatización de Planos Arquitectónicos</h4>
+                    <p><strong>Requisitos:</strong> Desarrolla un conjunto de herramientas automatizadas para la generación de planos.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Tareas a Automatizar:</h5>
+                            <ul>
+                                <li>Configuración inicial de capas</li>
+                                <li>Inserción de elementos repetitivos</li>
+                                <li>Generación de cotas y anotaciones</li>
+                                <li>Exportación a PDF</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Herramientas Clave:</h5>
+                            <ul>
+                                <li><span class="command">LAYERSTATE</span> - Estados de capa</li>
+                                <li><span class="command">SHEETSET</span> - Conjuntos de planos</li>
+                                <li><span class="command">DATAEXTRACTION</span> - Extracción de datos</li>
+                                <li><span class="command">PUBLISH</span> - Publicación por lotes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Archivos de Automatización</strong>:
+                                <ul>
+                                    <li>Scripts (.scr) para tareas comunes</li>
+                                    <li>Archivos de acción (.actm)</li>
+                                    <li>Plantillas personalizadas (.dwt)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Documentación Técnica</strong>:
+                                <ul>
+                                    <li>Manual de procedimientos</li>
+                                    <li>Guía de instalación</li>
+                                    <li>Casos de uso prácticos</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Funcionalidad (40 puntos)</strong></p>
+                    <ul>
+                        <li>Efectividad de las automatizaciones (15pts)</li>
+                        <li>Reducción de pasos manuales (15pts)</li>
+                        <li>Confiabilidad de los scripts (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Aplicación Práctica (30 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Adaptabilidad a diferentes escenarios (10pts)</li>
+                        <li>Optimización de tiempo (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Claridad de instrucciones (10pts)</li>
+                        <li>Organización del material (10pts)</li>
+                        <li>Ejemplos proporcionados (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea una biblioteca de scripts reutilizables organizada por categorías:
+                    <span class="command">/Scripts/Inicio</span> (configuraciones iniciales),
+                    <span class="command">/Scripts/Anotacion</span> (cotas y textos),
+                    <span class="command">/Scripts/Exportar</span> (publicación y exportación).
+                    Usa nombres descriptivos para facilitar su identificación y mantenimiento.
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">QSELECT</span> para selecciones rápidas basadas en propiedades.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 36 -->
+        <div id="sesion36" class="session">
+            <h2>Sesión 36: Flujos de trabajo avanzados</h2>
+            <div class="content">
+                <p>En esta sesión exploraremos flujos de trabajo avanzados que combinan múltiples herramientas de productividad para optimizar el tiempo de trabajo.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Implementar estándares de dibujo</li>
+                        <li>Crear plantillas personalizadas</li>
+                        <li>Gestionar referencias externas de manera eficiente</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Flujos de Trabajo Eficientes (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Implementar un flujo de trabajo integral que combine todas las herramientas de productividad aprendidas.</p>
+                    
+                    <h5>Parte 1: Estándares de Dibujo (40 min)</h5>
+                    <ol>
+                        <li><strong>Configuración de Estándares</strong>
+                            <ul>
+                                <li>Creación de perfiles de capas con <span class="command">LAYERSTATE</span></li>
+                                <li>Estilos de texto y cotas estandarizados</li>
+                                <li>Guía de estilos de trazado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Plantillas Profesionales</strong>
+                            <ul>
+                                <li>Configuración de archivos <span class="command">.dwt</span></li>
+                                <li>Espacios modelo y presentación</li>
+                                <li>Configuración de estilos de trazado</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Parte 2: Integración de Herramientas (50 min)</h5>
+                    <ol start="3">
+                        <li><strong>Referencias Externas</strong>
+                            <ul>
+                                <li>Manejo de archivos <span class="command">XREF</span></li>
+                                <li>Actualizaciones en tiempo real</li>
+                                <li>Control de capas por referencia</li>
+                            </ul>
+                        </li>
+                        <li><strong>Automatización de Procesos</strong>
+                            <ul>
+                                <li>Scripts para configuración inicial</li>
+                                <li>Macros para tareas repetitivas</li>
+                                <li>Publicación por lotes</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise">
+                    <h4>Proyecto: Paquete de Productividad Profesional</h4>
+                    <p><strong>Objetivo:</strong> Desarrollar un paquete completo que integre todas las herramientas de productividad aprendidas.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Componentes Principales:</h5>
+                            <ul>
+                                <li>Plantilla maestra (<span class="command">.dwt</span>)</li>
+                                <li>Biblioteca de bloques dinámicos</li>
+                                <li>Perfiles de espacio de trabajo</li>
+                                <li>Scripts de automatización</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Características Clave:</h5>
+                            <ul>
+                                <li>Estándares de capas predefinidos</li>
+                                <li>Estilos de texto y cotas</li>
+                                <li>Configuraciones de trazado</li>
+                                <li>Macros personalizadas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Archivos Principales</strong>:
+                                <ul>
+                                    <li>Plantilla <span class="command">.dwt</span> con estándares</li>
+                                    <li>Biblioteca de bloques <span class="command">.dwg</span></li>
+                                    <li>Archivos de perfil <span class="command">.arg</span></li>
+                                </ul>
+                            </li>
+                            <li><strong>Documentación Técnica</strong>:
+                                <ul>
+                                    <li>Manual de instalación</li>
+                                    <li>Guía de uso de herramientas</li>
+                                    <li>Procedimientos estándar</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Implementación Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Configuración correcta de estándares (10pts)</li>
+                        <li>Funcionalidad de herramientas (15pts)</li>
+                        <li>Integración de componentes (15pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Completitud de manuales (10pts)</li>
+                        <li>Claridad de instrucciones (10pts)</li>
+                        <li>Ejemplos prácticos (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Aplicación Práctica (30 puntos)</strong>
+                    <ul>
+                        <li>Eficiencia del flujo de trabajo (10pts)</li>
+                        <li>Reducción de pasos manuales (10pts)</li>
+                        <li>Escalabilidad (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea un sistema de versionado para tu paquete de productividad. Usa carpetas con fechas (ej. <span class="command">/Versiones/2025_07</span>) para mantener un historial de cambios y poder revertir a versiones anteriores si es necesario. Incluye un archivo <span class="command">CHANGELOG.txt</span> que documente las actualizaciones y mejoras en cada versión.
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

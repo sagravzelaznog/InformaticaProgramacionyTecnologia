@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S4 E15: Herramientas de Diagnóstico de Redes (Netstat y Software Gratuito)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 4, Sesión 15: Diagnóstico de Redes (II) 💻</h1>
+        <p class="subtitle">Netstat, ARP y Software de Escaneo Gratuito</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Netstat: Conexiones y Puertos Activos</h2>
+            <p>El comando **Netstat** (Network Statistics) es crucial para ver el estado de las conexiones activas en tu propio dispositivo. Como técnico, te ayuda a identificar si una aplicación está escuchando en un puerto específico o si tu equipo tiene conexiones salientes sospechosas.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Opciones Clave</h3>
+                    <ul>
+                        <li>**`netstat -a`:** Muestra todas las conexiones y los puertos de escucha.</li>
+                        <li>**`netstat -n`:** Muestra las direcciones y puertos en formato numérico (más rápido, evita resolución DNS).</li>
+                        <li>**`netstat -ano`:** Muestra puertos, IPs y el **PID** (ID de Proceso) de la aplicación que utiliza la conexión (ideal para troubleshooting avanzado).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>La Tabla ARP</h3>
+                    <p>El comando **ARP** (Address Resolution Protocol) es vital para traducir la Dirección IP (Capa 3) a la Dirección MAC (Capa 2) dentro de una LAN.</p>
+                    <p class="highlight">Usando **`arp -a`** puedes ver la tabla de ARP de tu PC, que es un caché de todas las IPs y sus MACs correspondientes en tu segmento de red.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Software Gratuito Esencial para Técnicos</h2>
+            <p>Más allá de los comandos nativos, existen herramientas gratuitas que facilitan la vida del técnico:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Advanced IP Scanner</h3>
+                    <p>Permite escanear rangos IP para descubrir rápidamente qué dispositivos están conectados a una red, sus nombres y qué recursos comparten. Es excelente para inventario rápido y diagnóstico.</p>
+                    
+                </div>
+                <div>
+                    <h3>Angry IP Scanner</h3>
+                    <p>Una alternativa rápida que no requiere instalación. Escanea puertos y hosts, ideal para entornos donde no puedes instalar software.</p>
+                </div>
+                <div>
+                    <h3>Zenmap (Nmap GUI)</h3>
+                    <p>Una interfaz gráfica para el potente escáner de puertos **Nmap**. Permite realizar escaneos de puertos profundos (identificar servicios), detectar el sistema operativo y es fundamental para auditoría de seguridad.</p>
+                </div>
+            </div>
+            
+            <button id="scannerDemoBtn">Demostración Rápida de Escaneo</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S4 E15</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion14.html" class="nav-button">Anterior</a>
+        <a href="sesion16.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

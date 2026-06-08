@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S38: Preparación para Animación (SVG Nativo)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 38: Preparación para Animación (SVG Nativo)</h1>
+
+    <section>
+        <h2>1. Conceptos Clave de Animación SVG</h2>
+        <p>Inkscape no anima por sí mismo, pero su formato de archivo (SVG) permite la animación usando código (CSS o SMIL/JavaScript). El trabajo del diseñador en Inkscape es preparar el archivo para que el animador/desarrollador trabaje fácilmente.</p>
+        <div class="paso">
+            <strong>El ID es Vital</strong>
+            <p>Para animar un objeto, el código necesita saber *qué* animar. La propiedad **ID (Identificador)** es el nombre único del objeto. Debes asignar IDs claros (ej. <code>circulo-rotacion</code>) a todos los elementos que se moverán o cambiarán.</p>
+        </div>
+        <div class="paso">
+            <strong>Transformaciones Simplificadas</strong>
+            <p>La animación funciona mejor con movimientos simples. **Simplifica tus trayectos** (Ctrl + L) y utiliza formas básicas (círculos, rectángulos) siempre que sea posible para movimientos más fluidos.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Asignación de IDs (Identificadores)</h2>
+        <p>El panel **Objetos (Shift + Ctrl + O)** es tu herramienta principal para esto.</p>
+        <div class="paso">
+            <strong>Paso 1: Renombrar en el Panel</strong>
+            <p>Selecciona el objeto que quieres animar. En el panel **Objetos**, haz doble clic en el nombre (ej. <code>rect1234</code>) y renómbralo (ej. **"BrazoDerecho"**). Este nuevo nombre es el ID que usará el código.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Renombrar Grupos</strong>
+            <p>Si quieres que un conjunto de objetos se mueva como uno solo (ej. todo el cuerpo de un personaje), agrupa los objetos (**Ctrl + G**) y asigna un ID al grupo (ej. **"CuerpoPrincipal"**).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Preparación del Archivo para Exportación SVG</h2>
+        <p>Un archivo limpio se traduce en una animación más fácil y rápida.</p>
+        <div class="paso">
+            <strong>Paso 1: Eliminar Metadatos</strong>
+            <p>Ve a <code>Archivo > Limpiar metadatos</code>. Esto elimina información de edición innecesaria del archivo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Guardar como SVG Plano</strong>
+            <p>Guarda el archivo. Ve a <code>Archivo > Guardar como...</code> y selecciona el tipo de archivo **SVG plano de Inkscape (\*.svg)**. Esto elimina las etiquetas propias de Inkscape, dejando solo el código vectorial limpio.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Convertir a Trayecto</strong>
+            <p>Para asegurar que las formas se animen correctamente en todos los navegadores, selecciona todas las formas y ve a <code>Trayecto > Objeto a Trayecto (Shift + Ctrl + C)</code>. Esto convierte todas las formas básicas (círculos, rectángulos) en trayectos editables, que son más fáciles de manipular con código.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Icono de Movimiento</h3>
+        <p><strong>Objetivo:</strong> Crear un objeto con IDs claros para animación.</p>
+        <ol>
+            <li>Diseña un icono simple de "Loading" o "Cargando" (ej. dos flechas girando o una serie de puntos).</li>
+            <li>Identifica los 3 elementos clave que se moverán: el fondo, el objeto 1 y el objeto 2.</li>
+            <li>Usa el panel **Objetos** para asignar IDs claros (ej. **"Fondo"**, **"FlechaSuperior"**, **"FlechaInferior"**).</li>
+            <li>Aplica **Objeto a Trayecto** a todos los elementos.</li>
+            <li>Guarda el archivo como **SVG Plano**.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion37.html">Anterior</a>
+    <a href="sesion39.html">Siguiente</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 10 - Hacking Ético Forense">
+    <title>Sesión 10: Evaluación Táctica (Write-Blockers) | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge critical">ESTADO: CERTIFICACIÓN DE MÓDULO</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 10: La Prueba de Fuego</h2>
+            <p><strong>Situación:</strong> Has llegado al final de tu entrenamiento básico. El Director de la Unidad Forense (DFIR) te ha entregado un disco duro con evidencia clasificada. Antes de darte acceso a las herramientas avanzadas de análisis (Módulo 2), debes demostrar que tu entorno es 100% estéril e impenetrable.</p>
+            <p>Esta es tu evaluación final de memoria muscular. Repite el protocolo de bloqueo de escritura de la Sesión 5. Si el sistema logra escribir un solo archivo temporal en la evidencia, reprobarás la certificación. Demuestra que dominas la inmutabilidad.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Lockdown Forense</h2>
+            <p>Inicia tu máquina virtual con Kali Linux. Ejecuta los comandos de bloqueo y demuestra que la evidencia está a salvo[cite: 172].</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Implementación de Write-Blockers</h3>
+                    <p>Configura las reglas de tu kernel y prepara las utilidades de software para ignorar peticiones de escritura automática.</p>
+                    <div class="terminal">
+                        <code># Identificar el dispositivo sin interactuar con él<br>
+                        sudo fdisk -l<br><br>
+                        # Verificar herramientas de lectura a bajo nivel<br>
+                        sudo disktype /dev/sdX</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Preparación</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Montaje Estricto 'Read-Only'</h3>
+                    <p>Monta la partición aplicando los parámetros que garantizan que el sistema operativo actuará como un observador pasivo.</p>
+                    <div class="terminal">
+                        <code>sudo mkdir -p /mnt/evidencia_examen<br>
+                        # Aplicar bandera de solo lectura<br>
+                        sudo mount -o ro /dev/sdX1 /mnt/evidencia_examen<br>
+                        mount | grep evidencia_examen</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Ejecutar Montaje RO</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Prueba de Intrusión (Validación de Bloqueo)</h3>
+                    <p>Ataca tu propia defensa. Intenta inyectar un archivo en el disco montado para forzar el error de protección del sistema.</p>
+                    <div class="terminal">
+                        <code># Intentar escritura forzada<br>
+                        sudo touch /mnt/evidencia_examen/brecha_seguridad.txt<br><br>
+                        # Confirmar el error: Read-only file system<br>
+                        sudo umount /mnt/evidencia_examen</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Verificar Inmutabilidad</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡MÓDULO 1 SUPERADO! Certificación DFIR Aprobada.</h3>
+                <p>Tu memoria muscular es impecable. El error "Read-only file system" confirma que has construido un entorno verdaderamente estéril. Estás listo para escalar de privilegios y comenzar el Módulo 2: Análisis de Sistemas de Archivos.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 10. Todos los derechos reservados. [cite: 173]</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

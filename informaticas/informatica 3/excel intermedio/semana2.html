@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 2: Operaciones Básicas en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 2: Operaciones Básicas en Excel</h1>
+    
+    <div id="sesion2.1" class="sesion">
+        <h2>Sesión 2.1: Fórmulas básicas (suma, resta, multiplicación, división)</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender la estructura básica de las fórmulas en Excel</li>
+                <li>Aplicar operadores aritméticos en fórmulas</li>
+                <li>Resolver problemas matemáticos básicos</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Estructura de una fórmula en Excel</li>
+                <li>Operadores aritméticos básicos:
+                    <ul>
+                        <li>Suma (+)</li>
+                        <li>Resta (-)</li>
+                        <li>Multiplicación (*)</li>
+                        <li>División (/)</li>
+                        <li>Porcentaje (%)</li>
+                        <li>Exponenciación (^)</li>
+                    </ul>
+                </li>
+                <li>Jerarquía de operaciones</li>
+                <li>Uso de paréntesis para modificar el orden de las operaciones</li>
+                <li>Corrección de errores comunes en fórmulas</li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplos prácticos:</h4>
+                <p><strong>Suma básica:</strong> =A1+B1</p>
+                <p><strong>Multiplicación con porcentaje:</strong> =A1*10%</p>
+                <p><strong>Fórmula con paréntesis:</strong> =(A1+B1)*C1</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear una hoja de cálculo que calcule el promedio de calificaciones de un estudiante en diferentes materias, aplicando fórmulas básicas.</p>
+        </div>
+    </div>
+    
+    <div id="sesion2.2" class="sesion">
+        <h2>Sesión 2.2: Referencias de celdas (absolutas y relativas)</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Diferenciar entre referencias relativas y absolutas</li>
+                <li>Utilizar el símbolo $ para fijar filas o columnas</li>
+                <li>Aplicar referencias mixtas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Referencias relativas (ej: A1)</li>
+                <li>Referencias absolutas (ej: $A$1)
+                    <ul>
+                        <li>Fijar columna ($A1)</li>
+                        <li>Fijar fila (A$1)</li>
+                        <li>Fijar ambas ($A$1)</li>
+                    </ul>
+                </li>
+                <li>Cuándo usar cada tipo de referencia</li>
+                <li>Métodos rápidos para cambiar entre tipos de referencia (tecla F4)</li>
+                <li>Ejemplos prácticos de aplicación</li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplos de referencias:</h4>
+                <p><strong>Relativa:</strong> =A1 (cambia al copiarse)</p>
+                <p><strong>Absoluta columna:</strong> =$A1 (la columna A se mantiene fija)</p>
+                <p><strong>Absoluta fila:</strong> =A$1 (la fila 1 se mantiene fija)</p>
+                <p><strong>Absoluta completa:</strong> =$A$1 (siempre referencia a A1)</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear una tabla de multiplicar utilizando referencias mixtas para que al arrastrar la fórmula se complete toda la tabla automáticamente.</p>
+        </div>
+    </div>
+    
+    <div id="sesion2.3" class="sesion">
+        <h2>Sesión 2.3: Funciones básicas (PROMEDIO, MÁX, MÍN, CONTAR)</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Utilizar funciones estadísticas básicas</li>
+                <li>Comprender la sintaxis de las funciones</li>
+                <li>Aplicar funciones a rangos de celdas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Estructura de una función en Excel
+                    <ul>
+                        <li>Signo igual (=)</li>
+                        <li>Nombre de la función</li>
+                        <li>Argumentos entre paréntesis</li>
+                    </ul>
+                </li>
+                <li>Funciones básicas:
+                    <ul>
+                        <li>SUMA: suma un rango de celdas</li>
+                        <li>PROMEDIO: calcula la media aritmética</li>
+                        <li>MÁX: devuelve el valor máximo</li>
+                        <li>MÍN: devuelve el valor mínimo</li>
+                        <li>CONTAR: cuenta celdas con números</n                        <li>CONTARA: cuenta celdas no vacías</li>
+                    </ul>
+                </li>
+                <li>Selección de rangos para funciones</li>
+                <li>Anidamiento de funciones</li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplos de funciones:</h4>
+                <p><strong>SUMA:</strong> =SUMA(A1:A10)</p>
+                <p><strong>PROMEDIO:</strong> =PROMEDIO(B2:B20)</p>
+                <p><strong>MÁX y MÍN:</strong> =MÁX(C1:C100) / =MÍN(C1:C100)</p>
+                <p><strong>CONTAR:</strong> =CONTAR(D1:D50)</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Analizar un conjunto de datos de ventas mensuales, calculando totales, promedios, venta máxima y mínima, y cantidad de meses con ventas.</p>
+        </div>
+    </div>
+    
+    <div id="sesion2.4" class="sesion">
+        <h2>Sesión 2.4: Práctica guiada - Cálculo de calificaciones</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar fórmulas y funciones aprendidas</li>
+                <li>Crear un sistema de calificaciones funcional</li>
+                <li>Practicar el uso de referencias absolutas y relativas</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Crear un nuevo libro llamado "Registro de Calificaciones"</li>
+                <li>En la primera hoja, crear una tabla con las siguientes columnas:
+                    <ul>
+                        <li>Nombre del estudiante</li>
+                        <li>5 calificaciones parciales</li>
+                        <li>Promedio (usar PROMEDIO)</li>
+                        <li>Calificación más alta (usar MÁX)</li>
+                        <li>Calificación más baja (usar MÍN)</li>
+                        <li>Total de calificaciones (usar SUMA)</li>
+                        <li>Estado (Aprobado/Reprobado usando SI con promedio ≥ 6)</li>
+                    </ul>
+                </li>
+                <li>Ingresar al menos 10 estudiantes con sus respectivas calificaciones</li>
+                <li>Agregar al final de la tabla:
+                    <ul>
+                        <li>Promedio general del grupo</li>
+                        <li>Calificación más alta del grupo</li>
+                        <li>Calificación más baja del grupo</li>
+                        <li>Total de aprobados (usar CONTAR.SI)</li>
+                        <li>Total de reprobados</li>
+                        <li>Porcentaje de aprobación</li>
+                    </ul>
+                </li>
+                <li>Aplicar formatos adecuados a los números y porcentajes</li>
+                <li>Agregar encabezados con formato y bordes a la tabla</li>
+            </ol>
+            
+            <h3>Reto adicional (opcional):</h3>
+            <p>Agregar una columna que asigne una letra (A, B, C, D, F) según el promedio usando la función SI anidada.</p>
+            
+            <h3>Entrega:</h3>
+            <p>Guardar el archivo con el nombre "Apellido_Nombre_Calificaciones.xlsx" y entregarlo según las indicaciones del profesor.</p>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

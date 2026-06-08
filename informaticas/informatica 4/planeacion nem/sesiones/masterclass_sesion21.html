@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 21: Internet vs WWW</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 21</h1>
+            <h2>La Web no es Internet</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Gran Malentendido</h3>
+            <p><strong>Objetivo:</strong> Diferenciar la infraestructura física (Internet) del servicio de información (Web).</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>🛤️ Las Vías vs Las Tiendas</h4>
+                <p>Imagina una ciudad:</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-bottom: 4px solid #4a5568;">
+                        <span class="stat-number" style="color: #4a5568; font-size: 1.5rem;">INTERNET</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Infraestructura</p>
+                        <p style="font-size: 0.7rem;">Son las carreteras, cables y tuberías. Conecta las máquinas.</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-bottom: 4px solid #3182ce;">
+                        <span class="stat-number" style="color: #3182ce; font-size: 1.5rem;">WWW</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Servicio</p>
+                        <p style="font-size: 0.7rem;">Son las tiendas y bibliotecas que visitas usando esas carreteras.</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"Puedes usar Internet sin usar la Web (ej. WhatsApp, Email, Netflix App). Pero no puedes usar la Web sin Internet."</p>
+            </div>
+        </section>
+        
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Lenguaje de la Web (HTTP)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2b6cb0; border-bottom: 2px solid #2b6cb0;">🤝 Cliente-Servidor</h4>
+                    <p>La Web es una conversación constante:</p>
+                    <ul>
+                        <li><strong>Cliente (Tú):</strong> "Oye, pásame la foto del gato." (Request)</li>
+                        <li><strong>Servidor (Google):</strong> "Aquí tienes, código 200 OK." (Response)</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">📜 HTTP vs HTTPS</h4>
+                    <p>HyperText Transfer Protocol.</p>
+                    <ul>
+                        <li><strong>HTTP:</strong> Envía datos en texto plano (como una postal). Cualquiera puede leerla en el camino.</li>
+                        <li><strong>HTTPS:</strong> Envía datos cifrados (como una carta en caja fuerte). Solo tú tienes la llave.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🔒 ¿Por qué el Candadito importa?</h4>
+                <p>Simulación de robo de datos en WiFi público:</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    
+                    <div style="background: #fff5f5; padding: 15px; border-radius: 8px; width: 45%; border: 1px solid #fc8181; position: relative;">
+                        <h5 style="color: #e53e3e; text-align: center;">HTTP (Inseguro)</h5>
+                        <div style="font-family: 'Fira Code', monospace; font-size: 0.7rem; background: #2d3748; color: #48bb78; padding: 10px; border-radius: 4px; margin-top: 10px;">
+                            > Hacker interceptando...<br>
+                            > Usuario: "123456"<br>
+                            > <span style="color: #fc8181;">¡CONTRASEÑA ROBADA!</span>
+                        </div>
+                        <div style="font-size: 2rem; position: absolute; top: -15px; right: -10px;">🔓</div>
+                    </div>
+
+                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; width: 45%; border: 1px solid #68d391; position: relative;">
+                        <h5 style="color: #38a169; text-align: center;">HTTPS (Seguro)</h5>
+                        <div style="font-family: 'Fira Code', monospace; font-size: 0.7rem; background: #2d3748; color: #48bb78; padding: 10px; border-radius: 4px; margin-top: 10px;">
+                            > Hacker interceptando...<br>
+                            > Usuario: "a8#kL9@x2"<br>
+                            > <span style="color: #f6ad55;">¡DATOS ILEGIBLES!</span>
+                        </div>
+                        <div style="font-size: 2rem; position: absolute; top: -15px; right: -10px;">🔒</div>
+                    </div>
+                </div>
+                <p style="font-size: 0.7rem; text-align: center; margin-top: 10px; color: #718096;">*Nunca pongas tu tarjeta de crédito si no ves la "S" en HTTPS.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. La Magia de F12</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Herramientas de Desarrollador</h5>
+                    <p>¿Sabías que puedes ver el esqueleto de cualquier página web?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Truco</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Presiona F12 (o Clic derecho -> Inspeccionar).</strong> Verás el código HTML que tu navegador recibió y convirtió en imágenes bonitas.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Navegador vs Buscador</h5>
+                    <p>¿Chrome y Google son lo mismo?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>NO.</strong> Chrome es el vehículo (Navegador). Google es el mapa (Buscador). Puedes usar Chrome para entrar a Bing, o usar Edge para entrar a Google.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>👩‍💻 <strong>Misión del Día:</strong> Entra a tu página favorita, presiona F12 y trata de encontrar en el código dónde está escrito el título principal. ¡Siéntete hacker por un minuto!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 21 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

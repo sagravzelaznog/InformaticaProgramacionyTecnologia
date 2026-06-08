@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Escuchando al Usuario - Curso de JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .event-demo {
+            background-color: #e6f3ff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .event-box {
+            width: 150px;
+            height: 150px;
+            background-color: #4a90e2;
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .event-box.clicked {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .event-log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        
+        .event-log p {
+            margin: 5px 0;
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .event-log p:last-child {
+            border-bottom: none;
+        }
+        
+        .event-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .event-buttons button {
+            padding: 8px 15px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .event-buttons button:hover {
+            background-color: #357abd;
+        }
+        
+        .event-buttons button:active {
+            transform: translateY(1px);
+        }
+        
+        .event-buttons button.danger {
+            background-color: #e74c3c;
+        }
+        
+        .event-buttons button.success {
+            background-color: #2ecc71;
+        }
+        
+        .event-buttons button.warning {
+            background-color: #f39c12;
+        }
+        
+        .event-form {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        
+        .form-actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .dark-mode .content {
+            background-color: #2d2d2d;
+        }
+        
+        .dark-mode section {
+            background-color: #333333;
+            border-color: #444;
+        }
+        
+        .dark-mode h1, 
+        .dark-mode h2, 
+        .dark-mode h3 {
+            color: #4a90e2;
+        }
+        
+        .dark-mode .event-log {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .form-group input,
+        .dark-mode .form-group select,
+        .dark-mode .form-group textarea {
+            background-color: #3d3d3d;
+            border-color: #555;
+            color: #ffffff;
+        }
+        
+        .keyboard-demo {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .keyboard-keys {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .key {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            min-width: 30px;
+            text-align: center;
+            transition: all 0.1s;
+        }
+        
+        .key.active {
+            background-color: #e74c3c;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c0392b;
+        }
+        
+        .key.space {
+            width: 200px;
+        }
+        
+        .key.enter {
+            background-color: #2ecc71;
+        }
+        
+        .key.shift {
+            background-color: #f39c12;
+            width: 100px;
+        }
+        
+        .key.tab {
+            background-color: #9b59b6;
+            width: 70px;
+        }
+        
+        .key.ctrl, .key.alt, .key.win {
+            background-color: #7f8c8d;
+            width: 60px;
+        }
+        
+        .keyboard-output {
+            background-color: #2d2d2d;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 100px;
+            text-align: left;
+            margin: 15px 0;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li><a href="sesion02.html">Sesión 2: Tomando Decisiones</a></li>
+                <li><a href="sesion03.html">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="sesion04.html">Sesión 4: Listas y Bucles</a></li>
+                <li><a href="sesion05.html">Sesión 5: Tocando el HTML</a></li>
+                <li class="active"><a href="sesion06.html">Sesión 6: Escuchando al Usuario</a></li>
+                <li><a href="#">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content">
+            <header>
+                <h1>Sesión 6: Escuchando al Usuario</h1>
+                <p class="subtitle">Aprendiendo a hacer páginas interactivas con Event Listeners</p>
+            </header>
+            
+            <section>
+                <h2>¿Qué son los Eventos?</h2>
+                <p>En el mundo de la programación web, un <strong>evento</strong> es cualquier acción que ocurre en la página, como hacer clic en un botón, mover el mouse, presionar una tecla, o incluso cuando la página termina de cargar.</p>
+                
+                <p>JavaScript nos permite <strong>escuchar</strong> estos eventos y <strong>responder</strong> a ellos ejecutando código. Esto es lo que hace que las páginas web sean interactivas.</p>
+                
+                <div class="event-demo">
+                    <h3>Tipos comunes de eventos:</h3>
+                    <ul>
+                        <li><strong>click</strong> - Cuando haces clic en un elemento</li>
+                        <li><strong>dblclick</strong> - Cuando haces doble clic</li>
+                        <li><strong>mouseover</strong> - Cuando el mouse pasa por encima</li>
+                        <li><strong>mouseout</strong> - Cuando el mouse sale del elemento</li>
+                        <li><strong>keydown</strong> - Cuando presionas una tecla</li>
+                        <li><strong>keyup</strong> - Cuando sueltas una tecla</li>
+                        <li><strong>submit</strong> - Cuando envías un formulario</li>
+                        <li><strong>load</strong> - Cuando la página termina de cargar</li>
+                    </ul>
+                </div>
+                
+                <div class="tip">
+                    <strong>¡Recuerda!</strong> Los eventos son la forma en que JavaScript interactúa con el usuario. Sin eventos, las páginas web serían estáticas y aburridas.
+                </div>
+            </section>
+            
+            <section>
+                <h2>Escuchando Eventos</h2>
+                <p>Hay varias formas de manejar eventos en JavaScript, pero la más moderna y recomendada es usando <code>addEventListener()</code>.</p>
+                
+                <h3>Sintaxis básica:</h3>
+                <pre><code>elemento.addEventListener('tipoDeEvento', funcionAEjecutar);</code></pre>
+                
+                <p>Por ejemplo, para hacer que un botón muestre un mensaje al hacer clic:</p>
+                
+                <div class="code-box">
+                    <button id="btnSaludo">Haz clic en mí</button>
+                    <pre><code>// 1. Seleccionar el botón
+let boton = document.getElementById('btnSaludo');
+
+// 2. Agregar un event listener para el evento 'click'
+boton.addEventListener('click', function() {
+    alert('¡Hola! Gracias por hacer clic.');
+});</code></pre>
+                </div>
+                
+                <div class="event-demo">
+                    <h3>Prueba de Eventos</h3>
+                    <p>Haz clic en el cuadro de abajo o pasa el mouse sobre él:</p>
+                    
+                    <div id="eventBox" class="event-box">Tócame</div>
+                    
+                    <div class="event-log" id="eventLog">
+                        <p>Registro de eventos aparecerá aquí...</p>
+                    </div>
+                    
+                    <div class="event-buttons">
+                        <button id="btnClearLog">Limpiar registro</button>
+                        <button id="btnAddRandom">Agregar evento aleatorio</button>
+                        <button id="btnRemoveEvents">Quitar eventos</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>El Objeto Event</h2>
+                <p>Cada vez que ocurre un evento, el navegador crea un objeto <code>event</code> que contiene información sobre lo que sucedió. Este objeto se pasa automáticamente a la función manejadora del evento.</p>
+                
+                <div class="code-box">
+                    <pre><code>elemento.addEventListener('click', function(evento) {
+    // 'evento' es el objeto que contiene información sobre el evento
+    console.log('Tipo de evento:', evento.type);
+    console.log('Elemento clickeado:', evento.target);
+    console.log('Coordenadas X:', evento.clientX, 'Y:', evento.clientY);
+});</code></pre>
+                </div>
+                
+                <div class="event-demo">
+                    <h3>Explorador de Eventos</h3>
+                    <p>Haz clic en cualquier parte de esta área para ver la información del evento:</p>
+                    <div id="eventExplorer" style="height: 200px; border: 2px dashed #4a90e2; border-radius: 8px; padding: 15px; margin: 15px 0; overflow-y: auto;">
+                        <p>Haz clic aquí para ver la información del evento...</p>
+                    </div>
+                    <div id="eventInfo" class="event-log"></div>
+                </div>
+            </section>
+            
+            <section class="keyboard-demo">
+                <h2>Eventos de Teclado</h2>
+                <p>Los eventos de teclado nos permiten detectar cuando el usuario presiona teclas. Los eventos principales son:</p>
+                <ul>
+                    <li><strong>keydown</strong>: Se dispara cuando una tecla se presiona</li>
+                    <li><strong>keyup</strong>: Se dispara cuando una tecla se suelta</li>
+                    <li><strong>keypress</strong>: Se dispara cuando se genera un carácter (obsoleto, no recomendado)</li>
+                </ul>
+                
+                <div class="keyboard-keys" id="keyboard">
+                    <div class="key">`</div>
+                    <div class="key">1</div>
+                    <div class="key">2</div>
+                    <div class="key">3</div>
+                    <div class="key">4</div>
+                    <div class="key">5</div>
+                    <div class="key">6</div>
+                    <div class="key">7</div>
+                    <div class="key">8</div>
+                    <div class="key">9</div>
+                    <div class="key">0</div>
+                    <div class="key">-</div>
+                    <div class="key">=</div>
+                    <div class="key backspace" style="width: 80px;">⌫</div>
+                    
+                    <div class="key tab">TAB</div>
+                    <div class="key">Q</div>
+                    <div class="key">W</div>
+                    <div class="key">E</div>
+                    <div class="key">R</div>
+                    <div class="key">T</div>
+                    <div class="key">Y</div>
+                    <div class="key">U</div>
+                    <div class="key">I</div>
+                    <div class="key">O</div>
+                    <div class="key">P</div>
+                    <div class="key">[</div>
+                    <div class="key">]</div>
+                    <div class="key">\</div>
+                    
+                    <div class="key caps" style="width: 90px;">CAPS</div>
+                    <div class="key">A</div>
+                    <div class="key">S</div>
+                    <div class="key">D</div>
+                    <div class="key">F</div>
+                    <div class="key">G</div>
+                    <div class="key">H</div>
+                    <div class="key">J</div>
+                    <div class="key">K</div>
+                    <div class="key">L</div>
+                    <div class="key">;</div>
+                    <div class="key">'</div>
+                    <div class="key enter">ENTER</div>
+                    
+                    <div class="key shift">SHIFT</div>
+                    <div class="key">Z</div>
+                    <div class="key">X</div>
+                    <div class="key">C</div>
+                    <div class="key">V</div>
+                    <div class="key">B</div>
+                    <div class="key">N</div>
+                    <div class="key">M</div>
+                    <div class="key">,</div>
+                    <div class="key">.</div>
+                    <div class="key">/</div>
+                    <div class="key shift" style="width: 110px;">SHIFT</div>
+                    
+                    <div class="key ctrl">CTRL</div>
+                    <div class="key win">WIN</div>
+                    <div class="key alt">ALT</div>
+                    <div class="key space">ESPACIO</div>
+                    <div class="key alt">ALT</div>
+                    <div class="key win">WIN</div>
+                    <div class="key">☰</div>
+                    <div class="key ctrl">CTRL</div>
+                </div>
+                
+                <div class="keyboard-output" id="keyboardOutput">
+                    Presiona cualquier tecla en tu teclado o haz clic en las teclas de arriba...
+                </div>
+                
+                <div class="event-buttons">
+                    <button id="btnClearKeyboard">Limpiar salida</button>
+                    <button id="btnToggleCaps">Bloq Mayús</button>
+                </div>
+            </section>
+            
+            <section class="dola-ai">
+                <h2>Dola AI - Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre eventos en JavaScript? ¡Pregúntame!</p>
+                <div id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+                    <button onclick="enviarPregunta()">Enviar</button>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Reto: Interruptor de Luz</h2>
+                <p>Crea un botón que cambie el tema de la página entre claro y oscuro cuando se haga clic en él.</p>
+                
+                <div class="event-demo" id="challengeArea">
+                    <h3>Área del Reto</h3>
+                    <p>Tu solución aparecerá aquí:</p>
+                    
+                    <div id="challengeContent" style="padding: 20px; margin: 15px 0; border: 2px dashed #4a90e2; border-radius: 8px; min-height: 100px;">
+                        <button id="btnToggleTheme" class="button">Cambiar Tema</button>
+                    </div>
+                    
+                    <div class="event-buttons">
+                        <button id="btnResetChallenge" class="button warning">Reiniciar</button>
+                        <button id="btnShowHint" class="button">Pista</button>
+                        <button id="btnShowSolution" class="button success">Mostrar Solución</button>
+                    </div>
+                    
+                    <div id="hintBox" style="display: none; margin-top: 15px; padding: 10px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 0 4px 4px 0;">
+                        <p><strong>Pista:</strong> Usa <code>classList.toggle()</code> para alternar una clase que cambie los colores de la página. Define los estilos para el modo oscuro en el CSS.</p>
+                    </div>
+                    
+                    <div id="solutionBox" style="display: none; margin-top: 15px;">
+                        <h4>Solución:</h4>
+                        <pre><code>// 1. Seleccionar el botón
+let boton = document.getElementById('btnToggleTheme');
+
+// 2. Agregar un event listener para el evento 'click'
+boton.addEventListener('click', function() {
+    // 3. Alternar la clase 'dark-mode' en el body
+    document.body.classList.toggle('dark-mode');
+    
+    // Opcional: Cambiar el texto del botón
+    if (document.body.classList.contains('dark-mode')) {
+        boton.textContent = 'Modo Claro';
+    } else {
+        boton.textContent = 'Modo Oscuro';
+    }
+});</code></pre>
+                        <p>Y en el CSS:</p>
+                        <pre><code>.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .content {
+    background-color: #2d2d2d;
+}
+
+/* Agrega más estilos según sea necesario */</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Resumen de la sesión</h2>
+                <ul>
+                    <li>Los <strong>eventos</strong> son acciones que ocurren en la página web, como hacer clic o presionar una tecla.</li>
+                    <li>Usamos <code>addEventListener()</code> para escuchar eventos y ejecutar código cuando ocurren.</li>
+                    <li>El objeto <code>event</code> contiene información sobre el evento que ocurrió.</li>
+                    <li>Los eventos comunes incluyen <code>click</code>, <code>mouseover</code>, <code>keydown</code>, <code>keyup</code>, y <code>submit</code>.</li>
+                    <li>Podemos prevenir el comportamiento predeterminado de los eventos con <code>event.preventDefault()</code>.</li>
+                    <li>Los eventos son fundamentales para crear páginas web interactivas que respondan a las acciones del usuario.</li>
+                </ul>
+            </section>
+            
+            <div class="nav-buttons">
+                <a href="sesion05.html" class="button">← Sesión Anterior</a>
+                <a href="#" class="button">Siguiente Sesión →</a>
+            </div>
+            
+            <footer class="footer">
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // =============================================
+        // Código para el demo de eventos
+        // =============================================
+        
+        // 1. Seleccionar elementos del DOM
+        const eventBox = document.getElementById('eventBox');
+        const eventLog = document.getElementById('eventLog');
+        const btnClearLog = document.getElementById('btnClearLog');
+        const btnAddRandom = document.getElementById('btnAddRandom');
+        const btnRemoveEvents = document.getElementById('btnRemoveEvents');
+        const eventExplorer = document.getElementById('eventExplorer');
+        const eventInfo = document.getElementById('eventInfo');
+        const keyboardOutput = document.getElementById('keyboardOutput');
+        const keyboard = document.getElementById('keyboard');
+        const btnClearKeyboard = document.getElementById('btnClearKeyboard');
+        const btnToggleCaps = document.getElementById('btnToggleCaps');
+        const btnToggleTheme = document.getElementById('btnToggleTheme');
+        const btnResetChallenge = document.getElementById('btnResetChallenge');
+        const btnShowHint = document.getElementById('btnShowHint');
+        const btnShowSolution = document.getElementById('btnShowSolution');
+        const hintBox = document.getElementById('hintBox');
+        const solutionBox = document.getElementById('solutionBox');
+        
+        // 2. Función para registrar eventos en el log
+        function logEvent(event) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const eventType = event.type;
+            const targetId = event.target.id || 'sin-id';
+            const targetTag = event.target.tagName.toLowerCase();
+            
+            // Crear elemento de log
+            const logEntry = document.createElement('p');
+            logEntry.innerHTML = `[${timeString}] <span style="color: #4a90e2;">${eventType}</span> en &lt;${targetTag} id="${targetId}"&gt;`;
+            
+            // Agregar información adicional según el tipo de evento
+            if (eventType === 'keydown' || eventType === 'keyup') {
+                logEntry.innerHTML += `<br>Tecla: <strong>${event.key}</strong> (Código: ${event.code})`;
+                logEntry.innerHTML += event.ctrlKey ? ' + CTRL' : '';
+                logEntry.innerHTML += event.altKey ? ' + ALT' : '';
+                logEntry.innerHTML += event.shiftKey ? ' + SHIFT' : '';
+            } else if (eventType === 'click' || eventType === 'dblclick') {
+                logEntry.innerHTML += `<br>Coordenadas: X=${event.clientX}, Y=${event.clientY}`;
+            } else if (eventType === 'mousemove') {
+                // No registramos mousemove para no llenar el log demasiado rápido
+                return;
+            }
+            
+            // Agregar al inicio del log
+            if (eventLog.firstChild) {
+                eventLog.insertBefore(logEntry, eventLog.firstChild);
+            } else {
+                eventLog.appendChild(logEntry);
+            }
+            
+            // Limitar el número de entradas en el log
+            while (eventLog.children.length > 20) {
+                eventLog.removeChild(eventLog.lastChild);
+            }
+        }
+        
+        // 3. Agregar event listeners al cuadro de eventos
+        eventBox.addEventListener('mouseover', function(e) {
+            this.textContent = '¡El mouse está sobre mí!';
+            this.style.backgroundColor = '#e74c3c';
+            logEvent(e);
+        });
+        
+        eventBox.addEventListener('mouseout', function(e) {
+            this.textContent = '¡Vuelve pronto!';
+            this.style.backgroundColor = '#4a90e2';
+            logEvent(e);
+            
+            // Volver al texto original después de 1 segundo
+            setTimeout(() => {
+                if (this.textContent === '¡Vuelve pronto!') {
+                    this.textContent = 'Tócame';
+                }
+            }, 1000);
+        });
+        
+        eventBox.addEventListener('mousedown', function(e) {
+            this.classList.add('clicked');
+            logEvent(e);
+        });
+        
+        eventBox.addEventListener('mouseup', function(e) {
+            this.classList.remove('clicked');
+            logEvent(e);
+        });
+        
+        eventBox.addEventListener('click', function(e) {
+            this.textContent = '¡Hiciste clic!';
+            logEvent(e);
+            
+            // Volver al texto original después de 1 segundo
+            setTimeout(() => {
+                if (this.textContent === '¡Hiciste clic!') {
+                    this.textContent = 'Tócame';
+                }
+            }, 1000);
+        });
+        
+        eventBox.addEventListener('dblclick', function(e) {
+            this.textContent = '¡Doble clic!';
+            logEvent(e);
+            
+            // Volver al texto original después de 1 segundo
+            setTimeout(() => {
+                if (this.textContent === '¡Doble clic!') {
+                    this.textContent = 'Tócame';
+                }
+            }, 1000);
+        });
+        
+        // 4. Botones de control
+        btnClearLog.addEventListener('click', function() {
+            eventLog.innerHTML = '<p>Registro de eventos limpiado.</p>';
+        });
+        
+        btnAddRandom.addEventListener('click', function() {
+            const events = ['click', 'dblclick', 'mouseover', 'mouseout'];
+            const randomEvent = events[Math.floor(Math.random() * events.length)];
+            const event = new Event(randomEvent);
+            eventBox.dispatchEvent(event);
+        });
+        
+        btnRemoveEvents.addEventListener('click', function() {
+            // Clonar el elemento y reemplazarlo para eliminar todos los event listeners
+            const newEventBox = eventBox.cloneNode(true);
+            eventBox.parentNode.replaceChild(newEventBox, eventBox);
+            eventBox = newEventBox;
+            eventBox.textContent = '¡Eventos eliminados! Recarga la página para restaurar.';
+            eventBox.style.cursor = 'not-allowed';
+        });
+        
+        // 5. Explorador de eventos
+        eventExplorer.addEventListener('mousemove', function(e) {
+            // Solo actualizamos cada 100ms para mejorar el rendimiento
+            if (!this.lastUpdate || Date.now() - this.lastUpdate > 100) {
+                eventInfo.innerHTML = `
+                    <p><strong>Tipo de evento:</strong> ${e.type}</p>
+                    <p><strong>Elemento:</strong> ${e.target.tagName}${e.target.id ? '#' + e.target.id : ''}</p>
+                    <p><strong>Coordenadas:</strong> X=${e.clientX}, Y=${e.clientY}</p>
+                    <p><strong>Teclas presionadas:</strong> 
+                        ${e.ctrlKey ? 'CTRL ' : ''}
+                        ${e.altKey ? 'ALT ' : ''}
+                        ${e.shiftKey ? 'SHIFT ' : ''}
+                        ${!e.ctrlKey && !e.altKey && !e.shiftKey ? 'Ninguna' : ''}
+                    </p>
+                `;
+                this.lastUpdate = Date.now();
+            }
+        });
+        
+        eventExplorer.addEventListener('click', function(e) {
+            eventInfo.innerHTML += `<p style="color: #4CAF50;">¡Hiciste clic en (${e.clientX}, ${e.clientY})!</p>`;
+            eventInfo.scrollTop = eventInfo.scrollHeight;
+        });
+        
+        // 6. Teclado virtual
+        const keys = document.querySelectorAll('.key');
+        let isCapsLock = false;
+        
+        // Manejadores para el teclado virtual
+        keys.forEach(key => {
+            key.addEventListener('mousedown', function() {
+                this.classList.add('active');
+                const keyText = this.textContent.trim();
+                
+                // Simular tecla presionada
+                if (keyText === 'CAPS') {
+                    isCapsLock = !isCapsLock;
+                    keys.forEach(k => {
+                        if (k.textContent.length === 1 && /[A-Za-z]/.test(k.textContent)) {
+                            k.textContent = isCapsLock ? k.textContent.toUpperCase() : k.textContent.toLowerCase();
+                        }
+                    });
+                    keyboardOutput.innerHTML += `<div>Tecla CAPS LOCK ${isCapsLock ? 'activada' : 'desactivada'}</div>`;
+                } else if (keyText === '⌫') {
+                    // Eliminar el último carácter
+                    keyboardOutput.textContent = keyboardOutput.textContent.slice(0, -1);
+                } else if (keyText === 'ENTER') {
+                    keyboardOutput.innerHTML += '<div>\n</div>';
+                } else if (keyText === 'TAB') {
+                    keyboardOutput.textContent += '\t';
+                } else if (keyText === 'ESPACIO') {
+                    keyboardOutput.textContent += ' ';
+                } else if (keyText.length === 1) {
+                    keyboardOutput.textContent += isCapsLock ? keyText.toUpperCase() : keyText.toLowerCase();
+                }
+                
+                // Hacer scroll al final
+                keyboardOutput.scrollTop = keyboardOutput.scrollHeight;
+            });
+            
+            key.addEventListener('mouseup', function() {
+                this.classList.remove('active');
+            });
+            
+            key.addEventListener('mouseleave', function() {
+                this.classList.remove('active');
+            });
+        });
+        
+        // Manejadores para el teclado físico
+        document.addEventListener('keydown', function(e) {
+            // Evitar el comportamiento predeterminado para teclas especiales
+            if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+            }
+            
+            // Resaltar tecla en el teclado virtual
+            const key = Array.from(keys).find(k => 
+                k.textContent.trim().toLowerCase() === e.key.toLowerCase() ||
+                (e.key === ' ' && k.classList.contains('space')) ||
+                (e.key === 'Enter' && k.textContent.trim() === 'ENTER') ||
+                (e.key === 'Backspace' && k.textContent.trim() === '⌫') ||
+                (e.key === 'Tab' && k.textContent.trim() === 'TAB') ||
+                (e.key === 'CapsLock' && k.textContent.trim() === 'CAPS') ||
+                (e.key === 'Shift' && k.textContent.trim() === 'SHIFT') ||
+                (e.key === 'Control' && k.textContent.trim() === 'CTRL') ||
+                (e.key === 'Alt' && k.textContent.trim() === 'ALT')
+            );
+            
+            if (key) {
+                key.classList.add('active');
+            }
+            
+            // Mostrar información de la tecla presionada
+            const keyInfo = `
+                <div>
+                    <strong>Tecla:</strong> ${e.key} 
+                    <strong>Código:</strong> ${e.code} 
+                    <strong>KeyCode:</strong> ${e.keyCode}
+                    ${e.ctrlKey ? ' + CTRL' : ''}
+                    ${e.altKey ? ' + ALT' : ''}
+                    ${e.shiftKey ? ' + SHIFT' : ''}
+                </div>
+            `;
+            
+            keyboardOutput.innerHTML += keyInfo;
+            keyboardOutput.scrollTop = keyboardOutput.scrollHeight;
+        });
+        
+        document.addEventListener('keyup', function(e) {
+            // Quitar resaltado de todas las teclas
+            keys.forEach(key => key.classList.remove('active'));
+        });
+        
+        // 7. Botones de control del teclado
+        btnClearKeyboard.addEventListener('click', function() {
+            keyboardOutput.innerHTML = 'Salida limpiada. Presiona cualquier tecla...';
+        });
+        
+        btnToggleCaps.addEventListener('click', function() {
+            isCapsLock = !isCapsLock;
+            keys.forEach(k => {
+                if (k.textContent.length === 1 && /[A-Za-z]/.test(k.textContent)) {
+                    k.textContent = isCapsLock ? k.textContent.toUpperCase() : k.textContent.toLowerCase();
+                }
+            });
+            this.classList.toggle('active', isCapsLock);
+            keyboardOutput.innerHTML += `<div>Tecla CAPS LOCK ${isCapsLock ? 'activada' : 'desactivada'}</div>`;
+            keyboardOutput.scrollTop = keyboardOutput.scrollHeight;
+        });
+        
+        // 8. Reto: Interruptor de Luz
+        btnToggleTheme.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Cambiar el texto del botón según el tema actual
+            if (document.body.classList.contains('dark-mode')) {
+                this.textContent = 'Modo Claro';
+                this.classList.add('warning');
+            } else {
+                this.textContent = 'Modo Oscuro';
+                this.classList.remove('warning');
+            }
+        });
+        
+        // 9. Controles del reto
+        btnResetChallenge.addEventListener('click', function() {
+            document.body.classList.remove('dark-mode');
+            btnToggleTheme.textContent = 'Cambiar Tema';
+            btnToggleTheme.classList.remove('warning');
+            hintBox.style.display = 'none';
+            solutionBox.style.display = 'none';
+        });
+        
+        btnShowHint.addEventListener('click', function() {
+            hintBox.style.display = hintBox.style.display === 'none' ? 'block' : 'none';
+            solutionBox.style.display = 'none';
+        });
+        
+        btnShowSolution.addEventListener('click', function() {
+            solutionBox.style.display = solutionBox.style.display === 'none' ? 'block' : 'none';
+            hintBox.style.display = 'none';
+        });
+        
+        // 10. Funcionalidad del chat Dola AI (simplificada)
+        function enviarPregunta() {
+            const input = document.getElementById('user-input');
+            const mensajes = document.getElementById('chat-messages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Mostrar mensaje del usuario
+            mensajes.innerHTML += `<div class="mensaje-usuario"><strong>Tú:</strong> ${input.value}</div>`;
+            
+            // Simular respuesta de Dola AI
+            setTimeout(() => {
+                const respuesta = generarRespuesta(input.value.toLowerCase());
+                mensajes.innerHTML += `<div class="mensaje-dola"><strong>Dola AI:</strong> ${respuesta}</div>`;
+                mensajes.scrollTop = mensajes.scrollHeight;
+            }, 1000);
+            
+            input.value = '';
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        function generarRespuesta(pregunta) {
+            if (pregunta.includes('evento') || pregunta.includes('event listener') || pregunta.includes('escuchar')) {
+                return 'Un Event Listener es una función que espera a que ocurra un evento específico, como un clic o una pulsación de tecla, para ejecutar un código. Se agrega con `addEventListener()`. Por ejemplo: `elemento.addEventListener("click", miFuncion)`';
+            } else if (pregunta.includes('click') || pregunta.includes('hacer clic')) {
+                return 'El evento `click` se dispara cuando el usuario hace clic en un elemento. Es uno de los eventos más comunes. Ejemplo: `boton.addEventListener("click", function() { alert("¡Hiciste clic!"); });`';
+            } else if (pregunta.includes('teclado') || pregunta.includes('keyboard') || pregunta.includes('tecla')) {
+                return 'Los eventos de teclado principales son:\n1. `keydown`: Cuando se presiona una tecla\n2. `keyup`: Cuando se suelta una tecla\n3. `keypress`: Cuando se genera un carácter (obsoleto)\n\nPuedes acceder a la tecla presionada con `event.key` o `event.code`.';
+            } else if (pregunta.includes('prevenir') || pregunta.includes('evitar') || pregunta.includes('default')) {
+                return 'Para evitar el comportamiento predeterminado de un evento (como enviar un formulario o seguir un enlace), usa `event.preventDefault()` dentro de tu manejador de eventos.';
+            } else if (pregunta.includes('delegación') || pregunta.includes('delegacion') || pregunta.includes('delegar')) {
+                return 'La delegación de eventos es una técnica donde asignas un solo event listener a un elemento padre en lugar de múltiples listeners a elementos hijos. Es útil para elementos dinámicos. Ejemplo: `document.getElementById("lista").addEventListener("click", function(e) { if(e.target.matches("li")) { /* código */ } });`';
+            } else {
+                const respuestasGenericas = [
+                    '¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con eventos en JavaScript.',
+                    'Interesante pregunta sobre eventos. ¿Hay algo específico que te gustaría saber?',
+                    'Parece que tienes dudas sobre cómo funcionan los eventos. ¿Te gustaría que te explique algún concepto en particular?',
+                    'No estoy seguro de entender completamente. ¿Podrías darme más detalles sobre tu duda?'
+                ];
+                return respuestasGenericas[Math.floor(Math.random() * respuestasGenericas.length)];
+            }
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarPregunta();
+            }
+        });
+    </script>
+</body>
+</html>

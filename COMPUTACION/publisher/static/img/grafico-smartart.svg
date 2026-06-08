@@ -1,0 +1,115 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f8f9fa"/>
+    
+    <!-- Barra de título -->
+    <rect x="0" y="0" width="100%" height="40" fill="#2b579a"/>
+    <text x="20" y="25" font-family="Arial" font-size="14" fill="white">Gráficos SmartArt en Publisher</text>
+    
+    <!-- Barra de herramientas -->
+    <rect x="0" y="40" width="100%" height="60" fill="#f3f3f3" stroke="#ddd" stroke-width="1"/>
+    
+    <!-- Pestaña de diseño de SmartArt -->
+    <rect x="20" y="40" width="100" height="30" fill="white" stroke="#ddd" stroke-width="1" stroke-bottom="none"/>
+    <text x="70" y="60" font-family="Arial" font-size="12" text-anchor="middle">Diseño</text>
+    
+    <!-- Botones de acción -->
+    <g font-family="Arial" font-size="11">
+        <!-- Insertar forma -->
+        <rect x="30" y="90" width="100" height="25" rx="3" fill="#e6f2ff" stroke="#4d94ff"/>
+        <text x="80" y="108" text-anchor="middle">+ Añadir forma</text>
+        
+        <!-- Diseños -->
+        <rect x="150" y="90" width="80" height="25" rx="3" fill="white" stroke="#ddd"/>
+        <text x="190" y="108" text-anchor="middle">Diseños</text>
+        
+        <!-- Cambiar colores -->
+        <rect x="250" y="90" width="120" height="25" rx="3" fill="white" stroke="#ddd"/>
+        <text x="310" y="108" text-anchor="middle">Cambiar colores</text>
+    </g>
+    
+    <!-- Área de trabajo -->
+    <rect x="50" y="140" width="500" height="200" fill="white" stroke="#ddd" rx="4"/>
+    
+    <!-- Ejemplo de gráfico SmartArt -->
+    <g transform="translate(100, 160)">
+        <!-- Título -->
+        <text x="200" y="20" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Proceso de diseño</text>
+        
+        <!-- Flechas -->
+        <path d="M150 60 L200 60" stroke="#4d94ff" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <path d="M300 60 L250 60" stroke="#4d94ff" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- Formas -->
+        <rect x="50" y="40" width="100" height="40" rx="5" fill="#e6f2ff" stroke="#4d94ff"/>
+        <text x="100" y="66" font-family="Arial" font-size="12" text-anchor="middle">1. Planificar</text>
+        
+        <rect x="200" y="40" width="100" height="40" rx="5" fill="#e6f2ff" stroke="#4d94ff"/>
+        <text x="250" y="66" font-family="Arial" font-size="12" text-anchor="middle">2. Diseñar</text>
+        
+        <rect x="350" y="40" width="100" height="40" rx="5" fill="#e6f2ff" stroke="#4d94ff"/>
+        <text x="400" y="66" font-family="Arial" font-size="12" text-anchor="middle">3. Revisar</text>
+        
+        <!-- Subprocesos -->
+        <g font-family="Arial" font-size="10" fill="#555">
+            <rect x="75" y="100" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="100" y="120" text-anchor="middle">Objetivos</text>
+            
+            <rect x="75" y="140" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="100" y="160" text-anchor="middle">Recursos</text>
+            
+            <rect x="225" y="100" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="250" y="120" text-anchor="middle">Boceto</text>
+            
+            <rect x="225" y="140" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="250" y="160" text-anchor="middle">Diseñar</text>
+            
+            <rect x="375" y="100" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="400" y="120" text-anchor="middle">Evaluar</text>
+            
+            <rect x="375" y="140" width="50" height="30" rx="3" fill="#f0f7ff" stroke="#a8d0ff"/>
+            <text x="400" y="160" text-anchor="middle">Ajustar</text>
+        </g>
+    </g>
+    
+    <!-- Panel lateral -->
+    <rect x="450" y="140" width="100" height="200" fill="#f8f9ff" stroke="#ddd" rx="0 4px 4px 0"/>
+    <text x="500" y="160" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">Estilos</text>
+    
+    <!-- Opciones de estilo -->
+    <g font-family="Arial" font-size="10">
+        <rect x="460" y="170" width="80" height="20" rx="3" fill="#e6f2ff" stroke="#a8d0ff"/>
+        <text x="500" y="185" text-anchor="middle">Estilo 1</text>
+        
+        <rect x="460" y="200" width="80" height="20" rx="3" fill="white" stroke="#ddd"/>
+        <text x="500" y="215" text-anchor="middle">Estilo 2</text>
+        
+        <rect x="460" y="230" width="80" height="20" rx="3" fill="white" stroke="#ddd"/>
+        <text x="500" y="245" text-anchor="middle">Estilo 3</text>
+    </g>
+    
+    <!-- Botones de acción -->
+    <rect x="400" y="360" width="80" height="30" rx="4" fill="#0078d7"/>
+    <text x="440" y="380" font-family="Arial" font-size="12" text-anchor="middle" fill="white">Aceptar</text>
+    
+    <rect x="490" y="360" width="60" height="30" rx="4" fill="#f1f1f1" stroke="#ddd" stroke-width="1"/>
+    <text x="520" y="380" font-family="Arial" font-size="12" text-anchor="middle">Cancelar</text>
+    
+    <!-- Flecha de conexión -->
+    <path d="M375 180 L440 180" stroke="#4d94ff" stroke-width="2" stroke-dasharray="5,3"/>
+    <circle cx="440" cy="180" r="5" fill="#4d94ff"/>
+    
+    <!-- Definición de la punta de flecha -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#4d94ff"/>
+        </marker>
+    </defs>
+    
+    <!-- Indicador -->
+    <g transform="translate(50, 330)">
+        <circle cx="15" cy="15" r="12" fill="#ffeb3b" stroke="#ffc107" stroke-width="2"/>
+        <text x="15" y="20" font-family="Arial" font-size="12" text-anchor="middle">i</text>
+        <text x="35" y="20" font-family="Arial" font-size="10">Personaliza tu gráfico SmartArt con diferentes estilos</text>
+    </g>
+</svg>

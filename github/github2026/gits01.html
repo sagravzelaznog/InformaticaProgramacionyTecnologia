@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: Introducción a Git y Configuración Inicial</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion:focus {
+            outline: 3px dashed rgba(241,78,50,0.25);
+            outline-offset: 3px;
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        .terminal {
+            background: #0b1221;
+            color: #d1f1ff;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 0.95rem;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+        }
+        .sim-controls { display:flex; gap:8px; flex-wrap:wrap; }
+        .sim-btn { padding:8px 10px; border-radius:6px; border:none; cursor:pointer; background:var(--primary-color); color:white }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        /* Botón copiar para bloques de código (oculto por defecto) */
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        pre { position: relative; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 1: Introducción a Git y Configuración Inicial</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button id="acc-1" class="accordion" aria-expanded="false" aria-controls="panel-1">1. Inicialización y Clonación de Repositorios</button>
+    <div id="panel-1" class="panel" role="region" aria-labelledby="acc-1" aria-hidden="true">
+        <h3>Inicializar un repositorio (<code>git init</code>)</h3>
+        <p>Una vez que tienes Git instalado, navega al directorio que deseas poner bajo control de versiones y crea un repositorio vacío utilizando el comando <code>git init</code> <span class="citation">[1]</span>. Esto crea una carpeta oculta llamada <code>.git</code>, la cual contiene todas las herramientas (plumbing) necesarias para que Git funcione <span class="citation">[1]</span>.</p>
+        
+        <h3>Clonar un repositorio existente (<code>git clone</code>)</h3>
+        <p>El comando <code>git clone</code> se utiliza para copiar un repositorio existente desde un servidor (como GitHub o BitBucket) a tu máquina local <span class="citation">[2]</span>. Esto crea un directorio con el código fuente del proyecto y una subcarpeta <code>.git</code> que contiene el historial completo <span class="citation">[3]</span>.</p>
+        <pre><code># Clona el repositorio remoto a un directorio local
+    # Reemplaza 'username' y 'projectname' por los tuyos
+    git clone https://github.com/username/projectname.git
+
+    # Si el repositorio es muy grande, descarga solo el último commit (shallow clone):
+    git clone https://github.com/username/projectname.git --depth 1
+ 
+    # Para clonar una rama específica:
+    git clone --branch nombre-rama https://github.com/username/projectname.git</code></pre>
+
+        <h3>Clonación Profunda vs Superficial</h3>
+        <ul>
+            <li><strong>Clonación profunda (Regular Clone):</strong> Al ejecutar <code>git clone &lt;url&gt;</code> descargas el repositorio entero, incluyendo el historial completo y todas sus ramas <span class="citation">[4]</span>.</li>
+            <li><strong>Clonación superficial (Shallow Clone):</strong> Clonar un repositorio gigantesco con años de historial puede tardar demasiado. Para evitar esto, puedes agregar el parámetro <code>--depth 1</code> para descargar solo el último commit <span class="citation">[5]</span>. 
+            <br><br><code>git clone [repo_url] --depth 1</code> <span class="citation">[5]</span>.</li>
+        </ul>
+    </div>
+
+    <button id="acc-2" class="accordion" aria-expanded="false" aria-controls="panel-2">2. Configuración de Usuario</button>
+    <div id="panel-2" class="panel" role="region" aria-labelledby="acc-2" aria-hidden="true">
+        <p><strong>Debes establecer quién eres antes de crear cualquier commit</strong> para asegurarte de que lleven asociados el nombre de autor y el correo electrónico correctos <span class="citation">[6]</span>.</p>
+        
+        <h3>Configuración Global</h3>
+        <p>Para declarar tu identidad en todos tus repositorios de la máquina, utiliza la bandera <code>--global</code>. Esto almacena la configuración en tu archivo de usuario <code>~/.gitconfig</code> <span class="citation">[7]</span>:</p>
+            <pre><code># Establece tu nombre global (aplica a todos los repositorios en esta máquina)
+            # Útil para identificar al autor en los commits
+            git config --global user.name "Tu Nombre"
+
+            # Establece el correo asociado a tus commits
+            git config --global user.email tu.correo@ejemplo.com
+
+            # Verifica la configuración actual
+            git config --list</code></pre>
+
+        <h3>Configuración Local (Por Repositorio)</h3>
+        <p>Si trabajas con múltiples identidades (por ejemplo, una cuenta de trabajo y una personal de código abierto), puedes definir la identidad dentro de un repositorio específico omitiendo <code>--global</code>. Esta información se guardará en <code>.git/config</code> y tendrá prioridad sobre la configuración global cuando trabajes en ese proyecto en particular <span class="citation">[7, 8]</span>:</p>
+            <pre><code># Entra en la carpeta del proyecto y configura identidad solo para este repo
+        cd /ruta/a/mi/repo
+
+        # Sobrescribe la identidad global para este repositorio
+        git config user.name "Tu Nombre de Trabajo"
+        git config user.email correo_de_trabajo@ejemplo.com
+
+        # Comprueba la configuración local
+        git config --local --list</code></pre>
+    </div>
+
+    <button id="acc-3" class="accordion" aria-expanded="false" aria-controls="panel-3">3. Alias Básicos y Avanzados</button>
+    <div id="panel-3" class="panel" role="region" aria-labelledby="acc-3" aria-hidden="true">
+        <p>Git te permite crear atajos, conocidos como "alias", para mejorar tu productividad y evitar escribir comandos largos repetidamente.</p>
+        
+        <h3>Alias Básicos</h3>
+        <p>Puedes crear un alias a través de la línea de comandos. Por ejemplo, para hacer un commit escribiendo solo <code>git ci</code> en lugar de <code>git commit</code> <span class="citation">[9, 10]</span>:</p>
+            <p class="note">Comentario: los alias te permiten ahorrar tiempo y estandarizar comandos frecuentes. Se almacenan en tu archivo de configuración global y pueden exportarse si lo necesitas.</p>
+        <pre><code>git config --global alias.ci "commit"
+git config --global alias.st "status"
+git config --global alias.co "checkout"</code></pre>
+
+        <h3>Alias Avanzados</h3>
+        <p>Git permite usar comandos que no son de git y utilizar la sintaxis completa de la shell de comandos si agregas el prefijo <code>!</code> antes de ellos <span class="citation">[11]</span>. Esto es útil para construir funciones de script más complejas. Por ejemplo, un alias para agregar rápidamente una regla a tu archivo <code>.gitignore</code> desde la raíz de tu proyecto <span class="citation">[11, 12]</span>:</p>
+        <p class="note">Comentario: los alias que invocan la shell pueden ser poderosos pero peligrosos; evita introducir entradas no validadas.</p>
+        <pre><code>git config --global alias.ignore "! echo $1 >> .gitignore"</code></pre>
+        <p>Así, ejecutando <code>git ignore .tmp/</code>, Git añadirá la regla al archivo automáticamente <span class="citation">[12]</span>.</p>
+        <div class="panel" style="margin-top:16px; padding:12px;">
+            <h3>Simulador rápido embebido</h3>
+            <div id="sim-terminal" class="terminal" aria-live="polite">$ Simulador embebido: pulsa Init para comenzar</div>
+            <div class="sim-controls" style="margin-top:8px;">
+                <button class="sim-btn" data-cmd="init">git init</button>
+                <button class="sim-btn" data-cmd="add">git add</button>
+                <button class="sim-btn" data-cmd="commit">git commit</button>
+                <button class="sim-btn" data-cmd="log">git log</button>
+                <a href="gits01.demo.html" style="margin-left:8px;color:var(--primary-color);font-weight:bold">Abrir demo ampliado ↗</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    (function(){
+        var accordions = document.querySelectorAll('.accordion');
+
+        function openPanel(button, panel) {
+            button.classList.add('active');
+            button.setAttribute('aria-expanded', 'true');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            panel.setAttribute('aria-hidden', 'false');
+        }
+
+        function closePanel(button, panel) {
+            button.classList.remove('active');
+            button.setAttribute('aria-expanded', 'false');
+            panel.style.maxHeight = null;
+            panel.setAttribute('aria-hidden', 'true');
+        }
+
+        // Inicializar acordeones
+        accordions.forEach(function(btn, idx){
+            var panel = document.getElementById(btn.getAttribute('aria-controls'));
+
+            // Abrir el primer elemento por defecto
+            if (idx === 0) {
+                openPanel(btn, panel);
+            }
+
+            // Click
+            btn.addEventListener('click', function(){
+                if (btn.classList.contains('active')) {
+                    closePanel(btn, panel);
+                } else {
+                    openPanel(btn, panel);
+                }
+            });
+
+            // Soporte de teclado (Enter / Space)
+            btn.addEventListener('keydown', function(e){
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+
+        // Agregar botones de copiar a cada bloque <pre>
+        document.querySelectorAll('pre').forEach(function(pre){
+            var btn = document.createElement('button');
+            btn.className = 'copy-button';
+            btn.type = 'button';
+            btn.textContent = 'Copiar';
+            pre.appendChild(btn);
+
+            btn.addEventListener('click', function(){
+                var code = pre.querySelector('code');
+                if (!code) return;
+                var text = code.textContent;
+                navigator.clipboard.writeText(text).then(function(){
+                    var old = btn.textContent;
+                    btn.textContent = 'Copiado ✓';
+                    setTimeout(function(){ btn.textContent = old; }, 1500);
+                }).catch(function(err){
+                    console.error('No se pudo copiar:', err);
+                });
+            });
+        });
+
+        // Simulador simple para la demo embebida (no toca archivos reales)
+        (function(){
+            var term = document.getElementById('sim-terminal');
+            if(!term) return; // si no existe, salir
+            var state = { inited:false, staged:false, commits:[] };
+            function write(line){ term.innerHTML += line + '<br/>'; term.scrollTop = term.scrollHeight; }
+
+            document.querySelectorAll('.sim-btn').forEach(function(b){
+                b.addEventListener('click', function(){
+                    var cmd = b.getAttribute('data-cmd');
+                    if(cmd === 'init'){
+                        state.inited = true; write('$ git init'); write('Repositorio inicializado (simulado)');
+                    } else if(cmd === 'add'){
+                        if(!state.inited){ write('Error: ejecuta git init primero (simulado)'); return; }
+                        state.staged = true; write('$ git add README.md'); write('README.md agregado al staging (simulado)');
+                    } else if(cmd === 'commit'){
+                        if(!state.staged){ write('Error: no hay archivos en staging'); return; }
+                        var sha = Math.random().toString(36).slice(2,9);
+                        state.commits.push({sha:sha,msg:'Primer commit (simulado)'});
+                        state.staged = false; write('$ git commit -m "Primer commit"'); write('['+sha+'] Primer commit (simulado)');
+                    } else if(cmd === 'log'){
+                        write('$ git log --oneline');
+                        if(state.commits.length === 0) { write('No hay commits (simulado)'); return; }
+                        state.commits.slice().reverse().forEach(function(c){ write(c.sha + ' ' + c.msg); });
+                    }
+                });
+            });
+        })();
+    })();
+</script>
+
+</body>
+</html>

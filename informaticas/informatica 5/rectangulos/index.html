@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar Rectángulo en AutoCAD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .method {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #e8f4f8;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .steps {
+            counter-reset: step;
+            padding-left: 0;
+        }
+        .step {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 15px;
+            list-style-type: none;
+        }
+        .step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            background-color: #3498db;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+        }
+        .tip {
+            background-color: #e8f8f5;
+            border-left: 4px solid #2ecc71;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dibujar un Rectángulo en AutoCAD</h1>
+        
+        <div class="method">
+            <h2>Método Básico: Comando RECTANG</h2>
+            <ol class="steps">
+                <li class="step">Escribe <span class="command">RECTANG</span> en la línea de comandos y presiona Enter.</li>
+                <li class="step">Haz clic en el punto de inicio (esquina inferior izquierda).</li>
+                <li class="step">Arrastra el cursor para definir el tamaño del rectángulo.</li>
+                <li class="step">Haz clic nuevamente para establecer la esquina opuesta.</li>
+            </ol>
+            
+            <div class="example">
+                <h3>Ejemplo:</h3>
+                <p>Para dibujar un rectángulo de 10 unidades de ancho por 5 de alto:</p>
+                <ol>
+                    <li><span class="command">RECTANG</span> → Enter</li>
+                    <li>Ingresa el punto (0,0)</li>
+                    <li>Escribe <span class="command">@10,5</span> → Enter</li>
+                </ol>
+            </div>
+        </div>
+
+     
+        <div class="method">
+            <h2>Método con Área</h2>
+            <ol class="steps">
+                <li class="step">Escribe <span class="command">RECTANG</span> y presiona Enter.</li>
+                <li class="step">Especifica la primera esquina.</li>
+                <li class="step">Escribe <span class="command">Area</span> para Área y presiona Enter.</li>
+                <li class="step">Ingresa el área total deseada y presiona Enter.</li>
+                <li class="step">Especifica si quieres definir el largo o el ancho primero.</li>
+                <li class="step">Ingresa la dimensión y presiona Enter.</li>
+            </ol>
+            
+            <div class="example">
+                <h3>Ejemplo:</h3>
+                <p>Para un rectángulo con área de 50 unidades cuadradas:</p>
+                <ol>
+                    <li><span class="command">RECTANG</span> → Enter</li>
+                    <li>Haz clic en el punto de inicio</li>
+                    <li><span class="command">Area</span> → Enter</li>
+                    <li><span class="command">50</span> → Enter</li>
+                    <li>Selecciona <span class="command">Largo</span> o <span class="command">Ancho</span></li>
+                    <li>Ingresa la medida (ej. <span class="command">10</span> para el largo)</li>
+                </ol>
+            </div>
+        </div>
+        <div class="method">
+									<h2>Método con Cotas</h2>
+									<ol class="steps">
+													<!-- <li class="step">Activa el modo <span class="command">ORTO</span> (F8).</li> -->
+													<li class="step">Usa <span class="command">RECTANG</span> para dibujar el rectángulo.</li>
+													<li class="step">Selecciona la primera esquina</li>
+													<li class="step">Para agregar cotas, usa el comando <span class="command">Cotas</span>.</li>
+													<li class="step">ingresa la primera cota correspondiente a la longitud.</li>
+													<li class="step">ingresa la segunda cota correspondiente a la altura.</li>
+													<li class="step">presiona enter.</li>
+									</ol>
+									
+									<div class="example">
+													<h3>Ejemplo de cotas:</h3>
+													<ol>
+														<li >Usa <span class="command">RECTANG</span> para dibujar el rectángulo.</li>
+														<li >Selecciona la primera esquina</li>
+														<li>Escribe <span class="command">Cotas</span> → Enter</li>
+														<li>Escribe <span class="command">10</span> para longitud y presiona enter</li>
+														<li>Escribe <span class="command">5</span> para altura y presiona enter</li>
+														<li>Haz click en cualquier punto del area de trabajo</li>
+													</ol>
+									</div>
+					</div>
+
+        <div class="method">
+            <h2>Método con Rotación</h2>
+            <ol class="steps">
+                <li class="step">Escribe <span class="command">RECTANG</span> y presiona Enter.</li>
+                <li class="step">Especifica la primera esquina.</li>
+                <li class="step">Escribe <span class="command">Rotacion</span> para Rotación y presiona Enter.</li>
+                <li class="step">Ingresa el ángulo de rotación en grados y presiona Enter.</li>
+                <li class="step">Especifica las dimensiones como en los métodos anteriores.</li>
+            </ol>
+        </div>
+
+
+
+        <div class="tip">
+            <h3>Consejos Rápidos:</h3>
+            <ul>
+                <li>Usa <span class="command">FILLET</span> para redondear las esquinas del rectángulo.</li>
+                <li>Presiona <span class="command">F3</span> para activar/desactivar el snap a la cuadrícula.</li>
+                <li>Usa <span class="command">CHAMFER</span> para crear chaflanes en las esquinas.</li>
+                <li>Puedes editar un rectángulo existente con el comando <span class="command">PEDIT</span>.</li>
+            </ul>
+        </div>
+
+        <div class="note">
+            <h3>Nota Importante:</h3>
+            <p>Recuerda que un rectángulo en AutoCAD es una polilínea cerrada. Puedes usar el comando <span class="command">EXPLODE</span> para convertirlo en líneas individuales si es necesario.</p>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; JMGV-PTEL-2025 Plan de Estudios AutoCAD 2D. Todos los derechos reservados.</p>
+</footer>
+</html>

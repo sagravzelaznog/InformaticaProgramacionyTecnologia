@@ -1,0 +1,20 @@
+/* Reseteo universal: quitamos los márgenes y rellenos por defecto del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Le damos una fuente más limpia al cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Espaciado básico temporal para que no se vea todo amontonado */
+header, section, footer {
+    padding: 20px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S12 E47: Troubleshooting Avanzado (Routing y Segmentación)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 12, Sesión 47: Troubleshooting Avanzado 🧠</h1>
+        <p class="subtitle">Aislamiento de Fallos de Routing (Capa 3) y VLANs (Capa 2)</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Diagnóstico de Fallos de Routing (Capa 3)</h2>
+            <p>Cuando la comunicación debe viajar entre redes diferentes (a través de un router), el diagnóstico se vuelve más complejo. Aquí la herramienta clave es **Traceroute**.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Fallo por Ruta Estática Rota</h3>
+                    <p>Si un ping falla entre la LAN A y la LAN B, y el `traceroute` se detiene en el router que conecta la LAN A, es probable que la **Ruta Estática** para la LAN B haya sido borrada o configurada incorrectamente.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Fallo por Subnetting Incorrecto</h3>
+                    <p>Si dos routers están conectados, pero tienen máscaras de subred que se superponen (o no coinciden) en su conexión, el enrutamiento fallará silenciosamente, confundiendo a los routers.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Diagnóstico de Fallos de Segmentación (VLANs)</h2>
+            <p>Los problemas de VLANs suelen ser fallos de Capa 2 (Switching), donde dos dispositivos que deberían comunicarse están bloqueados o viceversa.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Puerto en VLAN Incorrecta</h3>
+                    <p>Un PC (ej. un servidor) está conectado a un puerto de Switch que fue asignado a la VLAN equivocada (ej. está en VLAN 10 cuando debería estar en VLAN 20). Solución: Corregir la asignación del puerto de acceso en el Switch.</p>
+                </div>
+                <div>
+                    <h3>Fallo de Puerto Troncal (Trunk)</h3>
+                    <p>Si la comunicación entre dos switches o entre un switch y un router (Inter-VLAN Routing) falla, verifica que el puerto troncal esté configurado correctamente para permitir el paso de **todas** las VLANs necesarias.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Escenario de Falla en Packet Tracer</h2>
+            <p><strong>Escenario Práctico (Simulación en Packet Tracer):</strong></p>
+            <ol>
+                <li>Carga una topología con dos routers y dos PCs en subredes separadas.</li>
+                <li>Elimina la **Ruta Estática** del Router A hacia la Red B.</li>
+                <li>Desde el PC A, haz **`traceroute`** a la IP del PC B. Observa dónde se detiene la traza.</li>
+                <li>Restaura la Ruta Estática correcta y verifica la conectividad.</li>
+            </ol>
+            <button id="advancedTroubleshootBtn">Evaluar Diagnóstico Avanzado</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S12 E47</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion46.html" class="nav-button">Anterior</a>
+        <a href="sesion48.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

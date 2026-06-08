@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Tablas - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .grid-tabla {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        
+        .ejemplo-tabla {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .ejemplo-tabla:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .tabla-ejemplo th, 
+        .tabla-ejemplo td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .tabla-ejemplo th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .tabla-ejemplo tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .celda-relleno {
+            background-color: #e9ecef;
+        }
+        
+        .celda-borde {
+            border: 2px solid #0078d7 !important;
+        }
+        
+        .herramienta-tabla {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-tabla {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Controles de acceso -->
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <div id="loginRequired" class="login-required">
+            <h2>Acceso Requerido</h2>
+            <p>Para acceder a esta sesión, por favor inicia sesión con tu llave de acceso.</p>
+            <div class="auth-actions">
+                <a href="../iniciar-sesion.html" class="btn">Iniciar Sesión</a>
+                <a href="../registro.html" class="btn btn-outline">Registrarse</a>
+            </div>
+        </div>
+        
+        <main id="mainContent" class="hidden">
+            <header class="encabezado-sesion">
+                <h1>Sesión 5: Trabajo con Tablas</h1>
+                <p class="subtitulo">Aprende a crear y formatear tablas profesionales en Publisher</p>
+                <div class="navegacion">
+                    <a href="sesion4.html" class="btn btn-outline">← Sesión anterior</a>
+                    <a href="../index.html" class="btn btn-outline">Inicio</a>
+                    <a href="sesion6.html" class="btn btn-outline">Siguiente sesión →</a>
+                </div>
+            </header>
+            
+            <section class="contenido-sesion">
+                <div class="objetivos">
+                    <h2>Objetivos de aprendizaje</h2>
+                    <ul>
+                        <li>Crear y modificar tablas en Publisher</li>
+                        <li>Dar formato a celdas, filas y columnas</li>
+                        <li>Utilizar estilos de tabla predefinidos</li>
+                        <li>Organizar información de manera clara y efectiva</li>
+                    </ul>
+                </div>
+                
+                <h2>1. Insertar una tabla</h2>
+                <p>Las tablas son herramientas poderosas para organizar información de manera clara y profesional.</p>
+                
+                <div class="paso-a-paso">
+                    <h3>Para insertar una tabla:</h3>
+                    <ol>
+                        <li>Haz clic en la pestaña <strong>Insertar</strong></li>
+                        <li>Selecciona <strong>Tabla</strong> en el grupo de herramientas</li>
+                        <li>Usa la cuadrícula para seleccionar el número de filas y columnas</li>
+                        <li>Haz clic para insertar la tabla en tu documento</li>
+                    </ol>
+                </div>
+                
+                <div class="imagen-contenedor">
+                    <img src="../static/img/insertar-tabla.svg" alt="Menú para insertar tablas" class="img-fluid">
+                </div>
+                
+                <h2>2. Herramientas de tabla</h2>
+                <p>Al seleccionar una tabla, aparecerán las pestañas <strong>Diseño</strong> y <strong>Presentación</strong> con herramientas especializadas.</p>
+                
+                <div class="grid-tabla">
+                    <div class="ejemplo-tabla">
+                        <h4>Diseño de tabla</h4>
+                        <p>Personaliza el estilo de tu tabla:</p>
+                        <div class="herramienta-tabla">Estilos de tabla</div>
+                        <div class="herramienta-tabla">Bordes</div>
+                        <div class="herramienta-tabla">Sombreado</div>
+                    </div>
+                    
+                    <div class="ejemplo-tabla">
+                        <h4>Presentación</h4>
+                        <p>Organiza la estructura:</p>
+                        <div class="herramienta-tabla">Insertar fila/columna</div>
+                        <div class="herramienta-tabla">Eliminar celdas</div>
+                        <div class="herramienta-tabla">Combinar celdas</div>
+                    </div>
+                </div>
+                
+                <h2>3. Formato de celdas</h2>
+                <p>Personaliza la apariencia de las celdas para mejorar la legibilidad.</p>
+                
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                    <tr>
+                        <td>Alineación</td>
+                        <td>Alinea el texto dentro de las celdas</td>
+                        <td>Izquierda, centro, derecha</td>
+                    </tr>
+                    <tr>
+                        <td>Relleno</td>
+                        <td>Color de fondo de la celda</td>
+                        <td class="celda-relleno">Celda con relleno</td>
+                    </tr>
+                    <tr>
+                        <td>Bordes</td>
+                        <td>Líneas que delimitan las celdas</td>
+                        <td class="celda-borde">Borde resaltado</td>
+                    </tr>
+                </table>
+                
+                <h2>4. Ejercicio práctico</h2>
+                <div class="actividad-practica">
+                    <h3>Crea un horario semanal</h3>
+                    <p>Sigue estos pasos para crear un horario semanal atractivo:</p>
+                    <ol>
+                        <li>Crea una nueva publicación en blanco</li>
+                        <li>Inserta una tabla con 6 columnas (días) y 8 filas (horas)</li>
+                        <li>Combina celdas para el título y los encabezados</li>
+                        <li>Aplica un estilo de tabla profesional</li>
+                        <li>Agrega colores diferentes para diferentes tipos de actividades</li>
+                        <li>Ajusta el ancho de las columnas según sea necesario</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>💡 Consejo profesional</h4>
+                    <p>Usa la herramienta <strong>Dibujar tabla</strong> para crear tablas con celdas de diferentes tamaños y formas personalizadas.</p>
+                </div>
+                
+                <h2>5. Trabajo con datos</h2>
+                <p>Publisher te permite importar datos de Excel o convertir texto en tablas.</p>
+                
+                <div class="paso-a-paso">
+                    <h3>Para importar datos de Excel:</h3>
+                    <ol>
+                        <li>Haz clic en <strong>Insertar</strong> > <strong>Tabla</strong> > <strong>Hoja de cálculo de Excel</strong></li>
+                        <li>Copia y pega tus datos o trabaja directamente en la hoja de cálculo</li>
+                        <li>Los cambios se actualizarán automáticamente en tu publicación</li>
+                    </ol>
+                </div>
+                
+                <div class="resumen">
+                    <h2>Resumen</h2>
+                    <p>En esta sesión has aprendido a:</p>
+                    <ul>
+                        <li>Insertar y modificar tablas en Publisher</li>
+                        <li>Dar formato a celdas, filas y columnas</li>
+                        <li>Utilizar estilos de tabla predefinidos</li>
+                        <li>Importar datos desde Excel</li>
+                    </ul>
+                </div>
+                
+                <div class="evaluacion">
+                    <h3>Auto-evaluación</h3>
+                    <p>Responde las siguientes preguntas para verificar tu comprensión:</p>
+                    <ol>
+                        <li>¿Cómo puedes combinar varias celdas en una sola?</li>
+                        <li>¿Dónde encuentras las opciones para cambiar el estilo de los bordes de la tabla?</li>
+                        <li>¿Qué ventaja tiene importar datos desde Excel en lugar de crearlos directamente en Publisher?</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+</body>
+</html>

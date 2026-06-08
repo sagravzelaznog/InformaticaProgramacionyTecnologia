@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 3: Edición avanzada</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 3: Edición avanzada</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 9 -->
+        <div id="sesion9" class="session">
+            <h2>Sesión 9: Modificación avanzada I</h2>
+            <div class="content">
+                <p>En esta sesión profundizaremos en herramientas avanzadas de modificación que nos permitirán trabajar con mayor eficiencia.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Aplicar empalmes y chaflanes a las esquinas</li>
+                        <li>Utilizar matrices para crear copias ordenadas de objetos</li>
+                        <li>Modificar objetos mediante estiramiento y alargamiento</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Empalme y chaflán</strong>
+                        <ul>
+                            <li>Comando <span class="command">FILLET</span> (Empalme)
+                                <ul>
+                                    <li>Radio de empalme</li>
+                                    <li>Empalme múltiple</li>
+                                    <li>Modo recorte</li>
+                                </ul>
+                            </li>
+                            <li>Comando <span class="command">CHAMFER</span> (Chaflán)
+                                <ul>
+                                    <li>Distancias de chaflán</li>
+                                    <li>Ángulo de chaflán</li>
+                                    <li>Modo múltiple</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Matriz y desplazamiento</strong>
+                        <ul>
+                            <li>Comando <span class="command">ARRAY</span> (Matriz)
+                                <ul>
+                                    <li>Matriz rectangular</li>
+                                    <li>Matriz polar</li>
+                                    <li>Matriz de ruta</li>
+                                </ul>
+                            </li>
+                            <li>Comando <span class="command">OFFSET</span> (Desplazamiento)
+                                <ul>
+                                    <li>Distancia de desplazamiento</li>
+                                    <li>Paso a través</li>
+                                    <li>Borrar</li>
+                                    <li>Capas</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Alargar y estirar</strong>
+                        <ul>
+                            <li>Comando <span class="command">LENGTHEN</span> (Alargar)
+                                <ul>
+                                    <li>Incremento delta</li>
+                                    <li>Porcentaje</li>
+                                    <li>Longitud total</li>
+                                    <li>Dinámico</li>
+                                </ul>
+                            </li>
+                            <li>Comando <span class="command">STRETCH</span> (Estirar)
+                                <ul>
+                                    <li>Selección con ventana de cruce</li>
+                                    <li>Puntos base y segundo punto</li>
+                                    <li>Modo copia</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">F8</span> para activar/desactivar el modo ortogonal cuando necesites hacer estiramientos perfectamente horizontales o verticales.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominando las Herramientas de Modificación</h3>
+                    <p><strong>Objetivo:</strong> Aplicar empalmes, chaflanes, matrices y estiramientos en un ejercicio integrado.</p>
+                    
+                    <h4>Parte 1: Empalmes y Chaflanes (30 min)</h4>
+                    <ol>
+                        <li><strong>Empalmes básicos</strong>
+                            <ul>
+                                <li>Dibuja dos líneas perpendiculares que se crucen</li>
+                                <li>Aplica un empalme con radio de 10 unidades</li>
+                                <li>Experimenta con diferentes radios</li>
+                            </ul>
+                        </li>
+                        <li><strong>Chaflanes personalizados</strong>
+                            <ul>
+                                <li>Crea un rectángulo de 100x60 unidades</li>
+                                <li>Aplica chaflanes de 10x15 unidades en las esquinas</li>
+                                <li>Prueba con diferentes distancias</li>
+                            </ul>
+                        </li>
+                        <li><strong>Empalme múltiple</strong>
+                            <ul>
+                                <li>Dibuja una forma poligonal cerrada</li>
+                                <li>Aplica empalme a todos los vértices simultáneamente</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Matrices y Desplazamientos (40 min)</h4>
+                    <ol>
+                        <li><strong>Matriz rectangular</strong>
+                            <ul>
+                                <li>Dibuja un círculo de radio 5 unidades</li>
+                                <li>Crea una matriz de 4 filas x 6 columnas con separación de 20 unidades</li>
+                                <li>Experimenta con ángulos de matriz</li>
+                            </ul>
+                        </li>
+                        <li><strong>Matriz polar</strong>
+                            <ul>
+                                <li>Dibuja un triángulo equilátero</li>
+                                <li>Crea una matriz circular de 8 elementos alrededor de un punto central</li>
+                                <li>Prueba con diferentes ángulos de rotación</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desplazamiento avanzado</strong>
+                            <ul>
+                                <li>Dibuja una línea curva</li>
+                                <li>Usa OFFSET para crear líneas paralelas a diferentes distancias</li>
+                                <li>Experimenta con la opción "A través de"</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Diseño de un Engrane</h3>
+                    <p><strong>Duración:</strong> 50 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear un engrane utilizando herramientas de modificación avanzada.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Configuración inicial (10 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en milímetros</li>
+                                <li>Establece los límites del dibujo a 200x200 unidades</li>
+                                <li>Activa SNAP y GRID con espaciado de 10 unidades</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diseño del engrane (25 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja un círculo de 50mm de radio</li>
+                                <li>Crea un segundo círculo concéntrico de 30mm</li>
+                                <li>Dibuja un diente del engrane (rectángulo de 10x20mm)</li>
+                                <li>Usa ARRAY polar para crear 16 dientes alrededor del círculo</li>
+                                <li>Aplica chaflanes a los dientes para darles forma trapezoidal</li>
+                                <li>Usa TRIM para limpiar las líneas que se cruzan</li>
+                            </ol>
+                        </li>
+                        <li><strong>Acabados (15 min)</strong>
+                            <ol type="a">
+                                <li>Agrega un agujero central de 15mm</li>
+                                <li>Aplica chaflanes a las aristas internas</li>
+                                <li>Agrega cotas para las dimensiones principales</li>
+                                <li>Guarda como "Engrane_Sesion_9.dwg"</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Tarea: Diseño de un Patrón Arquitectónico</h3>
+                    <p><strong>Fecha de entrega:</strong> 3 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un patrón decorativo utilizando herramientas de modificación avanzada.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Investigación (1 hora)</strong>
+                            <ul>
+                                <li>Busca referencias de patrones geométricos islámicos</li>
+                                <li>Selecciona un patrón que incluya repeticiones y simetrías</li>
+                                <li>Analiza los elementos básicos que componen el patrón</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diseño (2 horas)</strong>
+                            <ol type="a">
+                                <li>Crea un nuevo dibujo con unidades en centímetros</li>
+                                <li>Diseña la celda básica del patrón usando LÍNEA, ARCO y CÍRCULO</li>
+                                <li>Utiliza ARRAY para crear repeticiones del patrón base</li>
+                                <li>Aplica EMPALME y CHAFLÁN para suavizar las uniones</li>
+                                <li>Usa MIRROR para crear simetrías</li>
+                            </ol>
+                        </li>
+                        <li><strong>Documentación (1 hora)</strong>
+                            <ul>
+                                <li>Prepara un documento que explique el proceso de creación</li>
+                                <li>Incluye capturas de pantalla de las diferentes etapas</li>
+                                <li>Explica las herramientas utilizadas en cada paso</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Requisitos de entrega:</strong></p>
+                    <ul>
+                        <li>Archivo .dwg con el patrón completo</li>
+                        <li>Documento PDF con la documentación</li>
+                        <li>Imagen JPG del resultado final</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio de Herramientas (40 puntos)</strong></p>
+                    <ul>
+                        <li>Uso correcto de empalmes y chaflanes (10pts)</li>
+                        <li>Implementación de matrices (10pts)</li>
+                        <li>Uso de estiramientos y alargamientos (10pts)</li>
+                        <li>Precisión en las medidas (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Limpieza del dibujo (10pts)</li>
+                        <li>Organización de elementos (10pts)</li>
+                        <li>Creatividad en el diseño (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Documentación (20 puntos)</strong></p>
+                    <ul>
+                        <li>Claridad en las explicaciones (10pts)</li>
+                        <li>Presentación del trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>4. Participación (10 puntos)</strong></p>
+                    <ul>
+                        <li>Colaboración en clase (5pts)</li>
+                        <li>Puntualidad en la entrega (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 10 -->
+        <div id="sesion10" class="session">
+            <h2>Sesión 10: Modificación avanzada II</h2>
+            <div class="content">
+                <p>Continuamos explorando herramientas avanzadas de modificación para un mayor control sobre nuestros dibujos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Editar polilíneas complejas</li>
+                        <li>Dividir objetos en segmentos precisos</li>
+                        <li>Modificar empalmes existentes</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Editar polilíneas</strong>
+                        <ul>
+                            <li>Comando <span class="command">PEDIT</span>
+                                <ul>
+                                    <li>Unir segmentos</li>
+                                    <li>Suavizado</li>
+                                    <li>Ancho de línea</li>
+                                    <li>Editar vértices</li>
+                                </ul>
+                            </li>
+                            <li>Convertir a polilínea</li>
+                            <li>Explotar polilíneas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Dividir y medir</strong>
+                        <ul>
+                            <li>Comando <span class="command">DIVIDE</span> (Dividir)
+                                <ul>
+                                    <li>Número de segmentos</li>
+                                    <li>Inserción de bloques</li>
+                                </ul>
+                            </li>
+                            <li>Comando <span class="command">MEASURE</span> (Medir)
+                                <ul>
+                                    <li>Longitud de segmento</li>
+                                    <li>Inserción de bloques</li>
+                                </ul>
+                            </li>
+                            <li>Comando <span class="command">BREAK</span> (Romper)
+                                <ul>
+                                    <li>Romper en un punto</li>
+                                    <li>Romper entre dos puntos</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Editar empalmes</strong>
+                        <ul>
+                            <li>Modificar radio de empalme existente</li>
+                            <li>Cambiar tipo de chaflán</li>
+                            <li>Eliminar empalmes</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">Ctrl+1</span> para abrir rápidamente el panel de propiedades y modificar parámetros de objetos seleccionados.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominio de Polilíneas y División de Objetos</h3>
+                    <p><strong>Objetivo:</strong> Aplicar técnicas avanzadas de edición de polilíneas y división de objetos.</p>
+                    
+                    <h4>Parte 1: Edición de Polilíneas (40 min)</h4>
+                    <ol>
+                        <li><strong>Creación y unión</strong>
+                            <ul>
+                                <li>Dibuja 3 líneas rectas que formen una forma abierta</li>
+                                <li>Convierte las líneas en una sola polilínea usando PEDIT</li>
+                                <li>Experimenta con la opción "Unir"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modificación de vértices</strong>
+                            <ul>
+                                <li>Edita los vértices de la polilínea creada</n                                <li>Agrega un nuevo vértice en medio de un segmento</li>
+                                <li>Elimina un vértice existente</li>
+                                <li>Suaviza la polilínea</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ancho variable</strong>
+                            <ul>
+                                <li>Asigna diferentes anchos a segmentos de la polilínea</li>
+                                <li>Crea un efecto de cinta que se ensancha y se estrecha</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: División y Medición (35 min)</h4>
+                    <ol>
+                        <li><strong>DIVIDE</strong>
+                            <ul>
+                                <li>Crea un arco de 180° con radio de 50 unidades</li>
+                                <li>Divídelo en 6 segmentos iguales usando DIVIDE</li>
+                                <li>Inserta bloques en los puntos de división</li>
+                            </ul>
+                        </li>
+                        <li><strong>MEASURE</strong>
+                            <ul>
+                                <li>Dibuja una línea de 100 unidades de largo</li>
+                                <li>Marca puntos cada 15 unidades usando MEASURE</li>
+                                <li>Inserta bloques en los puntos de medición</li>
+                            </ul>
+                        </li>
+                        <li><strong>BREAK</strong>
+                            <ul>
+                                <li>Dibuja un círculo de 40 unidades de radio</li>
+                                <li>Usa BREAK para crear un arco de 90°</li>
+                                <li>Experimenta con diferentes puntos de quiebre</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Diseño de un Logotipo con Polilíneas</h3>
+                    <p><strong>Duración:</strong> 60 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear un logotipo complejo utilizando técnicas avanzadas de edición de polilíneas.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Configuración inicial (10 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en centímetros</li>
+                                <li>Establece los límites del dibujo a 100x100 unidades</li>
+                                <li>Activa SNAP y GRID con espaciado de 1 unidad</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diseño del logotipo (35 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja la forma básica usando polilíneas</li>
+                                <li>Edita los vértices para crear curvas suaves</li>
+                                <li>Aplica diferentes anchos a secciones de la polilínea</li>
+                                <li>Usa DIVIDE para colocar elementos decorativos equidistantes</li>
+                                <li>Crea variaciones del logotipo modificando las polilíneas</li>
+                            </ol>
+                        </li>
+                        <li><strong>Acabados (15 min)</strong>
+                            <ol type="a">
+                                <li>Añade texto con el nombre de la empresa</li>
+                                <li>Ajusta el grosor de las líneas para mejor legibilidad</li>
+                                <li>Guarda como "Logotipo_Sesion_10.dwg"</li>
+                                <li>Exporta una imagen del resultado final</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Tarea: Plano de Mueble con Detalles Técnicos</h3>
+                    <p><strong>Fecha de entrega:</strong> 4 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un plano detallado de un mueble utilizando técnicas avanzadas de edición.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Investigación (1 hora)</strong>
+                            <ul>
+                                <li>Investiga diferentes estilos de muebles (moderno, clásico, rústico)</li>
+                                <li>Selecciona un mueble para diseñar (escritorio, estantería, mesa, etc.)</li>
+                                <li>Toma medidas reales de un mueble similar o usa estándares de la industria</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diseño (3 horas)</strong>
+                            <ol type="a">
+                                <li>Crea un nuevo dibujo con unidades en milímetros</li>
+                                <li>Diseña la vista en planta del mueble usando polilíneas</li>
+                                <li>Agrega detalles como cajones, estantes y herrajes</li>
+                                <li>Usa DIVIDE y MEASURE para marcar la ubicación de tornillos y herrajes</li>
+                                <li>Incluye una vista en elevación con detalles constructivos</li>
+                            </ol>
+                        </li>
+                        <li><strong>Documentación (2 horas)</strong>
+                            <ul>
+                                <li>Prepara una lista de materiales con cantidades y medidas</li>
+                                <li>Incluye un despiece de las partes principales</li>
+                                <li>Agrega anotaciones con instrucciones de ensamblaje</li>
+                                <li>Prepara una presentación del diseño</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Requisitos de entrega:</strong></p>
+                    <ul>
+                        <li>Archivo .dwg con el diseño completo</li>
+                        <li>Documento PDF con la documentación técnica</li>
+                        <li>Imágenes renderizadas del mueble desde diferentes ángulos</li>
+                        <li>Lista de materiales y herramientas necesarias</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio de Herramientas (45 puntos)</strong></p>
+                    <ul>
+                        <li>Edición avanzada de polilíneas (15pts)</li>
+                        <li>Uso de DIVIDE y MEASURE (15pts)</li>
+                        <li>Modificación de empalmes existentes (10pts)</li>
+                        <li>Precisión en las medidas (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Limpieza y organización del dibujo (10pts)</li>
+                        <li>Creatividad en el diseño (10pts)</li>
+                        <li>Atención a los detalles (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Documentación (15 puntos)</strong></p>
+                    <ul>
+                        <li>Claridad en las explicaciones (8pts)</li>
+                        <li>Presentación del trabajo (7pts)</li>
+                    </ul>
+                    
+                    <p><strong>4. Participación (10 puntos)</strong></p>
+                    <ul>
+                        <li>Colaboración en clase (5pts)</li>
+                        <li>Puntualidad en la entrega (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 11 -->
+        <div id="sesion11" class="session">
+            <h2>Sesión 11: Bloques y atributos I</h2>
+            <div class="content">
+                <p>Introducción al uso de bloques y atributos para mejorar la eficiencia en el dibujo.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear y editar bloques</li>
+                        <li>Insertar bloques en el dibujo</li>
+                        <li>Gestionar una biblioteca de bloques</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Creación de bloques</strong>
+                        <ul>
+                            <li>Comando <span class="command">BLOCK</span>
+                                <ul>
+                                    <li>Definir nombre</li>
+                                    <li>Seleccionar objetos</li>
+                                    <li>Especificar punto base</li>
+                                    <li>Opciones de comportamiento</li>
+                                </ul>
+                            </li>
+                            <li>Bloques anónimos</li>
+                            <li>Bloques con atributos</li>
+                        </ul>
+                    </li>
+                    <li><strong>Inserción de bloques</strong>
+                        <ul>
+                            <li>Comando <span class="command">INSERT</span>
+                                <ul>
+                                    <li>Seleccionar bloque</li>
+                                    <li>Especificar punto de inserción</n                                    <li>Factor de escala</li>
+                                    <li>Ángulo de rotación</li>
+                                </ul>
+                            </li>
+                            <li>Bloques anidados</li>
+                            <li>Bloques dinámicos</li>
+                        </ul>
+                    </li>
+                    <li><strong>Biblioteca de bloques</strong>
+                        <ul>
+                            <li>Crear archivos de bloques (.dwg)</li>
+                            <li>Usar el Centro de diseño</li>
+                            <li>Paletas de herramientas</li>
+                            <li>Bloques en la nube</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">ADCENTER</span> o <span class="command">ADC</span> para abrir el Centro de diseño y acceder rápidamente a tus bibliotecas de bloques.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Creación y Uso de Bloques</h3>
+                    <p><strong>Objetivo:</strong> Aprender a crear, modificar y utilizar bloques en dibujos técnicos.</p>
+                    
+                    <h4>Parte 1: Bloques Básicos (40 min)</h4>
+                    <ol>
+                        <li><strong>Creación de bloques</strong>
+                            <ul>
+                                <li>Dibuja un símbolo de toma eléctrica</li>
+                                <li>Conviértelo en un bloque llamado "TOMA_CORRIENTE"</li>
+                                <li>Especifica un punto de inserción lógico</li>
+                            </ul>
+                        </li>
+                        <li><strong>Inserción de bloques</strong>
+                            <ul>
+                                <li>Crea un plano básico de una habitación</li>
+                                <li>Inserta el bloque de toma de corriente en diferentes ubicaciones</li>
+                                <li>Experimenta con diferentes escalas y rotaciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modificación de bloques</strong>
+                            <ul>
+                                <li>Edita el bloque para cambiar el diseño de la toma</li>
+                                <li>Observa cómo se actualizan todas las instancias</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Bloques con Atributos (50 min)</h4>
+                    <ol>
+                        <li><strong>Creación de atributos</strong>
+                            <ul>
+                                <li>Diseña un bloque de ventana con atributos para:</li>
+                                <li>- Número de ventana</li>
+                                <li>- Dimensiones (ancho x alto)</li>
+                                <li>- Material</li>
+                            </ul>
+                        </li>
+                        <li><strong>Uso de bloques con atributos</strong>
+                            <ul>
+                                <li>Inserta múltiples ventanas en un plano de fachada</li>
+                                <li>Completa los atributos para cada ventana</li>
+                                <li>Modifica los atributos existentes</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Creación de una Biblioteca de Bloques</h3>
+                    <p><strong>Duración:</strong> 60 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar una biblioteca personal de bloques para planos arquitectónicos.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Configuración inicial (10 min)</strong>
+                            <ul>
+                                <li>Crea una nueva carpeta llamada "Mi_Biblioteca_Bloques"</li>
+                                <li>Dentro, crea subcarpetas: "Mobiliario", "Electricidad", "Fontanería", "Equipos"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Creación de bloques (35 min)</strong>
+                            <ol type="a">
+                                <li>Diseña al menos 3 bloques por categoría con sus atributos correspondientes</li>
+                                <li>Ejemplos:
+                                    <ul>
+                                        <li>Mobiliario: Cama, silla, mesa</li>
+                                        <li>Electricidad: Apagador, contacto, lámpara</li>
+                                        <li>Fontanería: Lavabo, inodoro, regadera</li>
+                                        <li>Equipos: Computadora, impresora, proyector</li>
+                                    </ul>
+                                </li>
+                                <li>Guarda cada bloque como archivo .dwg individual</li>
+                            </ol>
+                        </li>
+                        <li><strong>Organización (15 min)</strong>
+                            <ol type="a">
+                                <li>Configura el Centro de diseño de AutoCAD para acceder a tu biblioteca</li>
+                                <li>Crea una paleta de herramientas personalizada</li>
+                                <li>Guarda el archivo como "Biblioteca_Bloques_AlumnoX.dwg"</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Tarea: Plano de una Habitación con Bloques Personalizados</h3>
+                    <p><strong>Fecha de entrega:</strong> 3 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Aplicar los conocimientos de bloques en un proyecto de diseño de interiores.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Diseño de la habitación (2 horas)</strong>
+                            <ul>
+                                <li>Dibuja el perímetro de una habitación de 4x5 metros</li>
+                                <li>Agrega puertas y ventanas usando bloques</li>
+                                <li>Incluye mobiliario básico (cama, escritorio, silla, etc.)</li>
+                                <li>Agrega instalaciones eléctricas y de iluminación</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación (1.5 horas)</strong>
+                            <ol type="a">
+                                <li>Crea una tabla de áreas con los muebles utilizados</li>
+                                <li>Incluye una lista de materiales con atributos extraídos</li>
+                                <li>Prepara una presentación del diseño</li>
+                            </ol>
+                        </li>
+                        <li><strong>Reflexión (0.5 horas)</strong>
+                            <ul>
+                                <li>Describe cómo el uso de bloques mejoró tu eficiencia</li>
+                                <li>Identifica oportunidades de mejora en tu biblioteca de bloques</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Requisitos de entrega:</strong></p>
+                    <ul>
+                        <li>Archivo .dwg con el plano completo</li>
+                        <li>Archivos .dwg individuales de los bloques creados</li>
+                        <li>Documento PDF con la documentación técnica</li>
+                        <li>Presentación en PowerPoint del proyecto</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio de Herramientas (50 puntos)</strong></p>
+                    <ul>
+                        <li>Creación correcta de bloques (15pts)</li>
+                        <li>Uso efectivo de atributos (15pts)</li>
+                        <li>Organización de la biblioteca (10pts)</li>
+                        <li>Inserción y modificación de bloques (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en las medidas (10pts)</li>
+                        <li>Creatividad en los diseños (10pts)</li>
+                        <li>Presentación general (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Documentación (10 puntos)</strong></p>
+                    <ul>
+                        <li>Claridad en las explicaciones (5pts)</li>
+                        <li>Organización de la información (5pts)</n                    </ul>
+                    
+                    <p><strong>4. Participación (10 puntos)</strong></p>
+                    <ul>
+                        <li>Colaboración en clase (5pts)</li>
+                        <li>Puntualidad en la entrega (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 12 -->
+        <div id="sesion12" class="session">
+            <h2>Sesión 12: Bloques y atributos II</h2>
+            <div class="content">
+                <p>Profundización en el uso avanzado de bloques y atributos para documentación técnica.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Agregar y editar atributos en bloques</li>
+                        <li>Modificar bloques existentes</li>
+                        <li>Aplicar bloques en situaciones prácticas</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Atributos de bloque</strong>
+                        <ul>
+                            <li>Comando <span class="command">ATTDEF</span>
+                                <ul>
+                                    <li>Definir etiqueta</li>
+                                    <li>Valor predeterminado</li>
+                                    <li>Modo de atributo</li>
+                                    <li>Propiedades de texto</li>
+                                </ul>
+                            </li>
+                            <li>Tipos de atributos
+                                <ul>
+                                    <li>Visible/invisible</li>
+                                    <li>Constante/variable</li>
+                                    <li>Verificado/no verificado</li>
+                                    <li>Bloqueo de posición</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Edición de bloques</strong>
+                        <ul>
+                            <li>Comando <span class="command">BEDIT</span>
+                                <ul>
+                                    <li>Editor de bloques</li>
+                                    <li>Guardar cambios</li>
+                                    <li>Guardar como nuevo bloque</li>
+                                </ul>
+                            </li>
+                            <li>Actualizar bloques existentes</li>
+                            <li>Reemplazar bloques</li>
+                        </ul>
+                    </li>
+                    <li><strong>Práctica con bloques</strong>
+                        <ul>
+                            <li>Crear un bloque con atributos</li>
+                            <li>Insertar y editar bloques con atributos</li>
+                            <li>Extraer datos de atributos</li>
+                            <li>Tablas de datos</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Ejercicio práctico:</h3>
+                <p>Crear un bloque de puerta con los siguientes atributos:</p>
+                <ul>
+                    <li>Número de puerta (visible)</li>
+                    <li>Ancho (visible)</li>
+                    <li>Altura (invisible)</li>
+                    <li>Material (con lista desplegable)</li>
+                    <li>Observaciones (opcional)</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">EATTEDIT</span> para editar rápidamente los atributos de un bloque después de insertarlo.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Atributos Avanzados en Bloques</h3>
+                    <p><strong>Objetivo:</strong> Dominar el uso avanzado de atributos en bloques para documentación técnica.</p>
+                    
+                    <h4>Parte 1: Creación de Bloques con Atributos (45 min)</h4>
+                    <ol>
+                        <li><strong>Bloque de Ventana con Atributos</strong>
+                            <ul>
+                                <li>Crea un bloque de ventana con los siguientes atributos:</li>
+                                <li>- Código (visible, verificado)</li>
+                                <li>- Dimensiones (ancho x alto, visible)</li>
+                                <li>- Material (lista desplegable: PVC, Aluminio, Madera)</li>
+                                <li>- Nivel (invisible, valor predeterminado: "PB")</li>
+                                <li>- Observaciones (opcional, multilínea)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bloque de Mobiliario con Atributos</strong>
+                            <ul>
+                                <li>Diseña un bloque de escritorio con atributos para:</li>
+                                <li>- Referencia</li>
+                                <li>- Dimensiones</li>
+                                <li>- Material de la superficie</li>
+                                <li>- Color (con muestra de color)</li>
+                                <li>- Precio (con formato numérico)</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Gestión Avanzada de Bloques (45 min)</h4>
+                    <ol>
+                        <li><strong>Edición de Bloques con Atributos</strong>
+                            <ul>
+                                <li>Usa BEDIT para modificar los bloques creados</li>
+                                <li>Agrega nuevos atributos a bloques existentes</li>
+                                <li>Actualiza bloques en múltiples instancias</li>
+                            </ul>
+                        </li>
+                        <li><strong>Extracción de Datos</strong>
+                            <ul>
+                                <li>Extrae la información de atributos a una tabla</li>
+                                <li>Exporta los datos a formato Excel</li>
+                                <li>Crea un reporte con cantidades y especificaciones</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Planos de Instalaciones Eléctricas</h3>
+                    <p><strong>Duración:</strong> 70 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear un plano eléctrico completo utilizando bloques con atributos.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Preparación (15 min)</strong>
+                            <ul>
+                                <li>Descarga la planta arquitectónica proporcionada por el profesor</li>
+                                <li>Crea una capa nueva llamada "ELÉCTRICOS"</li>
+                                <li>Configura el estilo de texto para etiquetas eléctricas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Creación de Bloques (30 min)</strong>
+                            <ol type="a">
+                                <li>Diseña bloques para los siguientes elementos:
+                                    <ul>
+                                        <li>Apagadores simples y dobles</li>
+                                        <li>Contactos eléctricos</li>
+                                        <li>Luminarias (techo, pared y piso)</li>
+                                        <li>Tablero de distribución</li>
+                                    </ul>
+                                </li>
+                                <li>Añade atributos a cada bloque:
+                                    <ul>
+                                        <li>Código único</li>
+                                        <li>Potencia (W)</li>
+                                        <li>Altura de instalación</li>
+                                        <li>Circuito asignado</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><strong>Desarrollo del Plano (25 min)</strong>
+                            <ol type="a">
+                                <li>Ubica los elementos eléctricos en la planta</li>
+                                <li>Conecta los elementos con líneas que representen los circuitos</li>
+                                <li>Agrega una simbología y leyenda</li>
+                                <li>Genera una tabla de cargas</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto Final: Documentación Técnica con Bloques</h3>
+                    <p><strong>Fecha de entrega:</strong> 5 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un proyecto completo que demuestre el dominio de bloques y atributos.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Selección del Proyecto (2 horas)</strong>
+                            <ul>
+                                <li>Elige entre: Vivienda unifamiliar, Oficina pequeña o Local comercial</li>
+                                <li>Define el alcance (plantas, áreas, ambientes)</li>
+                                <li>Recopila información técnica necesaria</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (6 horas)</strong>
+                            <ol type="a">
+                                <li>Crea los planos arquitectónicos básicos</li>
+                                <li>Desarrolla una biblioteca de bloques personalizados</li>
+                                <li>Incorpora planos especializados:
+                                    <ul>
+                                        <li>Plano de instalaciones eléctricas</li>
+                                        <li>Plano de mobiliario</li>
+                                        <li>Plano de acabados</li>
+                                    </ul>
+                                </li>
+                                <li>Genera documentación técnica con tablas de datos</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (2 horas)</strong>
+                            <ul>
+                                <li>Prepara una presentación ejecutiva del proyecto</li>
+                                <li>Incluye renders o vistas 3D si es posible</li>
+                                <li>Prepara un video corto explicando el proceso</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Requisitos de entrega:</strong></p>
+                    <ul>
+                        <li>Archivos .dwg organizados por disciplinas</li>
+                        <li>Biblioteca de bloques utilizada</li>
+                        <li>Documento técnico en PDF</li>
+                        <li>Presentación en PowerPoint</li>
+                        <li>Video explicativo (máx. 5 minutos)</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio de Herramientas (50 puntos)</strong></p>
+                    <ul>
+                        <li>Creación y edición de bloques con atributos (20pts)</li>
+                        <li>Extracción y gestión de datos (15pts)</li>
+                        <li>Organización de la biblioteca de bloques (10pts)</li>
+                        <li>Uso de capas y estilos (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión técnica (10pts)</li>
+                        <li>Presentación visual (10pts)</li>
+                        <li>Completitud de la documentación (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong></p>
+                    <ul>
+                        <li>Utilidad de los bloques creados (10pts)</li>
+                        <li>Eficiencia en el flujo de trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+
+                    <div class="tip">
+                        <strong>Consejo final:</strong> Crea una plantilla personalizada con tus bloques más usados para agilizar futuros proyectos. Usa el <span class="command">DESIGN CENTER</span> para organizar y acceder rápidamente a tu biblioteca de bloques.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

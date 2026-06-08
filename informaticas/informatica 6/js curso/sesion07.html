@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Lógica Visual (ClassList) - Curso de JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .style-comparison {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .style-option {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+        
+        .style-option h3 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .code-example {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example .comment {
+            color: #6a9955;
+        }
+        
+        .code-example .property {
+            color: #9cdcfe;
+        }
+        
+        .code-example .value {
+            color: #ce9178;
+        }
+        
+        .code-example .string {
+            color: #ce9178;
+        }
+        
+        .demo-box {
+            width: 150px;
+            height: 150px;
+            background-color: #4a90e2;
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Clases que se pueden alternar */
+        .red-box {
+            background-color: #e74c3c;
+        }
+        
+        .big-box {
+            width: 200px;
+            height: 200px;
+            font-size: 1.2em;
+        }
+        
+        .round-box {
+            border-radius: 50%;
+        }
+        
+        .shadow-box {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rotate-box {
+            transform: rotate(15deg);
+        }
+        
+        /* Estilos para el menú hamburguesa */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .hamburger-btn {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            z-index: 1000;
+        }
+        
+        .hamburger-btn span {
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: #333;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger-btn span:nth-child(1) { top: 0; }
+        .hamburger-btn span:nth-child(2) { top: 13px; }
+        .hamburger-btn span:nth-child(3) { top: 26px; }
+        
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 13px;
+        }
+        
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 13px;
+        }
+        
+        .sidebar-menu {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            position: fixed;
+            top: 0;
+            left: -300px;
+            transition: left 0.3s ease;
+            padding: 70px 20px 20px;
+            z-index: 100;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar-menu.active {
+            left: 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-menu a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: #34495e;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 50;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Estilos para las tarjetas de ejemplos */
+        .example-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            font-weight: bold;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        .card-footer {
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            text-align: right;
+        }
+        
+        /* Estilos para los botones de acción */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #4a90e2;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #357abd;
+        }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+        
+        /* Estilos para la sección de reto */
+        .challenge-section {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4a90e2;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .challenge-instructions {
+            background-color: #e9f5ff;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .hint-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .solution-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .style-comparison {
+                flex-direction: column;
+            }
+            
+            .style-option {
+                width: 100%;
+            }
+            
+            .example-cards {
+                flex-direction: column;
+            }
+            
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Menú lateral (se mostrará/ocultará con JavaScript) -->
+        <div class="overlay" id="menuOverlay"></div>
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav class="sidebar-menu" id="sidebarMenu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Portafolio</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li><a href="sesion02.html">Sesión 2: Tomando Decisiones</a></li>
+                <li><a href="sesion03.html">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="sesion04.html">Sesión 4: Listas y Bucles</a></li>
+                <li><a href="sesion05.html">Sesión 5: Tocando el HTML</a></li>
+                <li><a href="sesion06.html">Sesión 6: Escuchando al Usuario</a></li>
+                <li class="active"><a href="sesion07.html">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content">
+            <header>
+                <h1>Sesión 7: Lógica Visual (ClassList)</h1>
+                <p class="subtitle">Aprendiendo a manipular estilos de forma profesional con classList</p>
+            </header>
+            
+            <section>
+                <h2>¿Por qué no usar .style directo?</h2>
+                <p>En la sesión anterior vimos cómo modificar estilos directamente con <code>elemento.style.propiedad</code>, pero esta no es la mejor práctica por varias razones:</p>
+                
+                <div class="style-comparison">
+                    <div class="style-option">
+                        <h3>❌ Usando .style</h3>
+                        <div class="code-example">
+                            <span class="comment">// Código difícil de mantener</span><br>
+                            elemento.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">'#e74c3c'</span>;<br>
+                            elemento.<span class="property">style</span>.<span class="property">color</span> = <span class="string">'white'</span>;<br>
+                            elemento.<span class="property">style</span>.<span class="property">padding</span> = <span class="string">'15px'</span>;<br>
+                            elemento.<span class="property">style</span>.<span class="property">borderRadius</span> = <span class="string">'8px'</span>;<br>
+                            <br>
+                            <span class="comment">// Para quitar un estilo, hay que ponerlo en blanco</span><br>
+                            elemento.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">''</span>;
+                        </div>
+                        <div class="demo-box" id="styleDemo">Caja de ejemplo</div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="applyStyleBtn">Aplicar estilos</button>
+                            <button class="btn btn-danger" id="resetStyleBtn">Restablecer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="style-option">
+                        <h3>✅ Usando classList</h3>
+                        <div class="code-example">
+                            <span class="comment">/* En el CSS */</span><br>
+                            <span class="property">.mi-estilo</span> {<br>
+                            &nbsp;&nbsp;<span class="property">background-color</span>: <span class="value">#e74c3c</span>;<br>
+                            &nbsp;&nbsp;<span class="property">color</span>: <span class="value">white</span>;<br>
+                            &nbsp;&nbsp;<span class="property">padding</span>: <span class="value">15px</span>;<br>
+                            &nbsp;&nbsp;<span class="property">border-radius</span>: <span class="value">8px</span>;<br>
+                            }<br><br>
+                            
+                            <span class="comment">// En JavaScript</span><br>
+                            elemento.<span class="property">classList</span>.<span class="property">add</span>(<span class="string">'mi-estilo'</span>);<br>
+                            <span class="comment">// Para quitar la clase</span><br>
+                            elemento.<span class="property">classList</span>.<span class="property">remove</span>(<span class="string">'mi-estilo'</span>);
+                        </div>
+                        <div class="demo-box" id="classListDemo">Caja de ejemplo</div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="addClassBtn">Agregar clase</button>
+                            <button class="btn btn-danger" id="removeClassBtn">Quitar clase</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>¡Ventajas de usar classList!</strong>
+                    <ul>
+                        <li>Más limpio y organizado: Separas la estructura (HTML), el estilo (CSS) y el comportamiento (JS).</li>
+                        <li>Más fácil de mantener: Los cambios de diseño se hacen en el CSS, no en el JS.</li>
+                        <li>Mejor rendimiento: El navegador optimiza mejor los cambios de clase que los estilos individuales.</li>
+                        <li>Más poderoso: Puedes aplicar múltiples estilos a la vez con una sola clase.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Métodos de classList</h2>
+                <p>El objeto <code>classList</code> tiene varios métodos útiles para trabajar con clases CSS:</p>
+                
+                <div class="example-cards">
+                    <div class="card">
+                        <div class="card-header">1. classList.add()</div>
+                        <div class="card-body">
+                            <p>Agrega una o más clases a un elemento.</p>
+                            <div class="code-example" style="font-size: 0.8em;">
+                                elemento.<span class="property">classList</span>.<span class="property">add</span>(<span class="string">'clase1'</span>);<br>
+                                <span class="comment">// Múltiples clases</span><br>
+                                elemento.<span class="property">classList</span>.<span class="property">add</span>(<span class="string">'clase2'</span>, <span class="string">'clase3'</span>);
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="demoAdd">Probar</button>
+                            <div class="demo-box" id="demoAddBox">Haz clic en "Probar"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">2. classList.remove()</div>
+                        <div class="card-body">
+                            <p>Elimina una o más clases de un elemento.</p>
+                            <div class="code-example" style="font-size: 0.8em;">
+                                elemento.<span class="property">classList</span>.<span class="property">remove</span>(<span class="string">'clase1'</span>);<br>
+                                <span class="comment">// Múltiples clases</span><br>
+                                elemento.<span class="property">classList</span>.<span class="property">remove</span>(<span class="string">'clase2'</span>, <span class="string">'clase3'</span>);
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="demoRemove">Probar</button>
+                            <div class="demo-box red-box" id="demoRemoveBox">Esta caja es roja</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">3. classList.toggle()</div>
+                        <div class="card-body">
+                            <p>Alterna una clase (la agrega si no existe, la quita si existe).</p>
+                            <div class="code-example" style="font-size: 0.8em;">
+                                <span class="comment">// Alterna la clase 'activo'</span><br>
+                                elemento.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'activo'</span>);<br>
+                                <span class="comment">// Con un segundo parámetro booleano</span><br>
+                                elemento.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'activo'</span>, <span class="value">true</span>); <span class="comment">// Siempre agrega</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="demoToggle">Alternar</button>
+                            <div class="demo-box" id="demoToggleBox">Haz clic en "Alternar" varias veces</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">4. classList.contains()</div>
+                        <div class="card-body">
+                            <p>Comprueba si un elemento tiene una clase específica.</p>
+                            <div class="code-example" style="font-size: 0.8em;">
+                                <span class="comment">// Devuelve true o false</span><br>
+                                <span class="property">if</span> (elemento.<span class="property">classList</span>.<span class="property">contains</span>(<span class="string">'activo'</span>)) {<br>
+                                &nbsp;&nbsp;<span class="comment">// El elemento tiene la clase 'activo'</span><br>
+                                }
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="demoContains">Comprobar</button>
+                            <div class="demo-box" id="demoContainsBox">Esta caja no tiene clases especiales</div>
+                            <p id="containsResult" style="margin-top: 10px;"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>Consejo profesional:</strong> Puedes encadenar múltiples métodos de classList para realizar varias operaciones a la vez:
+                    <div class="code-example">
+                        elemento.<span class="property">classList</span>
+                            .<span class="property">remove</span>(<span class="string">'clase-antigua'</span>)
+                            .<span class="property">add</span>(<span class="string">'clase-nueva'</span>)
+                            .<span class="property">toggle</span>(<span class="string">'activo'</span>);
+                    </div>
+                </div>
+            </section>
+            
+            <section class="dola-ai">
+                <h2>Dola AI - Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre classList o manipulación de clases? ¡Pregúntame!</p>
+                <div id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+                    <button onclick="enviarPregunta()">Enviar</button>
+                </div>
+            </section>
+            
+            <section class="challenge-section">
+                <h2>Reto: Menú Hamburguesa</h2>
+                <p>¡Es hora de poner en práctica lo aprendido! Crea un menú hamburguesa que se muestre y oculte al hacer clic en el botón.</p>
+                
+                <div class="challenge-instructions">
+                    <h4>Instrucciones:</h4>
+                    <ol>
+                        <li>Ya tienes el HTML y CSS básico del menú hamburguesa.</li>
+                        <li>Usa <code>classList.toggle()</code> para mostrar/ocultar el menú lateral cuando se haga clic en el botón.</li>
+                        <li>El menú debe deslizarse desde la izquierda.</li>
+                        <li>El botón debe cambiar a una "X" cuando el menú está abierto (usa la clase <code>active</code>).</li>
+                        <li>El overlay debe aparecer/desaparecer junto con el menú.</li>
+                    </ol>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="showHintBtn">Mostrar pista</button>
+                    <button class="btn btn-success" id="showSolutionBtn">Mostrar solución</button>
+                    <button class="btn btn-danger" id="resetChallengeBtn">Reiniciar</button>
+                </div>
+                
+                <div class="hint-box" id="hintBox">
+                    <h4>Pista:</h4>
+                    <p>Usa <code>classList.toggle()</code> en el menú lateral, el botón y el overlay para alternar la clase <code>active</code> que ya está definida en el CSS.</p>
+                    <p>El código debería verse así:</p>
+                    <div class="code-example">
+                        boton.<span class="property">addEventListener</span>(<span class="string">'click'</span>, <span class="property">function</span>() {<br>
+                        &nbsp;&nbsp;menu.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        &nbsp;&nbsp;boton.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        &nbsp;&nbsp;overlay.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        });
+                    </div>
+                </div>
+                
+                <div class="solution-box" id="solutionBox">
+                    <h4>Solución completa:</h4>
+                    <p>Aquí está el código JavaScript para implementar el menú hamburguesa:</p>
+                    <div class="code-example">
+                        <span class="comment">// Seleccionar elementos</span><br>
+                        <span class="property">const</span> hamburgerBtn = <span class="property">document</span>.<span class="property">getElementById</span>(<span class="string">'hamburgerBtn'</span>);<br>
+                        <span class="property">const</span> sidebarMenu = <span class="property">document</span>.<span class="property">getElementById</span>(<span class="string">'sidebarMenu'</span>);<br>
+                        <span class="property">const</span> menuOverlay = <span class="property">document</span>.<span class="property">getElementById</span>(<span class="string">'menuOverlay'</span>);<br><br>
+                        
+                        <span class="comment">// Función para alternar el menú</span><br>
+                        <span class="property">function</span> <span class="property">toggleMenu</span>() {<br>
+                        &nbsp;&nbsp;hamburgerBtn.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        &nbsp;&nbsp;sidebarMenu.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        &nbsp;&nbsp;menuOverlay.<span class="property">classList</span>.<span class="property">toggle</span>(<span class="string">'active'</span>);<br>
+                        }<br><br>
+                        
+                        <span class="comment">// Event listeners</span><br>
+                        hamburgerBtn.<span class="property">addEventListener</span>(<span class="string">'click'</span>, <span class="property">toggleMenu</span>);<br>
+                        menuOverlay.<span class="property">addEventListener</span>(<span class="string">'click'</span>, <span class="property">toggleMenu</span>);<br><br>
+                        
+                        <span class="comment">// Cerrar menú al hacer clic en un enlace</span><br>
+                        <span class="property">document</span>.<span class="property">querySelectorAll</span>(<span class="string">'.sidebar-menu a'</span>).<span class="property">forEach</span>(<span class="property">link</span> => {<br>
+                        &nbsp;&nbsp;link.<span class="property">addEventListener</span>(<span class="string">'click'</span>, <span class="property">toggleMenu</span>);<br>
+                        });
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Resumen de la sesión</h2>
+                <ul>
+                    <li><strong>classList</strong> es una forma poderosa de manipular clases CSS desde JavaScript.</li>
+                    <li>Métodos principales:
+                        <ul>
+                            <li><code>add()</code> - Agrega una o más clases.</li>
+                            <li><code>remove()</code> - Elimina una o más clases.</li>
+                            <li><code>toggle()</code> - Alterna una clase (agrega si no existe, quita si existe).</li>
+                            <li><code>contains()</code> - Comprueba si un elemento tiene una clase específica.</li>
+                        </ul>
+                    </li>
+                    <li>Ventajas de usar classList sobre style directo:
+                        <ul>
+                            <li>Mejor organización del código (separación de preocupaciones).</li>
+                            <li>Más fácil de mantener y actualizar.</li>
+                            <li>Mejor rendimiento para múltiples cambios de estilo.</li>
+                            <li>Más legible y menos propenso a errores.</li>
+                        </ul>
+                    </li>
+                    <li>Los métodos de classList se pueden encadenar para realizar múltiples operaciones a la vez.</li>
+                </ul>
+            </section>
+            
+            <div class="nav-buttons">
+                <a href="sesion06.html" class="button">← Sesión Anterior</a>
+                <a href="#" class="button">Siguiente Sesión →</a>
+            </div>
+            
+            <footer class="footer">
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // =============================================
+        // Código para los ejemplos de classList
+        // =============================================
+        
+        // 1. Ejemplo de .style vs classList
+        const styleDemo = document.getElementById('styleDemo');
+        const classListDemo = document.getElementById('classListDemo');
+        
+        document.getElementById('applyStyleBtn').addEventListener('click', function() {
+            // Usando .style (no recomendado para múltiples estilos)
+            styleDemo.style.backgroundColor = '#e74c3c';
+            styleDemo.style.color = 'white';
+            styleDemo.style.padding = '15px';
+            styleDemo.style.borderRadius = '8px';
+            styleDemo.textContent = 'Estilos aplicados con .style';
+        });
+        
+        document.getElementById('resetStyleBtn').addEventListener('click', function() {
+            // Restablecer estilos
+            styleDemo.style = '';
+            styleDemo.textContent = 'Caja de ejemplo';
+        });
+        
+        document.getElementById('addClassBtn').addEventListener('click', function() {
+            // Usando classList (recomendado)
+            classListDemo.classList.add('red-box', 'big-box', 'shadow-box');
+            classListDemo.textContent = 'Clase aplicada con classList';
+        });
+        
+        document.getElementById('removeClassBtn').addEventListener('click', function() {
+            // Quitando clases
+            classListDemo.classList.remove('red-box', 'big-box', 'shadow-box');
+            classListDemo.textContent = 'Caja de ejemplo';
+        });
+        
+        // 2. Demostración de los métodos de classList
+        
+        // add()
+        document.getElementById('demoAdd').addEventListener('click', function() {
+            const box = document.getElementById('demoAddBox');
+            box.classList.add('red-box', 'round-box');
+            box.textContent = '¡Clases agregadas!';
+        });
+        
+        // remove()
+        document.getElementById('demoRemove').addEventListener('click', function() {
+            const box = document.getElementById('demoRemoveBox');
+            box.classList.remove('red-box');
+            box.textContent = '¡Clase removida!';
+        });
+        
+        // toggle()
+        document.getElementById('demoToggle').addEventListener('click', function() {
+            const box = document.getElementById('demoToggleBox');
+            box.classList.toggle('shadow-box');
+            box.textContent = box.classList.contains('shadow-box') 
+                ? 'Sombra activada' 
+                : 'Sombra desactivada';
+        });
+        
+        // contains()
+        document.getElementById('demoContains').addEventListener('click', function() {
+            const box = document.getElementById('demoContainsBox');
+            const hasClass = box.classList.contains('red-box');
+            
+            document.getElementById('containsResult').textContent = 
+                hasClass 
+                    ? '✅ La caja tiene la clase "red-box"' 
+                    : '❌ La caja NO tiene la clase "red-box"';
+        });
+        
+        // =============================================
+        // Código para el reto del menú hamburguesa
+        // =============================================
+        
+        // Seleccionar elementos
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        // Función para alternar el menú
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            sidebarMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            
+            // Bloquear/desbloquear el scroll del cuerpo
+            document.body.style.overflow = hamburgerBtn.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        // Event listeners
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+        
+        // Controladores para los botones del reto
+        document.getElementById('showHintBtn').addEventListener('click', function() {
+            const hintBox = document.getElementById('hintBox');
+            hintBox.style.display = hintBox.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('solutionBox').style.display = 'none';
+        });
+        
+        document.getElementById('showSolutionBtn').addEventListener('click', function() {
+            const solutionBox = document.getElementById('solutionBox');
+            solutionBox.style.display = solutionBox.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('hintBox').style.display = 'none';
+        });
+        
+        document.getElementById('resetChallengeBtn').addEventListener('click', function() {
+            // Cerrar menú si está abierto
+            if (hamburgerBtn.classList.contains('active')) {
+                toggleMenu();
+            }
+            
+            // Ocultar pistas y soluciones
+            document.getElementById('hintBox').style.display = 'none';
+            document.getElementById('solutionBox').style.display = 'none';
+        });
+        
+        // =============================================
+        // Funcionalidad del chat Dola AI (simplificada)
+        // =============================================
+        
+        function enviarPregunta() {
+            const input = document.getElementById('user-input');
+            const mensajes = document.getElementById('chat-messages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Mostrar mensaje del usuario
+            mensajes.innerHTML += `<div class="mensaje-usuario"><strong>Tú:</strong> ${input.value}</div>`;
+            
+            // Simular respuesta de Dola AI
+            setTimeout(() => {
+                const respuesta = generarRespuesta(input.value.toLowerCase());
+                mensajes.innerHTML += `<div class="mensaje-dola"><strong>Dola AI:</strong> ${respuesta}</div>`;
+                mensajes.scrollTop = mensajes.scrollHeight;
+            }, 1000);
+            
+            input.value = '';
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        function generarRespuesta(pregunta) {
+            if (pregunta.includes('classlist') || pregunta.includes('class list') || pregunta.includes('clases')) {
+                return '`classList` es una propiedad de los elementos del DOM que permite manipular las clases CSS de un elemento. Proporciona métodos como `add()`, `remove()`, `toggle()` y `contains()` para trabajar con clases de manera eficiente.';
+            } else if (pregunta.includes('toggle') || pregunta.includes('alternar')) {
+                return 'El método `toggle()` de classList alterna una clase: la agrega si no existe, o la quita si ya existe. Es muy útil para menús desplegables, modales y cualquier elemento que necesite cambiar entre dos estados. Ejemplo: `elemento.classList.toggle("activo");`';
+            } else if (pregunta.includes('add') || pregunta.includes('agregar') || pregunta.includes('añadir')) {
+                return 'El método `add()` agrega una o más clases a un elemento. Puedes agregar múltiples clases separándolas por comas: `elemento.classList.add("clase1", "clase2", "clase3");`';
+            } else if (pregunta.includes('remove') || pregunta.includes('quitar') || pregunta.includes('eliminar')) {
+                return 'El método `remove()` elimina una o más clases de un elemento. Ejemplo: `elemento.classList.remove("clase-a-eliminar");`';
+            } else if (pregunta.includes('contains') || pregunta.includes('contiene') || pregunta.includes('verificar')) {
+                return 'El método `contains()` verifica si un elemento tiene una clase específica y devuelve `true` o `false`. Ejemplo: `if (elemento.classList.contains("activo")) { /* código */ }`';
+            } else if (pregunta.includes('hamburguesa') || pregunta.includes('menú') || pregunta.includes('menu')) {
+                return 'Para crear un menú hamburguesa, necesitas:\n1. Un botón con icono de hamburguesa (tres líneas)\n2. Un menú lateral oculto (usando `position: fixed` y `left: -100%`)\n3. JavaScript para alternar una clase (ej: `.active`) que muestre/oculte el menú\n4. Transiciones CSS para una animación suave';
+            } else if (pregunta.includes('estilo') || pregunta.includes('style') || pregunta.includes('css')) {
+                return 'Es mejor usar `classList` en lugar de manipular estilos directamente con `elemento.style` porque:\n1. Separa la presentación (CSS) del comportamiento (JS)\n2. Es más mantenible y escalable\n3. Permite reutilizar estilos\n4. Mejor rendimiento para múltiples cambios\n5. Más limpio y legible';
+            } else {
+                const respuestasGenericas = [
+                    '¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con classList y manipulación de clases en JavaScript.',
+                    'Interesante pregunta sobre classList. ¿Hay algo específico que te gustaría saber?',
+                    'Parece que tienes dudas sobre manipulación de clases. ¿Te gustaría que te explique algún concepto en particular?',
+                    'No estoy seguro de entender completamente. ¿Podrías darme más detalles sobre tu duda?'
+                ];
+                return respuestasGenericas[Math.floor(Math.random() * respuestasGenericas.length)];
+            }
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarPregunta();
+            }
+        });
+    </script>
+</body>
+</html>

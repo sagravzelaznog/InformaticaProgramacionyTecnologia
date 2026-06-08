@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Sesión 02: El Guardián de la Puerta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🚪 Sesión 02: Condicionales Lógicos</h1>
+        <p>Aprendiendo a darle "cerebro" a tu código para tomar decisiones.</p>
+    </header>
+
+    <main>
+        <section class="lesson-module">
+            <h2>⚖️ ¿Qué es un Condicional?</h2>
+            <p>En la vida real, siempre tomas decisiones: <em>"SI tengo hambre, ENTONCES como"</em>. En programación, el <code>if</code> es nuestro cadenero que decide quién pasa y quién no.</p>
+            
+            <div class="theory-box">
+                <h3>La Sintaxis del Hechizo</h3>
+                <p>Para que un condicional funcione, necesitamos una <strong>comparación</strong>:</p>
+                <ul>
+                    <li><code>===</code> : Igualito a...</li>
+                    <li><code>></code> o <code><</code> : Mayor o menor que...</li>
+                    <li><code>!==</code> : Diferente a...</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="visual-aid">
+            
+        </div>
+
+        <section class="lesson-module">
+            <h2>🛠️ Ejemplo: El Cadenero del Antro</h2>
+            <p>Vamos a programar la lógica de un guardia que revisa la edad para dejar entrar a alguien a un club.</p>
+            
+            <div class="step-by-step">
+                <div class="code-block">
+                    <code>let edad = 19;</code>
+                    <p class="explanation">1. Declaramos la variable con la edad del usuario.</p>
+                </div>
+                <div class="code-block">
+                    <code>if (edad >= 18) {</code>
+                    <p class="explanation">2. La condición: "¿Es la edad mayor o igual a 18?".</p>
+                </div>
+                <div class="code-block">
+                    <code> &nbsp; alert("¡Bienvenido! Puedes pasar.");</code>
+                    <p class="explanation">3. Si la condición es VERDADERA, se ejecuta este código.</p>
+                </div>
+                <div class="code-block">
+                    <code>} else {</code>
+                    <p class="explanation">4. Si NO se cumplió lo anterior (FALSO), saltamos aquí.</p>
+                </div>
+                <div class="code-block">
+                    <code> &nbsp; alert("Lo siento, eres muy joven.");</code>
+                    <p class="explanation">5. Respuesta final para los que no cumplen la regla.</p>
+                </div>
+                <div class="code-block">
+                    <code>}</code>
+                    <p class="explanation">6. Cerramos la llave para terminar la estructura.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-container">
+            <h2>🎮 Desafío de Lógica (Quiz Kahoot)</h2>
+            <p>Demuestra que puedes controlar el flujo de la Matrix.</p>
+            <div id="quiz-area">
+                </div>
+            <div id="final-results" style="display:none;">
+                <h3>Resultado Final: <span id="score">0</span>/10</h3>
+                <button onclick="restartQuiz()">Reiniciar Misión</button>
+            </div>
+        </section>
+
+        <section class="teacher-access">
+            <button id="master-mode-btn" onclick="askPassword()">🗝️ Modo Maestro</button>
+            <div id="teacher-notes" class="hidden-notes">
+                <h3>🕵️‍♂️ Tips para el Profesor (JMGV):</h3>
+                <ul>
+                    <li><strong>Psicología:</strong> A los 15-16 años, la lógica abstracta se está consolidando. Usa ejemplos de videojuegos (Si vida < 0, Game Over).</li>
+                    <li><strong>Error Común:</strong> Confundir <code>=</code> (asignar) con <code>===</code> (comparar). Haz énfasis en que el triple igual es para "preguntar".</li>
+                    <li><strong>Andragogía:</strong> Permite que ellos propongan sus propias condiciones (Si dinero > precio, comprar).</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; JMGV-PTEL SESION 02 JS. TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

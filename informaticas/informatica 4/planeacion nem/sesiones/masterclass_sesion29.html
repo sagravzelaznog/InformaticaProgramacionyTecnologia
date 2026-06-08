@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 29: Variables</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 29</h1>
+            <h2>Variables: Las Cajas de la Memoria</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Concepto de "Contenedor"</h3>
+            <p><strong>Objetivo:</strong> Entender que los datos no flotan en el aire; necesitan un lugar donde guardarse para ser usados después.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>📦 La Metáfora de la Mudanza</h4>
+                <p>Imagina que te mudas de casa. No tiras tus cosas al camión sueltas; las metes en cajas y las <strong>etiquetas</strong>.</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px;">
+                        <div style="width: 60px; height: 50px; background: #d69e2e; margin: 0 auto; position: relative; border: 2px solid #b7791f;">
+                            <div style="position: absolute; top: -10px; left: 10px; background: white; padding: 2px 5px; font-size: 0.6rem; border: 1px solid #ccc;">Juguetes</div>
+                        </div>
+                        <p style="font-size: 0.8rem; margin-top: 10px;">En la vida real:<br><strong>Caja "Juguetes"</strong></p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: #2d3748; padding: 15px; border-radius: 8px; color: #48bb78;">
+                        <div style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">
+                            <span style="color: #63b3ed;">score</span> = <span style="color: #f6ad55;">100</span>
+                        </div>
+                        <p style="font-size: 0.8rem; margin-top: 10px; color: #a0aec0;">En programación:<br><strong>Variable "score"</strong></p>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #553c9a;">"Una variable es un espacio en la memoria RAM con un nombre."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Tipos de Datos (Lo que va dentro)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #d53f8c; border-bottom: 2px solid #d53f8c;">📜 String (Texto)</h4>
+                    <p>Cadenas de caracteres. <strong>SIEMPRE llevan comillas.</strong></p>
+                    <div style="background: #edf2f7; padding: 5px; font-family: 'Fira Code'; font-size: 0.8rem;">
+                        nombre = <span style="color: #d53f8c;">"José"</span>
+                    </div>
+                    <p style="font-size: 0.7rem; color: #718096;">Sin comillas, la PC cree que es otra variable.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">🔢 Number (Números)</h4>
+                    <p>Para hacer matemáticas. <strong>NUNCA llevan comillas.</strong></p>
+                    <div style="background: #edf2f7; padding: 5px; font-family: 'Fira Code'; font-size: 0.8rem;">
+                        edad = <span style="color: #3182ce;">17</span> (Int)<br>
+                        precio = <span style="color: #3182ce;">15.50</span> (Float)
+                    </div>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">💡 Boolean (Switch)</h4>
+                    <p>Solo tiene dos valores posibles. Encendido o Apagado.</p>
+                    <div style="background: #edf2f7; padding: 5px; font-family: 'Fira Code'; font-size: 0.8rem;">
+                        esAdmin = <span style="color: #805ad5;">True</span><br>
+                        game_over = <span style="color: #805ad5;">False</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🧠 ¿Qué pasa en la RAM?</h4>
+                <p>Visualización de cómo se guarda la información.</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    
+                    <div style="background: #2d3748; width: 120px; padding: 10px; border-radius: 8px; position: relative;">
+                        <div style="color: #a0aec0; font-size: 0.6rem; position: absolute; top: 5px; right: 5px;">0x001</div> <div style="color: #63b3ed; font-family: 'Fira Code'; font-size: 0.8rem; border-bottom: 1px solid #4a5568; margin-bottom: 5px;">nombre</div>
+                        <div style="color: #d53f8c; font-weight: bold; text-align: center;">"Pepe"</div>
+                    </div>
+
+                    <div style="background: #2d3748; width: 120px; padding: 10px; border-radius: 8px; position: relative;">
+                        <div style="color: #a0aec0; font-size: 0.6rem; position: absolute; top: 5px; right: 5px;">0x002</div>
+                        <div style="color: #63b3ed; font-family: 'Fira Code'; font-size: 0.8rem; border-bottom: 1px solid #4a5568; margin-bottom: 5px;">vidas</div>
+                        <div style="color: #3182ce; font-weight: bold; text-align: center;">3</div>
+                    </div>
+
+                     <div style="background: #2d3748; width: 120px; padding: 10px; border-radius: 8px; position: relative;">
+                        <div style="color: #a0aec0; font-size: 0.6rem; position: absolute; top: 5px; right: 5px;">0x003</div>
+                        <div style="color: #63b3ed; font-family: 'Fira Code'; font-size: 0.8rem; border-bottom: 1px solid #4a5568; margin-bottom: 5px;">activo</div>
+                        <div style="color: #805ad5; font-weight: bold; text-align: center;">True</div>
+                    </div>
+
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 10px;">La variable es solo la etiqueta (`nombre`), el valor es el contenido (`"Pepe"`).</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Reglas de Etiqueta (Sintaxis)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>El Error del Espacio</h5>
+                    <p>¿Por qué <code>mi nombre = "Juan"</code> da error?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Solución</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Las variables NO pueden tener espacios.</strong> La computadora cree que son dos cosas distintas.</p>
+                        <p>Usa: <code>mi_nombre</code> (Snake Case) o <code>miNombre</code> (Camel Case).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Matemáticas con Texto</h5>
+                    <p>¿Qué pasa si sumas <code>"10" + "10"</code>?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Resultado</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Resultado: "1010"</strong>. Como están entre comillas, son texto (String). Se pegan (concatenan), no se suman.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>📦 <strong>Misión del Día:</strong> En una hoja, dibuja 3 cajas. Ponles nombre de variable y guarda dentro tus datos reales: <code>nombre</code>, <code>edad</code>, <code>tengo_hambre</code> (True/False).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 29 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

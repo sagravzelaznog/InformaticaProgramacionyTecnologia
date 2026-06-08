@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 25: Algoritmos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 25</h1>
+            <h2>Algoritmos: Pensando como Máquina</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. ¿Qué es un Algoritmo?</h3>
+            <p><strong>Objetivo:</strong> Desmitificar la palabra. Entender que es simplemente una secuencia de instrucciones finitas para resolver un problema.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🍳 La Receta del Éxito</h4>
+                <p>¿Alguna vez has seguido instrucciones para armar un LEGO o cocinar un huevo? ¡Ya sabes programar!</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.5rem;">Instrucción Humana</span>
+                        <p style="font-size: 0.8rem; font-style: italic;">"Pásame la cosa esa que está ahí."</p>
+                        <p style="font-size: 0.7rem;">(Ambigua. La computadora explota).</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.5rem;">Algoritmo</span>
+                        <p style="font-size: 0.8rem; font-family: 'Fira Code';">Mover mano derecha 10cm. Agarrar vaso. Levantar.</p>
+                        <p style="font-size: 0.7rem;">(Precisa. La computadora obedece).</p>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #553c9a;">"Programar no es escribir código raro, es <strong>ordenar tus ideas</strong>."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Diagrama de Flujo (Flowchart)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333; text-align: center;">
+                    <h4 style="color: #6b46c1; border-bottom: 2px solid #6b46c1;">🟢 Inicio / Fin</h4>
+                    <div style="margin: 15px auto; width: 100px; height: 40px; background: #9f7aea; border-radius: 20px; line-height: 40px; color: white; font-weight: bold; font-size: 0.8rem;">INICIO</div>
+                    <p style="font-size: 0.8rem;">El óvalo marca dónde empieza y dónde termina la magia.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333; text-align: center;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">⚙️ Proceso</h4>
+                    <div style="margin: 15px auto; width: 100px; height: 40px; background: #63b3ed; line-height: 40px; color: white; font-weight: bold; font-size: 0.8rem;">ACCIÓN</div>
+                    <p style="font-size: 0.8rem;">El rectángulo es una acción: "Sumar 1", "Guardar nombre".</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333; text-align: center;">
+                    <h4 style="color: #d69e2e; border-bottom: 2px solid #d69e2e;">❓ Decisión</h4>
+                    <div style="margin: 15px auto; width: 60px; height: 60px; background: #f6ad55; transform: rotate(45deg); display: flex; align-items: center; justify-content: center;">
+                        <span style="transform: rotate(-45deg); color: white; font-weight: bold; font-size: 0.8rem;">¿SI/NO?</span>
+                    </div>
+                    <p style="font-size: 0.8rem;">El rombo es una pregunta. El camino se divide en dos (Sí o No).</p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>💡 Ejemplo Real: "La Lámpara no funciona"</h4>
+                <p>¿Cómo piensa un ingeniero?</p>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; font-size: 0.8rem;">
+                    <div style="background: #9f7aea; color: white; padding: 5px 20px; border-radius: 15px;">INICIO</div>
+                    <div style="height: 20px; width: 2px; background: #ccc;"></div>
+                    
+                    <div style="background: #f6ad55; color: white; width: 120px; height: 40px; display: flex; align-items: center; justify-content: center; transform: skewX(-10deg);">¿Está enchufada?</div>
+                    
+                    <div style="display: flex; gap: 50px; width: 100%; justify-content: center; position: relative;">
+                        <div style="text-align: center;">
+                            <div style="height: 20px; width: 2px; background: #ccc; margin: 0 auto;"></div>
+                            <span style="color: #e53e3e; font-weight: bold;">NO</span>
+                            <div style="height: 20px; width: 2px; background: #ccc; margin: 0 auto;"></div>
+                            <div style="background: #63b3ed; color: white; padding: 10px;">Enchúfala</div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <div style="height: 20px; width: 2px; background: #ccc; margin: 0 auto;"></div>
+                            <span style="color: #48bb78; font-weight: bold;">SÍ</span>
+                            <div style="height: 20px; width: 2px; background: #ccc; margin: 0 auto;"></div>
+                            <div style="background: #f6ad55; color: white; width: 120px; display: flex; align-items: center; justify-content: center; padding: 5px;">¿Foco quemado?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Pseudocódigo</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Hablando "Robotñol"</h5>
+                    <p>El Pseudocódigo es una mezcla entre español y código real.</p>
+                    <div style="background: #2d3748; color: #48bb78; padding: 10px; border-radius: 5px; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin-top: 10px;">
+                        Algoritmo Saludar<br>
+                        &nbsp;&nbsp;Escribir "Hola mundo"<br>
+                        &nbsp;&nbsp;Leer nombre<br>
+                        &nbsp;&nbsp;Escribir "Hola ", nombre<br>
+                        FinAlgoritmo
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Por qué no escribir código directo?</h5>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Razón</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Para no distraerse con la sintaxis.</strong> Primero resuelves la lógica (el "qué"), luego te preocupas por los puntos y comas (el "cómo").</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🤖 <strong>Misión del Día:</strong> Escribe en tu cuaderno el Algoritmo de "Lavarse los dientes". ¿Qué pasa si olvidas el paso "Abrir la pasta"? (Bug: Te lavas con la tapa cerrada).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 25 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

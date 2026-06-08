@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: El Génesis - Estructura y Sintaxis Básica de HTML</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- CSS para Animaciones -->
+    <style>
+        /* Estilos críticos inline para evitar FOUC */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+        
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="wrapper">
+        
+        <!-- SIDEBAR NAVEGACIÓN -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-book"></i> Sesiones HTML5</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#objetivo"><i class="fas fa-check-circle"></i> Sesión 1: El Génesis</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 2: Jerarquía</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 3: Telaraña</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 4: Multimedia</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 5: Semántica</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 6: Tablas</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 7: Formularios</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 8: Proyecto Final</a></li>
+                </ul>
+            </nav>
+            <div class="progress-section">
+                <p class="progress-label">Progreso del Curso</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 12.5%"></div>
+                </div>
+                <span class="progress-text">1 de 8</span>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- HEADER HERO -->
+            <header class="session-header">
+                <div class="header-content">
+                    <div class="header-icon">🏛️</div>
+                    <h1>Sesión 1: El Génesis</h1>
+                    <p class="subtitle">Estructura y Sintaxis Básica de HTML</p>
+                    <p class="session-number">Sesión 1 de 8</p>
+                </div>
+            </header>
+
+            <!-- SECCIÓN: OBJETIVO -->
+            <section class="content-section objective-section" id="objetivo">
+                <div class="section-header">
+                    <h2><i class="fas fa-target"></i> Objetivo de la Sesión</h2>
+                </div>
+                <div class="section-content">
+                    <p class="highlight-text">Comprender la lógica del DOM (Document Object Model) y crear tu primer documento HTML funcional desde cero.</p>
+                    <div class="objectives-list">
+                        <div class="objective-card">
+                            <i class="fas fa-brain"></i>
+                            <h3>Comprender</h3>
+                            <p>La estructura básica de HTML5</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Aprender</h3>
+                            <p>La sintaxis de etiquetas y atributos</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-hammer"></i>
+                            <h3>Crear</h3>
+                            <p>Tu primer página web funcional</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: INTRODUCCIÓN TEÓRICA -->
+            <section class="content-section theory-section" id="teoria">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Introducción Teórica</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="theory-block">
+                        <h3>¿Cómo Funciona la Web?</h3>
+                        <p>La web se basa en un modelo <strong>cliente-servidor</strong> fundamental:</p>
+                        
+                        <div class="client-server-diagram">
+                            <div class="diagram-item client">
+                                <div class="diagram-icon">🖥️</div>
+                                <h4>Cliente (Navegador)</h4>
+                                <p>Solicita recursos</p>
+                                <p>Interpreta HTML</p>
+                                <p>Renderiza contenido</p>
+                            </div>
+                            <div class="diagram-arrow">
+                                <div class="arrow-line">
+                                    <span class="arrow-label">Solicitud</span>
+                                </div>
+                            </div>
+                            <div class="diagram-item server">
+                                <div class="diagram-icon">⚙️</div>
+                                <h4>Servidor Web</h4>
+                                <p>Almacena archivos</p>
+                                <p>Procesa solicitudes</p>
+                                <p>Envía respuestas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theory-block">
+                        <h3>¿Qué es HTML?</h3>
+                        <p><strong>HTML (HyperText Markup Language)</strong> es el lenguaje estándar que estructura el contenido web.</p>
+                        <ul class="theory-list">
+                            <li><strong>HyperText:</strong> Texto con vínculos (hipervínculos) entre documentos</li>
+                            <li><strong>Markup:</strong> Lenguaje de etiquetas para marcar/estructurar contenido</li>
+                            <li><strong>Language:</strong> Conjunto de reglas y símbolos estandarizados</li>
+                        </ul>
+                    </div>
+
+                    <div class="theory-block">
+                        <h3>El DOM (Document Object Model)</h3>
+                        <p>El DOM es una representación estructurada de un documento HTML en forma de árbol:</p>
+                        <div class="dom-tree">
+                            <div class="tree-item level-0">
+                                <span class="tree-label">📄 document</span>
+                            </div>
+                            <div class="tree-item level-1">
+                                <span class="tree-label">📦 &lt;html&gt;</span>
+                            </div>
+                            <div class="tree-container">
+                                <div class="tree-item level-2">
+                                    <span class="tree-label">📦 &lt;head&gt;</span>
+                                </div>
+                                <div class="tree-item level-2">
+                                    <span class="tree-label">📦 &lt;body&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: SINTAXIS BÁSICA -->
+            <section class="content-section syntax-section" id="sintaxis">
+                <div class="section-header">
+                    <h2><i class="fas fa-code"></i> Sintaxis Básica de HTML</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="syntax-block">
+                        <h3>Las Etiquetas HTML</h3>
+                        <p>HTML utiliza <strong>etiquetas</strong> para estructurar y dar significado al contenido:</p>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;etiqueta&gt;Contenido&lt;/etiqueta&gt;</code></pre>
+                        </div>
+                        <p class="syntax-explanation">
+                            <i class="fas fa-info-circle"></i> Una etiqueta de <strong>apertura</strong> marca el inicio, el <strong>contenido</strong> va en el medio, y una etiqueta de <strong>cierre</strong> marca el final.
+                        </p>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Atributos HTML</h3>
+                        <p>Las etiquetas pueden tener <strong>atributos</strong> que proporcionan información adicional:</p>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;etiqueta atributo="valor"&gt;Contenido&lt;/etiqueta&gt;</code></pre>
+                        </div>
+                        <p class="syntax-explanation">
+                            <i class="fas fa-info-circle"></i> Los atributos siempre van en la etiqueta de apertura y modifican el comportamiento o apariencia del elemento.
+                        </p>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Etiquetas Autofrenadas</h3>
+                        <p>Algunas etiquetas no tienen contenido y se "cierran a sí mismas":</p>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;br&gt;
+&lt;img src="imagen.jpg" alt="Descripción"&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: ESTRUCTURA PLANTILLA MAESTRA -->
+            <section class="content-section template-section" id="plantilla">
+                <div class="section-header">
+                    <h2><i class="fas fa-newspaper"></i> La Plantilla Maestra</h2>
+                </div>
+                <div class="section-content">
+                    <p>Todo documento HTML debe seguir esta estructura básica estándar:</p>
+                    
+                    <div class="code-example large">
+                        <div class="code-header">
+                            <span class="code-language">HTML5</span>
+                            <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Título de la Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Contenido visible de la página --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="template-explanation">
+                        <h3>Desglose de la Plantilla:</h3>
+                        <div class="explanation-grid">
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;!DOCTYPE html&gt;</span>
+                                <p>Declara que este es un documento HTML5</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;html&gt;</span>
+                                <p>Elemento raíz que contiene todo el documento</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;head&gt;</span>
+                                <p>Metadatos y configuración (invisible para el usuario)</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;meta charset&gt;</span>
+                                <p>Define el conjunto de caracteres (UTF-8 para español)</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;meta viewport&gt;</span>
+                                <p>Configura la página para dispositivos móviles</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;title&gt;</span>
+                                <p>Título que aparece en la pestaña del navegador</p>
+                            </div>
+                            <div class="explanation-item">
+                                <span class="explanation-label">&lt;body&gt;</span>
+                                <p>Contiene todo el contenido visible de la página</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: EJEMPLO PRÁCTICO -->
+            <section class="content-section example-section" id="ejemplo">
+                <div class="section-header">
+                    <h2><i class="fas fa-lightbulb"></i> Ejemplo Práctico: "Hola Mundo"</h2>
+                </div>
+                <div class="section-content">
+                    <p>Vamos a crear tu primera página web paso a paso:</p>
+                    
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Abre tu editor de código</h3>
+                                <p>Utiliza Visual Studio Code, Sublime Text, Notepad++, o cualquier editor de texto plano</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Crea un nuevo archivo</h3>
+                                <p>Crea un nuevo archivo y guárdalo con el nombre: <code>hola-mundo.html</code></p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Copia el siguiente código</h3>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-language">HTML</span>
+                                        <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                            <i class="fas fa-copy"></i> Copiar
+                                        </button>
+                                    </div>
+                                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mi Primera Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+    &lt;p&gt;¡Esta es mi primera página web!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Guarda el archivo</h4>
+                                <p>Usa <kbd>Ctrl+S</kbd> (Windows/Linux) o <kbd>Cmd+S</kbd> (Mac) para guardar</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Abre en tu navegador</h4>
+                                <p>Arrastra el archivo a una ventana del navegador o haz doble clic en él para verlo en acción</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-preview">
+                        <h4>📺 Resultado Esperado:</h4>
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <span class="browser-button">●</span>
+                                <span class="browser-button">●</span>
+                                <span class="browser-button">●</span>
+                                <span class="browser-url">file:///hola-mundo.html</span>
+                            </div>
+                            <div class="browser-content">
+                                <h3>¡Hola Mundo!</h3>
+                                <p>¡Esta es mi primera página web!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: ACTIVIDAD PRÁCTICA -->
+            <section class="content-section activity-section" id="actividad">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> Actividad Práctica</h2>
+                </div>
+                <div class="section-content">
+                    <p class="activity-intro">Ahora es tu turno. Crea una página web personal que incluya:</p>
+                    
+                    <div class="requirements-list">
+                        <div class="requirement-item">
+                            <div class="requirement-icon">1️⃣</div>
+                            <div class="requirement-text">
+                                <h3>Título Principal</h3>
+                                <p>Un encabezado (&lt;h1&gt;) con tu nombre completo</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">2️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Párrafo de Presentación</h4>
+                                <p>2-3 líneas presentándote (edad, ciudad, pasión por la programación)</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">3️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Lista de Intereses</h4>
+                                <p>Una lista (ordenada o desordenada) con tus 3 comidas, películas o deportes favoritos</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">4️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Pie de Página</h4>
+                                <p>Un párrafo con el símbolo © y el año actual (2026)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-box">
+                        <h4><i class="fas fa-star"></i> Desafío Extra (Opcional):</h4>
+                        <p>Agrega un segundo párrafo con tu comida favorita y por qué te gusta. Usa etiquetas &lt;strong&gt; para resaltar palabras importantes.</p>
+                    </div>
+
+                    <div class="activity-submission">
+                        <button class="btn-submit" onclick="window.abrirEvaluador()">
+                            <i class="fas fa-check"></i> Verificar mi Actividad
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: RESUMEN -->
+            <section class="content-section summary-section" id="resumen">
+                <div class="section-header">
+                    <h2><i class="fas fa-bookmark"></i> Resumen de la Sesión</h2>
+                </div>
+                <div class="section-content">
+                    <div class="summary-items">
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>La web</strong> funciona con un modelo cliente-servidor donde los navegadores solicitan contenido a servidores</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>HTML</strong> es el lenguaje estándar que estructura el contenido web mediante etiquetas y atributos</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Toda página web</strong> debe tener una estructura básica con DOCTYPE, html, head y body</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Las etiquetas</strong> se cierran y pueden tener atributos que modifican su comportamiento</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>El DOM</strong> es la representación estructurada del documento HTML en forma de árbol</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: EVALUACIÓN (QUIZ) -->
+            <section class="content-section quiz-section" id="quiz">
+                <div class="section-header">
+                    <h2><i class="fas fa-gamepad"></i> 🎮 Quiz Interactivo - Kahoot Style</h2>
+                </div>
+                <div class="section-content">
+                    <div class="quiz-intro">
+                        <p>Pon a prueba tus conocimientos con este quiz interactivo. ¡Cada respuesta correcta te da puntos!</p>
+                        <div class="quiz-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Preguntas:</span>
+                                <span class="stat-value">8</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Puntuación:</span>
+                                <span class="stat-value" id="score">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Progreso:</span>
+                                <span class="stat-value" id="progress">0/8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <!-- Las preguntas se generarán dinámicamente con JavaScript -->
+                    </div>
+
+                    <button class="btn-start-quiz" onclick="window.quizSession.initialize(); window.iniciarQuiz();">
+                        <i class="fas fa-play"></i> Comenzar Quiz
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: RECURSOS ADICIONALES -->
+            <section class="content-section resources-section" id="recursos">
+                <div class="section-header">
+                    <h2><i class="fas fa-link"></i> Recursos Adicionales</h2>
+                </div>
+                <div class="section-content">
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">📚</div>
+                            <h3>Documentación Oficial</h3>
+                            <p>Mozilla Developer Network (MDN) - La mejor referencia para HTML</p>
+                            <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" class="resource-link">Visitar MDN →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">🎓</div>
+                            <h4>Tutorial Interactivo</h4>
+                            <p>Codecademy - Aprende HTML de forma interactiva</p>
+                            <a href="https://www.codecademy.com/learn/learn-html" target="_blank" class="resource-link">Ver Codecademy →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">🛠️</div>
+                            <h4>Herramientas Recomendadas</h4>
+                            <p>VS Code, Sublime Text y navegadores con DevTools</p>
+                            <a href="https://code.visualstudio.com/" target="_blank" class="resource-link">Descargar VS Code →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">💬</div>
+                            <h4>Comunidad</h4>
+                            <p>Stack Overflow - Resuelve dudas con expertos</p>
+                            <a href="https://stackoverflow.com/questions/tagged/html" target="_blank" class="resource-link">Visitar Stack Overflow →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: NAVEGACIÓN DE SESIONES -->
+            <section class="session-navigation">
+                <button class="nav-btn prev-btn" onclick="window.pageInteractions.trackEvent('prev-clicked'); alert('Esta es la primera sesión')" disabled>
+                    <i class="fas fa-arrow-left"></i> Sesión Anterior
+                </button>
+                <div class="nav-info">
+                    <span class="session-indicator">Sesión 1 de 8</span>
+                </div>
+                <button class="nav-btn next-btn" onclick="window.pageInteractions.trackEvent('next-clicked'); alert('Completa el quiz para desbloquear la siguiente sesión')">
+                    Siguiente Sesión <i class="fas fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Sobre este Curso</h4>
+                        <p>Un curso completo de HTML5 desde cero hasta dominio profesional.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Navegación Rápida</h4>
+                        <ul>
+                            <li><a href="#objetivo">Objetivo</a></li>
+                            <li><a href="#teoria">Teoría</a></li>
+                            <li><a href="#sintaxis">Sintaxis</a></li>
+                            <li><a href="#quiz">Quiz</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contacto</h4>
+                        <p>¿Preguntas? Contáctanos en support@htmlcourse.com</p>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; JMGV-PTEL-2026. Sesión 01 Curso HTML. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- ================================================================
+         SCRIPTS - ORDEN IMPORTANTE PARA EVITAR ERRORES
+         ================================================================ -->
+    
+    <!-- 1. Módulo de Quiz (Debe cargar primero) -->
+    <script src="../assets/js/quiz-session01.js"></script>
+    
+    <!-- 2. Módulo de Interacciones (Depende de algunos elementos) -->
+    <script src="../assets/js/interactions.js"></script>
+    
+    <!-- 3. Script Principal del Quiz Interactivo (Debe venir después) -->
+    <script src="../assets/js/script.js"></script>
+    
+    <!-- ================================================================
+         INICIALIZACIÓN MANUAL DEL QUIZ (Si es necesario)
+         ================================================================ -->
+    <script>
+        // Inicializar quiz cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📚 Sesión 01 completamente cargada');
+            
+            // Crear instancia del quiz si no existe
+            if (!window.quizSession) {
+                window.quizSession = new QuizSession({
+                    sessionId: 1,
+                    sessionName: 'El Génesis',
+                    enableSound: true,
+                    enableAnimations: true
+                });
+                window.quizSession.initialize();
+                console.log('✓ Quiz inicializado correctamente');
+            }
+            
+            // Inicializar interacciones
+            if (window.pageInteractions) {
+                console.log('✓ Interacciones activadas');
+            }
+        });
+        
+        // Función global para iniciar el quiz
+        function iniciarQuiz() {
+            if (window.quizSession) {
+                window.quizSession.loadQuestions();
+                window.quizSession.reset();
+                
+                const container = document.getElementById('quiz-container');
+                container.innerHTML = '';
+                
+                // Mostrar primera pregunta
+                mostrarPreguntaQuiz();
+            }
+        }
+        
+        function mostrarPreguntaQuiz() {
+            const quizSession = window.quizSession;
+            const container = document.getElementById('quiz-container');
+            const pregunta = quizSession.getCurrentQuestion();
+            
+            if (!pregunta) {
+                console.error('No hay preguntas cargadas');
+                return;
+            }
+            
+            const progreso = quizSession.getProgress();
+            document.getElementById('progress').textContent = `${progreso.current}/${progreso.total}`;
+            
+            let html = `
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" style="width: ${progreso.percentage}%"></div>
+                </div>
+                
+                <div class="quiz-question active">
+                    <div class="quiz-question-number">Pregunta ${progreso.current} de ${progreso.total}</div>
+                    <div class="quiz-question-text">${pregunta.question}</div>
+                    <div class="quiz-options">
+            `;
+            
+            pregunta.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="seleccionarOpcionQuiz(${index})">
+                        <div class="quiz-option-text">${option.text}</div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <button class="btn-next-question" onclick="siguientePreguntaQuiz()" disabled>
+                        Siguiente Pregunta →
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function seleccionarOpcionQuiz(optionIndex) {
+            const quizSession = window.quizSession;
+            const resultado = quizSession.answerQuestion(optionIndex);
+            
+            if (!resultado.success) return;
+            
+            const opciones = document.querySelectorAll('.quiz-option');
+            const feedback = document.querySelector('.quiz-feedback');
+            const nextBtn = document.querySelector('.btn-next-question');
+            
+            opciones.forEach((option, i) => {
+                if (i === resultado.correctOption) {
+                    option.classList.add('correct');
+                } else if (i === optionIndex && !resultado.isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (resultado.isCorrect) {
+                document.getElementById('score').textContent = resultado.currentScore;
+                feedback.textContent = '✓ ¡Correcto! ' + quizSession.getCurrentQuestion().explanation;
+                feedback.classList.add('show', 'correct');
+            } else {
+                feedback.textContent = '✗ Incorrecto. ' + quizSession.getCurrentQuestion().explanation;
+                feedback.classList.add('show', 'incorrect');
+            }
+            
+            nextBtn.disabled = false;
+        }
+        
+        function siguientePreguntaQuiz() {
+            const quizSession = window.quizSession;
+            const siguiente = quizSession.nextQuestion();
+            
+            if (siguiente.hasNext) {
+                mostrarPreguntaQuiz();
+            } else {
+                mostrarResultadosQuiz();
+            }
+        }
+        
+        function mostrarResultadosQuiz() {
+            const quizSession = window.quizSession;
+            const stats = quizSession.finishQuiz();
+            const container = document.getElementById('quiz-container');
+            
+            let emoji = '💪';
+            if (stats.percentage === 100) emoji = '🏆';
+            else if (stats.percentage >= 80) emoji = '⭐';
+            else if (stats.percentage >= 60) emoji = '👍';
+            
+            const html = `
+                <div class="quiz-results show">
+                    <div class="quiz-results-score">${emoji} ${stats.percentage}%</div>
+                    <div class="quiz-results-message">${stats.message}</div>
+                    <div class="quiz-results-details">
+                        Acertaste ${stats.correctAnswers} de ${stats.totalQuestions} preguntas
+                    </div>
+                    <button class="btn-restart-quiz" onclick="reiniciarQuizSession()">
+                        <i class="fas fa-redo"></i> Intentar de Nuevo
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            window.pageInteractions.launchConfetti();
+        }
+        
+        function reiniciarQuizSession() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            document.getElementById('score').textContent = '0';
+            document.getElementById('progress').textContent = '0/8';
+            document.querySelector('.btn-start-quiz').style.display = 'inline-flex';
+        }
+        
+        // Función para abrir evaluador
+        function abrirEvaluador() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 1rem;
+                max-width: 600px;
+                width: 90%;
+                box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+            `;
+            
+            content.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; color: #1f2937; font-size: 1.5rem;">Verificar Actividad</h3>
+                    <button onclick="this.closest('div[style*=position]').remove()" 
+                            style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6b7280;">
+                        ✕
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #1f2937;">
+                        Pega tu código HTML aquí:
+                    </label>
+                    <textarea id="user-code" 
+                             placeholder="&lt;!DOCTYPE html&gt;..."
+                             style="width: 100%; height: 200px; padding: 1rem; border: 2px solid #e5e7eb; 
+                                     border-radius: 0.5rem; font-family: monospace; font-size: 0.9rem;
+                                     resize: vertical; box-sizing: border-box;">
+                    </textarea>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button onclick="window.verificarActividad()" 
+                           style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); 
+                                  color: white; border: none; padding: 0.75rem 1rem; 
+                                  border-radius: 0.5rem; font-weight: 700; cursor: pointer;">
+                        <i class="fas fa-check"></i> Verificar
+                    </button>
+                    <button onclick="this.closest('div[style*=position]').remove()"
+                           style="background: #e5e7eb; color: #1f2937; border: none; 
+                                  padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 700; cursor: pointer;">
+                        Cancelar
+                    </button>
+                </div>
+                
+                <div id="validation-result" style="margin-top: 1.5rem; display: none;"></div>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            document.getElementById('user-code').focus();
+        }
+        
+        // Función para verificar actividad
+        function verificarActividad() {
+            const userCode = document.getElementById('user-code').value.trim();
+            const resultDiv = document.getElementById('validation-result');
+            
+            const checks = {
+                doctype: /<\s*!DOCTYPE\s+html\s*>/i.test(userCode),
+                html: /<html[^>]*>/i.test(userCode),
+                head: /<head[^>]*>/i.test(userCode),
+                body: /<body[^>]*>/i.test(userCode),
+                title: /<title[^>]*>/i.test(userCode),
+                h1: /<h1[^>]*>/i.test(userCode),
+                paragraph: /<p[^>]*>/i.test(userCode),
+                list: /(<ul[^>]*>|<ol[^>]*>)/i.test(userCode),
+                copyright: /&copy;|©/i.test(userCode),
+            };
+            
+            const passedChecks = Object.values(checks).filter(Boolean).length;
+            const totalChecks = Object.keys(checks).length;
+            const percentage = Math.round((passedChecks / totalChecks) * 100);
+            
+            let html = `
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+                           padding: 1rem; border-radius: 0.5rem; border: 2px solid #ddd;">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #6366f1; margin-bottom: 0.5rem;">
+                        ${percentage}%
+                    </div>
+                    <div style="color: #4b5563; margin-bottom: 1rem;">
+                        ${passedChecks} de ${totalChecks} requisitos cumplidos
+                    </div>
+                    
+                    <div style="background: white; padding: 0.75rem; border-radius: 0.5rem; margin-top: 0.75rem;">
+                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Validación detallada:</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+            `;
+            
+            const checkLabels = {
+                doctype: 'Declaración DOCTYPE',
+                html: 'Etiqueta &lt;html&gt;',
+                head: 'Etiqueta &lt;head&gt;',
+                body: 'Etiqueta &lt;body&gt;',
+                title: 'Etiqueta &lt;title&gt;',
+                h1: 'Encabezado &lt;h1&gt;',
+                paragraph: 'Párrafo &lt;p&gt;',
+                list: 'Lista (&lt;ul&gt; o &lt;ol&gt;)',
+                copyright: 'Símbolo © de derechos'
+            };
+            
+            for (const [key, passed] of Object.entries(checks)) {
+                const icon = passed ? '✓' : '✗';
+                const color = passed ? '#10b981' : '#ef4444';
+                html += `
+                    <li style="padding: 0.5rem 0; color: ${color}; font-weight: 600;">
+                        <span>${icon}</span> ${checkLabels[key]}
+                    </li>
+                `;
+            }
+            
+            html += `
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+        }
+        
+        // Función para próxima sesión
+        function proximaSesion() {
+            window.pageInteractions.showToast('Completa esta sesión para desbloquear la siguiente', 'info');
+        }
+    </script>
+</body>
+</html>

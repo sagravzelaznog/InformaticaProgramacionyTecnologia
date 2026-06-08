@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 38: Marca Personal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-bottom: 4px solid #d4af37;">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 38</h1>
+            <h2>Marca Personal: De Estudiante a Profesional</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print" style="background: #d4af37; color: #1e3c72;">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #d4af37; color: #1e3c72;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Tú eres tu propia Empresa (Yo, S.A. de C.V.)</h3>
+            <p><strong>Objetivo:</strong> Comprender que en la era digital, tu nombre es una marca. Lo que publicas define si te contratan o no.</p>
+            
+            <div class="interactive-box" style="border-color: #d4af37; background-color: #fcfbf8;">
+                <h4>👔 El Curriculum vs. El Portafolio</h4>
+                <p>En el siglo XX se pedía un papel. En el siglo XXI se piden <strong>pruebas</strong>.</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #a0aec0; opacity: 0.7;">
+                        <span class="stat-number" style="color: #718096; font-size: 1.2rem;">📄 CV Tradicional</span>
+                        <p style="font-size: 0.8rem;">"Digo que sé diseñar."</p>
+                        <p style="font-size: 0.7rem;">(Basado en Promesas)</p>
+                    </div>
+
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #d4af37;">
+                        <span class="stat-number" style="color: #d4af37; font-size: 1.2rem;">🚀 Portafolio Digital</span>
+                        <p style="font-size: 0.8rem;">"Muestro mis diseños."</p>
+                        <p style="font-size: 0.7rem;">(Basado en Evidencias)</p>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #1e3c72; border-left-color: #d4af37;">"No me digas qué estudiaste, enséñame qué has creado."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #1e3c72;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Construyendo tu Identidad Digital</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #0077b5; border-bottom: 2px solid #0077b5;"><i class="fab fa-linkedin"></i> LinkedIn</h4>
+                    <p>La red social de los profesionales.</p>
+                    <ul>
+                        <li>No es para memes.</li>
+                        <li>Es para conectar con empresas y mentores.</li>
+                        <li>Tu foto debe ser profesional (buena luz, fondo limpio).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #1dbf73; border-bottom: 2px solid #1dbf73;"><i class="fas fa-laptop-house"></i> Freelancing</h4>
+                    <p>Vender tus habilidades por proyecto.</p>
+                    <ul>
+                        <li><strong>Fiverr / Upwork:</strong> Plataformas globales.</li>
+                        <li>Puedes vender: Diseños en Canva, Edición de Video, Programación Básica.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box" style="background: #f8f9fa;">
+                <h4>📇 Tu Business Card 2.0</h4>
+                <p>Así se ve un perfil optimizado (HTML + CSS):</p>
+                
+                <div class="business-card-container" style="display: flex; justify-content: center; margin-top: 20px; perspective: 1000px;">
+                    
+                    <div style="background: white; width: 350px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); overflow: hidden; position: relative;">
+                        
+                        <div style="height: 100px; background: linear-gradient(45deg, #1e3c72, #2a5298);"></div>
+                        
+                        <div style="width: 80px; height: 80px; background: #ddd; border-radius: 50%; border: 4px solid white; position: absolute; top: 60px; left: 20px; display: flex; align-items: center; justify-content: center; color: #666;">
+                            <i class="fas fa-user fa-2x"></i>
+                        </div>
+
+                        <div style="padding: 50px 20px 20px 20px;">
+                            <h3 style="margin: 0; color: #333; font-family: 'Playfair Display', serif;">Tu Nombre</h3>
+                            <p style="margin: 5px 0; color: #d4af37; font-weight: bold; font-size: 0.9rem;">Desarrollador Web Jr.</p>
+                            <p style="font-size: 0.8rem; color: #666; line-height: 1.4;">"Ayudo a negocios a tener presencia digital con diseños modernos y funcionales."</p>
+                            
+                            <div style="margin-top: 15px; display: flex; gap: 5px; flex-wrap: wrap;">
+                                <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; color: #4a5568;">HTML5</span>
+                                <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; color: #4a5568;">CSS3</span>
+                                <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; color: #4a5568;">Canva</span>
+                            </div>
+
+                            <button style="width: 100%; margin-top: 20px; padding: 10px; background: #1e3c72; color: white; border: none; border-radius: 5px; cursor: pointer;">Contactar</button>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 15px; color: #666;">*Esta tarjeta se puede programar en 15 minutos con lo que ya sabes.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #1e3c72;">
+            <div class="time-badge" style="background-color: #d4af37; color: #1e3c72;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Tu Plan de Acción</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>El "Elevator Pitch"</h5>
+                    <p>Tienes 30 segundos en un elevador con Elon Musk. ¿Qué le dices?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #1e3c72; color: #d4af37;">Ver Fórmula</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Fórmula:</strong> "Hola, soy [Nombre], ayudo a [Cliente] a lograr [Resultado] mediante [Tu Habilidad]."</p>
+                        <p><em>Ejemplo: "Soy Ana, ayudo a pequeños negocios a vender más creando tiendas online seguras."</em></p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Limpieza Digital</h5>
+                    <p>Antes de pedir trabajo, ¿qué debes hacer en tu Facebook/Instagram?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #1e3c72; color: #d4af37;">Ver Consejo</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Auditoría de Imagen.</strong> Configura la privacidad. Si un reclutador te busca, ¿qué verá? ¿Fiestas descontroladas o una persona interesante?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #fcfbf8; border-left-color: #d4af37;">
+                <p>💼 <strong>Misión Final:</strong> Escribe tu "Biografía de Instagram/LinkedIn" optimizada. Debe decir quién eres y qué sabes hacer en menos de 150 caracteres.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #d4af37;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 38 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

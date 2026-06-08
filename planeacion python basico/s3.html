@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: El Poder de las Cadenas de Texto - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+        body h1, h2, h3, h4, h5, h6, p, span, a, li, ol, ul, table, th, td {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 3</h1>
+                <h2>El Poder de las Cadenas de Texto</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-9-375" 
+                     role="progressbar" 
+                     aria-valuenow="9.375" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Dominar la manipulación de cadenas de texto en Python, aprendiendo a formatear, modificar y extraer información de cadenas de manera eficiente.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Realizar operaciones básicas con cadenas de texto</li>
+                        <li>Utilizar f-strings para formateo avanzado</li>
+                        <li>Aplicar métodos de cadena como <code>.upper()</code>, <code>.lower()</code>, <code>.strip()</code> y <code>.replace()</code></li>
+                        <li>Manipular cadenas usando índices y slicing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Operaciones básicas con cadenas -->
+            <div class="concept-card">
+                <h3>1. Operaciones Básicas con Cadenas</h3>
+                <p>Las cadenas de texto en Python son secuencias inmutables de caracteres Unicode. Aquí hay algunas operaciones básicas:</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Concatenación
+saludo = "Hola" + " " + "Mundo"  # Resultado: "Hola Mundo"
+
+# Repetición
+risa = "ja" * 3  # Resultado: "jajaja"
+
+# Longitud de una cadena
+longitud = len("Python")  # Resultado: 6
+
+# Acceso a caracteres
+letra = "Python"[0]  # Resultado: 'P'
+
+# Verificación de subcadena
+contiene = "hola" in "hola mundo"  # Resultado: True</code></pre>
+                </div>
+            </div>
+
+            <!-- F-strings -->
+            <div class="concept-card">
+                <h3>2. F-strings para Formateo Avanzado</h3>
+                <p>Las f-strings (formatted string literals) permiten incrustar expresiones dentro de cadenas de manera sencilla.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Variables para los ejemplos
+nombre = "Ana"
+edad = 25
+
+# Formateo básico
+saludo = f"Hola, me llamo {nombre} y tengo {edad} años"
+
+# Expresiones dentro de f-strings
+precio = 19.99
+cantidad = 3
+total = f"Total: {precio * cantidad:.2f}€"  # Formato de 2 decimales
+
+# Llamadas a funciones
+f"En mayúsculas: {nombre.upper()}"  # Resultado: "En mayúsculas: ANA"
+
+# Alineación de texto
+f"{nombre:>10}"  # Alineado a la derecha en 10 caracteres
+f"{nombre:^10}"  # Centrado en 10 caracteres
+f"{nombre:<10}"  # Alineado a la izquierda en 10 caracteres</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Consejo</h4>
+                    <p>Las f-strings son la forma más moderna y legible de formatear cadenas en Python 3.6+. Son más rápidas y fáciles de leer que otros métodos de formateo.</p>
+                </div>
+            </div>
+
+            <!-- Métodos útiles de cadenas -->
+            <div class="concept-card">
+                <h3>3. Métodos Útiles de Cadenas</h3>
+                
+                <div class="method">
+                    <h4><code>.upper()</code> y <code>.lower()</code></h4>
+                    <p>Convierten todos los caracteres de la cadena a mayúsculas o minúsculas.</p>
+                    <pre><code class="language-python">texto = "Python es Genial"
+texto.upper()  # "PYTHON ES GENIAL"
+texto.lower()  # "python es genial"
+texto.capitalize()  # "Python es genial"
+texto.title()  # "Python Es Genial"</code></pre>
+                </div>
+
+                <div class="method">
+                    <h4><code>.strip()</code>, <code>.lstrip()</code> y <code>.rstrip()</code></h4>
+                    <p>Eliminan espacios en blanco (u otros caracteres) del inicio y/o final de la cadena.</p>
+                    <pre><code class="language-python">texto = "   Hola   "
+texto.strip()   # "Hola"
+texto.lstrip()  # "Hola   "
+texto.rstrip()  # "   Hola"
+
+# Eliminar caracteres específicos
+"...Python...".strip(".")  # "Python"</code></pre>
+                </div>
+
+                <div class="method">
+                    <h4><code>.replace()</code></h4>
+                    <p>Reemplaza todas las ocurrencias de una subcadena por otra.</p>
+                    <pre><code class="language-python">frase = "Me gusta programar en Java"
+nueva_frase = frase.replace("Java", "Python")  # "Me gusta programar en Python"
+
+# Reemplazar múltiples valores
+frase = "1, 2, 3, 4"
+frase.replace(",", ";").replace(" ", "")  # "1;2;3;4"</code></pre>
+                </div>
+
+                <div class="method">
+                    <h4>Otros métodos útiles</h4>
+                    <pre><code class="language-python"># Contar ocurrencias
+"banana".count("a")  # 3
+
+# Verificar inicio/fin
+"Hola mundo".startswith("Hola")  # True
+"Hola mundo".endswith("mundo")    # True
+
+# Dividir y unir cadenas
+"uno,dos,tres".split(",")  # ['uno', 'dos', 'tres']
+" ".join(["Hola", "mundo", "!"]))  # "Hola mundo !"
+
+# Verificar si es numérico o alfabético
+"123".isdigit()  # True
+"abc".isalpha()  # True
+"abc123".isalnum()  # True</code></pre>
+                </div>
+            </div>
+
+            <!-- Índices y slicing -->
+            <div class="concept-card">
+                <h3>4. Índices y Slicing en Cadenas</h3>
+                <p>Las cadenas en Python son secuencias, lo que significa que puedes acceder a sus elementos mediante índices y slices.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">texto = "Python"
+
+# Índices (comienzan en 0)
+primer_caracter = texto[0]    # 'P'
+segundo_caracter = texto[1]   # 'y'
+ultimo_caracter = texto[-1]   # 'n' (negativos cuentan desde el final)
+
+# Slicing (rebanadas)
+# sintaxis: [inicio:fin:paso]
+primeras_tres = texto[0:3]    # 'Pyt' (índice 3 no incluido)
+ultimos_tres = texto[-3:]     # 'hon'  (desde el -3 hasta el final)
+cada_segundo = texto[::2]     # 'Pto'  (cada segundo carácter)
+reverso = texto[::-1]         # 'nohtyP' (invierte la cadena)
+
+# Longitud de la cadena
+longitud = len(texto)         # 6</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Truco de slicing</h4>
+                    <p>Puedes omitir los valores de inicio/fin para usar los valores por defecto (inicio y final de la cadena).</p>
+                    <pre><code class="language-python">texto = "Python"
+texto[:3]  # 'Pyt' (igual que texto[0:3])
+texto[3:]  # 'hon' (igual que texto[3:6])</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introducción a funciones -->
+        <section id="funciones" class="session-section">
+            <h2><i class="fas fa-code"></i> Introducción a las Funciones</h2>
+            <div class="concept-card">
+                <p>En las siguientes actividades, necesitarás crear funciones. Una función es un bloque de código reutilizable que realiza una tarea específica. En Python, las funciones se definen usando la palabra clave <code>def</code>.</p>
+                
+                <h3>Sintaxis básica de una función:</h3>
+                <div class="code-block">
+                    <pre><code class="language-python">def nombre_de_la_funcion(parametro1, parametro2):
+    """
+    Documentación de la función (opcional pero recomendado)
+    Explica qué hace la función y qué parámetros espera
+    """
+    # Cuerpo de la función
+    resultado = parametro1 + parametro2
+    return resultado  # Opcional: devuelve un valor</code></pre>
+                </div>
+                
+                <h3>Ejemplo práctico:</h3>
+                <div class="code-block">
+                    <pre><code class="language-python">def saludar(nombre):
+    """
+    Muestra un saludo personalizado
+    
+    Args:
+        nombre (str): El nombre de la persona a saludar
+        
+    Returns:
+        str: Un mensaje de saludo
+    """
+    mensaje = f"¡Hola, {nombre}! Bienvenido al curso de Python."
+    return mensaje
+
+# Llamando a la función
+print(saludar("Ana"))  # Muestra: ¡Hola, Ana! Bienvenido al curso de Python.</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas prácticas al crear funciones:</h4>
+                    <ul>
+                        <li>Usa nombres descriptivos para las funciones (verbos en minúsculas con guiones bajos)</li>
+                        <li>Documenta siempre lo que hace tu función</li>
+                        <li>Mantén las funciones pequeñas y con un solo propósito</li>
+                        <li>Usa parámetros con valores por defecto cuando sea apropiado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Mensajes Personalizados con F-strings</h3>
+                <p>Crea un programa que pida al usuario su nombre, edad y ciudad de residencia. Luego, muestra un mensaje personalizado que incluya esta información de manera formateada.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">¡Hola Ana! Veo que tienes 28 años y vives en Madrid. ¡Bienvenida!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda usar <code>input()</code> para obtener los datos del usuario y f-strings para formatear el mensaje de salida.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Limpiar y Formatear Texto</h3>
+                <p>Crea una función llamada <code>limpiar_texto</code> que reciba una cadena y realice las siguientes operaciones:</p>
+                <ol>
+                    <li>Convertir todo a minúsculas</li>
+                    <li>Eliminar espacios en blanco al inicio y final</li>
+                    <li>Reemplazar múltiples espacios por uno solo</li>
+                    <li>Capitalizar la primera letra de la cadena</li>
+                </ol>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-python">texto = "   hola    MUNDO   "
+print(limpiar_texto(texto))  # "Hola mundo"</code></pre>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Constructor de Oraciones</h3>
+                <p>Crea un programa que pida al usuario varias palabras (sustantivo, verbo, adjetivo, etc.) y las combine en una oración completa. Usa f-strings para crear oraciones coherentes.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-text">Sustantivo: perro
+Verbo: corre
+Adjetivo: rápido
+Lugar: parque
+
+El perro corre rápido en el parque.</code></pre>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Generador de Iniciales Artísticas</h3>
+                <p>Crea un programa que pida al usuario su nombre completo y cree un diseño artístico con sus iniciales usando caracteres ASCII. El programa debe:</p>
+                <ol>
+                    <li>Obtener el nombre completo del usuario</li>
+                    <li>Extraer las iniciales de cada palabra</li>
+                    <li>Crear un diseño artístico con las iniciales</li>
+                </ol>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo para "Ana María López":</h4>
+                    <pre><code class="language-text">**********
+*  A  M  L  *
+*  *  *  *  *
+*  *  *  *  *
+**********</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Puedes usar el método <code>.split()</code> para dividir el nombre completo en palabras, luego extraer la primera letra de cada palabra con índices, y finalmente crear el diseño con múltiples líneas de texto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/introduction.html#strings" target="_blank" rel="noopener noreferrer">Documentación oficial de Python - Cadenas</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_strings.asp" target="_blank" rel="noopener noreferrer">W3Schools - Cadenas en Python</a></li>
+                        <li><a href="https://realpython.com/python-f-strings/" target="_blank" rel="noopener noreferrer">Real Python - Guía de f-strings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=UsCQXe1N-NA" target="_blank" rel="noopener noreferrer">Manipulación de cadenas en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener noreferrer">F-strings en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 2 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 4.1-4.3 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s4.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

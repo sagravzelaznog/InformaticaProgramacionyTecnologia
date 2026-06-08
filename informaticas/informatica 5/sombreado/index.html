@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Sombreado en AutoCAD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #8e44ad;
+            --accent-color: #e74c3c;
+            --light-bg: #f5f6fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .exercise h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--secondary-color), #9b59b6);
+            opacity: 0.9;
+        }
+
+        .exercise {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .exercise:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .exercise-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .exercise-content {
+            padding: 1.5rem;
+        }
+
+        .step {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .command {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #f8f9fa;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin: 0.2rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .preview {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .preview:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .preview img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .note, .tip, .challenge {
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            line-height: 1.7;
+        }
+        
+        .note {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+        }
+        
+        .note::before {
+            content: 'ℹ️';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .tip {
+            background-color: #fff8e6;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .tip::before {
+            content: '💡';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .challenge {
+            background-color: #f9f0ff;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .challenge::before {
+            content: '🏆';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .tip {
+            background-color: #f8f9e6;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .challenge {
+            background-color: #f9f0ff;
+            border-left: 4px solid #9b59b6;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background-color: #7d3c98;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid var(--success-color);
+        }
+
+        .solution.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 0 1rem 2rem;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-section a i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .exercise-header {
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
+            }
+            
+            .exercise-content {
+                padding: 1rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .exercise-content {
+                padding: 0.8rem;
+            }
+            
+            .step, .note, .tip, .challenge {
+                padding: 0.8rem;
+            }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 0 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--secondary-color), #9b59b6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+        .note {
+            background-color: #f0e6ff;
+            border-left: 4px solid #9b59b6;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .hatch-preview {
+            width: 200px;
+            height: 150px;
+            margin: 10px auto;
+            border: 1px solid #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-drafting-compass"></i> Ejercicios de Sombreado en AutoCAD</h1>
+            <p class="subtitle">Aprende a dominar las herramientas de sombreado y degradado en AutoCAD</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <p>Los sombreados son patrones que se utilizan para representar diferentes materiales o texturas en tus dibujos de AutoCAD. En este tutorial aprenderás a crear y modificar sombreados de manera efectiva.</p>
+        </div>
+        
+        <div class="exercise">
+            <h2><i class="fas fa-square"></i> Ejercicio 1: Sombreado Básico en un Rectángulo</h2>
+            <div class="preview">
+                <div class="hatch-preview" style="background: repeating-linear-gradient(45deg, #3498db, #3498db 10px, #f5f5f5 10px, #f5f5f5 20px);"></div>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 1: Dibujar el contorno</h3>
+                <p>1. Dibuja un rectángulo de 100x60 unidades</p>
+                <p>Comando: <span class="command">REC</span> → <span class="command">0,0</span> → <span class="command">@100,60</span></p>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 2: Aplicar sombreado</h3>
+                <p>1. Escribe <span class="command">SOMBREA</span> o haz clic en el ícono de sombreado</p>
+                <p>2. En la paleta de sombreado:</p>
+                <ul>
+                    <li>Patrón: <span class="command">ANSI31</span></li>
+                    <li>Ángulo: <span class="command">45</span> grados</li>
+                    <li>Escala: <span class="command">10</span></li>
+                </ul>
+                <p>3. Haz clic dentro del rectángulo y presiona Enter</p>
+            </div>
+            
+            <div class="note">
+                <strong>Consejo:</strong> Usa <span class="command">EDITSOMB</span> para modificar el sombreado después de aplicarlo.
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h2><i class="fas fa-shapes"></i> Ejercicio 2: Sombreado con Múltiples Áreas</h2>
+            <div class="preview">
+                <div class="hatch-preview" style="
+                    background: 
+                        repeating-linear-gradient(45deg, #e74c3c, #e74c3c 8px, #f5f5f5 8px, #f5f5f5 16px),
+                        repeating-linear-gradient(-45deg, #2ecc71, #2ecc71 8px, #f5f5f5 8px, #f5f5f5 16px);
+                "></div>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 1: Dibujar las formas</h3>
+                <p>1. Dibuja un círculo con radio de 30 unidades</p>
+                <p>Comando: <span class="command">C</span> → <span class="command">150,150</span> → <span class="command">30</span></p>
+                <p>2. Dibuja un cuadrado de 60x60 que interseque con el círculo</p>
+                <p>Comando: <span class="command">REC</span> → <span class="command">130,130</span> → <span class="command">@60,60</span></p>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 2: Aplicar sombreado</h3>
+                <p>1. Escribe <span class="command">SOMBREA</span></p>
+                <p>2. Configuración:</p>
+                <ul>
+                    <li>Patrón: <span class="command">ANSI31</span></li>
+                    <li>Ángulo: <span class="command">45°</span></li>
+                    <li>Escala: <span class="command">5</span></li>
+                </ul>
+                <p>3. Haz clic en "Seleccionar objetos" y selecciona el círculo</p>
+                <p>4. Cambia el patrón a <span class="command">ANSI37</span> y repite para el cuadrado</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h2><i class="fas fa-fill-drip"></i> Ejercicio 3: Sombreado con Gradiente</h2>
+            <div class="preview">
+                <div class="hatch-preview" style="background: linear-gradient(135deg, #9b59b6, #3498db);"></div>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 1: Crear una forma compleja</h3>
+                <p>1. Dibuja un POLIGONO DE 5 LADOS:</p>
+                <p>Comando: <span class="command">POLIGONO</span> → <span class="command">5</span> → <span class="command">0,0</span>
+																	 → <span class="command">I</span>  → <span class="command">25</span></p>
+            </div>
+            
+            <div class="step">
+                <h3>Paso 2: Aplicar degradado</h3>
+                <p>1. Escribe <span class="command">DEGRADADO</span></p>
+                <p>2. En la paleta de degradado:</p>
+                <ul>
+                    <li>Selecciona "Dos colores"</li>
+                    <li>Color 1: <span style="color: #9b59b6">Morado (#9b59b6)</span></li>
+                    <li>Color 2: <span style="color: #3498db">Azul (#3498db)</span></li>
+                    <li>Ángulo: <span class="command">45°</span></li>
+                    <li>Centrado: <span class="command">Sí</span></li>
+                </ul>
+                <p>3. Haz clic dentro del poligono y presiona Enter</p>
+            </div>
+            
+            <div class="note">
+                <strong>Consejo:</strong> Usa <span class="command">HATCHTOBACK</span> si el sombreado cubre otras líneas del dibujo.
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h2><i class="fas fa-lightbulb"></i> Consejos Adicionales</h2>
+            <ul>
+                <li>Usa <span class="command">HATCHGENERATEBOUNDARY</span> para crear un borde alrededor del sombreado</li>
+                <li>La variable <span class="command">HPSEPARATE</span> controla si los sombreados se crean como objetos separados</li>
+                <li>Puedes usar <span class="command">EDITSOMB</span> para modificar cualquier sombreado existente</li>
+                <li>Para áreas grandes, usa <span class="command">SOMBREA</span> con la opción "Puntos de límite"</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Menú Principal</a>
+        </div>
+        
+        <footer>
+            <div class="container">
+            
+                <div class="footer-bottom">
+                    <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 1 - Hacking Ético Forense">
+    <title>Sesión 1: Cadena de Custodia y Entorno Forense | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge">Estado: Analista DFIR en Entrenamiento</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 01: La Zona Cero</h2>
+            <p><strong>Situación:</strong> Acabas de ser asignado a un incidente crítico. Hay un equipo comprometido y necesitas extraer la evidencia. Pero cuidado: el peor error de un analista forense es <em>contaminar la escena del crimen</em>.</p>
+            <p>Antes de tocar la evidencia, necesitas un entorno estéril. Hoy configurarás tu laboratorio seguro en Kali Linux. Si alteras un solo bit del disco original sin aislamiento, la evidencia será inadmisible en un tribunal.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Entorno Virtual Aislado</h2>
+            <p>Abre tu máquina virtual con Kali Linux y ejecuta la siguiente escalada de tareas. Valida cada paso al terminar.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Iniciar y Actualizar Repositorios</h3>
+                    <p>Asegura que tus herramientas estén en su última versión para evitar falsos positivos.</p>
+                    <div class="terminal">
+                        <code>sudo apt update && sudo apt upgrade -y</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Ejecución</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Aislar el Entorno de Red</h3>
+                    <p>Desconecta tu máquina de la red principal (Host-Only) para evitar que el malware se propague o que el sistema descargue actualizaciones automáticas que alteren el disco.</p>
+                    <div class="terminal">
+                        <code># En tu hipervisor (VirtualBox/VMware): Cambiar adaptador de red a 'Host-Only' o 'Internal Network'.<br>
+                        # Verifica tu IP en Kali:<br>
+                        ip a</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Ejecución</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Preparar Directorio de Evidencias</h3>
+                    <p>Crea un directorio inmutable donde almacenarás las imágenes forenses. El orden es tu mejor arma.</p>
+                    <div class="terminal">
+                        <code>mkdir -p ~/DFIR/Casos/Caso_001/Evidencia<br>
+                        chmod 700 ~/DFIR/Casos/Caso_001/Evidencia</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Ejecución</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Laboratorio Asegurado!</h3>
+                <p>Has establecido un perímetro estéril. Tu máquina está lista para recibir evidencia digital sin riesgo de contaminación cruzada.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 1. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion05: Gestión de Usuarios y Escalada</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 05: Identidad y Escalada de Privilegios</h1>
+            <p class="intro-text">En Linux, todo es un archivo y todo archivo pertenece a alguien. Para auditar un sistema comprometido, primero debemos entender las jerarquías. Hoy aprenderemos a identificar usuarios, leer registros de contraseñas y asumir el control total del sistema (Root) dentro de nuestro Sandbox.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Mapeo de Identidad (whoami & id)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Antes de actuar, verifica quién eres para el sistema. El comando <code>id</code> revela no solo tu nombre, sino los grupos a los que perteneces (lo que define qué puedes hacer).</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> whoami
+<span class="prompt">-(kali㉿kali)-[~]$</span> id</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: La Puerta de los Secretos (/etc/passwd)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En análisis forense, revisamos este archivo para buscar usuarios "fantasma" creados por un atacante. A pesar de su nombre, hoy en día no guarda contraseñas, solo la lista de usuarios del sistema.</p>
+                    <div class="tip-card">
+                        <strong>Táctica de Investigador:</strong> Los usuarios legítimos (humanos) suelen tener un ID (UID) de 1000 en adelante. Los menores a 1000 son usuarios del sistema.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Usamos less para leer el archivo con seguridad</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> less /etc/passwd</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Escalada de Privilegios (sudo)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Para leer los hashes reales de las contraseñas, necesitamos ser el superusuario (Root). <code>sudo</code> (SuperUser DO) nos permite ejecutar un comando con el poder de Root. Nos pedirá nuestra contraseña (kali).</p>
+                    <div class="root-warning">
+                        <strong>Transición Psicológica:</strong> Observa cómo cambia el símbolo final de tu terminal de un <strong>$</strong> (usuario estándar) a un <strong>#</strong> (root). Conlleva responsabilidad absoluta.
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Convertirnos en root en esta terminal interactiva</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo su
+<span class="root-prompt">-(root㉿kali)-[/home/kali]#</span> whoami</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Extracción de Hashes (/etc/shadow)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Ahora que somos Root, podemos leer el archivo más protegido del sistema. Aquí viven las contraseñas encriptadas. Un atacante roba este archivo para crackear las claves fuera de línea.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="root-prompt">-(root㉿kali)-[/home/kali]#</span> cat /etc/shadow
+<span class="comment"># Al terminar, SIEMPRE abandonamos los privilegios elevados</span>
+<span class="root-prompt">-(root㉿kali)-[/home/kali]#</span> exit
+<span class="prompt">-(kali㉿kali)-[~]$</span> </code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #05. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

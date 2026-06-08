@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Deshacer Cambios y Recuperación</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        .important-box {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 7: Deshacer Cambios y Recuperación</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Deshacer Cambios (<code>git reset</code> y <code>git checkout</code>)</button>
+    <div class="panel">
+        <p>A veces cometemos errores y necesitamos regresar nuestro código a un estado anterior. Git nos ofrece diferentes comandos dependiendo de si los cambios han sido confirmados (commits) o si solo están en nuestro directorio de trabajo.</p>
+        
+        <h3>Restaurar archivos del directorio de trabajo</h3>
+        <p>Si has modificado un archivo pero aún no lo has preparado ni confirmado, y quieres descartar esos cambios para devolverlo a como estaba en el último commit, puedes usar:</p>
+        <pre><code>git checkout -- archivo.txt</code></pre>
+        <p>También puedes usar <code>git checkout -- .</code> para deshacer todos los cambios en el directorio de trabajo recursivamente [1].</p>
+
+        <h3>Retornar a estados anteriores (<code>git reset</code>)</h3>
+        <ul>
+            <li><strong>Soft Reset:</strong> Si quieres deshacer el último commit pero <strong>mantener los cambios</strong> en tus archivos (por ejemplo, para agruparlos o modificarlos), usa la bandera <code>--soft</code> [2]:
+                <br><code>git reset --soft HEAD~</code>
+            </li>
+            <li><strong>Hard Reset:</strong> Si quieres descartar permanentemente el último commit y <strong>eliminar también todos los cambios</strong> que contenía de tu directorio de trabajo [2]:
+                <br><code>git reset --hard HEAD~</code>
+            </li>
+        </ul>
+        <div class="important-box">
+            <strong>⚠️ Cuidado:</strong> Mientras que un commit descartado puede recuperarse con el <code>reflog</code>, los cambios no confirmados que elimines con <code>--hard</code> se perderán para siempre [1].
+        </div>
+    </div>
+
+    <button class="accordion">2. Revertir de forma pública (<code>git revert</code>)</button>
+    <div class="panel">
+        <p>Utilizar <code>git reset</code> en commits que ya has subido (pushed) a un servidor remoto (como GitHub) altera el historial y desincronizará a tu equipo. ¡Nunca debes reescribir el historial público! [3]. Para estos casos, usamos <code>git revert</code>.</p>
+        
+        <h3>Cómo funciona <code>git revert</code></h3>
+        <p>En lugar de "borrar" un commit del historial, <code>git revert</code> toma los cambios introducidos por un commit específico y crea un <strong>nuevo commit "contra-commit"</strong> que deshace sus efectos de forma segura [4].</p>
+        
+        <h3>Ejemplo de uso</h3>
+        <p>Si acabas de subir un commit que contiene un error y necesitas deshacerlo rápidamente:</p>
+        <pre><code>git revert HEAD~1
+git push</code></pre>
+        <p>Si el commit que deseas revertir está más atrás en el historial, simplemente pasa el hash (SHA-1) del commit [4]:</p>
+        <pre><code>git revert 912aaf0228338d0c8fb8cca0a064b0161a451fdc</code></pre>
+        <p>Esto dejará un rastro público claro de que un cambio fue revertido, manteniendo intacto el orden del proyecto para todos tus compañeros [3].</p>
+    </div>
+
+    <button class="accordion">3. El Salvavidas (Reflog)</button>
+    <div class="panel">
+        <p>Con Git, casi siempre puedes retroceder el reloj [5]. Git no elimina tus commits "huérfanos" (aquellos que han quedado fuera del historial tras un <code>reset</code>, eliminación de rama o un rebase fallido) durante al menos 90 días por defecto [5, 6].</p>
+
+        <h3>Cómo usar <code>git reflog</code></h3>
+        <p>El comando <code>reflog</code> mantiene un historial de cada movimiento que ha hecho tu puntero <code>HEAD</code> en tu máquina local [6].</p>
+        <pre><code>git reflog</code></pre>
+        <p>La salida te mostrará algo como esto [6]:</p>
+        <pre><code>4a5cbb3 HEAD@{0}: rebase finished: returning to refs/heads/foo
+904f7f0 HEAD@{2}: rebase: checkout upstream/master
+3cbe20a HEAD@{3}: commit: fixed such and such</code></pre>
+
+        <h3>Recuperando el trabajo perdido</h3>
+        <p>Si por error hiciste un <code>git reset --hard</code> o arruinaste un rebase, simplemente busca en el <code>reflog</code> el punto justo antes de que cometieras el error (por ejemplo, <code>HEAD@{3}</code>) y ejecuta [7]:</p>
+        <pre><code>git reset --hard HEAD@{3}</code></pre>
+        <p>O usando el hash específico que el <code>reflog</code> te mostró [8]:</p>
+        <pre><code>git reset --hard &lt;sha1-of-commit&gt;</code></pre>
+        <p>¡Y listo! Tu código y tu historial habrán regresado exactamente a como estaban en ese momento [7].</p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

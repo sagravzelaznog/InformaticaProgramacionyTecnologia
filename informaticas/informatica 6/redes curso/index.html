@@ -1,0 +1,561 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Curso de Redes de Computadoras para Técnicos de Preparatoria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #007BFF;
+            border-bottom: 3px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #28a745;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .navigation {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .nav-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #495057;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .session-link {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .session-link:hover {
+            text-decoration: underline;
+        }
+        .objective {
+            font-style: italic;
+            color: #6c757d;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="#modulo1" class="nav-button">Módulo 1</a>
+        <a href="#modulo2" class="nav-button">Módulo 2</a>
+    </div>
+    <h1> Curso de Redes de Computadoras para Técnicos de Preparatoria</h1>
+    <p><strong>Duración:</strong> 16 Semanas</p>
+    <p><strong>Sesiones:</strong> 4 sesiones por semana de 45 minutos (Total: 64 sesiones)</p>
+
+    <h2>Módulo 1: Fundamentos de Redes (Semanas 1-4)</h2>
+    <p class="objective"><strong>Objetivo:</strong> Comprender qué es una red, sus componentes y cómo se comunican.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Sesión</th>
+                <th>Tema</th>
+                <th>Conceptos Clave</th>
+                <th>Software Gratuito a Usar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4"><strong>1</strong></td>
+                <td><a href="sesion01.html" class="session-link">1</a></td>
+                <td>Introducción a Redes</td>
+                <td>Definición, ventajas, componentes (nodos, medios de transmisión, protocolos, servidores/clientes).</td>
+                <td>Ninguno</td>
+            </tr>
+            <tr>
+                <td><a href="sesion02.html" class="session-link">2</a></td>
+                <td>Tipos de Redes 🌍</td>
+                <td><strong>LAN</strong>, <strong>WAN</strong>, MAN. Redes punto a punto vs. Cliente/Servidor.</td>
+                <td>Ninguno</td>
+            </tr>
+            <tr>
+                <td><a href="sesion03.html" class="session-link">3</a></td>
+                <td>Componentes de Hardware</td>
+                <td><strong>Routers</strong>, <strong>Switches</strong>, NIC (Tarjeta de Red), Puntos de Acceso Inalámbrico (WAP).</td>
+                <td>Ninguno</td>
+            </tr>
+            <tr>
+                <td><a href="sesion04.html" class="session-link">4</a></td>
+                <td>Medios de Transmisión</td>
+                <td>Cableado estructurado (UTP, STP, Fibra Óptica), Conexiones inalámbricas.</td>
+                <td>Práctica de identificación de cables (físico).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>2</strong></td>
+                <td><a href="sesion05.html" class="session-link">5</a></td>
+                <td>Modelo OSI 7 Capas</td>
+                <td>Introducción al modelo, función de cada capa (visualización simple).</td>
+                <td><strong>Cisco Packet Tracer</strong> (Introducción al simulador).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion06.html" class="session-link">6</a></td>
+                <td>Modelo TCP/IP 🌐</td>
+                <td>Capas de Aplicación, Transporte, Internet y Acceso a Red. Comparación con OSI.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Creación de red simple).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion07.html" class="session-link">7</a></td>
+                <td>Introducción a Direcciones IP</td>
+                <td>Dirección IP vs. Dirección MAC (Conceptos). Clases de IP (A, B, C).</td>
+                <td>Herramienta de línea de comandos: <code>ipconfig</code> / <code>ifconfig</code>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion08.html" class="session-link">8</a></td>
+                <td>Direccionamiento IP y Máscaras de Red</td>
+                <td>Máscara de subred (<code>/24</code>, <code>/16</code>), Red y Host.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Configuración de IP estática).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>3</strong></td>
+                <td><a href="sesion09.html" class="session-link">9</a></td>
+                <td>Protocolo de Control de Transmisión (TCP)</td>
+                <td>Confiabilidad, establecimiento de conexión (Three-way handshake).</td>
+                <td>Explicación teórica.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion10.html" class="session-link">10</a></td>
+                <td>Protocolo de Datagramas de Usuario (UDP)</td>
+                <td>No orientado a conexión, rápido (ej. voz, video).</td>
+                <td>Explicación teórica.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion11.html" class="session-link">11</a></td>
+                <td>Protocolos de Aplicación (Básicos)</td>
+                <td><strong>HTTP/HTTPS</strong>, <strong>DNS</strong>, <strong>DHCP</strong>, FTP, Correo electrónico (SMTP, POP3, IMAP).</td>
+                <td>Práctica con navegadores web (HTTP/HTTPS).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion12.html" class="session-link">12</a></td>
+                <td>Subnetting (Introducción)</td>
+                <td>La necesidad de dividir redes, cálculo básico de subredes.</td>
+                <td>Práctica de ejercicios básicos.</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>4</strong></td>
+                <td><a href="sesion13.html" class="session-link">13</a></td>
+                <td>Topologías de Red 🌟</td>
+                <td>Física y Lógica. Bus, Estrella, Anillo, Malla (ventajas/desventajas).</td>
+                <td><strong>Cisco Packet Tracer</strong> (Diseño de topología de estrella).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion14.html" class="session-link">14</a></td>
+                <td>Herramientas de Diagnóstico de Redes (I)</td>
+                <td><strong>Ping</strong> (prueba de conectividad), <strong>Traceroute/Tracert</strong> (rastreo de ruta).</td>
+                <td>Herramienta de línea de comandos: <code>ping</code>, <code>tracert</code>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion15.html" class="session-link">15</a></td>
+                <td>Herramientas de Diagnóstico de Redes (II)</td>
+                <td><strong>Netstat</strong> (conexiones activas), <strong>Arp</strong> (tabla de direcciones).</td>
+                <td>Herramienta de línea de comandos: <code>netstat</code>, <code>arp -a</code>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion16.html" class="session-link">16</a></td>
+                <td>Repaso y Evaluación Módulo 1</td>
+                <td>Cuestionario sobre Fundamentos y uso de herramientas básicas de línea de comandos.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Laboratorio básico de conectividad).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Módulo 2: Instalación y Mantenimiento de Redes LAN (Semanas 5-8)</h2>
+    <p class="objective"><strong>Objetivo:</strong> Desarrollar habilidades prácticas en la instalación, configuración y mantenimiento de redes locales.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Sesión</th>
+                <th>Tema</th>
+                <th>Conceptos Clave</th>
+                <th>Software Gratuito a Usar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4"><strong>5</strong></td>
+                <td><a href="sesion17.html" class="session-link">17</a></td>
+                <td>Configuración de Dispositivos Finales</td>
+                <td>Configuración de IP, Gateway, DNS en PC y dispositivos móviles.</td>
+                <td>NetSetMan (Gestión de perfiles de red).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion18.html" class="session-link">18</a></td>
+                <td>Cables de Red Práctica</td>
+                <td>Estándares <strong>T568A</strong> y <strong>T568B</strong>. Creación de cable directo y cruzado (práctica física).</td>
+                <td>Herramientas de cableado (físicas).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion19.html" class="session-link">19</a></td>
+                <td>Configuración Básica de Router Doméstico 🏠</td>
+                <td>Acceso a la interfaz web, cambio de contraseña de administrador y Wi-Fi.</td>
+                <td>Interfaz web del router (ejemplo simulado).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion20.html" class="session-link">20</a></td>
+                <td>Configuración de DHCP</td>
+                <td>Configuración del servidor DHCP en el router (rango de IP, arrendamiento).</td>
+                <td><strong>Cisco Packet Tracer</strong> (Configuración de DHCP en router).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>6</strong></td>
+                <td><a href="sesion21.html" class="session-link">21</a></td>
+                <td>Uso de Switch</td>
+                <td>Función del switch, tabla MAC, diferencias con un Hub.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Conexión de múltiples dispositivos).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion22.html" class="session-link">22</a></td>
+                <td>Configuración de Redes Inalámbricas (Wi-Fi)</td>
+                <td>SSID, Contraseñas (WPA2/WPA3), Canales (2.4 GHz vs 5 GHz).</td>
+                <td>WirelessNetView (Detección de redes cercanas).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion23.html" class="session-link">23</a></td>
+                <td>Exploración y Documentación de Red</td>
+                <td>Mapeo de dispositivos conectados.</td>
+                <td><strong>Advanced IP Scanner</strong> (Escaneo de red local).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion24.html" class="session-link">24</a></td>
+                <td>Mapeo y Diagramación de Redes</td>
+                <td>Importancia de los diagramas, simbología básica.</td>
+                <td>Netpict / DiagramDesigner (Diseño de diagrama de red LAN).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>7</strong></td>
+                <td><a href="sesion25.html" class="session-link">25</a></td>
+                <td>Resolución de Problemas de Conectividad (I)</td>
+                <td>No hay IP, IP duplicada, Cableado defectuoso.</td>
+                <td>Práctica con <code>ping</code> y <code>ipconfig</code> en escenarios de error.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion26.html" class="session-link">26</a></td>
+                <td>Resolución de Problemas de Conectividad (II)</td>
+                <td>No hay acceso a Internet (revisión de Gateway, DNS, Router).</td>
+                <td><strong>Cisco Packet Tracer</strong> (Simulación de fallas de Gateway).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion27.html" class="session-link">27</a></td>
+                <td>Introducción a la Seguridad de Red 🛡️</td>
+                <td>Firewalls (concepto básico), Contraseñas seguras.</td>
+                <td>Configuración básica de Firewall de Windows.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion28.html" class="session-link">28</a></td>
+                <td>Actualización de Firmware</td>
+                <td>Importancia de mantener actualizado el software de los dispositivos de red (routers, WAP).</td>
+                <td>Demostración de interfaz de router.</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>8</strong></td>
+                <td><a href="sesion29.html" class="session-link">29</a></td>
+                <td>Control Remoto y Compartición</td>
+                <td>Acceso remoto básico (RDP en Windows), compartir archivos e impresoras.</td>
+                <td>Advanced IP Scanner (uso de RDP).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion30.html" class="session-link">30</a></td>
+                <td>Monitorización de Red</td>
+                <td>Conceptos de latencia, ancho de banda y uso de CPU/memoria de red.</td>
+                <td>Práctica con el Administrador de Tareas de Windows.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion31.html" class="session-link">31</a></td>
+                <td>Práctica Integral LAN</td>
+                <td>Diseño e implementación de una red LAN en el simulador.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Laboratorio LAN completo).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion32.html" class="session-link">32</a></td>
+                <td>Evaluación Módulo 2</td>
+                <td>Examen práctico: Configuración de red y resolución de fallas en el simulador.</td>
+                <td><strong>Advanced IP Scanner</strong> y comandos de diagnóstico.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Módulo 3: Servicios de Red y Configuración Avanzada (Semanas 9-12)</h2>
+    <p class="objective"><strong>Objetivo:</strong> Profundizar en el manejo de servicios esenciales y la configuración de dispositivos de red.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Sesión</th>
+                <th>Tema</th>
+                <th>Conceptos Clave</th>
+                <th>Software Gratuito a Usar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4"><strong>9</strong></td>
+                <td><a href="sesion33.html" class="session-link">33</a></td>
+                <td>Puertos y Servicios (Sockets)</td>
+                <td>Puertos comunes (21, 23, 80, 443). Asignación de puertos.</td>
+                <td>Comandos básicos de <strong>Zenmap</strong> (Nmap con GUI) para escanear puertos.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion34.html" class="session-link">34</a></td>
+                <td>NAT (Network Address Translation)</td>
+                <td>Concepto y su uso en routers domésticos para compartir una IP pública.</td>
+                <td>Explicación teórica de NAT.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion35.html" class="session-link">35</a></td>
+                <td>Servidor DNS (Sistema de Nombres de Dominio)</td>
+                <td>Función del DNS, proceso de resolución de nombres.</td>
+                <td>Herramienta de línea de comandos: <code>nslookup</code>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion36.html" class="session-link">36</a></td>
+                <td>Redes Virtuales (VLANs)</td>
+                <td>Concepto y necesidad de segmentación de red.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Introducción a configuración de VLANs en Switch).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>10</strong></td>
+                <td><a href="sesion37.html" class="session-link">37</a></td>
+                <td>Introducción al Routing Estático</td>
+                <td>Concepto de tabla de enrutamiento y ruta por defecto.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Configuración de ruta estática simple).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion38.html" class="session-link">38</a></td>
+                <td>Seguridad Inalámbrica Avanzada</td>
+                <td>Filtrado MAC, Ocultamiento de SSID (limitaciones y uso).</td>
+                <td><strong>Acrylic WiFi Home</strong> (Análisis de canales Wi-Fi).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion39.html" class="session-link">39</a></td>
+                <td>Acceso Remoto Seguro (VPN)</td>
+                <td>Concepto de VPN, uso básico para teletrabajo.</td>
+                <td>Introducción a una herramienta VPN gratuita (ej. cliente OpenVPN).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion40.html" class="session-link">40</a></td>
+                <td>Gestión y Configuración de Archivos</td>
+                <td>Montar recursos compartidos como unidades de red.</td>
+                <td>Advanced IP Scanner (Acceso a unidades compartidas).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>11</strong></td>
+                <td><a href="sesion41.html" class="session-link">41</a></td>
+                <td>Introducción a <strong>Linux</strong> en Redes</td>
+                <td>Comandos básicos (<code>ls</code>, <code>cd</code>, <code>pwd</code>), importancia en servidores.</td>
+                <td>Terminal de Linux (ej. Ubuntu en máquina virtual/wsl).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion42.html" class="session-link">42</a></td>
+                <td>Servicios de Red en Linux (I)</td>
+                <td>Configuración de IP en Linux, uso de <code>ping</code> y <code>traceroute</code>.</td>
+                <td>Terminal de Linux.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion43.html" class="session-link">43</a></td>
+                <td>Servicios de Red en Linux (II)</td>
+                <td>Introducción a SSH (Acceso remoto seguro).</td>
+                <td>Uso de Putty o cliente SSH.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion44.html" class="session-link">44</a></td>
+                <td>Introducción a la Monitorización con Interfaz Gráfica</td>
+                <td>Uso de software de monitoreo para visibilidad de la red.</td>
+                <td><strong>Zabbix</strong> o <strong>Nagios</strong> (Instalación y demostración de interfaz en demo online/virtual).</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>12</strong></td>
+                <td><a href="sesion45.html" class="session-link">45</a></td>
+                <td>Copias de Seguridad de Configuración</td>
+                <td>Importancia y proceso para guardar la configuración de routers y switches.</td>
+                <td>Demostración de router simulado/real.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion46.html" class="session-link">46</a></td>
+                <td>Detección de Intrusos y Amenazas</td>
+                <td>Reconocimiento de escaneos de red o actividad inusual.</td>
+                <td><strong>Zenmap</strong> (Escaneo de red para simular un atacante).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion47.html" class="session-link">47</a></td>
+                <td>Troubleshooting Avanzado</td>
+                <td>Análisis de escenarios complejos (problemas de subred, enrutamiento).</td>
+                <td><strong>Cisco Packet Tracer</strong> (Escenarios de troubleshooting).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion48.html" class="session-link">48</a></td>
+                <td>Repaso y Evaluación Módulo 3</td>
+                <td>Evaluación sobre protocolos, servicios y herramientas avanzadas.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Laboratorio de Routing y Servicios).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Módulo 4: Proyecto Final y Profesionalización (Semanas 13-16)</h2>
+    <p class="objective"><strong>Objetivo:</strong> Consolidar conocimientos y aplicarlos en un proyecto integral de diseño y mantenimiento de red.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Sesión</th>
+                <th>Tema</th>
+                <th>Conceptos Clave</th>
+                <th>Software Gratuito a Usar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4"><strong>13</strong></td>
+                <td><a href="sesion49.html" class="session-link">49</a></td>
+                <td>Presentación del Proyecto Final</td>
+                <td>Diseño de una red para una PyME (Pequeña y Mediana Empresa) con requisitos específicos.</td>
+                <td>Herramienta de Diagramación (Netpict/DiagramDesigner).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion50.html" class="session-link">50</a></td>
+                <td>Sesión de Planificación del Proyecto</td>
+                <td>Definición de Topología, Esquema de Direccionamiento IP y Equipos.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Inicio del diseño).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion51.html" class="session-link">51</a></td>
+                <td>Implementación del Proyecto (I)</td>
+                <td>Configuración de dispositivos en el simulador (IPs, DHCP, DNS).</td>
+                <td><strong>Cisco Packet Tracer</strong>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion52.html" class="session-link">52</a></td>
+                <td>Implementación del Proyecto (II)</td>
+                <td>Configuración de Conectividad (Routing, Switches).</td>
+                <td><strong>Cisco Packet Tracer</strong>.</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>14</strong></td>
+                <td><a href="sesion53.html" class="session-link">53</a></td>
+                <td>Documentación del Proyecto (I)</td>
+                <td>Creación de un mapa de red profesional.</td>
+                <td>Herramienta de Diagramación.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion54.html" class="session-link">54</a></td>
+                <td>Documentación del Proyecto (II)</td>
+                <td>Elaboración de un informe de configuración (tablas de IP, contraseñas).</td>
+                <td>Procesador de textos.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion55.html" class="session-link">55</a></td>
+                <td>Sesión de Pruebas y Troubleshooting (I)</td>
+                <td>Verificación de conectividad de extremo a extremo.</td>
+                <td>Comandos <code>ping</code>, <code>traceroute</code>, <strong>Advanced IP Scanner</strong>.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion56.html" class="session-link">56</a></td>
+                <td>Sesión de Pruebas y Troubleshooting (II)</td>
+                <td>Resolución de fallas introducidas por el instructor.</td>
+                <td>Comandos de diagnóstico.</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>15</strong></td>
+                <td><a href="sesion57.html" class="session-link">57</a></td>
+                <td>Ética y Responsabilidad Profesional</td>
+                <td>Uso ético de las herramientas de red, seguridad de datos.</td>
+                <td>Debate y discusión.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion58.html" class="session-link">58</a></td>
+                <td>Oportunidades de Certificación y Carrera</td>
+                <td>Introducción a certificaciones (CompTIA, CCNA, MikroTik).</td>
+                <td>Orientación profesional.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion59.html" class="session-link">59</a></td>
+                <td>Presentación Final de Proyectos (I)</td>
+                <td>Exposición del diseño, implementación y resultados.</td>
+                <td>Presentación de Diapositivas.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion60.html" class="session-link">60</a></td>
+                <td>Presentación Final de Proyectos (II)</td>
+                <td>Exposición del diseño, implementación y resultados.</td>
+                <td>Presentación de Diapositivas.</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>16</strong></td>
+                <td><a href="sesion61.html" class="session-link">61</a></td>
+                <td>Revisión de Contenido General</td>
+                <td>Preguntas y respuestas sobre todos los módulos.</td>
+                <td>Repaso de conceptos clave.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion62.html" class="session-link">62</a></td>
+                <td>Examen Final Teórico</td>
+                <td>Evaluación de conocimientos fundamentales.</td>
+                <td>Examen escrito/digital.</td>
+            </tr>
+            <tr>
+                <td><a href="sesion63.html" class="session-link">63</a></td>
+                <td>Examen Final Práctico</td>
+                <td>Mantenimiento y diagnóstico de una red simulada.</td>
+                <td><strong>Cisco Packet Tracer</strong> (Escenario final de mantenimiento).</td>
+            </tr>
+            <tr>
+                <td><a href="sesion64.html" class="session-link">64</a></td>
+                <td>Cierre del Curso y Retroalimentación</td>
+                <td>Entrega de calificaciones y comentarios finales.</td>
+                <td>Ceremonia de cierre (simbólica).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Nota:</strong> <strong>Cisco Packet Tracer</strong> es la herramienta principal de simulación. Es gratuito y fundamental para la práctica. Se recomienda su descarga e instalación antes de la semana 2.
+    </div>
+
+</body>
+</html>

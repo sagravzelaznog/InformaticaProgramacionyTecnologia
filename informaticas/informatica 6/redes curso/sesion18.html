@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S5 E18: Práctica de Cableado Estructurado (T568A y T568B)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 5, Sesión 18: Práctica de Cableado ✂️</h1>
+        <p class="subtitle">Creación de Cable Directo y Cable Cruzado (Crossover)</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Materiales Esenciales para el Cableado</h2>
+            <p>Para construir o reparar un cable UTP, necesitarás estas herramientas y componentes:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Cable UTP</h3>
+                    <p>Cable de par trenzado de la categoría adecuada (Cat 5e o Cat 6).</p>
+                </div>
+                <div class="card">
+                    <h3>Conector RJ-45</h3>
+                    <p>El terminal de plástico donde se insertan los 8 hilos.</p>
+                </div>
+                <div class="card">
+                    <h3>Crimpadora (Crimper)</h3>
+                    <p>Herramienta clave para prensar el conector RJ-45 al cable, asegurando el contacto.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Repaso de Estándares (T568A y T568B)</h2>
+            <p>La clave de la práctica es memorizar y aplicar correctamente la secuencia de colores:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>T568A (Estándar Alternativo)</h3>
+                    <ul>
+                        <li>Blanco/Verde</li>
+                        <li>Verde</li>
+                        <li>Blanco/Naranja</li>
+                        <li>Azul</li>
+                        <li>Blanco/Azul</li>
+                        <li>Naranja</li>
+                        <li>Blanco/Café</li>
+                        <li>Café</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>T568B (Estándar Más Común)</h3>
+                    <ul>
+                        <li>Blanco/Naranja</li>
+                        <li>Naranja</li>
+                        <li>Blanco/Verde</li>
+                        <li>Azul</li>
+                        <li>Blanco/Azul</li>
+                        <li>Verde</li>
+                        <li>Blanco/Café</li>
+                        <li>Café</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Creando un Cable Directo</h2>
+            <p>El **Cable Directo (Straight-Through)** es el más usado, ya que conecta un Host (PC) a un Switch o Router. Requiere que **ambos extremos** usen el mismo estándar (generalmente T568B).</p>
+            
+            <p><strong>Pasos Clave:</strong></p>
+            <ol>
+                <li>Cortar la cubierta exterior del cable.</li>
+                <li>Destrenzar los pares y ordenarlos según el estándar T568B.</li>
+                <li>Recortar los 8 hilos rectos y parejos.</li>
+                <li>Insertar suavemente en el conector RJ-45 hasta el tope.</li>
+                <li>**Crimpar** firmemente con la crimpadora.</li>
+                <li>Probar con un *Tester de Cable* (opcional).</li>
+            </ol>
+            <button id="cableCheckBtn">Pregunta de Cableado</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S5 E18</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion17.html" class="nav-button">Anterior</a>
+        <a href="sesion19.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

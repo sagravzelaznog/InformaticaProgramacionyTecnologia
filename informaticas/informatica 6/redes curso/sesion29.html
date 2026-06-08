@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S8 E29: Control Remoto y Compartición de Recursos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 8, Sesión 29: Control Remoto 📡</h1>
+        <p class="subtitle">RDP, VNC y Montaje de Unidades de Red</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Escritorio Remoto (Remote Desktop)</h2>
+            <p>El **Escritorio Remoto** permite a un técnico controlar la interfaz gráfica de otro equipo a través de la red, como si estuviera sentado frente a él. Es esencial para el soporte técnico.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>RDP (Remote Desktop Protocol)</h3>
+                    <p>Protocolo nativo de Windows (Puerto TCP 3389). Permite una conexión rápida y segura entre equipos Windows (es necesario activarlo en el equipo de destino).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>VNC (Virtual Network Computing)</h3>
+                    <p>Un sistema de control remoto de código abierto, multiplataforma (Windows, Linux, Mac). Requiere instalar un cliente VNC tanto en el equipo de control como en el de destino.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Compartición de Archivos y Montaje de Unidades</h2>
+            <p>Una función clave de la red es la colaboración, lo cual se logra al compartir recursos de almacenamiento (carpetas o discos duros completos).</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Recursos Compartidos (Shares)</h3>
+                    <p>En Windows, una carpeta puede ser compartida y se accede a ella mediante la ruta **`\\[IP o Nombre]\\[Carpeta]`** (ej. `\\192.168.1.50\Documentos`). Es fundamental configurar permisos de lectura/escritura.</p>
+                </div>
+                <div>
+                    <h3>Montar Unidad de Red</h3>
+                    <p>Para facilitar el acceso continuo, un técnico puede "montar" una carpeta compartida remota y asignarle una letra de unidad local (ej. la carpeta `Documentos` del servidor se ve como la unidad **Z:** en el PC del usuario).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Uso de Advanced IP Scanner para RDP</h2>
+            <p><strong>Tarea Práctica (Software Gratuito):</strong></p>
+            <ol>
+                <li>Abre **Advanced IP Scanner**.</li>
+                <li>Escanea tu red e identifica un PC activo (puede ser el tuyo con RDP habilitado).</li>
+                <li>En la columna de la IP, haz clic derecho y busca las opciones de **"Control Remoto"** (RDP).</li>
+                <li>Intenta iniciar una sesión RDP (necesitarás usuario y contraseña del equipo de destino).</li>
+            </ol>
+            <button id="remoteAccessQuizBtn">Verificar Protocolos Remotos</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S8 E29</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion28.html" class="nav-button">Anterior</a>
+        <a href="sesion30.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

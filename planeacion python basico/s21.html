@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 21: Manejo de Errores con try-except - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .error-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .error-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #e17055;
+        }
+
+        .error-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-card h4 {
+            margin-top: 0;
+            color: #e17055;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .error-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #74b9ff;
+        }
+
+        .error-diagram {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .error-flow {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .error-flow.try {
+            border-color: #00b894;
+            background: rgba(0, 184, 148, 0.1);
+        }
+
+        .error-flow.except {
+            border-color: #e17055;
+            background: rgba(225, 112, 85, 0.1);
+        }
+
+        .error-flow.finally {
+            border-color: #a29bfe;
+            background: rgba(162, 155, 254, 0.1);
+        }
+
+        .error-flow h5 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .exception-box {
+            background: #636e72;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #fab1a0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .practice-exercises {
+            margin: 30px 0;
+        }
+
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .error-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+        .error-description {
+            margin-top: 20px;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .exception-showcase {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .exception-showcase h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .exception-showcase h3 i {
+            margin-right: 10px;
+        }
+
+        .exception-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .exception-example h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+
+        .robust-app {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .robust-app h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .robust-app h3 i {
+            margin-right: 10px;
+        }
+
+        .app-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .app-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+
+        .custom-exception {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .custom-exception h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-exception h3 i {
+            margin-right: 10px;
+        }
+
+        .custom-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .custom-example h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+        }
+
+        .file-handler {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .file-handler h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-handler h3 i {
+            margin-right: 10px;
+        }
+
+        .handler-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .handler-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 21</h1>
+                <h2>Manejo de Errores con try-except</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-11-38"
+                     role="progressbar"
+                     aria-valuenow="11.38"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">11.38% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a crear programas robustos y confiables mediante el manejo adecuado de errores y excepciones. Dominarás la estructura try-except para capturar y manejar errores de manera elegante, crear excepciones personalizadas y desarrollar estrategias efectivas para hacer que tus programas sean más resistentes a fallos inesperados.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Manejar excepciones comunes en Python</li>
+                        <li>Usar bloques try-except-else-finally correctamente</li>
+                        <li>Crear excepciones personalizadas para casos específicos</li>
+                        <li>Desarrollar estrategias robustas de manejo de errores</li>
+                        <li>Crear programas a prueba de errores de usuario</li>
+                        <li>Implementar recuperación de errores en operaciones críticas</li>
+                    </ul>
+                </div>
+
+                <div class="error-diagram">
+                    <h3>Flujo de Manejo de Errores</h3>
+                    <div class="error-diagram-container">
+                        <div class="error-flow try">
+                            <h5>Bloque try</h5>
+                            <div class="exception-box">Código que puede fallar</div>
+                            <div class="exception-box">archivo = open('datos.txt')</div>
+                            <div class="exception-box">resultado = division(10, 0)</div>
+                        </div>
+                        <div class="arrow">↓ (Si ocurre error)</div>
+                        <div class="error-flow except">
+                            <h5>Bloque except</h5>
+                            <div class="exception-box">Manejo del error</div>
+                            <div class="exception-box">except FileNotFoundError:</div>
+                            <div class="exception-box">except ZeroDivisionError:</div>
+                        </div>
+                        <div class="arrow">↓ (Opcional)</div>
+                        <div class="error-flow finally">
+                            <h5>Bloque finally</h5>
+                            <div class="exception-box">Siempre se ejecuta</div>
+                            <div class="exception-box">archivo.close()</div>
+                            <div class="exception-box">limpieza de recursos</div>
+                        </div>
+                    </div>
+                    <p class="error-description">
+                        El manejo de errores permite que tus programas continúen funcionando incluso cuando ocurren problemas inesperados, proporcionando una mejor experiencia al usuario.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+
+            <!-- 1. Excepciones comunes en Python -->
+            <div class="concept-card">
+                <h3>1. Excepciones Comunes en Python</h3>
+                <p>Python tiene muchas excepciones incorporadas que representan diferentes tipos de errores. Conocer las más comunes te ayudará a manejar errores de manera efectiva en tus programas.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Excepciones comunes en Python y cómo manejarlas
+
+# 1. ZeroDivisionError - División por cero
+def division_segura(dividendo, divisor):
+    """Función que maneja división por cero."""
+    try:
+        resultado = dividendo / divisor
+        return resultado
+    except ZeroDivisionError:
+        print("❌ Error: No se puede dividir por cero")
+        return None
+    except TypeError:
+        print("❌ Error: Los operandos deben ser números")
+        return None
+
+# Uso de la función segura
+print("=== DIVISIÓN SEGURA ===")
+print(f"10 / 2 = {division_segura(10, 2)}")
+print(f"10 / 0 = {division_segura(10, 0)}")
+print(f"10 / 'a' = {division_segura(10, 'a')}")
+
+# 2. ValueError - Valor incorrecto para una operación
+def convertir_a_entero(texto):
+    """Convierte texto a entero con manejo de errores."""
+    try:
+        return int(texto)
+    except ValueError:
+        print(f"❌ Error: '{texto}' no es un número válido")
+        return None
+
+# Uso de la conversión segura
+print("\n=== CONVERSIÓN SEGURA ===")
+print(f"'123' -> {convertir_a_entero('123')}")
+print(f"'abc' -> {convertir_a_entero('abc')}")
+print(f"'45.67' -> {convertir_a_entero('45.67')}")
+
+# 3. FileNotFoundError - Archivo no encontrado
+def leer_archivo_seguro(archivo):
+    """Lee un archivo con manejo de errores."""
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"❌ Error: El archivo '{archivo}' no existe")
+        return None
+    except PermissionError:
+        print(f"❌ Error: No tienes permisos para leer '{archivo}'")
+        return None
+    except UnicodeDecodeError:
+        print(f"❌ Error: No se puede decodificar el archivo '{archivo}'")
+        return None
+
+# Uso de lectura segura
+print("\n=== LECTURA DE ARCHIVOS SEGURA ===")
+contenido1 = leer_archivo_seguro("datos.txt")
+contenido2 = leer_archivo_seguro("archivo_inexistente.txt")
+
+# 4. IndexError - Índice fuera de rango
+def acceso_seguro_lista(lista, indice):
+    """Accede a elementos de lista de forma segura."""
+    try:
+        return lista[indice]
+    except IndexError:
+        print(f"❌ Error: Índice {indice} fuera de rango (lista tiene {len(lista)} elementos)")
+        return None
+
+# Uso de acceso seguro
+mi_lista = [1, 2, 3]
+print("\n=== ACCESO A LISTAS SEGURO ===")
+print(f"mi_lista[1] = {acceso_seguro_lista(mi_lista, 1)}")
+print(f"mi_lista[5] = {acceso_seguro_lista(mi_lista, 5)}")
+
+# 5. KeyError - Clave no encontrada en diccionario
+def acceso_seguro_diccionario(diccionario, clave):
+    """Accede a valores de diccionario de forma segura."""
+    try:
+        return diccionario[clave]
+    except KeyError:
+        print(f"❌ Error: La clave '{clave}' no existe en el diccionario")
+        return None
+
+# Uso de acceso seguro a diccionarios
+mi_dict = {"nombre": "Ana", "edad": 25}
+print("\n=== ACCESO A DICCIONARIOS SEGURO ===")
+print(f"mi_dict['nombre'] = {acceso_seguro_diccionario(mi_dict, 'nombre')}")
+print(f"mi_dict['ciudad'] = {acceso_seguro_diccionario(mi_dict, 'ciudad')}")
+
+# 6. TypeError - Operación con tipos incorrectos
+def operacion_segura(a, b, operacion):
+    """Realiza operaciones matemáticas con validación de tipos."""
+    try:
+        if operacion == "suma":
+            return a + b
+        elif operacion == "resta":
+            return a - b
+        elif operacion == "multiplicacion":
+            return a * b
+        elif operacion == "division":
+            return a / b
+        else:
+            raise ValueError(f"Operación '{operacion}' no soportada")
+    except TypeError:
+        print(f"❌ Error: No se pueden {operacion} los tipos {type(a)} y {type(b)}")
+        return None
+    except ZeroDivisionError:
+        print("❌ Error: No se puede dividir por cero")
+        return None
+
+# Uso de operaciones seguras
+print("\n=== OPERACIONES MATEMÁTICAS SEGURAS ===")
+print(f"10 + 5 = {operacion_segura(10, 5, 'suma')}")
+print(f"10 / 0 = {operacion_segura(10, 0, 'division')}")
+print(f"'hola' + 5 = {operacion_segura('hola', 5, 'suma')}")
+print(f"10 * 'abc' = {operacion_segura(10, 'abc', 'multiplicacion')}")
+
+# 7. Manejo múltiple de excepciones
+def proceso_complejo(datos):
+    """Ejemplo de manejo de múltiples excepciones."""
+    try:
+        # Paso 1: Validar entrada
+        if not datos:
+            raise ValueError("Los datos no pueden estar vacíos")
+
+        # Paso 2: Procesar datos
+        resultado = []
+        for item in datos:
+            # Podría fallar si item no es número
+            numero = float(item)
+            resultado.append(numero ** 2)
+
+        # Paso 3: Calcular estadísticas
+        promedio = sum(resultado) / len(resultado)
+
+        return {
+            "datos_originales": datos,
+            "datos_procesados": resultado,
+            "promedio": promedio,
+            "cantidad": len(resultado)
+        }
+
+    except ValueError as e:
+        print(f"❌ Error de valor: {e}")
+        return None
+    except TypeError as e:
+        print(f"❌ Error de tipo: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Error inesperado: {e}")
+        return None
+
+# Uso del proceso complejo
+print("\n=== PROCESO COMPLEJO CON MANEJO DE ERRORES ===")
+datos_validos = [1, 2, 3, 4, 5]
+datos_invalidos = [1, 2, "tres", 4, 5]
+datos_vacios = []
+
+print(f"Datos válidos: {proceso_complejo(datos_validos)}")
+print(f"Datos inválidos: {proceso_complejo(datos_invalidos)}")
+print(f"Datos vacíos: {proceso_complejo(datos_vacios)}")
+
+# 8. Excepciones en operaciones con archivos
+def copiar_archivo_seguro(origen, destino):
+    """Copia un archivo con manejo completo de errores."""
+    try:
+        # Verificar que el archivo origen existe
+        if not os.path.exists(origen):
+            raise FileNotFoundError(f"El archivo origen '{origen}' no existe")
+
+        # Verificar permisos de lectura
+        if not os.access(origen, os.R_OK):
+            raise PermissionError(f"No tienes permisos de lectura para '{origen}'")
+
+        # Abrir archivos
+        with open(origen, 'r', encoding='utf-8') as f_origen:
+            contenido = f_origen.read()
+
+        # Crear directorio destino si no existe
+        os.makedirs(os.path.dirname(destino), exist_ok=True)
+
+        # Verificar permisos de escritura
+        if not os.access(os.path.dirname(destino), os.W_OK):
+            raise PermissionError(f"No tienes permisos de escritura en '{os.path.dirname(destino)}'")
+
+        # Escribir archivo destino
+        with open(destino, 'w', encoding='utf-8') as f_destino:
+            f_destino.write(contenido)
+
+        print(f"✅ Archivo copiado exitosamente de '{origen}' a '{destino}'")
+        return True
+
+    except FileNotFoundError as e:
+        print(f"❌ Archivo no encontrado: {e}")
+        return False
+    except PermissionError as e:
+        print(f"❌ Error de permisos: {e}")
+        return False
+    except UnicodeDecodeError as e:
+        print(f"❌ Error de codificación: {e}")
+        return False
+    except Exception as e:
+        print(f"❌ Error inesperado: {e}")
+        return False
+
+# Uso de copia segura (comentado para evitar errores en ejecución)
+# copiar_archivo_seguro("origen.txt", "destino.txt")
+# copiar_archivo_seguro("archivo_inexistente.txt", "destino.txt")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Excepciones Más Comunes</h5>
+                        <ul>
+                            <li><strong>ZeroDivisionError:</strong> División por cero</li>
+                            <li><strong>ValueError:</strong> Valor incorrecto para operación</li>
+                            <li><strong>TypeError:</strong> Operación con tipos incorrectos</li>
+                            <li><strong>FileNotFoundError:</strong> Archivo no encontrado</li>
+                            <li><strong>IndexError:</strong> Índice fuera de rango</li>
+                            <li><strong>KeyError:</strong> Clave no encontrada en diccionario</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h5>Estrategias de Manejo</h5>
+                        <ul>
+                            <li><strong>try-except:</strong> Capturar y manejar errores</li>
+                            <li><strong>try-except-else:</strong> Código cuando no hay errores</li>
+                            <li><strong>try-finally:</strong> Limpieza siempre necesaria</li>
+                            <li><strong>Múltiples except:</strong> Diferentes manejos por tipo</li>
+                            <li><strong>Excepciones personalizadas:</strong> Errores específicos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Jerarquía de Excepciones</h4>
+                    <p>Las excepciones en Python siguen una jerarquía. Puedes capturar excepciones más específicas o más generales:</p>
+                    <ul>
+                        <li><strong>BaseException</strong> (raíz de todas)</li>
+                        <li>├── <strong>Exception</strong> (excepciones comunes)</li>
+                        <li>│   ├── <strong>ValueError</strong>, <strong>TypeError</strong>, <strong>ZeroDivisionError</strong></li>
+                        <li>│   ├── <strong>FileNotFoundError</strong>, <strong>PermissionError</strong></li>
+                        <li>│   └── <strong>ImportError</strong>, <strong>AttributeError</strong></li>
+                        <li>└── <strong>KeyboardInterrupt</strong>, <strong>SystemExit</strong> (especiales)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Bloques try-except-else-finally -->
+            <div class="concept-card">
+                <h3>2. Bloques try-except-else-finally</h3>
+                <p>Python proporciona una estructura completa para el manejo de excepciones con diferentes bloques que se ejecutan según si ocurre o no un error.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplos completos de manejo de excepciones
+
+# 1. Estructura básica try-except
+def ejemplo_basico():
+    """Ejemplo básico de try-except."""
+    try:
+        # Código que puede generar una excepción
+        numero = int(input("Ingresa un número: "))
+        resultado = 10 / numero
+        print(f"10 / {numero} = {resultado}")
+
+    except ZeroDivisionError:
+        print("❌ Error: No puedes dividir por cero")
+    except ValueError:
+        print("❌ Error: Debes ingresar un número válido")
+    except Exception as e:
+        print(f"❌ Error inesperado: {e}")
+
+# 2. Estructura con else (cuando NO hay error)
+def ejemplo_con_else():
+    """Ejemplo con bloque else."""
+    try:
+        # Código riesgoso
+        archivo = input("Nombre del archivo: ")
+        with open(archivo, 'r') as f:
+            contenido = f.read()
+
+    except FileNotFoundError:
+        print(f"❌ El archivo '{archivo}' no existe")
+        return None
+
+    except PermissionError:
+        print(f"❌ No tienes permisos para leer '{archivo}'")
+        return None
+
+    else:
+        # Este bloque solo se ejecuta si NO hubo excepciones
+        print(f"✅ Archivo '{archivo}' leído exitosamente")
+        print(f"📊 Contenido tiene {len(contenido)} caracteres")
+        return contenido
+
+# 3. Estructura con finally (siempre se ejecuta)
+def ejemplo_con_finally():
+    """Ejemplo con bloque finally."""
+    archivo = None
+
+    try:
+        archivo = open("datos.txt", "r")
+        contenido = archivo.read()
+        print("Archivo leído exitosamente")
+
+    except FileNotFoundError:
+        print("❌ Archivo no encontrado")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+    finally:
+        # Este bloque SIEMPRE se ejecuta, haya error o no
+        if archivo:
+            archivo.close()
+            print("✅ Archivo cerrado correctamente")
+
+# 4. Combinación completa try-except-else-finally
+def procesamiento_completo(archivo_entrada, archivo_salida):
+    """Procesamiento completo con manejo exhaustivo de errores."""
+
+    archivo_entrada_obj = None
+    archivo_salida_obj = None
+
+    try:
+        # Abrir archivo de entrada
+        archivo_entrada_obj = open(archivo_entrada, 'r', encoding='utf-8')
+        lineas = archivo_entrada_obj.readlines()
+
+        # Procesar contenido
+        lineas_procesadas = []
+        contador_lineas = 0
+
+        for linea in lineas:
+            contador_lineas += 1
+            # Procesamiento: convertir a mayúsculas y eliminar espacios
+            linea_procesada = linea.strip().upper()
+            if linea_procesada:  # Solo agregar si no está vacía
+                lineas_procesadas.append(linea_procesada)
+
+    except FileNotFoundError:
+        print(f"❌ Archivo de entrada '{archivo_entrada}' no encontrado")
+        return False
+
+    except PermissionError:
+        print(f"❌ No tienes permisos para leer '{archivo_entrada}'")
+        return False
+
+    except UnicodeDecodeError:
+        print(f"❌ Error de codificación en '{archivo_entrada}'")
+        return False
+
+    except Exception as e:
+        print(f"❌ Error inesperado al procesar archivo: {e}")
+        return False
+
+    else:
+        # Este bloque se ejecuta solo si NO hubo excepciones
+        print("✅ Archivo procesado exitosamente")
+        print(f"📊 Líneas originales: {contador_lineas}")
+        print(f"📊 Líneas procesadas: {len(lineas_procesadas)}")
+
+    finally:
+        # Cerrar archivos si están abiertos
+        if archivo_entrada_obj:
+            archivo_entrada_obj.close()
+            print("📁 Archivo de entrada cerrado")
+
+    # Si llegamos aquí sin errores, escribir archivo de salida
+    if 'lineas_procesadas' in locals():
+        try:
+            archivo_salida_obj = open(archivo_salida, 'w', encoding='utf-8')
+
+            for linea in lineas_procesadas:
+                archivo_salida_obj.write(linea + '\n')
+
+        except PermissionError:
+            print(f"❌ No tienes permisos para escribir '{archivo_salida}'")
+            return False
+        except Exception as e:
+            print(f"❌ Error al escribir archivo: {e}")
+            return False
+        else:
+            print(f"✅ Archivo de salida '{archivo_salida}' creado exitosamente")
+        finally:
+            if archivo_salida_obj:
+                archivo_salida_obj.close()
+                print("📁 Archivo de salida cerrado")
+
+        return True
+
+    return False
+
+# 5. Manejo de múltiples excepciones específicas
+def calculadora_robusta():
+    """Calculadora que maneja múltiples tipos de errores."""
+
+    while True:
+        try:
+            # Obtener entrada del usuario
+            expresion = input("\nIngresa una expresión matemática (o 'salir'): ")
+
+            if expresion.lower() == 'salir':
+                print("👋 ¡Hasta luego!")
+                break
+
+            # Evaluar expresión de forma segura
+            resultado = eval(expresion)
+
+            # Verificar que el resultado sea un número
+            if not isinstance(resultado, (int, float)):
+                raise TypeError("El resultado debe ser un número")
+
+            print(f"📊 Resultado: {resultado}")
+
+        except ZeroDivisionError:
+            print("❌ Error: División por cero no permitida")
+        except NameError:
+            print("❌ Error: Variable no definida en la expresión")
+        except SyntaxError:
+            print("❌ Error: Expresión matemática no válida")
+        except TypeError as e:
+            print(f"❌ Error de tipo: {e}")
+        except Exception as e:
+            print(f"❌ Error inesperado: {e}")
+
+# 6. Excepciones en funciones anidadas
+def funcion_externa():
+    """Función externa que llama a funciones internas."""
+    def funcion_interna():
+        """Función interna que puede generar excepciones."""
+        try:
+            # Simular posible error
+            valor = int(input("Ingresa un número entero: "))
+            return valor * 2
+        except ValueError:
+            print("❌ Error interno: Debes ingresar un entero válido")
+            raise  # Re-lanzar la excepción para que la maneje el llamador
+
+    try:
+        resultado = funcion_interna()
+        print(f"✅ Resultado procesado: {resultado}")
+        return resultado
+    except ValueError:
+        print("❌ Error externo: No se pudo procesar el número")
+        return None
+
+# Uso de los ejemplos
+print("=== EJEMPLOS DE MANEJO DE ERRORES ===")
+
+# Ejemplo básico
+print("\n1. EJEMPLO BÁSICO:")
+ejemplo_basico()
+
+# Ejemplo con else
+print("\n2. EJEMPLO CON ELSE:")
+# ejemplo_con_else()  # Comentado para evitar interacción
+
+# Ejemplo con finally
+print("\n3. EJEMPLO CON FINALLY:")
+ejemplo_con_finally()
+
+# Ejemplo completo
+print("\n4. EJEMPLO DE PROCESAMIENTO COMPLETO:")
+# procesamiento_completo("entrada.txt", "salida.txt")  # Comentado para evitar archivos
+
+# Calculadora robusta
+print("\n5. CALCULADORA ROBUSTA:")
+# calculadora_robusta()  # Comentado para evitar interacción
+
+# Funciones anidadas
+print("\n6. FUNCIONES ANIDADAS:")
+# funcion_externa()  # Comentado para evitar interacción</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Errores Comunes</h4>
+                    <ul>
+                        <li><strong>No manejar excepciones:</strong> Programas que se cierran inesperadamente</li>
+                        <li><strong>Capturar excepciones demasiado generales:</strong> Puede ocultar errores importantes</li>
+                        <li><strong>No usar finally para limpieza:</strong> Recursos que no se liberan correctamente</li>
+                        <li><strong>No re-lanzar excepciones cuando es necesario:</strong> Pérdida de información de error</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Excepciones personalizadas -->
+            <div class="concept-card">
+                <h3>3. Creación de Excepciones Personalizadas</h3>
+                <p>Crear excepciones personalizadas te permite manejar errores específicos de tu aplicación de manera más clara y profesional.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Creación y uso de excepciones personalizadas
+
+# 1. Excepción básica personalizada
+class ErrorPersonalizado(Exception):
+    """Excepción básica personalizada."""
+    pass
+
+def verificar_edad(edad):
+    """Verifica si la edad es válida."""
+    if not isinstance(edad, int):
+        raise TypeError("La edad debe ser un número entero")
+
+    if edad < 0:
+        raise ErrorPersonalizado("La edad no puede ser negativa")
+
+    if edad > 150:
+        raise ErrorPersonalizado("La edad parece demasiado alta")
+
+    return True
+
+# 2. Excepciones con más información
+class ErrorValidacion(Exception):
+    """Excepción para errores de validación con información adicional."""
+
+    def __init__(self, mensaje, campo, valor):
+        self.mensaje = mensaje
+        self.campo = campo
+        self.valor = valor
+        super().__init__(f"Error en {campo}: {mensaje} (valor: {valor})")
+
+class ErrorConexion(Exception):
+    """Excepción para errores de conexión."""
+
+    def __init__(self, servidor, puerto, mensaje="Error de conexión"):
+        self.servidor = servidor
+        self.puerto = puerto
+        self.mensaje = mensaje
+        super().__init__(f"{mensaje} - Servidor: {servidor}:{puerto}")
+
+class ErrorSaldoInsuficiente(Exception):
+    """Excepción para errores de saldo en operaciones bancarias."""
+
+    def __init__(self, saldo_actual, monto_requerido):
+        self.saldo_actual = saldo_actual
+        self.monto_requerido = monto_requerido
+        diferencia = monto_requerido - saldo_actual
+        super().__init__(f"Saldo insuficiente. Faltan ${diferencia:.2f} (Saldo: ${saldo_actual:.2f}, Requerido: ${monto_requerido:.2f})")
+
+# 3. Sistema bancario con excepciones personalizadas
+class CuentaBancaria:
+    """Cuenta bancaria con manejo robusto de errores."""
+
+    def __init__(self, titular, saldo_inicial=0):
+        self.titular = titular
+        self.saldo = saldo_inicial
+        self.transacciones = []
+
+    def depositar(self, monto):
+        """Deposita dinero en la cuenta."""
+        try:
+            monto = float(monto)
+            if monto <= 0:
+                raise ErrorValidacion("El monto debe ser positivo", "monto", monto)
+
+            self.saldo += monto
+            self.transacciones.append({
+                'tipo': 'deposito',
+                'monto': monto,
+                'fecha': 'ahora'  # Simplificado
+            })
+
+        except ValueError:
+            raise ErrorValidacion("El monto debe ser un número válido", "monto", monto)
+        except ErrorValidacion:
+            raise  # Re-lanzar excepciones de validación
+
+    def retirar(self, monto):
+        """Retira dinero de la cuenta."""
+        try:
+            monto = float(monto)
+            if monto <= 0:
+                raise ErrorValidacion("El monto debe ser positivo", "monto", monto)
+
+            if monto > self.saldo:
+                raise ErrorSaldoInsuficiente(self.saldo, monto)
+
+            self.saldo -= monto
+            self.transacciones.append({
+                'tipo': 'retiro',
+                'monto': monto,
+                'fecha': 'ahora'
+            })
+
+        except ValueError:
+            raise ErrorValidacion("El monto debe ser un número válido", "monto", monto)
+        except ErrorSaldoInsuficiente:
+            raise
+        except ErrorValidacion:
+            raise
+
+    def transferir(self, monto, cuenta_destino):
+        """Transfiere dinero a otra cuenta."""
+        try:
+            # Verificar que la cuenta destino sea válida
+            if not isinstance(cuenta_destino, CuentaBancaria):
+                raise ErrorValidacion("La cuenta destino debe ser una CuentaBancaria válida", "cuenta_destino", type(cuenta_destino))
+
+            # Realizar la transferencia
+            self.retirar(monto)
+            cuenta_destino.depositar(monto)
+
+        except (ErrorSaldoInsuficiente, ErrorValidacion):
+            raise  # Re-lanzar errores específicos
+        except Exception as e:
+            # Manejar otros errores inesperados
+            raise ErrorValidacion(f"Error en transferencia: {e}", "transferencia", monto)
+
+# 4. Uso del sistema bancario
+def demo_sistema_bancario():
+    """Demostración del sistema bancario con excepciones."""
+
+    # Crear cuentas
+    cuenta1 = CuentaBancaria("Ana García", 1000)
+    cuenta2 = CuentaBancaria("Carlos López", 500)
+
+    print("🏦 SISTEMA BANCARIO - DEMOSTRACIÓN")
+    print(f"Cuenta 1: {cuenta1.titular} - Saldo: ${cuenta1.saldo}")
+    print(f"Cuenta 2: {cuenta2.titular} - Saldo: ${cuenta2.saldo}")
+
+    # Operaciones exitosas
+    try:
+        print("\n💰 DEPOSITANDO $200 en cuenta 1...")
+        cuenta1.depositar(200)
+        print(f"✅ Nuevo saldo cuenta 1: ${cuenta1.saldo}")
+
+        print("\n💸 RETIRANDO $150 de cuenta 1...")
+        cuenta1.retirar(150)
+        print(f"✅ Nuevo saldo cuenta 1: ${cuenta1.saldo}")
+
+        print("\n🔄 TRANSFIRIENDO $300 de cuenta 1 a cuenta 2...")
+        cuenta1.transferir(300, cuenta2)
+        print(f"✅ Saldo cuenta 1: ${cuenta1.saldo}")
+        print(f"✅ Saldo cuenta 2: ${cuenta2.saldo}")
+
+    except Exception as e:
+        print(f"❌ Error en operación: {e}")
+
+    # Operaciones con errores
+    operaciones_erroneas = [
+        ("Depósito negativo", lambda: cuenta1.depositar(-50)),
+        ("Retiro excesivo", lambda: cuenta1.retirar(2000)),
+        ("Transferencia inválida", lambda: cuenta1.transferir(100, "no_es_una_cuenta")),
+    ]
+
+    print("\n\n🔥 PRUEBA DE ERRORES:")
+    for nombre, operacion in operaciones_erroneas:
+        try:
+            print(f"\n{nombre}:")
+            operacion()
+        except Exception as e:
+            print(f"❌ {type(e).__name__}: {e}")
+
+# 5. Validador avanzado con excepciones personalizadas
+class ValidadorDatos:
+    """Clase para validar diferentes tipos de datos."""
+
+    @staticmethod
+    def validar_email(email):
+        """Valida formato de email."""
+        import re
+        patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
+        if not isinstance(email, str):
+            raise ErrorValidacion("El email debe ser una cadena de texto", "email", email)
+
+        if not email.strip():
+            raise ErrorValidacion("El email no puede estar vacío", "email", email)
+
+        if not re.match(patron, email):
+            raise ErrorValidacion("El formato del email no es válido", "email", email)
+
+        return True
+
+    @staticmethod
+    def validar_contrasena(contrasena, longitud_minima=8):
+        """Valida seguridad de contraseña."""
+        if not isinstance(contrasena, str):
+            raise ErrorValidacion("La contraseña debe ser una cadena de texto", "contrasena", type(contrasena))
+
+        if len(contrasena) < longitud_minima:
+            raise ErrorValidacion(f"La contraseña debe tener al menos {longitud_minima} caracteres", "contrasena", f"longitud {len(contrasena)}")
+
+        if not any(c.isupper() for c in contrasena):
+            raise ErrorValidacion("La contraseña debe contener al menos una letra mayúscula", "contrasena", "sin mayúsculas")
+
+        if not any(c.islower() for c in contrasena):
+            raise ErrorValidacion("La contraseña debe contener al menos una letra minúscula", "contrasena", "sin minúsculas")
+
+        if not any(c.isdigit() for c in contrasena):
+            raise ErrorValidacion("La contraseña debe contener al menos un número", "contrasena", "sin números")
+
+        return True
+
+    @staticmethod
+    def validar_telefono(telefono):
+        """Valida formato de teléfono."""
+        import re
+
+        if not isinstance(telefono, str):
+            raise ErrorValidacion("El teléfono debe ser una cadena de texto", "telefono", telefono)
+
+        # Aceptar formatos: (123) 456-7890, 123-456-7890, 123.456.7890, +1 123 456 7890
+        patron = r'^\+?1?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$'
+
+        telefono_limpio = re.sub(r'[\s\-\(\)\.]', '', telefono)
+
+        if not re.match(patron, telefono):
+            raise ErrorValidacion("El formato del teléfono no es válido", "telefono", telefono)
+
+        return True
+
+# 6. Uso del validador avanzado
+def demo_validador():
+    """Demostración del validador avanzado."""
+
+    print("\n🔐 VALIDADOR AVANZADO - DEMOSTRACIÓN")
+
+    # Datos de prueba
+    datos_prueba = [
+        ("email", "usuario@ejemplo.com", True),
+        ("email", "email.invalido", False),
+        ("email", "", False),
+        ("contrasena", "MiContraseña123", True),
+        ("contrasena", "123", False),
+        ("contrasena", "sinsimbolos", False),
+        ("telefono", "(555) 123-4567", True),
+        ("telefono", "555.123.4567", True),
+        ("telefono", "123-456-7890", True),
+        ("telefono", "telefono_invalido", False),
+    ]
+
+    for tipo, valor, deberia_ser_valido in datos_prueba:
+        try:
+            if tipo == "email":
+                ValidadorDatos.validar_email(valor)
+                resultado = "✅ VÁLIDO"
+            elif tipo == "contrasena":
+                ValidadorDatos.validar_contrasena(valor)
+                resultado = "✅ VÁLIDO"
+            elif tipo == "telefono":
+                ValidadorDatos.validar_telefono(valor)
+                resultado = "✅ VÁLIDO"
+
+        except ErrorValidacion as e:
+            if deberia_ser_valido:
+                resultado = f"❌ INVALIDO (inesperado): {e}"
+            else:
+                resultado = f"✅ INVALIDO (esperado): {e}"
+        except Exception as e:
+            resultado = f"❌ ERROR INESPERADO: {e}"
+
+        print(f"{tipo.capitalize()} '{valor}': {resultado}")
+
+# Ejecutar demostraciones
+if __name__ == "__main__":
+    demo_sistema_bancario()
+    demo_validador()
+
+    print("\n🎉 ¡Demostración de excepciones personalizadas completada!")</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Cuándo Crear Excepciones Personalizadas</h4>
+                    <p>Crea excepciones personalizadas cuando:</p>
+                    <ul>
+                        <li>Tu aplicación tiene errores específicos del dominio</li>
+                        <li>Necesitas proporcionar información adicional sobre el error</li>
+                        <li>Quieres diferenciar errores de tu aplicación de errores del sistema</li>
+                        <li>Estás creando bibliotecas o APIs que otros desarrolladores usarán</li>
+                        <li>Necesitas manejar errores específicos de negocio</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Estrategias de manejo de errores -->
+            <div class="concept-card">
+                <h3>4. Estrategias Avanzadas de Manejo de Errores</h3>
+                <p>Desarrollar estrategias efectivas para manejar errores requiere planificación y consideración de diferentes escenarios y necesidades de la aplicación.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Estrategias avanzadas de manejo de errores
+
+# 1. Patrón de reintento con límite
+def operacion_con_reintento(funcion, max_intentos=3, excepciones_permitidas=(Exception,)):
+    """Ejecuta una función con reintentos automáticos."""
+
+    for intento in range(max_intentos):
+        try:
+            return funcion()
+        except excepciones_permitidas as e:
+            if intento == max_intentos - 1:
+                print(f"❌ Falló después de {max_intentos} intentos. Último error: {e}")
+                raise
+            else:
+                print(f"⚠️ Intento {intento + 1} falló: {e}. Reintentando...")
+                # Podrías agregar una pausa aquí con time.sleep()
+
+    return None
+
+def conectar_base_datos():
+    """Simula conexión a base de datos (puede fallar aleatoriamente)."""
+    import random
+    if random.choice([True, False, False]):  # 33% de éxito
+        print("✅ Conexión exitosa a la base de datos")
+        return "conexion_exitosa"
+    else:
+        raise ConnectionError("Error de conexión a la base de datos")
+
+# Uso del patrón de reintento
+print("🔄 INTENTANDO CONEXIÓN CON REINTENTOS:")
+try:
+    resultado = operacion_con_reintento(conectar_base_datos, max_intentos=3)
+    print(f"Resultado: {resultado}")
+except ConnectionError:
+    print("❌ No se pudo conectar incluso después de reintentos")
+
+# 2. Manejo de errores en operaciones críticas
+class SistemaCritico:
+    """Sistema que maneja operaciones críticas con recuperación."""
+
+    def __init__(self):
+        self.estado = "inicial"
+        self.datos_backup = []
+        self.log_errores = []
+
+    def ejecutar_operacion_critica(self, datos):
+        """Ejecuta operación crítica con múltiples estrategias de recuperación."""
+
+        # Estrategia 1: Validación previa
+        try:
+            self._validar_datos_criticos(datos)
+        except ValueError as e:
+            self.log_errores.append(f"Validación fallida: {e}")
+            return False
+
+        # Estrategia 2: Backup antes de operar
+        self.datos_backup = self._crear_backup()
+
+        # Estrategia 3: Ejecución con monitoreo
+        try:
+            resultado = self._ejecutar_operacion(datos)
+            self.estado = "operacion_exitosa"
+            return resultado
+
+        except Exception as e:
+            # Estrategia 4: Recuperación automática
+            self.log_errores.append(f"Operación fallida: {e}")
+            return self._recuperar_desde_error(e)
+
+    def _validar_datos_criticos(self, datos):
+        """Valida datos antes de operación crítica."""
+        if not datos:
+            raise ValueError("Datos vacíos no permitidos en operación crítica")
+
+        if len(datos) > 1000:
+            raise ValueError("Demasiados datos para operación crítica")
+
+    def _crear_backup(self):
+        """Crea backup del estado actual."""
+        return {"estado": self.estado, "timestamp": "ahora"}
+
+    def _ejecutar_operacion(self, datos):
+        """Ejecuta la operación crítica."""
+        # Simular posible fallo
+        import random
+        if random.choice([True, False, False, False]):
+            return f"Operación completada con {len(datos)} elementos"
+        else:
+            raise RuntimeError("Fallo simulado en operación crítica")
+
+    def _recuperar_desde_error(self, error):
+        """Intenta recuperación automática desde error."""
+        print(f"🔧 Intentando recuperación automática desde: {error}")
+
+        # Estrategia de recuperación: intentar con datos reducidos
+        if len(self.datos_backup) > 0:
+            print("✅ Recuperando estado desde backup")
+            self.estado = self.datos_backup["estado"]
+            return "Recuperación parcial exitosa"
+
+        return False
+
+# 3. Manejo de errores en contexto de aplicación web (simulado)
+class AplicacionWeb:
+    """Simulación de aplicación web con manejo de errores."""
+
+    def __init__(self):
+        self.usuarios = {}
+        self.sesiones = {}
+
+    def login_usuario(self, usuario, contrasena):
+        """Procesa login con manejo completo de errores."""
+
+        try:
+            # Paso 1: Validar entrada
+            if not usuario or not contrasena:
+                raise ValueError("Usuario y contraseña son requeridos")
+
+            if usuario not in self.usuarios:
+                raise ValueError("Usuario no encontrado")
+
+            usuario_data = self.usuarios[usuario]
+
+            # Paso 2: Verificar contraseña (simulado)
+            if not self._verificar_contrasena(usuario_data, contrasena):
+                raise ValueError("Contraseña incorrecta")
+
+            # Paso 3: Crear sesión
+            sesion_id = self._crear_sesion(usuario)
+            self.estado = "autenticado"
+
+            return {
+                "exito": True,
+                "sesion_id": sesion_id,
+                "mensaje": "Login exitoso"
+            }
+
+        except ValueError as e:
+            return {
+                "exito": False,
+                "error": str(e),
+                "codigo_error": "VALIDACION"
+            }
+        except Exception as e:
+            return {
+                "exito": False,
+                "error": "Error interno del servidor",
+                "codigo_error": "SERVIDOR"
+            }
+
+    def _verificar_contrasena(self, usuario_data, contrasena):
+        """Verifica contraseña (simulación)."""
+        return contrasena == "password123"
+
+    def _crear_sesion(self, usuario):
+        """Crea una sesión para el usuario."""
+        import uuid
+        sesion_id = str(uuid.uuid4())
+        self.sesiones[sesion_id] = {
+            "usuario": usuario,
+            "timestamp": "ahora"
+        }
+        return sesion_id
+
+# 4. Logging estructurado de errores
+import logging
+
+def configurar_logging():
+    """Configura el sistema de logging."""
+    logging.basicConfig(
+        filename='app.log',
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+
+def registrar_operacion(categoria, operacion, datos=None, error=None):
+    """Registra operaciones con información estructurada."""
+
+    mensaje = f"[{categoria}] {operacion}"
+
+    if datos:
+        mensaje += f" | Datos: {datos}"
+
+    if error:
+        logging.error(f"{mensaje} | Error: {error}")
+    else:
+        logging.info(mensaje)
+
+# 5. Uso del sistema completo
+def demo_sistema_robusto():
+    """Demostración completa del sistema robusto."""
+
+    print("🚀 DEMOSTRACIÓN DE SISTEMA ROBUSTO")
+
+    # Configurar logging
+    configurar_logging()
+
+    # Sistema crítico
+    sistema = SistemaCritico()
+
+    operaciones_prueba = [
+        [1, 2, 3, 4, 5],  # Datos válidos
+        [],  # Datos vacíos (debería fallar validación)
+        list(range(2000)),  # Muchos datos (debería fallar validación)
+    ]
+
+    for i, datos in enumerate(operaciones_prueba, 1):
+        print(f"\n🔄 Operación crítica {i}:")
+        registrar_operacion("CRITICA", f"Operacion_{i}", len(datos))
+
+        try:
+            resultado = sistema.ejecutar_operacion_critica(datos)
+            print(f"✅ Resultado: {resultado}")
+        except Exception as e:
+            print(f"❌ Error crítico: {e}")
+            registrar_operacion("CRITICA", f"Operacion_{i}_ERROR", len(datos), str(e))
+
+    # Aplicación web
+    app = AplicacionWeb()
+    app.usuarios["testuser"] = {"nombre": "Usuario Test"}
+
+    print("\n🌐 PRUEBA DE APLICACIÓN WEB:")
+
+    # Logins de prueba
+    casos_login = [
+        ("testuser", "password123", True),
+        ("testuser", "wrongpass", False),
+        ("", "password123", False),
+        ("nonexistent", "password123", False),
+    ]
+
+    for usuario, contrasena, deberia_exitoso in casos_login:
+        resultado = app.login_usuario(usuario, contrasena)
+
+        if resultado["exito"]:
+            print(f"✅ Login exitoso para {usuario}")
+            registrar_operacion("AUTH", "LOGIN_EXITOSO", usuario)
+        else:
+            print(f"❌ Login fallido para {usuario}: {resultado['error']}")
+            registrar_operacion("AUTH", "LOGIN_FALLIDO", usuario, resultado['error'])
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_sistema_robusto()
+
+    print("\n📋 LOGS GENERADOS:")
+    print("Los logs se han guardado en el archivo 'app.log'")
+    print("Puedes revisarlos para ver el registro detallado de operaciones")</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Estrategias a Evitar</h4>
+                    <ul>
+                        <li><strong>Capturar excepciones demasiado generales:</strong> Puede ocultar errores importantes</li>
+                        <li><strong>No registrar errores:</strong> Dificulta la depuración y monitoreo</li>
+                        <li><strong>Mostrar información sensible en errores:</strong> Puede exponer datos privados</li>
+                        <li><strong>No tener estrategias de recuperación:</strong> Aplicaciones frágiles</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+
+            <div class="card">
+                <h3>Ejemplo 1: Programa a Prueba de Errores</h3>
+                <p>Crearemos un programa interactivo que maneje errores de usuario de manera elegante y proporcione una buena experiencia.</p>
+
+                <div class="exception-showcase">
+                    <h3><i class="fas fa-shield-alt"></i> Calculadora Interactiva Robusta</h3>
+
+                    <div class="exception-example">
+                        <h5>Programa Completo con Manejo Exhaustivo de Errores</h5>
+                        <pre><code class="language-python"># Calculadora interactiva a prueba de errores
+
+import math
+import os
+
+class CalculadoraRobusta:
+    """Calculadora con manejo completo de errores y recuperación."""
+
+    def __init__(self):
+        self.historial = []
+        self.ultimo_resultado = None
+
+    def mostrar_menu(self):
+        """Muestra el menú principal de la calculadora."""
+        print("\n" + "="*60)
+        print("🧮 CALCULADORA CIENTÍFICA ROBUSTA")
+        print("="*60)
+        print("Operaciones básicas:")
+        print("  1. Suma (+)")
+        print("  2. Resta (-)")
+        print("  3. Multiplicación (*)")
+        print("  4. División (/)")
+        print("\nOperaciones avanzadas:")
+        print("  5. Potencia (^)")
+        print("  6. Raíz cuadrada (√)")
+        print("  7. Logaritmo (log)")
+        print("  8. Seno (sin)")
+        print("  9. Coseno (cos)")
+        print(" 10. Tangente (tan)")
+        print("\nOtras opciones:")
+        print(" 11. Historial")
+        print(" 12. Limpiar historial")
+        print("  0. Salir")
+        print("="*60)
+
+    def obtener_numero_seguro(self, mensaje="Ingresa un número: "):
+        """Obtiene un número del usuario con validación robusta."""
+
+        while True:
+            try:
+                entrada = input(mensaje).strip()
+
+                # Verificar si es un número válido
+                if not entrada:
+                    print("❌ Error: No puedes dejar el campo vacío")
+                    continue
+
+                # Intentar convertir a float
+                numero = float(entrada)
+
+                # Verificar límites razonables
+                if abs(numero) > 1e100:  # Número demasiado grande
+                    print("❌ Error: El número es demasiado grande")
+                    continue
+
+                return numero
+
+            except ValueError:
+                print("❌ Error: Debes ingresar un número válido")
+            except KeyboardInterrupt:
+                print("\n⚠️ Operación cancelada por el usuario")
+                return None
+            except Exception as e:
+                print(f"❌ Error inesperado: {e}")
+                return None
+
+    def ejecutar_operacion(self, operacion, a, b=None):
+        """Ejecuta una operación matemática con manejo de errores."""
+
+        try:
+            if operacion == "suma":
+                resultado = a + b
+            elif operacion == "resta":
+                resultado = a - b
+            elif operacion == "multiplicacion":
+                resultado = a * b
+            elif operacion == "division":
+                if b == 0:
+                    raise ZeroDivisionError("No se puede dividir por cero")
+                resultado = a / b
+            elif operacion == "potencia":
+                resultado = a ** b
+            elif operacion == "raiz":
+                if a < 0:
+                    raise ValueError("No se puede calcular raíz cuadrada de número negativo")
+                resultado = math.sqrt(a)
+            elif operacion == "logaritmo":
+                if a <= 0:
+                    raise ValueError("El logaritmo solo está definido para números positivos")
+                resultado = math.log(a)
+            elif operacion == "seno":
+                resultado = math.sin(math.radians(a))
+            elif operacion == "coseno":
+                resultado = math.cos(math.radians(a))
+            elif operacion == "tangente":
+                resultado = math.tan(math.radians(a))
+            else:
+                raise ValueError(f"Operación '{operacion}' no reconocida")
+
+            # Verificar que el resultado sea válido
+            if not math.isfinite(resultado):
+                raise ValueError("El resultado es infinito o no válido")
+
+            return resultado
+
+        except ZeroDivisionError as e:
+            raise ValueError(f"Error matemático: {e}")
+        except ValueError as e:
+            raise ValueError(f"Error de valor: {e}")
+        except Exception as e:
+            raise ValueError(f"Error inesperado: {e}")
+
+    def mostrar_historial(self):
+        """Muestra el historial de operaciones."""
+        if not self.historial:
+            print("📭 El historial está vacío")
+            return
+
+        print("\n📚 HISTORIAL DE OPERACIONES:")
+        print("-" * 80)
+
+        for i, operacion in enumerate(self.historial, 1):
+            print(f"{i"3d"}. {operacion}")
+
+        print("-" * 80)
+        print(f"Total de operaciones: {len(self.historial)}")
+
+    def limpiar_historial(self):
+        """Limpia el historial de operaciones."""
+        self.historial.clear()
+        print("✅ Historial limpiado correctamente")
+
+    def guardar_historial(self, archivo="historial_calculadora.txt"):
+        """Guarda el historial en un archivo."""
+        try:
+            with open(archivo, 'w', encoding='utf-8') as f:
+                f.write("HISTORIAL DE CALCULADORA\n")
+                f.write("="*50 + "\n")
+                f.write(f"Generado: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"Total de operaciones: {len(self.historial)}\n\n")
+
+                for operacion in self.historial:
+                    f.write(f"- {operacion}\n")
+
+            print(f"💾 Historial guardado en '{archivo}'")
+            return True
+
+        except Exception as e:
+            print(f"❌ Error al guardar historial: {e}")
+            return False
+
+    def ejecutar(self):
+        """Ejecuta el programa principal de la calculadora."""
+
+        print("🚀 ¡Bienvenido a la Calculadora Científica Robusta!")
+        print("Esta calculadora maneja errores de manera inteligente.")
+
+        while True:
+            try:
+                self.mostrar_menu()
+
+                # Obtener opción del usuario
+                try:
+                    opcion = input("Selecciona una opción (0-12): ").strip()
+
+                    if not opcion:
+                        print("❌ Error: Debes seleccionar una opción")
+                        continue
+
+                    opcion = int(opcion)
+
+                except ValueError:
+                    print("❌ Error: Debes ingresar un número válido")
+                    continue
+                except KeyboardInterrupt:
+                    print("\n👋 ¡Hasta luego!")
+                    break
+
+                # Procesar opción
+                if opcion == 0:
+                    print("\n👋 ¡Gracias por usar la Calculadora Robusta!")
+                    break
+
+                elif opcion == 1:  # Suma
+                    a = self.obtener_numero_seguro("Ingresa el primer número: ")
+                    if a is None: continue
+
+                    b = self.obtener_numero_seguro("Ingresa el segundo número: ")
+                    if b is None: continue
+
+                    resultado = self.ejecutar_operacion("suma", a, b)
+                    print(f"📊 {a} + {b} = {resultado}")
+                    self.historial.append(f"Suma: {a} + {b} = {resultado}")
+
+                elif opcion == 2:  # Resta
+                    a = self.obtener_numero_seguro("Ingresa el primer número: ")
+                    if a is None: continue
+
+                    b = self.obtener_numero_seguro("Ingresa el segundo número: ")
+                    if b is None: continue
+
+                    resultado = self.ejecutar_operacion("resta", a, b)
+                    print(f"📊 {a} - {b} = {resultado}")
+                    self.historial.append(f"Resta: {a} - {b} = {resultado}")
+
+                elif opcion == 3:  # Multiplicación
+                    a = self.obtener_numero_seguro("Ingresa el primer número: ")
+                    if a is None: continue
+
+                    b = self.obtener_numero_seguro("Ingresa el segundo número: ")
+                    if b is None: continue
+
+                    resultado = self.ejecutar_operacion("multiplicacion", a, b)
+                    print(f"📊 {a} × {b} = {resultado}")
+                    self.historial.append(f"Multiplicación: {a} × {b} = {resultado}")
+
+                elif opcion == 4:  # División
+                    a = self.obtener_numero_seguro("Ingresa el dividendo: ")
+                    if a is None: continue
+
+                    b = self.obtener_numero_seguro("Ingresa el divisor: ")
+                    if b is None: continue
+
+                    try:
+                        resultado = self.ejecutar_operacion("division", a, b)
+                        print(f"📊 {a} ÷ {b} = {resultado}")
+                        self.historial.append(f"División: {a} ÷ {b} = {resultado}")
+                    except ValueError as e:
+                        print(f"❌ {e}")
+
+                elif opcion == 5:  # Potencia
+                    a = self.obtener_numero_seguro("Ingresa la base: ")
+                    if a is None: continue
+
+                    b = self.obtener_numero_seguro("Ingresa el exponente: ")
+                    if b is None: continue
+
+                    try:
+                        resultado = self.ejecutar_operacion("potencia", a, b)
+                        print(f"📊 {a}^{b} = {resultado}")
+                        self.historial.append(f"Potencia: {a}^{b} = {resultado}")
+                    except ValueError as e:
+                        print(f"❌ {e}")
+
+                elif opcion == 6:  # Raíz cuadrada
+                    a = self.obtener_numero_seguro("Ingresa el número: ")
+                    if a is None: continue
+
+                    try:
+                        resultado = self.ejecutar_operacion("raiz", a)
+                        print(f"📊 √{a} = {resultado}")
+                        self.historial.append(f"Raíz cuadrada: √{a} = {resultado}")
+                    except ValueError as e:
+                        print(f"❌ {e}")
+
+                elif opcion == 7:  # Logaritmo
+                    a = self.obtener_numero_seguro("Ingresa el número: ")
+                    if a is None: continue
+
+                    try:
+                        resultado = self.ejecutar_operacion("logaritmo", a)
+                        print(f"📊 ln({a}) = {resultado}")
+                        self.historial.append(f"Logaritmo: ln({a}) = {resultado}")
+                    except ValueError as e:
+                        print(f"❌ {e}")
+
+                elif opcion == 8:  # Seno
+                    a = self.obtener_numero_seguro("Ingresa el ángulo en grados: ")
+                    if a is None: continue
+
+                    resultado = self.ejecutar_operacion("seno", a)
+                    print(f"📊 sin({a}°) = {resultado}")
+                    self.historial.append(f"Seno: sin({a}°) = {resultado}")
+
+                elif opcion == 9:  # Coseno
+                    a = self.obtener_numero_seguro("Ingresa el ángulo en grados: ")
+                    if a is None: continue
+
+                    resultado = self.ejecutar_operacion("coseno", a)
+                    print(f"📊 cos({a}°) = {resultado}")
+                    self.historial.append(f"Coseno: cos({a}°) = {resultado}")
+
+                elif opcion == 10:  # Tangente
+                    a = self.obtener_numero_seguro("Ingresa el ángulo en grados: ")
+                    if a is None: continue
+
+                    resultado = self.ejecutar_operacion("tangente", a)
+                    print(f"📊 tan({a}°) = {resultado}")
+                    self.historial.append(f"Tangente: tan({a}°) = {resultado}")
+
+                elif opcion == 11:  # Historial
+                    self.mostrar_historial()
+
+                elif opcion == 12:  # Limpiar historial
+                    self.limpiar_historial()
+
+                else:
+                    print(f"❌ Error: Opción {opcion} no válida. Selecciona 0-12.")
+
+            except KeyboardInterrupt:
+                print("\n\n⚠️ Programa interrumpido por el usuario")
+                break
+            except Exception as e:
+                print(f"❌ Error inesperado: {e}")
+                print("💡 El programa continuará funcionando")
+
+# Función principal
+def main():
+    """Función principal del programa."""
+
+    # Crear instancia de la calculadora
+    calculadora = CalculadoraRobusta()
+
+    try:
+        # Ejecutar la calculadora
+        calculadora.ejecutar()
+
+    except Exception as e:
+        print(f"\n💥 Error crítico en el programa: {e}")
+        print("El programa se cerrará.")
+
+    finally:
+        # Siempre intentar guardar el historial al salir
+        print("\n💾 Intentando guardar historial...")
+        calculadora.guardar_historial()
+
+        print("✅ ¡Programa terminado!")
+
+# Ejecutar si se llama directamente
+if __name__ == "__main__":
+    main()</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplo 2: Sistema de Validación Robusto</h3>
+                <p>Desarrollaremos un sistema que valide diferentes tipos de datos de entrada con manejo completo de errores y recuperación.</p>
+
+                <div class="robust-app">
+                    <h3><i class="fas fa-check-circle"></i> Validador de Datos Completo</h3>
+
+                    <div class="app-example">
+                        <h5>Sistema de Validación con Múltiples Estrategias</h5>
+                        <pre><code class="language-python"># Sistema completo de validación de datos
+
+import re
+import datetime
+from typing import Any, Dict, List, Optional, Union
+
+class ValidadorDatos:
+    """Sistema completo para validación de diferentes tipos de datos."""
+
+    def __init__(self):
+        self.errores = []
+        self.advertencias = []
+
+    def validar_todo(self, datos: Dict[str, Any], reglas: Dict[str, Dict]) -> Dict[str, Any]:
+        """Valida múltiples campos según reglas específicas."""
+
+        resultados = {
+            "valido": True,
+            "datos_validados": {},
+            "errores": {},
+            "advertencias": {},
+            "estadisticas": {}
+        }
+
+        for campo, valor in datos.items():
+            if campo in reglas:
+                try:
+                    # Aplicar reglas de validación
+                    resultado_campo = self._validar_campo(campo, valor, reglas[campo])
+
+                    if resultado_campo["valido"]:
+                        resultados["datos_validados"][campo] = resultado_campo["valor"]
+                        if resultado_campo["advertencias"]:
+                            resultados["advertencias"][campo] = resultado_campo["advertencias"]
+                    else:
+                        resultados["valido"] = False
+                        resultados["errores"][campo] = resultado_campo["errores"]
+
+                except Exception as e:
+                    resultados["valido"] = False
+                    resultados["errores"][campo] = [f"Error inesperado: {e}"]
+
+        # Estadísticas
+        resultados["estadisticas"] = {
+            "campos_total": len(datos),
+            "campos_validos": len(resultados["datos_validados"]),
+            "campos_invalidos": len(resultados["errores"]),
+            "advertencias_total": sum(len(advs) for advs in resultados["advertencias"].values())
+        }
+
+        return resultados
+
+    def _validar_campo(self, nombre_campo: str, valor: Any, reglas: Dict) -> Dict:
+        """Valida un campo individual según sus reglas."""
+
+        resultado = {
+            "valido": True,
+            "valor": valor,
+            "errores": [],
+            "advertencias": []
+        }
+
+        # Aplicar cada regla
+        for regla, parametros in reglas.items():
+            try:
+                if regla == "requerido":
+                    if not self._validar_requerido(valor):
+                        resultado["errores"].append("Campo requerido")
+
+                elif regla == "tipo":
+                    tipo_esperado = parametros
+                    if not self._validar_tipo(valor, tipo_esperado):
+                        resultado["errores"].append(f"Debe ser de tipo {tipo_esperado}")
+
+                elif regla == "longitud_min":
+                    min_long = parametros
+                    if not self._validar_longitud_min(valor, min_long):
+                        resultado["errores"].append(f"Debe tener al menos {min_long} caracteres")
+
+                elif regla == "longitud_max":
+                    max_long = parametros
+                    if not self._validar_longitud_max(valor, max_long):
+                        resultado["errores"].append(f"No debe exceder {max_long} caracteres")
+
+                elif regla == "rango":
+                    min_val, max_val = parametros
+                    if not self._validar_rango(valor, min_val, max_val):
+                        resultado["errores"].append(f"Debe estar entre {min_val} y {max_val}")
+
+                elif regla == "patron_regex":
+                    patron = parametros
+                    if not self._validar_patron(valor, patron):
+                        resultado["errores"].append("No cumple con el formato requerido")
+
+                elif regla == "email":
+                    if not self._validar_email(valor):
+                        resultado["errores"].append("Email no válido")
+
+                elif regla == "telefono":
+                    if not self._validar_telefono(valor):
+                        resultado["errores"].append("Teléfono no válido")
+
+                elif regla == "fecha":
+                    formato = parametros if isinstance(parametros, str) else "%Y-%m-%d"
+                    resultado_validacion = self._validar_fecha(valor, formato)
+                    if not resultado_validacion["valido"]:
+                        resultado["errores"].append(resultado_validacion["error"])
+                    else:
+                        resultado["valor"] = resultado_validacion["fecha"]
+
+                elif regla == "opciones":
+                    opciones_validas = parametros
+                    if not self._validar_opciones(valor, opciones_validas):
+                        resultado["errores"].append(f"Debe ser una de: {opciones_validas}")
+
+                elif regla == "archivo_existe":
+                    if not self._validar_archivo_existe(valor):
+                        resultado["errores"].append("Archivo no encontrado")
+
+                # Reglas de advertencia (no bloquean la validación)
+                if regla == "recomendacion_longitud":
+                    longitud_rec = parametros
+                    if len(str(valor)) < longitud_rec:
+                        resultado["advertencias"].append(f"Se recomienda al menos {longitud_rec} caracteres")
+
+                if regla == "recomendacion_complejidad":
+                    if not self._evaluar_complejidad_contrasena(valor):
+                        resultado["advertencias"].append("Considera usar una contraseña más compleja")
+
+            except Exception as e:
+                resultado["errores"].append(f"Error aplicando regla {regla}: {e}")
+
+        resultado["valido"] = len(resultado["errores"]) == 0
+        return resultado
+
+    # Reglas de validación básicas
+    def _validar_requerido(self, valor) -> bool:
+        """Valida que el campo no esté vacío."""
+        if valor is None:
+            return False
+        if isinstance(valor, str) and not valor.strip():
+            return False
+        return True
+
+    def _validar_tipo(self, valor, tipo_esperado) -> bool:
+        """Valida el tipo de dato."""
+        try:
+            return isinstance(valor, tipo_esperado)
+        except:
+            return False
+
+    def _validar_longitud_min(self, valor, min_long) -> bool:
+        """Valida longitud mínima."""
+        try:
+            return len(str(valor)) >= min_long
+        except:
+            return False
+
+    def _validar_longitud_max(self, valor, max_long) -> bool:
+        """Valida longitud máxima."""
+        try:
+            return len(str(valor)) <= max_long
+        except:
+            return False
+
+    def _validar_rango(self, valor, min_val, max_val) -> bool:
+        """Valida que el valor esté en un rango."""
+        try:
+            return min_val <= valor <= max_val
+        except:
+            return False
+
+    def _validar_patron(self, valor, patron) -> bool:
+        """Valida usando expresión regular."""
+        try:
+            return bool(re.match(patron, str(valor)))
+        except:
+            return False
+
+    def _validar_email(self, valor) -> bool:
+        """Valida formato de email."""
+        patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return self._validar_patron(valor, patron)
+
+    def _validar_telefono(self, valor) -> bool:
+        """Valida formato de teléfono."""
+        patron = r'^\+?1?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$'
+        return self._validar_patron(valor, patron)
+
+    def _validar_fecha(self, valor, formato) -> Dict:
+        """Valida y convierte fecha."""
+        try:
+            if isinstance(valor, str):
+                fecha = datetime.datetime.strptime(valor, formato)
+                return {"valido": True, "fecha": fecha}
+            elif isinstance(valor, datetime.datetime):
+                return {"valido": True, "fecha": valor}
+            else:
+                return {"valido": False, "error": "Formato de fecha no válido"}
+        except ValueError as e:
+            return {"valido": False, "error": f"Fecha no válida: {e}"}
+        except Exception as e:
+            return {"valido": False, "error": f"Error procesando fecha: {e}"}
+
+    def _validar_opciones(self, valor, opciones) -> bool:
+        """Valida que el valor esté en lista de opciones."""
+        return valor in opciones
+
+    def _validar_archivo_existe(self, valor) -> bool:
+        """Valida que un archivo existe."""
+        try:
+            import os
+            return os.path.exists(str(valor))
+        except:
+            return False
+
+    def _evaluar_complejidad_contrasena(self, valor) -> bool:
+        """Evalúa la complejidad de una contraseña."""
+        if len(valor) < 8:
+            return False
+        tiene_mayuscula = any(c.isupper() for c in valor)
+        tiene_minuscula = any(c.islower() for c in valor)
+        tiene_numero = any(c.isdigit() for c in valor)
+        tiene_especial = any(not c.isalnum() for c in valor)
+
+        return tiene_mayuscula and tiene_minuscula and tiene_numero and tiene_especial
+
+# Función para demostrar el sistema
+def demo_validador_completo():
+    """Demostración completa del sistema de validación."""
+
+    print("🔍 DEMOSTRACIÓN DEL SISTEMA DE VALIDACIÓN")
+
+    # Crear validador
+    validador = ValidadorDatos()
+
+    # Datos de ejemplo para validar
+    datos_usuario = {
+        "nombre": "Ana García",
+        "email": "ana.garcia@ejemplo.com",
+        "edad": 25,
+        "telefono": "+34 555 123 456",
+        "fecha_nacimiento": "1998-05-15",
+        "contrasena": "MiContraseña123!",
+        "ciudad": "Madrid",
+        "codigo_postal": "28001",
+        "pais": "España"
+    }
+
+    # Reglas de validación
+    reglas_validacion = {
+        "nombre": {
+            "requerido": True,
+            "tipo": str,
+            "longitud_min": 2,
+            "longitud_max": 50
+        },
+        "email": {
+            "requerido": True,
+            "email": True,
+            "longitud_max": 100
+        },
+        "edad": {
+            "requerido": True,
+            "tipo": int,
+            "rango": (0, 150)
+        },
+        "telefono": {
+            "requerido": False,
+            "telefono": True
+        },
+        "fecha_nacimiento": {
+            "requerido": True,
+            "fecha": "%Y-%m-%d"
+        },
+        "contrasena": {
+            "requerido": True,
+            "longitud_min": 8,
+            "longitud_max": 100,
+            "recomendacion_complejidad": True
+        },
+        "ciudad": {
+            "requerido": False,
+            "longitud_max": 50
+        },
+        "codigo_postal": {
+            "requerido": False,
+            "patron_regex": r"^\d{5}$"
+        },
+        "pais": {
+            "requerido": False,
+            "opciones": ["España", "México", "Argentina", "Colombia", "Perú", "Chile"]
+        }
+    }
+
+    # Realizar validación
+    print("\n📋 VALIDANDO DATOS DE USUARIO...")
+    resultado = validador.validar_todo(datos_usuario, reglas_validacion)
+
+    # Mostrar resultados
+    print(f"\n📊 RESULTADOS DE VALIDACIÓN:")
+    print(f"✅ Válido: {resultado['valido']}")
+    print(f"📋 Campos totales: {resultado['estadisticas']['campos_total']}")
+    print(f"✅ Campos válidos: {resultado['estadisticas']['campos_validos']}")
+    print(f"❌ Campos inválidos: {resultado['estadisticas']['campos_invalidos']}")
+    print(f"⚠️ Advertencias: {resultado['estadisticas']['advertencias_total']}")
+
+    # Mostrar errores si los hay
+    if resultado['errores']:
+        print(f"\n❌ ERRORES ENCONTRADOS:")
+        for campo, errores in resultado['errores'].items():
+            print(f"  {campo}:")
+            for error in errores:
+                print(f"    - {error}")
+
+    # Mostrar advertencias si las hay
+    if resultado['advertencias']:
+        print(f"\n⚠️ ADVERTENCIAS:")
+        for campo, advertencias in resultado['advertencias'].items():
+            print(f"  {campo}:")
+            for advertencia in advertencias:
+                print(f"    - {advertencia}")
+
+    # Mostrar datos validados
+    if resultado['datos_validados']:
+        print(f"\n✅ DATOS VALIDADOS:")
+        for campo, valor in resultado['datos_validados'].items():
+            print(f"  {campo}: {valor}")
+
+    # Ejemplos de casos que fallan
+    print(f"\n🔥 PRUEBA DE CASOS PROBLEMÁTICOS:")
+
+    casos_problematicos = [
+        {
+            "nombre": datos_usuario.copy(),
+            "descripcion": "Datos válidos"
+        },
+        {
+            "nombre": {**datos_usuario, "email": "email_invalido"},
+            "descripcion": "Email inválido"
+        },
+        {
+            "nombre": {**datos_usuario, "edad": -5},
+            "descripcion": "Edad negativa"
+        },
+        {
+            "nombre": {**datos_usuario, "fecha_nacimiento": "fecha_invalida"},
+            "descripcion": "Fecha inválida"
+        },
+        {
+            "nombre": {**datos_usuario, "pais": "País Inválido"},
+            "descripcion": "País no en opciones"
+        }
+    ]
+
+    for caso in casos_problematicos:
+        resultado_caso = validador.validar_todo(caso["nombre"], reglas_validacion)
+        print(f"\n{caso['descripcion']}:")
+        print(f"  ✅ Válido: {resultado_caso['valido']}")
+        if resultado_caso['errores']:
+            print(f"  ❌ Errores: {len(resultado_caso['errores'])}")
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_validador_completo()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-calculator"></i> Actividad 1: Programa a Prueba de Errores</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Crea un programa interactivo que maneje errores comunes de usuario de manera elegante.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Manejar errores de entrada no numérica</li>
+                            <li>Validar rangos de valores permitidos</li>
+                            <li>Proporcionar mensajes de error claros</li>
+                            <li>Permitir recuperación del usuario</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-shield-alt"></i> Actividad 2: Validador de Datos Robusto</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un sistema que valide diferentes tipos de datos con manejo completo de errores.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Validar emails, teléfonos, fechas, números</li>
+                            <li>Manejar múltiples tipos de errores</li>
+                            <li>Proporcionar retroalimentación detallada</li>
+                            <li>Incluir excepciones personalizadas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-file-alt"></i> Actividad 3: Manejador de Archivos con Recuperación</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Crea un programa que maneje operaciones con archivos con recuperación automática de errores.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Manejar archivos inexistentes</li>
+                            <li>Recuperar permisos de escritura</li>
+                            <li>Validar contenido de archivos</li>
+                            <li>Crear backups automáticos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-cog"></i> Actividad 4: Sistema con Excepciones Personalizadas</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Desarrolla un sistema complejo que use excepciones personalizadas para manejar errores específicos del dominio.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Crear excepciones específicas para diferentes errores</li>
+                            <li>Implementar recuperación automática</li>
+                            <li>Incluir logging de errores</li>
+                            <li>Manejar errores en cascada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/errors.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Manejo de errores</a></li>
+                        <li><a href="https://realpython.com/python-exceptions/" target="_blank" rel="noopener noreferrer">Real Python - Excepciones en Python</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_try_except.asp" target="_blank" rel="noopener noreferrer">W3Schools - Try Except</a></li>
+                        <li><a href="https://python-course.eu/python-tutorial/errors-and-exception-handling.php" target="_blank" rel="noopener noreferrer">Python Course - Manejo de errores</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=NIWwJbo-9_8" target="_blank" rel="noopener noreferrer">Excepciones en Python - Explicación completa</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=frZrBgN-4p8" target="_blank" rel="noopener noreferrer">Try Except en Python - Tutorial práctico</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=UECASQAF3nE" target="_blank" rel="noopener noreferrer">Excepciones personalizadas en Python</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 8 - "Python Crash Course" de Eric Matthes (Manejo de errores)</li>
+                        <li>Sección 7 - "Fluent Python" de Luciano Ramalho (Excepciones)</li>
+                        <li>"Effective Python" de Brett Slatkin (Ítems 14, 20: Manejo de errores)</li>
+                        <li>"Python Cookbook" - Recetas avanzadas de manejo de errores</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s20.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s22.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

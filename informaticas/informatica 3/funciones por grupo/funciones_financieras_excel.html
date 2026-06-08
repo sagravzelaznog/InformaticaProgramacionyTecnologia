@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Financieras en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #27ae60;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #3498db;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #2980b9;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2ecc71;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .formula {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            border-left: 3px solid var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones Financieras en Excel</h1>
+            <p>Herramientas para cálculos financieros y análisis de inversiones</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- PRÉSTAMOS Y AMORTIZACIONES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('prestamos')">
+                <h2>Préstamos y Amortizaciones</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="prestamos">
+                <p>Funciones para el cálculo de préstamos, pagos y amortizaciones.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Cálculo de pagos (PAGO)</h4>
+                    <pre>// Calcular el pago mensual de un préstamo de $300,000 a 5 años (60 meses) al 7% anual
+=PAGO(7%/12, 60, 300000)  // Devuelve -$5,940.05 (pago mensual)
+
+// Nota: El resultado es negativo porque representa un pago (salida de efectivo)
+// Usar ABS() para obtener el valor absoluto: =ABS(PAGO(7%/12, 60, 300000))</pre>
+                    <div class="result-box">
+                        <strong>Fórmula general:</strong> <span class="formula">=PAGO(tasa, nper, va, [vf], [tipo])</span><br>
+                        <strong>Donde:</strong> tasa = tasa por período, nper = número total de pagos, va = valor actual, vf = valor futuro (opcional), tipo = cuándo vencen los pagos (0=fin de período, 1=inicio)
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Desglose de pagos (PAGOINT y PAGOPRIN)</h4>
+                    <pre>// Para el primer pago de un préstamo de $300,000 a 5 años al 7% anual
+=PAGOINT(7%/12, 1, 60, 300000)  // Interés del primer mes: $1,750.00
+=PAGOPRIN(7%/12, 1, 60, 300000)  // Capital del primer mes: $4,190.05
+
+// Verificación: 1,750.00 + 4,190.05 = 5,940.05 (igual al pago total)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Cálculo de plazo (NPER) y tasa (TASA)</h4>
+                    <pre>// Calcular cuántos pagos de $1,000 se necesitan para pagar $10,000 al 5% anual
+=NPER(5%/12, -1000, 10000)  // Aproximadamente 10.5 meses
+
+// Calcular la tasa de interés para un préstamo de $10,000 a 12 meses con pagos de $860
+=TASA(12, -860, 10000)*12  // Aproximadamente 5.0% anual (multiplicar por 12 para anual)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Cálculo de hipoteca</h4>
+                    <p>Datos: Préstamo hipotecario de $2,000,000 a 20 años con tasa fija del 6.5% anual.</p>
+                    <p>Calcula el pago mensual y el total de intereses a pagar.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>// Pago mensual
+=ABS(PAGO(6.5%/12, 20*12, 2000000))  // $14,902.83
+
+// Total pagado
+=14,902.83 * 20 * 12  // $3,576,680.18
+
+// Total de intereses
+=3,576,680.18 - 2,000,000  // $1,576,680.18</pre>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Plan de amortización</h4>
+                    <p>Datos: Préstamo de $50,000 a 3 años (36 meses) al 8% anual.</p>
+                    <p>Crea fórmulas para mostrar el interés, capital y saldo para el mes 12.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>// Pago mensual (constante)
+=ABS(PAGO(8%/12, 36, 50000))  // $1,567.05
+
+// Interés del mes 12
+=PAGOINT(8%/12, 12, 36, 50000)  // $277.03
+
+// Capital del mes 12
+=PAGOPRIN(8%/12, 12, 36, 50000)  // $1,290.02
+
+// Saldo después del pago 12
+=VA(8%/12, 24, -1567.05)  // $35,146.49 (24 pagos restantes)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALORACIÓN DE INVERSIONES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('inversiones')">
+                <h2>Valoración de Inversiones</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="inversiones" style="display: none;">
+                <p>Funciones para evaluar la rentabilidad de inversiones y proyectos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Valor Actual (VA) y Valor Futuro (VF)</h4>
+                    <pre>// Valor actual de $100,000 dentro de 5 años con tasa del 6% anual
+=VA(6%, 5, 0, -100000)  // $74,725.82
+
+// Valor futuro de $10,000 invertidos por 10 años al 7% anual
+=VF(7%, 10, 0, -10000)  // $19,671.51
+
+// Ahorro mensual para acumular $50,000 en 5 años al 5% anual
+=PAGO(5%/12, 5*12, 0, 50000)  // -$733.76 (debe ahorrar $733.76 mensuales)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Valor Neto Actual (VNA) y TIR</h4>
+                    <pre>// Inversión inicial: -$100,000
+// Flujos anuales: $30,000, $35,000, $40,000, $45,000, $50,000
+// Tasa de descuento: 10%
+
+// Calcular VNA
+=VNA(10%, 30000, 35000, 40000, 45000, 50000) - 100000  // $46,580.33
+
+// Calcular TIR (asumiendo flujos en A1:A6: -100000, 30000, 35000, 40000, 45000, 50000)
+=TIR(A1:A6)  // Aproximadamente 24.1%</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Tasas de interés (TASA.NOMINAL e INT.EFECTIVO)</h4>
+                    <pre>// Convertir tasa efectiva anual a nominal mensual (12% anual a mensual)
+=TASA.NOMINAL(12%, 12)  // 11.39% (tasa nominal anual con capitalización mensual)
+
+// Convertir tasa nominal a efectiva (18% nominal anual con capitalización mensual)
+=INT.EFECTIVO(18%, 12)  // 19.56% (tasa efectiva anual)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Análisis de inversión</h4>
+                    <p>Datos: Inversión inicial de $150,000 con flujos anuales de $40,000, $45,000, $50,000, $55,000, $60,000.</p>
+                    <p>Calcula el VNA con una tasa de descuento del 8% y determina si es rentable.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>// Cálculo del VNA
+=VNA(8%, 40000, 45000, 50000, 55000, 60000) - 150000
+
+// Resultado: $60,630.64
+// Como el VNA es positivo ($60,630.64 > 0), la inversión es rentable.</pre>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Comparación de tasas</h4>
+                    <p>Datos: Un banco ofrece un préstamo con tasa nominal del 15% capitalizable mensualmente.</p>
+                    <p>Calcula la tasa efectiva anual y determina cuál sería la tasa nominal si la capitalización fuera trimestral para obtener la misma tasa efectiva.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>// Tasa efectiva anual con capitalización mensual
+=INT.EFECTIVO(15%, 12)  // 16.08%
+
+// Para encontrar la tasa nominal con capitalización trimestral que dé 16.08% efectivo anual:
+// 1. Calcular la tasa por período: (1+16.08%)^(1/4)-1 = 3.80%
+// 2. Multiplicar por número de períodos: 3.80% * 4 = 15.19%
+
+// Verificación:
+=INT.EFECTIVO(15.19%, 4)  // 16.08% (misma tasa efectiva)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEPRECIACIÓN -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('depreciacion')">
+                <h2>Depreciación de Activos</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="depreciacion" style="display: none;">
+                <p>Funciones para calcular la depreciación de activos fijos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo: Depreciación lineal (SLN)</h4>
+                    <pre>// Calcular la depreciación anual de un activo que cuesta $50,000,
+// con un valor de rescate de $5,000 y vida útil de 5 años
+=SLN(50000, 5000, 5)  // $9,000 por año
+
+// Depreciación mensual del mismo activo
+=SLN(50000, 5000, 5*12)  // $750 por mes</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Tabla de depreciación</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Año</th>
+                            <th>Valor Inicial</th>
+                            <th>Depreciación</th>
+                            <th>Valor Final</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>$50,000</td>
+                            <td>$9,000</td>
+                            <td>$41,000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>$41,000</td>
+                            <td>$9,000</td>
+                            <td>$32,000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>$32,000</td>
+                            <td>$9,000</td>
+                            <td>$23,000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>$23,000</td>
+                            <td>$9,000</td>
+                            <td>$14,000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>$14,000</td>
+                            <td>$9,000</td>
+                            <td>$5,000</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="note">
+                    <strong>Nota sobre otros métodos de depreciación:</strong>
+                    <p>Excel también ofrece funciones para otros métodos de depreciación como SYD (suma de dígitos) y DB (doble saldo decreciente), que asignan mayor depreciación en los primeros años de vida del activo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

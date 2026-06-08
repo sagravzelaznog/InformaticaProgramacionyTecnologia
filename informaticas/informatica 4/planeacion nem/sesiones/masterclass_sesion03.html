@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 03: Diseño con Canva</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 03</h1>
+            <h2>Fundamentos de Diseño Gráfico</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Psicología del Color</h3>
+            <p><strong>Objetivo:</strong> Entender que los colores no son solo decoración; son comunicación emocional.</p>
+            
+            <div class="interactive-box">
+                <h4>🎨 El Círculo de las Emociones</h4>
+                <p>¿Qué sientes al ver estos colores? Las grandes marcas los usan para manipular tu percepción.</p>
+                
+                <div class="stats-grid" style="gap: 10px;">
+                    <div class="stat-item" style="background:#E53E3E; color:white; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="color:white; font-size:1.5rem;">ROJO</span>
+                        <span class="stat-label" style="color:white;">Pasión, Peligro, Urgencia (Netflix, Coca-Cola)</span>
+                    </div>
+                    <div class="stat-item" style="background:#3182CE; color:white; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="color:white; font-size:1.5rem;">AZUL</span>
+                        <span class="stat-label" style="color:white;">Confianza, Calma, Tecnología (Facebook, HP)</span>
+                    </div>
+                    <div class="stat-item" style="background:#ECC94B; color:black; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="color:black; font-size:1.5rem;">AMARILLO</span>
+                        <span class="stat-label" style="color:black;">Optimismo, Precaución, Juventud (Snapchat)</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"El diseño es el embajador silencioso de tu marca."</p>
+            </div>
+        </section>
+        
+        
+
+[Image of color theory wheel emotions]
+
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. La Caja de Herramientas del Diseñador</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🅰️ Tipografía (Fonts)</h4>
+                    <p>La voz de tu texto. No uses más de 2 fuentes por diseño.</p>
+                    <ul style="margin-top:10px;">
+                        <li style="font-family: 'Times New Roman', serif; font-size: 1.1rem;"><strong>Serif:</strong> Elegante, Tradicional (Títulos serios).</li>
+                        <li style="font-family: 'Arial', sans-serif; font-size: 1.1rem;"><strong>Sans Serif:</strong> Moderna, Limpia (Pantallas digitales).</li>
+                        <li style="font-family: 'Brush Script MT', cursive; font-size: 1.1rem;"><strong>Script:</strong> Creativa, Humana (Solo detalles).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>📐 Composición y Espacio</h4>
+                    <p>Cómo organizas los elementos en el lienzo.</p>
+                    <ul>
+                        <li><strong>Espacio en Blanco:</strong> Deja respirar al diseño. No llenes todo.</li>
+                        <li><strong>Jerarquía:</strong> Lo más importante debe ser lo más grande o contrastante.</li>
+                        <li><strong>Alineación:</strong> Todo debe tener una conexión visual con algo más.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🖥️ Interfaz de Canva: Paso a Paso</h4>
+                <p>Tu estudio de diseño en la nube.</p>
+                <div class="equation-visual" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap:10px;">
+                    <span style="border: 2px solid var(--primary);">1. Plantillas (Inspiración)</span> 
+                    <span style="border: 2px solid var(--accent);">2. Elementos (Gráficos)</span>
+                    <span style="border: 2px solid var(--text-dark); color: white; background: var(--text-dark);">3. Subidos (Tus Fotos)</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. El Reto Creativo</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Desafío Rápido 1</h5>
+                    <p>Vas a diseñar un post sobre "Tecnología Futura". ¿Qué combinación de colores eliges?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Sugerencia</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Azul Neón + Negro/Gris.</strong> Evoca modernidad, pantallas y seriedad. Evita el marrón o colores pastel.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Desafío Rápido 2</h5>
+                    <p>Tu título no se lee bien sobre la foto de fondo. ¿Qué haces?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Truco Genio</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Pon una forma detrás o baja el brillo de la foto.</strong> Usa el contraste para separar el texto del fondo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎨 <strong>Tarea Práctica:</strong> Crea tu primer post de Instagram en Canva presentándote. Usa 1 foto tuya, 1 color que te represente y 1 frase corta.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 03 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

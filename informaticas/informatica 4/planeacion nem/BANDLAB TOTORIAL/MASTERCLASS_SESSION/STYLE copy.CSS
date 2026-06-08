@@ -1,0 +1,246 @@
+:root {
+	--bg-color: #12121c;
+	--surface-color: #1e1e2f;
+	--text-color: #f0f0f5;
+	--accent-color: #ff3366;
+	--primary-color: #6c5ce7;
+	--success-color: #00d2d3;
+	--error-color: #ff6b6b;
+	
+	--k-red: #e21b3c;
+	--k-blue: #1368ce;
+	--k-yellow: #d89e00;
+	--k-green: #26890c;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	line-height: 1.6;
+	padding: 1rem;
+}
+
+header {
+	text-align: center;
+	padding: 2rem 1rem;
+	background-color: var(--surface-color);
+	border-radius: 12px;
+	margin-bottom: 2rem;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.grande{
+	width: 10%;
+}
+.pequeño{
+	width: 3%;
+} 
+
+img.grande{
+	width: 10%;
+}
+
+h1, h2, h3, h4 {
+	margin-bottom: 1rem;
+	color: #ffffff;
+}
+
+.subtitle {
+	color: var(--accent-color);
+	margin-bottom: 1.5rem;
+	font-weight: 600;
+}
+
+.content-section, .quiz-section {
+	background-color: var(--surface-color);
+	padding: 2rem;
+	border-radius: 12px;
+	margin-bottom: 2rem;
+}
+
+ul {
+	margin-left: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.step {
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 1rem;
+	border-left: 4px solid var(--primary-color);
+	margin-bottom: 1rem;
+	border-radius: 0 8px 8px 0;
+}
+
+/* Botones */
+button {
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	border: none;
+	border-radius: 8px;
+	padding: 0.8rem 1.5rem;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+.btn-primary {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.btn-secondary {
+	background-color: transparent;
+	border: 2px solid var(--primary-color);
+	color: var(--text-color);
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* Estilos de Quiz tipo Kahoot */
+.options-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+	.options-grid {
+					grid-template-columns: 1fr; /* 1 columna en móviles */
+	}
+}
+
+.option-btn {
+	padding: 2rem 1rem;
+	font-size: 1.1rem;
+	color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+
+.option-btn:nth-child(1) { background-color: var(--k-red); }
+.option-btn:nth-child(2) { background-color: var(--k-blue); }
+.option-btn:nth-child(3) { background-color: var(--k-yellow); }
+.option-btn:nth-child(4) { background-color: var(--k-green); }
+
+.option-btn:disabled {
+	cursor: not-allowed;
+	filter: grayscale(0.6) brightness(0.8);
+	transform: none;
+}
+
+.option-btn.correct {
+	box-shadow: 0 0 15px var(--success-color);
+	border: 3px solid var(--success-color);
+	filter: none;
+}
+
+.option-btn.wrong {
+	opacity: 0.5;
+}
+
+.feedback {
+	margin-top: 1rem;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-align: center;
+	min-height: 2rem;
+}
+
+footer {
+	text-align: center;
+	margin-top: 2rem;
+	font-size: 0.8rem;
+	color: #888;
+}
+
+.only-print {
+	display: none;
+}
+
+/* ====== ESTILOS PARA IMPRESIÓN (PDF Máx 2 Hojas) ====== */
+@media print {
+	body {
+					background-color: white;
+					color: black;
+					font-size: 11pt; /* Tamaño óptimo para ahorrar espacio */
+					padding: 0;
+	}
+	
+	.no-print {
+					display: none !important;
+	}
+
+	.only-print {
+					display: block;
+	}
+
+	.print-header {
+					text-align: center;
+					border-bottom: 2px solid black;
+					margin-bottom: 1rem;
+					padding-bottom: 0.5rem;
+	}
+	
+	.print-header h2 {
+					color: black;
+					margin: 0;
+	}
+
+	.content-section {
+					background-color: transparent;
+					padding: 0;
+					box-shadow: none;
+	}
+
+	h3 {
+					color: black;
+					border-bottom: 1px solid #ccc;
+					padding-bottom: 0.2rem;
+					margin-top: 1rem;
+					font-size: 13pt;
+	}
+
+	.step {
+					background-color: transparent;
+					border-left: 3px solid #666;
+					padding: 0.5rem 1rem;
+					margin-bottom: 0.5rem;
+					page-break-inside: avoid; /* Evita que un paso se parta a la mitad */
+	}
+
+	.step h4 {
+					color: black;
+					margin-bottom: 0.2rem;
+					font-size: 12pt;
+	}
+
+	p, ul {
+					margin-bottom: 0.5rem;
+	}
+
+	footer {
+					position: fixed;
+					bottom: 0;
+					width: 100%;
+					border-top: 1px solid #ccc;
+					padding-top: 5px;
+					color: black;
+	}
+
+	@page {
+					margin: 1.5cm;
+	}
+}

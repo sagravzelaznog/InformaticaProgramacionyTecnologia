@@ -1,0 +1,48 @@
+🌟 Tutorial Photoshop: Efecto de Luz en Texto
+- Photoshop abierto en modo RGB, 8 bits, resolución 72 ppp.
+- Texto en fuente y tamaño medio, color blanco sobre fondo negro (o el que prefieras).
+
+1️⃣ Crear el texto base
+- Selecciona la herramienta Texto (T).
+- Escribe tu palabra o frase (ej. “Photoshop”).
+- Ajusta fuente y tamaño a tu gusto.
+- Asegúrate de estar en modo RGB, 8 bits, 72 ppp.
+
+2️⃣ Duplicar la capa de texto
+- Ve a Capa > Duplicar capa.
+- Nombra la nueva capa como “Luz 1”.
+
+3️⃣ Aplicar desenfoque radial
+- Selecciona la capa “Luz 1”.
+- Ve a Filtro > Desenfocar > Desenfoque radial.
+- Configura:
+- Cantidad: 100%
+- Método: Zoom
+- Calidad: Buena
+- Haz clic en OK.
+
+4️⃣ Rellenar la selección
+- Pulsa D para cargar colores por defecto (blanco/negro).
+- Invierte con X si es necesario (blanco arriba).
+- Mantén pulsado Ctrl (Cmd en Mac) y haz clic en la miniatura de “Luz 1” para cargar la selección.
+- Pulsa Ctrl + Supr (Cmd + Supr) para rellenar con el color frontal.
+- Ve a Selección > Deseleccionar.
+
+5️⃣ Repetir el desenfoque
+- Repite los pasos 3 y 4 varias veces (3–5 veces) para alargar los rayos de luz.
+- Cada repetición intensifica el efecto.
+
+6️⃣ Aplicar color a los rayos
+- Haz doble clic en la capa “Luz 1” para abrir Estilos de capa.
+- Activa Superposición de color.
+- Elige un color vibrante (azul eléctrico, rosa neón, etc.).
+- Ajusta el modo de fusión y opacidad si lo deseas.
+
+7️⃣ Organizar capas y fondo
+- Mueve la capa “Luz 1” debajo del texto original.
+- Opcional: añade una imagen de fondo (ej. estrellas, galaxia).
+- Ve a Archivo > Colocar elemento incrustado.
+- Ajusta tamaño y posición.
+
+✅ Resultado final
+Un texto brillante con rayos de luz que emergen desde el centro, ideal para composiciones espaciales, carteles o efectos de ciencia ficción.

@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema8">
+                <h2>Tema 8: Funciones estadísticas en Excel</h2>
+                <div class="tema-contenido">
+                    <p>Las funciones estadísticas en Excel son herramientas poderosas para analizar conjuntos de datos, identificar tendencias y tomar decisiones basadas en evidencia. En este tema, exploraremos las funciones estadísticas más útiles y cómo aplicarlas en diferentes contextos profesionales.</p>
+                    
+                    <h3>8.1 Introducción al análisis estadístico en Excel</h3>
+                    <p>El análisis estadístico nos permite resumir, interpretar y sacar conclusiones de conjuntos de datos. Excel ofrece una amplia gama de funciones estadísticas que van desde cálculos básicos hasta análisis avanzados.</p>
+                    
+                    <div class="importante">
+                        <h4>¿Por qué son importantes las funciones estadísticas?</h4>
+                        <ul>
+                            <li>Permiten analizar grandes volúmenes de datos de manera eficiente</li>
+                            <li>Ayudan a identificar patrones y tendencias</li>
+                            <li>Facilitan la toma de decisiones basadas en datos</li>
+                            <li>Son fundamentales en campos como finanzas, marketing, investigación y más</li>
+                        </ul>
+                    </div>
+
+                    <h3>8.2 Funciones estadísticas básicas</h3>
+                    <p>Comencemos con las funciones estadísticas más utilizadas en Excel:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones estadísticas esenciales</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Función</th>
+                                <th>Descripción</th>
+                                <th>Sintaxis</th>
+                                <th>Ejemplo</th>
+                            </tr>
+                            <tr>
+                                <td>PROMEDIO</td>
+                                <td>Calcula la media aritmética</td>
+                                <td>=PROMEDIO(rango)</td>
+                                <td>=PROMEDIO(A1:A10)</td>
+                            </tr>
+                            <tr>
+                                <td>MEDIANA</td>
+                                <td>Encuentra el valor central</td>
+                                <td>=MEDIANA(rango)</td>
+                                <td>=MEDIANA(B2:B20)</td>
+                            </tr>
+                            <tr>
+                                <td>MODA</td>
+                                <td>Encuentra el valor más frecuente</td>
+                                <td>=MODA(rango)</td>
+                                <td>=MODA(C1:C15)</td>
+                            </tr>
+                            <tr>
+                                <td>MAX/MIN</td>
+                                <td>Valor máximo/mínimo</td>
+                                <td>=MAX(rango) / =MIN(rango)</td>
+                                <td>=MAX(D2:D100)</td>
+                            </tr>
+                            <tr>
+                                <td>CONTAR</td>
+                                <td>Cuenta celdas con números</td>
+                                <td>=CONTAR(rango)</td>
+                                <td>=CONTAR(E1:E50)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Aplica funciones estadísticas básicas</h4>
+                        <p>Usa los siguientes datos de ventas para completar la tabla de resumen:</p>
+                        
+                        <div class="ejercicio-practico">
+                            <div class="tabla-dinamica-container">
+                                <table class="tabla-dinamica" id="tablaVentas">
+                                    <thead>
+                                        <tr>
+                                            <th>Mes</th>
+                                            <th>Ventas</th>
+                                            <th>Clientes</th>
+                                            <th>Ticket Promedio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Enero</td><td>125,400</td><td>85</td><td>1,475.29</td></tr>
+                                        <tr><td>Febrero</td><td>98,750</td><td>72</td><td>1,371.53</td></tr>
+                                        <tr><td>Marzo</td><td>143,200</td><td>105</td><td>1,363.81</td></tr>
+                                        <tr><td>Abril</td><td>110,500</td><td>88</td><td>1,255.68</td></tr>
+                                        <tr><td>Mayo</td><td>156,800</td><td>120</td><td>1,306.67</td></tr>
+                                        <tr>
+                                            <td><strong>Total</strong></td>
+                                            <td id="totalVentas"></td>
+                                            <td id="totalClientes"></td>
+                                            <td id="ticketGlobal"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Promedio</strong></td>
+                                            <td id="promedioVentas"></td>
+                                            <td id="promedioClientes"></td>
+                                            <td id="promedioTicket"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Máximo</strong></td>
+                                            <td id="maxVentas"></td>
+                                            <td id="maxClientes"></td>
+                                            <td id="maxTicket"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Mínimo</strong></td>
+                                            <td id="minVentas"></td>
+                                            <td id="minClientes"></td>
+                                            <td id="minTicket"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="instrucciones">
+                                <p>Completa las fórmulas en JavaScript para calcular las estadísticas:</p>
+                                <div class="formula">
+                                    <label>Total de ventas: </label>
+                                    <input type="text" id="formulaTotal" placeholder="=SUMA(B2:B6)">
+                                    <button onclick="verificarFormula('total')">Verificar</button>
+                                    <span id="resultadoTotal" class="resultado-formula"></span>
+                                </div>
+                                <div class="formula">
+                                    <label>Promedio de clientes: </label>
+                                    <input type="text" id="formulaPromedio" placeholder="=PROMEDIO(C2:C6)">
+                                    <button onclick="verificarFormula('promedio')">Verificar</button>
+                                    <span id="resultadoPromedio" class="resultado-formula"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>8.3 Medidas de dispersión</h3>
+                    <p>Las medidas de dispersión nos indican qué tan dispersos están los datos en un conjunto:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones de dispersión</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Función</th>
+                                <th>Descripción</th>
+                                <th>Uso</th>
+                            </tr>
+                            <tr>
+                                <td>DESVEST.M</td>
+                                <td>Desviación estándar (población)</td>
+                                <td>=DESVEST.M(rango)</td>
+                            </tr>
+                            <tr>
+                                <td>DESVEST.MUESTRA</td>
+                                <td>Desviación estándar (muestra)</td>
+                                <td>=DESVEST.MUESTRA(rango)</td>
+                            </tr>
+                            <tr>
+                                <td>VAR.P</td>
+                                <td>Varianza (población)</td>
+                                <td>=VAR.P(rango)</td>
+                            </tr>
+                            <tr>
+                                <td>VAR.M</td>
+                                <td>Varianza (muestra)</td>
+                                <td>=VAR.M(rango)</td>
+                            </tr>
+                            <tr>
+                                <td>RANGO</td>
+                                <td>Diferencia entre máximo y mínimo</td>
+                                <td>=MAX(rango)-MIN(rango)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Ejercicio: Análisis de rendimiento de vendedores</h4>
+                        <p>Analiza el siguiente conjunto de datos de ventas mensuales por vendedor (en miles de pesos):</p>
+                        
+                        <div class="tabla-dinamica-container">
+                            <table class="tabla-dinamica" id="tablaVendedores">
+                                <thead>
+                                    <tr>
+                                        <th>Vendedor</th>
+                                        <th>Ene</th>
+                                        <th>Feb</th>
+                                        <th>Mar</th>
+                                        <th>Abr</th>
+                                        <th>May</th>
+                                        <th>Promedio</th>
+                                        <th>Desv. Est.</th>
+                                        <th>Rendimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datosVendedores">
+                                    <!-- Datos generados por JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="pregunta">
+                            <p>1. ¿Qué vendedor tiene el menor rendimiento basado en la desviación estándar?</p>
+                            <select id="pregunta1">
+                                <option value="">Selecciona una opción</option>
+                                <option value="a">Ana Martínez</option>
+                                <option value="b">Carlos López</option>
+                                <option value="c">María García</option>
+                                <option value="d">Juan Pérez</option>
+                            </select>
+                        </div>
+                        
+                        <div class="pregunta">
+                            <p>2. ¿Cuál es el rango de ventas mensuales del mejor vendedor?</p>
+                            <input type="text" id="pregunta2" placeholder="Escribe tu respuesta">
+                        </div>
+                        
+                        <button id="verificarEjercicio" class="btn btn-primary">Verificar respuestas</button>
+                        <div id="resultadoEjercicio" class="resultado"></div>
+                    </div>
+
+                    <h3>8.4 Funciones de distribución de probabilidad</h3>
+                    <p>Excel incluye funciones para trabajar con distribuciones de probabilidad comunes:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones de distribución</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Distribución</th>
+                                <th>Función</th>
+                                <th>Uso típico</th>
+                            </tr>
+                            <tr>
+                                <td>Normal</td>
+                                <td>DISTR.NORM.N</td>
+                                <td>Análisis de riesgos, control de calidad</td>
+                            </tr>
+                            <tr>
+                                <td>Binomial</td>
+                                <td>DISTR.BINOM</td>
+                                <td>Pruebas de éxito/fracaso</td>
+                            </tr>
+                            <tr>
+                                <td>Poisson</td>
+                                <td>POISSON.DIST</td>
+                                <td>Eventos raros en intervalos fijos</td>
+                            </tr>
+                            <tr>
+                                <td>Exponencial</td>
+                                <td>DISTR.EXP.N</td>
+                                <td>Tiempo entre eventos</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Simulación: Análisis de probabilidades</h4>
+                        <p>Un call center recibe en promedio 50 llamadas por hora. ¿Cuál es la probabilidad de que reciba más de 60 llamadas en una hora?</p>
+                        
+                        <div class="simulador">
+                            <div class="parametros">
+                                <div class="filtro-grupo">
+                                    <label for="media">Media (λ):</label>
+                                    <input type="number" id="media" value="50" min="1" step="1">
+                                </div>
+                                <div class="filtro-grupo">
+                                    <label for="valor">Valor a evaluar (x):</label>
+                                    <input type="number" id="valor" value="60" min="1" step="1">
+                                </div>
+                                <button id="calcularProbabilidad" class="btn btn-primary">Calcular probabilidad</button>
+                            </div>
+                            
+                            <div class="resultado-simulacion">
+                                <h5>Resultado:</h5>
+                                <p>P(X > <span id="valorX">60</span>) = <span id="probabilidad">0.00</span>%</p>
+                                <div class="barra-probabilidad">
+                                    <div id="barraProbabilidad" class="barra"></div>
+                                </div>
+                                <p class="nota">Fórmula utilizada: =1-POISSON.DIST(x, λ, VERDADERO)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>8.5 Análisis de correlación y regresión</h3>
+                    <p>Excel permite analizar la relación entre variables mediante funciones de correlación y regresión:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones de correlación y regresión</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Función</th>
+                                <th>Descripción</th>
+                                <th>Sintaxis</th>
+                            </tr>
+                            <tr>
+                                <td>COEF.DE.CORREL</td>
+                                <td>Coeficiente de correlación</td>
+                                <td>=COEF.DE.CORREL(matriz1, matriz2)</td>
+                            </tr>
+                            <tr>
+                                <td>PENDIENTE</td>
+                                <td>Pendiente de la línea de regresión</td>
+                                <td>=PENDIENTE(conocido_y, conocido_x)</td>
+                            </tr>
+                            <tr>
+                                <td>INTERSECCION.EJE</td>
+                                <td>Intersección con el eje Y</td>
+                                <td>=INTERSECCION.EJE(conocido_y, conocido_x)</td>
+                            </tr>
+                            <tr>
+                                <td>PRONOSTICO</td>
+                                <td>Predice un valor futuro</td>
+                                <td>=PRONOSTICO(x, conocido_y, conocido_x)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="ejercicio-avanzado">
+                        <h4>Análisis de regresión lineal</h4>
+                        <p>Estudia la relación entre la inversión en publicidad y las ventas mensuales:</p>
+                        
+                        <div class="regresion-container">
+                            <div class="datos-regresion">
+                                <table class="tabla-dinamica">
+                                    <thead>
+                                        <tr>
+                                            <th>Mes</th>
+                                            <th>Inversión (miles $)</th>
+                                            <th>Ventas (miles $)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="datosRegresion">
+                                        <!-- Datos generados por JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="resultados-regresion">
+                                <h5>Resultados del análisis:</h5>
+                                <p>Coeficiente de correlación (r): <span id="coefCorrelacion">0.00</span></p>
+                                <p>Ecuación de regresión: Y = <span id="pendiente">0.00</span>X + <span id="interseccion">0.00</span></p>
+                                <p>Pronóstico para $30,000 en publicidad: $<span id="pronostico">0</span></p>
+                                
+                                <div class="grafico-regresion" id="graficoRegresion">
+                                    <!-- Gráfico generado por JavaScript -->
+                                    <p class="nota">Gráfico de dispersión con línea de tendencia</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pregunta">
+                            <p>¿Qué tan fuerte es la relación entre la inversión en publicidad y las ventas?</p>
+                            <select id="pregunta3">
+                                <option value="">Selecciona una opción</option>
+                                <option value="a">Muy débil (r < 0.3)</option>
+                                <option value="b">Moderada (0.3 ≤ r < 0.7)</option>
+                                <option value="c">Fuerte (r ≥ 0.7)</option>
+                            </select>
+                            <button id="verificarPregunta3" class="btn btn-outline-secondary">Verificar</button>
+                            <span id="resultadoPregunta3" class="resultado-formula"></span>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál de las siguientes funciones devuelve la mediana de un conjunto de datos?</div>
+                        <div class="opcion">a) =PROMEDIO()</div>
+                        <div class="opcion">b) =MEDIANA()</div>
+                        <div class="opcion">c) =MODA()</div>
+                        <div class="opcion">d) =PROMEDIO.SI()</div>
+                        
+                        <div class="pregunta">2. Si la desviación estándar de un conjunto de datos es 0, ¿qué podemos concluir?</div>
+                        <div class="opcion">a) Los datos están muy dispersos</div>
+                        <div class="opcion">b) Todos los valores son iguales</div>
+                        <div class="opcion">c) Hay un error en los cálculos</div>
+                        <div class="opcion">d) La media es 0</div>
+                        
+                        <div class="pregunta">3. ¿Qué función de Excel se utiliza para calcular la probabilidad en una distribución normal estándar?</div>
+                        <div class="opcion">a) =DISTR.NORM.ESTAND.N()</div>
+                        <div class="opcion">b) =DISTR.NORM()</div>
+                        <div class="opcion">c) =PROBABILIDAD()</div>
+                        <div class="opcion">d) =ESTIMACION.LINEAL()</div>
+                        
+                        <div class="pregunta">4. Un coeficiente de correlación de -0.85 indica:</div>
+                        <div class="opcion">a) Correlación positiva fuerte</div>
+                        <div class="opcion">b) Correlación negativa fuerte</div>
+                        <div class="opcion">c) No hay correlación</div>
+                        <div class="opcion">d) Correlación positiva débil</div>
+                        
+                        <div class="pregunta">5. ¿Cuál es el rango de valores posibles para el coeficiente de determinación (R²)?</div>
+                        <div class="opcion">a) 0 a 1</div>
+                        <div class="opcion">b) -1 a 1</div>
+                        <div class="opcion">c) -∞ a +∞</div>
+                        <div class="opcion">d) 0 a 100</div>
+                        
+                        <button id="evaluarTema8" class="evaluation-btn">Verificar respuestas</button>
+                        <div id="resultadoEvaluacion8" class="resultado"></div>
+                    </div>
+
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Las funciones estadísticas básicas (PROMEDIO, MEDIANA, MODA) permiten resumir conjuntos de datos.</li>
+                            <li>Las medidas de dispersión (desviación estándar, varianza, rango) indican la variabilidad de los datos.</li>
+                            <li>Las distribuciones de probabilidad modelan fenómenos aleatorios en diversos contextos.</li>
+                            <li>El análisis de correlación y regresión ayuda a entender relaciones entre variables.</li>
+                            <li>Excel ofrece herramientas poderosas para análisis estadísticos avanzados sin necesidad de software especializado.</li>
+                        </ul>
+                    </div>
+
+                    <div class="siguiente-paso">
+                        <h3>¡Felicidades!</h3>
+                        <p>Has completado el módulo de Funciones Estadísticas en Excel. Estas herramientas te permitirán realizar análisis de datos más sofisticados y tomar decisiones basadas en evidencia estadística. Sigue practicando con diferentes conjuntos de datos para dominar estas poderosas funciones.</p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Tema 9: Validación de datos -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema7.html" class="btn btn-anterior">Anterior: Tema 7</a>
+        <a href="tema9.html" class="btn btn-siguiente">Siguiente: Tema 9</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

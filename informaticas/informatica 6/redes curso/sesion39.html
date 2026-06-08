@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S10 E39: Acceso Remoto a Consola (SSH y Telnet)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 10, Sesión 39: Acceso a Consola Segura ⌨️</h1>
+        <p class="subtitle">SSH (Secure Shell) vs. Telnet y Uso del Cliente PuTTY</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. SSH (Secure Shell): El Estándar de Consola Remota</h2>
+            <p>**SSH** es el protocolo que todo técnico debe usar para acceder a la línea de comandos (CLI) de routers, switches, servidores Linux y equipos avanzados. Es el método más seguro para la administración remota.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Características</h3>
+                    <ul>
+                        <li>**Seguro:** Toda la comunicación entre cliente y servidor está **cifrada**.</li>
+                        <li>**Puerto:** Usa el puerto estándar **TCP 22**.</li>
+                        <li>**Autenticación:** Usa contraseñas y, a menudo, claves de cifrado (más seguras).</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Telnet: El Protocolo Muerto 💀</h3>
+                    <p>Telnet (Puerto TCP 23) es el protocolo de consola antiguo. **NUNCA** debe usarse, ya que **envía todo el tráfico (incluyendo contraseñas) en texto plano** sin cifrar, siendo extremadamente vulnerable a la intercepción de datos.</p>
+                </div>
+            </div>
+            [Image comparing SSH and Telnet security showing encryption]
+        </section>
+
+        <section class="topic-section">
+            <h2>2. PuTTY: El Cliente SSH Gratuito</h2>
+            <p>**PuTTY** es la aplicación cliente más popular y gratuita para establecer sesiones SSH. Permite conectarse a dispositivos remotos y gestionar configuraciones desde la línea de comandos.</p>
+
+            <div class="image-container">
+                
+                <figcaption>PuTTY es el cliente SSH gratuito más popular para acceder a servidores y routers.</figcaption>
+            </div>
+
+            <p><strong>Tarea Práctica (Simulación/Real):</strong></p>
+            <ol>
+                <li>Descarga e instala PuTTY (o usa el cliente SSH nativo de tu OS).</li>
+                <li>Abre PuTTY y selecciona la conexión de tipo **SSH** (puerto 22).</li>
+                <li>Introduce una IP local (ej. la IP de un Router configurado previamente).</li>
+                <li>(Teórico): Si logras iniciar sesión, puedes empezar a configurar el router remotamente (ej. con comandos de Cisco IOS).</li>
+            </ol>
+            
+            <button id="sshPuttyCheckBtn">Verificar Uso de SSH</button>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. El Rol de SSH en Routers y Switches</h2>
+            <p>En redes empresariales, los routers y switches deben configurarse para aceptar solo conexiones SSH. Esto implica generar claves de cifrado en el dispositivo y deshabilitar Telnet, garantizando que el acceso de administración sea seguro.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S10 E39</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion38.html" class="nav-button">Anterior</a>
+        <a href="sesion40.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

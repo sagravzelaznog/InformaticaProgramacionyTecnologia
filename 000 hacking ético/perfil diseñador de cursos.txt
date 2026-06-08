@@ -1,0 +1,36 @@
+PERFIL TÉCNICO: ARQUITECTO DE APRENDIZAJE / DISEÑADOR DE CURSOS (HACKER COGNITIVO)
+Diseño Instruccional y Arquitectura Cognitiva
+
+Es un genio en Diseño Instruccional y Arquitectura Cognitiva.
+
+Entiende cómo estructurar el "código fuente" del curso. Sabe fragmentar información compleja (chunking) para evitar un buffer overflow en la memoria de trabajo del estudiante. Domina frameworks como ADDIE, SAM o Bloom para asegurar que el aprendizaje vaya desde la simple ejecución de scripts hasta la creación de herramientas propias.
+
+Gamificación y Psicología del Aprendizaje
+
+Es un genio en Gamificación y Psicología del Aprendizaje.
+
+Conoce los ciclos de dopamina y cómo hackear la motivación humana. No se limita a dar puntos sin sentido; diseña "loops" de retención, recompensas variables y escalada de privilegios (dificultad progresiva) para que el estudiante se vuelva adicto a resolver los laboratorios y avanzar en el temario.
+
+Storytelling y Diseño Narrativo
+
+Es un genio en Storytelling y Diseño Narrativo.
+
+Sabe que los datos crudos no se retienen, así que empaqueta el conocimiento en historias (el wrapper del payload). Construye escenarios realistas y casos de uso donde el estudiante asume un rol (ej. el analista de seguridad que debe salvar la empresa), dándole un propósito crítico a cada comando o concepto que aprende.
+
+Experiencia de Usuario en el Aprendizaje (UX/LX Design)
+
+Es un genio en UX Learning y Comunicación Visual.
+
+Optimiza la interfaz de transferencia de conocimiento. Entiende que un audio terrible o diapositivas saturadas de texto generan fricción y latencia mental. Usa jerarquía visual, diagramas de flujo claros y un entorno de aprendizaje sin distracciones para que el estudiante mantenga el estado de "flow".
+
+Evaluación y Analítica de Datos (Telemetría de Aprendizaje)
+
+Es un genio en Evaluación y Analítica de Aprendizaje.
+
+No hace exámenes de opción múltiple aburridos. Diseña evaluaciones prácticas (CTFs, retos de código, máquinas vulnerables) que sirven como validación de exploits exitosos. Sabe leer la telemetría del curso (dónde se estancan los alumnos, qué videos saltan) para "parchear" y actualizar el temario en tiempo real.
+
+Empatía y Facilitación Dinámica
+
+Es un genio en Empatía y Facilitación Dinámica.
+
+Sabe leer "la red" del aula (incluso en asíncrono). Detecta el síndrome del impostor, la frustración y la fatiga por pantalla. Utiliza un tono directo, accesible y apasionado que destruye la barrera entre el "gurú inalcanzable" y el aprendiz, actuando como un mentor en las trincheras.

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 7: Funciones Lógicas en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .tabla-ejemplo th, .tabla-ejemplo td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-ejemplo th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 7: Funciones Lógicas en Excel</h1>
+    
+    <div id="sesion7.1" class="sesion">
+        <h2>Sesión 7.1: Función SI y anidamiento</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender la sintaxis de la función SI</li>
+                <li>Crear fórmulas condicionales básicas</li>
+                <li>Anidar múltiples funciones SI para condiciones complejas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Sintaxis básica de la función SI:
+                    <div class="formula">=SI(prueba_lógica, valor_si_verdadero, valor_si_falso)</div>
+                    <ul>
+                        <li>Prueba lógica: Condición que se evalúa como VERDADERO o FALSO</li>
+                        <li>Valor si verdadero: Resultado si la condición es VERDADERA</li>
+                        <li>Valor si falso: Resultado si la condición es FALSA</li>
+                    </ul>
+                </li>
+                <li>Operadores de comparación:
+                    <ul>
+                        <li>= (igual a)</li>
+                        <li>> (mayor que)</li>
+                        <li>< (menor que)</li>
+                        <li>>= (mayor o igual que)</li>
+                        <li><= (menor o igual que)</li>
+                        <li><> (diferente de)</li>
+                    </ul>
+                </li>
+                <li>Anidamiento de funciones SI:
+                    <div class="formula">=SI(condición1, resultado1, SI(condición2, resultado2, resultado_por_defecto))</div>
+                    <ul>
+                        <li>Límite de anidamiento en versiones recientes: 64 niveles</li>
+                        <li>Alternativas para múltiples condiciones: BUSCARV, ELEGIR, BUSCAR</li>
+                    </ul>
+                </li>
+                <li>Errores comunes y solución de problemas:
+                    <ul>
+                        <li>Paréntesis no coincidentes</li>
+                        <li>Valores de texto sin comillas</li>
+                        <li>Uso incorrecto de operadores</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico 1: Calificación de exámenes</h4>
+                <p>Dada una columna con calificaciones (0-100), crear una fórmula que devuelva:
+                "Aprobado" si la calificación es >= 70, "Reprobado" en caso contrario.</p>
+                <div class="formula">=SI(B2>=70, "Aprobado", "Reprobado")</div>
+                
+                <h4>Ejemplo práctico 2: Sistema de calificaciones</h4>
+                <p>Crear una fórmula que asigne letras según la siguiente escala:</p>
+                <ul>
+                    <li>90-100: A</li>
+                    <li>80-89: B</li>
+                    <li>70-79: C</li>
+                    <li>60-69: D</li>
+                    <li>0-59: F</li>
+                </ul>
+                <div class="formula">
+                    =SI(B2>=90, "A", SI(B2>=80, "B", SI(B2>=70, "C", SI(B2>=60, "D", "F"))))
+                </div>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crear una hoja de cálculo que calcule comisiones de ventas con las siguientes reglas:</p>
+                <ul>
+                    <li>Si las ventas son menores a $1,000: 5% de comisión</li>
+                    <li>Si las ventas están entre $1,000 y $5,000: 7% de comisión</li>
+                    <li>Si las ventas son mayores a $5,000: 10% de comisión</li>
+                </ul>
+                <p>Incluir columnas para: Nombre del vendedor, Ventas totales, Porcentaje de comisión y Monto de comisión.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion7.2" class="sesion">
+        <h2>Sesión 7.2: Funciones Y, O, NO</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Utilizar las funciones Y, O, NO en combinación con SI</li>
+                <li>Crear condiciones lógicas complejas</li>
+                <li>Simplificar fórmulas condicionales</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Función Y (AND):
+                    <div class="formula">=Y(condición1, condición2, ...)</div>
+                    <ul>
+                        <li>Devuelve VERDADERO solo si TODAS las condiciones son verdaderas</li>
+                        <li>Máximo 255 argumentos</li>
+                    </ul>
+                </li>
+                <li>Función O (OR):
+                    <div class="formula">=O(condición1, condición2, ...)</div>
+                    <ul>
+                        <li>Devuelve VERDADERO si ALGUNA condición es verdadera</li>
+                        <li>Máximo 255 argumentos</li>
+                    </ul>
+                </li>
+                <li>Función NO (NOT):
+                    <div class="formula">=NO(condición)</div>
+                    <ul>
+                        <li>Invierte el valor lógico (VERDADERO a FALSO y viceversa)</li>
+                    </ul>
+                </li>
+                <li>Combinaciones avanzadas:
+                    <ul>
+                        <li>Anidamiento de funciones lógicas</li>
+                        <li>Uso con otras funciones de Excel</li>
+                        <li>Tablas de verdad</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 1: Validación de datos</h4>
+                <p>Aprobar solicitudes de préstamo si el solicitante tiene ingresos mayores a $50,000 Y un puntaje crediticio mayor a 700.</p>
+                <div class="formula">=SI(Y(ingresos>50000, puntaje>700), "Aprobado", "Rechazado")</div>
+                
+                <h4>Ejemplo 2: Bonificación por desempeño</h4>
+                <p>Otorgar bonificación si el empleado tiene más de 3 años de antigüedad O un puntaje de desempeño mayor a 90.</p>
+                <div class="formula">=SI(O(antiguedad>3, desempeño>90), "Con bonificación", "Sin bonificación")</div>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crear un sistema de evaluación de préstamos con las siguientes reglas:</p>
+                <ol>
+                    <li>El solicitante debe tener al menos 21 años</li>
+                    <li>Ingresos anuales superiores a $30,000</li>
+                    <li>Puntaje crediticio de al menos 650</li>
+                    <li>No tener préstamos vencidos (NO)</li>
+                </ol>
+                <p>Mostrar "Aprobado" solo si se cumplen TODAS las condiciones, de lo contrario mostrar "Rechazado".</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion7.3" class="sesion">
+        <h2>Sesión 7.3: Funciones SI.ERROR y SI.ND</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Manejar errores en fórmulas</li>
+                <li>Mejorar la presentación de hojas de cálculo</li>
+                <li>Evitar cadenas de funciones SI anidadas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Función SI.ERROR:
+                    <div class="formula">=SI.ERROR(valor, valor_si_error)</div>
+                    <ul>
+                        <li>Devuelve el valor si no hay error, de lo contrario devuelve valor_si_error</li>
+                        <li>Captura todos los tipos de errores (#N/A, #VALOR!, #REF!, #DIV/0!, #NÚM!, #NOMBRE?, #NULO!)</li>
+                    </ul>
+                </li>
+                <li>Función SI.ND (SI.ERROR.ND en versiones en inglés):
+                    <div class="formula">=SI.ND(valor, valor_si_es_nd)</div>
+                    <ul>
+                        <li>Específica para manejar el error #N/A (valor no disponible)</li>
+                        <li>Útil con funciones de búsqueda como BUSCARV, BUSCARH, INDICE/COINCIDIR</li>
+                    </ul>
+                </li>
+                <li>Casos de uso comunes:
+                    <ul>
+                        <li>Manejo de divisiones por cero</li>
+                        <li>Búsquedas que pueden no encontrar coincidencias</li>
+                        <li>Fórmulas que dependen de celdas vacías</li>
+                    </ul>
+                </li>
+                <li>Mejores prácticas:
+                    <ul>
+                        <li>No ocultar todos los errores (pueden indicar problemas en los datos)</li>
+                        <li>Usar mensajes descriptivos</li>
+                        <li>Documentar el manejo de errores</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 1: División segura</h4>
+                <p>Calcular el porcentaje de crecimiento evitando errores de división por cero:</p>
+                <div class="formula">=SI.ERROR((B2-A2)/A2, "N/A")</div>
+                
+                <h4>Ejemplo 2: Búsqueda con manejo de error</h4>
+                <p>Buscar un producto en una tabla, mostrando "No encontrado" si no existe:</p>
+                <div class="formula">=SI.ERROR(BUSCARV(producto, tabla, 2, FALSO), "Producto no encontrado")</div>
+                
+                <h4>Ejemplo 3: Combinación con funciones lógicas</h4>
+                <p>Calcular comisión solo si hay ventas, de lo contrario mostrar 0:</p>
+                <div class="formula">=SI.ERROR(SI(Y(ventas>0, ventas<=10000), ventas*0.1, ""), 0)</div>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crear una hoja de cálculo que:</p>
+                <ol>
+                    <li>Contenga una lista de productos con precios</li>
+                    <li>Permita buscar productos por nombre</li>
+                    <li>Maneje adecuadamente los casos donde el producto no existe</li>
+                    <li>Calcule el precio con IVA (16%)</li>
+                    <li>Incluya una columna de descuento que aplique 10% si el precio es mayor a $1,000</li>
+                    <li>Maneje todos los posibles errores con mensajes descriptivos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion7.4" class="sesion">
+        <h2>Sesión 7.4: Práctica guiada - Sistema de calificaciones</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar las funciones lógicas aprendidas</li>
+                <li>Crear un sistema de calificaciones completo</li>
+                <li>Implementar validaciones y manejo de errores</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <p>Crear un libro de Excel para calificaciones de un grupo escolar con las siguientes características:</p>
+            
+            <h4>1. Hoja "Datos Alumnos"</h4>
+            <ul>
+                <li>Columnas: Matrícula, Nombre, Grupo, Asistencias, Calificación Examen</li>
+                <li>Ingresar al menos 10 registros de ejemplo</li>
+            </ul>
+            
+            <h4>2. Hoja "Parámetros"</h4>
+            <ul>
+                <li>Asistencia mínima requerida: 80%</li>
+                <li>Calificación mínima aprobatoria: 6.0</li>
+                <li>Escala de calificaciones:
+                    <table class="tabla-ejemplo">
+                        <tr><th>Rango</th><th>Letra</th></tr>
+                        <tr><td>9.0 - 10.0</td><td>A</td></tr>
+                        <tr><td>8.0 - 8.9</td><td>B</td></tr>
+                        <tr><td>7.0 - 7.9</td><td>C</td></tr>
+                        <tr><td>6.0 - 6.9</td><td>D</td></tr>
+                        <tr><td>0 - 5.9</td><td>F</td></tr>
+                    </table>
+                </li>
+            </ul>
+            
+            <h4>3. Hoja "Calificaciones"</h4>
+            <p>Crear una tabla que incluya:</p>
+            <ul>
+                <li>Datos básicos del alumno (de la hoja Datos Alumnos)</li>
+                <li>Columna "Asistencia" que calcule el porcentaje de asistencia</li>
+                <li>Columna "Estatus" que muestre:
+                    <ul>
+                        <li>"Aprobado" si la asistencia >= 80% Y calificación >= 6.0</li>
+                        <li>"Reprobado por asistencia" si asistencia < 80%</li>
+                        <li>"Reprobado por calificación" si calificación < 6.0</li>
+                        <li>"Reprobado" si ambas condiciones fallan</li>
+                    </ul>
+                </li>
+                <li>Columna "Letra" que asigne la letra correspondiente según la escala</li>
+                <li>Columna "Mensaje" que muestre un mensaje personalizado según el estatus</li>
+            </ul>
+            
+            <h4>4. Hoja "Resumen"</h4>
+            <p>Crear un resumen estadístico que muestre:</p>
+            <ul>
+                <li>Total de alumnos</li>
+                <li>Número de aprobados/reprobados</li>
+                <li>Promedio del grupo</li>
+                <li>Distribución de calificaciones por letra (gráfico de barras)</li>
+                <li>Porcentaje de asistencia promedio</li>
+            </ul>
+            
+            <h4>Requisitos adicionales:</h4>
+            <ul>
+                <li>Usar referencias a celdas en lugar de valores fijos</li>
+                <li>Incluir validación de datos donde sea apropiado</li>
+                <li>Usar formato condicional para resaltar:
+                    <ul>
+                        <li>Calificaciones aprobatorias en verde</li>
+                        <li>Calificaciones reprobatorias en rojo</li>
+                        <li>Asistencias por debajo del mínimo en amarillo</li>
+                    </ul>
+                </li>
+                <li>Proteger las celdas con fórmulas</li>
+            </ul>
+            
+            <div class="consejo">
+                <h4>Consejo profesional:</h4>
+                <p>Usa nombres de rango para hacer tus fórmulas más legibles. Por ejemplo, en lugar de =SI(B2>=6,"Aprobado","Reprobado"), podrías usar =SI(Calificacion>=Aprobacion_Minima,"Aprobado","Reprobado").</p>
+            </div>
+            
+            <h3>Entrega:</h3>
+            <p>Guardar el archivo con el nombre "Sistema_Calificaciones_Apellido_Nombre.xlsx" y asegurarse de que todas las fórmulas funcionen correctamente. Incluir al menos 15 registros de ejemplo.</p>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

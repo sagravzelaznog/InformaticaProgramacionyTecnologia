@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Diseño de Página - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .pagina-ejemplo {
+            position: relative;
+            height: 200px;
+            margin: 1rem 0;
+            border: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+        
+        .margen {
+            position: absolute;
+            border: 1px dashed #6c757d;
+        }
+        
+        .margen-ejemplo {
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+        }
+        
+        .area-texto {
+            position: absolute;
+            background-color: #e9ecef;
+            border: 1px solid #adb5bd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .area-texto-ejemplo1 {
+            top: 30%;
+            left: 10%;
+            width: 30%;
+            height: 40%;
+        }
+        
+        .imagen-ejemplo {
+            position: absolute;
+            background-color: #d1e7dd;
+            border: 1px solid #a3cfbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f5132;
+            font-size: 0.9rem;
+        }
+        
+        .imagen-ejemplo1 {
+            top: 30%;
+            right: 10%;
+            width: 50%;
+            height: 40%;
+        }
+        
+        .area-titulo {
+            top: 30%;
+            left: 10%;
+            width: 80%;
+            height: 20%;
+            text-align: center;
+            background-color: #e2e3e5;
+            font-weight: bold;
+        }
+        
+        .area-columna1 {
+            top: 60%;
+            left: 10%;
+            width: 35%;
+            height: 30%;
+        }
+        
+        .area-columna2 {
+            top: 60%;
+            left: 55%;
+            width: 35%;
+            height: 30%;
+        }
+        
+        .grid-diseno {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        
+        .ejemplo-diseno {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ejemplo-diseno:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .herramienta-diseno {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .herramienta-diseno:hover {
+            background: #dee2e6;
+            cursor: pointer;
+        }
+        
+        .pagina-ejemplo {
+            width: 100%;
+            height: 200px;
+            background: white;
+            border: 1px solid #dee2e6;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .margen {
+            position: absolute;
+            border: 1px dashed #adb5bd;
+        }
+        
+        .area-texto {
+            background: #e7f5ff;
+            border: 1px solid #4dabf7;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #1971c2;
+            overflow: hidden;
+        }
+        
+        .imagen-ejemplo {
+            background: #fff3bf;
+            border: 1px solid #ffd43b;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #e67700;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-diseno {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Controles de acceso -->
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <div id="loginRequired" class="login-required">
+            <h2>Acceso Requerido</h2>
+            <p>Para acceder a esta sesión, por favor inicia sesión con tu llave de acceso.</p>
+            <div class="auth-actions">
+                <a href="../iniciar-sesion.html" class="btn">Iniciar Sesión</a>
+                <a href="../registro.html" class="btn btn-outline">Registrarse</a>
+            </div>
+        </div>
+        
+        <main id="mainContent" class="hidden">
+            <header class="encabezado-sesion">
+                <h1>Sesión 6: Diseño de Página</h1>
+                <p class="subtitulo">Aprende a diseñar páginas profesionales y atractivas en Publisher</p>
+                <div class="navegacion">
+                    <a href="sesion5.html" class="btn btn-outline">← Sesión anterior</a>
+                    <a href="../index.html" class="btn btn-outline">Inicio</a>
+                    <a href="sesion7.html" class="btn btn-outline">Siguiente sesión →</a>
+                </div>
+            </header>
+            
+            <section class="contenido-sesion">
+                <div class="objetivos">
+                    <h2>Objetivos de aprendizaje</h2>
+                    <ul>
+                        <li>Configurar páginas y diseño de documentos</li>
+                        <li>Utilizar guías y reglas para un diseño preciso</li>
+                        <li>Trabajar con capas y orden de objetos</li>
+                        <li>Crear diseños equilibrados y profesionales</li>
+                    </ul>
+                </div>
+                
+                <h2>1. Configuración de página</h2>
+                <p>La configuración adecuada de la página es fundamental para cualquier diseño profesional.</p>
+                
+                <div class="paso-a-paso">
+                    <h3>Para configurar la página:</h3>
+                    <ol>
+                        <li>Ve a la pestaña <strong>Diseño de página</strong></li>
+                        <li>Configura el tamaño de página (A4, Carta, etc.)</li>
+                        <li>Establece los márgenes y la orientación</li>
+                        <li>Define las columnas y guías de diseño</li>
+                    </ol>
+                </div>
+                
+                <div class="imagen-contenedor">
+                    <img src="../static/img/configuracion-pagina.svg" alt="Configuración de página en Publisher" class="img-fluid">
+                </div>
+                
+                <h2>2. Herramientas de diseño</h2>
+                <p>Publisher ofrece diversas herramientas para ayudarte a crear diseños profesionales.</p>
+                
+                <div class="grid-diseno">
+                    <div class="ejemplo-diseno">
+                        <h4>Guías y reglas</h4>
+                        <p>Organiza tu espacio de trabajo:</p>
+                        <div class="herramienta-diseno">Guías de diseño</div>
+                        <div class="herramienta-diseno">Reglas</div>
+                        <div class="herramienta-diseno">Cuadrícula</div>
+                        <div class="pagina-ejemplo" id="ejemploGuias">
+                            <div class="margen margen-ejemplo"></div>
+                            <div class="area-texto area-texto-ejemplo1">Área de texto</div>
+                            <div class="imagen-ejemplo imagen-ejemplo1">Imagen</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ejemplo-diseno">
+                        <h4>Organización de objetos</h4>
+                        <p>Controla la disposición de los elementos:</p>
+                        <div class="herramienta-diseno">Alinear</div>
+                        <div class="herramienta-diseno">Distribuir</div>
+                        <div class="herramienta-diseno">Agrupar</div>
+                        <div class="pagina-ejemplo" id="ejemploOrganizacion">
+                            <div class="margen margen-ejemplo"></div>
+                            <div class="area-texto area-titulo">Título</div>
+                            <div class="area-texto area-columna1">Columna 1</div>
+                            <div class="area-texto area-columna2">Columna 2</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>3. Jerarquía visual y flujo de lectura</h2>
+                <p>Crea una jerarquía clara para guiar al lector a través de tu diseño.</p>
+                
+                <div class="ejemplo-diseno">
+                    <h4>Elementos de jerarquía:</h4>
+                    <ul>
+                        <li><strong>Tamaño:</strong> Los elementos más grandes atraen más atención</li>
+                        <li><strong>Color:</strong> Usa colores contrastantes para resaltar información importante</li>
+                        <li><strong>Espaciado:</strong> Agrupa elementos relacionados</li>
+                        <li><strong>Tipografía:</strong> Usa diferentes tamaños y pesos para títulos y contenido</li>
+                    </ul>
+                </div>
+                
+                <h2>4. Ejercicio práctico</h2>
+                <div class="actividad-practica">
+                    <h3>Crea un boletín informativo</h3>
+                    <p>Sigue estos pasos para diseñar un boletín profesional:</p>
+                    <ol>
+                        <li>Crea un nuevo documento con formato de boletín</li>
+                        <li>Configura una cuadrícula de 3 columnas</li>
+                        <li>Agrega un encabezado con título y fecha</li>
+                        <li>Crea secciones claramente definidas</li>
+                        <li>Incluye imágenes y cuadros de texto</li>
+                        <li>Asegúrate de que haya suficiente espacio en blanco</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>💡 Consejo profesional</h4>
+                    <p>Usa la función <strong>Vista previa de impresión</strong> (Ctrl+Shift+I) para ver cómo se verá tu diseño antes de imprimirlo o publicarlo.</p>
+                </div>
+                
+                <h2>5. Plantillas y estilos</h2>
+                <p>Ahorra tiempo utilizando plantillas y estilos consistentes en tus diseños.</p>
+                
+                <div class="grid-diseno">
+                    <div class="ejemplo-diseno">
+                        <h4>Plantillas</h4>
+                        <p>Publisher incluye numerosas plantillas para diferentes tipos de publicaciones. Personalízalas según tus necesidades.</p>
+                        <div class="herramienta-diseno">Nuevo desde plantilla</div>
+                        <div class="herramienta-diseno">Guardar como plantilla</div>
+                    </div>
+                    
+                    <div class="ejemplo-diseno">
+                        <h4>Estilos rápidos</h4>
+                        <p>Crea y aplica estilos consistentes para texto, formas y tablas.</p>
+                        <div class="herramienta-diseno">Estilos de texto</div>
+                        <div class="herramienta-diseno">Estilos de tabla</div>
+                        <div class="herramienta-diseno">Estilos de forma</div>
+                    </div>
+                </div>
+                
+                <div class="resumen">
+                    <h2>Resumen</h2>
+                    <p>En esta sesión has aprendido a:</p>
+                    <ul>
+                        <li>Configurar correctamente las páginas en Publisher</li>
+                        <li>Utilizar guías y reglas para un diseño preciso</li>
+                        <li>Crear jerarquías visuales efectivas</li>
+                        <li>Organizar elementos de manera profesional</li>
+                        <li>Trabajar con plantillas y estilos</li>
+                    </ul>
+                </div>
+                
+                <div class="evaluacion">
+                    <h3>Auto-evaluación</h3>
+                    <p>Responde las siguientes preguntas para verificar tu comprensión:</p>
+                    <ol>
+                        <li>¿Cómo puedes asegurarte de que los elementos de tu diseño estén alineados correctamente?</li>
+                        <li>¿Por qué es importante la jerarquía visual en un diseño de página?</li>
+                        <li>¿Cuáles son las ventajas de usar plantillas en Publisher?</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+</body>
+</html>

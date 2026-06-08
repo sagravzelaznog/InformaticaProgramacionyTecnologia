@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S54: Creación de Gráficos de Línea y Puntos</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5-px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 54: Creación de Gráficos de Línea y Puntos</h1>
+
+    <section>
+        <h2>1. Construcción de Gráficos de Línea (Line Charts)</h2>
+        
+        <p>Los gráficos de línea son perfectos para mostrar tendencias a lo largo del tiempo. Se basan en la herramienta **Pluma (B)** y el **Ajuste**.</p>
+        <div class="paso">
+            <strong>Paso 1: Ejes y Puntos de Datos</strong>
+            <p>Dibuja los ejes X e Y. Dibuja círculos pequeños y simples para representar cada punto de datos. Usa el **Ajuste a rejilla** para colocarlos con precisión en el valor deseado.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Conexión de Puntos (Pluma Bézier)</strong>
+            <p>Usa la herramienta **Pluma (B)**. Asegúrate de que el **Ajuste a nodos** esté activado. Haz clic en el centro de cada círculo de punto de datos para dibujar una línea recta entre ellos. Esto crea la línea de tendencia.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Suavizado de Tendencia</strong>
+            <p>Si la tendencia debe ser suave (no puntos de datos discretos), selecciona el trayecto de línea y presiona **Ctrl + L (Simplificar)** varias veces. Esto curva las líneas rectas entre los puntos, simulando una tendencia continua y más orgánica.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Gráficos de Área y Relleno</h2>
+        <p>Para enfatizar la magnitud de la tendencia, se puede rellenar el área debajo de la línea.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear la Forma Cerrada</strong>
+            <p>Selecciona la línea de tendencia. Con la herramienta **Pluma (B)**, añade un nodo en el punto de inicio del eje X y otro en el punto final. Dibuja las líneas que cierran la forma hacia el eje X. Esto crea un **polígono** cerrado debajo de la línea.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Relleno y Gradiente</strong>
+            <p>Rellena la forma cerrada con el color deseado. Aplica un **Degradado Lineal** suave que vaya del color sólido en la parte superior a un color más transparente en la parte inferior. Esto da un aspecto limpio y profesional al área de tendencia.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Diagramas de Dispersión (Scatter Plots)</h2>
+        <p>Los diagramas de dispersión muestran la correlación entre dos variables, usando puntos.</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar Puntos</strong>
+            <p>Usa la herramienta **Círculo (F5)**. Dibuja el tamaño base del punto. Duplícalo (**Ctrl + D**) tantas veces como puntos de datos necesites. Coloca cada punto según los valores de X e Y en los ejes.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Identificación por Color y Tamaño</strong>
+            <p>Si el gráfico tiene una tercera variable, puedes representarla con el color (cambiando el color de los puntos) o el tamaño (**Escala** de los círculos). Aplica una sombra sutil (Desenfoque Gaussiano) a cada punto para darles un aspecto de burbuja.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Gráfico de Tendencia Suave</h3>
+        <p><strong>Objetivo:</strong> Crear un gráfico de área con suavizado.</p>
+        <ol>
+            <li>Dibuja los ejes X e Y.</li>
+            <li>Coloca 5 círculos pequeños como puntos de datos en una tendencia ascendente.</li>
+            <li>Conecta los 5 puntos con la **Pluma (B)**.</li>
+            <li>Aplica **Simplificar (Ctrl + L)** a la línea para suavizar la tendencia.</li>
+            <li>Cierra el trayecto hacia el eje X y aplica un **Degradado Lineal** transparente en el área de relleno.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion53.html">Anterior</a>
+    <a href="sesion55.html">Siguiente</a>
+</nav>
+</body>
+</html>

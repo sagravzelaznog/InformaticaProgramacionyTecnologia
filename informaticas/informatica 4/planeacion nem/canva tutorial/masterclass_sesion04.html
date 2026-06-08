@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 04: El Poder del Color y Estilos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Pacifico&display=swap" rel="stylesheet">
+				<link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            /* Paleta Base: Limpieza y Foco */
+            --brand-purple: #7D2AE8;
+            --brand-teal: #00C4CC;
+            --bg-light: #F6F9FC;
+            --text-dark: #2D3748;
+            --card-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER: DISEÑO FLUIDO --- */
+        header {
+            background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%); /* Gradiente cálido para variar la energía */
+            padding: 3rem 1rem;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 20px rgba(255, 94, 98, 0.3);
+            position: relative;
+        }
+
+        h1 { font-weight: 900; font-size: 2.2rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        .tag { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main {
+            max-width: 850px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover { transform: translateY(-5px); }
+
+        h2 { 
+            color: var(--brand-purple); 
+            border-left: 5px solid var(--brand-teal); 
+            padding-left: 15px; 
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- SIMULADOR DE ESTILOS (INTERACTIVO) --- */
+        .style-simulator-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 15px;
+            align-items: center;
+        }
+
+        /* El "Lienzo" falso */
+        #mock-canvas {
+            background-color: #ffffff;
+            height: 250px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #mock-title { font-weight: 900; font-size: 1.5rem; margin-bottom: 10px; transition: color 0.5s; }
+        #mock-text { font-size: 0.9rem; margin-bottom: 20px; transition: color 0.5s; }
+        #mock-btn { 
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            border: none; 
+            font-weight: bold; 
+            cursor: default; 
+            transition: all 0.5s; 
+        }
+
+        /* Botones de control */
+        .palette-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .palette-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .palette-btn:hover { transform: scale(1.05); }
+
+        /* --- EJERCICIO PRÁCTICO --- */
+        .step-card {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ddd;
+        }
+        .step-icon { font-size: 1.5rem; margin-right: 15px; min-width: 30px; }
+
+        /* --- QUIZ KAHOOT STYLE --- */
+        #kahoot-section {
+            background: #46178F; /* Kahoot Purple ish */
+            color: white;
+            text-align: center;
+            border-left: none;
+        }
+        #kahoot-section h2 { color: white; border-color: white; justify-content: center; border-left: none; padding: 0; }
+
+        .quiz-wrapper { margin-top: 20px; }
+        
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .answers-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .ans-btn {
+            padding: 25px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            transition: margin-top 0.1s;
+        }
+        .ans-btn:active { margin-top: 4px; box-shadow: none; }
+
+        .red { background: #E21B3C; }
+        .blue { background: #1368CE; }
+        .gold { background: #D89E00; }
+        .green { background: #26890C; }
+
+        .feedback-overlay {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            height: 30px;
+        }
+
+        /* --- FOOTER OBLIGATORIO --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #888;
+            background: white;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
+            font-family: monospace;
+        }
+
+        @media (max-width: 700px) {
+            .style-simulator-container { grid-template-columns: 1fr; }
+            .answers-area { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="tag">SESIÓN 04</span>
+        <h1>Psicología del Color</h1>
+        <p>Aprende a comunicar emociones sin decir una palabra.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 Objetivo de la Sesión</h2>
+            <p>El color no es solo decoración; es comunicación. Hoy aprenderemos a usar la <strong>Rueda de Colores</strong> y la herramienta <strong>"Estilos"</strong> de Canva para crear marcas visuales coherentes. Entenderás por qué un banco usa azul y una tienda de comida rápida usa rojo.</p>
+        </section>
+
+        <section>
+            <h2>🎨 Laboratorio de Estilos</h2>
+            <p>Observa cómo cambia el mensaje del diseño de la derecha con solo cambiar la paleta de colores. ¡Pruébalo!</p>
+            
+            <div class="style-simulator-container">
+                <div class="palette-controls">
+                    <button class="palette-btn" style="background: #2C3E50;" onclick="applyStyle('corporate')">Corporativo<br><span style="font-size:0.7rem; font-weight:400;">Serio/Confianza</span></button>
+                    <button class="palette-btn" style="background: #FF6B6B;" onclick="applyStyle('energetic')">Energético<br><span style="font-size:0.7rem; font-weight:400;">Urgencia/Pasión</span></button>
+                    <button class="palette-btn" style="background: #A8E6CF; color:#333;" onclick="applyStyle('eco')">Natural<br><span style="font-size:0.7rem; font-weight:400;">Calma/Salud</span></button>
+                    <button class="palette-btn" style="background: #212121;" onclick="applyStyle('luxury')">Lujo<br><span style="font-size:0.7rem; font-weight:400;">Elegancia/Poder</span></button>
+                </div>
+
+                <div id="mock-canvas">
+                    <div id="mock-title">GRAN VENTA</div>
+                    <div id="mock-text">Esta es la oportunidad que estabas esperando.</div>
+                    <button id="mock-btn">VER MÁS</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: Crea tu "Brand Kit"</h2>
+            <p>En Canva, no tienes que adivinar qué colores combinan. Vamos a usar la pestaña oculta de "Estilos".</p>
+            
+            <div class="step-card">
+                <div class="step-icon">1️⃣</div>
+                <div>Abre un diseño cualquiera en Canva.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">2️⃣</div>
+                <div>En la barra izquierda, busca la pestaña <strong>"Diseño"</strong> y luego haz clic arriba en <strong>"Estilos"</strong>.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">3️⃣</div>
+                <div>Verás combinaciones de <strong>Paletas de Colores + Tipografías</strong> creadas por expertos.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">4️⃣</div>
+                <div><strong>El truco mágico:</strong> Haz clic varias veces en la misma paleta y observa cómo Canva "baraja" (shuffle) los colores en tu diseño automáticamente.</div>
+            </div>
+        </section>
+
+        <section id="kahoot-section">
+            <h2>🧠 Desafío de Color</h2>
+            <div class="quiz-wrapper">
+                <div id="q-box" class="quiz-question">Cargando pregunta...</div>
+                <div id="opts-box" class="answers-area">
+                    </div>
+                <div id="msg-box" class="feedback-overlay"></div>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion03.html">sesion 3</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion05.html">sesion 5</a>
+        </div>
+</main>
+    <footer>copyright &copy;JMGV-PTEL-2026. sesion 04 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados</footer>
+
+    <script>
+        // --- 1. LÓGICA DEL SIMULADOR DE ESTILOS ---
+        function applyStyle(type) {
+            const canvas = document.getElementById('mock-canvas');
+            const title = document.getElementById('mock-title');
+            const text = document.getElementById('mock-text');
+            const btn = document.getElementById('mock-btn');
+
+            if (type === 'corporate') {
+                canvas.style.backgroundColor = "#F4F6F8";
+                title.style.color = "#1A365D";
+                title.style.fontFamily = "'Poppins', sans-serif";
+                text.style.color = "#4A5568";
+                btn.style.backgroundColor = "#2B6CB0";
+                btn.style.color = "white";
+                btn.innerText = "Más Información";
+            } else if (type === 'energetic') {
+                canvas.style.backgroundColor = "#FFEBEB";
+                title.style.color = "#C53030";
+                title.style.fontFamily = "'Poppins', sans-serif";
+                text.style.color = "#2D3748";
+                btn.style.backgroundColor = "#E53E3E";
+                btn.style.color = "white";
+                btn.innerText = "¡COMPRAR YA!";
+            } else if (type === 'eco') {
+                canvas.style.backgroundColor = "#F0FFF4";
+                title.style.color = "#2F855A";
+                title.style.fontFamily = "'Pacifico', cursive"; /* Fuente amigable */
+                text.style.color = "#276749";
+                btn.style.backgroundColor = "#48BB78";
+                btn.style.color = "white";
+                btn.innerText = "Descubrir";
+            } else if (type === 'luxury') {
+                canvas.style.backgroundColor = "#1a1a1a";
+                title.style.color = "#D4AF37"; /* Dorado */
+                title.style.fontFamily = "'Times New Roman', serif";
+                text.style.color = "#ccc";
+                btn.style.backgroundColor = "transparent";
+                btn.style.border = "1px solid #D4AF37";
+                btn.style.color = "#D4AF37";
+                btn.innerText = "EXCLUSIVO";
+            }
+        }
+
+        // --- 2. LÓGICA DEL QUIZ (KAHOOT STYLE) ---
+        const questions = [
+            {
+                text: "¿Qué comunica el color AZUL en psicología del color?",
+                options: ["Peligro y Pasión", "Confianza y Calma", "Naturaleza y Crecimiento", "Diversión y Locura"],
+                correct: 1
+            },
+            {
+                text: "¿Qué hace la función 'Shuffle' (Barajar) en la pestaña Estilos?",
+                options: ["Borra el diseño", "Cambia el idioma", "Rota los colores de la paleta en el diseño", "Cierra Canva"],
+                correct: 2
+            },
+            {
+                text: "¿Qué es un Código Hexadecimal (ej: #FF0000)?",
+                options: ["Un virus informático", "El nombre exacto de un color digital", "Una contraseña de Canva", "Un tipo de letra"],
+                correct: 1
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        const qBox = document.getElementById('q-box');
+        const optsBox = document.getElementById('opts-box');
+        const msgBox = document.getElementById('msg-box');
+
+        function loadQuestion() {
+            if (currentQ >= questions.length) {
+                // Fin del juego
+                qBox.innerText = "¡Sesión Completada!";
+                optsBox.innerHTML = "";
+                msgBox.innerHTML = `Puntuación Final: ${score}/${questions.length} <br> <button onclick="location.reload()" style="margin-top:10px; padding:10px; cursor:pointer;">Reiniciar</button>`;
+                return;
+            }
+
+            const q = questions[currentQ];
+            qBox.innerText = q.text;
+            optsBox.innerHTML = "";
+            msgBox.innerText = "";
+
+            const classes = ['red', 'blue', 'gold', 'green'];
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.classList.add('ans-btn', classes[index]);
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(index, q.correct);
+                optsBox.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(selected, correct) {
+            const btns = document.querySelectorAll('.ans-btn');
+            btns.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                msgBox.innerText = "¡Correcto! 🚀";
+                msgBox.style.color = "#4fd1c5"; // Teal claro
+                score++;
+                btns[selected].style.border = "4px solid white";
+            } else {
+                msgBox.innerText = "Incorrecto 😅";
+                msgBox.style.color = "#fc8181"; // Rojo claro
+                btns[selected].style.opacity = "0.5";
+            }
+
+            setTimeout(() => {
+                currentQ++;
+                loadQuestion();
+            }, 2000);
+        }
+
+        // Iniciar Quiz
+        loadQuestion();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+ Sesión 1: Introducción a Publisher
+ Sesión 2: Plantillas y diseños
+ Sesión 3: Trabajo con texto
+ Sesión 4: Imágenes y gráficos
+ Sesión 5: Tablas
+ Sesión 6: Diseño de página
+ Sesión 7: Trabajo con objetos
+ Sesión 8: Estilos y temas
+ Sesión 9: Páginas maestras
+ Sesión 10: Hipervínculos
+ Sesión 11: Combinar correspondencia
+ Sesión 12: Publicaciones web
+ Sesión 13: Impresión
+ Sesión 14: Automatización
+ Sesión 15: Proyecto práctico
+ Sesión 16: Revisión y evaluación

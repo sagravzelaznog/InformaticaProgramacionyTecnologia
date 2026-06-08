@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Páginas Maestras - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .ejercicio {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1971c2;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .ejercicio h4 {
+            margin-top: 0;
+            color: #1971c2;
+        }
+        
+        .demo-pagina {
+            border: 1px solid #dee2e6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .pagina-maestra {
+            border: 2px dashed #1971c2;
+            padding: 1rem;
+            position: relative;
+            min-height: 300px;
+            background-color: #f8f9fa;
+        }
+        
+        .pagina-normal {
+            border: 1px solid #dee2e6;
+            padding: 1rem;
+            margin-top: 1rem;
+            min-height: 200px;
+            background-color: white;
+        }
+        
+        .elemento-maestro {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            padding: 0.5rem;
+            position: relative;
+        }
+        
+        .elemento-maestro.pie-pagina {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .elemento-pagina {
+            background-color: #f6ffed;
+            border: 1px solid #b7eb8f;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .panel-paginas {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .miniatura-pagina {
+            width: 150px;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .miniatura-pagina:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .miniatura-pagina.activa {
+            border-color: #1971c2;
+            background-color: #e6f7ff;
+        }
+        
+        .consejo {
+            background-color: #fffbe6;
+            border-left: 4px solid #faad14;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .consejo h4 {
+            margin-top: 0;
+            color: #d48806;
+        }
+        
+        .paso {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #1890ff;
+        }
+        
+        .evaluacion {
+            background-color: #f6ffed;
+            border-left: 4px solid #52c41a;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .evaluacion h3 {
+            margin-top: 0;
+            color: #389e0d;
+        }
+        
+        /* Estilos para el editor interactivo */
+        .editor-pagina {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .herramientas {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        
+        .area-trabajo {
+            min-height: 500px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1rem;
+            position: relative;
+            background-color: white;
+        }
+        
+        .elemento-arrastrable {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background-color: #e6f7ff;
+            border: 1px dashed #1890ff;
+            border-radius: 4px;
+            cursor: move;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .elemento-arrastrable.encabezado {
+            background-color: #f6ffed;
+            border-color: #52c41a;
+        }
+        
+        .elemento-arrastrable.pie {
+            background-color: #fff1f0;
+            border-color: #ff4d4f;
+        }
+        
+        .elemento-arrastrable.numero {
+            background-color: #fffbe6;
+            border-color: #faad14;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>Sesión 9: Páginas Maestras</h1>
+            <nav aria-label="Navegación">
+                <a href="../index.html" class="btn">Inicio</a>
+                <a href="sesion8.html" class="btn">Sesión Anterior</a>
+                <a href="sesion10.html" class="btn">Siguiente Sesión</a>
+            </nav>
+        </header>
+
+        <main>
+            <section>
+                <h2>Introducción a las Páginas Maestras</h2>
+                <p>Las páginas maestras son una característica poderosa en Microsoft Publisher que te permite crear diseños consistentes en documentos de varias páginas. Funcionan como una plantilla base que puedes aplicar a múltiples páginas, asegurando que elementos como encabezados, pies de página, números de página y logotipos aparezcan exactamente en el mismo lugar en cada página.</p>
+                
+                <div class="ejercicio">
+                    <h4>¿Por qué usar páginas maestras?</h4>
+                    <ul>
+                        <li><strong>Consistencia:</strong> Mantén un diseño uniforme en todo el documento</li>
+                        <li><strong>Eficiencia:</strong> Realiza cambios una vez y aplícalos a múltiples páginas</li>
+                        <li><strong>Control:</strong> Separa los elementos maestros del contenido de la página</li>
+                        <li><strong>Ahorro de tiempo:</strong> Reduce la necesidad de copiar y pegar elementos comunes</li>
+                    </ul>
+                </div>
+                
+                <div class="demo-pagina">
+                    <h3>Ejemplo de página maestra</h3>
+                    <div class="pagina-maestra" id="paginaMaestraDemo">
+                        <div class="elemento-maestro">Encabezado de la página maestra</div>
+                        <div class="elemento-maestro">Logotipo de la empresa</div>
+                        <div class="elemento-maestro pie-pagina">
+                            Pie de página - Número de página: <span id="numeroPagina">#</span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-paginas" id="panelPaginas">
+                        <div class="miniatura-pagina activa" data-pagina="1">
+                            <strong>Página 1</strong>
+                            <div class="pagina-normal">
+                                <div class="elemento-pagina">Contenido de la página 1</div>
+                            </div>
+                        </div>
+                        <div class="miniatura-pagina" data-pagina="2">
+                            <strong>Página 2</strong>
+                            <div class="pagina-normal">
+                                <div class="elemento-pagina">Contenido de la página 2</div>
+                            </div>
+                        </div>
+                        <div class="miniatura-pagina" data-pagina="3">
+                            <strong>Página 3</strong>
+                            <div class="pagina-normal">
+                                <div class="elemento-pagina">Contenido de la página 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="crear-pagina-maestra">
+                <h2>1. Crear una Página Maestra</h2>
+                <p>Vamos a aprender a crear una página maestra desde cero.</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Crear una página maestra básica</h4>
+                    <ol class="pasos">
+                        <li>Abre Microsoft Publisher y crea un nuevo documento en blanco</li>
+                        <li>Ve a la pestaña <strong>Ver</strong> en la cinta de opciones</li>
+                        <li>Haz clic en <strong>Página maestra</strong> en el grupo <strong>Vistas</strong></li>
+                        <li>Observa que ahora estás en la vista de página maestra</li>
+                        <li>En la pestaña <strong>Página maestra</strong>, haz clic en <strong>Nueva página maestra</strong></li>
+                        <li>Asigna un nombre descriptivo a tu página maestra</li>
+                        <li>Haz clic en <strong>Aceptar</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Consejo profesional:</h4>
+                    <p>Puedes crear múltiples páginas maestras en un solo documento. Esto es útil para documentos con diferentes diseños de página, como portadas, capítulos o secciones especiales.</p>
+                </div>
+                
+                <h3>Agregar elementos a la página maestra</h3>
+                <p>Los elementos que agregues a la página maestra aparecerán en todas las páginas que usen esa página maestra.</p>
+                
+                <div class="editor-pagina">
+                    <div class="herramientas">
+                        <h4>Elementos de página maestra</h4>
+                        <div class="elemento-arrastrable encabezado" draggable="true" data-tipo="encabezado">Encabezado</div>
+                        <div class="elemento-arrastrable pie" draggable="true" data-tipo="pie">Pie de página</div>
+                        <div class="elemento-arrastrable numero" draggable="true" data-tipo="numero">Número de página</div>
+                        <div class="elemento-arrastrable" draggable="true" data-tipo="logo">Logotipo</div>
+                        <div class="elemento-arrastrable" draggable="true" data-tipo="linea">Línea divisoria</div>
+                    </div>
+                    <div class="area-trabajo" id="areaTrabajo">
+                        <p>Arrastra los elementos aquí para crear tu página maestra</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aplicar-pagina-maestra">
+                <h2>2. Aplicar una Página Maestra</h2>
+                <p>Ahora que has creado una página maestra, es hora de aplicarla a las páginas de tu documento.</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Aplicar una página maestra</h4>
+                    <ol class="pasos">
+                        <li>Sal de la vista de página maestra haciendo clic en <strong>Cerrar vista de página maestra</strong> en la pestaña <strong>Página maestra</strong></li>
+                        <li>En el panel de navegación de páginas, haz clic derecho en la página a la que deseas aplicar la página maestra</li>
+                        <li>Selecciona <strong>Formato de página</strong> en el menú contextual</li>
+                        <li>En el cuadro de diálogo, selecciona la página maestra que creaste</li>
+                        <li>Haz clic en <strong>Aceptar</strong> para aplicar la página maestra</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Consejo de diseño:</h4>
+                    <p>Puedes aplicar diferentes páginas maestras a páginas pares e impares. Esto es especialmente útil para documentos impresos a doble cara, donde los márgenes internos y externos deben alternarse.</p>
+                </div>
+            </section>
+
+            <section id="modificar-pagina-maestra">
+                <h2>3. Modificar una Página Maestra</h2>
+                <p>Una de las mayores ventajas de las páginas maestras es que puedes modificar el diseño una vez y los cambios se reflejarán en todas las páginas que usen esa página maestra.</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Modificar una página maestra existente</h4>
+                    <ol class="pasos">
+                        <li>Ve a la pestaña <strong>Ver</strong> en la cinta de opciones</li>
+                        <li>Haz clic en <strong>Página maestra</strong> para volver a la vista de página maestra</li>
+                        <li>Selecciona la página maestra que deseas modificar en el panel de navegación</li>
+                        <li>Realiza los cambios que desees (agregar texto, imágenes, formas, etc.)</li>
+                        <li>Los cambios se guardarán automáticamente en la página maestra</li>
+                        <li>Vuelve a la vista normal para ver los cambios aplicados a todas las páginas</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Precaución:</h4>
+                    <p>Los cambios en una página maestra afectarán a todas las páginas que la utilicen. Si necesitas hacer cambios en una sola página, asegúrate de que los elementos que modificas no sean parte de la página maestra o usa la opción <strong>Ignorar página maestra</strong> en esa página específica.</p>
+                </div>
+            </section>
+
+            <section id="ejercicio-practico">
+                <h2>Ejercicio Práctico: Crear un boletín informativo</h2>
+                <p>Ahora que has aprendido los conceptos básicos de las páginas maestras, es hora de poner en práctica tus conocimientos con un ejercicio completo.</p>
+                
+                <div class="ejercicio-practico">
+                    <h4>Crear un boletín informativo con páginas maestras</h4>
+                    
+                    <div class="paso">
+                        <h5>Paso 1: Configurar el documento</h5>
+                        <ol>
+                            <li>Abre Microsoft Publisher y crea un nuevo documento de boletín informativo</li>
+                            <li>Elige un diseño que incluya varias páginas</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 2: Crear una página maestra para la portada</h5>
+                        <ol>
+                            <li>Ve a la vista de página maestra</li>
+                            <li>Crea una nueva página maestra llamada "Portada"</li>
+                            <li>Agrega un encabezado con el título del boletín</li>
+                            <li>Incluye un pie de página con información de contacto</li>
+                            <li>Agrega elementos decorativos como líneas o formas</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 3: Crear una página maestra para páginas interiores</h5>
+                        <ol>
+                            <li>Crea otra página maestra llamada "Interior"</li>
+                            <li>Agrega encabezados y pies de página diferentes a los de la portada</li>
+                            <li>Incluye números de página</li>
+                            <li>Agrega una línea divisora para separar el encabezado del contenido</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 4: Aplicar las páginas maestras</h5>
+                        <ol>
+                            <li>Vuelve a la vista normal</li>
+                            <li>Aplica la página maestra "Portada" a la primera página</li>
+                            <li>Aplica la página maestra "Interior" a las páginas restantes</li>
+                            <li>Verifica que los elementos de la página maestra aparezcan correctamente</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 5: Personalizar páginas individuales</h5>
+                        <ol>
+                            <li>Selecciona una página donde desees hacer cambios específicos</li>
+                            <li>Haz clic derecho y selecciona <strong>Ignorar página maestra</strong> para los elementos que deseas modificar</li>
+                            <li>Realiza los cambios específicos para esa página</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="evaluacion">
+                <div class="evaluacion">
+                    <h3>Auto-evaluación</h3>
+                    <p>Responde las siguientes preguntas para verificar tu comprensión:</p>
+                    <ol>
+                        <li>¿Cuál es el propósito principal de usar páginas maestras en Publisher?</li>
+                        <li>¿Cómo se accede a la vista de página maestra en Publisher?</li>
+                        <li>¿Qué sucede si modificas un elemento en una página maestra después de haberlo aplicado a varias páginas?</li>
+                        <li>¿Cómo puedes hacer que una página específica ignore ciertos elementos de la página maestra?</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="resumen">
+                <h2>Resumen de la Sesión</h2>
+                <p>En esta sesión has aprendido a:</p>
+                <ul>
+                    <li>Crear y modificar páginas maestras</li>
+                    <li>Aplicar páginas maestras a páginas individuales</li>
+                    <li>Trabajar con encabezados, pies de página y números de página</li>
+                    <li>Ignorar elementos de la página maestra en páginas específicas</li>
+                </ul>
+                
+                <div class="consejo">
+                    <h4>Próximos pasos:</h4>
+                    <p>Practica creando diferentes tipos de documentos con páginas maestras. Cuanto más practiques, más cómodo te sentirás trabajando con esta poderosa herramienta de diseño.</p>
+                </div>
+            </section>
+        </main>
+
+     
+    </div>
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Script para el panel de páginas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controlador para el panel de páginas
+            const miniaturas = document.querySelectorAll('.miniatura-pagina');
+            const numeroPagina = document.getElementById('numeroPagina');
+            
+            // Mostrar la página seleccionada
+            miniaturas.forEach(miniatura => {
+                miniatura.addEventListener('click', function() {
+                    const numPagina = this.getAttribute('data-pagina');
+                    numeroPagina.textContent = numPagina;
+                    
+                    // Actualizar clases activas
+                    miniaturas.forEach(m => m.classList.remove('activa'));
+                    this.classList.add('activa');
+                });
+            });
+            
+            // Funcionalidad de arrastrar y soltar para el editor
+            const elementos = document.querySelectorAll('.elemento-arrastrable');
+            const areaTrabajo = document.getElementById('areaTrabajo');
+            
+            elementos.forEach(elemento => {
+                elemento.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', this.getAttribute('data-tipo'));
+                    setTimeout(() => this.style.display = 'none', 0);
+                });
+                
+                elemento.addEventListener('dragend', function() {
+                    this.style.display = '';
+                });
+            });
+            
+            areaTrabajo.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#1890ff';
+            });
+            
+            areaTrabajo.addEventListener('dragleave', function() {
+                this.style.borderColor = '#dee2e6';
+            });
+            
+            areaTrabajo.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#dee2e6';
+                
+                const tipo = e.dataTransfer.getData('text/plain');
+                let nuevoElemento;
+                
+                switch(tipo) {
+                    case 'encabezado':
+                        nuevoElemento = document.createElement('div');
+                        nuevoElemento.className = 'elemento-maestro';
+                        nuevoElemento.textContent = 'Encabezado de la página';
+                        break;
+                    case 'pie':
+                        nuevoElemento = document.createElement('div');
+                        nuevoElemento.className = 'elemento-maestro';
+                        nuevoElemento.textContent = 'Pie de página - Página #';
+                        break;
+                    case 'numero':
+                        nuevoElemento = document.createElement('div');
+                        nuevoElemento.className = 'elemento-maestro';
+                        nuevoElemento.textContent = 'Número de página: 1';
+                        break;
+                    case 'logo':
+                        nuevoElemento = document.createElement('div');
+                        nuevoElemento.className = 'elemento-maestro';
+                        nuevoElemento.textContent = '[LOGO]';
+                        break;
+                    case 'linea':
+                        nuevoElemento = document.createElement('hr');
+                        nuevoElemento.style.borderTop = '1px solid #dee2e6';
+                        nuevoElemento.style.width = '100%';
+                        break;
+                }
+                
+                if (nuevoElemento) {
+                    this.appendChild(nuevoElemento);
+                }
+            });
+            
+            // Botón para volver arriba
+            document.getElementById('volverArriba').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

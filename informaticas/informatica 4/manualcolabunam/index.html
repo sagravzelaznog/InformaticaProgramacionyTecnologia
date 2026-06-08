@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Básico de Google Colab</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #1a1a1a;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        code {
+            background-color: #f2f2f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+        pre {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tutorial Básico de Google Colab</h1>
+
+    <h3>Introducción a Google Colab</h3>
+    <p>
+        Google Colab es una herramienta gratuita de Google que te permite escribir y ejecutar código Python directamente en tu navegador web. Está basado en los Notebooks de Jupyter y es especialmente útil para tareas que requieren una gran capacidad de cómputo, como el aprendizaje automático, ya que te da acceso gratuito al potente hardware de Google (GPUs y TPUs).
+    </p>
+
+    <h3>La Interfaz de Colab: Celdas</h3>
+    <p>
+        El área de Trabajo principal en Colab se organiza en <strong>celdas</strong>. Hay dos tipos principales de celdas:
+    </p>
+    <ol>
+        <li><strong>Celdas de Código</strong>: Para escribir y ejecutar código Python.</li>
+        <li><strong>Celdas de Texto</strong>: Para añadir explicaciones, notas y texto formateado usando una sintaxis simple llamada Markdown.</li>
+    </ol>
+
+    <h3>Uso de Celdas de Código</h3>
+    <ol>
+        <li><strong>Crear una Celda de Código</strong>: Haz clic en el botón <code>+ Código</code> en la barra de herramientas en la parte superior izquierda de tu notebook.</li>
+        <li><strong>Escribir Código</strong>: Escribe tu código Python en la celda. Por ejemplo:
+            <pre><code>print("¡Hola, Google Colab!")</code></pre>
+        </li>
+        <li><strong>Ejecutar la Celda</strong>: Para ejecutar el código, puedes:
+            <ul>
+                <li>Presionar <strong><code>Shift + Enter</code></strong> en tu teclado.</li>
+                <li>Hacer clic en el <strong>botón de reproducción (▶)</strong> que aparece a la izquierda de la celda cuando pasas el cursor sobre ella.</li>
+            </ul>
+        </li>
+    </ol>
+    <p>
+        La salida de tu código aparecerá directamente debajo de la celda.
+    </p>
+
+    <h3>Uso de Celdas de Texto</h3>
+    <p>
+        Las celdas de texto te permiten documentar tu código, añadir títulos, crear listas y más.
+    </p>
+    <ol>
+        <li><strong>Crear una Celda de Texto</strong>: Haz clic en el botón <code>+ Texto</code> en la barra de herramientas.</li>
+        <li><strong>Escribir y Formatear Texto</strong>: Las celdas de texto usan <strong>Markdown</strong> para el formato. Aquí tienes algunos ejemplos básicos:
+            <ul>
+                <li><code># Título</code>: Crea un título principal.</li>
+                <li><code>## Subtítulo</code>: Crea un subtítulo más pequeño.</li>
+                <li><code>**texto en negrita**</code>: Pone el texto en negrita.</li>
+                <li><code>*texto en cursiva*</code>: Pone el texto en cursiva.</li>
+                <li><code>- Un elemento de la lista</code>: Crea una lista con viñetas.</li>
+            </ul>
+            <p>Por ejemplo, podrías escribir:</p>
+            <pre><code># Mi Primer Notebook en Colab
+
+Este es un ejemplo de cómo usar celdas de texto.
+Podemos usar **negritas** y también *cursivas*.
+            <h2>Estructura Básica de un Notebook en Colab</h2>
+            <p>En Google Colab, existen dos tipos de celdas:</p>
+            <ol>
+                <li>**Celdas de Texto:** Útiles para redacción de texto, incluyendo formato **HTML** y **LaTeX**. Se agregan haciendo clic en el botón <strong>'+ Texto'</strong>.</li>
+                <li>**Celdas de Código:** Enfocadas en la ejecución de código en lenguaje de programación **Python**. Se agregan haciendo clic en el botón <strong>'+ Código'</strong>.</li>
+            </ol>
+            <p>Para agregar un **comentario** en una celda de código, utiliza el símbolo **<code>#</code>** al inicio de la línea. El entorno omitirá esta línea al ejecutar el código.</p>
+            <p>Para guardar los cambios, usa la combinación de teclas **<code>[CTRL + S]</code>** o el menú <strong>Archivo > Guardar</strong>. Para guardar una copia en tu Google Drive, ve a <strong>Archivo > Guardar una copia en Drive</strong>.</p>
+        </section>
+
+        <hr>
+
+        <section id="materiales">
+            <h2 id="obtener-materiales">¿Dónde y Cómo Obtengo los Materiales Didácticos?</h2>
+
+            <h3 id="descargar-repositorio">Descarga Directa del Repositorio</h3>
+            <p>Los materiales están en un **repositorio público de GitHub**:</p>
+            <div class="code-block">
+                <a href="https://github.com/jugernaut/Prometeo">https://github.com/jugernaut/Prometeo</a>
+            </div>
+            <p>Para descargar todo el código a tu equipo, haz clic en el botón **'Code'** y elige **'Download ZIP'**.</p>
+
+            <h3 id="usar-notebooks">Uso Interactivo con Google Colab</h3>
+            <p>En el sitio de GitHub, dentro del repositorio Prometeo (carpetas <code>01_Calculo</code> o <code>02_AlgebraLineal</code>), encontrarás los notebooks.</p>
+            <p>Al visualizar un notebook en GitHub, verás un botón que dice **'Open in Colab'**. Haz clic en este botón para abrir el notebook en una nueva pestaña de Colab y poder **interactuar** con el código.</p>
+        </section>
+
+        <hr>
+
+        <section id="ejecutar">
+            <h2>Ejecutar y Modificar el Código</h2>
+            <p>Para ejecutar el código de una celda en Google Colab, localiza el **botón de reproducción** (un triángulo) en la parte superior izquierda de la celda de código y haz clic en él. El resultado se verá justo debajo de la celda ejecutada.</p>
+            <p>Para **modificar** el código, simplemente selecciona la celda, realiza los cambios deseados y vuelve a **ejecutar la celda**.</p>
+            <div class="hint">
+                <p><strong>IMPORTANTE:</strong> Se recomienda ejecutar las celdas **consecutivamente desde el inicio**, ya que algunas celdas de código dependen de funciones o variables definidas en celdas anteriores. Ejecutarlas en orden evita errores de dependencia.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="dependencias">
+            <h2>¿Cómo cargar códigos dependientes en Google Colab?</h2>
+            <p>Si un notebook depende de otros códigos, archivos o programas, tienes dos métodos para cargarlos en el ambiente de Google Colab:</p>
+
+            <h3 id="cargar-archivos">Método 1: Cargar archivos desde tu computadora</h3>
+            <ol>
+                <li>En la barra lateral izquierda de Colab, selecciona la **carpeta de archivos** (icono de archivo).</li>
+                <li>Presiona el **icono de subir archivo** (flecha hacia arriba).</li>
+                <li>Se abrirá tu navegador de archivos para que puedas seleccionar el archivo deseado. Una vez cargado, el código estará disponible en el ambiente de Colab para su uso.</li>
+            </ol>
+
+            <h3 id="clonar-repositorio">Método 2: Clonar un repositorio de GitHub</h3>
+            <p>Si el archivo deseado se encuentra en un repositorio de GitHub, puedes clonarlo directamente en tu sesión de Colab usando el comando <code>!git clone</code> en una celda de código:</p>
+            <div class="code-block">
+                <p>Ejemplo (Clonando el repositorio Prometeo):</p>
+                <code>!git clone https://github.com/jugernaut/Prometeo.git</code>
+            </div>
+            <p>Al ejecutar la celda, Google Colab clonará el repositorio completo, permitiendo utilizar los archivos dentro de esa sesión interactiva. Posteriormente, puedes importar y utilizar los archivos del repositorio clonado.</p>
+        </section>
+    </article>
+</main>
+
+</body>
+</html>

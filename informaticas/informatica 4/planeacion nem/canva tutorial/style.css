@@ -1,0 +1,176 @@
+:root {
+	--primary: #7D2AE8; /* Canva Purple */
+	--secondary: #00C4CC; /* Canva Turquoise */
+	--accent: #FF5353; /* Red for errors */
+	--success: #2ebd59; /* Green for success */
+	--dark: #0E1318;
+	--light: #F4F6F8;
+	--white: #ffffff;
+	--glass: rgba(255, 255, 255, 0.95);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%);
+	color: var(--dark);
+	line-height: 1.6;
+}
+
+/* HEADER - ARQUITECTURA DE INFORMACIÓN */
+header {
+	background: linear-gradient(90deg, var(--primary), var(--secondary));
+	color: var(--white);
+	padding: 2rem 1rem;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+h1 { font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+.subtitle { font-weight: 300; opacity: 0.9; }
+
+/* CONTENEDOR PRINCIPAL */
+main {
+	max-width: 900px;
+	margin: 2rem auto;
+	padding: 0 1rem;
+}
+
+/* SECCIONES EDUCATIVAS (ANDRAGOGÍA) */
+section {
+	background: var(--white);
+	border-radius: 15px;
+	padding: 2rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+	transition: transform 0.3s ease;
+}
+
+section:hover { transform: translateY(-3px); }
+
+h2 { color: var(--primary); margin-bottom: 1rem; border-left: 5px solid var(--secondary); padding-left: 10px; }
+
+.concept-card {
+	background: var(--light);
+	border-left: 4px solid var(--primary);
+	padding: 1rem;
+	margin: 1rem 0;
+	border-radius: 0 10px 10px 0;
+}
+
+/* INTERACTIVIDAD VISUAL (UI MOCKUP) */
+.interface-mockup {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	gap: 10px;
+	background: #ddd;
+	padding: 10px;
+	border-radius: 8px;
+	margin-top: 1rem;
+	height: 200px;
+}
+.mock-sidebar { background: var(--dark); border-radius: 5px; opacity: 0.8; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;}
+.mock-canvas { background: white; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #888; border: 2px dashed #ccc;}
+.navegador { display: flex;color: #00C4CC; justify-content: space-between; margin-top: 2rem; }
+/* QUIZ ESTILO KAHOOT (GAMIFICACIÓN) */
+#quiz-container {
+	background: var(--primary);
+	color: white;
+	text-align: center;
+}
+
+#quiz-container h2 { color: white; border-color: white; }
+
+.question-box {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	font-weight: 600;
+}
+
+.options-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.quiz-btn {
+	padding: 1.5rem;
+	border: none;
+	border-radius: 10px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.2s;
+	box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+	color: white;
+}
+
+.quiz-btn:active { transform: translateY(4px); box-shadow: none; }
+
+/* Colores estilo Kahoot */
+.btn-1 { background-color: #e21b3c; } /* Rojo */
+.btn-2 { background-color: #1368ce; } /* Azul */
+.btn-3 { background-color: #d89e00; } /* Amarillo */
+.btn-4 { background-color: #26890c; } /* Verde */
+
+.correct { background-color: var(--success) !important; transform: scale(1.05); }
+.wrong { background-color: #555 !important; opacity: 0.5; }
+
+#score-display {
+	margin-top: 1rem;
+	font-size: 1.2rem;
+	font-weight: bold;
+	display: none;
+}
+
+/* FOOTER REQUERIDO */
+footer {
+	text-align: center;
+	padding: 2rem;
+	font-size: 0.8rem;
+	color: #666;
+	background: var(--light);
+	border-top: 1px solid #ddd;
+	margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+	.options-grid { grid-template-columns: 1fr; }
+	.interface-mockup { grid-template-columns: 1fr; }
+	.mock-sidebar { height: 50px; }
+}
+img {
+	max-width:100%;
+	height: auto;
+}
+.reto {
+	display: none;
+
+	background-color: var(--primary);
+	color: white;
+	padding: 1rem;
+	border-radius: 10px;
+	margin-top: 2rem;
+}
+a {
+	text-decoration: none;
+	border: 1px solid var(--primary);
+	border-radius: 5px;
+	padding: 5px 10px;
+	color: var(--primary);
+	font-weight: 600;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.2s;
+	box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+	color: rgba(103, 3, 110, 0.495);
+}

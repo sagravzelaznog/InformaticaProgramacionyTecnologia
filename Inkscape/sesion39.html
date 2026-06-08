@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S39: Introducción a la Interpolación (Extensiones)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 39: Introducción a la Interpolación (Extensiones)</h1>
+
+    <section>
+        <h2>1. El Concepto de Interpolación (Morphing)</h2>
+        
+        <p>La **Interpolación** (Morphing) es la creación de una serie de formas intermedias entre dos formas extremas (una inicial y una final). Es útil para efectos de transición visual en infografías o animaciones.</p>
+        <div class="paso">
+            <strong>Requisito Clave</strong>
+            <p>La interpolación solo funciona si los dos objetos (inicio y fin) tienen el **mismo número de nodos**. Si no lo tienen, Inkscape no sabrá cómo mapear los puntos y el resultado será impredecible.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. La Extensión de Interpolación (Interpolate)</h2>
+        <p>Inkscape utiliza una extensión para realizar la interpolación de formas y colores.</p>
+        <div class="paso">
+            <strong>Paso 1: Preparar las Formas</strong>
+            <p>Dibuja una forma A (ej. un cuadrado azul). Dibuja una forma B (ej. un círculo rojo) cerca. Ambas deben ser **Trayectos** (**Shift + Ctrl + C**). Asegúrate de que ambas tienen un número de nodos similar (o igual, si es posible, usando la herramienta de nodos para añadir o eliminar puntos).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Aplicar la Extensión</strong>
+            <p>Selecciona **ambos** objetos. Ve a <code>Extensiones > Generar desde Trayecto > Interpolar...</code>.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Parámetros de la Interpolación</strong>
+            <p>Ajusta:</p>
+            <ul>
+                <li>**Pasos de Interpolación:** El número de formas intermedias que se generarán (ej. 10). Un valor más alto resulta en una transición más suave.</li>
+                <li>**Método de Interpolación:** Define cómo se fusionan las formas.</li>
+                <li>**Expandir:** Genera transiciones de color y opacidad.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Limpieza y Uso de la Secuencia</h2>
+        <p>El resultado es un grupo de nuevos objetos que representan la transición.</p>
+        <div class="paso">
+            <strong>Agrupación del Resultado</strong>
+            <p>La extensión generará todas las formas intermedias en el lienzo, agrupadas. Puedes desagruparlas (**Shift + Ctrl + G**).</p>
+        </div>
+        <div class="paso">
+            <strong>Aplicación a Animación</strong>
+            <p>Si asignas IDs secuenciales a las formas resultantes (ej. <code>paso1</code>, <code>paso2</code>...), un desarrollador puede usar estas formas para crear una animación *frame-by-frame* o un *morphing* suave en el navegador.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Transición de Icono</h3>
+        <p><strong>Objetivo:</strong> Crear una interpolación de forma y color.</p>
+        <ol>
+            <li>Dibuja un **Triángulo** verde (**Forma A**). Conviértelo a trayecto.</li>
+            <li>Dibuja un **Corazón** (usando dos círculos y un cuadrado, aplicando **Unión**) rojo (**Forma B**). Conviértelo a trayecto.</li>
+            <li>Usa la herramienta **Nodo (F2)** en ambas formas e intenta que tengan un número similar de nodos (ej. 8 o 10, añadiendo puntos si es necesario).</li>
+            <li>Selecciona ambas y aplica la extensión **Interpolar** con 15 pasos. Observa cómo el triángulo se transforma gradualmente en un corazón.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion38.html">Anterior</a>
+    <a href="sesion40.html">Siguiente</a>
+</nav>
+</body>
+</html>

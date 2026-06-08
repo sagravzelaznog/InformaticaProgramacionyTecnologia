@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Efecto Matrix en Photoshop</title>
+    <style>
+        /* Base Styles */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: #00ff00;
+        }
+        
+        h1, h2, h3 {
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+        }
+        
+        /* Step Containers */
+        .step {
+            background: rgba(0, 20, 0, 0.5);
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #00ff00;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-number {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Code and Shortcuts */
+        .shortcut {
+            background: rgba(0, 255, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        
+        .menu-path {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 30, 0, 0.5);
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #00ff00;
+        }
+        
+        /* Images and SVGs */
+        .svg-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #000;
+            border: 1px solid #00ff00;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+        }
+        
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #00ff00;
+        }
+        
+        .caption {
+            color: #00ff00;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* Tips and Notes */
+        .tip {
+            background: rgba(0, 50, 0, 0.3);
+            border-left: 3px solid #00ff00;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Final Step */
+        .final-step {
+            background: rgba(0, 50, 0, 0.3);
+            border-left: 4px solid #00ff00;
+        }
+        
+        .svg-container.final {
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background-color: #000;
+            color: #00ff00;
+            border-top: 1px solid #00ff00;
+            font-size: 12px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .step {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Tutorial: Efecto Matrix en Photoshop</h1>
+    <p>Crea un impactante efecto de texto estilo Matrix con este tutorial paso a paso. Perfecto para fondos, gráficos o efectos especiales.</p>
+    
+    <!-- Step 1 -->
+    <div class="step">
+        <span class="step-number">1️⃣ Crear el fondo oscuro</span>
+        <ol>
+            <li>Abre un nuevo documento en Photoshop <span class="shortcut">(Ctrl + N)</span></li>
+            <li>Configura el documento:
+                <ul>
+                    <li>Modo de color: RGB, 8 bits</li>
+                    <li>Resolución: 72 ppp</li>
+                    <li>Tamaño: 1920 × 1080 px</li>
+                </ul>
+            </li>
+            <li>Rellena el fondo con negro usando la herramienta Bote de pintura <span class="shortcut">(G)</span></li>
+        </ol>
+        
+        <div class="svg-container">
+            <svg width="100%" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="100%" fill="#000"/>
+                <rect x="50" y="50" width="300" height="100" fill="#001100" stroke="#00ff00" stroke-width="2"/>
+                <text x="200" y="85" font-family="Arial" font-size="14" text-anchor="middle" fill="#00ff00">Nuevo documento: 1920x1080px @ 72ppp</text>
+                <text x="200" y="110" font-family="Arial" font-size="14" text-anchor="middle" fill="#00ff00">Rellenar con: Negro (#000000)</text>
+                <text x="200" y="180" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 1: Configuración del documento y fondo negro</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Step 2 -->
+    <div class="step">
+        <span class="step-number">2️⃣ Escribir el texto base</span>
+        <ol>
+            <li>Selecciona la herramienta Texto <span class="shortcut">(T)</span></li>
+            <li>Elige una fuente monoespaciada (ej: OCR A Std, Courier New, Matrix Code NFI)</li>
+            <li>Configura el color del texto a verde neón: <span class="neon-green">#00FF00</span></li>
+            <li>Escribe caracteres aleatorios (ej: números, letras, símbolos) o una palabra clave</li>
+            <li>Ajusta el tamaño según prefieras (entre 24-48pt para empezar)</li>
+            <li>Para múltiples columnas, crea varias capas de texto y distribúyelas</li>
+        </ol>
+        
+        <div class="tip">
+            💡 <strong>Consejo:</strong> Para caracteres aleatorios, puedes copiar y pegar de generadores de código Matrix online o escribir manualmente usando la tecla de número 8 en el teclado numérico (con Bloq Num activado).
+        </div>
+        
+        <div class="svg-container">
+            <svg width="100%" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="100%" fill="#000"/>
+                <text x="200" y="40" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000 01001101 01100001 01110100 01110010 01101001 01111000</text>
+                <text x="200" y="80" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01110100 01101000 01100101 00100000 01110001 01110101 01101001 01100011 01101011</text>
+                <text x="200" y="120" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01100010 01110010 01101111 01110111 01101110 00100000 01100110 01101111 01111000</text>
+                <text x="200" y="160" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01101010 01110101 01101101 01110000 01110011 00100000 01101111 01110110 01100101 01110010</text>
+                <text x="200" y="200" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">00100000 01110100 01101000 01100101 00100000 01101100 01100001 0111100 0111101 00100000 01100100 01101111 01100111</text>
+                <text x="200" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 2: Texto en fuente monoespaciada con caracteres binarios</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Step 3 -->
+    <div class="step">
+        <span class="step-number">3️⃣ Crear efecto de movimiento</span>
+        <ol>
+            <li>Con la capa de texto seleccionada, ve a <span class="menu-path">Filtro > Desenfocar > Desenfoque de movimiento</span></li>
+            <li>Configura los parámetros:
+                <ul>
+                    <li>Ángulo: 90° (hacia abajo)</li>
+                    <li>Distancia: 20-50 píxeles (ajusta según prefieras)</li>
+                </ul>
+            </li>
+            <li>Haz clic en Aceptar para aplicar el efecto</li>
+            <li>Cambia el modo de fusión de la capa a "Trama" o "Sobreexposición lineal"</li>
+            <li>Si el efecto es muy intenso, reduce la opacidad de la capa al 70-80%</li>
+        </ol>
+        
+        <div class="svg-container">
+            <svg width="100%" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="motionBlur" x="0" y="0" width="100%" height="100%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+                    </filter>
+                    <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#00ff00" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#00ff00" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
+                
+                <rect width="100%" height="100%" fill="#000"/>
+                
+                <!-- Original Text (semi-transparent) -->
+                <text x="200" y="50" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00" opacity="0.7">01001000 01101001 00100000 01001101 01100001 01110100</text>
+                
+                <!-- Motion Blur Effect -->
+                <g filter="url(#motionBlur)" opacity="0.8">
+                    <rect x="100" y="60" width="200" height="100" fill="url(#fade)" />
+                    <text x="200" y="80" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000 01001101 01100001 01110100</text>
+                    <text x="200" y="100" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000 01001101 01100001 01110100</text>
+                    <text x="200" y="120" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000 01001101 01100001 01110100</text>
+                </g>
+                
+                <text x="200" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 3: Aplicación de desenfoque de movimiento vertical</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Step 4 -->
+    <div class="step">
+        <span class="step-number">4️⃣ Añadir brillo y resplandor</span>
+        <ol>
+            <li>Haz clic derecho en la capa de texto en el panel de capas</li>
+            <li>Selecciona <span class="menu-path">Opciones de fusión</span></li>
+            <li>Activa <strong>Resplandor exterior</strong> y configura:
+                <ul>
+                    <li>Modo de fusión: Trama</li>
+                    <li>Opacidad: 50-75%</li>
+                    <li>Color: #00FF00 (verde neón)</li>
+                    <li>Tamaño: 10-30px (ajusta según prefieras)</li>
+                    <li>Extensión: 10-20%</li>
+                </ul>
+            </li>
+            <li>Activa <strong>Sombra interior</strong> para más profundidad (opcional):
+                <ul>
+                    <li>Modo: Multiplicar</li>
+                    <li>Color: #000000</li>
+                    <li>Opacidad: 50%</li>
+                    <li>Distancia: 2-5px</li>
+                    <li>Tamaño: 5-10px</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <div class="svg-container">
+            <svg width="100%" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="10" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stop-color="#00ff00" stop-opacity="0.8" />
+                        <stop offset="100%" stop-color="#00ff00" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+                
+                <rect width="100%" height="100%" fill="#000"/>
+                
+                <!-- Glow Effect -->
+                <circle cx="200" cy="100" r="80" fill="url(#glowGradient)" filter="url(#glow)" opacity="0.5"/>
+                
+                <!-- Text with Glow -->
+                <g filter="url(#glow)">
+                    <text x="200" y="90" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000</text>
+                    <text x="200" y="120" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001101 01100001 01110100</text>
+                </g>
+                
+                <text x="200" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 4: Aplicación de resplandor exterior y efectos de brillo</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Step 5 -->
+    <div class="step">
+        <span class="step-number">5️⃣ Crear variación en los caracteres</span>
+        <ol>
+            <li>Si no lo has hecho, rasteriza la capa de texto (clic derecho > Rasterizar texto)</li>
+            <li>Selecciona la herramienta Marco rectangular <span class="shortcut">(M)</span></li>
+            <li>Selecciona columnas o caracteres individuales</li>
+            <li>Aplica <span class="menu-path">Filtro > Desenfocar > Desenfoque gaussiano</span> con radio bajo (1-3px)</li>
+            <li>Para algunas columnas, usa <span class="menu-path">Filtro > Desenfocar > Desenfoque de movimiento</span> con ángulos ligeramente diferentes</li>
+            <li>Varía la opacidad de algunas secciones (usando la herramienta Pincel con opacidad reducida)</li>
+            <li>Crea múltiples capas con diferentes configuraciones para mayor profundidad</li>
+        </ol>
+        
+        <div class="tip">
+            💡 <strong>Consejo:</strong> Usa máscaras de capa para ocultar partes del texto y crear el efecto de que los caracteres aparecen y desaparecen.
+        </div>
+        
+        <div class="svg-container">
+            <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="blur1" x="0" y="0" width="100%" height="100%">
+                        <feGaussianBlur stdDeviation="1" />
+                    </filter>
+                    <filter id="blur2" x="0" y="0" width="100%" height="100%">
+                        <feGaussianBlur stdDeviation="0.5" />
+                    </filter>
+                </defs>
+                
+                <rect width="100%" height="100%" fill="#000"/>
+                
+                <!-- Multiple text layers with variations -->
+                <text x="100" y="50" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.8">01001</text>
+                <text x="200" y="50" font-family="Courier New, monospace" font-size="14" fill="#00ff00" filter="url(#blur1)" opacity="0.6">000 011</text>
+                <text x="300" y="50" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.9">01010</text>
+                
+                <text x="100" y="100" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.7">10101</text>
+                <text x="200" y="100" font-family="Courier New, monospace" font-size="14" fill="#00ff00" filter="url(#blur2)" opacity="0.5">010 101</text>
+                <text x="300" y="100" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.8">11010</text>
+                
+                <!-- Fading effect -->
+                <rect x="50" y="130" width="300" height="100" fill="url(#fadeGradient)" />
+                
+                <text x="100" y="150" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.9">00100</text>
+                <text x="200" y="150" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.7">101 010</text>
+                <text x="300" y="150" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.5">10101</text>
+                
+                <text x="100" y="200" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.7">11011</text>
+                <text x="200" y="200" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.4">010 101</text>
+                <text x="300" y="200" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.6">01010</text>
+                
+                <text x="100" y="250" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.3">10101</text>
+                <text x="200" y="250" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.2">101 010</text>
+                <text x="300" y="250" font-family="Courier New, monospace" font-size="14" fill="#00ff00" opacity="0.4">11011</text>
+                
+                <text x="200" y="290" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 5: Variaciones en opacidad y desenfoque para crear profundidad</text>
+                
+                <defs>
+                    <linearGradient id="fadeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#000" stop-opacity="0" />
+                        <stop offset="100%" stop-color="#000" stop-opacity="1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Step 6 -->
+    <div class="step">
+        <span class="step-number">6️⃣ Añadir elementos adicionales (opcional)</span>
+        <ol>
+            <li><strong>Fondo de código:</strong>
+                <ul>
+                    <li>Crea una nueva capa debajo de todo</li>
+                    <li>Usa la herramienta Texto con tamaño pequeño (8-12pt)</li>
+                    <li>Escribe caracteres al azar en columnas</li>
+                    <li>Reduce la opacidad al 10-20%</li>
+                </ul>
+            </li>
+            <li><strong>Partículas:</strong>
+                <ul>
+                    <li>Crea una nueva capa</li>
+                    <li>Usa un pincel pequeño (1-3px) de color verde</li>
+                    <li>Haz clic aleatoriamente para crear partículas</li>
+                    <li>Aplica un ligero desenfoque gaussiano</li>
+                </ul>
+            </li>
+            <li><strong>Efecto de lluvia:</strong>
+                <ul>
+                    <li>Crea una nueva capa</li>
+                    <li>Rellena de negro</li>
+                    <li>Ve a <span class="menu-path">Filtro > Ruido > Añadir ruido</span> (100%, Monocromático)</li>
+                    <li>Aplica <span class="menu-path">Filtro > Desenfocar > Desenfoque de movimiento</span> (Ángulo: 90°, Distancia: 20-30px)</li>
+                    <li>Cambia el modo de fusión a "Trama" o "Superponer"</li>
+                    <li>Ajusta la opacidad al 10-20%</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <div class="svg-container">
+            <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#003300" stroke-width="0.5"/>
+                    </pattern>
+                    <filter id="noise" x="0" y="0" width="100%" height="100%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+                        <feColorMatrix type="matrix" values="1 0 0 0 0
+                                                          0 1 0 0 0  
+                                                          0 0 1 0 0  
+                                                          0 0 0 0.1 0"/>
+                    </filter>
+                </defs>
+                
+                <rect width="100%" height="100%" fill="#000"/>
+                
+                <!-- Background grid -->
+                <rect width="100%" height="100%" fill="url(#smallGrid)" opacity="0.3"/>
+                
+                <!-- Noise layer -->
+                <rect width="100%" height="100%" fill="#00ff00" opacity="0.03" filter="url(#noise)"/>
+                
+                <!-- Rain effect -->
+                <g stroke="#00ff00" stroke-width="1" stroke-linecap="round" opacity="0.3">
+                    <line x1="50" y1="20" x2="55" y2="40"/>
+                    <line x1="80" y1="10" x2="85" y2="30"/>
+                    <line x1="120" y1="30" x2="125" y2="50"/>
+                    <line x1="150" y1="5" x2="155" y2="25"/>
+                    <!-- More rain lines... -->
+                </g>
+                
+                <!-- Particles -->
+                <g fill="#00ff00" opacity="0.7">
+                    <circle cx="70" cy="70" r="1"/>
+                    <circle cx="130" cy="90" r="1.5"/>
+                    <circle cx="200" cy="60" r="1"/>
+                    <circle cx="250" cy="80" r="1"/>
+                    <circle cx="300" cy="70" r="1.5"/>
+                    <circle cx="350" cy="90" r="1"/>
+                </g>
+                
+                <!-- Main text -->
+                <text x="200" y="150" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001000 01101001 00100000</text>
+                <text x="200" y="180" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#00ff00">01001101 01100001 01110100 01110010 01101001 01111000</text>
+                
+                <text x="200" y="290" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 6: Efectos adicionales como lluvia, partículas y ruido para mayor profundidad</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Final Result -->
+    <div class="step final-step">
+        <h2>🎉 ¡Resultado Final!</h2>
+        <p>¡Felicidades! Has creado un impresionante efecto de texto estilo Matrix. Experimenta con diferentes configuraciones:</p>
+        <ul>
+            <li>Prueba con diferentes fuentes monoespaciadas</li>
+            <li>Varía los colores (cian, morado, rojo) para diferentes efectos</li>
+            <li>Añade más capas con diferentes configuraciones de desenfoque</li>
+            <li>Anima el efecto en Photoshop o After Effects para crear una secuencia de "lluvia de código"</li>
+        </ul>
+        
+        <div class="svg-container final">
+            <svg width="100%" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="finalGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="15" result="blur"/>
+                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                    <linearGradient id="textGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#00ff00" />
+                        <stop offset="100%" stop-color="#00cc00" />
+                    </linearGradient>
+                </defs>
+                
+                <rect width="100%" height="100%" fill="#000"/>
+                
+                <!-- Background elements -->
+                <rect width="100%" height="100%" fill="#000" opacity="0.5" filter="url(#noise)"/>
+                
+                <!-- Main text with glow -->
+                <g filter="url(#finalGlow)" text-anchor="middle" font-family="Courier New, monospace" font-size="16" fill="url(#textGradient)">
+                    <text x="200" y="80">01001000 01101001 00100000 01001101</text>
+                    <text x="200" y="110">01100001 01110100 01110010 01101001 01111000</text>
+                    <text x="200" y="140">00100000 01001001 01101110 01110011 01101001 01100100 01100101</text>
+                    <text x="200" y="170">01010100 01101000 01100101 00100000 01010011 01101001 01101101 01110101 01101100 01100001 01110100 01101001 01101111 01101110</text>
+                </g>
+                
+                <!-- Particles -->
+                <g fill="#00ff00" opacity="0.7">
+                    <circle cx="50" cy="50" r="1"/>
+                    <circle cx="350" cy="40" r="1"/>
+                    <circle cx="150" cy="30" r="1"/>
+                    <circle cx="250" cy="60" r="1"/>
+                    <circle cx="100" cy="250" r="1"/>
+                    <circle cx="300" cy="270" r="1"/>
+                    <circle cx="200" cy="280" r="1"/>
+                </g>
+                
+                <text x="200" y="290" font-family="Arial" font-size="10" text-anchor="middle" fill="#00ff00" opacity="0.7">Figura 7: Efecto Matrix final con todos los elementos combinados</text>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Tutoriales de Photoshop - Efecto Matrix</p>
+        <p>Este material educativo es para uso exclusivo en el aula.</p>
+    </footer>
+</body>
+</html>

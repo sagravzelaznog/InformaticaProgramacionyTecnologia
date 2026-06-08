@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 16: Automatización de Reportes con Macros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2><i class="fas fa-list-ul"></i> Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1><i class="fas fa-robot"></i> Sesión 16: Automatización de Reportes con Macros</h1>
+                <p class="objective"><strong><i class="fas fa-bullseye"></i> Objetivo:</strong> Aplicar todos los conocimientos adquiridos para crear una solución completa de automatización de reportes en Excel.</p>
+            </header>
+            
+            <div class="session-content">
+                <div class="nav-buttons">
+                    <a href="sesion15.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="#" class="nav-button disabled">Fin del Curso <i class="fas fa-graduation-cap"></i></a>
+                </div>
+
+            <section class="ejercicio">
+                <h2><i class="fas fa-laptop-code"></i> Ejercicio Práctico: Sistema de Reportes Automatizado</h2>
+                <p>Vamos a crear un sistema completo de generación de reportes que incluya:</p>
+                <ol>
+                    <li>Interfaz de usuario personalizada</li>
+                    <li>Importación de datos desde múltiples fuentes</li>
+                    <li>Procesamiento y análisis de datos</li>
+                    <li>Generación de reportes en PDF y Excel</li>
+                    <li>Distribución automática por correo</li>
+                </ol>
+                
+                <h4>Paso 1: Estructura del Proyecto</h4>
+                <div class="codigo">
+                    <pre>
+Sub IniciarSistema()
+    ' Crear estructura de carpetas
+    If Not FolderExists(ActiveWorkbook.Path & "\Reportes") Then MkDir ActiveWorkbook.Path & "\Reportes"
+    If Not FolderExists(ActiveWorkbook.Path & "\Datos") Then MkDir ActiveWorkbook.Path & "\Datos"
+    If Not FolderExists(ActiveWorkbook.Path & "\Plantillas") Then MkDir ActiveWorkbook.Path & "\Plantillas"
+    
+    ' Inicializar variables globales
+    InicializarVariablesGlobales
+    
+    ' Mostrar menú principal
+    frmMenuPrincipal.Show
+End Sub
+                    </pre>
+                </div>
+                
+                <h4>Paso 2: Importación de Datos</h4>
+                <div class="codigo">
+                    <pre>
+Function ImportarDatos(origen As String) As Boolean
+    On Error GoTo ManejarError
+    
+    ' Lógica para importar datos desde diferentes fuentes
+    Select Case origen
+        Case "CSV"
+            ' Código para importar CSV
+        Case "BD"
+            ' Código para conectar a base de datos
+        Case "API"
+            ' Código para consumir API
+    End Select
+    
+    ImportarDatos = True
+    Exit Function
+    
+ManejarError:
+    MsgBox "Error al importar datos: " & Err.Description, vbCritical
+    ImportarDatos = False
+End Function
+                    </pre>
+                </div>
+            </section>
+
+            <section class="actividad">
+                <h2><i class="fas fa-tasks"></i> Actividad: Implementación del Sistema</h2>
+                <p>Sigue estos pasos para implementar el sistema de reportes:</p>
+                
+                <h4>1. Crear el formulario principal</h4>
+                <p>Diseña un formulario con las siguientes opciones:</p>
+                <ul>
+                    <li>Botón para importar datos</li>
+                    <li>Opciones de filtrado</li>
+                    <li>Botón para generar reportes</li>
+                    <li>Configuración de envío automático</li>
+                </ul>
+                
+                <h4>2. Implementar la lógica de procesamiento</h4>
+                <div class="codigo">
+                    <pre>
+Sub ProcesarDatos()
+    ' Validar datos
+    If Not ValidarDatos() Then
+        MsgBox "Los datos no son válidos", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Aplicar filtros
+    AplicarFiltros
+    
+    ' Calcular métricas
+    CalcularMetricas
+    
+    ' Generar reportes
+    GenerarReportes
+    
+    ' Enviar notificación
+    EnviarNotificacion "Proceso completado exitosamente"
+End Sub
+                    </pre>
+                </div>
+                
+                <h4>3. Crear plantillas de reportes</h4>
+                <p>Diseña plantillas en Excel para diferentes tipos de reportes:</p>
+                <ul>
+                    <li>Reporte ejecutivo (resumen)</li>
+                    <li>Reporte detallado</li>
+                    <li>Dashboard interactivo</li>
+                </ul>
+            </section>
+
+            <section class="resumen">
+                <h2><i class="fas fa-clipboard-list"></i> Resumen de la Sesión</h2>
+                <p>En esta sesión final del curso, hemos aprendido a:</p>
+                <ul>
+                    <li>Diseñar una solución completa de automatización de reportes</li>
+                    <li>Integrar múltiples funcionalidades de VBA</li>
+                    <li>Crear interfaces de usuario profesionales</li>
+                    <li>Manejar errores y validar datos</li>
+                    <li>Generar reportes en diferentes formatos</li>
+                    <li>Automatizar la distribución de información</li>
+                </ul>
+                
+                <h4>Consejos para el proyecto final:</h4>
+                <ol>
+                    <li>Planifica bien la estructura de tu proyecto</li>
+                    <li>Documenta tu código adecuadamente</li>
+                    <li>Prueba cada módulo por separado</li>
+                    <li>Maneja adecuadamente los errores</li>
+                    <li>Crea una interfaz de usuario intuitiva</li>
+                </ol>
+            </section>
+            
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>

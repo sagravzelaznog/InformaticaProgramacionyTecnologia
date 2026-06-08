@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Flexbox - CSS3 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .demo-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: white;
+        }
+        
+        /* Estilos para los ejemplos de Flexbox */
+        .flex-container {
+            display: flex;
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            min-height: 100px;
+            gap: 10px;
+        }
+        
+        .flex-item {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .flex-item:nth-child(odd) {
+            background-color: var(--secondary-color);
+        }
+        
+        .flex-item.highlight {
+            background-color: #ff6b6b;
+            box-shadow: 0 0 0 2px #ff0000;
+        }
+        
+        .flex-direction-row { flex-direction: row; }
+        .flex-direction-column { flex-direction: column; height: 300px; }
+        .flex-wrap { flex-wrap: wrap; }
+        .justify-flex-start { justify-content: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-flex-end { justify-content: flex-end; }
+        .justify-space-between { justify-content: space-between; }
+        .justify-space-around { justify-content: space-around; }
+        .justify-space-evenly { justify-content: space-evenly; }
+        .align-items-stretch { align-items: stretch; }
+        .align-items-flex-start { align-items: flex-start; }
+        .align-items-center { align-items: center; }
+        .align-items-flex-end { align-items: flex-end; }
+        .align-items-baseline { align-items: baseline; }
+        .align-content-flex-start { align-content: flex-start; flex-wrap: wrap; height: 200px; }
+        .align-content-center { align-content: center; flex-wrap: wrap; height: 200px; }
+        .align-content-flex-end { align-content: flex-end; flex-wrap: wrap; height: 200px; }
+        .align-content-space-between { align-content: space-between; flex-wrap: wrap; height: 200px; }
+        .align-content-space-around { align-content: space-around; flex-wrap: wrap; height: 200px; }
+        .flex-grow-1 { flex-grow: 1; }
+        .flex-grow-2 { flex-grow: 2; }
+        .flex-shrink-0 { flex-shrink: 0; width: 200px; }
+        .flex-basis-200 { flex-basis: 200px; }
+        .order-1 { order: 1; }
+        .order-2 { order: 2; }
+        .order-3 { order: 3; }
+        
+        .taller { min-height: 60px; }
+        .wider { min-width: 120px; }
+        .tallest { min-height: 100px; }
+        
+        /* Estilos para la barra de navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--secondary-color);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Estilos para la galería de imágenes */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery-item {
+            flex: 1 1 200px;
+            height: 150px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Estilos para el pie de tarjeta */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Estilos para el reto */
+        .challenge {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .challenge h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        
+        .hint {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Estilos para el editor interactivo */
+        .playground {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .code-editor {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .code-preview {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .code-toolbar {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .code-toolbar button {
+            padding: 5px 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .code-toolbar button:hover {
+            background: #e0e0e0;
+        }
+        
+        .code-toolbar button.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        /* Estilos para la cuadrícula de precios */
+        .pricing-grid {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .pricing-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .pricing-body {
+            padding: 20px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features li:before {
+            content: "✓";
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: block;
+            text-align: center;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #008c5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: Conexión y Estética</a></li>
+                <li><a href="sesion02.html">Sesión 2: Modelo de Caja</a></li>
+                <li><a href="sesion03.html">Sesión 3: Posicionamiento</a></li>
+                <li class="active"><a href="sesion04.html">Sesión 4: Flexbox</a></li>
+                <li><a href="sesion05.html">Sesión 5: Diseño Responsive</a></li>
+                <li><a href="sesion06.html">Sesión 6: Animaciones</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🎯 Sesión 4: Flexbox - El Layout Moderno</h1>
+                <p class="subtitle">Alinea elementos fácilmente sin sufrir con float</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Aprender a usar Flexbox para crear diseños flexibles y responsivos de manera sencilla y eficiente, sin necesidad de trucos o soluciones alternativas.</p>
+            </section>
+
+            <section class="introduction">
+                <h2>¿Qué es Flexbox?</h2>
+                <p>Flexbox es un modelo de diseño unidimensional que permite distribuir el espacio entre los ítems de una interfaz y mejorar las capacidades de alineación. Es especialmente útil cuando trabajamos con diseños que deben adaptarse a diferentes tamaños de pantalla.</p>
+                
+                <div class="demo-container">
+                    <h3>Conceptos Básicos</h3>
+                    <ul>
+                        <li><strong>Contenedor Flex:</strong> El elemento padre que contiene los ítems flexibles. Se crea con <code>display: flex</code> o <code>display: inline-flex</code>.</li>
+                        <li><strong>Ítems Flex:</strong> Los elementos hijos directos del contenedor flex.</li>
+                        <li><strong>Eje Principal (Main Axis):</strong> Por defecto es horizontal (de izquierda a derecha). Se controla con <code>flex-direction</code>.</li>
+                        <li><strong>Eje Transversal (Cross Axis):</strong> Es perpendicular al eje principal. Por defecto es vertical (de arriba a abajo).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="flex-container-properties">
+                <h2>Propiedades del Contenedor Flex</h2>
+                
+                <div class="demo-container">
+                    <h3>1. flex-direction</h3>
+                    <p>Define la dirección del eje principal y la dirección en que se apilan los ítems flexibles.</p>
+                    
+                    <div class="code-toolbar">
+                        <button class="flex-dir-btn active" data-direction="row">row (por defecto)</button>
+                        <button class="flex-dir-btn" data-direction="row-reverse">row-reverse</button>
+                        <button class="flex-dir-btn" data-direction="column">column</button>
+                        <button class="flex-dir-btn" data-direction="column-reverse">column-reverse</button>
+                    </div>
+                    
+                    <div class="flex-container" id="direction-demo">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    display: flex;
+    flex-direction: row; /* row | row-reverse | column | column-reverse */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>2. flex-wrap</h3>
+                    <p>Especifica si los ítems flexibles deben ajustarse en varias líneas o no.</p>
+                    
+                    <div class="code-toolbar">
+                        <button class="flex-wrap-btn active" data-wrap="nowrap">nowrap (por defecto)</button>
+                        <button class="flex-wrap-btn" data-wrap="wrap">wrap</button>
+                        <button class="flex-wrap-btn" data-wrap="wrap-reverse">wrap-reverse</button>
+                    </div>
+                    
+                    <div class="flex-container" id="wrap-demo" style="flex-wrap: nowrap;">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                        <div class="flex-item">4</div>
+                        <div class="flex-item">5</div>
+                        <div class="flex-item">6</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    display: flex;
+    flex-wrap: nowrap; /* nowrap | wrap | wrap-reverse */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>3. justify-content</h3>
+                    <p>Define la alineación a lo largo del eje principal.</p>
+                    
+                    <div class="code-toolbar">
+                        <button class="justify-btn active" data-justify="flex-start">flex-start</button>
+                        <button class="justify-btn" data-justify="center">center</button>
+                        <button class="justify-btn" data-justify="flex-end">flex-end</button>
+                        <button class="justify-btn" data-justify="space-between">space-between</button>
+                        <button class="justify-btn" data-justify="space-around">space-around</button>
+                        <button class="justify-btn" data-justify="space-evenly">space-evenly</button>
+                    </div>
+                    
+                    <div class="flex-container" id="justify-demo">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    display: flex;
+    justify-content: flex-start; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>4. align-items</h3>
+                    <p>Define la alineación predeterminada de los ítems a lo largo del eje transversal.</p>
+                    
+                    <div class="code-toolbar">
+                        <button class="align-btn active" data-align="stretch">stretch (por defecto)</button>
+                        <button class="align-btn" data-align="flex-start">flex-start</button>
+                        <button class="align-btn" data-align="center">center</button>
+                        <button class="align-btn" data-align="flex-end">flex-end</button>
+                        <button class="align-btn" data-align="baseline">baseline</button>
+                    </div>
+                    
+                    <div class="flex-container" id="align-demo" style="height: 150px;">
+                        <div class="flex-item" style="height: auto;">1</div>
+                        <div class="flex-item taller">2</div>
+                        <div class="flex-item" style="height: 40px;">3</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    display: flex;
+    align-items: stretch; /* stretch | flex-start | flex-end | center | baseline */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>5. align-content</h3>
+                    <p>Alinea las líneas de un contenedor flex cuando hay espacio extra en el eje transversal.</p>
+                    
+                    <div class="code-toolbar">
+                        <button class="align-content-btn active" data-align="stretch">stretch (por defecto)</button>
+                        <button class="align-content-btn" data-align="flex-start">flex-start</button>
+                        <button class="align-content-btn" data-align="center">center</button>
+                        <button class="align-content-btn" data-align="flex-end">flex-end</button>
+                        <button class="align-content-btn" data-align="space-between">space-between</button>
+                        <button class="align-content-btn" data-align="space-around">space-around</button>
+                    </div>
+                    
+                    <div class="flex-container" id="align-content-demo" style="flex-wrap: wrap; height: 200px;">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                        <div class="flex-item">4</div>
+                        <div class="flex-item">5</div>
+                        <div class="flex-item">6</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch; /* stretch | flex-start | flex-end | center | space-between | space-around */
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex-item-properties">
+                <h2>Propiedades de los Ítems Flex</h2>
+                
+                <div class="demo-container">
+                    <h3>1. order</h3>
+                    <p>Controla el orden en que aparecen los ítems dentro del contenedor flex.</p>
+                    
+                    <div class="flex-container" id="order-demo">
+                        <div class="flex-item" style="order: 1">1 (order: 1)</div>
+                        <div class="flex-item" style="order: 3">2 (order: 3)</div>
+                        <div class="flex-item" style="order: 2">3 (order: 2)</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    order: 0; /* Valor por defecto, números enteros negativos o positivos */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>2. flex-grow</h3>
+                    <p>Define la capacidad de un ítem para crecer si es necesario.</p>
+                    
+                    <div class="flex-container" id="grow-demo">
+                        <div class="flex-item" style="flex-grow: 1">flex-grow: 1</div>
+                        <div class="flex-item" style="flex-grow: 2">flex-grow: 2</div>
+                        <div class="flex-item" style="flex-grow: 1">flex-grow: 1</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    flex-grow: 0; /* Valor por defecto, sin unidad, determina la proporción de espacio que debe ocupar */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>3. flex-shrink</h3>
+                    <p>Define la capacidad de un ítem para encogerse si es necesario.</p>
+                    
+                    <div class="flex-container" id="shrink-demo">
+                        <div class="flex-item" style="flex-shrink: 1">1 (shrink: 1)</div>
+                        <div class="flex-item" style="flex-shrink: 0; min-width: 200px;">2 (shrink: 0)</div>
+                        <div class="flex-item" style="flex-shrink: 1">3 (shrink: 1)</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    flex-shrink: 1; /* Valor por defecto, sin unidad, determina la proporción de reducción */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>4. flex-basis</h3>
+                    <p>Define el tamaño inicial de un ítem antes de que se distribuya el espacio restante.</p>
+                    
+                    <div class="flex-container" id="basis-demo">
+                        <div class="flex-item" style="flex-basis: 100px">basis: 100px</div>
+                        <div class="flex-item" style="flex-basis: 200px">basis: 200px</div>
+                        <div class="flex-item" style="flex-basis: 100px">basis: 100px</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    flex-basis: auto; /* Valor por defecto, puede ser un tamaño como 100px, 20%, etc. */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>5. flex (propiedad abreviada)</h3>
+                    <p>Es una propiedad abreviada para <code>flex-grow</code>, <code>flex-shrink</code> y <code>flex-basis</code>.</p>
+                    
+                    <div class="flex-container" id="flex-demo">
+                        <div class="flex-item" style="flex: 1 1 100px">flex: 1 1 100px</div>
+                        <div class="flex-item" style="flex: 2 1 100px">flex: 2 1 100px</div>
+                        <div class="flex-item" style="flex: 1 1 100px">flex: 1 1 100px</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    /* flex: flex-grow flex-shrink flex-basis */
+    flex: 0 1 auto; /* Valor por defecto */
+    
+    /* Valores comunes */
+    flex: 1; /* Equivale a flex: 1 1 0 */
+    flex: auto; /* Equivale a flex: 1 1 auto */
+    flex: none; /* Equivale a flex: 0 0 auto */
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>6. align-self</h3>
+                    <p>Permite sobrescribir la alineación predeterminada (o la especificada por <code>align-items</code>) para ítems individuales.</p>
+                    
+                    <div class="flex-container" style="height: 150px; align-items: flex-start;" id="align-self-demo">
+                        <div class="flex-item">1 (por defecto)</div>
+                        <div class="flex-item" style="align-self: center">2 (center)</div>
+                        <div class="flex-item" style="align-self: flex-end">3 (flex-end)</div>
+                        <div class="flex-item" style="align-self: stretch; height: auto;">4 (stretch)</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>.item {
+    align-self: auto; /* auto | flex-start | flex-end | center | baseline | stretch */
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="practical-examples">
+                <h2>Ejemplos Prácticos</h2>
+                
+                <div class="demo-container">
+                    <h3>1. Barra de Navegación</h3>
+                    
+                    <nav class="navbar">
+                        <a href="#" class="logo">MiSitio</a>
+                        <ul class="nav-links">
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Servicios</a></li>
+                            <li><a href="#">Acerca de</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;nav class="navbar"&gt;
+    &lt;a href="#" class="logo"&gt;MiSitio&lt;/a&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Acerca de&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0066cc;
+    padding: 15px 30px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>2. Galería de Imágenes</h3>
+                    
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x200" alt="Imagen 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/400x300" alt="Imagen 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/250x200" alt="Imagen 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/350x250" alt="Imagen 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300x300" alt="Imagen 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/400x200" alt="Imagen 6">
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;div class="gallery"&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="imagen1.jpg" alt="Descripción"&gt;
+    &lt;/div&gt;
+    &lt;!-- Más elementos de la galería --&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery-item {
+    flex: 1 1 200px; /* Crecer, encoger, ancho base */
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>3. Tarjeta con Pie de Página</h3>
+                    
+                    <div style="max-width: 400px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                        <img src="https://via.placeholder.com/600x300" alt="Imagen destacada" style="width: 100%; height: auto; display: block;">
+                        <div style="padding: 20px;">
+                            <h3 style="margin-top: 0;">Título de la Tarjeta</h3>
+                            <p>Este es un ejemplo de una tarjeta con un pie de página que se mantiene en la parte inferior.</p>
+                            <div class="card-footer">
+                                <span>Publicado el 21/01/2026</span>
+                                <button style="background: var(--accent-color); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Leer más</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;div class="card"&gt;
+    &lt;img src="imagen.jpg" alt="Descripción"&gt;
+    &lt;div class="card-content"&gt;
+        &lt;h3&gt;Título de la Tarjeta&lt;/h3&gt;
+        &lt;p&gt;Contenido de la tarjeta...&lt;/p&gt;
+        &lt;div class="card-footer"&gt;
+            &lt;span&gt;Publicado el 21/01/2026&lt;/span&gt;
+            &lt;button&gt;Leer más&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <h3>4. Cuadrícula de Precios</h3>
+                    
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Básico</h3>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price">$9.99<span style="font-size: 1rem;">/mes</span></div>
+                                <ul class="features">
+                                    <li>10 GB de almacenamiento</li>
+                                    <li>1 dominio incluido</li>
+                                    <li>5 cuentas de correo</li>
+                                    <li>Soporte por correo</li>
+                                </ul>
+                                <a href="#" class="btn">Seleccionar</a>
+                            </div>
+                        </div>
+                        
+                        <div class="pricing-card" style="transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                            <div class="pricing-header" style="background: var(--accent-color);">
+                                <h3>Estándar</h3>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price" style="color: var(--accent-color);">$19.99<span style="font-size: 1rem;">/mes</span></div>
+                                <ul class="features">
+                                    <li>50 GB de almacenamiento</li>
+                                    <li>5 dominios incluidos</li>
+                                    <li>Cuentas de correo ilimitadas</li>
+                                    <li>Soporte prioritario</li>
+                                    <li>Acceso 24/7</li>
+                                </ul>
+                                <a href="#" class="btn" style="background: var(--accent-color);">Seleccionar</a>
+                            </div>
+                        </div>
+                        
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Premium</h3>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price">$29.99<span style="font-size: 1rem;">/mes</span></div>
+                                <ul class="features">
+                                    <li>200 GB de almacenamiento</li>
+                                    <li>Dominios ilimitados</li>
+                                    <li>Cuentas de correo ilimitadas</li>
+                                    <li>Soporte prioritario 24/7</li>
+                                    <li>Certificado SSL gratuito</li>
+                                    <li>Ancho de banda ilimitado</li>
+                                </ul>
+                                <a href="#" class="btn">Seleccionar</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;div class="pricing-grid"&gt;
+    &lt;div class="pricing-card"&gt;
+        &lt;div class="pricing-header"&gt;
+            &lt;h3&gt;Básico&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class="pricing-body"&gt;
+            &lt;div class="price"&gt;$9.99&lt;span&gt;/mes&lt;/span&gt;&lt;/div&gt;
+            &lt;ul class="features"&gt;
+                &lt;li&gt;10 GB de almacenamiento&lt;/li&gt;
+                &lt;!-- Más características --&gt;
+            &lt;/ul&gt;
+            &lt;a href="#" class="btn"&gt;Seleccionar&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Más tarjetas de precios --&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.pricing-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pricing-card {
+    flex: 1;
+    min-width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.pricing-header {
+    background: var(--secondary-color);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.pricing-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 100px);
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 15px 0;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    flex-grow: 1;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    background: var(--accent-color);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #008c5a;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="challenge">
+                <h2>🧩 Reto: La Navbar Perfecta</h2>
+                
+                <p>Crea una barra de navegación que cumpla con los siguientes requisitos:</p>
+                
+                <ol>
+                    <li><strong>Estructura:</strong>
+                        <ul>
+                            <li>Un logotipo a la izquierda que redirija a la página de inicio.</li>
+                            <li>Un menú de navegación a la derecha con al menos 4 enlaces.</li>
+                            <li>Un botón de "Iniciar sesión" en la esquina superior derecha.</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Diseño:</strong>
+                        <ul>
+                            <li>Usa Flexbox para la alineación.</li>
+                            <li>La barra debe tener un fondo oscuro con texto claro.</li>
+                            <li>Los enlaces deben tener un efecto hover que cambie su color de fondo.</li>
+                            <li>El botón de inicio de sesión debe destacarse con un color de acento.</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Responsive (opcional):</strong>
+                        <ul>
+                            <li>En pantallas pequeñas, los enlaces de navegación deben ocultarse y mostrarse un botón de menú (hamburguesa).</li>
+                            <li>Al hacer clic en el botón de menú, se debe mostrar/ocultar el menú de navegación en una columna.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <div class="hint">
+                    <h4>💡 Pista:</h4>
+                    <p>Puedes usar la siguiente estructura HTML como punto de partida:</p>
+                    <pre><code>&lt;nav class="navbar"&gt;
+    &lt;a href="#" class="logo"&gt;MiSitio&lt;/a&gt;
+    
+    &lt;button class="menu-toggle" aria-label="Menú"&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+        &lt;span&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Acerca de&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;a href="#" class="login-btn"&gt;Iniciar sesión&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <h4>💡 Consejo para el menú hamburguesa:</h4>
+                    <p>Puedes usar JavaScript para alternar una clase que muestre/oculte el menú en dispositivos móviles. Aquí tienes un ejemplo:</p>
+                    <pre><code>document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+});</code></pre>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                
+                <div class="checklist">
+                    <h3>Lo que aprendimos hoy:</h3>
+                    <ul>
+                        <li><strong>Conceptos básicos de Flexbox:</strong>
+                            <ul>
+                                <li>Contenedor flex e ítems flexibles</li>
+                                <li>Eje principal y eje transversal</li>
+                                <li>Dirección de los elementos</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Propiedades del contenedor flex:</strong>
+                            <ul>
+                                <li><code>display: flex</code> - Crea un contenedor flex</li>
+                                <li><code>flex-direction</code> - Establece la dirección del eje principal</li>
+                                <li><code>flex-wrap</code> - Controla si los ítems se envuelven en varias líneas</li>
+                                <li><code>justify-content</code> - Alinea los ítems en el eje principal</li>
+                                <li><code>align-items</code> - Alinea los ítems en el eje transversal</li>
+                                <li><code>align-content</code> - Alinea las líneas de un contenedor flex</li>
+                                <li><code>gap</code> - Espacio entre ítems</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Propiedades de los ítems flexibles:</strong>
+                            <ul>
+                                <li><code>order</code> - Controla el orden de los ítems</li>
+                                <li><code>flex-grow</code> - Capacidad de crecimiento de un ítem</li>
+                                <li><code>flex-shrink</code> - Capacidad de reducción de un ítem</li>
+                                <li><code>flex-basis</code> - Tamaño inicial de un ítem</li>
+                                <li><code>flex</code> - Propiedad abreviada para grow, shrink y basis</li>
+                                <li><code>align-self</code> - Alineación individual de un ítem</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Casos de uso comunes:</strong>
+                            <ul>
+                                <li>Barras de navegación</li>
+                                <li>Galerías de imágenes</li>
+                                <li>Tarjetas con pie de página alineado</li>
+                                <li>Cuadrículas de precios</li>
+                                <li>Diseños de formularios</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="resources">
+                    <h3>Recursos Adicionales:</h3>
+                    <ul>
+                        <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">Guía completa de Flexbox en CSS-Tricks</a></li>
+                        <li><a href="https://flexboxfroggy.com/" target="_blank">Flexbox Froggy - Juego para aprender Flexbox</a></li>
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox" target="_blank">Conceptos básicos de Flexbox en MDN</a></li>
+                        <li><a href="https://yoksel.github.io/flex-cheatsheet/" target="_blank">Cheatsheet de Flexbox</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! Soy Dola, tu asistente de aprendizaje. Puedes preguntarme cualquier duda sobre Flexbox. Por ejemplo:</p>
+                            <ul>
+                                <li>¿Cómo centrar elementos vertical y horizontalmente?</li>
+                                <li>¿Cuál es la diferencia entre justify-content y align-items?</li>
+                                <li>¿Cómo hacer que los elementos se distribuyan uniformemente?</li>
+                                <li>¿Cómo crear un diseño responsive con Flexbox?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion03.html" class="button">← Sesión Anterior</a>
+                    <a href="index.html" class="button">← Inicio</a>
+                    <a href="sesion05.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE CSS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Script para los ejemplos interactivos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Control de flex-direction
+            const flexDirButtons = document.querySelectorAll('.flex-dir-btn');
+            const directionDemo = document.getElementById('direction-demo');
+            
+            flexDirButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const direction = button.getAttribute('data-direction');
+                    directionDemo.style.flexDirection = direction;
+                    
+                    // Actualizar botones activos
+                    flexDirButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+            
+            // Control de flex-wrap
+            const flexWrapButtons = document.querySelectorAll('.flex-wrap-btn');
+            const wrapDemo = document.getElementById('wrap-demo');
+            
+            flexWrapButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const wrap = button.getAttribute('data-wrap');
+                    wrapDemo.style.flexWrap = wrap;
+                    
+                    // Actualizar botones activos
+                    flexWrapButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+            
+            // Control de justify-content
+            const justifyButtons = document.querySelectorAll('.justify-btn');
+            const justifyDemo = document.getElementById('justify-demo');
+            
+            justifyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const justify = button.getAttribute('data-justify');
+                    justifyDemo.style.justifyContent = justify;
+                    
+                    // Actualizar botones activos
+                    justifyButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+            
+            // Control de align-items
+            const alignButtons = document.querySelectorAll('.align-btn');
+            const alignDemo = document.getElementById('align-demo');
+            
+            alignButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const align = button.getAttribute('data-align');
+                    alignDemo.style.alignItems = align;
+                    
+                    // Actualizar botones activos
+                    alignButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+            
+            // Control de align-content
+            const alignContentButtons = document.querySelectorAll('.align-content-btn');
+            const alignContentDemo = document.getElementById('align-content-demo');
+            
+            alignContentButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const align = button.getAttribute('data-align');
+                    alignContentDemo.style.alignContent = align;
+                    
+                    // Actualizar botones activos
+                    alignContentButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+            
+            // Chat de Dola AI
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+                    
+                    addMessage(message, true);
+                    userInput.value = '';
+                    
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        let response = '';
+                        
+                        if (message.toLowerCase().includes('centrar') || message.toLowerCase().includes('centrado')) {
+                            response = `Para centrar elementos con Flexbox, puedes usar las siguientes propiedades:<br><br>
+                            
+                            <strong>Centrado horizontal y vertical:</strong><br>
+                            <code>.contenedor {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  height: 300px;           /* Necesario para el centrado vertical */
+}</code><br><br>
+                            
+                            <strong>Solo centrado horizontal:</strong><br>
+                            <code>.contenedor {
+  display: flex;
+  justify-content: center;
+}</code><br><br>
+                            
+                            <strong>Solo centrado vertical:</strong><br>
+                            <code>.contenedor {
+  display: flex;
+  align-items: center;
+  height: 300px; /* Necesario para el centrado vertical */
+}</code>`;
+                        }
+                        else if (message.toLowerCase().includes('justify') || message.toLowerCase().includes('align')) {
+                            response = `La principal diferencia entre <code>justify-content</code> y <code>align-items</code> es el eje en el que actúan:<br><br>
+                            
+                            <strong>justify-content</strong> controla la alineación a lo largo del <strong>eje principal</strong> (por defecto, horizontal):<br>
+                            <code>justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;</code><br><br>
+                            
+                            <strong>align-items</strong> controla la alineación a lo largo del <strong>eje transversal</strong> (por defecto, vertical):<br>
+                            <code>align-items: stretch | flex-start | flex-end | center | baseline;</code><br><br>
+                            
+                            <strong>Consejo:</strong> Recuerda que la dirección del eje principal puede cambiar con <code>flex-direction</code>.`;
+                        }
+                        else if (message.toLowerCase().includes('distribuir') || message.toLowerCase().includes('espacio')) {
+                            response = `Para distribuir el espacio entre elementos de manera uniforme, puedes usar las siguientes propiedades de <code>justify-content</code>:<br><br>
+                            
+                            <strong>1. space-between</strong><br>
+                            Distribuye el espacio disponible entre los ítems, con el primer ítem al inicio y el último al final.<br>
+                            <code>justify-content: space-between;</code><br><br>
+                            
+                            <strong>2. space-around</strong><br>
+                            Distribuye el espacio alrededor de los ítems (el espacio es igual a cada lado de cada ítem).<br>
+                            <code>justify-content: space-around;</code><br><br>
+                            
+                            <strong>3. space-evenly</strong><br>
+                            Distribuye el espacio uniformemente alrededor de los ítems y entre ellos.<br>
+                            <code>justify-content: space-evenly;</code><br><br>
+                            
+                            <strong>Ejemplo práctico:</strong><br>
+                            <code>.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  background: #f0f0f0;
+}</code>`;
+                        }
+                        else if (message.toLowerCase().includes('responsive') || message.toLowerCase().includes('adaptable')) {
+                            response = `Flexbox es ideal para crear diseños responsivos. Aquí tienes algunos patrones comunes:<br><br>
+                            
+                            <strong>1. Menú que se apila en móviles:</strong><br>
+                            <code>.menu {
+  display: flex;
+  flex-direction: column; /* Apilado en móviles */
+}
+
+@media (min-width: 768px) {
+  .menu {
+    flex-direction: row; /* En fila en pantallas grandes */
+  }
+}</code><br><br>
+                            
+                            <strong>2. Tarjetas que se ajustan al ancho:</strong><br>
+                            <code>.contenedor-tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tarjeta {
+  flex: 1 1 300px; /* Crece, se encoge, ancho base de 300px */
+}</code><br><br>
+                            
+                            <strong>3. Barra lateral que se coloca debajo en móviles:</strong><br>
+                            <code>.contenedor {
+  display: flex;
+  flex-direction: column; /* Apilado en móviles */
+}
+
+@media (min-width: 992px) {
+  .contenedor {
+    flex-direction: row; /* En fila en pantallas grandes */
+  }
+  
+  .contenido-principal {
+    flex: 3; /* Ocupa 3 partes */
+  }
+  
+  .barra-lateral {
+    flex: 1; /* Ocupa 1 parte */
+  }
+}</code>`;
+                        }
+                        else {
+                            const responses = [
+                                "¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con Flexbox.",
+                                "¿Has probado a inspeccionar los ejemplos con las herramientas de desarrollo de tu navegador? Puedes ver cómo se aplican las propiedades de Flexbox en tiempo real.",
+                                "¿Te gustaría ver un ejemplo específico de cómo implementar algún diseño con Flexbox?",
+                                "Recuerda que Flexbox es especialmente útil para diseños unidimensionales. ¿Neitas ayuda con algún diseño en particular?",
+                                "¿Has considerado usar la propiedad 'gap' para espaciar los elementos en lugar de márgenes? Es una forma más limpia de manejar los espacios entre elementos flexibles."
+                            ];
+                            response = responses[Math.floor(Math.random() * responses.length)];
+                        }
+                        
+                        addMessage(response);
+                    }, 1000);
+                }
+                
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

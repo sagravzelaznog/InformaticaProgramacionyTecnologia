@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema7">
+                <h2>Tema 7: Análisis de datos con tablas dinámicas</h2>
+                <div class="tema-contenido">
+                    <p>Lleva tus habilidades con tablas dinámicas al siguiente nivel con técnicas avanzadas de análisis de datos. Aprenderás a realizar análisis complejos, crear dashboards interactivos y automatizar informes para convertir datos en información accionable.</p>
+                    
+                    <h3>7.1 Análisis avanzado con tablas dinámicas</h3>
+                    <p>Descubre cómo aprovechar al máximo el potencial de las tablas dinámicas para realizar análisis profundos de tus datos.</p>
+                    
+                    <div class="info-box">
+                        <h4>Técnicas avanzadas de análisis:</h4>
+                        <ul>
+                            <li>Campos calculados para métricas personalizadas</li>
+                            <li>Agrupación de datos por rangos de fechas</li>
+                            <li>Análisis de tendencias temporales</li>
+                            <li>Comparativas interanuales</li>
+                            <li>Análisis de participación porcentual</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio-practico">
+                        <h4>Práctica: Análisis de ventas por categoría</h4>
+                        <p>Analiza el siguiente conjunto de datos de ventas para identificar patrones y tendencias:</p>
+                        
+                        <div class="contenedor-analisis" id="analisisVentas">
+                            <!-- Se generará dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <p><strong>Ejercicio:</strong></p>
+                            <ol>
+                                <li>Crea una tabla dinámica que muestre las ventas totales por categoría y mes</li>
+                                <li>Agrega un campo calculado para mostrar el margen de ganancia</li>
+                                <li>Crea un gráfico dinámico que muestre la evolución de ventas</li>
+                                <li>Agrega segmentaciones para filtrar por región y vendedor</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <h3>7.2 Dashboard interactivo con tablas dinámicas</h3>
+                    <p>Aprende a crear un panel de control completo que te permita monitorear métricas clave de un vistazo.</p>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Crea tu propio dashboard</h4>
+                        <p>Construye un dashboard interactivo con los siguientes elementos:</p>
+                        
+                        <div class="dashboard-layout">
+                            <div class="filtros-dashboard">
+                                <h5>Filtros del Dashboard</h5>
+                                <div class="filtro-item">
+                                    <label for="rangoFechas">Rango de fechas:</label>
+                                    <select id="rangoFechas" class="filtro-select">
+                                        <option value="mes">Último mes</option>
+                                        <option value="trimestre">Último trimestre</option>
+                                        <option value="anio">Último año</option>
+                                        <option value="todos">Todos los datos</option>
+                                    </select>
+                                </div>
+                                <div class="filtro-item">
+                                    <label for="tipoGrafico">Tipo de gráfico:</label>
+                                    <select id="tipoGrafico" class="filtro-select">
+                                        <option value="columnas">Columnas</option>
+                                        <option value="lineas">Líneas</option>
+                                        <option value="barras">Barras</option>
+                                        <option value="pastel">Pastel</option>
+                                    </select>
+                                </div>
+                                <button id="aplicarFiltros" class="btn-accion">Aplicar Filtros</button>
+                            </div>
+                            
+                            <div class="vistas-dashboard">
+                                <div class="vista-grafico" id="graficoDashboard">
+                                    <h5>Vista Previa del Gráfico</h5>
+                                    <!-- Se generará dinámicamente con JavaScript -->
+                                    <div class="grafico-placeholder">
+                                        <p>Selecciona las opciones para ver la visualización</p>
+                                        <div class="grafico-preview"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tabla-resumen" id="tablaResumen">
+                                    <h5>Resumen de Datos</h5>
+                                    <!-- Se generará dinámicamente con JavaScript -->
+                                    <div class="tabla-placeholder">
+                                        <p>Los datos resumidos aparecerán aquí</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metricas-rapidas">
+                                <h5>Métricas Clave</h5>
+                                <div class="metricas-contenedor">
+                                    <div class="metrica">
+                                        <span class="metrica-titulo">Ventas Totales</span>
+                                        <span class="metrica-valor" id="ventasTotales">$0</span>
+                                        <span class="metrica-variacion" id="variacionVentas">0%</span>
+                                    </div>
+                                    <div class="metrica">
+                                        <span class="metrica-titulo">Productos Vendidos</span>
+                                        <span class="metrica-valor" id="productosVendidos">0</span>
+                                        <span class="metrica-variacion" id="variacionProductos">0%</span>
+                                    </div>
+                                    <div class="metrica">
+                                        <span class="metrica-titulo">Ticket Promedio</span>
+                                        <span class="metrica-valor" id="ticketPromedio">$0</span>
+                                        <span class="metrica-variacion" id="variacionTicket">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="feedbackDashboard" class="feedback"></div>
+                    </div>
+
+                    <h3>7.3 Automatización de informes</h3>
+                    <p>Descubre cómo automatizar la generación de informes recurrentes para ahorrar tiempo y mantener actualizados tus análisis.</p>
+                    
+                    <div class="ejercicio-avanzado">
+                        <h4>Automatización con tablas dinámicas</h4>
+                        <p>Sigue estos pasos para automatizar la actualización de tus informes:</p>
+                        
+                        <div class="paso-a-paso">
+                            <div class="paso">
+                                <h5>Paso 1: Crear plantilla de informe</h5>
+                                <p>Diseña tu tabla dinámica y configura los formatos, filtros y diseños deseados.</p>
+                                <div class="codigo-ejemplo">
+                                    <pre><code>1. Crea tu tabla dinámica con los campos necesarios
+2. Aplica formatos condicionales
+3. Configura segmentaciones de datos
+4. Ajusta el diseño y la presentación</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="paso">
+                                <h5>Paso 2: Conectar a fuentes de datos externas</h5>
+                                <p>Aprende a importar datos desde diferentes orígenes para mantener actualizada tu tabla dinámica.</p>
+                                <div class="opciones-conexion">
+                                    <button class="btn-conexion" data-tipo="excel">Archivo Excel</button>
+                                    <button class="btn-conexion" data-tipo="base-datos">Base de Datos</button>
+                                    <button class="btn-conexion" data-tipo="web">Fuente Web</button>
+                                </div>
+                            </div>
+                            
+                            <div class="paso">
+                                <h5>Paso 3: Programar actualizaciones automáticas</h5>
+                                <p>Configura la actualización automática de datos para mantener tu informe siempre actualizado.</p>
+                                <div class="configuracion-actualizacion">
+                                    <label>
+                                        <input type="checkbox" id="actualizarAbrir">
+                                        Actualizar al abrir el archivo
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="actualizarTiempo">
+                                        Actualizar cada: 
+                                        <select id="frecuenciaActualizacion">
+                                            <option value="5">5 minutos</option>
+                                            <option value="15">15 minutos</option>
+                                            <option value="30">30 minutos</option>
+                                            <option value="60">1 hora</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Qué función te permite crear métricas personalizadas en una tabla dinámica?</div>
+                        <div class="opcion">a) Campo calculado</div>
+                        <div class="opcion">b) Filtro avanzado</div>
+                        <div class="opcion">c) Formato condicional</div>
+                        <div class="opcion">d) Validación de datos</div>
+                        
+                        <div class="pregunta">2. ¿Cuál de los siguientes NO es un elemento típico de un dashboard interactivo?</div>
+                        <div class="opcion">a) Gráficos dinámicos</div>
+                        <div class="opcion">b) Segmentaciones de datos</div>
+                        <div class="opcion">c) Campos de texto estáticos</div>
+                        <div class="opcion">d) Filtros interactivos</div>
+                        
+                        <div class="pregunta">3. ¿Qué opción te permite actualizar automáticamente los datos de una tabla dinámica?</div>
+                        <div class="opcion">a) Fórmula INDICE</div>
+                        <div class="opcion">b) Conexión a datos externos</div>
+                        <div class="opcion">c) Tabla de búsqueda</div>
+                        <div class="opcion">d) Validación de datos</div>
+                        
+                        <button id="evaluarTema7" class="evaluation-btn">Verificar respuestas</button>
+                        <div id="resultadoEvaluacion7" class="resultado"></div>
+                    </div>
+
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Las tablas dinámicas permiten realizar análisis avanzados mediante campos calculados y agrupaciones personalizadas.</li>
+                            <li>Los dashboards interactivos combinan múltiples elementos visuales para ofrecer una visión integral de los datos.</li>
+                            <li>La automatización de informes ahorra tiempo al mantener los datos actualizados sin intervención manual.</li>
+                            <li>La conexión a fuentes de datos externas asegura que los análisis reflejen siempre la información más reciente.</li>
+                            <li>La segmentación y los filtros interactivos permiten explorar los datos desde diferentes perspectivas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="siguiente-paso">
+                        <h3>¡Excelente trabajo!</h3>
+                        <p>Has completado el módulo de Excel con un conocimiento sólido sobre tablas dinámicas y análisis de datos. Sigue practicando con diferentes conjuntos de datos para dominar estas poderosas herramientas de análisis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 8: Funciones estadísticas -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema6.html" class="btn btn-anterior">Anterior: Tema 6</a>
+        <a href="tema8.html" class="btn btn-siguiente">Siguiente: Tema 8</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

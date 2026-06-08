@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 14: Tipos de Redes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 14</h1>
+            <h2>Tipos de Redes: Del Bolsillo al Mundo</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. ¿Hasta dónde llega tu señal?</h3>
+            <p><strong>Objetivo:</strong> Clasificar las redes no por velocidad, sino por distancia geográfica.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>📏 La Regla de la Distancia</h4>
+                <p>No es lo mismo conectar tus audífonos al celular que conectar México con Japón.</p>
+                
+                <div class="stats-grid" style="gap: 10px;">
+                    <div class="stat-item" style="width: 45%;">
+                        <span class="stat-number" style="color: #2b6cb0; font-size: 2rem;">1 a 10 m</span>
+                        <span class="stat-label">Tu Espacio Personal (Bluetooth)</span>
+                    </div>
+                    <div class="stat-item" style="width: 45%;">
+                        <span class="stat-number" style="color: #2c5282; font-size: 2rem;">100 a 1000 km</span>
+                        <span class="stat-label">Conexión Global (Internet)</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"En redes, el tamaño SÍ importa. Cada alcance requiere una tecnología diferente."</p>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Las 4 Grandes Categorías</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: #4299e1; color: white;">
+                    <h4>🎧 PAN (Personal Area Network)</h4>
+                    <p><strong>Alcance:</strong> Metros.</p>
+                    <p>Es la red de TU cuerpo. Conecta tus dispositivos vestibles.</p>
+                    <ul>
+                        <li>Smartwatch, Audífonos Bluetooth, AirDrop.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: #3182ce; color: white;">
+                    <h4>🏠 LAN (Local Area Network)</h4>
+                    <p><strong>Alcance:</strong> Edificio/Casa.</p>
+                    <p>La red más común. Conecta equipos bajo un mismo techo.</p>
+                    <ul>
+                        <li>El WiFi de tu casa, el Ciber-café, el Laboratorio de la escuela.</li>
+                    </ul>
+                </div>
+                
+                 <div class="concept-card" style="background: #2b6cb0; color: white;">
+                    <h4>city MAN (Metropolitan Area Network)</h4>
+                    <p><strong>Alcance:</strong> Ciudad.</p>
+                    <p>Conecta varias LANs dentro de una misma zona urbana.</p>
+                    <ul>
+                        <li>Red de cámaras de seguridad de la ciudad, TV por Cable.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: #2c5282; color: white;">
+                    <h4>🌍 WAN (Wide Area Network)</h4>
+                    <p><strong>Alcance:</strong> Países/Continentes.</p>
+                    <p>La red de redes. Utiliza satélites y fibra submarina.</p>
+                    <ul>
+                        <li><strong>El Internet</strong> es la WAN más grande del mundo.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🎯 El Radar de Alcance</h4>
+                <p>Una red vive dentro de otra más grande.</p>
+                
+                <div style="display: flex; justify-content: center; align-items: center; height: 300px; position: relative; margin-top: 20px;">
+                    <div style="width: 280px; height: 280px; background: #bee3f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px dashed #2c5282; position: absolute;">
+                        <span style="position: absolute; top: 10px; font-weight: bold; color: #2a4365;">WAN (Mundo)</span>
+                    </div>
+                    
+                    <div style="width: 200px; height: 200px; background: #90cdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px dashed #2b6cb0; position: absolute; z-index: 2;">
+                        <span style="position: absolute; top: 10px; font-weight: bold; color: #1a365d;">MAN (Ciudad)</span>
+                    </div>
+
+                    <div style="width: 120px; height: 120px; background: #63b3ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #3182ce; position: absolute; z-index: 3;">
+                        <span style="position: absolute; top: 10px; font-weight: bold; color: white; font-size: 0.8rem;">LAN (Casa)</span>
+                    </div>
+
+                    <div style="width: 50px; height: 50px; background: #2b6cb0; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; position: absolute; z-index: 4; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+                        <span style="color: white; font-size: 0.6rem; font-weight: bold;">PAN</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Clasifica tu Entorno</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Caso Práctico 1</h5>
+                    <p>Conectas tu celular a la bocina del salón para poner música. ¿Qué red es?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>PAN (Personal).</strong> Es una conexión directa de corto alcance (Bluetooth) sin intermediarios.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Caso Práctico 2</h5>
+                    <p>La escuela tiene 3 edificios conectados entre sí con fibra óptica propia. ¿Qué es?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>CAN (Campus Area Network).</strong> Es una variante de la LAN, pero para campus universitarios o escolares.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🌐 <strong>Reto Visual:</strong> En tu mapa de "Cómo llega internet a casa" (de la sesión anterior), encierra con círculos de colores dónde empieza la WAN, dónde la MAN y dónde tu LAN.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 14 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

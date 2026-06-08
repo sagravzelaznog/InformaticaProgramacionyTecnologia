@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema12">
+        <h2>Tema 12: Análisis de hipótesis en Excel</h2>
+        <div class="tema-contenido">
+            <p>El análisis de hipótesis es una herramienta estadística fundamental que nos permite tomar decisiones basadas en datos. En este tema, exploraremos cómo utilizar Excel para realizar pruebas de hipótesis, interpretar sus resultados y aplicarlos en diversos contextos profesionales.</p>
+            
+            <h3>12.1 Conceptos básicos del análisis de hipótesis</h3>
+            <p>El análisis de hipótesis es un procedimiento estadístico que nos permite probar afirmaciones sobre parámetros poblacionales basándonos en datos muestrales.</p>
+            
+            <div class="conceptos-clave">
+                <h4>Elementos clave:</h4>
+                <ul>
+                    <li><strong>Hipótesis nula (H₀):</strong> Afirmación que se pone a prueba, generalmente de "no efecto" o "sin diferencia".</li>
+                    <li><strong>Hipótesis alternativa (H₁):</strong> Afirmación que se acepta si se rechaza la hipótesis nula.</li>
+                    <li><strong>Nivel de significancia (α):</strong> Probabilidad de cometer un error tipo I (rechazar H₀ cuando es verdadera).</li>
+                    <li><strong>Valor p:</strong> Probabilidad de obtener un resultado al menos tan extremo como el observado, asumiendo que H₀ es verdadera.</li>
+                </ul>
+            </div>
+
+            <div class="ejemplo-practico">
+                <h4>Ejemplo práctico:</h4>
+                <p>Supongamos que una fábrica de bombillas afirma que sus productos duran en promedio 1000 horas. Queremos probar si esta afirmación es cierta con un nivel de confianza del 95%.</p>
+                <ul>
+                    <li>H₀: μ = 1000 horas</li>
+                    <li>H₁: μ ≠ 1000 horas</li>
+                    <li>α = 0.05</li>
+                </ul>
+            </div>
+
+            <h3>12.2 Pruebas de hipótesis para una media</h3>
+            <p>Excel ofrece varias funciones para realizar pruebas de hipótesis sobre la media de una población.</p>
+            
+            <div class="tabla-funciones">
+                <table class="tabla-ejemplo" aria-label="Funciones para pruebas de hipótesis de una media">
+                    <caption>Funciones para pruebas de hipótesis de una media</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Función</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Sintaxis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PRUEBA.Z</td>
+                            <td>Prueba Z para una media (población normal con varianza conocida)</td>
+                            <td>=PRUEBA.Z(matriz, x, [sigma])</td>
+                    </tr>
+                    <tr>
+                        <td>PRUEBA.T</td>
+                        <td>Prueba t para una media (población normal con varianza desconocida)</td>
+                        <td>=PRUEBA.T(matriz1, matriz2, colas, tipo)</td>
+                    </tr>
+                    <tr>
+                        <td>DISTR.T</td>
+                        <td>Distribución t de Student</td>
+                        <td>=DISTR.T(x, grados_libertad, colas)</td>
+                    </tr>
+                    <tr>
+                        <td>INV.T</td>
+                        <td>Inversa de la distribución t de Student</td>
+                        <td>=INV.T(probabilidad, grados_libertad)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ejercicio-practico">
+                <h4>Actividad: Prueba de hipótesis para una media</h4>
+                <p>Una empresa afirma que sus baterías duran en promedio 500 horas. Se tomó una muestra de 30 baterías y se obtuvo una media de 485 horas con una desviación estándar de 40 horas. ¿Hay evidencia suficiente para rechazar la afirmación de la empresa con un nivel de significancia del 5%?</p>
+                
+                <div class="solucion-pasos">
+                    <h5>Solución:</h5>
+                    <ol>
+                        <li>Plantear hipótesis:
+                            <ul>
+                                <li>H₀: μ = 500 horas</li>
+                                <li>H₁: μ ≠ 500 horas</li>
+                            </ul>
+                        </li>
+                        <li>Nivel de significancia: α = 0.05</li>
+                        <li>Estadístico de prueba: t = (x̄ - μ₀) / (s/√n)
+                            <p>t = (485 - 500) / (40/√30) = -2.055</p>
+                        </li>
+                        <li>Valor crítico: ±INV.T(0.025, 29) = ±2.045</li>
+                        <li>Decisión: Como -2.055 < -2.045, rechazamos H₀</li>
+                        <li>Conclusión: Hay evidencia suficiente para rechazar la afirmación de la empresa.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3>12.3 Pruebas de hipótesis para dos medias</h3>
+            <p>Cuando queremos comparar las medias de dos poblaciones independientes o relacionadas.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Tipos de pruebas para dos medias:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                        <th>Función Excel</th>
+                    </tr>
+                    <tr>
+                        <td>Muestras independientes con varianzas iguales</td>
+                        <td>Cuando las varianzas de ambas poblaciones se asumen iguales</td>
+                        <td>PRUEBA.T(matriz1, matriz2, 2, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Muestras independientes con varianzas diferentes</td>
+                        <td>Cuando las varianzas de las poblaciones son diferentes</td>
+                        <td>PRUEBA.T(matriz1, matriz2, 2, 3)</td>
+                    </tr>
+                    <tr>
+                        <td>Muestras pareadas</td>
+                        <td>Cuando las muestras están relacionadas (antes/después)</td>
+                        <td>PRUEBA.T(matriz1, matriz2, 2, 1)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="ejercicio-interactivo">
+                <h4>Actividad: Comparación de dos métodos de enseñanza</h4>
+                <p>Se quiere comparar dos métodos de enseñanza (A y B) para ver si hay diferencias significativas en el rendimiento de los estudiantes. Se tomaron dos muestras aleatorias de estudiantes y se registraron sus calificaciones:</p>
+                
+                <div class="tabla-datos">
+                    <table id="tabla-ensenanza">
+                        <tr>
+                            <th>Método A</th>
+                            <td>78</td><td>85</td><td>82</td><td>79</td><td>83</td><td>86</td><td>80</td><td>81</td><td>84</td><td>82</td>
+                        </tr>
+                        <tr>
+                            <th>Método B</th>
+                            <td>75</td><td>79</td><td>80</td><td>78</td><td>82</td><td>77</td><td>81</td><td>80</td><td>79</td><td>78</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formulario-ejercicio">
+                    <h5>Realiza la prueba de hipótesis:</h5>
+                    <div class="pregunta">
+                        <label>Hipótesis nula (H₀):</label>
+                        <select id="hipotesis-nula" class="form-control">
+                            <option value="">Selecciona una opción</option>
+                            <option value="iguales">μA = μB (No hay diferencia entre métodos)</option>
+                            <option value="diferentes">μA ≠ μB (Hay diferencia entre métodos)</option>
+                        </select>
+                    </div>
+                    <div class="pregunta">
+                        <label>Nivel de significancia (α):</label>
+                        <select id="nivel-significancia" class="form-control">
+                            <option value="0.01">1%</option>
+                            <option value="0.05" selected>5%</option>
+                            <option value="0.10">10%</option>
+                        </select>
+                    </div>
+                    <button onclick="realizarPruebaT()" class="btn-ejercicio">Realizar Prueba</button>
+                    <div id="resultado-prueba" class="resultado-ejercicio"></div>
+                </div>
+            </div>
+
+            <h3>12.4 Análisis de varianza (ANOVA)</h3>
+            <p>El ANOVA se utiliza para comparar las medias de tres o más grupos. Excel incluye herramientas para realizar análisis de varianza de un factor.</p>
+            
+            <div class="pasos">
+                <h4>Pasos para realizar un ANOVA en Excel:</h4>
+                <ol>
+                    <li>Ir a la pestaña <strong>Datos</strong> y hacer clic en <strong>Análisis de datos</strong></li>
+                    <li>Seleccionar <strong>Análisis de varianza de un factor</strong></li>
+                    <li>Seleccionar el rango de datos</li>
+                    <li>Especificar si los datos están agrupados por columnas o filas</li>
+                    <li>Seleccionar un nivel de significancia (por defecto 0.05)</li>
+                    <li>Especificar la celda de la esquina superior izquierda para los resultados</li>
+                    <li>Hacer clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+
+            <div class="ejercicio-practico">
+                <h4>Ejemplo: Comparación de tres métodos de producción</h4>
+                <p>Se quiere comparar la productividad de tres métodos de producción diferentes. Se registró el número de unidades producidas por hora para cada método:</p>
+                
+                <div class="tabla-datos">
+                    <table id="tabla-anova">
+                        <tr>
+                            <th>Método 1</th>
+                            <td>23</td><td>25</td><td>24</td><td>22</td><td>26</td>
+                        </tr>
+                        <tr>
+                            <th>Método 2</th>
+                            <td>28</td><td>26</td><td>29</td><td>27</td><td>28</td>
+                        </tr>
+                        <tr>
+                            <th>Método 3</th>
+                            <td>20</td><td>22</td><td>19</td><td>21</td><td>20</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <button onclick="realizarANOVA()" class="btn-ejercicio">Realizar Análisis ANOVA</button>
+                <div id="resultado-anova" class="resultado-ejercicio"></div>
+            </div>
+
+            <h3>12.5 Pruebas de chi-cuadrado</h3>
+            <p>Las pruebas de chi-cuadrado se utilizan para analizar la relación entre variables categóricas.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Tipos de pruebas chi-cuadrado:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Prueba</th>
+                        <th>Propósito</th>
+                        <th>Función Excel</th>
+                    </tr>
+                    <tr>
+                        <td>Bondad de ajuste</td>
+                        <td>Determinar si una muestra sigue una distribución específica</td>
+                        <td>PRUEBA.CHI.INV, PRUEBA.CHI</td>
+                    </tr>
+                    <tr>
+                        <td>Independencia</td>
+                        <td>Determinar si dos variables categóricas son independientes</td>
+                        <td>PRUEBA.CHICUAD, PRUEBA.CHI.INV</td>
+                    </tr>
+                    <tr>
+                        <td>Homogeneidad</td>
+                        <td>Determinar si varias muestras provienen de la misma población</td>
+                        <td>PRUEBA.CHICUAD</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="ejercicio-interactivo">
+                <h4>Actividad: Prueba de independencia chi-cuadrado</h4>
+                <p>Se realizó una encuesta a 200 personas para determinar si existe relación entre el nivel educativo y la preferencia por un candidato político. Los resultados se muestran en la siguiente tabla de contingencia:</p>
+                
+                <div class="tabla-datos">
+                    <table id="tabla-chi-cuadrado">
+                        <tr>
+                            <th>Nivel Educativo / Candidato</th>
+                            <th>Candidato A</th>
+                            <th>Candidato B</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>Bachillerato</td>
+                            <td>30</td>
+                            <td>20</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Universitario</td>
+                            <td>40</td>
+                            <td>60</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Posgrado</td>
+                            <td>15</td>
+                            <td>35</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>85</td>
+                            <td>115</td>
+                            <td>200</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="formulario-ejercicio">
+                    <h5>Realiza la prueba de independencia:</h5>
+                    <div class="pregunta">
+                        <label>Hipótesis nula (H₀):</label>
+                        <p>El nivel educativo y la preferencia por el candidato son independientes.</p>
+                    </div>
+                    <div class="pregunta">
+                        <label>Nivel de significancia (α):</label>
+                        <select id="nivel-significancia-chi" class="form-control">
+                            <option value="0.01">1%</option>
+                            <option value="0.05" selected>5%</option>
+                            <option value="0.10">10%</option>
+                        </select>
+                    </div>
+                    <button onclick="realizarPruebaChiCuadrado()" class="btn-ejercicio">Realizar Prueba Chi-Cuadrado</button>
+                    <div id="resultado-chi" class="resultado-ejercicio"></div>
+                </div>
+            </div>
+
+            <h3>12.6 Evaluación del tema</h3>
+            <p>Responde las siguientes preguntas para evaluar tu comprensión del análisis de hipótesis.</p>
+            
+            <div class="evaluacion">
+                <div class="pregunta">1. ¿Cuál es el propósito principal de una prueba de hipótesis?</div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1a" value="a">
+                    <label for="p1a">a) Describir los datos de una muestra</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1b" value="b">
+                    <label for="p1b">b) Hacer inferencias sobre una población basadas en datos muestrales</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1c" value="c">
+                    <label for="p1c">c) Organizar los datos en tablas de frecuencia</label>
+                </div>
+                
+                <div class="pregunta">2. Si el valor p es menor que el nivel de significancia (α), ¿qué decisión se debe tomar?</div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2a" value="a">
+                    <label for="p2a">a) Aceptar la hipótesis nula</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2b" value="b">
+                    <label for="p2b">b) Rechazar la hipótesis nula</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2c" value="c">
+                    <label for="p2c">c) No se puede determinar con la información dada</label>
+                </div>
+                
+                <div class="pregunta">3. ¿Cuál de las siguientes afirmaciones sobre el error tipo I es correcta?</div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3a" value="a">
+                    <label for="p3a">a) Ocurre cuando no se rechaza una hipótesis nula falsa</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3b" value="b">
+                    <label for="p3b">b) Es igual a 1 - α</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3c" value="c">
+                    <label for="p3c">c) Ocurre cuando se rechaza una hipótesis nula verdadera</label>
+                </div>
+                
+                <button onclick="evaluarTema12()" class="btn-evaluacion">Enviar evaluación</button>
+                <div id="resultado-evaluacion-tema12" class="resultado-evaluacion"></div>
+            </div>
+
+            <div class="resumen">
+                <h3>Resumen del tema</h3>
+                <ul>
+                    <li>El análisis de hipótesis nos permite tomar decisiones sobre parámetros poblacionales basándonos en datos muestrales.</li>
+                    <li>El valor p nos ayuda a determinar la significancia estadística de nuestros resultados.</li>
+                    <li>Las pruebas t se utilizan para comparar medias, mientras que el ANOVA se usa para comparar tres o más medias.</li>
+                    <li>Las pruebas de chi-cuadrado son útiles para analizar la relación entre variables categóricas.</li>
+                    <li>Es fundamental interpretar correctamente los resultados de las pruebas de hipótesis en el contexto del problema.</li>
+                </ul>
+                
+                <h4>Consejos prácticos:</h4>
+                <ul>
+                    <li>Siempre verifica los supuestos de las pruebas estadísticas antes de aplicarlas.</li>
+                    <li>Considera el tamaño del efecto además de la significancia estadística.</li>
+                    <li>Utiliza intervalos de confianza para complementar tus análisis de hipótesis.</li>
+                    <li>Recuerda que el rechazo de la hipótesis nula no implica necesariamente una diferencia práctica importante.</li>
+                </ul>
+            </div>
+
+            <div class="navegacion-temas">
+                <a href="#tema11" class="btn btn-anterior">Anterior: Tema 11</a>
+                <a href="#tema12" class="btn btn-siguiente">Volver al Inicio del Tema</a>
+            </div>
+        </div>
+    </div>
+
+            <!-- Tema 13: Power Query: Importación y transformación de datos -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema11.html" class="btn btn-anterior">Anterior: Tema 11</a>
+        <a href="tema13.html" class="btn btn-siguiente">Siguiente: Tema 13</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

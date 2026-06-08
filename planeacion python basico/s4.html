@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Operaciones Matemáticas - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.3/katex.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+        body h1, h2, h3, h4, h5, h6, p, span, a, li, ol, ul, table, th, td {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 4</h1>
+                <h2>Operaciones Matemáticas</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-12-5" 
+                     role="progressbar" 
+                     aria-valuenow="12.5" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Utilizar Python como una potente herramienta para realizar cálculos matemáticos, comprendiendo los operadores básicos y avanzados, así como las funciones matemáticas incorporadas.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Realizar operaciones aritméticas básicas y avanzadas</li>
+                        <li>Entender la precedencia de operadores</li>
+                        <li>Utilizar el módulo <code>math</code> para operaciones matemáticas complejas</li>
+                        <li>Aplicar operaciones matemáticas en problemas prácticos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Operadores aritméticos -->
+            <div class="concept-card">
+                <h3>1. Operadores Aritméticos Básicos</h3>
+                <p>Python incluye los operadores aritméticos estándar:</p>
+                
+                <div class="table-responsive">
+                    <table class="operators-table">
+                        <thead>
+                            <tr>
+                                <th>Operador</th>
+                                <th>Operación</th>
+                                <th>Ejemplo</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>+</code></td>
+                                <td>Suma</td>
+                                <td><code>5 + 3</code></td>
+                                <td><code>8</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>-</code></td>
+                                <td>Resta</td>
+                                <td><code>10 - 4</code></td>
+                                <td><code>6</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>*</code></td>
+                                <td>Multiplicación</td>
+                                <td><code>6 * 7</code></td>
+                                <td><code>42</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>/</code></td>
+                                <td>División</td>
+                                <td><code>15 / 3</code></td>
+                                <td><code>5.0</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>//</code></td>
+                                <td>División entera</td>
+                                <td><code>15 // 2</code></td>
+                                <td><code>7</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>%</code></td>
+                                <td>Módulo (resto)</td>
+                                <td><code>15 % 4</code></td>
+                                <td><code>3</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>**</code></td>
+                                <td>Exponenciación</td>
+                                <td><code>2 ** 3</code></td>
+                                <td><code>8</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Nota sobre división</h4>
+                    <p>En Python 3, el operador <code>/</code> siempre devuelve un número de punto flotante, incluso si el resultado es un número entero. Usa <code>//</code> para la división entera.</p>
+                </div>
+            </div>
+
+            <!-- Precedencia de operadores -->
+            <div class="concept-card">
+                <h3>2. Precedencia de Operadores</h3>
+                <p>El orden en que se evalúan las operaciones sigue las reglas matemáticas estándar:</p>
+                
+                <div class="precedence-chart">
+                    <ol>
+                        <li><strong>Paréntesis</strong>: <code>()</code> (siempre tienen la mayor precedencia)</li>
+                        <li><strong>Exponenciación</strong>: <code>**</code> (de derecha a izquierda)</li>
+                        <li><strong>Multiplicación, División, Módulo</strong>: <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code> (de izquierda a derecha)</li>
+                        <li><strong>Suma y Resta</strong>: <code>+</code>, <code>-</code> (de izquierda a derecha)</li>
+                    </ol>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo de precedencia:</h4>
+                    <pre><code class="language-python">resultado = 5 + 3 * 2 ** 2  # ¿Cuál es el resultado?
+# 1. 2 ** 2 = 4
+# 2. 3 * 4 = 12
+# 3. 5 + 12 = 17
+print(resultado)  # 17</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Mejores prácticas</h4>
+                    <p>Usa paréntesis para hacer el código más legible, incluso cuando no sean estrictamente necesarios.</p>
+                    <pre><code class="language-python"># Menos claro
+volumen = largo * ancho * altura / 3
+
+# Más claro
+volumen = (largo * ancho * altura) / 3</code></pre>
+                </div>
+            </div>
+
+            <!-- Módulo math -->
+            <div class="concept-card">
+                <h3>3. El Módulo <code>math</code></h3>
+                <p>Python incluye el módulo <code>math</code> que proporciona funciones matemáticas avanzadas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">import math
+
+# Constantes comunes
+print(math.pi)       # 3.141592653589793
+print(math.e)        # 2.718281828459045
+print(math.tau)      # 6.283185307179586 (2π)
+print(math.inf)      # inf (infinito)
+print(math.nan)      # nan (no es un número)
+
+# Funciones de redondeo
+print(math.ceil(4.2))    # 5 (redondeo hacia arriba)
+print(math.floor(4.9))   # 4 (redondeo hacia abajo)
+print(round(3.5))        # 4 (redondeo al entero más cercano)
+print(round(3.14159, 2)) # 3.14 (redondeo a 2 decimales)
+
+# Potencias y raíces
+print(math.pow(2, 3))    # 8.0 (2 elevado a 3)
+print(math.sqrt(16))     # 4.0 (raíz cuadrada)
+print(math.cbrt(27))     # 3.0 (raíz cúbica, Python 3.11+)
+
+# Funciones trigonométricas (ángulos en radianes)
+print(math.sin(math.pi/2))   # 1.0
+print(math.cos(math.pi))     # -1.0
+print(math.degrees(math.pi)) # 180.0 (conversión a grados)
+print(math.radians(180))     # 3.1415... (conversión a radianes)
+
+# Logaritmos
+print(math.log(100, 10))  # 2.0 (log base 10 de 100)
+print(math.log10(100))    # 2.0 (log base 10)
+print(math.log2(8))       # 3.0 (log base 2)
+print(math.log(10))       # 2.302585... (log natural, base e)</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Importando el módulo math</h4>
+                    <p>Puedes importar solo las funciones que necesites para hacer tu código más limpio:</p>
+                    <pre><code class="language-python">from math import pi, sin, cos
+
+# Ahora podemos usar las funciones directamente
+volumen_circulo = pi * radio ** 2</code></pre>
+                </div>
+            </div>
+
+            <!-- Aplicaciones prácticas -->
+            <div class="concept-card">
+                <h3>4. Aplicaciones Prácticas</h3>
+                
+                <div class="application">
+                    <h4>Conversión de unidades</h4>
+                    <p>Convierte entre diferentes unidades de medida:</p>
+                    <pre><code class="language-python">def celsius_a_fahrenheit(celsius):
+    """Convierte grados Celsius a Fahrenheit"""
+    return (celsius * 9/5) + 32
+
+def kilometros_a_millas(kilometros):
+    """Convierte kilómetros a millas"""
+    return kilometros * 0.621371
+
+# Uso
+print(f"20°C = {celsius_a_fahrenheit(20):.1f}°F")
+print(f"5 km = {kilometros_a_millas(5):.2f} millas")</code></pre>
+                </div>
+                
+                <div class="application">
+                    <h4>Cálculo de áreas y volúmenes</h4>
+                    <p>Fórmulas comunes para figuras geométricas:</p>
+                    <pre><code class="language-python">import math
+
+def volumen_circulo(radio):
+    return math.pi * radio ** 2
+
+def volumen_rectangulo(ancho, alto):
+    return ancho * alto
+
+def volumen_esfera(radio):
+    return (4/3) * math.pi * radio ** 3
+
+# Uso
+print(f"Área del círculo: {volumen_circulo(5):.2f}")
+print(f"Área del rectángulo: {volumen_rectangulo(4, 7)}")
+print(f"Volumen de la esfera: {volumen_esfera(3):.2f}")</code></pre>
+                </div>
+                
+                <div class="application">
+                    <h4>Ecuación de segundo grado</h4>
+                    <p>Resuelve ecuaciones de la forma ax² + bx + c = 0</p>
+                    <pre><code class="language-python">import math
+
+def resolver_ecuacion(a, b, c):
+    """Resuelve una ecuación de segundo grado y devuelve las raíces"""
+    discriminante = b**2 - 4*a*c
+    
+    if discriminante > 0:
+        x1 = (-b + math.sqrt(discriminante)) / (2*a)
+        x2 = (-b - math.sqrt(discriminante)) / (2*a)
+        return x1, x2
+    elif discriminante == 0:
+        x = -b / (2*a)
+        return x,
+    else:
+        return "No hay soluciones reales"
+
+# Uso: 2x² -5x + 2 = 0
+soluciones = resolver_ecuacion(2, -5, 2)
+print(f"Soluciones: {soluciones}")  # (2.0, 0.5)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Calculadora Básica</h3>
+                <p>Crea una calculadora que permita al usuario realizar operaciones básicas (suma, resta, multiplicación, división) con dos números.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">Ingrese el primer número: 10
+Ingrese la operación (+, -, *, /): *
+Ingrese el segundo número: 5
+Resultado: 50.0</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa <code>input()</code> para obtener los valores del usuario y estructuras condicionales para determinar la operación a realizar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Calculadora de Áreas</h3>
+                <p>Crea un programa que calcule el área de diferentes figuras geométricas (círculo, triángulo, rectángulo) según la elección del usuario.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de menú:</h4>
+                    <pre><code class="language-text">Calculadora de Áreas
+1. Círculo
+2. Triángulo
+3. Rectángulo
+Seleccione una opción (1-3): 1
+Ingrese el radio del círculo: 5
+El área del círculo es: 78.54</code></pre>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Conversor de Unidades</h3>
+                <p>Desarrolla un programa que convierta entre diferentes unidades de medida (temperatura, longitud, peso, etc.).</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de conversión de temperatura:</h4>
+                    <pre><code class="language-text">Seleccione el tipo de conversión:
+1. Celsius a Fahrenheit
+2. Fahrenheit a Celsius
+3. Kilómetros a Millas
+4. Millas a Kilómetros
+Opción: 1
+Ingrese la temperatura en Celsius: 25
+25°C = 77.0°F</code></pre>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Calculadora de Propinas</h3>
+                <p>Crea un programa que calcule el monto de la propina basado en el total de la cuenta y el porcentaje de propina que el usuario desea dejar.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-text">Ingrese el total de la cuenta: $125.50
+¿Qué porcentaje de propina desea dejar? (15, 18, 20%): 18
+
+Resumen de la cuenta:
+Subtotal: $125.50
+Propina (18%): $22.59
+Total a pagar: $148.09</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda que para calcular un porcentaje, multiplicas el monto por el porcentaje y divides entre 100.</p>
+                        <pre><code class="language-python">propina = total * porcentaje / 100</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/introduction.html#numbers" target="_blank" rel="noopener noreferrer">Documentación oficial de Python - Números</a></li>
+                        <li><a href="https://docs.python.org/3/library/math.html" target="_blank" rel="noopener noreferrer">Documentación del módulo math</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_numbers.asp" target="_blank" rel="noopener noreferrer">W3Schools - Números en Python</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=khKv-8q7YmY" target="_blank" rel="noopener noreferrer">Operadores matemáticos en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=CGqUU9gYc9o" target="_blank" rel="noopener noreferrer">Módulo math en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 3 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 3.1-3.4 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s5.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.3/katex.min.js"></script>
+    <script>
+        // Inicializar resaltado de sintaxis
+        hljs.highlightAll();
+        
+        // Renderizar fórmulas matemáticas con KaTeX
+        document.addEventListener('DOMContentLoaded', function() {
+            const mathElements = document.getElementsByClassName('math');
+            Array.from(mathElements).forEach(function(element) {
+                katex.render(element.textContent, element, {
+                    throwOnError: false
+                });
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

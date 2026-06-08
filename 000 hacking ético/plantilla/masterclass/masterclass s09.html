@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 9 - Hacking Ético Forense">
+    <title>Sesión 9: Drill de Escena Activa | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge hazard">ESTADO: ESCENA DEL CRIMEN ACTIVA</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 09: Primer Respondedor bajo Fuego</h2>
+            <p><strong>Situación:</strong> Has ingresado a las oficinas de un sospechoso de espionaje corporativo. El sujeto acaba de ser escoltado fuera del edificio, pero dejó un script de borrado seguro (<em>wiper</em>) ejecutándose. Tienes solo un par de minutos para aislar los dispositivos, pero <strong>no puedes tocarlos sin antes documentarlos</strong>.</p>
+            <p>Si actúas sin documentar, la evidencia será inadmisible. Si tardas demasiado en documentar, los datos se destruirán. Pon a prueba tu memoria muscular y repite el protocolo de la Sesión 4 con velocidad táctica.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Documentación a Contrarreloj</h2>
+            <p>El reloj corre. Inicia tu terminal en Kali Linux y asegura digitalmente la escena antes de que se pierdan los datos.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Inicialización Rápida del Manifiesto</h3>
+                    <p>Establece la bóveda de la escena y el inventario preliminar al instante.</p>
+                    <div class="terminal">
+                        <code>mkdir -p ~/DFIR/Casos/Caso_004/Escena<br>
+                        cd ~/DFIR/Casos/Caso_004/Escena<br>
+                        echo "EV-01: Laptop Sospechoso | EV-02: Disco Duro Externo 2TB" > inventario_emergencia.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Manifiesto</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Etiquetado Criptográfico Acelerado</h3>
+                    <p>Fija el sello de tiempo para demostrar el estado inalterado al momento de tu llegada.</p>
+                    <div class="terminal">
+                        <code>date +"%Y-%m-%d %H:%M:%S.%N" > etiqueta_EV01_EV02.txt<br>
+                        echo "Status: Dispositivos en proceso de borrado. Secuestro inminente." >> etiqueta_EV01_EV02.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Fijar Etiqueta</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Cadena de Custodia Inicial (CSV)</h3>
+                    <p>Registra formalmente la posesión para que el equipo de extracción pueda intervenir inmediatamente.</p>
+                    <div class="terminal">
+                        <code>echo "ID_Evidencia,Fecha_Hora,Ubicacion,Recolectado_Por,Notas" > cadena_custodia_urgente.csv<br>
+                        echo "EV-01_EV-02,$(date +%s),Oficina Principal,DFIR-Ops,Secuestro de Emergencia" >> cadena_custodia_urgente.csv<br>
+                        cat cadena_custodia_urgente.csv</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Sellar Custodia</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Escena Asegurada a Tiempo!</h3>
+                <p>Excelente memoria muscular. Has logrado digitalizar la escena física y crear un puente de custodia válido a una velocidad que permitió salvar la evidencia antes de su destrucción.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 9. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

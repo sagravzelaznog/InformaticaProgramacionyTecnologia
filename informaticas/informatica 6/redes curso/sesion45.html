@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S12 E45: Gestión de Seguridad y Copias de Configuración</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 12, Sesión 45: Gestión de Seguridad en Dispositivos 🛡️</h1>
+        <p class="subtitle">Contraseñas Cifradas, Backup y Restauración de Router/Switch</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Contraseñas de Acceso (CLI)</h2>
+            <p>El primer paso para asegurar un router o switch es proteger el acceso a su **Línea de Comandos (CLI)**. No basta con asignar una contraseña, debe estar cifrada en la configuración.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Contraseña de Consola y Telnet/SSH</h3>
+                    <p>Protege el acceso local (puerto de consola) y remoto (líneas VTY). Deben ser fuertes, sin caracteres repetidos ni palabras comunes.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Cifrado de Contraseñas (Cisco IOS)</h3>
+                    <p>Comando crucial en Cisco: **`service password-encryption`**. Este comando cifra las contraseñas que están almacenadas en texto plano en la configuración del dispositivo, evitando que sean leídas por cualquier persona que acceda al archivo de configuración.</p>
+                </div>
+            </div>
+            [Image of Cisco IOS service password-encryption command]
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Respaldo (Backup) de la Configuración</h2>
+            <p>La configuración de un dispositivo (router o switch) se almacena en la **NVRAM** (memoria no volátil). Perder esta configuración por un fallo de hardware o un error humano es catastrófico. Por ello, el respaldo es una tarea esencial y diaria.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Running-Config vs. Startup-Config</h3>
+                    <ul>
+                        <li>**Running-config:** Configuración activa en la RAM (se pierde al apagar).</li>
+                        <li>**Startup-config:** Configuración guardada en la NVRAM (persiste al reiniciar).</li>
+                        <li>Comando para guardar: **`copy running-config startup-config`**.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Almacenamiento Remoto</h3>
+                    <p>El respaldo físico se realiza copiando el archivo de configuración (*startup-config*) a un servidor externo (usualmente un servidor **TFTP** o **SCP**) en la red para una mayor seguridad.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Cifrado y Backup en Packet Tracer</h2>
+            <p><strong>Tarea Práctica (Simulación en Packet Tracer - CLI):</strong></p>
+            <ol>
+                <li>Configura un Router con contraseñas de consola y VTY.</li>
+                <li>Ejecuta el comando **`service password-encryption`**.</li>
+                <li>Muestra la configuración (`show run`) y verifica que las contraseñas aparezcan cifradas (no en texto plano).</li>
+                <li>Ejecuta el comando **`copy running-config startup-config`**.</li>
+            </ol>
+            <button id="backupQuizBtn">Verificar Backup</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S12 E45</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion44.html" class="nav-button">Anterior</a>
+        <a href="sesion46.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

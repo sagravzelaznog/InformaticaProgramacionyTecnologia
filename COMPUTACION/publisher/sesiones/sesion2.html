@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Plantillas y diseños - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <header>
+            <h1 class="titulo-principal">Sesión 2: Plantillas y diseños</h1>
+            <p class="fecha">Publicado el 24 de agosto de 2025</p>
+        </header>
+
+        <nav aria-label="Navegación">
+            <a href="../index.html" class="volver-inicio">← Volver al índice</a>
+        </nav>
+
+        <main>
+            <section class="objetivos">
+                <h2>Objetivos de Aprendizaje</h2>
+                <ul>
+                    <li>Comprender el uso de plantillas en Publisher</li>
+                    <li>Aprender a personalizar diseños existentes</li>
+                    <li>Crear publicaciones a partir de plantillas</li>
+                    <li>Guardar diseños personalizados como plantillas</li>
+                </ul>
+            </section>
+
+            <section class="contenido">
+                <h2>¿Qué son las plantillas en Publisher?</h2>
+                <p>Las plantillas son modelos predefinidos que incluyen diseños, estilos y formatos que puedes usar como punto de partida para crear publicaciones profesionales de manera rápida y sencilla.</p>
+                
+                <div class="imagen-contenedor">
+                    <img src="../static/img/plantillas-publisher.svg" alt="Ejemplo de plantillas en Publisher" class="img-fluid">
+                </div>
+
+                <h3>Tipos de plantillas disponibles</h3>
+                <div class="template-grid">
+                    <div class="template-card">
+                        <div class="template-preview">
+                            <img src="../static/img/plantilla-folleto.svg" alt="Plantilla de folleto" class="template-img">
+                        </div>
+                        <div class="template-info">
+                            <h4>Folletos</h4>
+                            <p>Diseños para folletos plegables y desplegables</p>
+                        </div>
+                    </div>
+                    <div class="template-card">
+                        <div class="template-preview">
+                            <img src="../static/img/plantilla-tarjeta.svg" alt="Plantilla de tarjeta" class="template-img">
+                        </div>
+                        <div class="template-info">
+                            <h4>Tarjetas</h4>
+                            <p>Diseños para tarjetas de presentación</p>
+                        </div>
+                    </div>
+                    <div class="template-card">
+                        <div class="template-preview">
+                            <img src="../static/img/plantilla-boletin.svg" alt="Plantilla de boletín" class="template-img">
+                        </div>
+                        <div class="template-info">
+                            <h4>Boletines</h4>
+                            <p>Diseños para boletines informativos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio Práctico: Crear un folleto con plantilla</h3>
+                    
+                    <div class="paso">
+                        <h4>Paso 1: Seleccionar una plantilla</h4>
+                        <ol>
+                            <li>Abre Microsoft Publisher</li>
+                            <li>Haz clic en "Archivo" > "Nuevo"</li>
+                            <li>En la barra de búsqueda, escribe "Folleto"</li>
+                            <li>Selecciona la plantilla que más te guste</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h4>Paso 2: Personalizar la plantilla</h4>
+                        <ol>
+                            <li>Haz clic en los cuadros de texto para editar el contenido</li>
+                            <li>Reemplaza las imágenes de muestra con las tuyas propias</li>
+                            <li>Cambia los colores y fuentes según tus preferencias</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h4>Paso 3: Guardar como plantilla personalizada</h4>
+                        <ol>
+                            <li>Haz clic en "Archivo" > "Guardar como"</li>
+                            <li>Selecciona "Plantilla de Publisher (*.pubx)" en el menú desplegable de tipo de archivo</li>
+                            <li>Nombra tu plantilla y haz clic en "Guardar"</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>Consejos para trabajar con plantillas</h3>
+                <ul>
+                    <li>Explora diferentes plantillas para encontrar la que mejor se adapte a tus necesidades</li>
+                    <li>No tengas miedo de personalizar colores, fuentes y diseños</li>
+                    <li>Guarda tus propias plantillas para usarlas en futuros proyectos</li>
+                    <li>Las plantillas pueden incluir múltiples páginas con diseños coordinados</li>
+                </ul>
+
+                <div class="ejercicio">
+                    <h3>Actividad: Crea tu propia plantilla</h3>
+                    <p>Crea una plantilla personalizada para un boletín escolar siguiendo estos pasos:</p>
+                    <ol>
+                        <li>Selecciona una plantilla de boletín</li>
+                        <li>Personaliza los encabezados con el nombre de tu escuela</li>
+                        <li>Añade secciones para noticias, eventos y anuncios</li>
+                        <li>Guarda como plantilla con el nombre "Boletín Escolar"</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+    <!-- Incluir el script de autenticación -->
+    <script src="../js/auth.js"></script>
+</body>
+</html>

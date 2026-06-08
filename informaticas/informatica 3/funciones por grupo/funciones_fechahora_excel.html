@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Fecha y Hora en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #1abc9c;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Fecha y Hora en Excel</h1>
+            <p>Aprende a trabajar con fechas y horas en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- FECHA Y HORA ACTUALES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('fecha-actual')">
+                <h2>Fecha y Hora Actuales</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="fecha-actual">
+                <p>Funciones para obtener la fecha y hora actual del sistema.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: HOY()</h4>
+                    <pre>=HOY()</pre>
+                    <div class="result-box">Devuelve: <span id="hoy-result"></span> (fecha actual)</div>
+                    <p>Útil para calcular edades, días transcurridos, etc.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: AHORA()</h4>
+                    <pre>=AHORA()</pre>
+                    <div class="result-box">Devuelve: <span id="ahora-result"></span> (fecha y hora actuales)</div>
+                    <p>Se actualiza cada vez que se recalcula la hoja.</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Días hasta fin de año</h4>
+                    <p>Crea una fórmula que calcule cuántos días faltan para el final del año actual.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=FECHA(AÑO(HOY()), 12, 31) - HOY()</pre>
+                        <p>Explicación: Crea una fecha con el 31 de diciembre del año actual y le resta la fecha de hoy.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Hora del día</h4>
+                    <p>Crea una fórmula que devuelva "Buenos días" (antes de las 12), "Buenas tardes" (12-19) o "Buenas noches" (después de las 19).</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=SI(HORA(AHORA())<12, "Buenos días", SI(HORA(AHORA())<19, "Buenas tardes", "Buenas noches"))</pre>
+                        <p>Explicación: Usa la función HORA con AHORA() para obtener la hora actual y anida funciones SI para determinar el saludo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CREACIÓN Y CONVERSIÓN DE FECHAS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('creacion-fechas')">
+                <h2>Creación y Conversión de Fechas</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="creacion-fechas" style="display: none;">
+                <p>Funciones para crear fechas a partir de componentes individuales o convertir texto a fechas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: FECHA(año, mes, día)</h4>
+                    <pre>=FECHA(2025, 12, 25)  <!-- Navidad 2025 -->
+=FECHA(A1, B1, C1)  <!-- Donde A1=año, B1=mes, C1=día --></pre>
+                    <p>Útil para crear fechas a partir de valores en celdas separadas.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: FECHANUMERO (o VALFECHA)</h4>
+                    <pre>=FECHANUMERO("25/12/2025")  <!-- Devuelve el número de serie de la fecha -->
+=VALFECHA("2025-12-25")  <!-- Formato alternativo --></pre>
+                    <p>Convierte texto con formato de fecha a un valor de fecha de Excel.</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Fecha de vencimiento</h4>
+                    <p>Datos: A1 = Fecha de compra, B1 = Días de plazo</p>
+                    <p>Crea una fórmula que calcule la fecha de vencimiento sumando los días de plazo a la fecha de compra.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=A1 + B1</pre>
+                        <p>Explicación: En Excel, las fechas son números enteros, por lo que puedes sumar días directamente.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Validación de fecha</h4>
+                    <p>Datos: A1 contiene un texto que podría ser una fecha</p>
+                    <p>Crea una fórmula que devuelva VERDADERO si A1 contiene una fecha válida, FALSO en caso contrario.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=ESNUMERO(FECHANUMERO(A1))</pre>
+                        <p>Explicación: FECHANUMERO devuelve un error si el texto no es una fecha válida, y ESNUMERO verifica si el resultado es un número.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXTRACCIÓN DE PARTES DE UNA FECHA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('extraccion-fechas')">
+                <h2>Extracción de Partes de una Fecha</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="extraccion-fechas" style="display: none;">
+                <p>Funciones para extraer componentes específicos de una fecha.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: DIA, MES, AÑO</h4>
+                    <pre>=DIA("25/12/2025")  <!-- Devuelve 25 -->
+=MES("25/12/2025")  <!-- Devuelve 12 -->
+=AÑO("25/12/2025")  <!-- Devuelve 2025 --></pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: DIASEM y NUM.DE.SEMANA</h4>
+                    <pre>=DIASEM("25/12/2025")  <!-- Por defecto, 1=Domingo, 7=Sábado -->
+=DIASEM("25/12/2025", 2)  <!-- 1=Lunes, 7=Domingo -->
+=NUM.DE.SEMANA("25/12/2025")  <!-- Número de semana del año -->
+=NUM.DE.SEMANA("25/12/2025", 2)  <!-- Semana comienza en lunes --></pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Día de la semana en texto</h4>
+                    <p>Datos: A1 = Fecha</p>
+                    <p>Crea una fórmula que devuelva el nombre del día de la semana (Lunes, Martes, etc.) para la fecha en A1.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=ELEGIR(DIASEM(A1, 2), "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")</pre>
+                        <p>Explicación: DIASEM con tipo 2 devuelve 1 para lunes, 2 para martes, etc. ELEGIR selecciona el nombre correspondiente.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Trimestre de una fecha</h4>
+                    <p>Datos: A1 = Fecha</p>
+                    <p>Crea una fórmula que devuelva el trimestre (1-4) de la fecha en A1.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=REDONDEAR.MAS(MES(A1)/3, 0)</pre>
+                        <p>Alternativa: <code>=ENTERO((MES(A1)-1)/3)+1</code></p>
+                        <p>Explicación: Divide el mes por 3 y redondea hacia arriba para obtener el trimestre.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CÁLCULOS CON FECHAS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('calculos-fechas')">
+                <h2>Cálculos con Fechas</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="calculos-fechas" style="display: none;">
+                <p>Funciones para realizar cálculos avanzados con fechas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: DIAS y DIAS.LAB</h4>
+                    <pre>=DIAS("31/12/2025", "01/01/2025")  <!-- Días entre dos fechas -->
+=DIAS.LAB("01/01/2025", "31/12/2025")  <!-- Días laborables en 2025 -->
+=DIAS.LAB("01/01/2025", "31/12/2025", A1:A10)  <!-- Excluye festivos en A1:A10 --></pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: FECHA.MES y FIN.MES</h4>
+                    <pre>=FECHA.MES("15/01/2025", 1)  <!-- 15/02/2025 -->
+=FECHA.MES("15/01/2025", -1)  <!-- 15/12/2024 -->
+=FIN.MES("15/01/2025", 0)  <!-- 31/01/2025 -->
+=FIN.MES("15/01/2025", 1)  <!-- 28/02/2025 --></pre>
+                </div>
+                
+                <div class="exercise">n                    <h4>Ejercicio 1: Días hábiles entre fechas</h4>
+                    <p>Datos: A1 = Fecha inicio, B1 = Fecha fin, C1:C10 = Rango con fechas de días festivos</p>
+                    <p>Calcula los días laborables entre las dos fechas, excluyendo fines de semana y días festivos.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+                    <div class="solution" id="sol7">
+                        <pre>=DIAS.LAB(A1, B1, C1:C10)</pre>
+                        <p>Explicación: DIAS.LAB excluye automáticamente los sábados y domingos, y la lista de festivos en C1:C10.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Último día del mes actual</h4>
+                    <p>Crea una fórmula que devuelva el último día del mes actual.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+                    <div class="solution" id="sol8">
+                        <pre>=FIN.MES(HOY(), 0)</pre>
+                        <p>Explicación: FIN.MES con 0 meses de diferencia devuelve el último día del mes actual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNCIONES DE HORA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('funciones-hora')">
+                <h2>Funciones de Hora</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="funciones-hora" style="display: none;">
+                <p>Funciones para trabajar con horas, minutos y segundos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: HORA, MINUTO, SEGUNDO</h4>
+                    <pre>=HORA("14:30:45")  <!-- Devuelve 14 -->
+=MINUTO("14:30:45")  <!-- Devuelve 30 -->
+=SEGUNDO("14:30:45")  <!-- Devuelve 45 --></pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: HORA (función de creación)</h4>
+                    <pre>=HORA(14, 30, 45)  <!-- Crea una hora: 14:30:45 -->
+=HORA(A1, B1, C1)  <!-- Donde A1=horas, B1=minutos, C1=segundos --></pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Duración en horas y minutos</h4>
+                    <p>Datos: A1 = Hora inicio, B1 = Hora fin</p>
+                    <p>Calcula la duración en horas y minutos (formato "Xh Ym").</p>
+                    <button class="show-solution" onclick="toggleSolution('sol9')">Mostrar Solución</button>
+                    <div class="solution" id="sol9">
+                        <pre>=ENTERO((B1-A1)*24) & "h " & MINUTO(B1-A1) & "m"</pre>
+                        <p>Explicación: Multiplicar por 24 convierte días a horas, y MINUTO extrae los minutos restantes.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Redondear a la media hora más cercana</h4>
+                    <p>Datos: A1 = Hora (ej. 14:23)</p>
+                    <p>Redondea la hora a la media hora más cercana (ej. 14:23 → 14:30, 14:12 → 14:00).</p>
+                    <button class="show-solution" onclick="toggleSolution('sol10')">Mostrar Solución</button>
+                    <div class="solution" id="sol10">
+                        <pre>=REDONDEAR(A1*48,0)/48</pre>
+                        <p>Explicación: Multiplicar por 48 convierte a medias horas, redondea al entero más cercano, y divide por 48 para volver a formato de hora.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Actualizar la fecha y hora actuales
+        function updateCurrentDateTime() {
+            const now = new Date();
+            
+            // Formato de fecha: DD/MM/AAAA
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const formattedDate = `${day}/${month}/${year}`;
+            
+            // Formato de hora: HH:MM:SS
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
+            
+            // Actualizar los elementos en la página
+            document.getElementById('hoy-result').textContent = formattedDate;
+            document.getElementById('ahora-result').textContent = `${formattedDate} ${formattedTime}`;
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+            
+            // Inicializar y actualizar la fecha/hora cada segundo
+            updateCurrentDateTime();
+            setInterval(updateCurrentDateTime, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Barra de navegación */
+.nav-principal {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.nav-titulo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #34495e;
+}
+
+/* Estilos para los semestres */
+.semester {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 5px solid #3498db;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-size: 2.2em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+/* Lista de temas */
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+li {
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 3px solid #3498db;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.topic-number {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-principal {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav-link {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .semester {
+        padding: 15px;
+    }
+}
+
+/* Efectos de hover para los módulos */
+.modulo-link {
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+    transition: color 0.3s;
+}
+
+.modulo-link:hover {
+    color: #3498db;
+}
+
+/* Estilos para el pie de página */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    border-top: 1px solid #ecf0f1;
+}

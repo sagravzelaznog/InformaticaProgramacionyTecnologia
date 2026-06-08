@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S6: Edición de Nodos (Parte I)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 6: Edición de Nodos (Parte I)</h1>
+
+    <section>
+        <h2>1. Herramienta Nodo (F2) y Tipos de Nodos</h2>
+        
+        <p>La herramienta **Nodo (F2)** es esencial para refinar y modificar los trazados creados con la Pluma. Antes de editar, debes convertir cualquier forma (Rectángulo, Círculo) en un trayecto con **Trayecto > Objeto a Trayecto (Shift + Ctrl + C)**.</p>
+        <div class="paso">
+            <strong>Paso 1: Abrir la Edición de Nodos</strong>
+            <p>Selecciona un objeto (que ya sea un trayecto) y presiona **F2**. Verás los nodos como cuadrados pequeños.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Mover Nodos y Tiradores</strong>
+            <p>Haz clic y arrastra un nodo para moverlo. Haz clic en un nodo para mostrar sus tiradores Bézier y arrástralos para modificar la curva del segmento adyacente.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Convertir Nodos (Controlando la Curvatura)</h2>
+        <p>Inkscape ofrece tres tipos principales de nodos para controlar la suavidad de las curvas. Puedes alternar entre ellos usando los iconos en la Barra de Controles de Herramienta:</p>
+        <div class="paso">
+            <strong>Nodo de Esquina (Corner / Cusp)</strong>
+            <p>Permite que los tiradores se muevan independientemente. Produce un cambio de dirección brusco (una "esquina"). Es el valor por defecto al hacer clic sin arrastrar con la Pluma. **Icono: Esquina**.</p>
+        </div>
+        <div class="paso">
+            <strong>Nodo Suave (Smooth)</strong>
+            <p>Los tiradores se mueven en línea recta a través del nodo. Si mueves un tirador, el otro se ajusta automáticamente, pero pueden tener longitudes diferentes. Produce transiciones suaves. **Icono: Círculo sin relleno**.</p>
+        </div>
+        <div class="paso">
+            <strong>Nodo Simétrico (Symmetric)</strong>
+            <p>Similar al suave, pero fuerza a que ambos tiradores tengan **exactamente la misma longitud**. Crea una curva perfectamente simétrica y fluida. **Icono: Círculo relleno**.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Agregar y Eliminar Nodos</h2>
+        <div class="paso">
+            <strong>Paso 1: Agregar Nodos</strong>
+            <p>Haz doble clic directamente sobre un segmento de línea para agregar un nuevo nodo, o selecciona dos nodos existentes y usa el icono **"Insertar nuevos nodos..."** en la barra de nodos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Eliminar Nodos</strong>
+            <p>Selecciona uno o más nodos y presiona **Supr** (Delete). Inkscape intentará mantener la forma original de la curva conectando los nodos restantes, lo que a menudo "suaviza" la línea.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Hoja Orgánica</h3>
+        <p><strong>Objetivo:</strong> Usar los tipos de nodos para crear formas orgánicas.</p>
+        <ol>
+            <li>Dibuja una forma ovalada simple (círculo convertido a trayecto o con la Pluma).</li>
+            <li>Selecciona el nodo superior e inferior y conviértelos a **Nodo de Esquina** para crear las puntas de la hoja.</li>
+            <li>Selecciona los nodos laterales y conviértelos a **Nodo Simétrico** o **Suave** para mantener la curva fluida en los lados.</li>
+            <li>Ajusta la posición y la longitud de los tiradores para darle a la hoja una forma realista.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion05.html">Anterior</a>
+    <a href="sesion07.html">Siguiente</a>
+</nav>
+</body>
+</html>

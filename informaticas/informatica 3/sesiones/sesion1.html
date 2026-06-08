@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: Introducción a las Macros - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones del Curso</h2>
+            <ul id="session-links">
+                <!-- Dynamic links will be inserted here by script.js -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 1: Introducción a las Macros</h1>
+                <p class="objective"><strong>Objetivo:</strong> Comprender qué son las macros, su propósito y cómo pueden transformar tu eficiencia en Excel.</p>
+            </header>
+
+            <section>
+                <h2><i class="fas fa-rocket"></i> ¡Bienvenido al Mundo de la Automatización!</h2>
+                <p>Hola futuro experto en Excel. En esta primera sesión, vamos a explorar una de las herramientas más poderosas de Excel: las macros. Prepárate para llevar tus habilidades al siguiente nivel.</p>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-cogs"></i> ¿Qué es Exactamente una Macro?</h2>
+                <p>Piensa en una macro como una grabadora de acciones. Si te encuentras realizando la misma secuencia de tareas una y otra vez (como formatear reportes, copiar y pegar datos, o aplicar cálculos), una macro puede memorizar esos pasos y ejecutarlos por ti en un instante.</p>
+                <div class="example">
+                    <h3>Analogía Sencilla:</h3>
+                    <p>Es como crear un atajo para una tarea compleja. En lugar de seguir un largo camino de 10 pasos cada vez, simplemente tomas el atajo y llegas a tu destino al instante.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-gem"></i> Los Superpoderes de Usar Macros</h2>
+                <ul>
+                    <li><strong>Ahorro de Tiempo Masivo:</strong> Tareas que te tomaban minutos (¡o incluso horas!) se completarán en segundos.</li>
+                    <li><strong>Precisión Absoluta:</strong> Las macros no cometen errores de dedo. Cada tarea se ejecuta de la misma manera siempre, garantizando consistencia.</li>
+                    <li><strong>Tu Primer Paso en Programación:</strong> Aprender a grabar y modificar macros es una excelente introducción al mundo del código y la lógica de programación (usando un lenguaje llamado VBA - Visual Basic for Applications).</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-tools"></i> Tutorial: Creando tu Primera Macro</h2>
+                <h3>Paso 1: Activar la Pestaña de Programador</h3>
+                <p>Por defecto, Excel oculta las herramientas de macros. Vamos a activarlas:</p>
+                <ol>
+                    <li>Haz clic derecho en cualquier parte de la cinta de opciones (la barra de menús superior) y selecciona <strong>"Personalizar la cinta de opciones"</strong>.</li>
+                    <li>En la columna de la derecha, asegúrate de marcar la casilla que dice <strong>"Programador"</strong> (o "Developer" en inglés).</li>
+                    <li>Haz clic en <strong>Aceptar</strong>. ¡Ahora tendrás una nueva pestaña llena de herramientas poderosas!</li>
+                </ol>
+                <div class="tip">
+                    <p><strong>¡Consejo de Pro!</strong> La pestaña Programador será tu centro de comando para todo lo relacionado con la automatización en Excel.</p>
+                </div>
+
+                <h3>Paso 2: Grabar una Macro Sencilla</h3>
+                <p>Vamos a crear una macro que aplique un formato de encabezado a una celda.</p>
+                <ol>
+                    <li>Selecciona una celda vacía.</li>
+                    <li>Ve a la pestaña <strong>Programador</strong> y haz clic en <strong>"Grabar macro"</strong>.</li>
+                    <li>Dale un nombre descriptivo, como "FormatoTituloPrincipal", y haz clic en Aceptar.</li>
+                    <li>
+                        Ahora, todo lo que hagas será grabado. Con la celda seleccionada:
+                        <ul>
+                            <li>Pon el texto en <strong>negrita</strong>.</li>
+                            <li>Aplica un color de relleno (ej. azul oscuro).</li>
+                            <li>Cambia el color de la fuente a blanco.</li>
+                            <li>Aumenta el tamaño de la fuente a 14.</li>
+                        </ul>
+                    </li>
+                    <li>Ve a la pestaña <strong>Programador</strong> y haz clic en <strong>"Detener grabación"</strong>.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-save"></i> Guardado de Archivos con Macros</h2>
+                <p>Este es un paso crucial. Para que tus macros se conserven, debes guardar el archivo de Excel en un formato especial:</p>
+                <ol>
+                    <li>Ve a <strong>Archivo > Guardar como</strong>.</li>
+                    <li>En el menú desplegable "Tipo", selecciona <strong>"Libro de Excel habilitado para macros (*.xlsm)"</strong>.</li>
+                </ol>
+                <div class="warning">
+                    <p><strong>¡Atención!</strong> Si lo guardas como un archivo `.xlsx` normal, todas tus macros se eliminarán sin previo aviso.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-clipboard-check"></i> Resumen de la Sesión</h2>
+                <ul>
+                    <li>Las <strong>macros</strong> son secuencias de acciones grabadas que automatizan tareas repetitivas.</li>
+                    <li>Se gestionan desde la pestaña <strong>Programador</strong>.</li>
+                    <li>Ahorran tiempo, reducen errores y son una puerta de entrada a la programación.</li>
+                    <li>Los archivos que contienen macros deben guardarse con la extensión <strong>.xlsm</strong>.</li>
+                </ul>
+            </section>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                <a href="sesion2.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 JMGV-PTEL. Curso de Macros en Excel. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

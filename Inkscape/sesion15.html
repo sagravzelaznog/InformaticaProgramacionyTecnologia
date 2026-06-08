@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S15: Degradados (Lineal y Radial)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 15: Degradados (Lineal y Radial)</h1>
+
+    <section>
+        <h2>1. La Herramienta Degradado (G)</h2>
+        
+        <p>Los **Degradados (Gradientes)** son esenciales para añadir volumen, luz y sombras realistas a tus objetos. Se configuran principalmente en el diálogo **Relleno y Borde** y se editan con la herramienta **Degradado (G)**.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar el Degradado Inicial</strong>
+            <p>Selecciona un objeto. Abre el diálogo **Relleno y Borde (Shift + Ctrl + F)**. En la pestaña **Relleno**, haz clic en el icono de **Degradado Lineal** o **Degradado Radial**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Edición con la Herramienta Degradado (G)</strong>
+            <p>Selecciona la herramienta **Degradado (G)**. Verás una línea que cruza el objeto con un **cuadrado** (punto inicial) y un **círculo** (punto final). Arrastra estos puntos para definir la dirección y la extensión del degradado.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Tipos de Degradado</h2>
+        <div class="paso">
+            <strong>Degradado Lineal</strong>
+            <p>El color cambia de un punto a otro en una línea recta. Útil para simular una fuente de luz lateral o el horizonte.</p>
+        </div>
+        <div class="paso">
+            <strong>Degradado Radial</strong>
+            <p>El color irradia desde un punto central hacia afuera. Útil para crear esferas, botones con volumen o halos de luz.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Nodos de Color (Multi-Paradas) y Opacidad</h2>
+        <p>Puedes añadir múltiples colores (paradas) a un degradado para transiciones más complejas.</p>
+        <div class="paso">
+            <strong>Paso 1: Añadir una Parada</strong>
+            <p>Con la herramienta **Degradado (G)** activa, haz **doble clic** en la línea del degradado para añadir un nuevo nodo. Este nodo aparecerá como un pequeño diamante.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Asignar Color a la Parada</strong>
+            <p>Selecciona el nuevo nodo (diamante). En el diálogo **Relleno y Borde**, ajusta el color y la opacidad (**Alpha** o Canal A). Repite para crear transiciones de múltiples colores.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Opacidad en el Degradado</strong>
+            <p>Es común usar la Opacidad (Alpha) en el punto final del degradado para crear una transición suave de un color sólido a la transparencia, ideal para efectos de desvanecimiento.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Botón Esférico</h3>
+        <p><strong>Objetivo:</strong> Usar degradado radial para simular volumen.</p>
+        <ol>
+            <li>Dibuja un círculo para el cuerpo del botón.</li>
+            <li>Aplica un **Degradado Radial**.</li>
+            <li>El nodo central debe ser un color claro (simulando el reflejo de la luz).</li>
+            <li>El nodo exterior debe ser el color base más oscuro del botón.</li>
+            <li>Mueve el nodo central ligeramente hacia la esquina superior izquierda para simular que la luz viene de arriba.</li>
+            <li>Dibuja un segundo círculo pequeño en la parte superior izquierda, con relleno blanco y opacidad muy baja, para simular un reflejo especular final.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion14.html">Anterior</a>
+    <a href="sesion16.html">Siguiente</a>
+</nav>
+</body>
+</html>

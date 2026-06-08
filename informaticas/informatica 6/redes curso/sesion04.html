@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1 E4: Medios de Transmisión y Cableado Estructurado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Semana 1, Sesión 4: Medios de Transmisión 🔌</h1>
+        <p class="subtitle">Cableado Estructurado (UTP) y Estándares de Conexión</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Tipos de Medios de Transmisión</h2>
+            <p>Los datos en la red viajan a través de diferentes "autopistas". Los podemos clasificar en dos grandes grupos:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Medios Cableados (Guiados)</h3>
+                    <p>Utilizan un medio físico para guiar la señal.</p>
+                    <ul>
+                        <li><strong>Par Trenzado (UTP/STP):</strong> El más común en redes LAN. Fibras de cobre trenzadas para reducir interferencia.</li>
+                        <li><strong>Fibra Óptica:</strong> Utiliza pulsos de luz. Es inmune a interferencias electromagnéticas y permite velocidades y distancias mucho mayores.</li>
+                    </ul>
+                    
+                </div>
+                <div class="card">
+                    <h3>Medios Inalámbricos (No Guiados)</h3>
+                    <p>Utilizan ondas de radiofrecuencia en el espacio libre.</p>
+                    <ul>
+                        <li><strong>Wi-Fi:</strong> Redes locales inalámbricas (WLAN).</li>
+                        <li><strong>Ondas de Radio/Microondas:</strong> Se usan para conectar edificios lejanos (WAN/MAN).</li>
+                        <li><strong>Bluetooth:</strong> Para comunicación de corto alcance entre dispositivos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. El Cable UTP (Par Trenzado No Blindado)</h2>
+            <p>El UTP es el caballo de batalla de la red. Consiste en 8 hilos de cobre agrupados en 4 pares, y se conecta a un conector **RJ-45**.</p>
+            <p>Existen diferentes **Categorías** (Cat 5e, Cat 6, Cat 6a, Cat 7), que indican su capacidad de velocidad y la frecuencia que pueden manejar. Como técnicos, el **Cat 5e** y **Cat 6** son los que más verán.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>El conector RJ-45 es el estándar para el cableado Ethernet.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Los Estándares de Cableado T568A y T568B</h2>
+            <p>Para que los cables funcionen correctamente, los 8 hilos deben conectarse en un orden específico, regido por los estándares **TIA/EIA-568**.</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Cable Directo (Straight-Through)</h3>
+                    <p>Se utiliza para conectar dispositivos diferentes (ej. PC a Switch, Router a PC). Ambos extremos del cable usan el **mismo estándar** (A-A o B-B).</p>
+                    <p class="highlight"><strong>Estándar T568B:</strong> Es el más común en Norteamérica.</p>
+                    
+                </div>
+                <div>
+                    <h3>Cable Cruzado (Crossover)</h3>
+                    <p>Se utiliza para conectar dispositivos iguales (ej. PC a PC, Switch a Switch). Un extremo usa el estándar **T568A** y el otro usa **T568B**.</p>
+                    <p><strong>Nota:</strong> Hoy en día, la mayoría de los dispositivos modernos tienen una función llamada **Auto-MDIX** que detecta el tipo de cable y se ajusta automáticamente, haciendo obsoleto el cable cruzado.</p>
+                    
+                </div>
+            </div>
+
+            <button id="cableQuizBtn">¡Pon a Prueba tu Memoria de Colores!</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S1 E4</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion03.html" class="nav-button">Anterior</a>
+        <a href="sesion05.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

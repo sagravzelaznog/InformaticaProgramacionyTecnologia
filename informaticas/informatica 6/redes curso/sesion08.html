@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 E8: Direccionamiento IP y Máscaras de Red</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 2, Sesión 8: Direccionamiento IP y Máscaras 🧱</h1>
+        <p class="subtitle">Definiendo la Red y el Host con la Máscara de Subred</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. La Máscara de Subred: El Divisor de Redes</h2>
+            <p>La **Máscara de Subred** es el componente que determina qué parte de una Dirección IP corresponde a la **identificación de la Red** y qué parte corresponde a la **identificación del Host** (el dispositivo específico).</p>
+            
+            <div class="image-container">
+													<img src="https://www.learncisco.net/wp-content/themes/learncisco/assets/images/icnd1/53-mask-operation.jpg" alt="Operación AND de la Máscara de Subred">
+                <figcaption>La máscara utiliza la operación lógica AND para separar los campos de Red y Host.</figcaption>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Máscara en Decimal</h3>
+                    <p>Generalmente la vemos como una serie de números separados por puntos (ej. **255.255.255.0**).</p>
+                </div>
+                <div class="card">
+                    <h3>Máscara en Binario</h3>
+                    <p>En binario, los dígitos **'1'** indican la parte de la **Red**, y los dígitos **'0'** indican la parte del **Host**.</p>
+                </div>
+            </div>
+            
+            <p class="highlight">**Regla de Oro:** Donde la máscara tiene un **255** (o binario '1'), la IP es la **Red**. Donde tiene un **0** (o binario '0'), la IP es el **Host**.</p>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Notación de Prefijo (CIDR)</h2>
+            <p>Para simplificar la escritura de la máscara, los técnicos usan la **Notación CIDR** (Classless Inter-Domain Routing), que es un número después de la IP, indicado por una barra (`/`).</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Ejemplos de CIDR</h3>
+                    <ul>
+                        <li>Máscara **255.255.255.0** equivale a **`/24`**. (24 unos binarios).</li>
+                        <li>Máscara **255.255.0.0** equivale a **`/16`**. (16 unos binarios).</li>
+                        <li>Una IP escrita como **`192.168.1.10/24`** nos dice instantáneamente que la máscara es 255.255.255.0.</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+																	<img src="https://mattrickard.com/static/image/how-to-calculate-a-cidr/1.webp" alt="Notación CIDR">
+                    <figcaption>La notación CIDR es la forma moderna de indicar la máscara de subred.</figcaption>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Direcciones Reservadas (Red y Broadcast)</h2>
+            <p>Dentro de cualquier rango IP definido por una máscara, hay dos direcciones que no pueden ser asignadas a un dispositivo (Host):</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Dirección de Red (Network Address)</h3>
+                    <p>Es la primera dirección del rango. En la parte de Host, todos los bits son **'0'**. Identifica a toda la red.</p>
+                    <p><strong>Ejemplo (con /24):</strong> Si la IP es 192.168.1.10/24, la **Dirección de Red** es **192.168.1.0**.</p>
+                </div>
+                <div class="card">
+                    <h3>Dirección de Broadcast</h3>
+                    <p>Es la última dirección del rango. En la parte de Host, todos los bits son **'1'**. Se usa para enviar datos a **todos** los dispositivos de esa red simultáneamente.</p>
+                    <p><strong>Ejemplo (con /24):</strong> Si la IP es 192.168.1.10/24, la **Dirección de Broadcast** es **192.168.1.255**.</p>
+                </div>
+            </div>
+            
+            <p class="small-text highlight">Esto significa que, si tienes una red `/24` (192.168.1.0), los hosts utilizables van de la .1 a la .254.</p>
+            
+            <button id="maskQuizBtn">¡Prueba tu Máscara!</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S2 E8</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion07.html" class="nav-button">Anterior</a>
+        <a href="sesion09.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

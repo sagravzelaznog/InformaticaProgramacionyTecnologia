@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Acceso a Sesiones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="container">
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <header>
+            <h1 class="titulo-principal">Registro de Cuenta</h1>
+            <p>Genera tu llave de acceso para las sesiones del curso</p>
+        </header>
+
+        <main>
+            <div class="login-container">
+                <form id="registroForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" class="form-control" required>
+                        <small class="form-text">Se enviará una copia de tu llave de acceso a este correo</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="institucion">Institución:</label>
+                        <input type="text" id="institucion" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="curso">Curso o Grupo:</label>
+                        <input type="text" id="curso" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="terminos" class="form-check-input" required>
+                            <label for="terminos" class="form-check-label">Acepto los <a href="#" id="verTerminos">términos y condiciones</a></label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn">Generar Llave de Acceso</button>
+                    
+                    <div class="register-link">
+                        <p>¿Ya tienes una llave? <a href="iniciar-sesion.html">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+                
+                <div id="accessKeyContainer" class="access-key hidden">
+                    <h3>¡Tu Llave de Acceso ha sido Generada!</h3>
+                    <p>Guarda esta información en un lugar seguro. Te recomendamos tomar una captura de pantalla o anotarla en un lugar seguro.</p>
+                    
+                    <div class="access-key-display">
+                        <p><strong>Llave de Acceso:</strong></p>
+                        <div class="access-key-value" id="accessKey"></div>
+                        <button id="copyKeyBtn" class="btn btn-copy-key">
+                            Copiar al Portapapeles
+                        </button>
+                    </div>
+                    
+                    <p class="login-redirect">
+                        <a href="iniciar-sesion.html" class="btn">Ir al Inicio de Sesión</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="pie-pagina">
+            <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const registroForm = document.getElementById('registroForm');
+            const accessKeyContainer = document.getElementById('accessKeyContainer');
+            const accessKeyElement = document.getElementById('accessKey');
+            const copyKeyBtn = document.getElementById('copyKeyBtn');
+            const verTerminos = document.getElementById('verTerminos');
+            
+            // Mostrar términos y condiciones
+            verTerminos.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('TÉRMINOS Y CONDICIONES\n\n1. Al registrarte en este curso, aceptas que tu información será almacenada localmente en tu navegador.\n2. La llave de acceso generada es personal e intransferible.\n3. El acceso a los materiales del curso está sujeto a disponibilidad.\n4. El administrador se reserva el derecho de revocar el acceso en caso de uso indebido.\n5. Aceptas hacer uso responsable de los recursos proporcionados.');
+            });
+            
+            registroForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar términos
+                if (!document.getElementById('terminos').checked) {
+                    alert('Debes aceptar los términos y condiciones para continuar.');
+                    return;
+                }
+                
+                // Generar una llave de acceso aleatoria
+                const key = generateAccessKey();
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const institucion = document.getElementById('institucion').value.trim();
+                const curso = document.getElementById('curso').value.trim();
+                
+                // Mostrar la llave generada
+                accessKeyElement.textContent = key;
+                
+                // Enviar datos al servidor
+                fetch('api/save_user.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        email: email,
+                        institucion: institucion,
+                        curso: curso,
+                        access_key: key
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error('Error al guardar en el servidor:', data.message);
+                        // Mostrar mensaje de error al usuario si es necesario
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+                
+                accessKeyContainer.style.display = 'block';
+                
+                // Guardar en localStorage para la sesión actual
+                const userData = {
+                    nombre: nombre,
+                    email: email,
+                    institucion: institucion,
+                    curso: curso,
+                    key: key,
+                    fecha: new Date().toISOString()
+                };
+                
+                // Guardar en localStorage
+                localStorage.setItem('user_' + key, JSON.stringify(userData));
+                
+                // Reiniciar el formulario
+                registroForm.reset();
+                
+                // Desplazarse a la sección de la llave
+                accessKeyContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Copiar automáticamente la llave al portapapeles
+                copyToClipboard(key);
+                
+                // Mostrar mensaje de copiado
+                const originalText = copyKeyBtn.textContent;
+                copyKeyBtn.textContent = '¡Copiado!';
+                copyKeyBtn.style.backgroundColor = '#218838';
+                
+                setTimeout(() => {
+                    copyKeyBtn.textContent = originalText;
+                    copyKeyBtn.style.backgroundColor = '#28a745';
+                }, 2000);
+            });
+            
+            // Copiar la llave al portapapeles
+            copyKeyBtn.addEventListener('click', function() {
+                const key = accessKeyElement.textContent;
+                copyToClipboard(key);
+                
+                // Cambiar el texto del botón temporalmente
+                const originalText = this.textContent;
+                this.textContent = '¡Copiado!';
+                this.style.backgroundColor = '#218838';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.backgroundColor = '#28a745';
+                }, 2000);
+            });
+            
+            function generateAccessKey() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Caracteres que evitan confusión (sin 0, O, I, 1, etc.)
+                let key = '';
+                for (let i = 0; i < 16; i++) {
+                    if (i > 0 && i % 4 === 0) key += '-';
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return key;
+            }
+            
+            function copyToClipboard(text) {
+                const el = document.createElement('textarea');
+                el.value = text;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+            }
+            
+            // Verificar si ya hay una sesión activa
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            if (currentUser && currentUser.key) {
+                // Redirigir al índice si ya está autenticado
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+    
+    <style>
+        .access-key {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #e8f4f8;
+            border-left: 4px solid #5bc0de;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .access-key h3 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+        
+        .access-key-display {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #bee5eb;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .access-key-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px dashed #6c757d;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            word-break: break-all;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            font-weight: normal;
+        }
+        
+        #verTerminos {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        #verTerminos:hover {
+            text-decoration: none;
+        }
+    </style>
+</body>
+</html>

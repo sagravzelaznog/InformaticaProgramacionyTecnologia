@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 12: Evaluación Parcial</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 12</h1>
+            <h2>La Gala Digital: Evaluación Parcial</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Protocolo de la Gala</h3>
+            <p><strong>Objetivo:</strong> Establecer un ambiente de respeto y profesionalismo para presentar el proyecto "Mi Tutorial Educativo".</p>
+            
+            <div class="interactive-box">
+                <h4>🏆 Criterios de Excelencia</h4>
+                <p>Hoy no juzgamos personas, evaluamos productos digitales. Buscamos:</p>
+                
+                <div class="stats-grid" style="flex-wrap: wrap; gap: 15px;">
+                    <div class="stat-item" style="width: 45%; border-bottom: 4px solid var(--primary);">
+                        <span class="stat-number" style="font-size: 1.5rem;">🎨 DISEÑO</span>
+                        <span class="stat-label">Jerarquía, Color y Tipografía (Canva).</span>
+                    </div>
+                    <div class="stat-item" style="width: 45%; border-bottom: 4px solid var(--accent);">
+                        <span class="stat-number" style="font-size: 1.5rem;">🔊 AV</span>
+                        <span class="stat-label">Calidad de Audio y Video (Edición).</span>
+                    </div>
+                    <div class="stat-item" style="width: 45%; border-bottom: 4px solid var(--text-dark);">
+                        <span class="stat-number" style="font-size: 1.5rem;">⚖️ LEGAL</span>
+                        <span class="stat-label">Respeto a Derechos de Autor (CC).</span>
+                    </div>
+                    <div class="stat-item" style="width: 45%; border-bottom: 4px solid #38A169;">
+                        <span class="stat-number" style="font-size: 1.5rem;">🧠 CONTENIDO</span>
+                        <span class="stat-label">Claridad y utilidad del tutorial.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Showcase: Proyección de Proyectos</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🍿 Dinámica "Modo Cine"</h4>
+                    <p>Proyectaremos los videos seleccionados. Mientras observas:</p>
+                    <ul>
+                        <li><strong>Silencio absoluto:</strong> Respeto al creador.</li>
+                        <li><strong>Toma notas:</strong> Escribe 1 fortaleza y 1 área de mejora.</li>
+                        <li><strong>Cero distracciones:</strong> Celulares guardados.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>📝 Tu Rol como Jurado</h4>
+                    <p>Evalúa como un experto, no como un amigo.</p>
+                    <ul>
+                        <li>¿El audio se entiende o hay ruido?</li>
+                        <li>¿Los cortes de video son fluidos?</li>
+                        <li>¿La portada del video (thumbnail) es atractiva?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🗳️ Tarjeta de Votación (Ejemplo)</h4>
+                <p>Usa este formato para dar feedback a tus compañeros:</p>
+                
+                <div style="background: #f7fafc; border: 2px dashed #cbd5e1; padding: 15px; border-radius: 8px; text-align: left; margin-top: 15px;">
+                    <p style="font-weight: bold; color: var(--primary-dark);">PROYECTO: [Nombre del Tutorial]</p>
+                    
+                    <div style="margin: 10px 0;">
+                        <span style="font-size: 1.2rem;">⭐ ⭐ ⭐ ⭐ ⭐</span>
+                        <span style="font-size: 0.8rem; color: #718096; margin-left: 10px;">(Calidad Técnica)</span>
+                    </div>
+                    
+                    <p style="background: #C6F6D5; padding: 5px; border-radius: 4px; font-size: 0.9rem; color: #22543D;">👍 <strong>Lo mejor fue:</strong> La edición del audio, muy limpia.</p>
+                    <p style="background: #FED7D7; padding: 5px; border-radius: 4px; font-size: 0.9rem; color: #822727; margin-top: 5px;">🔧 <strong>Mejoraría:</strong> La letra de los títulos es muy pequeña.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Cierre del Módulo I</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Reflexión: Identidad Digital</h5>
+                    <p>Después de este módulo, ¿cómo ha cambiado tu forma de ver internet?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Conclusión</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>De Consumidor a Creador.</strong> Ya no solo ves contenido, ahora sabes el trabajo, la ética y la técnica que hay detrás.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Qué sigue?</h5>
+                    <p>Adelanto del Módulo II:</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Spoiler</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Redes y Arquitectura.</strong> Vamos a destripar cómo funciona internet por dentro (Cables, WiFi, IP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎓 <strong>Felicidades:</strong> Has completado el Módulo de "Creatividad y Edición Digital". Asegúrate de que tu Portafolio en Drive tenga todos los permisos en verde.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 12 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

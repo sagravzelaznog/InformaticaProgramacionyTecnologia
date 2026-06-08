@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 26: Estructuras de Control</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 26</h1>
+            <h2>Estructuras de Control: La Toma de Decisiones</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Vida no es una Línea Recta</h3>
+            <p><strong>Objetivo:</strong> Comprender que los programas inteligentes no solo siguen pasos (Secuenciales), sino que eligen caminos (Condicionales).</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🚦 El Semáforo de la Lógica</h4>
+                <p>Todo en computación se reduce a preguntas de Sí o No.</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #805ad5;">
+                        <span class="stat-number" style="color: #805ad5; font-size: 1.2rem;">➡️ Secuencial</span>
+                        <p style="font-size: 0.8rem;">Paso 1, luego Paso 2, luego Paso 3.</p>
+                        <p style="font-size: 0.7rem;">(Como una receta de pastel. Siempre igual).</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #d69e2e;">
+                        <span class="stat-number" style="color: #d69e2e; font-size: 1.2rem;">🔀 Condicional</span>
+                        <p style="font-size: 0.8rem;">Si pasa X, haz Y. Si no, haz Z.</p>
+                        <p style="font-size: 0.7rem;">(Como elegir ropa: ¿Llueve? Llevo paraguas).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. La Estructura "SI... ENTONCES" (If-Else)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #6b46c1; border-bottom: 2px solid #6b46c1;">💎 El Rombo de Decisión</h4>
+                    <p>En un diagrama de flujo, el rombo es el juez.</p>
+                    <ul>
+                        <li>Solo tiene una entrada.</li>
+                        <li>Tiene OBLIGATORIAMENTE dos salidas: <strong>Verdadero</strong> y <strong>Falso</strong>.</li>
+                        <li>Nunca puede haber un "tal vez".</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: #2d3748; color: #48bb78; font-family: 'Fira Code', monospace;">
+                    <h4 style="color: #a0aec0; border-bottom: 1px solid #4a5568;">💻 Código Real</h4>
+                    <div style="font-size: 0.8rem;">
+                        <span style="color: #d69e2e;">if</span> (bateria < 15) {<br>
+                        &nbsp;&nbsp;activarAhorro();<br>
+                        } <span style="color: #d69e2e;">else</span> {<br>
+                        &nbsp;&nbsp;brilloMaximo();<br>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🚪 Dinámica: El Portero del Antro</h4>
+                <p>Vamos a programar la lógica de seguridad para entrar a un club.</p>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; font-size: 0.9rem;">
+                    
+                    <div style="background: #e2e8f0; padding: 10px; border-radius: 5px;">👤 Llega Persona (Edad)</div>
+                    <div style="height: 20px; width: 2px; background: #cbd5e1;"></div>
+                    
+                    <div style="width: 140px; height: 60px; background: #6b46c1; color: white; display: flex; align-items: center; justify-content: center; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); font-size: 0.8rem; padding: 5px;">
+                        ¿Edad >= 18?
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; width: 300px; position: relative;">
+                        <div style="text-align: center; width: 45%;">
+                            <div style="height: 30px; width: 2px; background: #48bb78; margin: 0 auto;"></div>
+                            <span style="color: #48bb78; font-weight: bold;">SÍ (Verdadero)</span>
+                            <div style="background: #c6f6d5; padding: 10px; border-radius: 5px; border: 1px solid #48bb78; margin-top: 5px;">
+                                ✅ "Pásale, diviértete"
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; width: 45%;">
+                            <div style="height: 30px; width: 2px; background: #e53e3e; margin: 0 auto;"></div>
+                            <span style="color: #e53e3e; font-weight: bold;">NO (Falso)</span>
+                            <div style="background: #fed7d7; padding: 10px; border-radius: 5px; border: 1px solid #e53e3e; margin-top: 5px;">
+                                🚫 "A tu casa, niño"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Reto de Lógica</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Ejercicio: Login de Facebook</h5>
+                    <p>¿Cuál es la condición para que Facebook te deje entrar?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Lógica</button>
+                    <div id="ans1" class="answer hidden">
+                        <p style="font-family: 'Fira Code', monospace; font-size: 0.8rem;">
+                            SI (usuario == correcto Y password == correcta) <br>
+                            ENTONCES { MostrarPerfil() } <br>
+                            SINO { MostrarError("Datos incorrectos") }
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Anidación (Uno dentro de otro)</h5>
+                    <p>¿Qué pasa si tienes 18 años pero no traes INE?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p>Necesitas un <strong>IF Anidado</strong>. Primero preguntas la edad, y SI pasa, entonces preguntas por la INE. Si falla cualquiera, vas para afuera.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🤖 <strong>Misión del Día:</strong> Escribe en pseudocódigo el algoritmo para "Cruzar la calle". <br><em>Pista: ¿Viene carro?</em></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 26 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 06: Animación y Psicología del Movimiento</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Raleway:wght@800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta "Dinamismo y Retención" */
+            --primary: #FF0066; /* Rosa vibrante - Energía y Movimiento */
+            --primary-dark: #CC0052;
+            --secondary: #6B21A8; /* Púrpura profundo - Profundidad y Foco */
+            --accent: #00E676; /* Verde neón suave - Acción/Acierto */
+            --surface: #F8FAFC;
+            --text-main: #1E293B;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--surface);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER DINÁMICO --- */
+        header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+            margin-bottom: 2rem;
+        }
+
+        .session-tag {
+            background: var(--white);
+            color: var(--primary);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { font-family: 'Raleway', sans-serif; font-size: 2.8rem; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
+        
+        /* Frase filosófica de alto impacto */
+        .impact-quote {
+            font-style: italic;
+            font-weight: 600;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 1rem auto 0;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 1rem;
+        }
+
+        /* --- ESTRUCTURA PRINCIPAL --- */
+        main { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+        section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        section:hover { transform: translateY(-3px); }
+
+        h2 { color: var(--secondary); font-family: 'Raleway', sans-serif; margin-bottom: 1.2rem; font-size: 1.8rem; }
+        p { margin-bottom: 1rem; }
+
+        /* --- SIMULADOR DE ANIMACIONES (INTERACTIVIDAD) --- */
+        .animation-lab {
+            background: #E2E8F0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .stage {
+            height: 180px;
+            background: var(--white);
+            border: 2px dashed #CBD5E1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .anim-object {
+            background: linear-gradient(45deg, var(--primary), #FF6699);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(255, 0, 102, 0.3);
+        }
+
+        .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        
+        .btn-anim {
+            background: var(--text-main); color: white; border: none; padding: 10px 20px;
+            border-radius: 5px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+        }
+        .btn-anim:hover { background: var(--secondary); }
+
+        /* Clases de Animación CSS (Para el simulador) */
+        .anim-pop { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .anim-pan { animation: panLeft 0.8s ease-out forwards; }
+        .anim-fade { animation: fadeIn 1s ease-in-out forwards; }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes panLeft {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* --- INSTRUCCIONES PRÁCTICAS --- */
+        .step-container { margin-top: 1.5rem; }
+        .step {
+            display: flex; align-items: center; background: #F8FAFC;
+            padding: 15px; margin-bottom: 10px; border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .step-num {
+            background: var(--primary); color: white; width: 35px; height: 35px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; margin-right: 15px; flex-shrink: 0;
+        }
+
+        /* --- QUIZ ESTILO KAHOOT --- */
+        #kahoot-zone {
+            background: #46178F; /* Kahoot authentic purple */
+            color: white; border-left: none; text-align: center; border-radius: 20px;
+        }
+        #kahoot-zone h2 { color: white; }
+
+        .question-box { font-size: 1.4rem; font-weight: 800; margin-bottom: 2rem; }
+        .grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .k-btn {
+            padding: 25px; border: none; border-radius: 6px; font-size: 1.1rem;
+            font-weight: 800; color: white; cursor: pointer;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.2); transition: all 0.1s;
+        }
+        .k-btn:active { transform: translateY(6px); box-shadow: none; }
+
+        .k-red { background: #E21B3C; }
+        .k-blue { background: #1368CE; }
+        .k-gold { background: #D89E00; }
+        .k-green { background: #26890C; }
+
+        .k-feedback { margin-top: 20px; font-size: 1.3rem; font-weight: 800; min-height: 40px; }
+
+        /* --- FOOTER ESTRICTO --- */
+        footer {
+            text-align: center; padding: 2.5rem 1rem; color: #64748B;
+            font-size: 0.85rem; background: var(--surface);
+            border-top: 1px solid #E2E8F0; font-family: monospace; letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-options { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="session-tag">Sesión 06</span>
+        <h1>El Lenguaje del Movimiento</h1>
+        <p class="impact-quote">"Lo que no se mueve, muere en la mente del espectador. El movimiento es el ancla de la atención cognitiva."</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 El Propósito de la Animación</h2>
+            <p>El cerebro humano está evolutivamente condicionado para registrar el movimiento (para cazar o huir). En el diseño digital, usamos este instinto biológico a nuestro favor.</p>
+            <p><strong>La Regla de Oro:</strong> Animar no es "hacer que las cosas den vueltas". Animar es <em>guiar el ojo</em> del estudiante o cliente hacia la información más importante en el momento exacto.</p>
+        </section>
+
+        <section>
+            <h2>🕹️ Laboratorio de Efectos (Simulador)</h2>
+            <p>Antes de usar Canva, experimenta cómo se siente cada tipo de animación. Observa cómo el "Pop" genera impacto inmediato, mientras el "Paneo" (Pan) invita a la lectura fluida.</p>
+            
+            <div class="animation-lab">
+                <div class="stage">
+                    <div id="target-obj" class="anim-object">¡Mírame!</div>
+                </div>
+                <div class="controls">
+                    <button class="btn-anim" onclick="triggerAnimation('anim-pop')">Efecto: Pop (Rebote)</button>
+                    <button class="btn-anim" onclick="triggerAnimation('anim-pan')">Efecto: Paneo (Desliz)</button>
+                    <button class="btn-anim" onclick="triggerAnimation('anim-fade')">Efecto: Fundido (Aparecer)</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: Dando vida al Lienzo</h2>
+            <p>Vamos a aplicar animaciones al sistema de ecuaciones que diseñamos en la sesión anterior para que los elementos aparezcan paso a paso, reduciendo la carga cognitiva.</p>
+            
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div>Abre la presentación de la Sesión 05 en Canva.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div>Haz clic en el grupo de elementos que forman tu primera fracción matemática.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div>En la barra superior blanca, haz clic en el botón <strong>"Animar"</strong>.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div>En el panel izquierdo, bajo "Animaciones de elementos", selecciona <strong>"Aparecer" (Pop)</strong> o <strong>"Paneo"</strong>.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div><em>Opcional:</em> Selecciona el icono de "Reloj" arriba para ajustar cuánto tiempo dura la diapositiva en pantalla antes de la siguiente transición.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kahoot-zone">
+            <h2>🧠 Desafío Cognitivo</h2>
+            <div id="q-container">
+                <div id="q-text" class="question-box">Cargando...</div>
+                <div id="k-options" class="grid-options">
+                    </div>
+                <div id="k-feedback" class="k-feedback"></div>
+                <button id="k-next" style="display:none; margin: 15px auto; padding: 12px 30px; border-radius: 8px; border: none; font-size: 1.1rem; font-weight: 900; background: white; color: #46178F; cursor: pointer;">Siguiente ➡</button>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion05.html">sesion 5</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion07.html">sesion 7</a>
+        </div>
+
+    </main>
+
+    <footer>copyright &copy;JMGV-PTEL-2026. sesion 06 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados</footer>
+
+    <script>
+        // --- 1. LÓGICA DEL SIMULADOR DE ANIMACIÓN ---
+        function triggerAnimation(animClass) {
+            const obj = document.getElementById('target-obj');
+            
+            // Truco de JS para reiniciar animaciones CSS
+            obj.classList.remove('anim-pop', 'anim-pan', 'anim-fade');
+            void obj.offsetWidth; // Dispara un "reflow" en el navegador para reiniciar
+            obj.classList.add(animClass);
+        }
+
+        // --- 2. LÓGICA DEL QUIZ KAHOOT ---
+        const quizData = [
+            {
+                q: "Psicológicamente, ¿cuál es el objetivo principal de animar elementos en una presentación educativa?",
+                a: ["Hacer que el diseño parezca una película", "Guiar la atención del alumno y evitar sobrecarga cognitiva", "Distraer de los errores de ortografía", "Usar todas las funciones de Canva"],
+                correct: 1
+            },
+            {
+                q: "En Canva, si haces clic en 'Animar' sin seleccionar ningún elemento específico, ¿qué sucede?",
+                a: ["Se anima toda la página (Animación de página)", "Aparece un error", "Se cierra la sesión", "Se anima solo el texto"],
+                correct: 0
+            },
+            {
+                q: "¿Qué efecto de animación es mejor para revelar el resultado de una fórmula matemática (creando impacto)?",
+                a: ["Fundido superlento", "Aleatorio", "Pop / Estallido (Aparecer de golpe)", "Ninguno"],
+                correct: 2
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        const qText = document.getElementById('q-text');
+        const kOptions = document.getElementById('k-options');
+        const kFeedback = document.getElementById('k-feedback');
+        const kNext = document.getElementById('k-next');
+
+        function loadQuiz() {
+            if (currentQ >= quizData.length) {
+                finishQuiz();
+                return;
+            }
+
+            const current = quizData[currentQ];
+            qText.innerText = current.q;
+            kOptions.innerHTML = '';
+            kFeedback.innerText = '';
+            kNext.style.display = 'none';
+
+            const colors = ['k-red', 'k-blue', 'k-gold', 'k-green'];
+
+            current.a.forEach((ans, index) => {
+                const btn = document.createElement('button');
+                btn.className = `k-btn ${colors[index]}`;
+                btn.innerText = ans;
+                btn.onclick = () => checkQuiz(index, current.correct);
+                kOptions.appendChild(btn);
+            });
+        }
+
+        function checkQuiz(selected, correct) {
+            const buttons = document.querySelectorAll('.k-btn');
+            buttons.forEach(b => b.disabled = true); // Bloquea clics
+
+            if (selected === correct) {
+                score++;
+                kFeedback.innerText = "¡Verdadero! Lógica pura. 🔥";
+                kFeedback.style.color = "#00E676";
+                buttons[selected].style.border = "4px solid white";
+                // Simula un "Pop" de acierto
+                triggerAnimation('anim-pop'); // Reutiliza la función del simulador
+            } else {
+                kFeedback.innerText = "Falso. Revisa la teoría. ❌";
+                kFeedback.style.color = "#FF0066";
+                buttons[selected].style.opacity = "0.5";
+                buttons[correct].style.border = "4px solid white";
+            }
+
+            kNext.style.display = 'block';
+        }
+
+        kNext.onclick = () => {
+            currentQ++;
+            loadQuiz();
+        };
+
+        function finishQuiz() {
+            qText.innerText = "¡Sesión 06 Completada!";
+            kOptions.innerHTML = '';
+            kNext.style.display = 'none';
+            
+            let finalMsg = score === quizData.length ? "¡Un dominio absoluto del espacio y el tiempo!" : "Has aprendido las bases del movimiento.";
+            
+            kFeedback.innerHTML = `
+                Tu puntuación: ${score} de ${quizData.length} aciertos.<br><br>
+                <span style="font-size: 1rem; font-weight: 400;">${finalMsg}</span><br>
+                <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #00E676; color: #1E293B; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Reiniciar Dinámica</button>
+            `;
+            kFeedback.style.color = "white";
+        }
+
+        // Inicializar el quiz
+        loadQuiz();
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema2">
+                <h2>Tema 2: Formato de celdas y hojas de cálculo</h2>
+                <div class="tema-contenido">
+                    <p>El formato en Excel es esencial para presentar la información de manera clara y profesional. En este tema, aprenderás a dar formato a celdas, filas, columnas y hojas completas para mejorar la legibilidad y el impacto visual de tus datos.</p>
+                    
+                    <h3>2.1 Formato básico de celdas</h3>
+                    <p>El formato básico de celdas incluye la modificación de la fuente, el tamaño, el color y el estilo del texto, así como el color de fondo de las celdas.</p>
+                    
+                    <div class="highlight">
+                        <h4>Tipos de formato de celdas:</h4>
+                        <ul>
+                            <li><strong>Formato de número:</strong> General, Número, Moneda, Contabilidad, Fecha, Hora, Porcentaje, Fracción, Científico, Texto, Personalizado.</li>
+                            <li><strong>Alineación:</strong> Alinear texto (izquierda, centro, derecha), ajustar texto, combinar celdas, orientación del texto.</li>
+                            <li><strong>Fuente:</strong> Tipo de letra, tamaño, color, negrita, cursiva, subrayado.</li>
+                            <li><strong>Bordes:</strong> Estilos de línea, color, bordes interiores y exteriores.</li>
+                            <li><strong>Relleno:</strong> Color de fondo de celda, estilos de relleno.</li>
+                            <li><strong>Protección:</strong> Bloquear celdas, ocultar fórmulas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Practica el formato básico</h4>
+                        <p>Observa la siguiente tabla y aplica los formatos indicados:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="formatGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="formula-bar">
+                                <span>Formato:</span>
+                                <input type="text" id="formatInput" placeholder="Selecciona una celda">
+                                <button class="verify-btn" onclick="applyFormat()">Aplicar formato</button>
+                            </div>
+                        </div>
+                        <p><strong>Instrucciones:</strong> 
+                            <ol>
+                                <li>Selecciona una celda de la tabla.</li>
+                                <li>Escribe el formato que deseas aplicar (ej: "negrita", "rojo", "centrar").</li>
+                                <li>Haz clic en "Aplicar formato".</li>
+                            </ol>
+                        </p>
+                    </div>
+
+                    <h3>2.2 Formatos numéricos personalizados</h3>
+                    <p>Los formatos personalizados te permiten mostrar números, fechas y texto exactamente como lo necesitas.</p>
+                    
+                    <div class="ejemplo">
+                        <h4>Ejemplos de formatos personalizados:</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Valor</th>
+                                <th>Formato personalizado</th>
+                                <th>Resultado</th>
+                            </tr>
+                            <tr>
+                                <td>1234.5</td>
+                                <td>#,##0.00</td>
+                                <td>1,234.50</td>
+                            </tr>
+                            <tr>
+                                <td>0.85</td>
+                                <td>0.00%</td>
+                                <td>85.00%</td>
+                            </tr>
+                            <tr>
+                                <td>123456</td>
+                                <td>###0 "unidades"</td>
+                                <td>123456 unidades</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Práctica: Crea formatos personalizados</h4>
+                        <p>Intenta crear los siguientes formatos personalizados:</p>
+                        <div class="formato-practica">
+                            <div class="formato-item">
+                                <p>Mostrar números de teléfono: (###) ###-####</p>
+                                <input type="text" id="phoneFormat" placeholder="Ingresa el formato">
+                                <button class="verify-btn" onclick="checkPhoneFormat()">Verificar</button>
+                            </div>
+                            <div class="formato-item">
+                                <p>Mostrar números como códigos de producto: PRD-0000</p>
+                                <input type="text" id="productFormat" placeholder="Ingresa el formato">
+                                <button class="verify-btn" onclick="checkProductFormat()">Verificar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>2.3 Estilos y formatos condicionales</h3>
+                    <p>El formato condicional te permite resaltar visualmente celdas que cumplen ciertos criterios.</p>
+                    
+                    <div class="highlight">
+                        <h4>Tipos de formato condicional:</h4>
+                        <ul>
+                            <li><strong>Barras de datos:</strong> Muestran barras de colores en las celdas según su valor.</li>
+                            <li><strong>Escalas de color:</strong> Aplican un degradado de colores a un rango de celdas.</li>
+                            <li><strong>Conjuntos de iconos:</strong> Muestran iconos junto a los valores.</li>
+                            <li><strong>Reglas personalizadas:</strong> Permiten crear tus propias condiciones.</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Aplica formato condicional</h4>
+                        <p>Selecciona el rango de celdas y aplica el formato condicional solicitado:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="conditionalGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="formato-condicional">
+                                <select id="formatType">
+                                    <option value="">Selecciona un formato</option>
+                                    <option value="barras">Barras de datos</option>
+                                    <option value="escala">Escala de colores</option>
+                                    <option value="iconos">Conjunto de iconos</option>
+                                </select>
+                                <button class="verify-btn" onclick="applyConditionalFormat()">Aplicar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>2.4 Formato de tablas y estilos</h3>
+                    <p>Las tablas en Excel ofrecen funcionalidades avanzadas de formato y manejo de datos.</p>
+                    
+                    <div class="ejemplo">
+                        <h4>Ventajas de usar tablas:</h4>
+                        <ul>
+                            <li>Formato consistente en filas y columnas</li>
+                            <li>Filtros y ordenamiento integrados</li>
+                            <li>Fórmulas estructuradas que se autocompletan</li>
+                            <li>Expansión automática al agregar nuevos datos</li>
+                        </ul>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál es el atajo de teclado para abrir el cuadro de diálogo de Formato de celdas?</div>
+                        <div class="opcion">a) Ctrl + F</div>
+                        <div class="opcion">b) Ctrl + 1</div>
+                        <div class="opcion">c) Alt + F</div>
+                        <div class="opcion">d) Mayús + F1</div>
+                        
+                        <div class="pregunta">2. ¿Qué formato personalizado mostraría el número 0.85 como 85%?</div>
+                        <div class="opcion">a) #.##</div>
+                        <div class="opcion">b) 0.00%</div>
+                        <div class="opcion">c) #%</div>
+                        <div class="opcion">d) 0%</div>
+                        
+                        <div class="pregunta">3. ¿Cuál de las siguientes NO es una opción de formato condicional?</div>
+                        <div class="opcion">a) Barras de datos</div>
+                        <div class="opcion">b) Escala de colores</div>
+                        <div class="opcion">c) Conjunto de iconos</div>
+                        <div class="opcion">d) Bordes animados</div>
+                        
+                        <button class="evaluation-btn" onclick="checkFormatAnswers()">Verificar respuestas</button>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>El formato de celdas mejora la presentación y legibilidad de los datos.</li>
+                            <li>Los formatos personalizados permiten mostrar los datos exactamente como se necesitan.</li>
+                            <li>El formato condicional ayuda a visualizar patrones y tendencias en los datos.</li>
+                            <li>Las tablas ofrecen un formato consistente y funcionalidades avanzadas de manejo de datos.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="siguiente-paso">
+                        <h3>Próximos pasos</h3>
+                        <p>Ahora que has aprendido sobre formatos, en el siguiente tema exploraremos las funciones básicas de Excel para realizar cálculos y análisis de datos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 3: Fórmulas y funciones básicas -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema1.html" class="btn btn-anterior">Anterior: Tema 1</a>
+        <a href="tema3.html" class="btn btn-siguiente">Siguiente: Tema 3</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

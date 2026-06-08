@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S46: Preparación para Impresión (CMYK y PDF/X)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 46: Preparación para Impresión (CMYK y PDF/X)</h1>
+
+    <section>
+        <h2>1. El Desafío del CMYK en Inkscape</h2>
+        [Image comparing RGB color on screen with the duller CMYK color in print]
+        <p>Inkscape trabaja principalmente en **RGB** (Rojo, Verde, Azul), el estándar para pantallas. Las imprentas usan **CMYK** (Cian, Magenta, Amarillo, Negro). La conversión es clave para evitar sorpresas en el color impreso.</p>
+        <div class="paso">
+            <strong>Espacio de Color</strong>
+            <p>Aunque Inkscape no tiene un modo de color CMYK nativo, puedes usar paletas de colores que simulan la gama CMYK para limitar tu elección de colores a aquellos que se reproducen bien en la impresión.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Marcas de Corte y Sangrado (Bleed)</h2>
+        <p>El **Sangrado** es el área extra de color que se extiende más allá del borde de corte. El impresor corta la hoja aquí para asegurar que no queden bordes blancos. Las **Marcas de Corte** le indican al impresor dónde cortar.</p>
+        <div class="paso">
+            <strong>Paso 1: Definir Sangrado</strong>
+            <p>En **Propiedades del Documento**, en la pestaña **Página**, añade un margen de **Sangrado** (ej. 3mm). Asegúrate de que tu fondo se extienda hasta esta área de sangrado.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Marcas de Impresor</strong>
+            <p>Ve a <code>Extensiones > Render > Marcas de Impresor...</code>. Activa las opciones de **Marcas de Corte** y **Marcas de Sangrado** (si es necesario). Esto dibuja las líneas de corte en una nueva capa.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Exportación a PDF/X para Impresión Profesional</h2>
+        <p>El formato **PDF/X** es el estándar de la industria gráfica, asegurando que todos los vectores, textos y colores están incrustados correctamente.</p>
+        <div class="paso">
+            <strong>Paso 1: Convertir a Curvas</strong>
+            <p>Selecciona **todo** el texto y ve a <code>Trayecto > Objeto a Trayecto (Shift + Ctrl + C)</code>. Esto convierte el texto a vectores, asegurando que la fuente se vea igual sin importar si el impresor la tiene instalada.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Guardar como PDF</strong>
+            <p>Ve a <code>Archivo > Guardar como...</code> y selecciona **PDF (\*.pdf)**. En el diálogo de opciones, selecciona el estándar **PDF/X-1a** (o el que te pida tu imprenta). Esto crea un archivo compatible con las prensas de impresión.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Tarjeta de Visita Lista para Imprimir</h3>
+        <p><strong>Objetivo:</strong> Crear un diseño con sangrado y marcas de corte.</p>
+        <ol>
+            <li>Configura un lienzo de 90mm x 50mm (tamaño estándar de tarjeta).</li>
+            <li>Añade 3mm de **Sangrado** a cada lado en las propiedades del documento. Extiende el fondo de tu diseño hasta el borde del sangrado.</li>
+            <li>Escribe un nombre y datos, y conviértelos a trayecto (**Shift + Ctrl + C**).</li>
+            <li>Aplica las **Marcas de Corte** (**Extensiones > Render > Marcas de Impresor**).</li>
+            <li>Guarda el archivo como **PDF/X-1a**.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion45.html">Anterior</a>
+    <a href="sesion47.html">Siguiente</a>
+</nav>
+</body>
+</html>

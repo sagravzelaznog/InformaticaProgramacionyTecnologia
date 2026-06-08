@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 02: Identidad Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 02</h1>
+            <h2>Identidad y Reputación Online</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Efecto Espejo</h3>
+            <p><strong>Objetivo:</strong> Diferenciar entre quién crees que eres y lo que internet dice que eres.</p>
+            
+            <div class="interactive-box">
+                <h4>🪞 Dinámica: "Stalker" Ético</h4>
+                <p>Si un reclutador de trabajo buscara tu nombre hoy, ¿qué encontraría?</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">de reclutadores revisan RRSS</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Duración de un dato en la red</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"Tu reputación online es lo que dicen de ti cuando no estás en la habitación (virtual)."</p>
+            </div>
+        </section>
+
+        
+
+[Image of online reputation management]
+
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Los Pilares de tu Yo Digital</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🎭 Identidad Digital</h4>
+                    <p>Es la construcción de tu personaje en la red. Se compone de:</p>
+                    <ul>
+                        <li><strong>Datos Formales:</strong> Nombre, correo, fecha de nacimiento.</li>
+                        <li><strong>Datos Informales:</strong> Tus fotos, tus gustos, tus amigos.</li>
+                        <li><strong>Datos Ocultos:</strong> Tu IP, tu geolocalización.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🌟 Reputación Online</h4>
+                    <p>Es el prestigio o estima que tienes en internet. Es frágil y difícil de recuperar.</p>
+                    <ul>
+                        <li><strong>Coherencia:</strong> ¿Tu "yo" real coincide con tu "yo" digital?</li>
+                        <li><strong>Visibilidad:</strong> ¿Eres invisible o estás expuesto?</li>
+                        <li><strong>Credibilidad:</strong> ¿Tus fuentes son confiables?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🛡️ El Semáforo de la Privacidad</h4>
+                <p>Configurar tus redes sociales es tu primera línea de defensa.</p>
+                <div class="equation-visual" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap:10px;">
+                    <span style="background:#e6fffa; color: #008080;">🟢 PÚBLICO (Portafolio Pro)</span> 
+                    <span style="background:#fff5f5; color: #e53e3e;">🔴 PRIVADO (Vida Personal)</span>
+                </div>
+                <p style="margin-top:15px; font-size: 0.9rem;"><em>Regla de Oro: Si no quieres que aparezca en la portada de un periódico, no lo publiques.</em></p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Gestión de Crisis</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Caso de Estudio: "El Tweet Viejo"</h5>
+                    <p>Un profesional pierde su empleo por un chiste ofensivo que publicó hace 10 años. ¿Es justo? ¿Qué nos enseña?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Reflexión</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Internet es Archivo Histórico.</strong> Nos enseña a auditar nuestras redes antiguas y a entender que evolucionamos, pero el dato digital permanece estático.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Reto de Seguridad</h5>
+                    <p>¿Cuál es la mejor forma de proteger tu reputación de un hackeo?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Autenticación en Dos Pasos (2FA).</strong> Aunque adivinen tu contraseña, no podrán entrar sin tu teléfono.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>📝 <strong>Tarea Autónoma:</strong> Realiza una "Limpieza de Primavera Digital". Borra 5 publicaciones antiguas que ya no te representen.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 02 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

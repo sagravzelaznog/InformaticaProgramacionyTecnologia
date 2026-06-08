@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S9 E34: Introducción al Routing Estático</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 9, Sesión 34: Routing Estático 🛣️</h1>
+        <p class="subtitle">Creando Rutas Manuales y la Ruta por Defecto</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Routing: La Decisión de la Ruta</h2>
+            <p>Recordemos que el **Router** es un dispositivo de Capa 3. Su Trabajo es examinar la IP de destino de un paquete y decidir a través de qué interfaz enviarlo. Esta decisión se basa en la **Tabla de Enrutamiento**.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Tabla de Enrutamiento</h3>
+                    <p>Una base de datos que el router mantiene con toda la información de redes que conoce (las que están conectadas directamente y las que aprendió por configuración o por otros routers).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Tipos de Rutas</h3>
+                    <p>Una ruta puede ser: <strong>Directamente Conectada</strong> (el router la conoce automáticamente), <strong>Estática</strong> (configurada manualmente) o <strong>Dinámica</strong> (aprendida de otros routers).</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. La Ruta Estática</h2>
+            <p>Una **Ruta Estática** es una entrada en la Tabla de Enrutamiento que el administrador de red (**tú**) ha configurado manualmente. Se usa cuando hay una ruta fija y predecible hacia otra red.</p>
+            
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Uso Típico</h3>
+                    <p>Se usa en redes pequeñas o cuando se necesita una ruta de respaldo. Una vez configurada, el router la usará siempre, sin importar si hay caminos mejores (lo que requiere tu supervisión).</p>
+                </div>
+                <div>
+                    <h3>Sintaxis de Configuración</h3>
+                    <p>Una ruta estática requiere tres parámetros:</p>
+                    <ol>
+                        <li>**Red de Destino:** La red que quieres alcanzar (ej. 192.168.20.0).</li>
+                        <li>**Máscara de Destino:** La máscara de esa red (ej. 255.255.255.0).</li>
+                        <li>**Next Hop (Siguiente Salto):** La IP del siguiente router en la ruta hacia esa red.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. La Ruta por Defecto (Default Gateway)</h2>
+            <p>La **Ruta por Defecto** (o Gateway of Last Resort) es una ruta estática especial que se utiliza para todo el tráfico cuyo destino no se encuentra en la Tabla de Enrutamiento. En la mayoría de los casos, esta ruta apunta hacia Internet.</p>
+            
+            <p class="highlight">La Ruta por Defecto tiene una IP y Máscara de destino de **0.0.0.0 0.0.0.0**.</p>
+            
+            <p><strong>Tarea Práctica (Simulación en Packet Tracer):</strong></p>
+            <ol>
+                <li>Crea dos Routers (R1 y R2) conectados entre sí.</li>
+                <li>Conecta una LAN al R1 y otra LAN al R2.</li>
+                <li>Configura una **Ruta Estática** en R1 para llegar a la LAN del R2, y viceversa.</li>
+                <li>Verifica la conectividad entre ambas LANs con **ping**.</li>
+            </ol>
+            <button id="staticRoutingQuizBtn">Verificar Rutas Estáticas</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S9 E34</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion33.html" class="nav-button">Anterior</a>
+        <a href="sesion35.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1 E2: Tipos y Arquitecturas de Redes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 1, Sesión 2: Tipos y Arquitecturas de Redes 🌐</h1>
+        <p class="subtitle">Conceptos Básicos y Fundamentos Teóricos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>Clasificación por Alcance Geográfico</h2>
+            <p>Las redes se clasifican según el área geográfica que cubren. Como técnicos, es crucial diferenciar entre las tres más comunes:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Red de Área Local (LAN)</h3>
+                    <p>Cubre una zona geográfica pequeña, como una casa, oficina o edificio. Son redes rápidas y de propiedad privada.</p>
+                    <ul>
+                        <li>**Velocidad:** Alta.</li>
+                        <li>**Ejemplo:** La red Wi-Fi de tu casa o el cableado de una sala de cómputo.</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="https://images.ctfassets.net/aoyx73g9h2pg/1PUW20N6ANAbYmTNy8PlMD/3c482e2e50e62533b611e096ac25bd2e/What-is-a-Local-Area-Network-LAN-Diagram.jpg" alt="Local Area Network Diagram">
+                        <figcaption>Diagrama de una Red Local (LAN)</figcaption>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                    <h3>2. Red de Área Metropolitana (MAN)</h3>
+                    <p>Conecta múltiples redes LAN dentro de una ciudad o campus universitario. Es más grande que una LAN pero más pequeña que una WAN.</p>
+                    <ul>
+                        <li>**Velocidad:** Moderada a Alta.</li>
+                        <li>**Ejemplo:** Una red que conecta todas las sucursales bancarias dentro de una ciudad.</li>
+                    </ul>
+                    
+                 
+                </div>
+
+                <div class="card">
+                    <h3>3. Red de Área Amplia (WAN)</h3>
+                    <p>Cubre extensas áreas geográficas (países, continentes). Utilizan enlaces de telecomunicaciones públicos o privados.</p>
+                    <ul>
+                        <li>**Velocidad:** Generalmente menor que la LAN/MAN.</li>
+                        <li>**Ejemplo:** <strong>Internet</strong> (es la WAN más grande del mundo) o la red que conecta dos oficinas de una empresa en diferentes países.</li>
+                    </ul>
+                    
+
+                    <div class="image-container">
+                       <img src="https://i.pinimg.com/originals/a2/ae/53/a2ae5330de87e3bdda5a26638f8e2f13.jpg" alt="Wide Area Network Diagram">
+                        <figcaption>Diagrama de una Red Amplia (WAN)</figcaption>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>Arquitecturas de Red (Relación de Nodos) 🤝</h2>
+            <p>La arquitectura define la forma en que los dispositivos interactúan y comparten roles en la red. Existen dos modelos principales:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Modelo Cliente/Servidor 🏢</h3>
+                    <p>Hay roles definidos: un **Servidor** centraliza recursos y servicios, y los **Clientes** acceden a ellos. Es la arquitectura más común en entornos empresariales y en Internet.</p>
+                    <ul>
+                        <li>**Ventaja:** Mayor seguridad y gestión centralizada de datos.</li>
+                        <li>**Desventaja:** Dependencia total del servidor central.</li>
+                    </ul>
+                    
+
+                    <div class="image-container">
+                        <img src="images/cliente servidor.png" alt="Modelo cliente/servidor">
+                        <figcaption>Modelo Cliente/Servidor</figcaption>
+                    </div>
+
+                </div>
+                <div>
+                    <h3>Modelo Punto a Punto (Peer-to-Peer o P2P) 🧑‍🤝‍🧑</h3>
+                    <p>Todos los dispositivos son iguales (peers) y pueden actuar como cliente y servidor simultáneamente, compartiendo directamente sus recursos con otros. No hay un control central.</p>
+                    <ul>
+                        <li>**Ventaja:** Fácil de configurar y resistente a fallos (si uno cae, la red sigue).</li>
+                        <li>**Desventaja:** Baja seguridad, difícil de administrar a gran escala.</li>
+                    </ul>
+                    
+
+                    <div class="image-container">
+                        <img src="https://3.bp.blogspot.com/-y4RtMXCb724/VUtW5Z3IfQI/AAAAAAAAAAo/8fCduPjfp1M/s1600/p2p.jpg" alt="Modelo Punto a Punto (Peer-to-Peer o P2P)">
+                        <figcaption>Modelo Punto a Punto (Peer-to-Peer o P2P)</figcaption>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>Laboratorio de Simulación: Introducción a Cisco Packet Tracer</h2>
+            <p class="highlight">A partir de ahora, usaremos **Cisco Packet Tracer** para simular y practicar. Esta sesión la dedicaremos a conocer la herramienta.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>Packet Tracer: Tu laboratorio virtual para redes LAN y WAN.</figcaption>
+            </div>
+
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>Descarga e instala la versión gratuita de Cisco Packet Tracer.</li>
+                <li>Identifica la barra de componentes (routers, switches, dispositivos finales).</li>
+                <li>Arrastra un **PC** y un **Laptop** al área de trabajo.</li>
+                <li>Intenta conectarlos usando un cable directo (Cable Cobre Recto) y observa el estado de los puertos.</li>
+            </ol>
+            <button id="checkPktBtn">Marcar Tarea como Terminada</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S1 E2</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion01.html" class="nav-button">Anterior</a>
+        <a href="sesion03.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

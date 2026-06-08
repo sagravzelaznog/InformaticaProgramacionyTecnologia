@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema9">
+                <h2>Tema 9: Validación de datos en Excel</h2>
+                <div class="tema-contenido">
+                    <p>La validación de datos es una característica esencial en Excel que te permite controlar el tipo de información que los usuarios pueden ingresar en una celda. Este tema te enseñará a implementar reglas de validación efectivas para garantizar la integridad y precisión de tus datos.</p>
+                    
+                    <h3>9.1 Introducción a la validación de datos</h3>
+                    <p>La validación de datos ayuda a prevenir errores al restringir el tipo de datos o los valores que los usuarios pueden ingresar en una celda. Esto es especialmente útil cuando varias personas trabajan en la misma hoja de cálculo o cuando necesitas datos consistentes para análisis posteriores.</p>
+                    
+                    <div class="importante">
+                        <h4>Beneficios de la validación de datos:</h4>
+                        <ul>
+                            <li>Reduce errores de entrada de datos</li>
+                            <li>Mejora la consistencia de los datos</li>
+                            <li>Facilita el análisis posterior</li>
+                            <li>Guía a los usuarios sobre qué tipo de dato se espera</li>
+                        </ul>
+                    </div>
+
+                    <h3>9.2 Tipos de validación de datos</h3>
+                    <p>Excel ofrece varios tipos de validación que puedes aplicar a tus celdas:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Tipos de validación disponibles</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo de uso</th>
+                            </tr>
+                            <tr>
+                                <td>Lista desplegable</td>
+                                <td>Permite seleccionar un valor de una lista predefinida</td>
+                                <td>Seleccionar un departamento de una lista</td>
+                            </tr>
+                            <tr>
+                                <td>Número entero</td>
+                                <td>Restringe la entrada a números enteros dentro de un rango</td>
+                                <td>Edad de empleados (18-65)</td>
+                            </tr>
+                            <tr>
+                                <td>Decimal</td>
+                                <td>Permite números con decimales dentro de un rango</td>
+                                <td>Precios o calificaciones</td>
+                            </tr>
+                            <tr>
+                                <td>Lista</td>
+                                <td>Valores de una lista separados por comas</td>
+                                <td>Opciones como "Sí, No, Tal vez"</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha</td>
+                                <td>Restringe la entrada a fechas dentro de un rango</td>
+                                <td>Fechas de entrega</td>
+                            </tr>
+                            <tr>
+                                <td>Hora</td>
+                                <td>Restringe la entrada a horas dentro de un rango</td>
+                                <td>Horario de citas</td>
+                            </tr>
+                            <tr>
+                                <td>Longitud de texto</td>
+                                <td>Limita el número de caracteres</td>
+                                <td>Códigos postales o números de identificación</td>
+                            </tr>
+                            <tr>
+                                <td>Personalizada</td>
+                                <td>Fórmula personalizada para validación</td>
+                                <td>Validaciones complejas específicas</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>9.3 Cómo configurar la validación de datos</h3>
+                    <p>Para configurar la validación de datos en Excel, sigue estos pasos:</p>
+                    
+                    <div class="pasos">
+                        <div class="paso">
+                            <h4>Paso 1: Selecciona las celdas</h4>
+                            <p>Selecciona la celda o rango de celdas donde deseas aplicar la validación.</p>
+                        </div>
+                        
+                        <div class="paso">
+                            <h4>Paso 2: Abre el cuadro de diálogo de validación</h4>
+                            <p>Ve a la pestaña <strong>Datos</strong> y haz clic en <strong>Validación de datos</strong> (o <strong>Data Validation</strong> en inglés).</p>
+                        </div>
+                        
+                        <div class="paso">
+                            <h4>Paso 3: Configura las reglas de validación</h4>
+                            <p>En la pestaña <strong>Configuración</strong>, selecciona el tipo de validación y configura los parámetros correspondientes.</p>
+                        </div>
+                        
+                        <div class="paso">
+                            <h4>Paso 4: Personaliza los mensajes (opcional)</h4>
+                            <p>En las pestañas <strong>Mensaje de entrada</strong> y <strong>Mensaje de error</strong>, puedes personalizar los mensajes que verán los usuarios.</p>
+                        </div>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Crea un formulario con validación</h4>
+                        <p>Vamos a crear un formulario de registro de empleados con validación de datos:</p>
+                        
+                        <div class="formulario-validacion">
+                            <h5>Formulario de Registro de Empleados</h5>
+                            <div class="form-group">
+                                <label for="nombre">Nombre completo:</label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Ingrese su nombre completo">
+                                <div class="validacion-mensaje" id="nombre-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Correo electrónico:</label>
+                                <input type="email" id="email" class="form-control" placeholder="ejemplo@dominio.com">
+                                <div class="validacion-mensaje" id="email-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="departamento">Departamento:</label>
+                                <select id="departamento" class="form-control">
+                                    <option value="">Seleccione un departamento</option>
+                                    <option value="ventas">Ventas</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="rrhh">Recursos Humanos</option>
+                                    <option value="it">Tecnologías de la Información</option>
+                                    <option value="finanzas">Finanzas</option>
+                                </select>
+                                <div class="validacion-mensaje" id="departamento-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha-ingreso">Fecha de ingreso:</label>
+                                <input type="date" id="fecha-ingreso" class="form-control">
+                                <div class="validacion-mensaje" id="fecha-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="salario">Salario mensual ($):</label>
+                                <input type="number" id="salario" class="form-control" min="0" step="0.01" placeholder="0.00">
+                                <div class="validacion-mensaje" id="salario-error"></div>
+                            </div>
+                            
+                            <button id="validar-formulario" class="btn btn-primario">Validar Datos</button>
+                            <div id="resultado-validacion" class="resultado-validacion"></div>
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <h5>Instrucciones:</h5>
+                            <ol>
+                                <li>Completa el formulario con datos de prueba</li>
+                                <li>Haz clic en "Validar Datos" para verificar la información</li>
+                                <li>Observa los mensajes de validación que aparecen</li>
+                                <li>Corrige los errores hasta que todos los campos sean válidos</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <h3>9.4 Validación con fórmulas personalizadas</h3>
+                    <p>Las fórmulas personalizadas te permiten crear reglas de validación más complejas. Aquí tienes algunos ejemplos útiles:</p>
+                    
+                    <div class="ejemplos-validacion">
+                        <div class="ejemplo">
+                            <h5>1. Validar formato de correo electrónico</h5>
+                            <p><strong>Fórmula:</strong> <code>=Y(ESNUMERO(ENCONTRAR("@",A1)),ESNUMERO(ENCONTRAR(".",A1,ENCONTRAR("@",A1))),LARGO(A1)-LARGO(SUSTITUIR(A1,"@",""))=1)</code></p>
+                            <p>Esta fórmula verifica que el texto contenga exactamente un @ y al menos un punto después del @.</p>
+                        </div>
+                        
+                        <div class="ejemplo">
+                            <h5>2. Validar contraseña segura</h5>
+                            <p><strong>Fórmula:</strong> <code>=Y(LARGO(A1)>=8,NO(ESERROR(COINCIDIR("[A-Z]",A1,0))),NO(ESERROR(COINCIDIR("[0-9]",A1,0))),NO(ESERROR(COINCIDIR("[!@#$%^&*]",A1,0))))</code></p>
+                            <p>Verifica que la contraseña tenga al menos 8 caracteres, una mayúscula, un número y un carácter especial.</p>
+                        </div>
+                        
+                        <div class="ejemplo">
+                            <h5>3. Validar código postal mexicano</h5>
+                            <p><strong>Fórmula:</strong> <code>=Y(ESNUMERO(A1),LARGO(A1)=5,A1>=1000,A1<=99999)</code></p>
+                            <p>Asegura que el valor sea un número de 5 dígitos entre 01000 y 99999.</p>
+                        </div>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Práctica: Crea validaciones personalizadas</h4>
+                        <p>Intenta crear las siguientes validaciones personalizadas:</p>
+                        
+                        <div class="ejercicio-validacion">
+                            <h5>Ejercicio 1: Validar RFC mexicano</h5>
+                            <p>Crea una validación que verifique el formato básico de un RFC mexicano (4 letras, 6 números y 3 caracteres alfanuméricos).</p>
+                            
+                            <div class="form-group">
+                                <label for="rfc">Ingresa un RFC:</label>
+                                <input type="text" id="rfc" class="form-control" placeholder="Ej: MEGJ990101ABC">
+                                <button id="validar-rfc" class="btn btn-secundario">Validar RFC</button>
+                                <div id="rfc-resultado" class="resultado-validacion"></div>
+                            </div>
+                            
+                            <div class="solucion" id="solucion-rfc" style="display: none;">
+                                <h6>Solución:</h6>
+                                <p><strong>Fórmula de validación:</strong></p>
+                                <pre><code>=Y(
+    LARGO(A1)=13,
+    NO(ESERROR(COINCIDIR(IZQUIERDA(A1,4),REPETIR("?",4),0))),
+    NO(ESERROR(VALOR(EXTRAE(A1,5,6)))),
+    NO(ESERROR(COINCIDIR(DERECHA(A1,3),REPETIR("?",3),0)))
+)</code></pre>
+                            </div>
+                            <button id="mostrar-solucion-rfc" class="btn btn-enlace">Mostrar solución</button>
+                        </div>
+                    </div>
+
+                    <h3>9.5 Validación cruzada entre celdas</h3>
+                    <p>Puedes crear validaciones que dependan del valor de otras celdas. Por ejemplo, asegurarte de que una fecha de finalización sea posterior a una fecha de inicio.</p>
+                    
+                    <div class="ejemplo-validacion-cruzada">
+                        <h5>Ejemplo: Validación de fechas</h5>
+                        <p>Crea un formulario de registro de eventos donde la fecha de finalización debe ser posterior a la fecha de inicio.</p>
+                        
+                        <div class="formulario-evento">
+                            <div class="form-group">
+                                <label for="evento">Nombre del evento:</label>
+                                <input type="text" id="evento" class="form-control" placeholder="Ej: Conferencia Anual">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha-inicio">Fecha de inicio:</label>
+                                <input type="date" id="fecha-inicio" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha-fin">Fecha de finalización:</label>
+                                <input type="date" id="fecha-fin" class="form-control">
+                                <div id="fechas-error" class="validacion-mensaje"></div>
+                            </div>
+                            
+                            <button id="validar-fechas" class="btn btn-primario">Validar Fechas</button>
+                            <div id="resultado-fechas" class="resultado-validacion"></div>
+                        </div>
+                    </div>
+
+                    <h3>9.6 Manejo de errores y mensajes personalizados</h3>
+                    <p>Los mensajes de validación personalizados ayudan a los usuarios a entender qué tipo de datos se esperan y cómo corregir los errores.</p>
+                    
+                    <div class="ejemplo-mensajes">
+                        <h5>Tipos de mensajes en la validación de datos:</h5>
+                        <ul>
+                            <li><strong>Mensaje de entrada:</strong> Aparece cuando la celda está seleccionada, guiando al usuario sobre qué datos ingresar.</li>
+                            <li><strong>Mensaje de error:</strong> Se muestra cuando se ingresa un dato inválido. Puedes elegir entre tres estilos:
+                                <ul>
+                                    <li><strong>Detener:</strong> Impide que se ingrese cualquier valor no válido.</li>
+                                    <li><strong>Advertencia:</strong> Muestra una advertencia pero permite continuar con el valor no válido.</li>
+                                    <li><strong>Información:</strong> Muestra información sobre el error pero permite continuar.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <div class="ejemplo-practico">
+                            <h5>Práctica: Crea mensajes personalizados</h5>
+                            <p>Configura mensajes de entrada y error para el siguiente campo:</p>
+                            
+                            <div class="form-group">
+                                <label for="edad">Edad del empleado:</label>
+                                <input type="number" id="edad" class="form-control" min="18" max="65" placeholder="Ingrese una edad entre 18 y 65">
+                                <div class="instrucciones">
+                                    <p><strong>Configuración deseada:</strong></p>
+                                    <ul>
+                                        <li><strong>Mensaje de entrada:</strong> "Ingrese la edad del empleado (debe ser entre 18 y 65 años)"</li>
+                                        <li><strong>Mensaje de error (Estilo: Detener):</strong> "La edad debe estar entre 18 y 65 años"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál es el propósito principal de la validación de datos en Excel?</div>
+                        <div class="opcion">a) Cambiar el formato de las celdas automáticamente</div>
+                        <div class="opcion">b) Controlar el tipo de información que los usuarios pueden ingresar en una celda</div>
+                        <div class="opcion">c) Crear gráficos a partir de los datos</div>
+                        <div class="opcion">d) Ordenar los datos alfabéticamente</div>
+                        
+                        <div class="pregunta">2. ¿Cuál de las siguientes NO es un tipo de validación de datos en Excel?</div>
+                        <div class="opcion">a) Lista desplegable</div>
+                        <div class="opcion">b) Número entero</div>
+                        <div class="opcion">c) Fórmula condicional</div>
+                        <div class="opcion">d) Fecha</div>
+                        
+                        <div class="pregunta">3. ¿Qué fórmula de validación personalizada verificaría que una celda contenga exactamente 10 dígitos numéricos?</div>
+                        <div class="opcion">a) <code>=LARGO(A1)=10</code></div>
+                        <div class="opcion">b) <code>=Y(ESNUMERO(A1),LARGO(A1)=10)</code></div>
+                        <div class="opcion">c) <code>=CONTAR.SI(A1,REPETIR("?",10))</code></div>
+                        <div class="opcion">d) <code>=NO(ES.ERROR(VALOR(A1)))</code></div>
+                        
+                        <div class="pregunta">4. ¿Dónde se encuentra la opción para configurar la validación de datos en la cinta de opciones de Excel?</div>
+                        <div class="opcion">a) Pestaña Inicio > grupo Fuente</div>
+                        <div class="opcion">b) Pestaña Insertar > grupo Tablas</div>
+                        <div class="opcion">c) Pestaña Datos > grupo Herramientas de datos</div>
+                        <div class="opcion">d) Pestaña Fórmulas > grupo Auditoría de fórmulas</div>
+                        
+                        <div class="pregunta">5. ¿Qué tipo de mensaje de validación permite al usuario ignorar la advertencia y continuar con un valor no válido?</div>
+                        <div class="opcion">a) Detener</div>
+                        <div class="opcion">b) Advertencia</div>
+                        <div class="opcion">c) Información</div>
+                        <div class="opcion">d) Bloquear</div>
+                        
+                        <button id="evaluar-tema9" class="btn btn-evaluar">Evaluar respuestas</button>
+                        <div id="resultado-evaluacion-tema9" class="resultado-evaluacion"></div>
+                    </div>
+
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>La validación de datos es esencial para garantizar la integridad y precisión de la información en tus hojas de cálculo.</li>
+                            <li>Excel ofrece varios tipos de validación: lista desplegable, número entero, decimal, fecha, hora, longitud de texto y fórmulas personalizadas.</li>
+                            <li>Los mensajes de entrada guían a los usuarios sobre qué datos se esperan en cada campo.</li>
+                            <li>Los mensajes de error personalizados ayudan a los usuarios a corregir información incorrecta.</li>
+                            <li>Las fórmulas personalizadas permiten crear reglas de validación complejas y específicas.</li>
+                            <li>La validación cruzada entre celdas asegura la coherencia entre diferentes campos relacionados.</li>
+                        </ul>
+                    </div>
+
+                    <div class="siguiente-paso">
+                        <h3>¡Excelente trabajo!</h3>
+                        <p>Has completado el tema de Validación de Datos en Excel. Estas habilidades son fundamentales para crear hojas de cálculo profesionales y libres de errores. Practica creando diferentes tipos de validaciones para familiarizarte con todas las opciones disponibles.</p>
+
+            <!-- Navegación entre temas -->
+            <div class="nav-temas">
+                <a href="#tema8" class="btn btn-anterior">Anterior: Tema 8</a>
+                <a href="#tema10" class="btn btn-siguiente">Siguiente: Tema 10</a>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Tema 10: Macros Básicas -->
+    
+
+    <div class="navegacion-temas">
+        <a href="tema8.html" class="btn btn-anterior">Anterior: Tema 8</a>
+        <a href="tema10.html" class="btn btn-siguiente">Siguiente: Tema 10</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

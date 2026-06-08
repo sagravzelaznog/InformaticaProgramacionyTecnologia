@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Demo Interactivo - Staging y Commits (Simulado)</title>
+    <style>
+        body{font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;background:#0f1724;color:#cbd5e1;padding:20px}
+        .demo{max-width:900px;margin:0 auto;background:#021026;padding:18px;border-radius:8px}
+        .term{background:#011221;color:#d6f9ff;padding:12px;border-radius:6px;height:350px;overflow:auto;font-family:monospace;font-size:0.9rem}
+        .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+        .btn{background:#2563eb;border:none;color:white;padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:bold}
+        .btn:hover{background:#1e40af}
+        .input{width:100%;padding:8px;border-radius:6px;border:1px solid #16325c;background:#021722;color:#e6f0ff;margin-top:8px;font-family:monospace}
+        .status{margin-top:8px;color:#93c5fd;padding:8px;background:#021722;border-radius:6px}
+        h2{color:#60a5fa}
+        .info{color:#cbd5e1;margin:10px 0;font-size:0.9rem}
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h2>Demo: Staging y Commits Simulados</h2>
+        <p class="info">Simula el flujo de staging y commits sin afectar archivos reales.</p>
+        
+        <div id="term" class="term" aria-live="polite">$ Simulador de staging y commits iniciado</div>
+        
+        <div class="controls">
+            <button class="btn" data-cmd="init">git init</button>
+            <button class="btn" data-cmd="create">crear archivo.txt</button>
+            <button class="btn" data-cmd="status">git status</button>
+            <button class="btn" data-cmd="add">git add</button>
+            <button class="btn" data-cmd="addp">git add -p (patch)</button>
+            <button class="btn" data-cmd="reset">git reset</button>
+            <button class="btn" data-cmd="commit">git commit</button>
+            <button class="btn" data-cmd="amend">git commit --amend</button>
+            <button class="btn" data-cmd="log">git log --oneline</button>
+            <button class="btn" data-cmd="clear">Limpiar terminal</button>
+        </div>
+        
+        <input id="cmdline" class="input" placeholder="Escribe un comando personalizado (ej. git add miarchivo.js) y presiona Enter">
+        
+        <div id="status" class="status">
+            <strong>Estado:</strong> repo no inicializado | staging: vacío | commits: 0
+        </div>
+    </div>
+
+<script>
+(function(){
+    const term = document.getElementById('term');
+    const status = document.getElementById('status');
+    const btns = document.querySelectorAll('[data-cmd]');
+    const input = document.getElementById('cmdline');
+    const state = { 
+        inited: false, 
+        files: ['archivo.txt'],
+        modified: ['archivo.txt'],
+        staged: [], 
+        commits: [] 
+    };
+
+    function write(line){ 
+        term.innerHTML += line + '<br/>'; 
+        term.scrollTop = term.scrollHeight; 
+    }
+
+    function updateStatus(){ 
+        status.innerHTML = '<strong>Estado:</strong> ' 
+            + (state.inited ? 'repo inicializado' : 'no inicializado') 
+            + ' | staging: [' + state.staged.join(', ') + '] | commits: ' 
+            + state.commits.length; 
+    }
+
+    function run(cmd){
+        write('$ ' + cmd);
+        const args = cmd.trim().split(/\s+/);
+        
+        if(cmd === 'git init'){
+            state.inited = true; 
+            write('Repositorio inicializado en .git/ (simulado)');
+        } 
+        else if(cmd === 'crear archivo.txt'){
+            if(!state.inited){ write('Error: inicializa el repo primero'); return; }
+            state.modified = ['archivo.txt'];
+            write('Archivo creado: archivo.txt (simulado)');
+        }
+        else if(cmd === 'git status'){
+            write('On branch main (simulado)');
+            if(state.modified.length){
+                write('Changes not staged for commit:');
+                state.modified.forEach(f=> write('  modified: ' + f));
+            }
+            if(state.staged.length){
+                write('Changes to be committed:');
+                state.staged.forEach(f=> write('  new file: ' + f));
+            }
+            if(!state.modified.length && !state.staged.length){
+                write('nothing to commit, working tree clean');
+            }
+        }
+        else if(cmd === 'git add' || cmd === 'git add .'){
+            if(!state.inited){ write('Error: inicializa primero'); return; }
+            if(!state.modified.length){ write('nothing to add'); return; }
+            state.staged = [...state.staged, ...state.modified];
+            state.modified = [];
+            write('Archivos agregados al staging: ' + state.staged.join(', ') + ' (simulado)');
+        }
+        else if(cmd === 'git add -p' || cmd === 'git add -p (patch)'){
+            if(!state.inited){ write('Error: inicializa primero'); return; }
+            write('Interactive patch mode (simulado):');
+            write('Stage this hunk [y,n,s,e,?]? y');
+            write(state.modified[0] + ' agregado a staging (simulado)');
+            state.staged = state.modified;
+            state.modified = [];
+        }
+        else if(cmd === 'git reset'){
+            state.modified = [...state.modified, ...state.staged];
+            state.staged = [];
+            write('Cambios devueltos a working directory (simulado)');
+        }
+        else if(cmd === 'git commit' || cmd.startsWith('git commit -m')){
+            if(!state.staged.length){ write('nothing to commit, working tree clean (simulado)'); return; }
+            const sha = Math.random().toString(36).slice(2,9);
+            state.commits.push({sha:sha, msg:'Commit simulado'});
+            state.staged = [];
+            write('[main ' + sha + '] Commit simulado');
+        }
+        else if(cmd === 'git commit --amend' || cmd === 'git commit --amend --no-edit'){
+            if(!state.commits.length){ write('Error: no hay commits para enmendar'); return; }
+            write('Commit anterior enmendado (simulado)');
+        }
+        else if(cmd === 'git log --oneline' || cmd === 'git log'){
+            if(!state.commits.length){ write('No hay commits (simulado)'); return; }
+            state.commits.slice().reverse().forEach(c=> write(c.sha + ' ' + c.msg));
+        }
+        else if(cmd === 'Limpiar terminal'){
+            term.innerHTML = '$ Simulador de staging y commits iniciado';
+        }
+        else {
+            write('Comando no reconocido en el simulador: ' + cmd);
+        }
+        
+        updateStatus();
+    }
+
+    btns.forEach(b=> {
+        b.addEventListener('click', ()=> {
+            const cmd = b.getAttribute('data-cmd');
+            if(cmd === 'clear'){ term.innerHTML = '$ Simulador limpiado'; updateStatus(); }
+            else { run(cmd); }
+        });
+    });
+
+    input.addEventListener('keydown', function(e){ 
+        if(e.key === 'Enter'){ 
+            run(input.value); 
+            input.value=''; 
+        } 
+    });
+
+    updateStatus();
+})();
+</script>
+</body>
+</html>

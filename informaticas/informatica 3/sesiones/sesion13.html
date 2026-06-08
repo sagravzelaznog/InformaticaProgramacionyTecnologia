@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 13: Manejo de Archivos Externos - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 13: Manejo de Archivos Externos</h1>
+                <p class="objective" id="session-objective"></p>
+            </header>
+            
+            <section class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión aprenderemos a trabajar con archivos externos desde VBA, lo que nos permitirá leer y escribir información en archivos de texto, procesar archivos CSV e interactuar con el sistema de archivos de Windows.</p>
+                </section>
+                
+                <section class="concept">
+                    <h2><i class="fas fa-file-alt"></i> Contenido de la Sesión</h2>
+                
+                    <h3><i class="fas fa-cog"></i> 1. El Objeto FileSystemObject</h3>
+                    <p>El <code>FileSystemObject</code> es una herramienta poderosa en VBA que nos permite interactuar con archivos y carpetas. Para usarlo, primero debemos agregar la referencia correspondiente:</p>
+                    <ol>
+                        <li>Ve a <strong>Herramientas &gt; Referencias</strong> en el Editor VBA</li>
+                        <li>Marca la casilla <strong>Microsoft Scripting Runtime</strong></li>
+                    </ol>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo: Crear un FileSystemObject</h4>
+                        <pre><code>Sub UsarFileSystemObject()
+    ' Crear una instancia del FileSystemObject
+    Dim fso As Object
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Verificar si existe un archivo
+    If fso.FileExists("C:\\ruta\\archivo.txt") Then
+        MsgBox "El archivo existe"
+    Else
+        MsgBox "El archivo no existe"
+    End If
+    
+    ' Liberar el objeto
+    Set fso = Nothing
+End Sub</code></pre>
+                    </div>
+                </article>
+                
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-book-reader"></i> 2. Lectura de Archivos de Texto</h3>
+                    <p>Podemos leer archivos de texto de varias formas. Aquí veremos el método más común usando <code>Open</code>:</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo: Leer un archivo de texto línea por línea</h4>
+                        <pre><code>Sub LeerArchivoTexto()
+    Dim rutaArchivo As String
+    Dim numLinea As Integer
+    Dim lineaTexto As String
+    
+    ' Especificar la ruta del archivo
+    rutaArchivo = "C:\\ruta\\ejemplo.txt"
+    numLinea = 0
+    
+    ' Abrir el archivo para lectura
+    Open rutaArchivo For Input As #1
+    
+    ' Leer el archivo línea por línea
+    Do Until EOF(1)
+        Line Input #1, lineaTexto
+        numLinea = numLinea + 1
+        ' Hacer algo con la línea leída
+        Debug.Print "Línea " & numLinea & ": " & lineaTexto
+    Loop
+    
+    ' Cerrar el archivo
+    Close #1
+    
+    MsgBox "Se leyeron " & numLinea & " líneas del archivo."
+End Sub</code></pre>
+                    </div>
+                </article>
+                
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-file-export"></i> 3. Escritura en Archivos de Texto</h3>
+                    <p>Para escribir en archivos de texto, podemos usar los modos <code>Output</code> (sobrescribe) o <code>Append</code> (agrega al final):</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo: Escribir en un archivo de texto</h4>
+                        <pre><code>Sub EscribirArchivoTexto()
+    Dim rutaArchivo As String
+    Dim i As Integer
+    
+    ' Especificar la ruta del archivo
+    rutaArchivo = "C:\\ruta\\salida.txt"
+    
+    ' Abrir el archivo para escritura (sobrescribe si existe)
+    Open rutaArchivo For Output As #1
+    
+    ' Escribir líneas en el archivo
+    Print #1, "Este es un archivo de ejemplo"
+    Print #1, "Generado el " & Date
+    Print #1, String(30, "-")
+    
+    ' Escribir datos de una tabla
+    For i = 1 To 5
+        Print #1, "Registro " & i & ", Valor " & i * 10
+    Next i
+    
+    ' Cerrar el archivo
+    Close #1
+    
+    MsgBox "Archivo guardado correctamente en: " & rutaArchivo, vbInformation
+End Sub</code></pre>
+                    </div>
+                </article>
+                
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-file-csv"></i> 4. Procesamiento de Archivos CSV</h3>
+                    <p>Los archivos CSV (valores separados por comas) son muy comunes para el intercambio de datos. Podemos procesarlos fácilmente con VBA:</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo: Leer un archivo CSV</h4>
+                        <pre><code>Sub LeerArchivoCSV()
+    Dim rutaArchivo As String
+    Dim lineaTexto As String
+    Dim valores() As String
+    Dim i As Integer
+    
+    ' Especificar la ruta del archivo CSV
+    rutaArchivo = "C:\\ruta\\datos.csv"
+    
+    ' Abrir el archivo para lectura
+    Open rutaArchivo For Input As #1
+    
+    ' Leer la primera línea (encabezados)
+    Line Input #1, lineaTexto
+    valores = Split(lineaTexto, ",")
+    
+    ' Mostrar los encabezados
+    Debug.Print "Encabezados:"
+    For i = LBound(valores) To UBound(valores)
+        Debug.Print "  " & i + 1 & ". " & valores(i)
+    Next i
+    
+    ' Leer el resto de líneas (datos)
+    Debug.Print vbNewLine & "Datos:"
+    Do Until EOF(1)
+        Line Input #1, lineaTexto
+        valores = Split(lineaTexto, ",")
+        ' Procesar los valores
+        For i = LBound(valores) To UBound(valores)
+            Debug.Print "  " & valores(i) & vbTab;
+        Next i
+        Debug.Print
+    Loop
+    
+    ' Cerrar el archivo
+    Close #1
+    
+    MsgBox "Procesamiento de CSV completado.", vbInformation
+End Sub</code></pre>
+                    </div>
+                </article>
+                
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-folder"></i> 5. Trabajando con Carpetas</h3>
+                    <p>Podemos usar el FileSystemObject para manipular carpetas y archivos:</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo: Listar archivos en una carpeta</h4>
+                        <pre><code>Sub ListarArchivosEnCarpeta()
+    Dim fso As Object
+    Dim carpeta As Object
+    Dim archivo As Object
+    Dim rutaCarpeta As String
+    Dim contador As Integer
+    
+    ' Crear el objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Especificar la ruta de la carpeta
+    rutaCarpeta = "C:\\ruta\\carpeta"
+    
+    ' Verificar si la carpeta existe
+    If fso.FolderExists(rutaCarpeta) Then
+        ' Obtener la carpeta
+        Set carpeta = fso.GetFolder(rutaCarpeta)
+        contador = 0
+        
+        ' Mostrar información de la carpeta
+        Debug.Print "Carpeta: " & carpeta.Name
+        Debug.Print "Ruta: " & carpeta.Path
+        Debug.Print "Tamaño: " & FormatNumber(carpeta.Size / 1024, 2) & " KB"
+        Debug.Print "Fecha de creación: " & carpeta.DateCreated
+        Debug.Print String(50, "-")
+        
+        ' Listar archivos en la carpeta
+        Debug.Print "Archivos en la carpeta:"
+        For Each archivo In carpeta.Files
+            contador = contador + 1
+            Debug.Print contador & ". " & archivo.Name & _
+                      " (" & FormatNumber(archivo.Size / 1024, 2) & " KB)"
+        Next archivo
+        
+        Debug.Print vbNewLine & "Total de archivos: " & contador
+    Else
+        MsgBox "La carpeta no existe: " & rutaCarpeta, vbExclamation
+    End If
+    
+    ' Liberar objetos
+    Set archivo = Nothing
+    Set carpeta = Nothing
+    Set fso = Nothing
+End Sub</code></pre>
+                    </div>
+                </article>
+                
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                <p>Crea una macro que:</p>
+                <ol>
+                    <li>Pida al usuario que seleccione un archivo de texto</li>
+                    <li>Cuente el número de palabras en el archivo</li>
+                    <li>Guarde el resultado en un nuevo archivo con el mismo nombre pero con el sufijo "_conteo"</li>
+                    <li>Muestre un resumen con el número de líneas, palabras y caracteres</li>
+                </ol>
+                
+                <button id="show-solution" class="btn">Mostrar Solución</button>
+                
+                <div id="solution" class="hidden">
+                    <h4>Solución Propuesta:</h4>
+                    <pre><code>Sub ContarPalabrasEnArchivo()
+    Dim fso As Object
+    Dim archivoOrigen As String
+    Dim archivoDestino As String
+    Dim contenido As String
+    Dim lineas() As String
+    Dim palabras() As String
+    Dim numLineas As Long, numPalabras As Long, numCaracteres As Long
+    Dim i As Integer
+    Dim textoSalida As String
+    
+    ' Crear el objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Pedir al usuario que seleccione un archivo
+    With Application.FileDialog(msoFileDialogFilePicker)
+        .Title = "Seleccione un archivo de texto"
+        .Filters.Clear
+        .Filters.Add "Archivos de texto", "*.txt"
+        .AllowMultiSelect = False
+        
+        If .Show = -1 Then ' Si el usuario seleccionó un archivo
+            archivoOrigen = .SelectedItems(1)
+            
+            ' Crear el nombre del archivo de salida
+            archivoDestino = Replace(archivoOrigen, ".txt", "_conteo.txt")
+            
+            ' Leer el archivo de origen
+            contenido = fso.OpenTextFile(archivoOrigen).ReadAll
+            
+            ' Contar líneas, palabras y caracteres
+            lineas = Split(contenido, vbNewLine)
+            numLineas = UBound(lineas) + 1
+            
+            ' Reemplazar saltos de línea y tabulaciones por espacios
+            contenido = Replace(contenido, vbNewLine, " ")
+            contenido = Replace(contenido, vbTab, " ")
+            
+            ' Dividir en palabras (considerando múltiples espacios)
+            palabras = Split(Application.Trim(contenido), " ")
+            numPalabras = UBound(palabras) + 1
+            
+            ' Contar caracteres (sin incluir espacios en blanco)
+            numCaracteres = Len(Replace(contenido, " ", ""))
+            
+            ' Crear el texto de salida
+            textoSalida = "INFORME DE ANÁLISIS DE TEXTO" & vbNewLine & String(30, "=") & vbNewLine & vbNewLine
+            textoSalida = textoSalida & "Archivo analizado: " & fso.GetFileName(archivoOrigen) & vbNewLine & vbNewLine
+            textoSalida = textoSalida & "ESTADÍSTICAS:" & vbNewLine
+            textoSalida = textoSalida & "- Líneas: " & numLineas & vbNewLine
+            textoSalida = textoSalida & "- Palabras: " & numPalabras & vbNewLine
+            textoSalida = textoSalida & "- Caracteres (sin espacios): " & numCaracteres & vbNewLine
+            
+            ' Escribir el archivo de salida
+            With fso.CreateTextFile(archivoDestino, True)
+                .Write textoSalida
+                .Close
+            End With
+            
+            ' Mostrar resumen
+            MsgBox "Análisis completado con éxito." & vbNewLine & _
+                   "Resultados guardados en: " & archivoDestino, _
+                   vbInformation, "Análisis de Texto"
+            
+            ' Mostrar el archivo generado
+            Shell "notepad.exe " & Chr(34) & archivoDestino & Chr(34), vbNormalFocus
+        End If
+    End With
+    
+    ' Liberar memoria
+    Set fso = Nothing
+End Sub</code></pre>
+                </>
+                
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                <ul>
+                    <li>El <strong>FileSystemObject</strong> es una herramienta poderosa para trabajar con archivos y carpetas en VBA.</li>
+                    <li>Podemos <strong>leer archivos de texto</strong> línea por línea o todo el contenido de una vez.</li>
+                    <li>Para <strong>escribir en archivos</strong>, podemos usar los modos <code>Output</code> (sobrescribir) o <code>Append</code> (agregar al final).</li>
+                    <li>Los archivos <strong>CSV</strong> se pueden procesar fácilmente dividiendo las líneas por comas.</li>
+                    <li>Podemos <strong>listar, crear, copiar y eliminar</strong> archivos y carpetas usando los métodos del FileSystemObject.</li>
+                    <li>Es importante <strong>manejar errores</strong> al trabajar con archivos, verificando siempre si existen antes de intentar acceder a ellos.</li>
+                </ul>
+                
+                </section>
+
+                
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Mostrar/ocultar la solución del ejercicio
+        document.addEventListener('DOMContentLoaded', function() {
+            const showSolutionBtn = document.getElementById('show-solution');
+            if (showSolutionBtn) {
+                showSolutionBtn.addEventListener('click', function() {
+                    const solution = document.getElementById('solution');
+                    if (solution.style.display === 'none' || !solution.style.display) {
+                        solution.style.display = 'block';
+                        this.innerHTML = '<i class="fas fa-eye-slash"></i> Ocultar Solución';
+                    } else {
+                        solution.style.display = 'none';
+                        this.innerHTML = '<i class="fas fa-eye"></i> Mostrar Solución';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Fundamentos de VBA I - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 4: Fundamentos de VBA I</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender los elementos básicos del lenguaje VBA, incluyendo variables, tipos de datos y operadores.</p>
+            </header>
+
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>VBA (Visual Basic for Applications) es un lenguaje de programación que nos permite crear macros y automatizar tareas en Excel. Es como darle superpoderes a Excel para que haga cosas increíbles por nosotros.</p>
+                    
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>¿Por qué aprender VBA?</h3>
+                        <ul>
+                            <li>Automatiza tareas repetitivas</li>
+                            <li>Ahorra tiempo y reduce errores</li>
+                            <li>Personaliza Excel a tus necesidades</li>
+                            <li>Mejora tu productividad</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-cube"></i> Variables en VBA</h2>
+                    <p>Las variables son como cajas donde guardamos información. Cada caja tiene un nombre y un tipo de dato específico.</p>
+                    
+                    <div class="code-example">
+                        <div class="example-header">
+                            <i class="fas fa-code"></i>
+                            <h3>Cómo declarar variables</h3>
+                        </div>
+                        <pre><code>Dim nombreVariable As TipoDeDato</code></pre>
+                        <p>Ejemplos:</p>
+                        <pre><code>Dim edad As Integer
+Dim nombre As String
+Dim sueldo As Double
+Dim esActivo As Boolean</code></pre>
+                    </div>
+
+                    <div class="exercise">
+                        <div class="exercise-header">
+                            <i class="fas fa-pen"></i>
+                            <h3>Ejercicio Práctico 1</h3>
+                        </div>
+                        <p>Crea variables para almacenar la siguiente información de un estudiante:</p>
+                        <ol>
+                            <li>Nombre (texto)</li>
+                            <li>Edad (número entero)</li>
+                            <li>Promedio (número decimal)</li>
+                            <li>¿Es becado? (verdadero/falso)</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-database"></i> Tipos de Datos en VBA</h2>
+                    <p>VBA tiene diferentes tipos de datos. Aquí están los más importantes:</p>
+                    
+                    <table class="data-types">
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo</th>
+                            <th>Rango</th>
+                        </tr>
+                        <tr>
+                            <td><code>Integer</code></td>
+                            <td>Números enteros</td>
+                            <td>15, -3, 0</td>
+                            <td>-32,768 a 32,767</td>
+                        </tr>
+                        <tr>
+                            <td><code>Long</code></td>
+                            <td>Números enteros grandes</td>
+                            <td>50000, -1000000</td>
+                            <td>-2,147,483,648 a 2,147,483,647</td>
+                        </tr>
+                        <tr>
+                            <td><code>Double</code></td>
+                            <td>Números decimales</td>
+                            <td>3.1416, -0.5, 100.75</td>
+                            <td>±5.0 × 10^-324 a ±1.7 × 10^308</td>
+                        </tr>
+                        <tr>
+                            <td><code>String</code></td>
+                            <td>Texto</td>
+                            <td>"Hola", "Excel"</td>
+                            <td>Hasta 2 mil millones de caracteres</td>
+                        </tr>
+                        <tr>
+                            <td><code>Boolean</code></td>
+                            <td>Valores lógicos</td>
+                            <td>True, False</td>
+                            <td>True o False</td>
+                        </tr>
+                        <tr>
+                            <td><code>Date</code></td>
+                            <td>Fechas y horas</td>
+                            <td>#01/01/2023#</td>
+                            <td>1/1/100 al 31/12/9999</td>
+                        </tr>
+                    </table>
+
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Consejo</h3>
+                        <p>Usa siempre el tipo de dato más adecuado. Por ejemplo, usa <code>Integer</code> para edades y <code>Double</code> para cálculos con decimales.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-calculator"></i> Operadores en VBA</h2>
+                    <p>Los operadores nos permiten realizar operaciones con variables y valores.</p>
+                    
+                    <h3>Operadores Aritméticos</h3>
+                    <ul>
+                        <li><code>+</code> Suma</li>
+                        <li><code>-</code> Resta</li>
+                        <li><code>*</code> Multiplicación</li>
+                        <li><code>/</code> División</li>
+                        <li><code>\</code> División entera (descarta decimales)</li>
+                        <li><code>^</code> Potencia</li>
+                        <li><code>Mod</code> Módulo (resto de la división)</li>
+                    </ul>
+
+                    <div class="code-example">
+                        <h3>📌 Ejemplo de operaciones</h3>
+                        <pre><code>Dim resultado As Double
+resultado = 10 + 5 * 2  ' resultado = 20
+resultado = (10 + 5) * 2  ' resultado = 30
+resultado = 10 / 3  ' resultado = 3.333...
+resultado = 10 \ 3  ' resultado = 3 (división entera)
+resultado = 10 Mod 3  ' resultado = 1 (resto de 10/3)</code></pre>
+                    </div>
+
+                    <h3>Operadores de Comparación</h3>
+                    <ul>
+                        <li><code>=</code> Igual a</li>
+                        <li><code><></code> Diferente de</li>
+                        <li><code><</code> Menor que</li>
+                        <li><code>></code> Mayor que</li>
+                        <li><code><=</code> Menor o igual que</li>
+                        <li><code>>=</code> Mayor o igual que</li>
+                    </ul>
+
+                    <h3>Operadores Lógicos</h3>
+                    <ul>
+                        <li><code>And</code> Y lógico</li>
+                        <li><code>Or</code> O lógico</li>
+                        <li><code>Not</code> Negación lógica</li>
+                    </ul>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Ejercicio Práctico 2</h2>
+                    </div>
+                    <p>Crea un pequeño programa en VBA que:</p>
+                    <ol>
+                        <li>Pida al usuario su nombre, edad y estatura</li>
+                        <li>Calcule el año aproximado de nacimiento</li>
+                        <li>Muestre un mensaje personalizado según la edad</li>
+                    </ol>
+
+                    <div class="hint">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Pista</h3>
+                        <p>Usa <code>InputBox</code> para pedir datos al usuario y <code>MsgBox</code> para mostrar mensajes.</p>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>Las variables son contenedores para almacenar información</li>
+                        <li>Cada variable tiene un tipo de dato específico (Integer, String, Double, etc.)</li>
+                        <li>Los operadores nos permiten realizar operaciones con variables y valores</li>
+                        <li>Es importante elegir el tipo de dato adecuado para cada variable</li>
+                    </ul>
+
+                    <div class="challenge">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Desafío Adicional</h3>
+                        <p>Crea un programa que convierta grados Celsius a Fahrenheit usando la fórmula: <code>F = (C × 9/5) + 32</code></p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+                <div class="nav-buttons">
+                    <a href="sesion3.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion5.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

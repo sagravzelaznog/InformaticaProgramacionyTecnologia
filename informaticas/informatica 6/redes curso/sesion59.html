@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S15 E59: Presentación Final de Proyectos (I)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 15, Sesión 59: Presentación de Proyectos (I) 🗣️</h1>
+        <p class="subtitle">Exposición del Diseño, Implementación y Documentación del Proyecto PyME</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Elementos Clave de una Presentación Técnica Exitosa</h2>
+            <p>La presentación no es solo mostrar tu red funcionando; es convencer a tu "cliente" (el instructor/jurado) de que tu solución es la mejor, más segura y mejor documentada.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>El "Qué" y el "Por Qué"</h3>
+                    <p>Comienza explicando tu diseño (**Diagrama Lógico**) y la justificación de tus decisiones (ej. "¿Por qué elegí /24?", "¿Por qué usé SSH?", "¿Dónde apliqué el DHCP?").</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>El Diagnóstico</h3>
+                    <p>Demuestra que la red funciona. Haz un **ping de extremo a extremo** (PC a Servidor), muestra el resultado de **ipconfig** en un cliente y verifica la tabla de **Rutas Estáticas** del Router.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Estructura Sugerida de la Presentación</h2>
+            <p>Una presentación clara y concisa (idealmente 8-10 minutos) debe seguir esta estructura:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Diapositiva 1: Introducción</h3>
+                    <p>Nombre del Proyecto, tu nombre y el objetivo.</p>
+                </div>
+                <div>
+                    <h3>Diapositiva 2-3: Diseño Lógico y Direccionamiento</h3>
+                    <p>Muestra el diagrama lógico y explica la tabla de IPs estáticas y el Pool DHCP.</p>
+                </div>
+                <div>
+                    <h3>Diapositiva 4: Implementación de Servicios</h3>
+                    <p>Muestra la configuración clave (ej. SSH habilitado, DHCP activo, NAT). Muestra el **Ping Exitoso**.</p>
+                </div>
+                <div>
+                    <h3>Diapositiva 5: Conclusiones y Troubleshooting</h3>
+                    <p>Resume los puntos fuertes de tu diseño y explica cómo diagnosticarías un fallo común (ej. "Si el ping falla, revisaría primero el Gateway").</p>
+                </div>
+            </div>
+            [Image of person presenting a network diagram on a screen]
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Ensayar y Preparar la Demostración</h2>
+            <p><strong>Tarea Práctica (Preparación):</strong></p>
+            <ol>
+                <li>Prepara tus diapositivas y el archivo **.pkt** (Packet Tracer) de tu proyecto.</li>
+                <li>Ensaya la presentación para asegurar que cumpla con el tiempo límite.</li>
+                <li>Asegúrate de que todos los comandos de diagnóstico estén a la mano para la demostración.</li>
+            </ol>
+            <button id="projectPresent1CheckBtn">Inicia la Presentación</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S15 E59</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion58.html" class="nav-button">Anterior</a>
+        <a href="sesion60.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

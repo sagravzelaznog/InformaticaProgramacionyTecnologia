@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Matemáticas y Trigonométricas en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #9b59b6;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #3498db;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #2980b9;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2ecc71;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .formula {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            border-left: 3px solid var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones Matemáticas y Trigonométricas en Excel</h1>
+            <p>Herramientas para cálculos matemáticos y trigonométricos</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- MATEMÁTICAS BÁSICAS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('matematicas')">
+                <h2>Matemáticas Básicas</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="matematicas">
+                <p>Funciones para operaciones matemáticas fundamentales.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Funciones de suma</h4>
+                    <pre>// Suma simple
+=SUMA(A1:A10)  // Suma los valores del rango A1:A10
+
+// Suma con condición
+=SUMAR.SI(B1:B10, ">100")  // Suma valores mayores a 100
+
+// Suma con múltiples condiciones
+=SUMAR.SI.CONJUNTO(C1:C10, A1:A10, "=Rojo", B1:B10, ">50")</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Operaciones básicas</h4>
+                    <pre>// Producto de un rango
+=PRODUCTO(A1:A5)  // Multiplica todos los valores en A1:A5
+
+// División entera y residuo
+=COCIENTE(10, 3)  // Resultado: 3 (parte entera de 10/3)
+=RESIDUO(10, 3)   // Resultado: 1 (resto de 10/3)
+
+// Potencia y raíz
+=POTENCIA(2, 3)   // 2 elevado a 3 = 8
+=RAIZ(16)         // Raíz cuadrada de 16 = 4</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Números aleatorios</h4>
+                    <pre>// Número aleatorio entre 0 y 1
+=ALEATORIO()
+
+// Número entero aleatorio entre 1 y 100
+=ALEATORIO.ENTRE(1, 100)
+
+// Para forzar la actualización de números aleatorios
+// Presiona F9 o ve a Fórmulas > Calcular Ahora</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Cálculo de promedios ponderados</h4>
+                    <p>Datos: A1:A5 = Notas (80, 90, 75, 85, 95), B1:B5 = Pesos (0.2, 0.2, 0.15, 0.2, 0.25)</p>
+                    <p>Calcula el promedio ponderado de las notas.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=SUMAPRODUCTO(A1:A5, B1:B5)/SUMA(B1:B5)
+// Resultado: 85.75</pre>
+                        <p>Explicación: Multiplica cada nota por su peso, suma los resultados y divide entre la suma de los pesos.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Números aleatorios únicos</h4>
+                    <p>Crea una fórmula que genere 5 números aleatorios únicos entre 1 y 50.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <p>En Excel 365 con funciones dinámicas:</p>
+                        <pre>=SORTBY(ALEATORIO.ENTRE(1, 50, 5), ALEATORIO.ARRAY(5))</pre>
+                        <p>En versiones anteriores, usa una columna auxiliar con ALEATORIO() y ordena por ella.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REDONDEO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('redondeo')">
+                <h2>Funciones de Redondeo</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="redondeo" style="display: none;">
+                <p>Diferentes métodos para redondear números en Excel.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Redondeo estándar</h4>
+                    <pre>// Redondear a 2 decimales
+=REDONDEAR(3.14159, 2)  // 3.14
+
+// Redondear al entero más cercano
+=REDONDEAR(3.7, 0)      // 4
+
+// Redondear a la centena más cercana
+=REDONDEAR(1234, -2)    // 1200</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Redondeo hacia arriba/abajo</h4>
+                    <pre>// Redondear siempre hacia arriba
+=REDONDEAR.MAS(3.2, 0)   // 4
+=REDONDEAR.MAS(-3.2, 0)  // -4 (más negativo)
+
+// Redondear siempre hacia abajo
+=REDONDEAR.MENOS(3.9, 0)  // 3
+=REDONDEAR.MENOS(-3.9, 0) // -3 (menos negativo)
+
+// Entero inferior
+=ENTERO(3.9)  // 3
+=ENTERO(-3.9) // -4 (siempre hacia abajo en la recta numérica)
+
+// Truncar decimales
+=TRUNCAR(3.987, 1)  // 3.9 (elimina sin redondear)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Redondeo comercial</h4>
+                    <p>Datos: Precios en A1:A5 = (12.345, 45.678, 78.901, 23.456, 56.789)</p>
+                    <p>Redondea los precios a 2 decimales, pero si el tercer decimal es 5 o más, redondea hacia arriba.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=REDONDEAR(A1, 2)  // Para cada celda
+// Resultados: 12.35, 45.68, 78.90, 23.46, 56.79</pre>
+                        <p>Nota: La función REDONDEAR ya sigue esta lógica por defecto.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Redondeo a múltiplos</h4>
+                    <p>Redondea el número 123.456 al múltiplo de 5 más cercano (hacia arriba).</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=REDONDEAR.MAS(123.456/5, 0)*5  // Resultado: 125</pre>
+                        <p>Explicación: Divide entre 5, redondea al entero superior, y multiplica por 5.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRIGONOMETRÍA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('trigonometria')">
+                <h2>Funciones Trigonométricas</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="trigonometria" style="display: none;">
+                <p>Funciones para cálculos trigonométricos en radianes y grados.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Funciones básicas</h4>
+                    <pre>// Ángulo de 30 grados (convertir a radianes primero)
+=SENO(RADIANES(30))  // 0.5
+
+// Coseno de 60 grados
+=COS(RADIANES(60))   // 0.5
+
+// Tangente de 45 grados
+=TAN(RADIANES(45))   // 1</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Funciones inversas</h4>
+                    <pre>// Arcoseno de 0.5 (en radianes)
+=ASENO(0.5)          // 0.5236 radianes
+
+// Convertir a grados
+=GRADOS(ASENO(0.5))  // 30 grados
+
+// Arcotangente de 1
+=GRADOS(ATAN(1))     // 45 grados</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Aplicaciones prácticas</h4>
+                    <pre>// Calcular la hipotenusa de un triángulo (a=3, b=4)
+=RAIZ(3^2 + 4^2)     // 5
+
+// Convertir coordenadas polares a cartesianas (r=5, θ=30°)
+// x = r * cos(θ)
+=5 * COS(RADIANES(30))  // 4.33
+// y = r * sen(θ)
+=5 * SENO(RADIANES(30)) // 2.5</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Cálculo de altura</h4>
+                    <p>Estás a 20 metros de la base de un edificio y el ángulo de elevación a la parte superior es de 60°.</p>
+                    <p>Calcula la altura del edificio.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>// altura = distancia * tan(ángulo)
+=20 * TAN(RADIANES(60))  // 34.64 metros</pre>
+                        <p>Explicación: La tangente del ángulo es igual al cateto opuesto (altura) entre el cateto adyacente (distancia).</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Frecuencia de ondas</h4>
+                    <p>Una onda tiene un período de 0.02 segundos. Calcula su frecuencia en Hz.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>// frecuencia = 1 / período
+=1/0.02  // 50 Hz</pre>
+                        <p>Nota: Este es un ejemplo de aplicación de matemáticas básicas en física.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

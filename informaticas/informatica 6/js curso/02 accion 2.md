@@ -1,0 +1,24 @@
+# Accion
+
+- Crea un archivo html con el nombre de "sesion#.html" con el contenido de la sesion #.
+- El contenido de sesion # debe ser detallado de manera que sea facil de entender para un estudiante de bachillerato, didactico, práctico y simplificado.
+- Ejemplo de ejercicio de sesion # paso a paso.
+- Actividad de sesion # paso a paso.
+- Resumen de sesion # paso a paso.
+- INCLUYE A DOLA AI PARA PREGUNTAS Y DUDAS.
+- El archivo se debe guardar en la carpeta sesiones.
+- Debe prepararse para ser vinculado con el archivo de sesiones index.html.
+- debe contener una navegacion en la parte lateral izquierda con los enlaces a las demas sesiones y no debe ser de un ancho mayor al 10%.
+- debe visualizarse correctamente en cualquier navegador y dispositivo.
+- debe ser responsivo.
+- debe ser accesible.
+- debe ser seguro.
+- debe ser optimizado.
+- debe ser mantenible.
+- debe ser escalable.
+- debe ser compatible con las ultimas versiones de los navegadores.
+- debe contener un pie de pagina "&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.".
+- debe contener un enlace a la sesion anterior y la siguiente.
+- el tema de colores para la pagina debe ser azul claro con contraste con texto en esmeralda.
+- debe contener un archivo css externo con nombre "style.css" utilizable para todas las paginas.
+- debe contener un archivo js externo con nombre "script.js" utilizable para todas las paginas.

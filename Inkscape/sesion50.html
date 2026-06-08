@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S50: Creación de Pinceles y Perfiles de Trazo</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 50: Creación de Pinceles y Perfiles de Trazo</h1>
+
+    <section>
+        <h2>1. Estilos de Terminación y Uniones de Trazo</h2>
+        [Image of different stroke caps (Butt, Round, Square) and stroke joins (Miter, Round, Bevel)]
+        <p>El diálogo **Relleno y Borde (Shift + Ctrl + F)**, pestaña **Estilo de Trazo**, es clave para definir la apariencia de las líneas vectoriales.</p>
+        <div class="paso">
+            <strong>Tipo de Terminación (Cap)</strong>
+            <p>Define cómo termina una línea abierta:</p>
+            <ul>
+                <li>**Extremo A tope (Butt):** Termina exactamente en el nodo.</li>
+                <li>**Extremo Redondeado (Round):** Añade un semicírculo al final.</li>
+                <li>**Extremo Cuadrado (Square):** Añade un cuadrado al final (se extiende más allá del nodo).</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Tipo de Unión (Join)</strong>
+            <p>Define la apariencia de las esquinas:</p>
+            <ul>
+                <li>**Unión A inglete (Miter):** Esquina puntiaguda.</li>
+                <li>**Unión Redondeada (Round):** Esquina curva suave.</li>
+                <li>**Unión Biselada (Bevel):** Esquina plana.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Perfiles de Trazo Variables (Width/Powerstroke)</h2>
+        <p>Los perfiles de trazo permiten simular un pincel que varía su grosor a lo largo de la línea. Esto se logra con la herramienta **Editor de Nodos (F2)**.</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar y Seleccionar Trazo</strong>
+            <p>Dibuja un trayecto con la **Pluma (B)** o el **Lápiz (P)**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Activar Powerstroke</strong>
+            <p>Selecciona el trayecto y activa la herramienta **Editor de Nodos (F2)**. Verás nuevos manejadores de grosor (diamantes o círculos) en los nodos del trayecto.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Editar el Perfil</strong>
+            <p>Haz clic y arrastra estos manejadores para **engrosar o adelgazar** el trazo en ese punto específico. Esto crea el efecto de pincel variable, ideal para la ilustración orgánica y el estilo de cómic/manga.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Crear Pinceles de Patrón (LPE: Patrón a lo Largo de Trayecto)</h2>
+        <p>Aunque no son "pinceles" en el sentido de otros programas, Inkscape puede repetir un objeto a lo largo de un trayecto, simulando un pincel de patrón.</p>
+        <div class="paso">
+            <strong>Paso 1: Objeto y Trayecto Guía</strong>
+            <p>Dibuja el **objeto de pincel** (ej. una hoja, una gota). Dibuja la línea donde quieres que se repita (el **trayecto guía**).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Aplicar el LPE</strong>
+            <p>Selecciona el **trayecto guía**. Ve a <code>Trayecto > Efectos de Trayecto (Shift + Ctrl + 7)</code> y añade el efecto **Patrón a lo largo de trayecto (Pattern Along Path)**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Vincular el Patrón</strong>
+            <p>En el diálogo del LPE, en la opción **Patrón/Copia**, selecciona **Vincular a Portapapeles**. Copia el objeto de pincel (**Ctrl + C**) y haz clic en el botón de la extensión. El objeto se repetirá automáticamente a lo largo de la línea.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Rama con Hoja y Pincel Caligráfico</h3>
+        <p><strong>Objetivo:</strong> Usar perfiles de trazo y patrones.</p>
+        <ol>
+            <li>Dibuja la rama de un árbol con la Pluma y aplica un perfil de trazo variable (**Powerstroke**) para que la base sea gruesa y el extremo sea fino.</li>
+            <li>Dibuja una pequeña hoja simple y conviértela a trayecto.</li>
+            <li>Dibuja un trazo curvo que representará el camino de las hojas.</li>
+            <li>Aplica el LPE **Patrón a lo Largo de Trayecto** usando la hoja como patrón.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion49.html">Anterior</a>
+    <a href="sesion51.html">Siguiente</a>
+</nav>
+</body>
+</html>

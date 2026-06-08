@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S10 E40: Práctica Integral de Seguridad y Acceso Remoto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 10, Sesión 40: Práctica de Seguridad Avanzada 🛡️</h1>
+        <p class="subtitle">Implementación de SSH, WPA3 y Pruebas de Acceso Remoto</p>
+    </header>
+
+    <section class="topic-section">
+        <h2>1. Escenario de Práctica: Securización de un Router</h2>
+        <p>Se te pide configurar un router y un servidor de forma segura para soportar teletrabajo y evitar accesos no autorizados a la red Wi-Fi.</p>
+            
+        <div class="card-grid">
+{{ ... }}
+                    <h3>Requisitos de Seguridad Inalámbrica</h3>
+                    <ul>
+                        <li>Usar cifrado **WPA2-AES** (simulando WPA3 si el dispositivo no lo soporta).</li>
+                        <li>Configurar una lista de **Filtrado MAC** para solo permitir el acceso a tu PC.</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Requisitos de Acceso Remoto</h3>
+                    <ul>
+                        <li>Habilitar **SSH** en el Router (configuración de línea de comandos).</li>
+                        <li>**Deshabilitar Telnet** en el Router.</li>
+                        <li>Simular la conexión al Router usando **PuTTY** (cliente SSH).</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Pasos de Implementación en Packet Tracer (Configuración CLI)</h2>
+            <p>Esta práctica requiere usar la interfaz de línea de comandos (CLI) del Router en Packet Tracer:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Configuración SSH (CLI)</h3>
+                    <ol>
+                        <li>Configura el nombre del dominio (`ip domain-name ejemplo.com`).</li>
+                        <li>Genera claves RSA (`crypto key generate rsa`).</li>
+                        <li>Activa SSH y configura el usuario (`line vty 0 4`, `transport input ssh`).</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Prueba de Seguridad</h3>
+                    <p>Intenta conectarte al Router por **Telnet** (debe fallar). Luego, conéctate por **SSH** (debe ser exitoso).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Documentación de Seguridad</h2>
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <p>Documenta el proceso que seguiste para deshabilitar Telnet y habilitar SSH en el Router. Este es un procedimiento estándar en cualquier red de producción.</p>
+            <button id="securityProjectCheckBtn">Finalizar Proyecto de Seguridad</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S10 E40</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion39.html" class="nav-button">Anterior</a>
+        <a href="sesion41.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

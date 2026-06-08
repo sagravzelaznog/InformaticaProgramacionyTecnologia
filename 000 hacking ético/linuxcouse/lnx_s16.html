@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion16: Análisis de Logs y Empaquetado</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 16: El Archivo Final (Logs y Tarballs)</h1>
+            <p class="intro-text">¡Felicidades, investigador! Has extraído las huellas del atacante. Ahora debes recopilar los registros del sistema (logs) que narran la historia del ataque y sellarlo todo en una sola "caja fuerte" digital para entregarla a los tribunales. Esta es tu última misión en el Sandbox.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Diario del Sistema (journalctl)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En los sistemas Linux modernos, todos los servicios reportan a <em>systemd</em>. El comando <code>journalctl</code> es tu máquina del tiempo para ver exactamente qué falló y cuándo.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Ver logs de un servicio específico (ej. el servidor SSH)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo journalctl -u ssh
+
+<span class="comment"># Ver logs en vivo (como si estuvieras viendo la Matrix)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo journalctl -f</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Compilación de Evidencia</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Vamos a reunir nuestra evidencia en una sola carpeta antes de empaquetarla. Crearemos nuestro "Maletín de Pruebas".</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Creamos la carpeta del caso</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> mkdir Caso_001_AtaqueWeb
+
+<span class="comment"># Copiamos los logs vitales y las firmas que hicimos en la sesión 14</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo cp /var/log/auth.log Caso_001_AtaqueWeb/
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo cp /var/log/syslog Caso_001_AtaqueWeb/
+<span class="prompt">-(kali㉿kali)-[~]$</span> mv doc_legal.sha256 Caso_001_AtaqueWeb/</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: El Arte de Sellar (Simulador Tarball)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>No puedes enviar 50 archivos sueltos a un juez. Debes empaquetarlos (Tape Archive - <code>tar</code>) y comprimirlos (<code>gzip</code>) en un archivo inmutable. Observa cómo interactúan estos procesos en el simulador antes de ejecutar el comando final.</p>
+                    
+                    <div class="vault-container">
+                        <div class="vault-controls">
+                            <button id="btn-pack-evidence" class="btn btn-gold">Ejecutar: tar -czvf Caso_001.tar.gz</button>
+                        </div>
+                        <div class="packing-area">
+                            <div class="files-grid" id="files-grid">
+                                <div class="file-item">auth.log</div>
+                                <div class="file-item">syslog</div>
+                                <div class="file-item">firma.sha256</div>
+                                <div class="file-item">imagen.dd</div>
+                            </div>
+                            <div class="compressor-funnel">
+                                <div id="tar-laser" class="tar-laser hidden">COMPRIMIENDO...</div>
+                            </div>
+                            <div class="final-archive" id="final-archive">
+                                <div class="archive-box hidden" id="archive-box">
+                                    <span>📦 Caso_001.tar.gz</span>
+                                    <div class="seal" id="archive-seal">SELLADO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El Cierre del Caso (tar)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El comando <code>tar</code> tiene cuatro banderas (flags) sagradas para empaquetar: <strong>-c</strong> (create), <strong>-z</strong> (gzip compresión), <strong>-v</strong> (verbose, para ver qué empaca) y <strong>-f</strong> (file, especifica el nombre del archivo final). <em>Nota: La 'f' SIEMPRE debe ir al final de los flags.</em></p>
+                    <div class="tip-card" style="border-left-color: #fbbf24; background-color: rgba(251, 191, 36, 0.08);">
+                        <strong style="color: #fcd34d;">🏆 Regla de Oro Final:</strong> El archivo resultante (.tar.gz) DEBE ser firmado inmediatamente con SHA-256 (como aprendimos en la sesión 14) antes de transferirlo.
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Empacamos la carpeta del caso (Crea el archivo final en rojo/dorado)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo tar -czvf Caso_001_Final.tar.gz Caso_001_AtaqueWeb/
+
+<span class="comment"># Listar el contenido de la bóveda para verificar (sin extraerlo) usando -t</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> tar -tvf Caso_001_Final.tar.gz
+
+<span class="comment"># Generar la firma final del caso</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sha256sum Caso_001_Final.tar.gz > Acta_Final.sha256</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #16. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

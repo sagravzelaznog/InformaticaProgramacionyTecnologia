@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S7 E26: Troubleshooting de Conectividad (Fase II)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 7, Sesión 26: Troubleshooting (Fase II) 🛑</h1>
+        <p class="subtitle">Direcciones IP Duplicadas, Fallos de Gateway y DNS</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Errores Comunes de Configuración IP</h2>
+            <p>La mayoría de los fallos de conectividad se deben a un error en la configuración manual o automática de la IP.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Dirección IP Duplicada</h3>
+                    <p>Dos dispositivos tienen la misma IP. El sistema operativo suele alertar, y la red se vuelve inestable para ambos hosts. Solución: Asegurarse de que el servidor DHCP excluya las IP estáticas.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Máscara Incorrecta</h3>
+                    <p>Si la máscara es incorrecta, el PC creerá que otros dispositivos están en su red cuando no lo están (o viceversa), impidiendo la comunicación local.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Fallos del Gateway y Problemas de Capa 3</h2>
+            <p>Si el **Paso 2 de PING** funciona (llega al Gateway), pero el **Paso 3** falla (no llega a 8.8.8.8), el problem está en el router o en la conexión a Internet.</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>El Router no Enruta (Capa 3)</h3>
+                    <p>El router puede estar encendido, pero ha perdido la IP de su interfaz WAN (la que da al ISP) o su tabla de enrutamiento es incorrecta. Solución: Reiniciar el router o verificar la configuración WAN.</p>
+                </div>
+                <div>
+                    <h3>Error de DNS (Falla la Capa de Aplicación)</h3>
+                    <p>Si `ping 8.8.8.8` funciona pero `ping google.com` falla, el problema es que el PC no sabe cómo traducir el nombre. Solución: Verificar que la IP del servidor DNS en el PC y el Router sea correcta (ej. 8.8.8.8 o 1.1.1.1).</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Simulación de Falla Compleja</h2>
+            <p><strong>Escenario Práctico (Simulación en Packet Tracer):</strong></p>
+            <ol>
+                <li>Crea una red con 1 Router, 1 PC. Asigna IP estática 192.168.1.10 y Gateway 192.168.1.1.</li>
+                <li>Simula una **IP duplicada** asignando intencionalmente 192.168.1.10 a la interfaz LAN del Router.</li>
+                <li>Intenta hacer ping desde el PC al Router. Observa el fallo y la inestabilidad.</li>
+                <li>Corrige el fallo, cambiando la IP del Router a 192.168.1.1.</li>
+            </ol>
+            <button id="troubleshootQuizBtn">Evaluar Fallos Comunes</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S7 E26</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion25.html" class="nav-button">Anterior</a>
+        <a href="sesion27.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

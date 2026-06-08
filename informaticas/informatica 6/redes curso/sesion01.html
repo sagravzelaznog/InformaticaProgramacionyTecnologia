@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1 E1: Introducción a Redes de Computadoras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 1, Sesión 1: Introducción a Redes de Computadoras 🌐</h1>
+        <p class="subtitle">Conceptos Básicos y Fundamentos Teóricos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>¿Qué es una Red de Computadoras? 🌐</h2>
+            <p>En términos sencillos, una **Red de Computadoras** es un conjunto de equipos informáticos y software conectados entre sí por medio de cables, señales inalámbricas u otros medios. El objetivo principal es **compartir información, recursos y servicios**.</p>
+            
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x400/00a896/FFFFFF?text=Red+de+Computadoras" alt="Red de computadoras conectadas">
+                <figcaption>Red de computadoras conectadas mostrando la interconexión de dispositivos.</figcaption>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>Elementos Clave de una Red 🛠️</h2>
+            <p>Para que una red funcione, necesita cuatro elementos fundamentales:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Nodos (Hosts)</h3>
+                    <p>Son los dispositivos que se conectan a la red para comunicarse. Ejemplos:</p>
+                    <ul>
+                        <li>**Computadoras** (PC, Laptops)</li>
+                        <li>**Servidores** (almacenan información centralizada)</li>
+                        <li>**Teléfonos Inteligentes** e Impresoras.</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/600x300/007BFF/FFFFFF?text=Dispositivos+de+Red" alt="Dispositivos de red - Computadoras y servidores">
+                        <figcaption>Ejemplos de nodos en una red: computadoras, servidores, impresoras y dispositivos móviles.</figcaption>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>2. Medios de Transmisión</h3>
+                    <p>Es el "camino" por donde viajan los datos. Pueden ser:</p>
+                    <ul>
+                        <li>**Físicos (Cableados):** UTP (Ethernet), Fibra Óptica.</li>
+                        <li>**Inalámbricos:** Ondas de radio (Wi-Fi), Microondas.</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/600x300/ffc107/000000?text=Medios+de+Transmision" alt="Cables de red y conexiones">
+                        <figcaption>Medios de transmisión: cables UTP, fibra óptica y conexiones inalámbricas.</figcaption>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>3. Dispositivos de Interconexión</h3>
+                    <p>Estos dispositivos gestionan el tráfico y conectan los segmentos de la red:</p>
+                    <ul>
+                        <li>**Routers:** Dirigen el tráfico entre redes distintas (e.g., tu casa e Internet).</li>
+                        <li>**Switches:** Conectan dispositivos dentro de una misma red local (LAN).</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/600x300/28a745/FFFFFF?text=Router+y+Switch" alt="Router y Switch de red">
+                        <figcaption>Dispositivos de interconexión: Router (conecta redes) y Switch (conecta dispositivos en la misma red).</figcaption>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>4. Protocolos (Reglas)</h3>
+                    <p>Son las reglas y estándares que definen cómo se empaquetan, envían y reciben los datos. El más conocido es el **TCP/IP**.</p>
+                    <p class="highlight">Imagínalo como el idioma que hablan los dispositivos para entenderse.</p>
+                    
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/600x300/6c757d/FFFFFF?text=Protocolos+TCP/IP" alt="Código y protocolos de red">
+                        <figcaption>Stack de protocolos TCP/IP: las reglas que permiten la comunicación entre dispositivos.</figcaption>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>Ventajas de Usar Redes (¿Por qué molestarse?) 👍</h2>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop" alt="Colaboración y trabajo en equipo">
+                <figcaption>Principales ventajas de las redes: compartir recursos, comunicación eficiente y centralización de datos.</figcaption>
+            </div>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Compartición de Recursos</h3>
+                    <p>Una sola impresora puede ser usada por diez computadoras. Un único servidor puede ofrecer acceso a todos los archivos de la empresa.</p>
+                </div>
+                <div>
+                    <h3>Comunicación Rápida</h3>
+                    <p>Correo electrónico, mensajería instantánea y videollamadas. Permite la colaboración en tiempo real.</p>
+                </div>
+                <div>
+                    <h3>Ahorro y Centralización</h3>
+                    <p>Al centralizar datos en un servidor y compartir periféricos, se reducen costos de hardware y se simplifica la copia de seguridad.</p>
+                </div>
+            </div>
+        </section>
+
+        <button id="alertButton" onclick="showQuiz()">¡Prueba tus Conocimientos!</button>
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S1 E1</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion02.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

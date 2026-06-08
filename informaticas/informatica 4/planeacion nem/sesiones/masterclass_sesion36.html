@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 36: Evaluación Final</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #44337a 0%, #d69e2e 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 36</h1>
+            <h2>Evaluación Final: Release v1.0</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Compilación del Sistema</h3>
+            <p><strong>Objetivo:</strong> Verificar que todos los módulos de conocimiento (Creatividad, Redes, Programación) estén instalados correctamente.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #1a202c; color: white;">
+                <h4>🚀 Semester Status: COMPLETED</h4>
+                <p>Cargando perfil del estudiante...</p>
+                
+                <div style="font-family: 'Fira Code', monospace; margin-top: 15px;">
+                    <div style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #a0aec0;">
+                            <span>Progreso del Curso</span>
+                            <span style="color: #48bb78;">100%</span>
+                        </div>
+                        <div style="height: 15px; background: #2d3748; border-radius: 10px; overflow: hidden; margin-top: 5px;">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #6b46c1, #d69e2e);"></div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="background: #2d3748; padding: 5px 10px; border-radius: 4px; border: 1px solid #48bb78; font-size: 0.7rem; color: #48bb78;">✅ Edición Digital</span>
+                        <span style="background: #2d3748; padding: 5px 10px; border-radius: 4px; border: 1px solid #48bb78; font-size: 0.7rem; color: #48bb78;">✅ Redes & IP</span>
+                        <span style="background: #2d3748; padding: 5px 10px; border-radius: 4px; border: 1px solid #48bb78; font-size: 0.7rem; color: #48bb78;">✅ Python Básico</span>
+                        <span style="background: #2d3748; padding: 5px 10px; border-radius: 4px; border: 1px solid #48bb78; font-size: 0.7rem; color: #48bb78;">✅ Lógica</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Examen Final: "Logic Puzzle"</h3>
+
+            <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333; border-top: 5px solid #805ad5;">
+                <h4 style="color: #6b46c1;">🧩 Desafío: El Validador de Calificaciones</h4>
+                <p>El director necesita un programa que decida si un alumno APRUEBA o REPRUEBA.</p>
+                <p><strong>Reglas de Negocio:</strong></p>
+                <ul class="check-list">
+                    <li>Pedir 3 calificaciones.</li>
+                    <li>Calcular el promedio.</li>
+                    <li>Si promedio >= 60: Imprimir "Felicidades".</li>
+                    <li>Si promedio < 60: Imprimir "Extraordinario".</li>
+                </ul>
+            </div>
+
+            <div class="focus-box">
+                <h4>🛠️ Arquitectura de la Solución</h4>
+                <p>Ordena los bloques lógicos en tu mente:</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px; font-family: 'Fira Code', monospace; font-size: 0.8rem;">
+                    
+                    <div style="background: #ebf8ff; border-left: 4px solid #3182ce; padding: 10px; border-radius: 4px;">
+                        <span style="color: #3182ce; font-weight: bold;">1. ENTRADA:</span>
+                        c1 = int(input()) <br>
+                        c2 = int(input()) <br>
+                        c3 = int(input())
+                    </div>
+
+                    <div style="background: #f3e8ff; border-left: 4px solid #805ad5; padding: 10px; border-radius: 4px;">
+                        <span style="color: #805ad5; font-weight: bold;">2. PROCESO:</span>
+                        promedio = (c1 + c2 + c3) / 3
+                    </div>
+
+                    <div style="background: #f0fff4; border-left: 4px solid #48bb78; padding: 10px; border-radius: 4px;">
+                        <span style="color: #48bb78; font-weight: bold;">3. DECISIÓN:</span>
+                        <span style="color: #d69e2e;">if</span> promedio >= 60:<br>
+                        &nbsp;&nbsp;print("Aprobado")<br>
+                        <span style="color: #d69e2e;">else</span>:<br>
+                        &nbsp;&nbsp;print("Reprobado")
+                    </div>
+
+                </div>
+            </div>
+
+            
+
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #d69e2e;">
+            <div class="time-badge" style="background-color: #d69e2e; color: #2d3748;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Ceremonia de Graduación Digital</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿Qué aprendiste realmente?</h5>
+                    <p>No memorizaste comandos, aprendiste a...</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #d69e2e; color: #2d3748;">Ver Competencia</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Resolver Problemas.</strong> El pensamiento computacional (descomponer problemas grandes en pasos pequeños) te servirá aunque seas abogado, médico o chef.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 20px; border: 5px double #d69e2e; text-align: center; background: #fffff0; position: relative;">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #fffff0; padding: 0 10px; color: #d69e2e; font-size: 1.5rem;">🏆</div>
+                <h4 style="color: #2d3748; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 2px;">Logro Desbloqueado</h4>
+                <p style="font-size: 0.9rem; margin: 10px 0;">Has completado el curso</p>
+                <h2 style="color: #6b46c1; margin: 10px 0;">Cultura Digital I</h2>
+                <p style="font-size: 0.8rem; color: #718096;">Nivel: Programador Junior</p>
+                <div style="margin-top: 15px; font-family: 'Fira Code', monospace; font-size: 0.7rem; color: #a0aec0;">
+                    print("¡Nos vemos en el próximo semestre!")
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 36 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

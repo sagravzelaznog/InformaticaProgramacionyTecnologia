@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Estadísticas en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #8e44ad;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones Estadísticas en Excel</h1>
+            <p>Aprende a utilizar las funciones estadísticas más útiles en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- PROMEDIO, MEDIANA, MODA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('tendencia-central')">
+                <h2>Medidas de Tendencia Central</h2>
+            </div>
+            <div class="function-content" id="tendencia-central">
+                <p>Estas funciones ayudan a encontrar el valor central o típico en un conjunto de datos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: PROMEDIO, MEDIANA y MODA</h4>
+                    <p>Si en A1:A7 tienes las edades: 18, 19, 20, 20, 21, 22, 25:</p>
+                    <pre>=PROMEDIO(A1:A7)   // Resultado: 20.71 (suma de valores / cantidad)
+=MEDIANA(A1:A7)   // Resultado: 20 (valor central)
+=MODA(A1:A7)  // Resultado: 20 (valor más frecuente)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: MEDIA.GEOM</h4>
+                    <p>Si en B1:B4 tienes tasas de crecimiento: 1.1, 1.2, 1.15, 1.25:</p>
+                    <pre>=MEDIA.GEOM(B1:B4)  // Resultado: 1.173 (raíz n-ésima del producto)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Análisis de calificaciones</h4>
+                    <p>Datos: A1:A10 contiene calificaciones: 85, 92, 78, 90, 85, 88, 95, 85, 90, 92</p>
+                    <p>Calcula el promedio, la mediana y la moda de las calificaciones</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=PROMEDIO(A1:A10)   // Resultado: 88.5
+=MEDIANA(A1:A10)   // Resultado: 88.5
+=MODA(A1:A10)  // Resultado: 85</pre>
+                        <p>Explicación: El promedio es la suma dividida entre 10. La mediana es el promedio de los dos valores centrales (88 y 89). La moda es 85 por ser el valor más frecuente.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Crecimiento de inversión</h4>
+                    <p>Una inversión crece 10%, 15%, 8%, 12% y 10% en 5 años. ¿Cuál es la tasa de crecimiento anual promedio?</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=MEDIA.GEOM(1.10, 1.15, 1.08, 1.12, 1.10) - 1  // Resultado: 10.93%</pre>
+                        <p>Explicación: La media geométrica es la forma correcta de promediar tasas de crecimiento compuesto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTAR, CONTARA, CONTAR.SI -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('conteo')">
+                <h2>Funciones de Conteo</h2>
+            </div>
+            <div class="function-content" id="conteo" style="display: none;">
+                <p>Estas funciones ayudan a contar celdas según diferentes criterios.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: CONTAR vs CONTARA</h4>
+                    <p>Si en A1:A5 tienes: 10, "Texto", 20, "", 30:</p>
+                    <pre>=CONTAR(A1:A5)   // Resultado: 3 (solo números)
+=CONTARA(A1:A5)  // Resultado: 4 (cualquier valor no vacío)
+=CONTAR.BLANCO(A1:A5)  // Resultado: 1 (celda vacía)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: CONTAR.SI</h4>
+                    <p>Si en B1:B10 tienes calificaciones: A, B, A, C, B, A, A, D, B, A:</p>
+                    <pre>=CONTAR.SI(B1:B10, "A")     // Resultado: 5 (cuenta las A)
+=CONTAR.SI(B1:B10, ">B")   // Resultado: 1 (solo A es mayor que B)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Análisis de asistencia</h4>
+                    <p>Datos: A1:A30 contiene "Asistió" o "Faltó" para cada día del mes</p>
+                    <p>Calcula el porcentaje de días con asistencia (A1:A30 tiene 22 "Asistió" y 8 "Faltó")</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=CONTAR.SI(A1:A30, "Asistió")/CONTARA(A1:A30)  // Resultado: 73.33%</pre>
+                        <p>Explicación: Dividimos la cantidad de "Asistió" entre el total de días registrados.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Conteo de productos por categoría</h4>
+                    <p>Datos: A1:A20 contiene categorías (Electrónicos, Ropa, Hogar, etc.)</p>
+                    <p>Cuenta cuántos productos son de la categoría "Electrónicos"</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=CONTAR.SI(A1:A20, "Electrónicos")</pre>
+                        <p>Explicación: La función cuenta cuántas veces aparece "Electrónicos" en el rango A1:A20.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAX, MIN, K.ESIMO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('extremos')">
+                <h2>Valores Extremos</h2>
+            </div>
+            <div class="function-content" id="extremos" style="display: none;">
+                <p>Funciones para encontrar valores máximos, mínimos y sus posiciones.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: MAX y MIN</h4>
+                    <p>Si en A1:A10 tienes ventas: 1500, 2300, 1800, 2100, 1950, 2450, 1750, 2200, 2000, 1900:</p>
+                    <pre>=MAX(A1:A10)   // Resultado: 2450 (valor más alto)
+=MIN(A1:A10)   // Resultado: 1500 (valor más bajo)
+=K.ESIMO.MAYOR(A1:A10, 2)  // Resultado: 2300 (segundo valor más alto)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: JERARQUIA.EQV</h4>
+                    <p>Si en B1:B5 tienes: 85, 92, 78, 90, 88:</p>
+                    <pre>=JERARQUIA.EQV(B1, B$1:B$5)  // Para B1=85, resultado: 4 (cuarto lugar)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Top 3 de ventas</h4>
+                    <p>Datos: A1:A20 contiene montos de ventas</p>
+                    <p>Encuentra los 3 montos más altos de ventas</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=K.ESIMO.MAYOR(A1:A20, 1)  // 1er lugar
+=K.ESIMO.MAYOR(A1:A20, 2)  // 2do lugar
+=K.ESIMO.MAYOR(A1:A20, 3)  // 3er lugar</pre>
+                        <p>Explicación: K.ESIMO.MAYOR devuelve el k-ésimo valor más grande del rango.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Clasificación de estudiantes</h4>
+                    <p>Datos: A1:A30 contiene calificaciones de exámenes</p>
+                    <p>¿En qué posición quedaría un estudiante con 92 puntos?</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=JERARQUIA.EQV(92, A1:A30, 1)  // Devuelve la posición (1 = más alto)</pre>
+                        <p>Explicación: JERARQUIA.EQV devuelve la posición de un valor en un conjunto de datos, donde 1 es el valor más alto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISPERSION -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('dispersion')">
+                <h2>Medidas de Dispersión</h2>
+            </div>
+            <div class="function-content" id="dispersion" style="display: none;">
+                <p>Funciones para medir la variabilidad de los datos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: DESVEST.M y DESVEST.P</h4>
+                    <p>Si en A1:A5 tienes: 9, 10, 11, 12, 13:</p>
+                    <pre>=DESVEST.M(A1:A5)  // Desviación estándar muestral: 1.58
+=DESVEST.P(A1:A5)  // Desviación estándar poblacional: 1.41
+=VAR.S(A1:A5)      // Varianza muestral: 2.5
+=VAR.P(A1:A5)      // Varianza poblacional: 2.0</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Análisis de rendimiento</h4>
+                    <p>Datos: A1:A20 contiene tiempos de ejecución en segundos</p>
+                    <p>Calcula la desviación estándar muestral de los tiempos</p>
+                    <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+                    <div class="solution" id="sol7">
+                        <pre>=DESVEST.M(A1:A20)</pre>
+                        <p>Explicación: Usamos DESVEST.M porque es una muestra de datos, no toda la población.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Comparación de conjuntos de datos</h4>
+                    <p>Datos: A1:A10 (conjunto 1) y B1:B10 (conjunto 2)</p>
+                    <p>¿Qué conjunto es más variable? Calcula el coeficiente de variación (CV) para cada uno</p>
+                    <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+                    <div class="solution" id="sol8">
+                        <pre>Para el conjunto 1 (A1:A10):
+=DESVEST.M(A1:A10)/PROMEDIO(A1:A10)
+
+Para el conjunto 2 (B1:B10):
+=DESVEST.M(B1:B10)/PROMEDIO(B1:B10)</pre>
+                        <p>Explicación: El coeficiente de variación (desviación estándar/ media) permite comparar la variabilidad entre conjuntos con diferentes escalas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORRELACION Y PREDICCION -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('correlacion')">
+                <h2>Correlación y Predicción</h2>
+            </div>
+            <div class="function-content" id="correlacion" style="display: none;">
+                <p>Funciones para analizar relaciones entre variables y hacer predicciones.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: COEF.DE.CORREL</h4>
+                    <p>Si en A1:A5 tienes horas de estudio: 2, 4, 6, 8, 10</p>
+                    <p>y en B1:B5 tienes calificaciones: 60, 70, 80, 85, 95:</p>
+                    <pre>=COEF.DE.CORREL(A1:A5, B1:B5)  // Resultado: 0.97 (alta correlación positiva)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: PRONOSTICO.LINEAL</h4>
+                    <p>Usando los mismos datos del ejemplo anterior:</p>
+                    <pre>=PRONOSTICO.LINEAL(12, B1:B5, A1:A5)  // Predice la calificación para 12 horas de estudio</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Análisis de correlación</h4>
+                    <p>Datos: A1:A20 = Gastos en publicidad, B1:B20 = Ventas</p>
+                    <p>¿Existe una relación entre el gasto en publicidad y las ventas?</p>
+                    <button class="show-solution" onclick="toggleSolution('sol9')">Mostrar Solución</button>
+                    <div class="solution" id="sol9">
+                        <pre>=COEF.DE.CORREL(A1:A20, B1:B20)</pre>
+                        <p>Explicación: Un valor cercano a 1 indica una fuerte correlación positiva, cercano a -1 una correlación negativa, y cercano a 0 indica poca o ninguna correlación.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Predicción de ventas</h4>
+                    <p>Datos: A1:A12 = Meses (1-12), B1:B12 = Ventas mensuales</p>
+                    <p>Predice las ventas para el mes 13 usando regresión lineal</p>
+                    <button class="show-solution" onclick="toggleSolution('sol10')">Mostrar Solución</button>
+                    <div class="solution" id="sol10">
+                        <pre>=PRONOSTICO.LINEAL(13, B1:B12, A1:A12)</pre>
+                        <p>Explicación: La función ajusta una línea de tendencia lineal a los datos y predice el valor para x=13.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

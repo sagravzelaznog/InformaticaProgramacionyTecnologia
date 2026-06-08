@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S8 E30: Monitorización de Red (Latencia y Ancho de Banda)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 8, Sesión 30: Monitorización Básica 📈</h1>
+        <p class="subtitle">Latencia, Ancho de Banda y el Administrador de Tareas</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Conceptos Clave de Rendimiento de Red</h2>
+            <p>Para garantizar una buena experiencia de usuario, el técnico debe monitorizar constantemente el rendimiento de la red, centrándose en estos dos indicadores:</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Latencia (Latency)</h3>
+                    <p>Es el tiempo que tarda un paquete de datos en viajar de un punto a otro (se mide en milisegundos, **ms**). Se mide usando **Ping**. Una latencia baja es ideal (ej. < 10 ms en LAN, < 50 ms a Internet).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Ancho de Banda (Bandwidth)</h3>
+                    <p>Es la capacidad máxima de transferencia de datos en un período de tiempo (se mide en Megabits por segundo, **Mbps**). El ancho de banda contratado es la velocidad máxima.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Herramienta Nativia: Administrador de Tareas (Windows)</h2>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Uso de la Pestaña Red / Rendimiento</h3>
+                    <p>Aquí puedes ver el uso actual del Ancho de Banda (en Mbps) de tu Tarjeta de Red (NIC). Si el uso está cerca del 100%, la red estará lenta.</p>
+                </div>
+                <div>
+                    <h3>Identificación de Procesos Abusivos</h3>
+                    <p>La vista detallada permite identificar qué aplicación o proceso (ej. un virus, una descarga, un programa mal optimizado) está utilizando la mayor parte del ancho de banda y estrangulando la red.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Medición de Latencia y Consumo</h2>
+            <p><strong>Tarea Práctica (Windows):</strong></p>
+            <ol>
+                <li>Abre el **Administrador de Tareas** y ve a la pestaña "Rendimiento" o "Red".</li>
+                <li>Mantén abierto el Administrador de Tareas y, en la consola, haz **`ping 8.8.8.8 -t`** (Ping continuo).</li>
+                <li>Observa la latencia (ms) del ping.</li>
+                <li>Abre una aplicación que use mucho ancho de banda (ej. YouTube 4K). Observa cómo aumenta el uso en el Administrador de Tareas.</li>
+            </ol>
+            <button id="latencyQuizBtn">Evaluar Latencia</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S8 E30</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion29.html" class="nav-button">Anterior</a>
+        <a href="sesion31.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

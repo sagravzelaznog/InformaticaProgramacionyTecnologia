@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo de la ventana -->
+    <rect x="0" y="0" width="500" height="400" fill="#f8f9fa" rx="8"/>
+    
+    <!-- Barra de título -->
+    <rect x="0" y="0" width="500" height="40" fill="#2b579a"/>
+    <text x="10" y="25" font-family="Arial, sans-serif" font-size="14" fill="white">Herramientas de objeto</text>
+    
+    <!-- Pestañas -->
+    <rect x="10" y="50" width="480" height="40" fill="#e9ecef" rx="4" ry="4"/>
+    <text x="20" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Formato de forma</text>
+    
+    <!-- Herramientas de formato -->
+    <g transform="translate(20, 100)">
+        <!-- Grupo de herramientas de posición -->
+        <rect x="0" y="0" width="440" height="100" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+        <text x="10" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Organizar</text>
+        
+        <!-- Botones de herramientas -->
+        <g transform="translate(10, 30)">
+            <!-- Traer al frente -->
+            <rect x="0" y="0" width="100" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+            <text x="10" y="20" font-family="Arial, sans-serif" font-size="11">Traer al frente</text>
+            
+            <!-- Enviar al fondo -->
+            <rect x="110" y="0" width="100" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+            <text x="120" y="20" font-family="Arial, sans-serif" font-size="11">Enviar al fondo</text>
+            
+            <!-- Agrupar -->
+            <rect x="220" y="0" width="100" height="30" rx="4" fill="#e7f5ff" stroke="#4dabf7" stroke-width="1"/>
+            <text x="250" y="20" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Agrupar</text>
+            
+            <!-- Desagrupar -->
+            <rect x="330" y="0" width="100" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+            <text x="350" y="20" font-family="Arial, sans-serif" font-size="11">Desagrupar</text>
+        </g>
+        
+        <!-- Grupo de herramientas de alineación -->
+        <g transform="translate(10, 70)">
+            <text x="0" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Alinear</text>
+            
+            <!-- Botones de alineación -->
+            <g transform="translate(60, 0)">
+                <!-- Izquierda -->
+                <rect x="0" y="0" width="30" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+                <path d="M10,10 L25,10" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M10,15 L20,15" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M10,20 L25,20" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                
+                <!-- Centro -->
+                <rect x="40" y="0" width="30" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+                <path d="M50,10 L65,10" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M55,15 L65,15" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M50,20 L65,20" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                
+                <!-- Derecha -->
+                <rect x="80" y="0" width="30" height="30" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+                <path d="M90,10 L105,10" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M95,15 L105,15" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+                <path d="M90,20 L105,20" stroke="#495057" stroke-width="2" stroke-linecap="square"/>
+            </g>
+        </g>
+    </g>
+    
+    <!-- Área de trabajo con objetos de ejemplo -->
+    <g transform="translate(20, 220)">
+        <rect x="0" y="0" width="460" height="150" fill="white" rx="4" stroke="#dee2e6" stroke-width="1"/>
+        <text x="10" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Área de trabajo</text>
+        
+        <!-- Objeto 1 - Rectángulo -->
+        <rect x="40" y="40" width="100" height="60" rx="4" fill="#e7f5ff" stroke="#4dabf7" stroke-width="2"/>
+        <text x="90" y="80" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1971c2">Texto</text>
+        
+        <!-- Objeto 2 - Imagen -->
+        <rect x="100" y="60" width="80" height="80" fill="#fff3bf" stroke="#ffd43b" stroke-width="2"/>
+        <text x="140" y="110" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#e67700">Imagen</text>
+        
+        <!-- Objeto 3 - Forma -->
+        <rect x="180" y="90" width="120" height="50" rx="4" fill="#e6fcf5" stroke="#38d9a9" stroke-width="2"/>
+        <text x="240" y="120" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#087f5b">Forma</text>
+        
+        <!-- Manijas de selección (mostrando el rectángulo seleccionado) -->
+        <rect x="35" y="35" width="110" height="70" fill="none" stroke="#1971c2" stroke-width="1" stroke-dasharray="2,2"/>
+        <circle cx="35" cy="35" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="70" cy="35" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="105" cy="35" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="35" cy="70" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="105" cy="70" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="35" cy="105" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="70" cy="105" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <circle cx="105" cy="105" r="4" fill="#1971c2" stroke="white" stroke-width="1"/>
+        
+        <!-- Manija de rotación -->
+        <circle cx="70" cy="20" r="6" fill="#1971c2" stroke="white" stroke-width="1"/>
+        <path d="M70,20 L70,10" stroke="#1971c2" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Barra de estado -->
+    <rect x="0" y="380" width="500" height="20" fill="#e9ecef"/>
+    <text x="10" y="395" font-family="Arial, sans-serif" font-size="10" fill="#495057">Objeto seleccionado: Cuadro de texto (Ancho: 5.08 cm, Alto: 3.81 cm)</text>
+</svg>

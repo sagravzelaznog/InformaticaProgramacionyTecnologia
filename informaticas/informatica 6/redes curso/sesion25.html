@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S7 E25: Troubleshooting de Conectividad (Fase I)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 7, Sesión 25: Troubleshooting (Fase I) 🔎</h1>
+        <p class="subtitle">Metodología de Diagnóstico de Fallas Locales</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. El Enfoque Metódico para Solucionar Problemas</h2>
+            <p>Un técnico de redes nunca debe adivinar. Siempre se debe seguir un **enfoque de arriba hacia abajo (o viceversa)** o, más comúnmente, un **enfoque por capas (OSI)**. La clave es aislar el fallo: ¿Es el PC, el router, el cable o Internet?</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Regla de Oro: Empieza Localmente</h3>
+                    <p>Antes de culpar a Internet, verifica tu propio equipo. La mayoría de los problemas se resuelven a nivel de la Capa Física o Enlace de Datos (cables, NIC, IPs).</p>
+                </div>
+                <div class="card">
+                    <h3>La Herramienta Maestra: PING</h3>
+                    <p>El comando `ping` es la primera prueba para aislar el problema, siguiendo una secuencia lógica de IPs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Secuencia de Diagnóstico con PING (El Modelo de 4 Pasos)</h2>
+            <p>Si un usuario reporta "No tengo Internet", sigue esta secuencia infalible con el comando `ping`:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Paso 1: Prueba Local (Tu PC)</h3>
+                    <p>Comando: **`ping 127.0.0.1`** (Dirección de loopback).</p>
+                    <p class="highlight">Si falla, el problema está en tu **NIC** o la pila de protocolos TCP/IP de tu sistema operativo.</p>
+                </div>
+                <div>
+                    <h3>Paso 2: Prueba de Red Local (Gateway)</h3>
+                    <p>Comando: **`ping [Dirección del Router/Gateway]`** (ej. 192.168.1.1).</p>
+                    <p class="highlight">Si falla, el problema está en el **cable**, el **Switch** o el **Router** está inactivo.</p>
+                </div>
+                <div>
+                    <h3>Paso 3: Prueba Externa (IP)</h3>
+                    <p>Comando: **`ping 8.8.8.8`** (Servidor DNS público de Google).</p>
+                    <p class="highlight">Si falla, el problema está fuera de la red local (el **Router no tiene Internet** o la WAN está caída).</p>
+                </div>
+                <div>
+                    <h3>Paso 4: Prueba Externa (Nombre/DNS)</h3>
+                    <p>Comando: **`ping google.com`**.</p>
+                    <p class="highlight">Si el Paso 3 funciona, pero este falla, el problema es la **resolución DNS**.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Simulación de Falla</h2>
+            <p><strong>Escenario Práctico (Simulación en Packet Tracer):</strong></p>
+            <ol>
+                <li>Crea una red con 1 Router, 1 Switch, 1 PC. Asigna IPs correctas.</li>
+                <li>Desconecta el cable entre el PC y el Switch.</li>
+                <li>Sigue los 4 pasos de diagnóstico. ¿En qué paso se detiene la comunicación? (Debería fallar en el Paso 2).</li>
+            </ol>
+            <button id="pingDiagnosisBtn">Evaluar Diagnóstico</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S7 E25</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion24.html" class="nav-button">Anterior</a>
+        <a href="sesion26.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

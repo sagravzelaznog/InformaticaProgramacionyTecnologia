@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S14: Texto en Trayecto</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 14: Texto en Trayecto</h1>
+
+    <section>
+        <h2>1. Adaptar Texto a un Trayecto</h2>
+        
+        <p>Esta técnica es fundamental para el diseño de sellos, logotipos circulares o cualquier composición donde el texto debe seguir una curva o una forma compleja.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear el Trayecto Base</strong>
+            <p>Dibuja un trayecto que servirá de guía (ej. un círculo, un trazo con la Pluma). Es mejor que no tenga relleno ni trazo si solo es una guía.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Seleccionar Elementos</strong>
+            <p>Escribe tu texto (debe ser Texto Artístico, no de Párrafo). Selecciona **primero el texto** y, manteniendo **Shift**, selecciona **luego el trayecto guía**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Aplicar Adaptar a Trayecto</strong>
+            <p>Ve a <code>Texto > Adaptar a Trayecto</code>. El texto se pegará y fluirá a lo largo del trayecto. El texto sigue siendo editable.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Manipulación y Control</h2>
+        <p>Una vez que el texto está en el trayecto, puedes ajustarlo de varias maneras:</p>
+        <div class="paso">
+            <strong>Mover el Texto</strong>
+            <p>Usa la herramienta **Selector (F1)** para mover el texto o el trayecto. El texto se moverá con el trayecto.</p>
+        </div>
+        <div class="paso">
+            <strong>Invertir el Flujo</strong>
+            <p>Si el texto aparece de cabeza en el círculo, puedes invertir la dirección del texto o el trayecto. Selecciona el trayecto guía y ve a <code>Trayecto > Invertir (Shift + R)</code>.</p>
+        </div>
+        <div class="paso">
+            <strong>Separar el Texto</strong>
+            <p>Para que el texto quede fijo en su posición y el trayecto guía desaparezca, selecciona el texto y ve a <code>Trayecto > Objeto a Trayecto</code>. **Nota:** Esto también vectoriza las letras, haciéndolas no editables.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Poner el Texto Dentro de una Forma</h2>
+        <p>Para que el texto fluya dentro de una forma irregular, usaremos el concepto de **Marco de Texto**:</p>
+        <div class="paso">
+            <strong>Paso 1: Crear la Forma Guía</strong>
+            <p>Dibuja la forma que quieres que contenga el texto (ej. una estrella compleja, una silueta vectorizada). Conviértela a trayecto (**Shift + Ctrl + C**).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Crear el Texto de Párrafo</strong>
+            <p>Crea un bloque de texto de párrafo (clic y arrastrar con la herramienta Texto) que sea más grande que la forma guía.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Flujo de Marco</strong>
+            <p>Selecciona **primero el texto** y, manteniendo **Shift**, selecciona **luego el trayecto guía**. Ve a <code>Texto > Fluir en Marco</code>. El texto se adaptará a la forma del trayecto guía.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Logo Circular de Sello</h3>
+        <p><strong>Objetivo:</strong> Crear un texto que circule en un diseño de sello.</p>
+        <ol>
+            <li>Dibuja un círculo grande para el borde exterior del sello.</li>
+            <li>Dibuja un segundo círculo ligeramente más pequeño y céntralo.</li>
+            <li>Escribe un texto (ej. "CURSO INKSCAPE") y adáptalo al círculo exterior (**Texto > Adaptar a Trayecto**).</li>
+            <li>Escribe un segundo texto (ej. "AVANZADO") y adáptalo al círculo interior (necesitarás invertir el trayecto del círculo interior para que el texto se lea correctamente en la parte inferior).</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion13.html">Anterior</a>
+    <a href="sesion15.html">Siguiente</a>
+</nav>
+</body>
+</html>

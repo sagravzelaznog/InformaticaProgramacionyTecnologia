@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Tocando el HTML - Curso de JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .dom-visual {
+            background-color: #e6f3ff;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .dom-tree {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px solid #00a86b;
+        }
+        
+        .dom-node {
+            margin: 5px 0;
+            position: relative;
+        }
+        
+        .dom-node::before {
+            content: '📄';
+            margin-right: 5px;
+        }
+        
+        .dom-node.closed > .dom-children {
+            display: none;
+        }
+        
+        .dom-node .toggle {
+            cursor: pointer;
+            margin-right: 5px;
+            display: inline-block;
+            width: 15px;
+            text-align: center;
+        }
+        
+        .dom-attribute {
+            color: #d63384;
+        }
+        
+        .dom-tag {
+            color: #0d6efd;
+        }
+        
+        .dom-text {
+            color: #198754;
+        }
+        
+        .dom-comment {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .interactive-demo {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .code-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .code-box button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #00a86b;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        
+        .element-box {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .element-box.highlight {
+            border-color: #0d6efd;
+            background-color: #e7f1ff;
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+        }
+        
+        .demo-area {
+            border: 1px dashed #6c757d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 100px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .controls button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .controls button:hover {
+            background-color: #0b5ed7;
+        }
+        
+        .controls input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+        
+        .hacker-tool {
+            background-color: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .hacker-tool input[type="text"] {
+            background-color: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .hacker-tool button {
+            background-color: #006400;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .hacker-tool button:hover {
+            background-color: #008000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li><a href="sesion02.html">Sesión 2: Tomando Decisiones</a></li>
+                <li><a href="sesion03.html">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="sesion04.html">Sesión 4: Listas y Bucles</a></li>
+                <li class="active"><a href="sesion05.html">Sesión 5: Tocando el HTML</a></li>
+                <li><a href="#">Sesión 6: Escuchando al Usuario</a></li>
+                <li><a href="#">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content">
+            <header>
+                <h1>Sesión 5: Tocando el HTML</h1>
+                <p class="subtitle">Aprendiendo a manipular la página web con JavaScript</p>
+            </header>
+            
+            <section>
+                <h2>¿Qué es el DOM?</h2>
+                <p>El <strong>Document Object Model</strong> (Modelo de Objetos del Documento) es una representación en forma de árbol de todos los elementos de una página web. Imagínalo como el árbol genealógico de tu página.</p>
+                
+                <div class="dom-visual">
+                    <h3>Estructura del DOM</h3>
+                    <div class="dom-tree" id="domTree">
+                        <div class="dom-node">
+                            <span class="toggle" onclick="toggleNode(this)">-</span>
+                            <span class="dom-tag">&lt;html&gt;</span>
+                            <div class="dom-children">
+                                <div class="dom-node">
+                                    <span class="toggle" onclick="toggleNode(this)">-</span>
+                                    <span class="dom-tag">&lt;head&gt;</span>
+                                    <div class="dom-children">
+                                        <div class="dom-node">
+                                            <span class="dom-tag">&lt;title&gt;</span>
+                                            <span class="dom-text">Mi Página</span>
+                                            <span class="dom-tag">&lt;/title&gt;</span>
+                                        </div>
+                                    </div>
+                                    <span class="dom-tag">&lt;/head&gt;</span>
+                                </div>
+                                <div class="dom-node">
+                                    <span class="toggle" onclick="toggleNode(this)">-</span>
+                                    <span class="dom-tag">&lt;body&gt;</span>
+                                    <div class="dom-children">
+                                        <div class="dom-node">
+                                            <span class="dom-tag">&lt;h1&gt;</span>
+                                            <span class="dom-text">¡Hola Mundo!</span>
+                                            <span class="dom-tag">&lt;/h1&gt;</span>
+                                        </div>
+                                        <div class="dom-node">
+                                            <span class="dom-tag">&lt;p&gt;</span>
+                                            <span class="dom-text">Bienvenido a mi página web.</span>
+                                            <span class="dom-tag">&lt;/p&gt;</span>
+                                        </div>
+                                    </div>
+                                    <span class="dom-tag">&lt;/body&gt;</span>
+                                </div>
+                            </div>
+                            <span class="dom-tag">&lt;/html&gt;</span>
+                        </div>
+                    </div>
+                    
+                    <p>Cada caja en este árbol es un <strong>nodo</strong>. Los nodos pueden ser elementos, atributos o texto. Con JavaScript, podemos navegar por este árbol y modificar cualquier parte de él.</p>
+                </div>
+                
+                <div class="tip">
+                    <strong>¡Recuerda!</strong> El DOM es como un puente entre tu código JavaScript y la página web. Cuando cambias algo en el DOM, la página se actualiza automáticamente.
+                </div>
+            </section>
+            
+            <section>
+                <h2>Seleccionando elementos</h2>
+                <p>Para modificar elementos HTML, primero necesitamos seleccionarlos. Aquí están los métodos más comunes:</p>
+                
+                <h3>1. Por ID: <code>getElementById()</code></h3>
+                <p>Selecciona un elemento por su atributo <code>id</code> (debe ser único en la página).</p>
+                
+                <div class="code-box">
+                    <button onclick="ejecutarCodigo('idDemo')">Ejecutar</button>
+                    <pre><code>// HTML: &lt;div id="miElemento"&gt;Hola&lt;/div&gt;
+let elemento = document.getElementById('miElemento');
+console.log(elemento.textContent); // Muestra: Hola</code></pre>
+                </div>
+                
+                <h3>2. Por selector CSS: <code>querySelector()</code> y <code>querySelectorAll()</code></h3>
+                <p>Permite seleccionar elementos usando selectores CSS.</p>
+                
+                <div class="code-box">
+                    <button onclick="ejecutarCodigo('queryDemo')">Ejecutar</button>
+                    <pre><code>// Selecciona el PRIMER elemento que coincida
+let primerParrafo = document.querySelector('p');
+
+// Selecciona TODOS los elementos que coincidan
+let todosParrafos = document.querySelectorAll('p');
+
+// Selecciona por clase
+let items = document.querySelectorAll('.item');</code></pre>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h3>Prueba los selectores</h3>
+                    <p>Intenta seleccionar elementos de abajo usando diferentes métodos:</p>
+                    
+                    <div class="demo-area" id="demoArea">
+                        <div id="caja1" class="element-box">Caja 1 (ID: caja1, Clase: elemento)</div>
+                        <div id="caja2" class="element-box">Caja 2 (ID: caja2, Clase: elemento)</div>
+                        <div id="caja3" class="element-box destacado">Caja 3 (ID: caja3, Clases: elemento y destacado)</div>
+                        <p class="texto">Este es un párrafo con clase "texto".</p>
+                        <p>Este es otro párrafo sin clase.</p>
+                    </div>
+                    
+                    <div class="controls">
+                        <input type="text" id="selectorInput" placeholder="Ej: #caja1 o .elemento" value=".elemento">
+                        <button onclick="resaltarElementos()">Resaltar</button>
+                        <button onclick="quitarResaltado()">Quitar resaltado</button>
+                    </div>
+                    
+                    <p>Intenta con estos selectores:</p>
+                    <ul>
+                        <li><code>.elemento</code> - Todos los elementos con clase "elemento"</li>
+                        <li><code>#caja2</code> - El elemento con ID "caja2"</li>
+                        <li><code>div</code> - Todos los elementos div</li>
+                        <li><code>.destacado</code> - Elementos con clase "destacado"</li>
+                        <li><code>p:first-child</code> - Primer párrafo dentro de su contenedor</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Modificando elementos</h2>
+                <p>Una vez que seleccionamos un elemento, podemos modificarlo de varias formas:</p>
+                
+                <h3>1. Cambiar el contenido: <code>textContent</code> e <code>innerHTML</code></h3>
+                <div class="code-box">
+                    <button onclick="ejecutarCodigo('contentDemo')">Ejecutar</button>
+                    <pre><code>// Cambiar texto plano (seguro contra inyección de HTML)
+elemento.textContent = 'Nuevo texto';
+
+// Cambiar HTML (permite etiquetas HTML)
+elemento.innerHTML = '&lt;strong&gt;Texto en negrita&lt;/strong&gt;';
+
+// Obtener contenido
+let texto = elemento.textContent;
+let html = elemento.innerHTML;</code></pre>
+                </div>
+                
+                <h3>2. Cambiar atributos: <code>getAttribute()</code> y <code>setAttribute()</code></h3>
+                <div class="code-box">
+                    <button onclick="ejecutarCodigo('attrDemo')">Ejecutar</button>
+                    <pre><code>// Obtener un atributo
+let ruta = imagen.getAttribute('src');
+
+// Establecer un atributo
+imagen.setAttribute('src', 'nueva-imagen.jpg');
+imagen.setAttribute('alt', 'Descripción de la imagen');
+
+// Atributos directos (solo para atributos estándar)
+imagen.src = 'nueva-imagen.jpg';
+boton.disabled = true;</code></pre>
+                </div>
+                
+                <h3>3. Cambiar estilos: <code>style</code></h3>
+                <div class="code-box">
+                    <button onclick="ejecutarCodigo('styleDemo')">Ejecutar</button>
+                    <pre><code>// Cambiar estilos directamente
+elemento.style.color = 'red';
+elemento.style.backgroundColor = 'yellow';
+elemento.style.fontSize = '20px';
+
+// Nota: Las propiedades con guiones se escriben en camelCase:
+// background-color -> backgroundColor
+// font-size -> fontSize</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <strong>¡Cuidado!</strong> Modificar estilos directamente con <code>elemento.style</code> no es la mejor práctica. Es mejor usar clases CSS y alternarlas con <code>classList</code> (lo veremos en la siguiente sesión).
+                </div>
+            </section>
+            
+            <section class="dola-ai">
+                <h2>Dola AI - Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre el DOM o la manipulación de elementos? ¡Pregúntame!</p>
+                <div id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+                    <button onclick="enviarPregunta()">Enviar</button>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Reto: El Hacker</h2>
+                <p>Crea un script que modifique la página actual de la siguiente manera:</p>
+                <ol>
+                    <li>Cambia el título de la página (el texto en la pestaña del navegador).</li>
+                    <li>Cambia el texto del encabezado principal (<code>h1</code>).</li>
+                    <li>Cambia el color de fondo de la página.</li>
+                    <li>Agrega un borde rojo a todas las imágenes de la página.</li>
+                </ol>
+                
+                <div class="hacker-tool">
+                    <h3>Consola del Hacker</h3>
+                    <p>Usa esta consola para probar tu código:</p>
+                    <div id="hackerOutput" class="code-box" style="min-height: 100px; margin: 10px 0;">
+                        <p>> Escribe tu código JavaScript aquí...</p>
+                    </div>
+                    <input type="text" id="hackerInput" placeholder="document.querySelector('h1').textContent = '¡Hackeado!'">
+                    <div style="margin-top: 10px;">
+                        <button onclick="ejecutarHackerCode()">Ejecutar Código</button>
+                        <button onclick="reiniciarPagina()">Reiniciar Página</button>
+                    </div>
+                </div>
+                
+                <div id="solucion-reto" style="display: none; margin-top: 20px;">
+                    <h3>Posible solución:</h3>
+                    <pre><code>// 1. Cambiar el título de la página
+document.title = "¡Página Hackeada!";
+
+// 2. Cambiar el texto del encabezado principal
+let titulo = document.querySelector('h1');
+titulo.textContent = "¡Esta página ha sido hackeada!";
+
+// 3. Cambiar el color de fondo
+document.body.style.backgroundColor = "#000033";
+
+// 4. Agregar borde rojo a todas las imágenes
+let imagenes = document.querySelectorAll('img');
+for (let img of imagenes) {
+    img.style.border = "3px solid red";
+}</code></pre>
+                    <button onclick="mostrarOcultarSolucion()">Ocultar solución</button>
+                </div>
+                <button id="btn-mostrar-solucion" onclick="mostrarOcultarSolucion()" class="button">Mostrar solución</button>
+            </section>
+            
+            <section>
+                <h2>Resumen de la sesión</h2>
+                <ul>
+                    <li>El <strong>DOM</strong> es la representación en forma de árbol de todos los elementos de una página web.</li>
+                    <li>Podemos seleccionar elementos usando <code>getElementById()</code>, <code>querySelector()</code> y <code>querySelectorAll()</code>.</li>
+                    <li>Podemos modificar el contenido de los elementos con <code>textContent</code> (solo texto) o <code>innerHTML</code> (permite HTML).</li>
+                    <li>Los atributos se pueden leer y modificar con <code>getAttribute()</code> y <code>setAttribute()</code>.</li>
+                    <li>Podemos cambiar estilos directamente con la propiedad <code>style</code>, pero es mejor práctica usar clases CSS.</li>
+                    <li>Con estas herramientas, ¡podemos modificar cualquier aspecto de una página web en tiempo real!</li>
+                </ul>
+            </section>
+            
+            <div class="nav-buttons">
+                <a href="sesion04.html" class="button">← Sesión Anterior</a>
+                <a href="#" class="button">Siguiente Sesión →</a>
+            </div>
+            
+            <footer class="footer">
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // Funciones para el árbol del DOM interactivo
+        function toggleNode(element) {
+            const node = element.parentElement;
+            const children = node.querySelector('.dom-children');
+            if (children) {
+                const isHidden = children.style.display === 'none';
+                children.style.display = isHidden ? 'block' : 'none';
+                element.textContent = isHidden ? '-' : '+';
+            }
+        }
+        
+        // Inicializar el árbol del DOM (cerrar todos los nodos al cargar)
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('.toggle');
+            toggles.forEach(toggle => {
+                toggle.textContent = '-';
+                const children = toggle.parentElement.querySelector('.dom-children');
+                if (children) {
+                    children.style.display = 'block';
+                }
+            });
+        });
+        
+        // Funciones para el demo interactivo de selectores
+        function resaltarElementos() {
+            // Primero quitamos el resaltado de elementos previamente seleccionados
+            quitarResaltado();
+            
+            // Obtenemos el selector ingresado por el usuario
+            const selector = document.getElementById('selectorInput').value.trim();
+            if (!selector) return;
+            
+            try {
+                // Intentamos seleccionar elementos con el selector proporcionado
+                const elementos = document.querySelectorAll(selector);
+                
+                if (elementos.length === 0) {
+                    alert('No se encontraron elementos con el selector: ' + selector);
+                    return;
+                }
+                
+                // Resaltamos cada elemento encontrado
+                elementos.forEach(elemento => {
+                    if (elemento.classList) {
+                        elemento.classList.add('highlight');
+                    }
+                });
+                
+                // Mostramos información sobre la selección
+                const info = `Seleccionados: ${elementos.length} elemento(s) con el selector "${selector}"`;
+                console.log(info);
+                
+            } catch (e) {
+                alert('Error en el selector: ' + e.message);
+            }
+        }
+        
+        function quitarResaltado() {
+            const elementosResaltados = document.querySelectorAll('.highlight');
+            elementosResaltados.forEach(elemento => {
+                elemento.classList.remove('highlight');
+            });
+        }
+        
+        // Funciones para el reto del hacker
+        function ejecutarHackerCode() {
+            const codigo = document.getElementById('hackerInput').value;
+            const output = document.getElementById('hackerOutput');
+            
+            try {
+                // Ejecutar el código en un bloque try-catch para capturar errores
+                const resultado = Function(codigo)();
+                
+                // Mostrar el resultado (si lo hay)
+                if (resultado !== undefined) {
+                    output.innerHTML += `<div>> ${String(resultado)}</div>`;
+                } else {
+                    output.innerHTML += `<div>> Código ejecutado.</div>`;
+                }
+                
+                // Hacer scroll hasta abajo
+                output.scrollTop = output.scrollHeight;
+                
+            } catch (error) {
+                output.innerHTML += `<div style="color:red;">> Error: ${error.message}</div>`;
+                output.scrollTop = output.scrollHeight;
+            }
+            
+            // Limpiar el input
+            document.getElementById('hackerInput').value = '';
+        }
+        
+        function reiniciarPagina() {
+            // Recargar la página para restaurar los cambios
+            location.reload();
+        }
+        
+        // Permitir ejecutar código con Enter en la consola del hacker
+        document.getElementById('hackerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                ejecutarHackerCode();
+            }
+        });
+        
+        // Funciones de ejemplo para los botones de código
+        function ejecutarCodigo(tipo) {
+            let codigo = '';
+            let mensaje = '';
+            
+            switch(tipo) {
+                case 'idDemo':
+                    // Crear un elemento temporal para el demo
+                    const demoDiv = document.createElement('div');
+                    demoDiv.id = 'demoElement';
+                    demoDiv.textContent = '¡Este es un elemento de demo!';
+                    demoDiv.style.padding = '10px';
+                    demoDiv.style.backgroundColor = '#e9ecef';
+                    demoDiv.style.borderRadius = '4px';
+                    demoDiv.style.margin = '10px 0';
+                    
+                    // Insertar después del código de ejemplo
+                    const idDemoBox = document.querySelectorAll('.code-box')[0];
+                    idDemoBox.parentNode.insertBefore(demoDiv, idDemoBox.nextSibling);
+                    
+                    // Mostrar el código que se está ejecutando
+                    mensaje = 'Se ha creado un elemento con id="demoElement" y se ha seleccionado con getElementById().';
+                    alert(mensaje);
+                    break;
+                    
+                case 'queryDemo':
+                    mensaje = 'Este es un ejemplo de cómo se usarían los selectores. Intenta usar el cuadro de "Prueba los selectores" arriba para ver cómo funcionan en la práctica.';
+                    alert(mensaje);
+                    break;
+                    
+                case 'contentDemo':
+                    // Modificar el título de la página temporalmente
+                    const tituloOriginal = document.title;
+                    document.title = '¡Título cambiado con JavaScript!';
+                    
+                    // Crear un elemento temporal para el demo
+                    const demoContent = document.createElement('div');
+                    demoContent.id = 'demoContent';
+                    demoContent.innerHTML = '<p>Este es un <strong>ejemplo</strong> de cómo modificar contenido.</p>';
+                    demoContent.style.padding = '10px';
+                    demoContent.style.backgroundColor = '#e9ecef';
+                    demoContent.style.borderRadius = '4px';
+                    demoContent.style.margin = '10px 0';
+                    
+                    // Insertar después del código de ejemplo
+                    const contentDemoBox = document.querySelectorAll('.code-box')[1];
+                    contentDemoBox.parentNode.insertBefore(demoContent, contentDemoBox.nextSibling);
+                    
+                    // Restaurar el título después de 3 segundos
+                    setTimeout(() => {
+                        document.title = tituloOriginal;
+                    }, 3000);
+                    
+                    mensaje = 'Se ha creado un elemento con contenido HTML y se ha mostrado cómo cambiar el título de la página. El título volverá a la normalidad en 3 segundos.';
+                    alert(mensaje);
+                    break;
+                    
+                case 'attrDemo':
+                    // Crear una imagen de ejemplo
+                    const imgDemo = document.createElement('img');
+                    imgDemo.id = 'demoImg';
+                    imgDemo.src = 'https://via.placeholder.com/150';
+                    imgDemo.alt = 'Imagen de ejemplo';
+                    imgDemo.style.display = 'block';
+                    imgDemo.style.margin = '10px 0';
+                    imgDemo.style.border = '2px solid #ddd';
+                    imgDemo.style.borderRadius = '4px';
+                    
+                    // Insertar después del código de ejemplo
+                    const attrDemoBox = document.querySelectorAll('.code-box')[2];
+                    attrDemoBox.parentNode.insertBefore(imgDemo, attrDemoBox.nextSibling);
+                    
+                    mensaje = 'Se ha creado una imagen de ejemplo. Usa la consola para probar a cambiar sus atributos con getAttribute() y setAttribute().';
+                    alert(mensaje);
+                    break;
+                    
+                case 'styleDemo':
+                    // Crear un elemento de ejemplo
+                    const styleDemo = document.createElement('div');
+                    styleDemo.id = 'styleDemo';
+                    styleDemo.textContent = '¡Este texto cambiará de estilo!';
+                    styleDemo.style.padding = '15px';
+                    styleDemo.style.margin = '10px 0';
+                    styleDemo.style.border = '1px solid #ddd';
+                    styleDemo.style.borderRadius = '4px';
+                    
+                    // Insertar después del código de ejemplo
+                    const styleDemoBox = document.querySelectorAll('.code-box')[3];
+                    styleDemoBox.parentNode.insertBefore(styleDemo, styleDemoBox.nextSibling);
+                    
+                    // Aplicar algunos estilos dinámicamente
+                    setTimeout(() => {
+                        styleDemo.style.color = 'white';
+                        styleDemo.style.backgroundColor = '#4a6baf';
+                        styleDemo.style.fontSize = '18px';
+                        styleDemo.style.padding = '20px';
+                    }, 1000);
+                    
+                    mensaje = 'Se ha creado un elemento de ejemplo. Observa cómo cambia de estilo después de 1 segundo.';
+                    alert(mensaje);
+                    break;
+            }
+        }
+        
+        // Mostrar/ocultar solución
+        function mostrarOcultarSolucion() {
+            const solucion = document.getElementById('solucion-reto');
+            const boton = document.getElementById('btn-mostrar-solucion');
+            
+            if (solucion.style.display === 'none' || !solucion.style.display) {
+                solucion.style.display = 'block';
+                boton.textContent = 'Ocultar solución';
+            } else {
+                solucion.style.display = 'none';
+                boton.textContent = 'Mostrar solución';
+            }
+        }
+        
+        // Funcionalidad del chat Dola AI (simplificada)
+        function enviarPregunta() {
+            const input = document.getElementById('user-input');
+            const mensajes = document.getElementById('chat-messages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Mostrar mensaje del usuario
+            mensajes.innerHTML += `<div class="mensaje-usuario"><strong>Tú:</strong> ${input.value}</div>`;
+            
+            // Simular respuesta de Dola AI
+            setTimeout(() => {
+                const respuesta = generarRespuesta(input.value.toLowerCase());
+                mensajes.innerHTML += `<div class="mensaje-dola"><strong>Dola AI:</strong> ${respuesta}</div>`;
+                mensajes.scrollTop = mensajes.scrollHeight;
+            }, 1000);
+            
+            input.value = '';
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        function generarRespuesta(pregunta) {
+            if (pregunta.includes('dom') || pregunta.includes('árbol') || pregunta.includes('arbol')) {
+                return 'El DOM (Document Object Model) es una representación en forma de árbol de todos los elementos de una página web. Cada caja en este árbol se llama "nodo" y puede ser un elemento, atributo o texto.';
+            } else if (pregunta.includes('seleccionar') || pregunta.includes('getelementbyid') || pregunta.includes('queryselector')) {
+                return 'Para seleccionar elementos en el DOM puedes usar:\n1. document.getElementById("id") - Selecciona por ID\n2. document.querySelector("selector") - Selecciona el PRIMER elemento que coincida con el selector CSS\n3. document.querySelectorAll("selector") - Selecciona TODOS los elementos que coincidan';
+            } else if (pregunta.includes('modificar') || pregunta.includes('cambiar') || pregunta.includes('editar')) {
+                return 'Puedes modificar elementos así:\n- elemento.textContent = "nuevo texto" - Para cambiar solo el texto\n- elemento.innerHTML = "<strong>HTML</strong>" - Para cambiar el HTML interno\n- elemento.style.propiedad = "valor" - Para cambiar estilos (ej: elemento.style.color = "red")';
+            } else if (pregunta.includes('atributo') || pregunta.includes('getattribute') || pregunta.includes('setattribute')) {
+                return 'Para trabajar con atributos:\n- elemento.getAttribute("atributo") - Obtener el valor de un atributo\n- elemento.setAttribute("atributo", "valor") - Establecer un atributo\n- elemento.hasAttribute("atributo") - Verificar si existe un atributo\n- elemento.removeAttribute("atributo") - Eliminar un atributo';
+            } else if (pregunta.includes('estilo') || pregunta.includes('css') || pregunta.includes('style')) {
+                return 'Para modificar estilos:\n1. Directamente (no recomendado para estilos complejos):\n   elemento.style.propiedad = "valor";\n   \n2. Usando clases (recomendado):\n   - elemento.classList.add("clase") - Añadir clase\n   - elemento.classList.remove("clase") - Quitar clase\n   - elemento.classList.toggle("clase") - Alternar clase';
+            } else {
+                const respuestasGenericas = [
+                    '¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con el DOM y la manipulación de elementos.',
+                    'Interesante pregunta sobre el DOM. ¿Hay algo específico que te gustaría saber?',
+                    'Parece que tienes dudas sobre manipulación de elementos. ¿Te gustaría que te explique algún concepto en particular?',
+                    'No estoy seguro de entender completamente. ¿Podrías darme más detalles sobre tu duda?'
+                ];
+                return respuestasGenericas[Math.floor(Math.random() * respuestasGenericas.length)];
+            }
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarPregunta();
+            }
+        });
+    </script>
+</body>
+</html>

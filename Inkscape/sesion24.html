@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S24: Medir y Conector</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 24: Herramienta Medir y Conector</h1>
+
+    <section>
+        <h2>1. Herramienta Medir (Measure Tool)</h2>
+        
+        <p>Aunque Inkscape no es un software CAD, la **Herramienta Medir (M)** proporciona dimensiones y ángulos precisos para trabajos que requieren especificaciones técnicas o anotaciones.</p>
+        <div class="paso">
+            <strong>Paso 1: Medición de Distancia</strong>
+            <p>Selecciona la herramienta **Medir (M)**. Haz clic y arrastra desde un punto a otro. En la Barra de Estado (inferior), verás la distancia y el ángulo del segmento que acabas de trazar.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Medición de Ángulos</strong>
+            <p>Dibuja un primer segmento. Haz **Shift + clic** en el punto final del primer segmento y arrastra para dibujar un segundo segmento. La Barra de Estado mostrará el ángulo entre los dos segmentos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Creación de Guías de Medición</strong>
+            <p>Si la opción **Crear objetos de medida** está activada en la Barra de Controles, Inkscape dejará un objeto vectorial con la información de la medida en el lienzo, que puedes usar como anotación.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Herramienta Conector (Connector Tool)</h2>
+        
+        <p>La **Herramienta Conector (D)** es específica para crear diagramas de flujo, mapas conceptuales o cualquier dibujo que requiera unir elementos con líneas que se ajusten automáticamente.</p>
+        <div class="paso">
+            <strong>Paso 1: Conectar Objetos</strong>
+            <p>Dibuja dos o más formas (ej. rectángulos para las cajas de un diagrama). Selecciona la herramienta **Conector (D)**. Haz clic en el borde de la primera forma y arrastra hasta el borde de la segunda forma.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Conectores Dinámicos</strong>
+            <p>Ahora, selecciona una de las formas y muévela. El conector se ajustará automáticamente, doblando las esquinas para mantener la conexión sin pasar por en medio de otros objetos (si el modo de **Evitar Colisiones** está activado en la barra de controles).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Estilo y Puntos de Conexión</strong>
+            <p>Los conectores son simplemente trazos, por lo que puedes cambiar su color, grosor y añadir **Marcadores** (flechas) usando el diálogo **Relleno y Borde**.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. LPE: Engrosar (Offset/Widen)</h2>
+        <p>Cerramos la semana con un LPE simple pero poderoso para líneas y contornos.</p>
+        <div class="paso">
+            <strong>Aplicación a Trazos</strong>
+            <p>Dibuja un trazo con la **Pluma (B)**. Aplica el LPE **Engrosar**. Esto convierte el trazo en una forma gruesa que puedes controlar con un solo parámetro de **Grosor**, de forma no destructiva.</p>
+        </div>
+        <div class="paso">
+            <strong>LPE Engrosar vs. Trazado Dinámico</strong>
+            <p>A diferencia del Trazado Dinámico (que crea un *contorno* con un relleno), Engrosar es un LPE que crea una *forma* a partir de una línea central. Ambos son útiles, pero Engrosar es mejor para crear arterias o caminos con un control de un solo clic.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Diagrama de Flujo Básico</h3>
+        <p><strong>Objetivo:</strong> Usar la herramienta Conector y anotar con la herramienta Medir.</p>
+        <ol>
+            <li>Crea 3 rectángulos etiquetados como: **Inicio**, **Proceso** y **Fin**.</li>
+            <li>Conecta **Inicio** a **Proceso** y **Proceso** a **Fin** usando la herramienta **Conector (D)**.</li>
+            <li>Asegúrate de que los conectores usen flechas en los extremos (usando **Estilo de Trazo > Marcadores**).</li>
+            <li>Mueve las cajas y observa cómo los conectores se ajustan.</li>
+            <li>Usa la herramienta **Medir (M)** para medir la distancia horizontal entre el centro de la caja **Inicio** y la caja **Fin**, y anótala en el lienzo.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion23.html">Anterior</a>
+    <a href="sesion25.html">Siguiente</a>
+</nav>
+</body>
+</html>

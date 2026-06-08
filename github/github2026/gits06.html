@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Trabajo con Remotos, Push y Pull</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        .important-box {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 6: Trabajo con Remotos, Push y Pull</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Gestión de Remotos</button>
+    <div class="panel">
+        <p>Trabajar con remotos te permite colaborar compartiendo tu código en servidores centralizados.</p>
+        
+        <h3>Listar Remotos (<code>git remote -v</code>)</h3>
+        <p>Para ver todos los remotos configurados junto con sus URLs para subir (push) y descargar (fetch), utiliza la bandera <code>--verbose</code> o su versión corta <code>-v</code> [1].</p>
+        <pre><code>git remote -v</code></pre>
+
+        <h3>Añadir Remotos (<code>git remote add</code>)</h3>
+        <p>Puedes vincular tu repositorio local a uno nuevo en un servidor (como GitHub o BitBucket) usando el comando <code>git remote add &lt;nombre&gt; &lt;url&gt;</code> [2]. Es una convención común nombrar <code>origin</code> al repositorio principal.</p>
+
+        <h3>Cambiar URLs de Remotos (<code>git remote set-url</code>)</h3>
+        <p>Si el repositorio remoto se ha migrado a otro servidor o necesitas cambiar el protocolo (por ejemplo, de HTTPS a SSH), puedes reasignar su URL de la siguiente manera [3, 4]:</p>
+        <pre><code>git remote set-url origin https://github.com/usuario/nuevo-repo.git</code></pre>
+    </div>
+
+    <button class="accordion">2. Sincronización (Pull y Fetch)</button>
+    <div class="panel">
+        <p>La sincronización descarga los cambios de un servidor remoto hacia tu máquina local [5].</p>
+        
+        <h3>Fetch vs Pull</h3>
+        <ul>
+            <li><strong><code>git fetch</code>:</strong> Descarga los objetos y actualiza las referencias del remoto (ej. <code>origin</code>) de manera segura, pero sin integrarlos todavía en tu rama de trabajo actual [6].</li>
+            <li><strong><code>git pull</code>:</strong> Combina internamente dos comandos: un <code>git fetch</code> seguido inmediatamente por un <code>git merge</code> [7]. Descarga los cambios y los fusiona de forma automática en tu rama actual [8].</li>
+        </ul>
+
+        <h3>Mantener un historial lineal con `--rebase`</h3>
+        <p>Si tienes cambios locales en tu rama y descargas commits nuevos del repositorio remoto, <code>git pull</code> creará un commit de fusión de forma automática [9]. Si prefieres evitar este commit de fusión adicional y mantener un historial lineal, puedes decirle a Git que realice un rebase sobre la versión remota [9]:</p>
+        <pre><code>git pull --rebase nombre-remoto nombre-rama</code></pre>
+        <p>Esto tomará tus cambios locales y los aplicará <em>encima</em> de los commits que acabas de descargar del remoto [7].</p>
+    </div>
+
+    <button class="accordion">3. Envío de Código (Push)</button>
+    <div class="panel">
+        <p>Una vez que has hecho tus commits, el comando <code>git push</code> transfiere esos cambios locales al servidor del repositorio remoto para hacerlos disponibles a los demás colaboradores [10].</p>
+
+        <h3>Enviar ramas locales</h3>
+        <p>El formato general para enviar tu rama local a un remoto es [10, 11]:</p>
+        <pre><code>git push &lt;nombre_remoto&gt; &lt;nombre_rama&gt;</code></pre>
+        <p>Si es la primera vez que envías la rama, debes establecer el rastreo utilizando el atajo <code>-u</code> (o <code>--set-upstream</code>) [12, 13]:<br> <code>git push -u origin master</code>.</p>
+
+        <h3>Eliminar ramas remotas</h3>
+        <p>Para borrar una rama que reside en el servidor remoto, puedes usar la bandera <code>--delete</code> o poner dos puntos `:` antes del nombre de la rama [3, 14]:</p>
+        <pre><code>git push origin --delete nombre_rama</code></pre>
+
+        <h3>Forzar la subida de cambios (`--force`)</h3>
+        <p>Si reescribes el historial localmente (por ejemplo, con un rebase interactivo), Git rechazará el push regular para proteger el repositorio [15]. Para sobreescribir la historia remota debes usar una subida forzada [16]:</p>
+        <pre><code>git push -f</code></pre>
+        <div class="important-box">
+            <strong>⚠️ Atención:</strong> Usar <code>git push --force</code> o <code>-f</code> sobreescribe los cambios del remoto para que coincidan con tu copia local. <strong>Esto puede provocar que el repositorio remoto pierda commits</strong> [17, 18]. Es fuertemente desaconsejado hacerlo en ramas públicas que se comparten con otros colaboradores, ya que desincronizará sus historias de trabajo [18].
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

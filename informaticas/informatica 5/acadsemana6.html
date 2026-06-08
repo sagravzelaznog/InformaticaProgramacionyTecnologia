@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 6: Referencias externas y bloques</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 6: Referencias externas y bloques</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 21 -->
+        <div id="sesion21" class="session">
+            <h2>Sesión 21: Introducción a las referencias externas (XRefs)</h2>
+            <div class="content">
+                <p>En esta sesión exploraremos el uso de referencias externas (XRefs) para trabajar de manera colaborativa y organizada en proyectos complejos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Comprender el concepto de referencias externas</li>
+                        <li>Aprender a adjuntar y gestionar XRefs</li>
+                        <li>Entender las ventajas del trabajo colaborativo con XRefs</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Conceptos básicos de XRefs</strong>
+                        <ul>
+                            <li>¿Qué son las referencias externas?
+                                <ul>
+                                    <li>Definición y características</li>
+                                    <li>Diferencias con bloques</li>
+                                    <li>Ventajas del uso de XRefs</li>
+                                </ul>
+                            </li>
+                            <li>Panel de referencias externas
+                                <ul>
+                                    <li>Acceso al panel</li>
+                                    <li>Opciones de visualización</li>
+                                    <li>Filtros y búsqueda</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Gestión de XRefs</strong>
+                        <ul>
+                            <li>Adjuntar una referencia externa
+                                <ul>
+                                    <li>Tipos de archivos soportados</li>
+                                    <li>Opciones de inserción</li>
+                                    <li>Rutas relativas vs. absolutas</li>
+                                </ul>
+                            </li>
+                            <li>Actualización de referencias
+                                <ul>
+                                    <li>Actualización automática</li>
+                                    <li>Recargar manualmente</li>
+                                    <li>Notificaciones de cambios</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Configuración de un Proyecto con XRefs</h3>
+                    <p><strong>Objetivo:</strong> Aprender a estructurar y gestionar un proyecto arquitectónico completo utilizando referencias externas.</p>
+                    
+                    <h4>Parte 1: Estructura Básica (60 min)</h4>
+                    <ol>
+                        <li><strong>Creación de Archivos Base</strong>
+                            <ul>
+                                <li>Plano arquitectónico (planta baja.dwg)</li>
+                                <li>Instalaciones eléctricas (electricidad.dwg)</li>
+                                <li>Instalaciones sanitarias (sanitarios.dwg)</li>
+                                <li>Estructura (estructura.dwg)</li>
+                                <li>Acabados (acabados.dwg)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuración Inicial</strong>
+                            <ol type="a">
+                                <li>Establece unidades de dibujo consistentes</li>
+                                <li>Configura capas por disciplina</li>
+                                <li>Define estilos de texto y cotas</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Implementación de XRefs (60 min)</h4>
+                    <ol>
+                        <li><strong>Archivo Principal</strong>
+                            <ul>
+                                <li>Crea un archivo nuevo (proyecto_completo.dwg)</li>
+                                <li>Adjunta el plano arquitectónico como XRef</li>
+                                <li>Configura la ruta como relativa</li>
+                            </ul>
+                        </li>
+                        <li><strong>Jerarquía de Referencias</strong>
+                            <ol type="a">
+                                <li>Anida las demás disciplinas al archivo principal</li>
+                                <li>Ajusta los factores de escala</li>
+                                <li>Configura capas de XRef</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Proyecto Colaborativo</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Simular un entorno de trabajo colaborativo utilizando XRefs.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Formación de Equipos (15 min)</strong>
+                            <ul>
+                                <li>Forma equipos de 4-5 personas</li>
+                                <li>Asigna roles: arquitecto, ingeniero eléctrico, ingeniero sanitario, diseñador de interiores</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (60 min)</strong>
+                            <ol type="a">
+                                <li>Cada miembro trabaja en su archivo asignado</li>
+                                <li>Implementa cambios en tiempo real</li>
+                                <li>Actualiza referencias periódicamente</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (15 min por equipo)</strong>
+                            <ul>
+                                <li>Muestra la estructura del proyecto</li>
+                                <li>Explica los desafíos encontrados</li>
+                                <li>Demuestra la actualización en tiempo real</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Sistema de Gestión de XRefs</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un sistema completo de gestión de referencias externas para un proyecto arquitectónico.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Estructura de Carpetas</strong>
+                            <ul>
+                                <li>Organización por disciplinas</li>
+                                <li>Versiones y respaldos</li>
+                                <li>Documentación adjunta</li>
+                            </ul>
+                        </li>
+                        <li><strong>Archivos DWG</strong>
+                            <ul>
+                                <li>Planta arquitectónica completa</li>
+                                <li>Mínimo 3 disciplinas diferentes</li>
+                                <li>Archivo principal con XRefs</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación</strong>
+                            <ul>
+                                <li>Manual de usuario del sistema</li>
+                                <li>Diagrama de flujo del proceso</li>
+                                <li>Video demostrativo (3-5 minutos)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Configuración Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Estructura de archivos correcta (15pts)</li>
+                        <li>Configuración de XRefs (15pts)</li>
+                        <li>Manejo de capas y estilos (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Trabajo Colaborativo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Coordinación en equipo (10pts)</li>
+                        <li>Actualizaciones sincronizadas (10pts)</li>
+                        <li>Resolución de conflictos (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Documentación (20 puntos)</strong>
+                    <ul>
+                        <li>Manual de usuario (10pts)</li>
+                        <li>Video demostrativo (10pts)</li>
+                    </ul>
+
+                    <p><strong>4. Presentación (10 puntos)</strong>
+                    <ul>
+                        <li>Claridad en la exposición (5pts)</li>
+                        <li>Respuestas a preguntas (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Dominio excepcional de XRefs</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, necesita práctica</li>
+                        <li>60-69 puntos: Requiere refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">XREF</span> o <span class="command">EXTERNALREFERENCES</span> para abrir rápidamente el panel de referencias externas. Recuerda usar rutas relativas para facilitar la portabilidad del proyecto entre diferentes equipos.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 22 -->
+        <div id="sesion22" class="session">
+            <h2>Sesión 22: Configuración y control de XRefs</h2>
+            <div class="content">
+                <p>Aprenderemos a configurar y controlar las referencias externas para optimizar el flujo de trabajo.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Configurar parámetros de XRefs</li>
+                        <li>Controlar la visualización de capas</li>
+                        <li>Resolver problemas comunes</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Configuración de XRefs</strong>
+                        <ul>
+                            <li>Opciones de ruta
+                                <ul>
+                                    <li>Ruta relativa vs. absoluta</li>
+                                    <li>Rutas sin ruta</li>
+                                    <li>Variables de sistema relacionadas</li>
+                                </ul>
+                            </li>
+                            <li>Escala y rotación
+                                <ul>
+                                    <li>Especificar al insertar</li>
+                                    <li>Modificar después de insertar</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Control de visualización</strong>
+                        <ul>
+                            <li>Administrador de capas con XRefs
+                                <ul>
+                                    <li>Nomenclatura de capas</li>
+                                    <li>Congelar/descongelar por ventana gráfica</li>
+                                </ul>
+                            </li>
+                            <li>Clip de XRefs
+                                <ul>
+                                    <li>Crear y editar recortes</li>
+                                    <li>Mostrar/ocultar marcos de recorte</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="warning">
+                    <h4>¡Importante!</h4>
+                    <p>Al trabajar con XRefs, es fundamental mantener una estructura de carpetas organizada y utilizar rutas relativas para evitar problemas al compartir archivos entre diferentes equipos.</p>
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Control Avanzado de XRefs</h3>
+                    <p><strong>Objetivo:</strong> Dominar la configuración y control de referencias externas en proyectos complejos.</p>
+                    
+                    <h4>Parte 1: Configuración de Rutas y Escalas (45 min)</h4>
+                    <ol>
+                        <li><strong>Conversión de Rutas</strong>
+                            <ul>
+                                <li>Convierte rutas absolutas a relativas</li>
+                                <li>Prueba la portabilidad del proyecto</li>
+                                <li>Documenta la estructura de carpetas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ajuste de Escalas</strong>
+                            <ol type="a">
+                                <li>Inserta XRefs con diferentes unidades</li>
+                                <li>Configura escalas correctas</li>
+                                <li>Verifica la precisión dimensional</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Control de Visualización (45 min)</h4>
+                    <ol>
+                        <li><strong>Manejo de Capas</strong>
+                            <ul>
+                                <li>Crea estados de capa guardados</li>
+                                <li>Configura congelación por ventana gráfica</li>
+                                <li>Establece estilos de trazado</li>
+                            </ul>
+                        </li>
+                        <li><strong>Recorte de XRefs</strong>
+                            <ol type="a">
+                                <li>Crea recortes poligonales</li>
+                                <li>Edita límites de recorte</li>
+                                <li>Controla la visualización de marcos</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Taller: Resolución de Problemas con XRefs</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar habilidades para diagnosticar y resolver problemas comunes con referencias externas.</p>
+                    
+                    <p><strong>Escenarios a Resolver:</strong></p>
+                    <ol>
+                        <li><strong>XRef No Encontrada</strong>
+                            <ul>
+                                <li>Síntomas: Referencia faltante</li>
+                                <li>Causas probables</li>
+                                <li>Procedimiento de recuperación</li>
+                            </ul>
+                        </li>
+                        <li><strong>Problemas de Escala</strong>
+                            <ul>
+                                <li>Unidades inconsistentes</li>
+                                <li>Factores de escala incorrectos</li>
+                                <li>Métodos de verificación</li>
+                            </ul>
+                        </li>
+                        <li><strong>Rendimiento Lento</strong>
+                            <ul>
+                                <li>Optimización de archivos</li>
+                                <li>Configuración de caché</li>
+                                <li>Mejores prácticas</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p><strong>Entregables:</strong></p>
+                    <ul>
+                        <li>Guía de solución de problemas</li>
+                        <li>Plantilla de configuración óptima</li>
+                        <li>Lista de verificación de diagnóstico</li>
+                    </ul>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Manual de Estándares XRef</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un manual completo de estándares para el uso de referencias externas en proyectos de diseño.</p>
+                    
+                    <p><strong>Contenido Requerido:</strong></p>
+                    <ol>
+                        <li><strong>Estructura de Carpetas</strong>
+                            <ul>
+                                <li>Convenciones de nomenclatura</li>
+                                <li>Jerarquía de archivos</li>
+                                <li>Control de versiones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuraciones Recomendadas</strong>
+                            <ul>
+                                <li>Parámetros óptimos</li>
+                                <li>Variables del sistema</li>
+                                <li>Plantillas estándar</li>
+                            </ul>
+                        </li>
+                        <li><strong>Flujos de Trabajo</strong>
+                            <ul>
+                                <li>Procedimientos paso a paso</li>
+                                <li>Diagramas de flujo</li>
+                                <li>Casos de estudio</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p><strong>Formato de Entrega:</strong></p>
+                    <ul>
+                        <li>Documento PDF con índice interactivo</li>
+                        <li>Archivos de ejemplo</li>
+                        <li>Presentación ejecutiva (máx. 10 diapositivas)</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Ejercicio Práctico (40 puntos)</strong></p>
+                    <ul>
+                        <li>Configuración correcta de rutas (10pts)</li>
+                        <li>Manejo de escalas (10pts)</li>
+                        <li>Control de capas (10pts)</li>
+                        <li>Uso de recortes (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Taller (30 puntos)</strong></p>
+                    <ul>
+                        <li>Análisis de problemas (10pts)</li>
+                        <li>Soluciones propuestas (10pts)</li>
+                        <li>Documentación (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Proyecto (30 puntos)</strong>
+                    <ul>
+                        <li>Completitud del manual (10pts)</li>
+                        <li>Claridad y organización (10pts)</li>
+                        <li>Aplicabilidad práctica (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Dominio excepcional de XRefs</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, necesita práctica</li>
+                        <li>60-69 puntos: Requiere refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">XCLIP</span> para controlar la visibilidad de áreas específicas en tus XRefs. Recuerda que puedes crear recortes con formas irregulares usando la opción de polígono.
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+        <!-- Sesión 23 -->
+        <div id="sesion23" class="session">
+            <h2>Sesión 23: Bloques anidados y atributos avanzados</h2>
+            <div class="content">
+                <p>Exploraremos técnicas avanzadas para trabajar con bloques anidados y atributos en el contexto de referencias externas.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear y gestionar bloques anidados</li>
+                        <li>Trabajar con atributos en XRefs</li>
+                        <li>Extraer datos de bloques en referencias externas</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Bloques anidados</strong>
+                        <ul>
+                            <li>Concepto de anidamiento
+                                <ul>
+                                    <li>Ventajas y desventajas</li>
+                                    <li>Consideraciones de rendimiento</li>
+                                </ul>
+                            </li>
+                            <li>Creación y edición
+                                <ul>
+                                    <li>Incrustar bloques dentro de bloques</li>
+                                    <li>Modificar bloques anidados</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Atributos avanzados</strong>
+                        <ul>
+                            <li>Atributos en XRefs
+                                <ul>
+                                    <li>Visibilidad</li>
+                                    <li>Edición</li>
+                                </ul>
+                            </li>
+                            <li>Extracción de datos
+                                <ul>
+                                    <li>Herramienta de extracción de datos</li>
+                                    <li>Exportar a tablas o archivos</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Sistema de Mobiliario con Bloques Anidados</h3>
+                    <p><strong>Objetivo:</strong> Desarrollar un sistema completo de mobiliario utilizando bloques anidados y atributos avanzados.</p>
+                    
+                    <h4>Parte 1: Creación de Bloques Base (60 min)</h4>
+                    <ol>
+                        <li><strong>Bloques de Componentes</strong>
+                            <ul>
+                                <li>Crea bloques para patas, respaldos y asientos</li>
+                                <li>Establece puntos de inserción lógicos</li>
+                                <li>Configura capas por componente</li>
+                            </ul>
+                        </li>
+                        <li><strong>Atributos de Componentes</strong>
+                            <ol type="a">
+                                <li>Materiales</li>
+                                <li>Códigos de color</li>
+                                <li>Números de parte</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Ensamblaje y Anidamiento (60 min)</h4>
+                    <ol>
+                        <li><strong>Creación de Muebles</strong>
+                            <ul>
+                                <li>Combina bloques base en muebles completos</li>
+                                <li>Establece relaciones de anidamiento</li>
+                                <li>Configura visibilidad de componentes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Atributos de Ensamblaje</strong>
+                            <ol type="a">
+                                <li>Número de modelo</li>
+                                <li>Dimensiones totales</li>
+                                <li>Lista de materiales</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Taller: Sistema de Inventario con Atributos</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Implementar un sistema de inventario automatizado utilizando bloques con atributos.</p>
+                    
+                    <p><strong>Actividades:</strong></p>
+                    <ol>
+                        <li><strong>Configuración Inicial (20 min)</strong>
+                            <ul>
+                                <li>Plantilla de dibujo con estilos</li>
+                                <li>Estructura de capas</li>
+                                <li>Definición de atributos estándar</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (50 min)</strong>
+                            <ol type="a">
+                                <li>Crea 5 bloques con atributos</li>
+                                <li>Establece valores por defecto</li>
+                                <li>Configura campos calculados</li>
+                            </ol>
+                        </li>
+                        <li><strong>Extracción de Datos (20 min)</strong>
+                            <ul>
+                                <li>Configura la herramienta de extracción</li>
+                                <li>Genera reportes en tabla</li>
+                                <li>Exporta a Excel</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Biblioteca de Bloques Paramétricos</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear una biblioteca de bloques paramétricos con atributos para un proyecto arquitectónico.</p>
+                    
+                    <p><strong>Requisitos Mínimos:</strong></p>
+                    <ol>
+                        <li><strong>Tipos de Bloques</strong>
+                            <ul>
+                                <li>5 muebles de oficina</li>
+                                <li>3 elementos sanitarios</li>
+                                <li>2 sistemas de estantería</li>
+                            </ul>
+                        </li>
+                        <li><strong>Atributos por Bloque</strong>
+                            <ul>
+                                <li>Código único</li>
+                                <li>Dimensiones</li>
+                                <li>Materiales</li>
+                                <li>Proveedor</li>
+                                <li>Costo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación</strong>
+                            <ul>
+                                <li>Manual de usuario</li>
+                                <li>Catálogo PDF</li>
+                                <li>Plantilla de extracción de datos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Ejercicio Práctico (40 puntos)</strong></p>
+                    <ul>
+                        <li>Correcta estructura de bloques anidados (15pts)</li>
+                        <li>Atributos bien definidos (15pts)</li>
+                        <li>Organización de capas (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Taller (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en la extracción de datos (10pts)</li>
+                        <li>Formato de reportes (10pts)</li>
+                        <li>Automatización de procesos (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Proyecto (30 puntos)</strong>
+                    <ul>
+                        <li>Completitud de la biblioteca (10pts)</li>
+                        <li>Calidad de la documentación (10pts)</li>
+                        <li>Presentación final (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Dominio excepcional de bloques y atributos</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, necesita práctica</li>
+                        <li>60-69 puntos: Requiere refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">BEDIT</span> para editar bloques y <span class="command">REFEDIT</span> para editar referencias en contexto.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 24 -->
+        <div id="sesion24" class="session">
+            <h2>Sesión 24: Práctica integradora</h2>
+            <div class="content">
+                <p>En esta sesión aplicaremos todos los conceptos aprendidos en un proyecto práctico que involucre referencias externas y bloques.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Organizar un proyecto con múltiples referencias</li>
+                        <li>Optimizar el rendimiento con XRefs</li>
+                        <li>Resolver problemas comunes</li>
+                    </ul>
+                </div>
+
+                <div class="project">
+                    <h3>Proyecto Final: Edificio de Oficinas Modular</h3>
+                    <p><strong>Objetivo:</strong> Desarrollar un proyecto arquitectónico completo utilizando referencias externas, bloques anidados y atributos avanzados.</p>
+                    
+                    <h4>Fase 1: Estructura del Proyecto (2 horas)</h4>
+                    <ol>
+                        <li><strong>Configuración Inicial</strong>
+                            <ul>
+                                <li>Crea la estructura de carpetas del proyecto</li>
+                                <li>Establece plantillas con estilos estándar</li>
+                                <li>Configura el sistema de coordenadas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentos Técnicos</strong>
+                            <ol type="a">
+                                <li>Manual de estándares</li>
+                                <li>Matriz de responsabilidades</li>
+                                <li>Calendario de entregas</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Fase 2: Desarrollo (6 horas)</h4>
+                    <div class="exercise">
+                        <h5>2.1 Planta Arquitectónica</h5>
+                        <ul>
+                            <li>Desarrolla la distribución general</li>
+                            <li>Incorpora elementos estructurales</li>
+                            <li>Agrega acabados y detalles</li>
+                        </ul>
+
+                        <h5>2.2 Especialidades</h5>
+                        <ul>
+                            <li>Instalaciones eléctricas</li>
+                            <li>Sistema hidrosanitario</li>
+                            <li>Climatización y ventilación</li>
+                        </ul>
+
+                        <h5>2.3 Documentación</h5>
+                        <ul>
+                            <li>Acotaciones detalladas</li>
+                            <li>Notas técnicas</li>
+                            <li>Cuadros de superficies</li>
+                        </ul>
+                    </div>
+
+                    <h4>Fase 3: Integración (4 horas)</h4>
+                    <div class="activity">
+                        <h5>3.1 Taller de Integración</h5>
+                        <p><strong>Duración:</strong> 120 minutos</p>
+                        <p><strong>Actividades:</strong></p>
+                        <ol>
+                            <li>Revisión de conflictos</li>
+                            <li>Ajuste de escalas</li>
+                            <li>Sincronización de capas</li>
+                            <li>Optimización de rendimiento</li>
+                        </ol>
+                    </div>
+
+                    <h4>Requisitos Técnicos Detallados</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Estructura de Archivos</h5>
+                            <ul>
+                                <li>Rutas relativas obligatorias</li>
+                                <li>Nomenclatura estandarizada</li>
+                                <li>Versiones numeradas</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Estándares de Dibujo</h5>
+                            <ul>
+                                <li>Capas por disciplina</li>
+                                <li>Estilos de texto y cotas</li>
+                                <li>Escalas apropiadas</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Bloques y Atributos</h5>
+                            <ul>
+                                <li>Biblioteca organizada</li>
+                                <li>Atributos completos</li>
+                                <li>Dinámicos cuando aplique</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="deliverables">
+                        <h4>Entregables Finales</h4>
+                        <ol>
+                            <li><strong>Carpeta del Proyecto</strong>
+                                <ul>
+                                    <li>Archivos DWG fuente</li>
+                                    <li>Biblioteca de bloques</li>
+                                    <li>Plantillas personalizadas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Documentación Técnica</strong>
+                                <ul>
+                                    <li>Memoria descriptiva</li>
+                                    <li>Manual de usuario</li>
+                                    <li>Planos ejecutivos (PDF)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Presentación</strong>
+                                <ul>
+                                    <li>Láminas de presentación</li>
+                                    <li>Renderizados 3D</li>
+                                    <li>Video explicativo (opcional)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación del Proyecto Final</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Calidad Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión dimensional (10pts)</li>
+                        <li>Organización de capas (10pts)</li>
+                        <li>Uso de referencias (10pts)</li>
+                        <li>Calidad de bloques (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Completitud (10pts)</li>
+                        <li>Claridad (10pts)</li>
+                        <li>Profesionalismo (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Presentación (20 puntos)</strong>
+                    <ul>
+                        <li>Diseño de láminas (10pts)</li>
+                        <li>Calidad gráfica (10pts)</li>
+                    </ul>
+
+                    <p><strong>4. Cumplimiento de Plazos (10 puntos)</strong>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de los conceptos</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, áreas de mejora</li>
+                        <li>60-69 puntos: Requiere refuerzo en aspectos clave</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo final:</strong> Usa <span class="command">ETRANSMIT</span> para empaquetar todos los archivos relacionados con tu proyecto, incluyendo referencias externas, fuentes y configuraciones.
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

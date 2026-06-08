@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Cambiar Color de Cabello en Photoshop</title>
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        .image-container {
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        .image-container:hover {
+            animation: pulse 1.5s infinite;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #9b59b6;
+            text-align: center;
+            border-bottom: 2px solid #9b59b6;
+            padding-bottom: 10px;
+        }
+        .step {
+            background-color: #f5eef8;
+            border-left: 4px solid #9b59b6;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .step-number {
+            font-weight: bold;
+            color: #8e44ad;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .shortcut {
+            background-color: #e8daef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        .menu-path {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .tip {
+            background-color: #e8f8f5;
+            border-left: 3px solid #1abc9c;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #fdedec;
+            border-left: 3px solid #e74c3c;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tutorial: Cambiar Color de Cabello en Photoshop</h1>
+    
+    <div class="step">
+        <span class="step-number">Paso 1: Preparación de la imagen</span>
+        <ol>
+            <li>Abre tu imagen en Photoshop (<span class="shortcut">Ctrl + O</span> o <span class="shortcut">⌘ + O</span> en Mac)</li>
+            <li>Duplica la capa de fondo para trabajar de forma no destructiva:
+                <ul>
+                    <li>Arrastra la capa de fondo al ícono "Nueva capa" en el panel de capas</li>
+                    <li>O usa el atajo: <span class="shortcut">Ctrl + J</span> (Windows) o <span class="shortcut">⌘ + J</span> (Mac)</li>
+                </ul>
+                <!-- Reemplaza con tu imagen del panel de capas mostrando la capa duplicada -->
+                <div class="image-container" style="text-align: center; margin: 15px 0;">
+                    <img src="imagenes/duplicar_capa.jpg" alt="Panel de capas mostrando la capa duplicada" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <p style="font-size: 0.9em; color: #666;">Figura 1: Duplicar la capa de fondo</p>
+                </div>
+            </li>
+        </ol>
+        <div class="warning">
+            <strong>Importante:</strong> Trabajar en una capa duplicada te permitirá volver atrás si cometes algún error.
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">Paso 2: Seleccionar el área del cabello</span>
+        <ol>
+            <li>Selecciona la herramienta Pincel (<span class="shortcut">B</span>)</li>
+            <li>Elige un pincel de bordes suaves del panel de pinceles</li>
+            <li>Ajusta el tamaño del pincel según el área del cabello </li>
+            <li>Presiona <span class="shortcut">Q</span> para entrar en el Modo Máscara Rápida (Quick Mask Mode)</li>
+            <li>Pinta sobre todo el cabello con el pincel
+                <!-- Reemplaza con tu imagen mostrando el área pintada en modo máscara rápida -->
+                <div class="image-container" style="text-align: center; margin: 15px 0;">
+                    <img src="imagenes/modo_mascara_rapida.jpg" alt="Modo máscara rápida activado mostrando el área seleccionada en rojo" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <p style="font-size: 0.9em; color: #666;">Figura 2: Área del cabello en modo máscara rápida</p>
+                </div>
+            </li>
+        </ol>
+        
+        <div class="tip">
+            <strong>Consejo:</strong> Si te pasas del área del cabello, cambia al color de fondo negro (<span class="shortcut">X</span> para intercambiar colores) y pinta para corregir.
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">Paso 3: Refinar la selección</span>
+        <ol>
+            <li>Una vez que hayas cubierto todo el cabello, presiona <span class="shortcut">Q</span> nuevamente para salir del Modo Máscara Rápida</li>
+            <li>Invierte la selección para seleccionar solo el cabello:
+                <ul>
+                    <li><span class="menu-path">Selección > Invertir</span> (Select > Inverse)</li>
+                    <li>O usa el atajo: <span class="shortcut">Ctrl + Shift + I</span> (Windows) o <span class="shortcut">⌘ + Shift + I</span> (Mac)</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <span class="step-number">Paso 4: Aplicar el nuevo color</span>
+        <ol>
+            <li>Crea una nueva capa de relleno de color:
+                <ul>
+                    <li><span class="menu-path">Capa > Nueva Capa de Relleno > Color uniforme</span> (Layer > New Fill Layer > Solid Color)</li>
+                    <li>O haz clic en el ícono de ajustes en la parte inferior del panel de capas y selecciona "Color uniforme"</li>
+                </ul>
+            </li>
+            <li>En el cuadro de diálogo que aparece:
+                <ul>
+                    <li>Cambia el modo de fusión a "Luz suave" (Soft Light)</li>
+                    <li>Opcional: Cambia el nombre de la capa (por ejemplo, "Color de cabello")</li>
+                    <li>Haz clic en Aceptar</li>
+                </ul>
+            </li>
+            <li>En el selector de color, elige el tono deseado para el cabello
+                <!-- Reemplaza con tu imagen del selector de color -->
+                <div class="image-container" style="text-align: center; margin: 15px 0;">
+                    <img src="imagenes/selector_color.jpg" alt="Selector de color con el tono elegido" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <p style="font-size: 0.9em; color: #666;">Figura 3: Selector de color para el cabello</p>
+                </div>
+            </li>
+        </ol>
+        
+        <div class="tip">
+            <strong>Consejo:</strong> Para obtener resultados más naturales, prueba con colores que no sean demasiado saturados.
+        </div>
+    </div>
+
+    <div class="step">
+        <span class="step-number">Paso 5: Ajustes finales</span>
+        <ol>
+            <li>Para ajustar la intensidad del color, modifica la opacidad de la capa de color en el panel de capas
+                <!-- Reemplaza con tu imagen mostrando el control de opacidad -->
+                <div class="image-container" style="text-align: center; margin: 15px 0;">
+                    <img src="imagenes/ajuste_opacidad.jpg" alt="Ajuste de opacidad en el panel de capas" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <p style="font-size: 0.9em; color: #666;">Figura 4: Ajuste de opacidad para el color del cabello</p>
+                </div>
+            </li>
+            <li>Si necesitas hacer ajustes en la selección:
+                <ul>
+                    <li>Mantén presionada la tecla <span class="shortcut">Ctrl</span> (Windows) o <span class="shortcut">⌘</span> (Mac) y haz clic en la máscara de capa para volver a seleccionar el área</li>
+                    <li>Usa las herramientas de selección para refinar si es necesario</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <strong>Nota:</strong> Para mejores resultados, trabaja con imágenes de alta resolución y asegúrate de que la selección del cabello sea lo más precisa posible, especialmente alrededor de los bordes.
+    </div>
+
+    <!-- Reemplaza con tu imagen del resultado final -->
+    <div class="image-container" style="text-align: center; margin: 30px 0;">
+        <img src="imagenes/resultado_final.jpg" alt="Resultado final del cambio de color de cabello" style="max-width: 90%; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Figura 5: Resultado final del cambio de color de cabello</p>
+    </div>
+</body>
+</html>

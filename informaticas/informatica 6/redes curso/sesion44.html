@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S11 E44: Práctica Integral de Servidores y Monitorización</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 11, Sesión 44: Práctica Integral Servidores 👨‍💻</h1>
+        <p class="subtitle">Configuración de un Servidor Básico y Uso de Herramientas Linux</p>
+    </header>
+
+        <section class="topic-section">
+            <h2>1. Escenario de Práctica: Configuración de un Servidor Web Básico</h2>
+            <p>Se te pide configurar un servidor Linux básico (simulado en Packet Tracer o tu VM/WSL) para alojar una página web simple y verificar su estado.</p>
+            
+            <div class="card-grid">
+                <div class="card card-style-light-blue">
+                    <h3>Configuración del Servidor</h3>
+                    <ul>
+                        <li>Sistema Operativo: Linux (simulado).</li>
+                        <li>IP Estática: **192.168.1.50 /24**.</li>
+                        <li>Servicio Web (HTTP/Port 80) activo.</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Tareas de Verificación</h3>
+                    <ul>
+                        <li>Acceso remoto mediante SSH (simulado con PuTTY).</li>
+                        <li>Verificación de puertos abiertos con **`ss`** o **Zenmap**.</li>
+                        <li>Comprobación de latencia desde el cliente (`ping`).</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Pasos de Implementación y Diagnóstico</h2>
+            <p>Esta práctica utiliza todas las herramientas aprendidas hasta ahora en un entorno de servidor real:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Configuración (Simulada)</h3>
+                    <ol>
+                        <li>Asegura la IP estática en el servidor (192.168.1.50).</li>
+                        <li>Verifica que el servicio SSH esté activo (simulado en el servidor).</li>
+                        <li>En el cliente, usa **PuTTY** para conectarte (simulado).</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Diagnóstico con Zenmap (Cliente)</h3>
+                    <p>Desde la PC cliente, usa Zenmap (o Advanced IP Scanner) para escanear la IP del servidor (192.168.1.50). La herramienta debe reportar que el **Puerto 80 (HTTP)** y el **Puerto 22 (SSH)** están **abiertos**.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Escaneo y Verificación de Puertos</h2>
+            <p><strong>Tarea Práctica (Software Gratuito):</strong></p>
+            <ol>
+                <li>Abre **Zenmap** (o Nmap) y escanea una IP conocida de tu red (ej. la de tu router o una VM).</li>
+                <li>Identifica si el Puerto 22 (SSH) o el Puerto 23 (Telnet) están abiertos.</li>
+                <li>Documenta el estado de esos puertos. Si Telnet está abierto, es un riesgo de seguridad que debe cerrarse.</li>
+            </ol>
+            <button id="monitoringProjectCheckBtn">Finalizar Proyecto de Servidores</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S11 E44</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion43.html" class="nav-button">Anterior</a>
+        <a href="sesion45.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

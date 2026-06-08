@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S8 E32: Evaluación Final del Módulo 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 8, Sesión 32: Evaluación Final Módulo 2 🏆</h1>
+        <p class="subtitle">Examen Práctico de Configuración, Mantenimiento y Troubleshooting</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Temas de la Evaluación Teórica</h2>
+            <p>El examen teórico cubrirá la materia de la Semana 5 a 8, incluyendo:</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Configuración LAN</h3>
+                    <ul>
+                        <li>Tipos de cableado (Directo, Cruzado) y estándares.</li>
+                        <li>Configuración de Router (Gateway, WAN, LAN).</li>
+                        <li>Funcionamiento del Switch (Tabla MAC, aprendizaje).</li>
+                        <li>Diferencias 2.4 GHz vs 5 GHz.</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Mantenimiento y Seguridad</h3>
+                    <ul>
+                        <li>Secuencia de Troubleshooting (Ping, ipconfig, DNS).</li>
+                        <li>Tipos de Fallos (IP duplicada, DNS roto).</li>
+                        <li>Firewalls, contraseñas y actualización de Firmware.</li>
+                        <li>Herramientas: Advanced IP Scanner, NetSetMan, comandos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Examen Práctico (Escenario de Falla)</h2>
+            <p>Se presentará un escenario con una red ya implementada en Packet Tracer que contiene uno o más fallos intencionales (ej. un cable incorrecto, una IP duplicada, un Gateway mal configurado). Tu tarea será:</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Diagnóstico</h3>
+                    <p>Usar **Ping** y **ipconfig** para identificar la causa raíz del problema.</p>
+                </div>
+                <div>
+                    <h3>Resolución</h3>
+                    <p>Aplicar el conocimiento (ej. cambiar el cable a Cruzado, corregir la Máscara de Red o reconfigurar el DHCP).</p>
+                </div>
+                <div>
+                    <h3>Verificación</h3>
+                    <p>Demostrar que la conectividad se ha restaurado con un **ping exitoso** a todos los dispositivos.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Fin del Módulo 2</h2>
+            <p>¡Felicidades por completar el módulo de Mantenimiento de Redes LAN! En el siguiente módulo, exploraremos temas avanzados como Monitoreo y Servidores.</p>
+            
+            <button id="module2ExamBtn">Iniciar Evaluación Final</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S8 E32</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion31.html" class="nav-button">Anterior</a>
+        <a href="sesion33.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

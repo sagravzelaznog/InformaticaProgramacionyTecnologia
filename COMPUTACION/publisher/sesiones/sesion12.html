@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12: Publicaciones web - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la sesión 12 */
+        .proceso-pasos {
+            background-color: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .ejercicio {
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .ejercicio h4 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+        
+        .paso {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .paso:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #17a2b8;
+        }
+        
+        .contenedor-ejercicio {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .area-ejercicio {
+            flex: 1;
+            min-width: 300px;
+            border: 2px dashed #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 200px;
+            background-color: #fff;
+        }
+        
+        .tabla-datos {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .tabla-datos th, .tabla-datos td {
+            border: 1px solid #dee2e6;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        
+        .tabla-datos th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .tabla-datos tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .pregunta {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #6c757d;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .pregunta button {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .respuesta {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+        
+        .ejemplo-web {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .navegador {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .barra-navegador {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .boton-navegador {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .rojo { background-color: #ff5f56; }
+        .amarillo { background-color: #ffbd2e; }
+        .verde { background-color: #27c93f; }
+        
+        .contenido-navegador {
+            padding: 15px;
+            min-height: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .contenedor-ejercicio {
+                flex-direction: column;
+            }
+            
+            .area-ejercicio {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sesión 12: Publicaciones web en Microsoft Publisher</h1>
+            <p class="subtitulo">Aprende a crear y publicar contenido web profesional</p>
+        </header>
+        
+        <nav aria-label="Navegación">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sesión 12: Publicaciones web</li>
+            </ul>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="d-none d-md-block">
+                    <div class="list-group">
+                        <a href="#introduccion" class="list-group-item list-group-item-action">Introducción</a>
+                        <a href="#guardar-como-web" class="list-group-item list-group-item-action">Guardar como página web</a>
+                        <a href="#elementos-web" class="list-group-item list-group-item-action">Elementos web</a>
+                        <a href="#publicar-en-linea" class="list-group-item list-group-item-action">Publicar en línea</a>
+                        <a href="#practica" class="list-group-item list-group-item-action">Práctica guiada</a>
+                        <a href="#ejercicios" class="list-group-item list-group-item-action">Ejercicios</a>
+                        <a href="#evaluacion" class="list-group-item list-group-item-action">Autoevaluación</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <section id="introduccion" class="seccion">
+                    <h2>Introducción a las Publicaciones Web</h2>
+                    <p>En esta sesión aprenderás a transformar tus publicaciones de Publisher en sitios web completamente funcionales. Microsoft Publisher te permite crear publicaciones web atractivas sin necesidad de conocimientos avanzados de programación.</p>
+                    
+                    <div class="contenedor-ejercicio">
+                        <div>
+                            <h4>¿Qué son las publicaciones web en Publisher?</h4>
+                            <p>Son documentos de Publisher especialmente diseñados o convertidos para ser visualizados en navegadores web, permitiendo compartir tu contenido en Internet de manera accesible.</p>
+                            <p><strong>Ventajas:</strong></p>
+                            <ul>
+                                <li>Fácil creación sin necesidad de código HTML</li>
+                                <li>Integración con otros elementos de Office</li>
+                                <li>Diseño visual con herramientas familiares</li>
+                                <li>Publicación directa desde el programa</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <svg width="300" height="200" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="50" y="50" width="300" height="150" rx="5" fill="#e9ecef" />
+                                <rect x="70" y="75" width="260" height="30" rx="3" fill="#fff" stroke="#dee2e6" />
+                                <rect x="70" y="115" width="120" height="70" rx="3" fill="#4e79a7" />
+                                <rect x="200" y="115" width="130" height="30" rx="3" fill="#f28e2b" />
+                                <rect x="200" y="155" width="130" height="30" rx="3" fill="#59a14f" />
+                                <text x="200" y="95" font-family="Arial" font-size="14" fill="#495057" text-anchor="middle">www.tusitioweb.com</text>
+                                <text x="130" y="140" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Contenido</text>
+                                <text x="265" y="135" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Elemento</text>
+                                <text x="265" y="175" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Interactivo</text>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="guardar-como-web" class="seccion">
+                    <h2>Guardar Publicaciones como Páginas Web</h2>
+                    <p>Convertir tu publicación de Publisher en una página web es un proceso sencillo que te permite compartir tu trabajo en línea.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso a paso: Guardar como página web</h4>
+                        <div class="paso">1. Abre tu publicación en Microsoft Publisher.</div>
+                        <div class="paso">2. Haz clic en <strong>Archivo</strong> > <strong>Guardar como</strong>.</div>
+                        <div class="paso">3. Selecciona la ubicación donde deseas guardar los archivos.</div>
+                        <div class="paso">4. En el menú desplegable <strong>Guardar como tipo</strong>, selecciona <strong>Página web (*.htm; *.html)</strong>.</div>
+                        <div class="paso">5. Haz clic en <strong>Cambiar título</strong> y escribe un título para tu página web.</div>
+                        <div class="paso">6. Haz clic en <strong>Guardar</strong>.</div>
+                    </div>
+                    
+                    <div class="ejemplo-web">
+                        <h5>Consejos para el guardado web:</h5>
+                        <ul>
+                            <li><strong>Nombres de archivo:</strong> Usa solo letras minúsculas, números y guiones.</li>
+                            <li><strong>Ubicación:</strong> Crea una carpeta específica para los archivos web.</li>
+                            <li><strong>Imágenes:</strong> Publisher creará automáticamente una carpeta para las imágenes.</li>
+                            <li><strong>Enlaces:</strong> Verifica que todos los enlaces funcionen correctamente.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="elementos-web" class="seccion">
+                    <h2>Insertar Elementos Web</h2>
+                    <p>Publisher ofrece varias herramientas para hacer tus publicaciones web más interactivas y atractivas.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Elementos web disponibles</h4>
+                        <div class="contenedor-ejercicio">
+                            <div class="area-ejercicio">
+                                <h5>1. Formularios</h5>
+                                <p>Incluye formularios de contacto, suscripción o comentarios.</p>
+                                <svg width="100%" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="10" y="10" width="280" height="80" rx="5" fill="#f8f9fa" stroke="#dee2e6" />
+                                    <rect x="30" y="30" width="240" height="25" rx="3" fill="#fff" stroke="#ced4da" />
+                                    <rect x="30" y="65" width="100" height="15" rx="3" fill="#4e79a7" />
+                                </svg>
+                            </div>
+                            <div class="area-ejercicio">
+                                <h5>2. Botones interactivos</h5>
+                                <p>Crea botones con efectos de desplazamiento.</p>
+                                <svg width="100%" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="100" y="40" width="100" height="30" rx="5" fill="#4e79a7" />
+                                    <text x="150" y="60" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Haz clic aquí</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso a paso: Insertar un formulario de contacto</h4>
+                        <div class="paso">1. Ve a la pestaña <strong>Insertar</strong>.</div>
+                        <div class="paso">2. Haz clic en <strong>Formulario</strong> y selecciona <strong>Formulario de contacto</strong>.</div>
+                        <div class="paso">3. Personaliza los campos según tus necesidades.</div>
+                        <div class="paso">4. Establece la dirección de correo electrónico donde recibirás los mensajes.</div>
+                        <div class="paso">5. Ajusta el diseño para que coincida con tu publicación.</div>
+                    </div>
+                </section>
+                
+                <section id="publicar-en-linea" class="seccion">
+                    <h2>Publicar en Línea</h2>
+                    <p>Una vez que tu publicación web está lista, es hora de compartirla con el mundo.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Opciones de publicación</h4>
+                        <div class="contenedor-ejercicio">
+                            <div class="area-ejercicio">
+                                <h5>1. Publicar en un servidor web</h5>
+                                <p>Sube tus archivos a un servicio de alojamiento web.</p>
+                                <div class="navegador">
+                                    <div class="barra-navegador">
+                                        <span class="boton-navegador rojo"></span>
+                                        <span class="boton-navegador amarillo"></span>
+                                        <span class="boton-navegador verde"></span>
+                                    </div>
+                                    <div class="contenido-navegador">
+                                        <p class="no-margin">Subir archivos vía FTP</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="area-ejercicio">
+                                <h5>2. Publicar en OneDrive</h5>
+                                <p>Guarda y comparte directamente desde la nube.</p>
+                                <div class="navegador">
+                                    <div class="barra-navegador">
+                                        <span class="boton-navegador rojo"></span>
+                                        <span class="boton-navegador amarillo"></span>
+                                        <span class="boton-navegador verde"></span>
+                                    </div>
+                                    <div class="contenido-navegador">
+                                        <p class="no-margin">Guardar en OneDrive</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso a paso: Publicar en OneDrive</h4>
+                        <div class="paso">1. Haz clic en <strong>Archivo</strong> > <strong>Guardar como</strong>.</div>
+                        <div class="paso">2. Selecciona <strong>OneDrive - Personal</strong>.</div>
+                        <div class="paso">3. Elige una ubicación o crea una nueva carpeta.</div>
+                        <div class="paso">4. Haz clic en <strong>Guardar</strong>.</div>
+                        <div class="paso">5. Haz clic derecho en el archivo guardado y selecciona <strong>Compartir</strong>.</div>
+                    </div>
+                </section>
+                
+                <section id="practica" class="seccion">
+                    <h2>Práctica Guiada</h2>
+                    <p>Sigue estos pasos para crear y publicar una página web simple con Microsoft Publisher.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso 1: Crear una publicación web básica</h4>
+                        <div class="paso">1. Abre Microsoft Publisher y selecciona <strong>Publicación en blanco</strong>.</div>
+                        <div class="paso">2. En la pestaña <strong>Diseño de página</strong>, selecciona <strong>Página web</strong> como tipo de publicación.</div>
+                        <div class="paso">3. Establece el tamaño de página a 1024 x 768 píxeles.</div>
+                        <div class="paso">4. Agrega un encabezado con el título "Mi Primera Página Web".</div>
+                        <div class="paso">5. Inserta una imagen relevante desde tu computadora.</div>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso 2: Agregar navegación</h4>
+                        <div class="paso">1. Crea una barra de navegación en la parte superior.</div>
+                        <div class="paso">2. Agrega al menos tres enlaces (Inicio, Acerca de, Contacto).</div>
+                        <div class="paso">3. Crea páginas adicionales para cada sección.</div>
+                        <div class="paso">4. Vincula los botones de navegación a las páginas correspondientes.</div>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso 3: Guardar y publicar</h4>
+                        <div class="paso">1. Haz clic en <strong>Archivo</strong> > <strong>Guardar como</strong>.</div>
+                        <div class="paso">2. Selecciona <strong>Página web (*.htm; *.html)</strong> como tipo de archivo.</div>
+                        <div class="paso">3. Elige una ubicación y haz clic en <strong>Guardar</strong>.</div>
+                        <div class="paso">4. Abre el archivo index.html en tu navegador para probarlo.</div>
+                    </div>
+                </section>
+                
+                <section id="ejercicios" class="seccion">
+                    <h2>Ejercicios Prácticos</h2>
+                    
+                    <div class="ejercicio">
+                        <h4>Ejercicio 1: Crear un portafolio web</h4>
+                        <p>Crea un sitio web de portafolio con las siguientes secciones:</p>
+                        <div class="contenedor-ejercicio">
+                            <div>
+                                <h5>Páginas a incluir:</h5>
+                                <ul>
+                                    <li>Inicio con presentación</li>
+                                    <li>Acerca de mí</li>
+                                    <li>Proyectos realizados</li>
+                                    <li>Habilidades</li>
+                                    <li>Contacto</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Elementos requeridos:</h5>
+                                <ul>
+                                    <li>Barra de navegación funcional</li>
+                                    <li>Formulario de contacto</li>
+                                    <li>Galería de imágenes</li>
+                                    <li>Enlaces a redes sociales</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="seccion">
+                    <h2>Autoevaluación</h2>
+                    
+                    <div class="pregunta">
+                        <h4>1. ¿Cuáles son los pasos básicos para guardar una publicación como página web en Publisher?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta1">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta1">
+                            Los pasos básicos son:
+                            <ol>
+                                <li>Abrir la publicación en Publisher</li>
+                                <li>Hacer clic en <strong>Archivo</strong> > <strong>Guardar como</strong></li>
+                                <li>Seleccionar <strong>Página web (*.htm; *.html)</strong> como tipo de archivo</li>
+                                <li>Elegir una ubicación para guardar los archivos</li>
+                                <li>Hacer clic en <strong>Guardar</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>2. ¿Qué elementos interactivos se pueden agregar a una publicación web en Publisher?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta2">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta2">
+                            Se pueden agregar varios elementos interactivos, incluyendo:
+                            <ul>
+                                <li>Formularios de contacto</li>
+                                <li>Botones con efectos de desplazamiento</li>
+                                <li>Enlaces a páginas web externas</li>
+                                <li>Vídeos incrustados</li>
+                                <li>Galerías de imágenes interactivas</li>
+                                <li>Mapas de Google</li>
+                                <li>Botones de redes sociales</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>3. ¿Cuáles son las opciones para publicar una página web creada en Publisher?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta3">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta3">
+                            Las principales opciones de publicación son:
+                            <ul>
+                                <li><strong>Servidor web propio:</strong> Subir los archivos vía FTP a un servicio de alojamiento web.</li>
+                                <li><strong>OneDrive/SharePoint:</strong> Guardar en la nube y compartir el enlace.</li>
+                                <li><strong>Correo electrónico:</strong> Enviar los archivos como adjuntos.</li>
+                                <li><strong>CD/DVD:</strong> Grabar los archivos en un disco para distribución física.</li>
+                                <li><strong>Servicios de publicación web:</strong> Algunas versiones de Publisher ofrecen integración con servicios de publicación web.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navegacion">
+                    <a href="sesion11.html" class="btn-anterior">← Sesión Anterior: Combinar correspondencia</a>
+                    <a href="sesion13.html" class="btn-siguiente">Siguiente Sesión: Impresión →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticación
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const mainContent = document.querySelector('.container');
+            
+            if (!currentUser || !currentUser.key) {
+                window.location.href = '../iniciar-sesion.html';
+            } else {
+                mainContent.classList.remove('hidden');
+                document.getElementById('userName').textContent = currentUser.nombre || 'Usuario';
+            }
+            
+            // Configurar botones de ver respuesta
+            const botonesRespuesta = document.querySelectorAll('.btn-ver-respuesta');
+            botonesRespuesta.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const idRespuesta = this.getAttribute('data-respuesta');
+                    const respuesta = document.getElementById(idRespuesta);
+                    if (respuesta.style.display === 'block') {
+                        respuesta.style.display = 'none';
+                        this.textContent = 'Ver respuesta';
+                    } else {
+                        respuesta.style.display = 'block';
+                        this.textContent = 'Ocultar respuesta';
+                    }
+                });
+            });
+            
+            // Configurar botón de cierre de sesión
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    sessionStorage.removeItem('currentUser');
+                    window.location.href = '../iniciar-sesion.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

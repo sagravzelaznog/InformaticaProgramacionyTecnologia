@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S23: LPE: Deformación y Curvatura</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 23: LPE: Deformación y Curvatura</h1>
+
+    <section>
+        <h2>1. LPE: Deformación (Deform)</h2>
+        [Image showing a square shape deformed non-destructively using the deform tool]
+        <p>El LPE **Deformación** permite distorsionar un objeto utilizando la herramienta **Nodo (F2)**, pero de forma no destructiva. Es decir, los nodos que mueves son controladores, no nodos reales del trayecto.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar Deformación</strong>
+            <p>Selecciona el objeto (ej. un rectángulo). Aplica el LPE **Deformación**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Uso de la Herramienta Nodo</strong>
+            <p>Selecciona la herramienta **Nodo (F2)**. Ahora puedes hacer clic en cualquier parte del objeto y arrastrar. La malla del objeto se distorsionará de forma fluida, pero si eliminas el LPE, el rectángulo volverá a su forma original.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Parámetros Clave</strong>
+            <p>Ajusta el **Umbral de arrastre** para controlar qué tan lejos del puntero se aplica la deformación. **Desenfocar** suaviza la transición de la deformación.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. LPE: Perspectiva (Perspective/Envelope)</h2>
+        [Image showing a flat text object being warped into a perspective view]
+        <p>El LPE **Perspectiva** (o envolvente en algunas versiones) te permite aplicar una transformación de perspectiva a un objeto, haciéndolo parecer tridimensional o plano en el espacio. Es excelente para colocar logotipos en superficies simuladas.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar el Efecto</strong>
+            <p>Selecciona el objeto (ej. un texto vectorizado o un rectángulo) y aplica el LPE **Perspectiva (Perspective/Envelope)**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Uso de los Manejadores de Control</strong>
+            <p>Usa la herramienta **Selector (F1)** o **Nodo (F2)**. Verás cuatro nodos de control de esquina. Arrastra estos nodos para sesgar la forma y proyectarla en el espacio, creando el efecto de perspectiva.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. LPE: Malla de Curvatura (Lattice Deformation)</h2>
+        <p>Esta es una versión más avanzada de la deformación, que aplica una cuadrícula de control (malla) sobre el objeto. Mover los nodos de la malla permite deformar áreas específicas.</p>
+        <div class="paso">
+            <strong>Aplicación</strong>
+            <p>Aplica el LPE **Malla de Curvatura**. En el panel, puedes definir el número de filas y columnas de la malla (ej. 3x3). Usa la herramienta **Nodo (F2)** para manipular los puntos de la malla y deformar el objeto de forma más controlada que con el simple LPE Deformación.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Logotipo en Perspectiva</h3>
+        <p><strong>Objetivo:</strong> Usar el LPE Perspectiva para simular un sticker en el espacio.</p>
+        <ol>
+            <li>Crea un logotipo simple (el de la semana 4 es perfecto).</li>
+            <li>Aplica el LPE **Perspectiva (Perspective/Envelope)**.</li>
+            <li>Mueve los nodos de control de esquina para que el logotipo parezca estar inclinado hacia atrás o hacia la derecha (simulando que está pegado en una caja o una pared).</li>
+            <li>Mientras mantienes el efecto Perspectiva, intenta aplicar el LPE **Deformación** para darle una ligera curvatura a la pegatina, como si estuviera arrugada.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion22.html">Anterior</a>
+    <a href="sesion24.html">Siguiente</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema6">
+                <h2>Tema 6: Tablas dinámicas en Excel</h2>
+                <div class="tema-contenido">
+                    <p>Las tablas dinámicas son una de las herramientas más poderosas de Excel para analizar grandes conjuntos de datos de manera rápida y eficiente. En este tema, aprenderás a crear, personalizar y aprovechar al máximo las tablas dinámicas para transformar datos en información valiosa.</p>
+                    
+                    <h3>6.1 Introducción a las tablas dinámicas</h3>
+                    <p>Una tabla dinámica es una herramienta de resumen de datos que permite agrupar, contar, sumar o promediar datos almacenados en una tabla o rango de celdas.</p>
+                    
+                    <div class="info-box">
+                        <h4>Ventajas de usar tablas dinámicas:</h4>
+                        <ul>
+                            <li>Permiten resumir rápidamente grandes volúmenes de datos</li>
+                            <li>Facilitan el análisis de tendencias y patrones</li>
+                            <li>Son interactivas y fáciles de modificar</li>
+                            <li>Permiten filtrar y segmentar datos de manera intuitiva</li>
+                            <li>Se actualizan automáticamente al cambiar los datos de origen</li>
+                        </ul>
+                    </div>
+
+                    <h3>6.2 Creación de una tabla dinámica</h3>
+                    <p>Sigue estos pasos para crear una tabla dinámica:</p>
+                    <ol>
+                        <li>Selecciona el rango de datos que deseas analizar</li>
+                        <li>Ve a la pestaña <strong>Insertar</strong> y haz clic en <strong>Tabla dinámica</strong></li>
+                        <li>Verifica el rango de datos y selecciona dónde deseas colocar la tabla dinámica</li>
+                        <li>Arrastra los campos a las áreas correspondientes (Filtros, Columnas, Filas y Valores)</li>
+                    </ol>
+
+                    <div class="ejercicio-practico">
+                        <h4>Práctica: Crea tu primera tabla dinámica</h4>
+                        <p>Usa los siguientes datos de ventas para crear una tabla dinámica que muestre las ventas totales por vendedor y producto:</p>
+                        
+                        <div class="mini-tabla" id="tablaVentasDinamicas">
+                            <!-- Se generará dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <p><strong>Instrucciones:</strong></p>
+                            <ol>
+                                <li>Selecciona los datos de la tabla (incluyendo encabezados)</li>
+                                <li>Crea una tabla dinámica en una nueva hoja</li>
+                                <li>Arrastra el campo "Vendedor" al área de Filas</li>
+                                <li>Arrastra el campo "Producto" al área de Columnas</li>
+                                <li>Arrastra el campo "Ventas" al área de Valores</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <h3>6.3 Personalización de tablas dinámicas</h3>
+                    <p>Una vez creada una tabla dinámica, puedes personalizarla para mostrar exactamente la información que necesitas.</p>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Personaliza tu tabla dinámica</h4>
+                        <p>Usando la tabla dinámica que creaste, realiza las siguientes personalizaciones:</p>
+                        
+                        <div class="personalizacion-tabla">
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="filtro-fecha" class="opcion-tabla">
+                                <label for="filtro-fecha">Agregar filtro por fecha</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="formato-numeros" class="opcion-tabla">
+                                <label for="formato-numeros">Aplicar formato de moneda a los valores</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="estilo-tabla" class="opcion-tabla">
+                                <label for="estilo-tabla">Aplicar un estilo de tabla</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="totales" class="opcion-tabla">
+                                <label for="totales">Mostrar totales generales</label>
+                            </div>
+                            <button id="aplicarPersonalizacionTabla" class="verify-btn">Aplicar Cambios</button>
+                        </div>
+                        
+                        <div id="feedbackTabla" class="feedback"></div>
+                    </div>
+
+                    <h3>6.4 Funciones avanzadas de tablas dinámicas</h3>
+                    <p>Explora funciones avanzadas para llevar tu análisis al siguiente nivel:</p>
+                    
+                    <div class="ejercicio-avanzado">
+                        <h4>Segmentación de datos</h4>
+                        <p>La segmentación de datos te permite filtrar los datos de manera visual e intuitiva:</p>
+                        
+                        <div class="mini-tabla" id="tablaSegmentada">
+                            <!-- Se generará dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <p><strong>Pasos para crear segmentaciones:</strong></p>
+                            <ol>
+                                <li>Selecciona cualquier celda dentro de tu tabla dinámica</li>
+                                <li>Ve a la pestaña <strong>Analizar</strong></li>
+                                <li>Haz clic en <strong>Insertar segmentación de datos</strong></li>
+                                <li>Selecciona los campos por los que deseas filtrar (ej. Región, Categoría)</li>
+                                <li>Usa los controles de segmentación para filtrar los datos</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Qué área de una tabla dinámica se utiliza para mostrar valores numéricos que se desean resumir?</div>
+                        <div class="opcion">a) Filtros</div>
+                        <div class="opcion">b) Columnas</div>
+                        <div class="opcion">c) Filas</div>
+                        <div class="opcion">d) Valores</div>
+                        
+                        <div class="pregunta">2. ¿Cuál es el primer paso para crear una tabla dinámica?</div>
+                        <div class="opcion">a) Seleccionar el rango de datos</div>
+                        <div class="opcion">b) Hacer clic en "Insertar tabla dinámica"</div>
+                        <div class="opcion">c) Seleccionar los campos para la tabla</div>
+                        <div class="opcion">d) Aplicar formato a la tabla</div>
+                        
+                        <div class="pregunta">3. ¿Qué herramienta de Excel permite filtrar datos de una tabla dinámica de manera visual?</div>
+                        <div class="opcion">a) Filtro avanzado</div>
+                        <div class="opcion">b) Segmentación de datos</div>
+                        <div class="opcion">c) Validación de datos</div>
+                        <div class="opcion">d) Formato condicional</div>
+                        
+                        <button id="evaluarTema6" class="evaluation-btn">Verificar respuestas</button>
+                        <div id="resultadoEvaluacion6" class="resultado"></div>
+                    </div>
+
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Las tablas dinámicas son herramientas poderosas para resumir y analizar grandes conjuntos de datos.</li>
+                            <li>Se pueden crear arrastrando campos a las áreas de Filtros, Columnas, Filas y Valores.</li>
+                            <li>La segmentación de datos permite filtrar la información de manera visual e interactiva.</li>
+                            <li>Es posible personalizar el diseño, formato y cálculos de las tablas dinámicas.</li>
+                            <li>Las tablas dinámicas se actualizan automáticamente cuando se modifican los datos de origen.</li>
+                        </ul>
+                    </div>
+
+                    <div class="siguiente-paso">
+                        <h3>¡Felicidades por completar el módulo de Excel!</h3>
+                        <p>Has aprendido las herramientas fundamentales de Excel, desde conceptos básicos hasta técnicas avanzadas de análisis de datos. Sigue practicando con diferentes conjuntos de datos para dominar completamente estas poderosas herramientas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 7: Análisis de datos con tablas dinámicas -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema5.html" class="btn btn-anterior">Anterior: Tema 5</a>
+        <a href="tema7.html" class="btn btn-siguiente">Siguiente: Tema 7</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

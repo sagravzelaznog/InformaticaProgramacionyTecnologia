@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 E11: Protocolos de Aplicación (DHCP y DNS)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 3, Sesión 11: DHCP y DNS 🤖</h1>
+        <p class="subtitle">Automatización de IP y Resolución de Nombres de Dominio</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. DHCP: Protocolo de Configuración Dinámica de Host</h2>
+            <p>El **DHCP (Dynamic Host Configuration Protocol)** permite que un servidor asigne automáticamente una dirección IP, máscara de subred, puerta de enlace y servidor DNS a cualquier dispositivo que se conecte a la red. Esto evita la configuración manual y reduce errores.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>El Proceso DORA (Descubrimiento)</h3>
+                    <p>Es el ciclo de cuatro pasos que un cliente sigue para obtener una IP:</p>
+                    <ol>
+                        <li>**Discover (Descubrir):** El cliente busca un servidor DHCP.</li>
+                        <li>**Offer (Oferta):** El servidor le ofrece una IP disponible.</li>
+                        <li>**Request (Solicitud):** El cliente solicita formalmente esa IP.</li>
+                        <li>**Acknowledge (Aceptación):** El servidor confirma y otorga la IP por un tiempo (tiempo de concesión o *lease time*).</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <h3>Componentes Clave</h3>
+                    <ul>
+                        <li>**Pool de Direcciones:** El rango de IPs que el servidor puede repartir.</li>
+                        <li>**Tiempo de Concesión:** El tiempo que el cliente puede usar la IP antes de solicitar renovarla.</li>
+                        <li>**Direcciones Excluidas:** IPs reservadas (ej. para el router o servidores) que no se repartirán.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. DNS: Sistema de Nombres de Dominio</h2>
+            <p>El **DNS (Domain Name System)** es el servicio que traduce nombres de dominio (ej. `google.com`) a direcciones IP numéricas (ej. `142.250.70.196`). Sin DNS, tendríamos que memorizar IPs para cada sitio web.</p>
+            
+            <div class="image-container">
+                [Image of DNS resolution process]
+                <figcaption>DNS actúa como la guía telefónica de Internet, traduciendo nombres a IPs.</figcaption>
+            </div>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>El Proceso de Resolución</h3>
+                    <p>Cuando escribes un dominio, tu PC pregunta a un servidor DNS. Si este no lo sabe, pregunta a los servidores **raíz**, luego a los servidores **TLD** (.com, .org) y finalmente al servidor **autoritativo** del dominio, hasta encontrar la IP correcta.</p>
+                </div>
+                <div>
+                    <h3>Comando Práctico: NSLOOKUP</h3>
+                    <p>Este comando nos permite consultar directamente a un servidor DNS para obtener la IP de un dominio.</p>
+                </div>
+            </>
+            
+            <button id="dnsLookupBtn">Práctica: NSLOOKUP</button>
+        </section>
+
+        <section class="topic-section">
+            <h2>3. Práctica: Configuración de DHCP en Packet Tracer</h2>
+            <p>En esta práctica, implementaremos un servidor DHCP en un router (o servidor dedicado) para automatizar la configuración de dos PCs.</p>
+
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>Crea un Router, un Switch y dos PCs en Packet Tracer.</li>
+                <li>Configura la interfaz del Router (Gateway) con una IP estática (ej. 192.168.1.1).</li>
+                <li>Habilita el servicio DHCP en el Router, definiendo un Pool que reparta de 192.168.1.100 a 192.168.1.200.</li>
+                <li>En los PCs, cambia la configuración de IP de "Estática" a **"DHCP"**.</li>
+                <li>Verifica que los PCs reciban automáticamente la IP del Pool (ej. 192.168.1.100).</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S3 E11</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion10.html" class="nav-button">Anterior</a>
+        <a href="sesion12.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

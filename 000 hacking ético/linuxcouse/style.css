@@ -1,0 +1,1538 @@
+:root {
+	--bg-base: #0f172a;
+	--bg-surface: #1e293b;
+	--text-primary: #f8fafc;
+	--text-secondary: #94a3b8;
+	--accent-cyan: #38bdf8;
+	--accent-green: #10b981;
+	--border-color: #334155;
+	--font-main: 'Segoe UI', system-ui, sans-serif;
+	--font-code: 'Fira Code', 'Courier New', monospace;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: var(--font-main);
+	background-color: var(--bg-base);
+	color: var(--text-primary);
+	line-height: 1.6;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* Header & Auth */
+.app-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	background-color: var(--bg-surface);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.logo span {
+	color: var(--accent-cyan);
+}
+
+.btn {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.btn-primary {
+	background-color: var(--accent-cyan);
+	color: var(--bg-base);
+}
+
+.btn-primary:hover {
+	background-color: #0ea5e9;
+}
+
+.btn-secondary {
+	background-color: transparent;
+	color: var(--text-secondary);
+	border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+	color: var(--text-primary);
+	border-color: var(--text-primary);
+}
+
+/* Progress Bar */
+.progress-container {
+	width: 100%;
+	height: 4px;
+	background-color: var(--bg-surface);
+}
+
+.progress-bar {
+	height: 100%;
+	background-color: var(--accent-green);
+	transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Main Content */
+.container {
+	max-width: 800px;
+	margin: 2rem auto;
+	padding: 0 1rem;
+	flex: 1;
+}
+
+.intro-text {
+	color: var(--text-secondary);
+	font-size: 1.1rem;
+	margin-bottom: 2rem;
+}
+
+.task-module {
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	margin-bottom: 1.5rem;
+	padding: 1.5rem;
+	transition: transform 0.2s ease;
+}
+
+.task-module:hover {
+	transform: translateY(-2px);
+	border-color: var(--accent-cyan);
+}
+
+.task-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 0.5rem;
+}
+
+.task-header h2 {
+	font-size: 1.25rem;
+	color: var(--accent-cyan);
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	color: var(--text-secondary);
+}
+
+.custom-checkbox input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark {
+	height: 20px;
+	width: 20px;
+	background-color: var(--bg-base);
+	border: 2px solid var(--border-color);
+	border-radius: 4px;
+	margin-right: 8px;
+	position: relative;
+	transition: all 0.2s;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+	background-color: var(--accent-green);
+	border-color: var(--accent-green);
+}
+
+/* Reusable Code Encapsulation */
+.code-encapsulated {
+	position: relative;
+	background-color: var(--bg-base);
+	border-radius: 6px;
+	padding: 1rem;
+	margin-top: 1rem;
+	border: 1px solid #000;
+}
+
+.code-encapsulated pre {
+	overflow-x: auto;
+	font-family: var(--font-code);
+	color: var(--text-primary);
+}
+
+.copy-btn {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	background: var(--bg-surface);
+	color: var(--text-secondary);
+	border: 1px solid var(--border-color);
+	padding: 4px 8px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.8rem;
+	transition: all 0.2s;
+}
+
+.copy-btn:hover {
+	color: var(--accent-cyan);
+	border-color: var(--accent-cyan);
+}
+
+/* Footer */
+.app-footer {
+	text-align: center;
+	padding: 1.5rem;
+	background-color: var(--bg-surface);
+	color: var(--text-secondary);
+	font-size: 0.9rem;
+	border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 600px) {
+	.task-header {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1rem;
+	}
+}
+/* --- AÑADIDOS PARA SESIÓN 02: KALI TERMINAL THEME --- */
+
+.kali-theme {
+	background-color: #1a1b26 !important; /* Fondo de terminal más oscuro */
+	border: 1px solid #292e42 !important;
+	border-radius: 8px;
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+	padding: 1.2rem !important;
+}
+
+.kali-theme pre {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.kali-theme code {
+	color: #c0caf5; /* Texto base de comando */
+	font-size: 0.95rem;
+}
+
+.prompt {
+	color: #2ac3de; /* Azul zsh kali */
+	font-weight: bold;
+	user-select: none; /* Evita que el alumno copie el prompt por error */
+	margin-right: 8px;
+}
+
+.comment {
+	color: #565f89;
+	font-style: italic;
+}
+
+/* Efecto focus en las tareas para guiar la atención del alumno */
+.task-module:focus-within {
+	border-color: var(--accent-green);
+	box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+}
+/* --- AÑADIDOS PARA SESIÓN 03: ALERTAS Y FORMATO DE LECTURA --- */
+
+/* Caja de alerta psicológica (Evitar el pánico en la terminal) */
+.warning-box {
+	background-color: rgba(245, 158, 11, 0.1);
+	border-left: 4px solid #f59e0b; /* Color ámbar/advertencia */
+	padding: 1rem 1.2rem;
+	margin: 1rem 0;
+	border-radius: 0 6px 6px 0;
+	color: #fcd34d;
+	font-size: 0.95rem;
+}
+
+.warning-box strong {
+	color: #fbbf24;
+	display: block;
+	margin-bottom: 0.3rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 0.85rem;
+}
+
+/* Lista de atajos de teclado (Shortcuts) */
+.shortcut-list {
+	list-style-type: none;
+	margin-top: 1rem;
+	background-color: var(--bg-base);
+	padding: 1rem;
+	border-radius: 6px;
+	border: 1px dashed var(--border-color);
+}
+
+.shortcut-list li {
+	margin-bottom: 0.5rem;
+	color: var(--text-secondary);
+	display: flex;
+	align-items: baseline;
+}
+
+.shortcut-list li:last-child {
+	margin-bottom: 0;
+}
+
+.shortcut-list li strong {
+	color: var(--accent-cyan);
+	min-width: 150px;
+	display: inline-block;
+	font-family: var(--font-code);
+	background-color: rgba(56, 189, 248, 0.1);
+	padding: 0.2rem 0.5rem;
+	border-radius: 4px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+/* Estilo para notas aclaratorias */
+.note {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	margin-top: 0.8rem;
+	text-align: right;
+}
+/* --- AÑADIDOS PARA SESIÓN 04: TARJETAS DE TÁCTICA FORENSE --- */
+
+.tip-card {
+	background-color: rgba(56, 189, 248, 0.08);
+	border-left: 4px solid var(--accent-cyan);
+	padding: 1rem 1.2rem;
+	margin: 1rem 0;
+	border-radius: 0 6px 6px 0;
+	color: #e0f2fe;
+	font-size: 0.95rem;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Pequeño destello visual en la esquina para darle un toque "Cyber/Tech" */
+.tip-card::after {
+	content: '';
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 30px;
+	height: 30px;
+	background-color: var(--accent-cyan);
+	opacity: 0.2;
+	transform: rotate(45deg);
+}
+
+.tip-card strong {
+	color: var(--accent-cyan);
+	display: block;
+	margin-bottom: 0.4rem;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Icono CSS simple usando un pseudo-elemento */
+.tip-card strong::before {
+	content: '★';
+	font-size: 1.1em;
+}
+/* --- AÑADIDOS PARA SESIÓN 05: ROOT & PRIVILEGIOS --- */
+
+/* Estilo del prompt cuando somos superusuarios */
+.root-prompt {
+	color: #f43f5e; /* Rojo/Carmesí peligro */
+	font-weight: bold;
+	user-select: none;
+	margin-right: 8px;
+}
+
+/* Efecto de borde para la terminal en modo root */
+.root-mode {
+	border-color: rgba(244, 63, 94, 0.4) !important;
+	box-shadow: inset 0 0 15px rgba(244, 63, 94, 0.1);
+}
+
+/* Caja de alerta específica para permisos elevados */
+.root-warning {
+	background-color: rgba(244, 63, 94, 0.08);
+	border-left: 4px solid #f43f5e;
+	padding: 1rem 1.2rem;
+	margin: 1rem 0;
+	border-radius: 0 6px 6px 0;
+	color: #fecdd3;
+	font-size: 0.95rem;
+}
+
+.root-warning strong {
+	color: #fb7185;
+	display: block;
+	margin-bottom: 0.3rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 0.85rem;
+}
+/* --- AÑADIDOS PARA SESIÓN 06: DECODIFICADOR INTERACTIVO DE PERMISOS --- */
+
+.permission-decoder {
+	background-color: #0f172a;
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin: 1.5rem 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	justify-content: space-between;
+}
+
+.decoder-section {
+	flex: 1;
+	min-width: 150px;
+	background-color: var(--bg-surface);
+	padding: 1rem;
+	border-radius: 6px;
+	text-align: center;
+	border-top: 3px solid var(--accent-cyan);
+}
+
+.decoder-section h3 {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	margin-bottom: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.decoder-section label {
+	display: block;
+	text-align: left;
+	margin-bottom: 0.5rem;
+	cursor: pointer;
+	font-size: 0.9rem;
+	color: var(--text-primary);
+	transition: color 0.2s;
+}
+
+.decoder-section label:hover {
+	color: var(--accent-green);
+}
+
+.octal-digit {
+	font-family: var(--font-code);
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: var(--accent-cyan);
+	margin-top: 1rem;
+	text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.final-chmod {
+	width: 100%;
+	background-color: var(--accent-green);
+	color: #000;
+	text-align: center;
+	padding: 1rem;
+	border-radius: 6px;
+	font-family: var(--font-code);
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+	.permission-decoder {
+					flex-direction: column;
+	}
+	.decoder-section {
+					width: 100%;
+	}
+}
+/* --- AÑADIDOS PARA SESIÓN 07: LIVE FORENSICS DASHBOARD --- */
+
+.live-monitor-card {
+	background-color: #1e1e2f; /* Fondo ligeramente distinto al código */
+	border: 1px solid #4c1d95; /* Borde púrpura profundo */
+	border-radius: 8px;
+	margin: 1.5rem 0;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.05);
+}
+
+.monitor-header {
+	background-color: rgba(76, 29, 149, 0.4);
+	padding: 0.8rem 1rem;
+	font-family: var(--font-code);
+	font-size: 0.85rem;
+	color: #ddd6fe;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #4c1d95;
+}
+
+/* Animación de latido del sistema */
+.pulse-dot {
+	width: 10px;
+	height: 10px;
+	background-color: #c084fc;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 10px;
+	box-shadow: 0 0 8px #c084fc;
+	animation: radarPulse 1.5s infinite;
+}
+
+@keyframes radarPulse {
+	0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(192, 132, 252, 0.7); }
+	70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(192, 132, 252, 0); }
+	100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(192, 132, 252, 0); }
+}
+
+.process-table {
+	padding: 1rem;
+	font-family: var(--font-code);
+	font-size: 0.9rem;
+}
+
+.pt-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 2fr;
+	padding: 0.4rem 0;
+	border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.pt-head {
+	color: #a855f7; /* Púrpura neón */
+	font-weight: bold;
+	border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+	margin-bottom: 0.5rem;
+}
+
+.pt-row span:nth-child(3) {
+	color: var(--accent-cyan);
+}
+
+.rogue-process {
+	color: #f43f5e !important;
+	background-color: rgba(244, 63, 94, 0.1);
+	border-radius: 4px;
+}
+/* --- AÑADIDOS PARA SESIÓN 08: PANEL DE AUDITORÍA FORENSE --- */
+
+.audit-panel {
+	background-color: #050505;
+	border: 1px solid #333;
+	border-radius: 6px;
+	margin: 1.5rem 0;
+	font-family: var(--font-code);
+	overflow: hidden;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.audit-header {
+	background-color: #1a1a1a;
+	padding: 0.8rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #333;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+}
+
+.audit-console {
+	padding: 1rem;
+	height: 200px;
+	overflow-y: auto;
+	color: #22c55e; /* Verde terminal clásica */
+	font-size: 0.85rem;
+	line-height: 1.5;
+}
+
+.audit-console::-webkit-scrollbar {
+	width: 8px;
+}
+.audit-console::-webkit-scrollbar-track {
+	background: #050505; 
+}
+.audit-console::-webkit-scrollbar-thumb {
+	background: #333; 
+	border-radius: 4px;
+}
+
+.audit-line {
+	margin-bottom: 4px;
+	opacity: 0;
+	animation: fadeInConsole 0.1s forwards;
+}
+
+.audit-ok { color: #22c55e; }
+.audit-fail { 
+	color: #ef4444; 
+	font-weight: bold;
+	background-color: rgba(239, 68, 68, 0.1);
+	padding: 2px 4px;
+	border-radius: 2px;
+}
+.audit-warn { color: #eab308; }
+
+@keyframes fadeInConsole {
+	to { opacity: 1; }
+}
+/* --- AÑADIDOS PARA SESIÓN 09: NETWORK RADAR & PING SIMULATOR --- */
+
+.network-radar {
+	background-color: #0b1120;
+	border: 1px solid #1e3a8a;
+	border-radius: 8px;
+	margin: 1.5rem 0;
+	padding: 1.5rem;
+	box-shadow: inset 0 0 30px rgba(2, 132, 199, 0.1);
+}
+
+.radar-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+#ping-target {
+	color: #7dd3fc;
+	font-family: var(--font-code);
+	font-size: 0.9rem;
+}
+
+.btn-cyber {
+	background-color: transparent;
+	border: 1px solid #0ea5e9;
+	color: #0ea5e9;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+}
+
+.btn-cyber:hover {
+	background-color: #0ea5e9;
+	color: #000;
+	box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+}
+
+.radar-display {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2rem 0;
+	position: relative;
+}
+
+.node {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #1e293b;
+	border: 2px solid #38bdf8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: #e0f2fe;
+	z-index: 2;
+	box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.target-node {
+	border-color: #10b981;
+	box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.signal-path {
+	flex-grow: 1;
+	height: 2px;
+	background-color: #1e3a8a;
+	margin: 0 15px;
+	position: relative;
+	overflow: hidden;
+}
+
+/* El láser/paquete de datos animado */
+.packet {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 30px;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+	animation: sendPacket 0.6s linear forwards;
+}
+
+.packet-return {
+	background: linear-gradient(90deg, transparent, #10b981, transparent);
+	animation: returnPacket 0.6s linear forwards;
+}
+
+@keyframes sendPacket {
+	0% { left: -30px; }
+	100% { left: 100%; }
+}
+
+@keyframes returnPacket {
+	0% { left: 100%; }
+	100% { left: -30px; }
+}
+
+.ping-console {
+	background-color: #000;
+	padding: 1rem;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	color: #e0f2fe;
+	font-size: 0.85rem;
+	min-height: 120px;
+	border-left: 3px solid #38bdf8;
+}
+
+.ping-line { margin-bottom: 4px; }
+.ping-stats { color: #facc15; margin-top: 10px; border-top: 1px dashed #333; padding-top: 10px; }
+/* --- AÑADIDOS PARA SESIÓN 10: SOCKET INSPECTOR & SURVEILLANCE THEME --- */
+
+.socket-inspector {
+	background-color: #0c0a09; /* Negro profundo cálido */
+	border: 1px solid #9a3412; /* Naranja oscuro */
+	border-radius: 8px;
+	margin: 1.5rem 0;
+	box-shadow: inset 0 0 20px rgba(234, 88, 12, 0.05);
+	overflow: hidden;
+}
+
+.inspector-header {
+	background-color: #431407;
+	color: #fdba74;
+	padding: 0.8rem 1rem;
+	font-family: var(--font-code);
+	font-size: 0.85rem;
+	border-bottom: 1px solid #9a3412;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.socket-table {
+	display: flex;
+	flex-direction: column;
+}
+
+.sock-row {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr 1fr;
+	padding: 0.8rem 1rem;
+	border-bottom: 1px solid rgba(234, 88, 12, 0.2);
+	font-family: var(--font-code);
+	font-size: 0.85rem;
+	color: #e7e5e4;
+	cursor: pointer;
+	transition: background-color 0.2s, padding-left 0.2s;
+}
+
+.sock-row:hover {
+	background-color: rgba(234, 88, 12, 0.15);
+	padding-left: 1.5rem;
+	color: #f97316;
+}
+
+.sock-head {
+	font-weight: bold;
+	color: #f97316;
+	background-color: #1c1917;
+	cursor: default;
+}
+.sock-head:hover { background-color: #1c1917; padding-left: 1rem; color: #f97316; }
+
+.sock-alert {
+	color: #f43f5e; /* Rojo peligro para puertos anómalos */
+}
+
+/* Panel inferior revelado al hacer clic */
+.lsof-panel {
+	background-color: #1c1917;
+	border-top: 2px dashed #f97316;
+	padding: 1rem;
+	animation: slideDown 0.3s ease forwards;
+}
+
+.lsof-panel pre {
+	font-family: var(--font-code);
+	font-size: 0.85rem;
+	color: #a8a29e;
+	white-space: pre-wrap;
+}
+
+.lsof-highlight {
+	color: #2dd4bf; /* Teal para resaltar el binario descubierto */
+	font-weight: bold;
+}
+
+@keyframes slideDown {
+	from { opacity: 0; transform: translateY(-10px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+	.sock-row { font-size: 0.75rem; grid-template-columns: 1fr 2fr 2fr; }
+	.sock-row span:last-child { display: none; } /* Ocultar estado en móviles por espacio */
+}
+/* --- AÑADIDOS PARA SESIÓN 11: REMOTE CONTEXT & CRYPTO TUNNEL --- */
+
+/* Tema visual para cuando estamos conectados por SSH */
+.remote-theme {
+	background-color: #1e1b4b !important; /* Índigo muy oscuro */
+	border: 1px solid #4338ca !important;
+	box-shadow: inset 0 0 15px rgba(67, 56, 202, 0.2);
+}
+
+.remote-prompt {
+	color: #34d399; /* Verde esmeralda típico de servidores Ubuntu/Debian */
+	font-weight: bold;
+	user-select: none;
+	margin-right: 8px;
+}
+
+/* Simulador de Túnel Criptográfico */
+.crypto-simulator {
+	background-color: #0f172a;
+	border: 1px solid #334155;
+	border-radius: 8px;
+	padding: 2rem 1rem;
+	margin: 1.5rem 0;
+	overflow: hidden;
+}
+
+.tunnel-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.machine {
+	width: 140px;
+	padding: 1rem;
+	border-radius: 6px;
+	text-align: center;
+	z-index: 2;
+	background-color: var(--bg-surface);
+}
+
+.local-machine { border: 2px solid var(--accent-cyan); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+.remote-machine { border: 2px solid #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); }
+
+.machine h4 { font-size: 0.8rem; margin-bottom: 10px; color: var(--text-secondary); text-transform: uppercase; }
+
+.data-block {
+	background-color: #059669;
+	color: #fff;
+	padding: 0.5rem;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	font-size: 0.75rem;
+	word-break: break-all;
+}
+
+.empty-block {
+	background-color: transparent;
+	border: 1px dashed #64748b;
+	color: #64748b;
+}
+
+.tunnel {
+	flex-grow: 1;
+	height: 40px;
+	margin: 0 10px;
+	position: relative;
+}
+
+.tunnel-pipe {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, rgba(56, 189, 248, 0.1), rgba(139, 92, 246, 0.1));
+	border-top: 2px dashed #475569;
+	border-bottom: 2px dashed #475569;
+	position: relative;
+}
+
+.crypto-packet {
+	position: absolute;
+	top: 5px;
+	left: 0;
+	background-color: #f59e0b; /* Ámbar para los datos encriptados */
+	color: #000;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	font-size: 0.7rem;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+/* Animación JS calculada */
+/* --- AÑADIDOS PARA SESIÓN 12: HTTP INSPECTOR & WEB X-RAY THEME --- */
+
+.btn-teal {
+	background-color: #0f766e;
+	color: #ccfbf1;
+	border: 1px solid #14b8a6;
+	transition: all 0.3s ease;
+}
+
+.btn-teal:hover {
+	background-color: #115e59;
+	box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+}
+
+.http-inspector {
+	background-color: #0f172a;
+	border: 1px solid #1e293b;
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin: 1.5rem 0;
+	box-shadow: inset 0 0 20px rgba(15, 118, 110, 0.1);
+}
+
+.inspector-controls {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.inspector-controls input {
+	flex-grow: 1;
+	background-color: #020617;
+	border: 1px solid #334155;
+	color: #94a3b8;
+	padding: 0.5rem 1rem;
+	font-family: var(--font-code);
+	border-radius: 4px;
+	outline: none;
+}
+
+.http-flow {
+	display: flex;
+	gap: 1rem;
+}
+
+.http-panel {
+	flex: 1;
+	background-color: #1e293b;
+	border: 1px solid #334155;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.http-panel h4 {
+	background-color: #0f172a;
+	padding: 0.5rem 1rem;
+	font-size: 0.8rem;
+	color: #94a3b8;
+	border-bottom: 1px solid #334155;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.request-panel { border-top: 3px solid #64748b; }
+.response-panel { border-top: 3px solid #14b8a6; } /* Color Radiografía */
+
+.http-panel pre {
+	padding: 1rem;
+	margin: 0;
+	font-family: var(--font-code);
+	font-size: 0.8rem;
+	color: #cbd5e1;
+	white-space: pre-wrap;
+	min-height: 120px;
+}
+
+.http-200 { color: #34d399; font-weight: bold; }
+.http-header-key { color: #5eead4; }
+.http-header-val { color: #e2e8f0; }
+
+@media (max-width: 768px) {
+	.http-flow { flex-direction: column; }
+}
+/* --- AÑADIDOS PARA SESIÓN 13: HAZARD PROTOCOL & DD SIMULATOR --- */
+
+.hazard-module {
+	border: 2px solid #eab308;
+	box-shadow: 0 0 20px rgba(234, 179, 8, 0.1);
+	background: repeating-linear-gradient(
+					45deg,
+					rgba(234, 179, 8, 0.02),
+					rgba(234, 179, 8, 0.02) 10px,
+					rgba(0, 0, 0, 0) 10px,
+					rgba(0, 0, 0, 0) 20px
+	), var(--bg-surface);
+}
+
+.hazard-module h2 {
+	color: #fde047 !important;
+}
+
+.dd-simulator {
+	background-color: #000;
+	border: 1px solid #333;
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin: 1.5rem 0;
+}
+
+.dd-logic-board {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.dd-select-group {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.dd-select-group label {
+	font-family: var(--font-code);
+	color: #eab308;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+}
+
+.dd-select {
+	background-color: #1a1a1a;
+	color: #fff;
+	border: 1px solid #555;
+	padding: 0.8rem;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	font-size: 0.85rem;
+	outline: none;
+}
+
+.dd-select:focus { border-color: #eab308; }
+
+.dd-arrow {
+	font-size: 2rem;
+	margin: 0 1rem;
+	margin-top: 1.5rem;
+	animation: pulseArrow 1.5s infinite;
+}
+
+@keyframes pulseArrow {
+	0% { opacity: 0.5; transform: scale(0.9); }
+	50% { opacity: 1; transform: scale(1.1); }
+	100% { opacity: 0.5; transform: scale(0.9); }
+}
+
+.btn-hazard {
+	width: 100%;
+	background-color: #eab308;
+	color: #000;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.btn-hazard:hover {
+	background-color: #facc15;
+	box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);
+}
+
+#dd-feedback {
+	margin-top: 1rem;
+	padding: 1rem;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	font-weight: bold;
+	text-align: center;
+}
+
+.feedback-success { background-color: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; color: #4ade80; }
+.feedback-fatal { background-color: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #f87171; animation: shakeError 0.5s; }
+
+@keyframes shakeError {
+	0%, 100% { transform: translateX(0); }
+	20%, 60% { transform: translateX(-10px); }
+	40%, 80% { transform: translateX(10px); }
+}
+
+@media (max-width: 600px) {
+	.dd-logic-board { flex-direction: column; gap: 1rem; }
+	.dd-arrow { transform: rotate(90deg); margin: 0; animation: none; }
+}
+/* --- AÑADIDOS PARA SESIÓN 14: THE VAULT & HASH SIMULATOR --- */
+
+.vault-simulator {
+	background-color: #f8fafc; /* Gris muy claro/Plata */
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	margin: 1.5rem 0;
+	box-shadow: inset 0 0 30px rgba(148, 163, 184, 0.1), 0 4px 6px rgba(0,0,0,0.05);
+	overflow: hidden;
+}
+
+.vault-header {
+	background-color: #e2e8f0;
+	color: #334155;
+	padding: 0.8rem 1rem;
+	font-weight: bold;
+	border-bottom: 1px solid #cbd5e1;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.85rem;
+}
+
+.hash-comparison {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1.5rem;
+}
+
+.hash-box {
+	background-color: #ffffff;
+	border: 1px solid #e2e8f0;
+	padding: 1rem;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.hash-box label {
+	display: block;
+	color: #475569;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.hash-input {
+	width: 100%;
+	padding: 0.8rem;
+	border: 1px solid #cbd5e1;
+	border-radius: 4px;
+	font-family: var(--font-code);
+	font-size: 0.9rem;
+	color: #0f172a;
+	resize: vertical;
+	outline: none;
+	transition: border-color 0.3s;
+}
+
+.hash-input:focus { border-color: #0ea5e9; }
+
+.hash-output-container {
+	margin-top: 1rem;
+	background-color: #0f172a;
+	padding: 0.8rem;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+}
+
+.hash-label {
+	color: #94a3b8;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	margin-bottom: 0.3rem;
+}
+
+.hash-string {
+	font-family: var(--font-code);
+	color: #38bdf8;
+	font-size: 0.8rem;
+	word-break: break-all;
+	letter-spacing: 1px;
+}
+
+.hash-status-bar {
+	text-align: center;
+	padding: 1rem;
+	font-weight: bold;
+	font-size: 1.1rem;
+	transition: all 0.3s ease;
+}
+
+.status-match {
+	background-color: #dcfce7;
+	color: #15803d;
+	border-top: 2px solid #22c55e;
+}
+
+.status-mismatch {
+	background-color: #fee2e2;
+	color: #b91c1c;
+	border-top: 2px solid #ef4444;
+}
+
+@media (min-width: 768px) {
+	.hash-comparison { flex-direction: row; }
+	.hash-box { flex: 1; }
+}
+/* --- AÑADIDOS PARA SESIÓN 15: REGEX SNIPER THEME --- */
+
+.regex-simulator {
+	background-color: #18181b; /* Zinc muy oscuro */
+	border: 1px solid #831843; /* Rosa profundo */
+	border-radius: 8px;
+	margin: 1.5rem 0;
+	overflow: hidden;
+	box-shadow: 0 10px 25px rgba(219, 39, 119, 0.15);
+}
+
+.regex-controls {
+	background-color: #27272a;
+	padding: 1.5rem;
+	border-bottom: 2px solid #db2777; /* Magenta */
+}
+
+.regex-controls label {
+	display: block;
+	color: #f472b6;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	font-family: var(--font-code);
+	font-size: 0.9rem;
+}
+
+.regex-input-wrapper {
+	display: flex;
+	align-items: center;
+	background-color: #000;
+	border: 1px solid #52525b;
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	transition: border-color 0.3s;
+}
+
+.regex-input-wrapper:focus-within {
+	border-color: #f472b6;
+	box-shadow: 0 0 10px rgba(219, 39, 119, 0.3);
+}
+
+.regex-slash {
+	color: #db2777;
+	font-weight: bold;
+	font-size: 1.2rem;
+	font-family: var(--font-code);
+}
+
+#regex-input {
+	flex-grow: 1;
+	background: transparent;
+	border: none;
+	color: #fff;
+	font-family: var(--font-code);
+	font-size: 1rem;
+	padding: 0 10px;
+	outline: none;
+}
+
+.regex-cheatsheet {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1rem;
+	font-size: 0.75rem;
+	color: #a1a1aa;
+	font-family: var(--font-code);
+	flex-wrap: wrap;
+}
+
+.regex-cheatsheet strong { color: #f472b6; }
+
+.regex-display {
+	padding: 1.5rem;
+	font-family: var(--font-code);
+	font-size: 0.9rem;
+	color: #d4d4d8;
+	line-height: 1.8;
+	white-space: pre-wrap;
+	background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+	background-size: 100% 1.8em;
+}
+
+/* El estilo de la coincidencia (El láser) */
+.match-highlight {
+	background-color: rgba(219, 39, 119, 0.3);
+	color: #fbcfe8;
+	border: 1px solid #f472b6;
+	border-radius: 3px;
+	padding: 0 2px;
+	font-weight: bold;
+	text-shadow: 0 0 5px rgba(244, 114, 182, 0.8);
+	animation: pulseMatch 2s infinite;
+}
+
+.regex-error {
+	color: #ef4444 !important;
+	text-decoration: underline wavy #ef4444;
+}
+
+@keyframes pulseMatch {
+	0% { box-shadow: 0 0 0 0 rgba(219, 39, 119, 0.4); }
+	70% { box-shadow: 0 0 0 4px rgba(219, 39, 119, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(219, 39, 119, 0); }
+}
+/* --- AÑADIDOS PARA SESIÓN 16: THE GOLD VAULT & TARBALL SIMULATOR --- */
+
+.btn-gold {
+	background: linear-gradient(135deg, #d97706, #fbbf24);
+	color: #000;
+	font-weight: bold;
+	border: none;
+	box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	width: 100%;
+}
+
+.btn-gold:hover {
+	background: linear-gradient(135deg, #f59e0b, #fcd34d);
+	box-shadow: 0 4px 25px rgba(251, 191, 36, 0.6);
+	transform: translateY(-2px);
+}
+
+.vault-container {
+	background-color: #171717; /* Negro/Carbón */
+	border: 1px solid #78350f; /* Bronce oscuro */
+	border-radius: 8px;
+	padding: 1.5rem;
+	margin: 1.5rem 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.packing-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	min-height: 250px;
+	position: relative;
+}
+
+.files-grid {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	transition: all 1s ease;
+}
+
+.file-item {
+	background-color: #262626;
+	border: 1px solid #525252;
+	padding: 1rem;
+	border-radius: 4px;
+	color: #d4d4d4;
+	font-family: var(--font-code);
+	font-size: 0.8rem;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+	transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.compressor-funnel {
+	height: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem 0;
+}
+
+.tar-laser {
+	color: #fbbf24;
+	font-family: var(--font-code);
+	font-weight: bold;
+	letter-spacing: 3px;
+	animation: flashGold 0.5s infinite alternate;
+}
+
+@keyframes flashGold {
+	from { opacity: 0.4; text-shadow: 0 0 5px #fbbf24; }
+	to { opacity: 1; text-shadow: 0 0 20px #fbbf24, 0 0 30px #f59e0b; }
+}
+
+.final-archive {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+	width: 100%;
+}
+
+.archive-box {
+	background: linear-gradient(145deg, #262626, #171717);
+	border: 2px solid #fbbf24;
+	padding: 1.5rem 2rem;
+	border-radius: 8px;
+	box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+	color: #fbbf24;
+	font-family: var(--font-code);
+	font-weight: bold;
+	font-size: 1.2rem;
+	position: relative;
+	animation: dropIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes dropIn {
+	0% { transform: scale(0); opacity: 0; }
+	80% { transform: scale(1.1); opacity: 1; }
+	100% { transform: scale(1); opacity: 1; }
+}
+
+.seal {
+	position: absolute;
+	bottom: -15px;
+	right: -15px;
+	background-color: #dc2626; /* Rojo lacre */
+	color: white;
+	font-size: 0.6rem;
+	padding: 5px 10px;
+	border-radius: 50%;
+	transform: rotate(-15deg);
+	border: 2px dashed white;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	opacity: 0;
+}
+
+.seal-appear {
+	animation: stampSeal 0.4s 0.5s forwards; /* Retraso para que aparezca después de la caja */
+}
+
+@keyframes stampSeal {
+	0% { transform: scale(3) rotate(-15deg); opacity: 0; }
+	100% { transform: scale(1) rotate(-15deg); opacity: 1; }
+}
+
+/* Clases JS para animación */
+.file-compressing {
+	transform: scale(0.1) translateY(100px);
+	opacity: 0;
+}
+/* --- AÑADIDOS PARA SESIÓN 17: AUTOMATION & SCRIPT BUILDER THEME --- */
+
+.btn-mint {
+	background-color: #10b981;
+	color: #022c22;
+	border: 1px solid #059669;
+	font-weight: bold;
+	width: 100%;
+	margin-top: 10px;
+	transition: all 0.3s;
+}
+
+.btn-mint:hover {
+	background-color: #34d399;
+	box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
+}
+
+.script-builder {
+	display: flex;
+	gap: 1.5rem;
+	margin: 1.5rem 0;
+	align-items: stretch;
+}
+
+.builder-palette {
+	flex: 1;
+	background-color: #0f172a;
+	border: 1px solid #334155;
+	border-radius: 8px;
+	padding: 1rem;
+}
+
+.builder-palette h4, .builder-workspace h4 {
+	color: #a7f3d0;
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid #334155;
+	padding-bottom: 0.5rem;
+}
+
+.module-btn {
+	background-color: #064e3b;
+	border: 1px solid #059669;
+	color: #a7f3d0;
+	padding: 0.8rem;
+	border-radius: 4px;
+	margin-bottom: 0.5rem;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: all 0.2s;
+	font-family: var(--font-code);
+}
+
+.module-btn:hover {
+	background-color: #047857;
+	transform: translateX(5px);
+	border-color: #10b981;
+}
+
+.builder-workspace {
+	flex: 2;
+	background-color: #1e293b;
+	border: 1px solid #334155;
+	border-radius: 8px;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.editor-pane {
+	background-color: #020617;
+	flex-grow: 1;
+	border-radius: 4px;
+	padding: 1rem;
+	font-family: var(--font-code);
+	color: #6ee7b7; /* Texto Menta / Bash verde */
+	font-size: 0.9rem;
+	white-space: pre-wrap;
+	min-height: 150px;
+	border-left: 3px solid #10b981;
+}
+
+.script-output {
+	background-color: #000;
+	border: 1px solid #10b981;
+	padding: 1.5rem;
+	border-radius: 6px;
+	margin-top: 1rem;
+	font-family: var(--font-code);
+	color: #d1d5db;
+	font-size: 0.85rem;
+	white-space: pre-wrap;
+	box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.out-header { color: #f43f5e; font-weight: bold; }
+.out-hash { color: #38bdf8; }
+.out-process { color: #fcd34d; }
+
+@media (max-width: 768px) {
+	.script-builder { flex-direction: column; }
+}

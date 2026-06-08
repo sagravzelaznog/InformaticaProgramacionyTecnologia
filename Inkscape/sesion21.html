@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S21: Efectos de Trayecto (LPE) - Introducción</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 21: Efectos de Trayecto (LPE) - Introducción</h1>
+
+    <section>
+        <h2>1. ¿Qué son los Efectos de Trayecto (LPE)?</h2>
+        [Image of the Path Effects panel in Inkscape]
+        <p>Los **Efectos de Trayecto** (Live Path Effects o LPE) son modificaciones dinámicas que Inkscape aplica a un objeto *sin cambiar permanentemente su geometría*. Piensa en ellos como filtros inteligentes para trayectos.</p>
+        <ul>
+            <li>**No Destructivo:** Puedes modificar los parámetros o eliminar el LPE en cualquier momento, revirtiendo el objeto a su forma original.</li>
+            <li>**Panel de Control:** Todos los LPE se gestionan desde el panel <code>Trayecto > Efectos de Trayecto (Shift + Ctrl + 7)</code>.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Aplicación y Gestión de LPEs</h2>
+        <p>Aprender a aplicar, apilar y editar los efectos es el primer paso para dominar esta herramienta.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar el Efecto</strong>
+            <p>Selecciona el objeto (forma o trayecto). Abre el panel **Efectos de Trayecto** (Shift + Ctrl + 7). Haz clic en el signo **+** en la parte inferior del panel y selecciona el efecto que deseas aplicar (ej. **Engrosar**).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Edición Dinámica</strong>
+            <p>Una vez aplicado, el panel mostrará los parámetros del efecto (ej. grosor, curvatura, número de copias). Ajusta estos valores y observa el cambio inmediato en el lienzo. También aparecerán nuevos manejadores de control en el objeto.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Apilamiento y Orden</strong>
+            <p>Puedes aplicar múltiples LPEs al mismo objeto (ej. primero **Curvatura de Esquina** y luego **Perspectiva**). El orden de los efectos en el panel afecta el resultado final. Usa las flechas del panel para cambiar el orden de la pila.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 4: Congelar el Efecto</strong>
+            <p>Si deseas que la deformación sea permanente para editar los nodos directamente, selecciona el objeto y ve a <code>Trayecto > Objeto a Trayecto (Shift + Ctrl + C)</code>. Esto elimina el LPE y convierte la forma resultante en nodos estáticos.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. LPE Básico: Curvatura de Esquina / Filleteado</h2>
+        [Image demonstrating the Corner LPE used on a rectangle]
+        <p>Este efecto permite redondear o "biselar" todas las esquinas de un trayecto de forma dinámica.</p>
+        <div class="paso">
+            <strong>Aplicación</strong>
+            <p>Dibuja un polígono o una forma con esquinas agudas. Aplica el LPE **Curvatura de Esquina (Corner LPE)**.</p>
+        </div>
+        <div class="paso">
+            <strong>Control de Parámetros</strong>
+            <p>Ajusta el radio de la curvatura. Puedes seleccionar si quieres que sea un **Redondeado (Fillet)** suave o un **Biselado (Chamfer)** recto. Esto funciona incluso con formas complejas que no podrías redondear fácilmente con la herramienta Rectángulo.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: El Símbolo Estilizado</h3>
+        <p><strong>Objetivo:</strong> Entender la aplicación y reversibilidad de los LPEs.</p>
+        <ol>
+            <li>Dibuja una estrella de 5 puntas.</li>
+            <li>Abre el panel **Efectos de Trayecto** (Shift + Ctrl + 7) y aplica el LPE **Curvatura de Esquina**.</li>
+            <li>Ajusta el radio para que la estrella se vea más suave.</li>
+            <li>Añade un segundo LPE: **Simple Offset** (Desplazamiento simple). Aumenta la distancia del offset.</li>
+            <li>Regresa al primer efecto (Curvatura de Esquina) y elimínalo haciendo clic en el signo **-**. Observa cómo la estrella vuelve a ser puntiaguda, pero el Simple Offset sigue aplicado.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion20.html">Anterior</a>
+    <a href="sesion22.html">Siguiente</a>
+</nav>
+</body>
+</html>

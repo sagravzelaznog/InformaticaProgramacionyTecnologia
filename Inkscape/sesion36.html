@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S36: Proyecto: Diseño de un Icono Web (UI)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 36: Proyecto: Diseño de un Icono Web (UI)</h1>
+
+    <section>
+        <h2>1. Concepto y Especificaciones del Icono</h2>
+        <p>Diseñaremos un icono vectorial para una aplicación web (ej. un icono de "Configuración", "Home", o "Cesta de Compra"). Los iconos deben ser claros y escalables.</p>
+        <ul>
+            <li>**Tamaño Físico:** Piensa en un tamaño final de 64x64px.</li>
+            <li>**Estilo:** Lineal (solo trazos) o Relleno (formas sólidas).</li>
+            <li>**Paleta:** 1-2 colores principales.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Construcción Geométrica y Capas</h2>
+        
+        <p>Usaremos la precisión geométrica de las herramientas básicas y la organización del panel Objetos.</p>
+        <div class="paso">
+            <strong>Paso 1: Capas Base</strong>
+            <p>Crea dos capas: **"Forma Base"** y **"Detalle/Corte"**. Bloquea la capa **"Detalle/Corte"** mientras trabajas en la base.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Construcción del Símbolo</strong>
+            <p>Usa rectángulos redondeados y círculos. Aplica **Unión (Ctrl + +)** para ensamblar la forma principal. Utiliza la herramienta **Alinear y Distribuir** para centrar perfectamente todos los elementos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Recorte de Detalle</strong>
+            <p>Desbloquea la capa **"Detalle/Corte"**. Dibuja las formas que quieres quitar de la base (ej. el agujero central en un icono de engranaje). Aplica **Diferencia (Ctrl + -)** entre la forma base y la forma de corte.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Organización y Exportación Final</h2>
+        <p>Antes de exportar, debemos garantizar que el icono está limpio y bien organizado.</p>
+        <div class="paso">
+            <strong>Paso 1: Panel Objetos y Nomenclatura</strong>
+            <p>Abre el panel **Objetos (Shift + Ctrl + O)**. Renombra el grupo final del icono (ej. **"Icono Cesta"**). Oculta todos los elementos de capa que no sean esenciales para el icono final.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Exportación para Web</strong>
+            <p>Selecciona el icono final agrupado. Ve a <code>Archivo > Exportar... (Shift + Ctrl + E)</code>. Selecciona la opción **Selección**. Define un tamaño de **64x64px** o **128x128px** y asegúrate de que el fondo sea **Transparente**. Exporta como **PNG**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Exportación Vectorial</strong>
+            <p>Guarda el archivo SVG. Ve a <code>Archivo > Guardar como...</code> y selecciona la opción **SVG plano de Inkscape**. Esto elimina metadatos innecesarios, haciendo el archivo lo más ligero posible para uso web.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Proyecto a Entregar: Icono Vectorial para UI</h3>
+        <p><strong>Requerimientos:</strong></p>
+        <ol>
+            <li>El icono debe usar al menos 3 formas geométricas base.</li>
+            <li>Debe haber al menos 1 operación booleana (Unión, Diferencia o Intersección).</li>
+            <li>El diseño final debe estar **Agrupado** y tener un nombre descriptivo en el panel **Objetos**.</li>
+            <li>Exporta el icono a **PNG transparente** en 64x64px y el archivo fuente **SVG plano**.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion35.html">Anterior</a>
+    <a href="sesion37.html">Siguiente</a>
+</nav>
+</body>
+</html>

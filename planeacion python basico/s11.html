@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 11: Bucles for - Repitiendo Tareas - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 11</h1>
+                <h2>Bucles for - Repitiendo Tareas</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 2: Estructuras de Datos y Bucles</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-34-375" 
+                     role="progressbar" 
+                     aria-valuenow="34.375" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a utilizar los bucles <code>for</code> en Python para automatizar tareas repetitivas de manera eficiente. Dominarás el uso de la función <code>range()</code> y cómo iterar sobre diferentes estructuras de datos.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Comprender la sintaxis y estructura de un bucle <code>for</code></li>
+                        <li>Utilizar la función <code>range()</code> para generar secuencias numéricas</li>
+                        <li>Iterar sobre diferentes estructuras de datos como listas, cadenas y diccionarios</li>
+                        <li>Controlar el flujo de ejecución dentro de los bucles con <code>break</code>, <code>continue</code> y <code>else</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Sintaxis del bucle for -->
+            <div class="concept-card">
+                <h3>1. Sintaxis Básica del Bucle <code>for</code></h3>
+                <p>El bucle <code>for</code> en Python se utiliza para iterar sobre una secuencia (como una lista, tupla, diccionario, conjunto o cadena) o sobre un objeto iterable.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Sintaxis básica
+for variable in secuencia:
+    # Bloque de código que se ejecuta para cada elemento
+    print(f"Elemento: {variable}")
+
+# Ejemplo con una lista
+frutas = ["manzana", "banana", "cereza"]
+for fruta in frutas:
+    print(f"Me gusta comer {fruta}")
+
+# Iterando sobre una cadena
+mensaje = "Python"
+for letra in mensaje:
+    print(f"Letra: {letra}")
+
+# Utilizando enumerate() para obtener índice y valor
+for indice, fruta in enumerate(frutas, start=1):
+    print(f"{indice}. {fruta}")
+
+# Salida:
+# 1. manzana
+# 2. banana
+# 3. cereza</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas Prácticas</h4>
+                    <p>Usa nombres descriptivos para las variables de iteración. Por ejemplo, usa <code>fruta</code> en lugar de <code>f</code> o <code>x</code> cuando iteres sobre una lista de frutas, para mejorar la legibilidad del código.</p>
+                </div>
+            </div>
+
+            <!-- 2. Función range() -->
+            <div class="concept-card">
+                <h3>2. La Función <code>range()</code></h3>
+                <p>La función <code>range()</code> genera una secuencia de números, comúnmente utilizada para iterar un número específico de veces en bucles <code>for</code>.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Formas de usar range()
+
+# range(stop) - genera números desde 0 hasta stop-1
+for i in range(5):
+    print(i)  # 0, 1, 2, 3, 4
+
+# range(start, stop) - genera números desde start hasta stop-1
+for i in range(2, 6):
+    print(i)  # 2, 3, 4, 5
+
+# range(start, stop, step) - genera números desde start hasta stop-1, con incremento step
+for i in range(0, 10, 2):
+    print(i)  # 0, 2, 4, 6, 8
+
+# Generar una lista de números
+equipos = [f"Equipo {i+1}" for i in range(5)]
+# ['Equipo 1', 'Equipo 2', 'Equipo 3', 'Equipo 4', 'Equipo 5']
+
+# Recorrer una lista por índices
+frutas = ["manzana", "banana", "cereza"]
+for i in range(len(frutas)):
+    print(f"Índice: {i}, Fruta: {frutas[i]}")
+
+# Crear una cuenta regresiva
+for i in range(10, 0, -1):
+    print(f"Cuenta regresiva: {i}")
+print("¡Despegue!")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Nota sobre range()</h4>
+                    <p>En Python 3, <code>range()</code> devuelve un objeto de tipo <code>range</code> que es eficiente en memoria, ya que genera los números bajo demanda. Si necesitas una lista, puedes convertirla con <code>list(range(5))</code>.</p>
+                </div>
+            </div>
+
+            <!-- 3. Iteración sobre diferentes estructuras -->
+            <div class="concept-card">
+                <h3>3. Iteración sobre Diferentes Estructuras</h3>
+                <p>Python permite iterar sobre diversas estructuras de datos de manera sencilla e intuitiva.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Iterar sobre una lista
+estudiantes = ["Ana", "Luis", "Marta"]
+for estudiante in estudiantes:
+    print(f"Bienvenido/a, {estudiante}!")
+
+# Iterar sobre un diccionario (por defecto itera sobre las claves)
+calificaciones = {"Matemáticas": 9, "Historia": 8, "Programación": 10}
+for asignatura in calificaciones:
+    print(f"Asignatura: {asignatura}")
+
+# Iterar sobre pares clave-valor con .items()
+for asignatura, nota in calificaciones.items():
+    print(f"En {asignatura} obtuve un {nota}")
+
+# Iterar sobre un conjunto
+colores = {"rojo", "verde", "azul"}
+for color in colores:
+    print(f"Color: {color}")
+
+# Iterar sobre una tupla
+coordenadas = (10, 20, 30)
+for valor in coordenadas:
+    print(f"Coordenada: {valor}")
+
+# Iterar sobre múltiples secuencias a la vez con zip()
+nombres = ["Ana", "Luis", "Marta"]
+edades = [20, 22, 21]
+for nombre, edad in zip(nombres, edades):
+    print(f"{nombre} tiene {edad} años")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Iteración eficiente</h4>
+                    <p>Al iterar sobre diccionarios, usa <code>.items()</code> para acceder a claves y valores simultáneamente, en lugar de buscar los valores con la clave en cada iteración.</p>
+                </div>
+            </div>
+
+            <!-- 4. Control de flujo en bucles -->
+            <div class="concept-card">
+                <h3>4. Control de Flujo en Bucles</h3>
+                <p>Python ofrece varias formas de controlar el flujo de ejecución dentro de los bucles.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># break - sale completamente del bucle
+print("Ejemplo de break:")
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+for num in numeros:
+    if num > 5:
+        print("Número mayor a 5 encontrado. Saliendo del bucle...")
+        break
+    print(f"Procesando {num}")
+
+# continue - salta a la siguiente iteración
+print("\nEjemplo de continue:")
+for num in numeros:
+    if num % 2 == 0:  # Si el número es par
+        continue       # Salta a la siguiente iteración
+    print(f"Número impar: {num}")
+
+# else en bucles - se ejecuta si el bucle termina normalmente (sin break)
+print("\nEjemplo de else en bucles:")
+for num in [2, 4, 6, 8]:
+    if num % 2 != 0:
+        print("Número impar encontrado")
+        break
+else:
+    print("Todos los números son pares")
+
+# Bucles anidados
+print("\nTabla de multiplicar:")
+for i in range(1, 6):
+    for j in range(1, 11):
+        print(f"{i} x {j} = {i*j}")
+    print("-" * 15)  # Separador entre tablas</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Uso de <code>else</code> en bucles</h4>
+                    <p>El bloque <code>else</code> en un bucle se ejecuta solo si el bucle termina normalmente (sin encontrar un <code>break</code>). Esto es útil para verificar si se completó una búsqueda sin encontrar el elemento deseado.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Tablas de Multiplicar Automáticas</h3>
+                <p>Crea un programa que muestre las tablas de multiplicar del 1 al 10 de manera formateada.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== Tabla del 1 ===
+1 x 1 = 1
+1 x 2 = 2
+...
+1 x 10 = 10
+
+=== Tabla del 2 ===
+2 x 1 = 2
+2 x 2 = 4
+...
+2 x 10 = 20
+
+... y así hasta la tabla del 10</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa dos bucles <code>for</code> anidados: uno para las tablas (del 1 al 10) y otro para los multiplicadores (del 1 al 10). Utiliza <code>print("\n=== Tabla del", i, "===")</code> para los encabezados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Programa de Cuenta Regresiva</h3>
+                <p>Desarrolla un programa que pida al usuario un número y realice una cuenta regresiva desde ese número hasta 0, mostrando un mensaje especial al final.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">Ingrese un número para la cuenta regresiva: 5
+5
+4
+3
+2
+1
+0
+¡Despegue! 🚀</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa <code>range()</code> con un paso negativo para la cuenta regresiva. Recuerda convertir la entrada del usuario a entero con <code>int(input(...))</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Analizador de Texto</h3>
+                <p>Construye un programa que analice un texto ingresado por el usuario y muestre estadísticas como el número de caracteres, palabras, vocales, consonantes y dígitos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">Ingrese un texto: Hola, tengo 3 perros y 2 gatos.
+
+=== Análisis del Texto ===
+Longitud total: 28 caracteres
+Número de palabras: 6
+Vocales: 9
+Consonantes: 12
+Dígitos: 2
+Caracteres especiales: 5</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un bucle <code>for</code> para recorrer cada carácter del texto. Crea contadores para cada categoría y actualízalos con condicionales. Para contar palabras, usa <code>texto.split()</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Generador de Patrones Numéricos</h3>
+                <p>Crea un programa que genere diferentes patrones numéricos según la elección del usuario, como triángulos, pirámides o tablas de multiplicar personalizadas.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de patrón de triángulo:</h4>
+                    <pre><code class="language-text">1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+                    
+                    <h4>Ejemplo de pirámide numérica:</h4>
+                    <pre><code class="language-text">    1
+   1 2
+  1 2 3
+ 1 2 3 4
+1 2 3 4 5</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para el triángulo, usa un bucle anidado donde el bucle interno imprima números del 1 al número de fila actual. Para la pirámide, agrega espacios antes de los números usando <code>" " * (n - i - 1)</code> donde <code>n</code> es el número total de filas e <code>i</code> es el número de fila actual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank" rel="noopener noreferrer">Documentación oficial - Bucles for</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_for_loops.asp" target="_blank" rel="noopener noreferrer">W3Schools - Bucles for en Python</a></li>
+                        <li><a href="https://realpython.com/python-for-loop/" target="_blank" rel="noopener noreferrer">Real Python - Guía de bucles for</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=0ZvaDa8eT5s" target="_blank" rel="noopener noreferrer">Bucles for en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=6iF8Xb7Z3wQ" target="_blank" rel="noopener noreferrer">Uso de range() - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 4 - "Python Crash Course" de Eric Matthes (Sección sobre bucles)</li>
+                        <li>Sección 2.3 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s10.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s12.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

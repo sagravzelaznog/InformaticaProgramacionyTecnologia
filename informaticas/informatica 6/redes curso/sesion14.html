@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S4 E14: Herramientas de Diagnóstico de Redes (Ping y Traceroute)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>	
+	<header>
+        <h1>Semana 4, Sesión 14: Diagnóstico de Redes (I) 🩺</h1>
+        <p class="subtitle">Comandos Clave: Ping, Traceroute y sus Variantes</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. El Comando PING: Prueba de Conectividad</h2>
+            <p>El **Ping** es la herramienta más básica y fundamental. Envía paquetes **ICMP** (Protocolo de Mensajes de Control de Internet) a un destino y espera una respuesta (echo reply). Si obtienes respuesta, ¡hay conectividad!</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Usos del Ping</h3>
+                    <ul>
+                        <li>**Verificar la NIC:** Hacer ping a `127.0.0.1` (loopback) para probar tu propia tarjeta de red.</li>
+                        <li>**Verificar el Gateway:** Hacer ping a la IP del router (`192.168.1.1`) para probar la conexión local.</li>
+                        <li>**Verificar el Destino:** Hacer ping a un sitio web (ej. `google.com`).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Salidas Importantes</h3>
+                    <ul>
+                        <li>**Reply from...:** Conexión exitosa. El tiempo muestra la latencia (retraso).</li>
+                        <li>**Request timed out:** No se recibió respuesta. El destino podría estar inactivo, bloqueado por un firewall o la ruta está caída.</li>
+                        <li>**Destination host unreachable:** El router no conoce la ruta al destino.</li>
+                    </ul>
+                </>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Traceroute / Tracert: Rastreo de la Ruta</h2>
+            <p>Mientras que Ping te dice SI hay conexión, **Traceroute** (o **Tracert** en Windows) te dice **CÓMO** llega el paquete a su destino. Muestra cada router (salto o *hop*) por el que pasa el paquete, lo que es invaluable para aislar fallos en redes extensas.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Funcionamiento</h3>
+                    <p>Utiliza el campo **TTL** (Time To Live) de los paquetes IP, que limita el número de saltos que puede dar un paquete. Traceroute lo incrementa paso a paso (TTL=1, TTL=2, etc.) forzando a cada router intermedio a responder su IP.</p>
+                </div>
+                <div class="image-container">
+                    
+                    <figcaption>Traceroute muestra cada router (salto) en la ruta hacia el destino.</figcaption>
+                </div>
+            </div>
+            
+            <button id="tracerouteBtn">Práctica: Ejecutar un Traceroute</button>
+        </section>
+
+        <section class="topic-section">
+            <h2>3. Práctica: Aislamiento de Fallos con Ping</h2>
+            <p>En el diagnóstico, siempre se sigue el modelo: **Comenzar Localmente y Avanzar Externamente**.</p>
+            <ol>
+                <li>Falla de conexión. Paso 1: `ping 127.0.0.1` (¿Funciona mi PC?).</li>
+                <li>Si funciona. Paso 2: `ping [IP del Gateway]` (¿Puedo llegar al router?).</li>
+                <li>Si funciona. Paso 3: `ping 8.8.8.8` (¿Puedo llegar a Internet por IP?).</li>
+                <li>Si funciona. Paso 4: `ping google.com` (¿Funciona la resolución DNS?).</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S4 E14</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion13.html" class="nav-button">Anterior</a>
+        <a href="sesion15.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

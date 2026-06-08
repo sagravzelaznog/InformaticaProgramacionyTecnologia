@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion07: Análisis de Procesos</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 07: Live Forensics y Control de Procesos</h1>
+            <p class="intro-text">Un atacante inteligente no deja archivos en el disco duro; ejecuta su código malicioso directamente en la memoria RAM. Hoy aprenderemos a tomar "fotografías" del estado del sistema, monitorear la memoria en tiempo real y neutralizar amenazas activas en nuestro Sandbox.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Entrenando el Ojo (Simulador de Procesos)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Antes de usar comandos, debes entender qué estás buscando. Todo programa en ejecución tiene un <strong>PID (Process ID)</strong> único y un usuario dueño. Observa este simulador de memoria volátil y acostumbra tu vista a detectar el proceso que consume más CPU.</p>
+                    
+                    <div class="live-monitor-card">
+                        <div class="monitor-header">
+                            <span class="pulse-dot"></span> RAM / CPU Monitoring (Simulado)
+                        </div>
+                        <div class="process-table">
+                            <div class="pt-row pt-head">
+                                <span>PID</span><span>USER</span><span>%CPU</span><span>COMMAND</span>
+                            </div>
+                            <div id="sim-processes">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: La Fotografía Forense (ps aux)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El comando <code>ps</code> captura el estado de los procesos en el instante exacto en que presionas Enter. Usamos los modificadores <code>aux</code> para ver los procesos de <em>todos</em> los usuarios de forma legible.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Tomar una captura de todos los procesos</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ps aux
+
+<span class="comment"># Táctica: Usar tuberías (|) y grep para buscar un proceso específico</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ps aux | grep ssh</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Monitoreo Dinámico (top y htop)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Para cazar procesos que se esconden o actúan en ráfagas, necesitamos un radar en vivo. <code>top</code> viene por defecto en todo Linux. <code>htop</code> es la versión moderna y colorida (preinstalada en Kali).</p>
+                    <div class="warning-box" style="border-left-color: #a855f7; color: #d8b4fe; background-color: rgba(168, 85, 247, 0.1);">
+                        <strong style="color: #c084fc;">Carga Cognitiva:</strong> Verás muchos números moviéndose. No entres en pánico. Presiona la tecla <strong>Q</strong> para salir de htop y volver a la terminal segura.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> htop</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El Francotirador (Generar y Matar Procesos)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Vamos a simular un proceso malicioso. Lo enviaremos al fondo (background) usando el símbolo <code>&</code>, buscaremos su PID y lo "asesinaremos" limpiamente (SIGTERM - 15) o forzosamente (SIGKILL - 9).</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># 1. Creamos un proceso "durmiente" que corre en segundo plano por 1 hora</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sleep 3600 &
+<span class="comment"># La terminal te devolverá un número, ese es el PID (ej. 4598)</span>
+
+<span class="comment"># 2. Verificamos que está corriendo buscando la palabra "sleep"</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ps aux | grep sleep
+
+<span class="comment"># 3. Asesinamos el proceso reemplazando PID_AQUI por el número que obtuviste</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> kill -9 PID_AQUI</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #07. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

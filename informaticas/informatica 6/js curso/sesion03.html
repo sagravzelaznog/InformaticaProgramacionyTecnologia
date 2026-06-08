@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Las Máquinas (Funciones) - Curso de JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .function-example {
+            background-color: #e6f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .function-anatomy {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .function-anatomy .part {
+            position: relative;
+            padding: 5px 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            display: inline-block;
+        }
+        
+        .function-anatomy .part::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            font-size: 0.8em;
+            color: #6c757d;
+            white-space: nowrap;
+        }
+        
+        .interactive-demo {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .interactive-demo input[type="number"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 80px;
+        }
+        
+        .interactive-demo button {
+            background-color: #00a86b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+        }
+        
+        .interactive-demo button:hover {
+            background-color: #008c5a;
+        }
+        
+        #resultadoCalculadora {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .function-visual {
+            background: white;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .function-visual::before {
+            content: "🚀";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 2px solid #0066cc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .function-visual::after {
+            content: "";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid #0066cc;
+        }
+        
+        .function-visual .input {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        .function-visual .output {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li><a href="sesion02.html">Sesión 2: Tomando Decisiones</a></li>
+                <li class="active"><a href="sesion03.html">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="#">Sesión 4: Listas y Bucles</a></li>
+                <li><a href="#">Sesión 5: Tocando el HTML</a></li>
+                <li><a href="#">Sesión 6: Escuchando al Usuario</a></li>
+                <li><a href="#">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>⚙️ Sesión 3: Las Máquinas (Funciones Básicas)</h1>
+                <p class="subtitle">Aprende a crear y usar funciones para organizar y reutilizar tu código</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Entender cómo crear y utilizar funciones en JavaScript para organizar el código y evitar repeticiones (principio DRY: Don't Repeat Yourself).</p>
+            </section>
+
+            <section class="introduction">
+                <h2>🤖 ¿Qué es una función?</h2>
+                <p>Una función es como una máquina que realiza una tarea específica. Le das una entrada (parámetros), realiza algún procesamiento y te devuelve un resultado (valor de retorno).</p>
+                
+                <div class="function-visual">
+                    <span class="input">Entrada (Parámetros)</span> 
+                    → 
+                    <strong>Función</strong> 
+                    → 
+                    <span class="output">Salida (Valor de retorno)</span>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Por qué usar funciones:</strong>
+                    <ul>
+                        <li><strong>Reutilización de código</strong>: Escribe una vez, usa muchas veces.</li>
+                        <li><strong>Organización</strong>: Divide tu código en partes más pequeñas y manejables.</li>
+                        <li><strong>Mantenimiento</strong>: Si necesitas hacer un cambio, solo lo haces en un lugar.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="function-syntax">
+                <h2>📝 Sintaxis de una Función</h2>
+                
+                <div class="function-anatomy">
+                    <span class="part" data-label="Palabra clave">function</span>
+                    <span class="part" data-label="Nombre de la función">saludar</span>
+                    <span class="part" data-label="Parámetros">(nombre)</span>
+                    <span class="part" data-label="Llaves de apertura y cierre">{ }</span>
+                    <span class="part" data-label="Cuerpo de la función">console.log(`¡Hola, ${nombre}!`);</span>
+                    <span class="part" data-label="Valor de retorno">return resultado;</span>
+                </div>
+                
+                <h3>1. Función sin parámetros ni retorno</h3>
+                <div class="code">
+                    // Definición de la función
+                    function saludar() {
+                        console.log("¡Hola, mundo!");
+                    }
+                    
+                    // Llamada a la función
+                    saludar(); // Muestra: ¡Hola, mundo!
+                </div>
+                
+                <h3>2. Función con parámetros</h3>
+                <div class="code">
+                    function saludar(nombre) {
+                        console.log(`¡Hola, ${nombre}!`);
+                    }
+                    
+                    saludar("Ana");    // Muestra: ¡Hola, Ana!
+                    saludar("Carlos"); // Muestra: ¡Hola, Carlos!
+                </div>
+                
+                <h3>3. Función con retorno</h3>
+                <div class="code">
+                    function sumar(a, b) {
+                        return a + b;
+                    }
+                    
+                    let resultado = sumar(5, 3);
+                    console.log(resultado); // Muestra: 8
+                    
+                    // También podemos usar el resultado directamente
+                    console.log(sumar(10, 20)); // Muestra: 30
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Buenas prácticas:</strong>
+                    <ul>
+                        <li>Usa nombres descriptivos para las funciones (verbos como <code>calcular</code>, <code>obtener</code>, <code>verificar</code>).</li>
+                        <li>Una función debe hacer una sola cosa y hacerla bien.</li>
+                        <li>Si una función es muy larga, considera dividirla en funciones más pequeñas.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="interactive-demo">
+                <h2>🧮 Calculadora de Operaciones Básicas</h2>
+                <p>Vamos a crear una calculadora simple usando funciones para cada operación.</p>
+                
+                <div>
+                    <label for="num1">Número 1: </label>
+                    <input type="number" id="num1" value="5">
+                    
+                    <select id="operacion" style="padding: 8px; margin: 0 5px; border-radius: 4px;">
+                        <option value="sumar">+ Sumar</option>
+                        <option value="restar">- Restar</option>
+                        <option value="multiplicar">× Multiplicar</option>
+                        <option value="dividir">÷ Dividir</option>
+                    </select>
+                    
+                    <label for="num2">Número 2: </label>
+                    <input type="number" id="num2" value="3">
+                    
+                    <button onclick="calcular()">Calcular</button>
+                </div>
+                
+                <div id="resultadoCalculadora"></div>
+                
+                <div class="code" style="margin-top: 20px;">
+                    // Funciones de la calculadora
+                    function sumar(a, b) {
+                        return a + b;
+                    }
+                    
+                    function restar(a, b) {
+                        return a - b;
+                    }
+                    
+                    function multiplicar(a, b) {
+                        return a * b;
+                    }
+                    
+                    function dividir(a, b) {
+                        if (b === 0) {
+                            return "Error: No se puede dividir por cero";
+                        }
+                        return a / b;
+                    }
+                    
+                    // Función principal que usa las demás
+                    function calcular() {
+                        const num1 = parseFloat(document.getElementById('num1').value);
+                        const num2 = parseFloat(document.getElementById('num2').value);
+                        const operacion = document.getElementById('operacion').value;
+                        let resultado;
+                        
+                        // Usamos un switch para seleccionar la operación
+                        switch(operacion) {
+                            case 'sumar':
+                                resultado = sumar(num1, num2);
+                                break;
+                            case 'restar':
+                                resultado = restar(num1, num2);
+                                break;
+                            case 'multiplicar':
+                                resultado = multiplicar(num1, num2);
+                                break;
+                            case 'dividir':
+                                resultado = dividir(num1, num2);
+                                break;
+                            default:
+                                resultado = "Operación no válida";
+                        }
+                        
+                        // Mostramos el resultado
+                        document.getElementById('resultadoCalculadora').textContent = 
+                            `Resultado: ${num1} ${getSimboloOperacion(operacion)} ${num2} = ${resultado}`;
+                        
+                        // Añadimos un poco de estilo
+                        const resultadoElemento = document.getElementById('resultadoCalculadora');
+                        resultadoElemento.style.color = 'white';
+                        resultadoElemento.style.backgroundColor = '#0066cc';
+                        resultadoElemento.style.padding = '10px';
+                        resultadoElemento.style.borderRadius = '4px';
+                    }
+                    
+                    // Función auxiliar para obtener el símbolo de la operación
+                    function getSimboloOperacion(operacion) {
+                        const simbolos = {
+                            'sumar': '+',
+                            'restar': '-',
+                            'multiplicar': '×',
+                            'dividir': '÷'
+                        };
+                        return simbolos[operacion] || '?';
+                    }
+                </div>
+            </section>
+
+            <section class="activity">
+                <h2>🧩 Actividad Práctica: La Calculadora Humana</h2>
+                <p>Crea dos funciones siguiendo las instrucciones:</p>
+                
+                <h3>1. Función saludar(nombre)</h3>
+                <p>Crea una función que tome un parámetro <code>nombre</code> y devuelva un saludo personalizado.</p>
+                
+                <h3>2. Función sumar(a, b)</h3>
+                <p>Crea una función que tome dos números como parámetros y devuelva su suma.</p>
+                
+                <div class="code">
+                    // Ejemplo de cómo debería funcionar
+                    console.log(saludar("Ana")); // Debería mostrar: "¡Hola, Ana! ¿Cómo estás?"
+                    console.log(sumar(7, 3));     // Debería devolver: 10
+                </div>
+                
+                <button onclick="mostrarSolucion()">Ver solución</button>
+                <div id="solucion" style="display: none; margin-top: 10px;">
+                    <div class="code">
+                        // Solución para la función saludar
+                        function saludar(nombre) {
+                            return `¡Hola, ${nombre}! ¿Cómo estás?`;
+                        }
+                        
+                        // Solución para la función sumar
+                        function sumar(a, b) {
+                            return a + b;
+                        }
+                        
+                        // Probando las funciones
+                        console.log(saludar("Ana")); // Muestra: ¡Hola, Ana! ¿Cómo estás?
+                        console.log(sumar(7, 3));     // Muestra: 10
+                    </div>
+                </div>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre funciones? Pregúntame lo que necesites. Por ejemplo:</p>
+                <ul>
+                    <li>¿Cuál es la diferencia entre parámetros y argumentos?</li>
+                    <li>¿Cómo funciona el <code>return</code> en una función?</li>
+                    <li>¿Qué es el alcance de una variable en una función?</li>
+                </ul>
+                <div class="chat-input">
+                    <input type="text" id="pregunta" placeholder="Escribe tu pregunta...">
+                    <button onclick="responderPregunta()">Preguntar</button>
+                </div>
+                <div id="respuesta" style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; min-height: 50px;"></div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                <ul>
+                    <li>Las funciones son bloques de código reutilizables que realizan una tarea específica.</li>
+                    <li>Una función puede recibir parámetros (entrada) y devolver un valor (salida).</li>
+                    <li>La sintaxis básica es: <code>function nombreFuncion(parametros) { ... }</code></li>
+                    <li>Usamos <code>return</code> para que una función devuelva un valor.</li>
+                    <li>Las funciones nos ayudan a organizar el código y evitar repeticiones (principio DRY).</li>
+                    <li>Es buena práctica que una función haga una sola cosa y la haga bien.</li>
+                </ul>
+                
+                <h3>Práctica para la próxima sesión</h3>
+                <p>Crea una función llamada <code>esPar(numero)</code> que devuelva <code>true</code> si el número es par y <code>false</code> si es impar. Luego, crea otra función llamada <code>contarPares(n)</code> que cuente cuántos números pares hay desde 1 hasta n (usando la función <code>esPar</code>).</p>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion02.html" class="button">← Sesión Anterior</a>
+                    <a href="sesion04.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Inicializar la calculadora al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            calcular(); // Mostrar resultado inicial
+        });
+        
+        // Mostrar/ocultar solución
+        function mostrarSolucion() {
+            const solucion = document.getElementById('solucion');
+            if (solucion.style.display === 'none') {
+                solucion.style.display = 'block';
+            } else {
+                solucion.style.display = 'none';
+            }
+        }
+        
+        // Funcionalidad básica de Dola AI
+        function responderPregunta() {
+            const pregunta = document.getElementById('pregunta').value.toLowerCase();
+            const respuesta = document.getElementById('respuesta');
+            
+            if (pregunta.includes('parámetro') && pregunta.includes('argumento')) {
+                respuesta.innerHTML = `<strong>Diferencia entre parámetros y argumentos:</strong><br>
+                <strong>Parámetros</strong> son las variables listadas en la definición de la función.<br>
+                <strong>Argumentos</strong> son los valores reales que se pasan a la función cuando se llama.<br><br>
+                <code>// a y b son parámetros<br>
+                function sumar(a, b) {<br>
+                &nbsp;&nbsp;return a + b;<br>
+                }<br><br>
+                // 5 y 3 son argumentos<br>
+                let resultado = sumar(5, 3);</code>`;
+            } 
+            else if (pregunta.includes('return') || pregunta.includes('retorno')) {
+                respuesta.innerHTML = `<strong>La sentencia return:</strong><br>
+                <code>return</code> termina la ejecución de la función y especifica el valor a devolver.<br><br>
+                <code>function sumar(a, b) {<br>
+                &nbsp;&nbsp;let resultado = a + b;<br>
+                &nbsp;&nbsp;return resultado; // Devuelve el valor y termina la función<br>
+                &nbsp;&nbsp;// Código después de return no se ejecuta<br>
+                }<br><br>
+                let total = sumar(2, 3); // total = 5</code><br><br>
+                Si una función no tiene <code>return</code>, devuelve <code>undefined</code> por defecto.`;
+            }
+            else if (pregunta.includes('alcance') || pregunta.includes('scope')) {
+                respuesta.innerHTML = `<strong>Alcance de las variables en funciones:</strong><br>
+                Las variables declaradas con <code>let</code> o <code>const</code> dentro de una función son <strong>locales</strong> a esa función.<br><br>
+                <code>function ejemplo() {<br>
+                &nbsp;&nbsp;let local = "Solo visible dentro de la función";<br>
+                }<br>
+                console.log(local); // Error: local no está definido</code><br><br>
+                Las variables declaradas fuera de cualquier función son <strong>globales</strong> y pueden ser accedidas desde cualquier parte del código.`;
+            }
+            else {
+                const respuestas = [
+                    "¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con funciones en JavaScript.",
+                    "¿Has probado a usar console.log() dentro de tu función para ver qué está pasando con los valores?",
+                    "¿Te gustaría ver un ejemplo práctico de cómo crear y usar una función?",
+                    "Recuerda que las funciones pueden devolver valores usando la palabra clave 'return'.",
+                    "¿Has revisado que todos los paréntesis y llaves estén correctamente cerrados en tu función?"
+                ];
+                respuesta.textContent = respuestas[Math.floor(Math.random() * respuestas.length)];
+            }
+            
+            // Limpiar el campo de pregunta
+            document.getElementById('pregunta').value = '';
+        }
+        
+        // Permitir presionar Enter para enviar pregunta
+        document.getElementById('pregunta').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                responderPregunta();
+            }
+        });
+    </script>
+</body>
+</html>

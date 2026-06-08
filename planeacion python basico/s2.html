@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Variables y Tipos de Datos Primitivos - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+        body h1, h2, h3, h4, h5, h6, p, span, a, li, ol, ul, table, th, td {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 2</h1>
+                <h2>Variables y Tipos de Datos Primitivos</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-6-25" 
+                     role="progressbar" 
+                     aria-valuenow="6.25" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Aprender a almacenar y manipular información básica en Python utilizando variables y tipos de datos primitivos.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Entender qué son las variables y cómo se utilizan en Python</li>
+                        <li>Identificar y utilizar los tipos de datos primitivos principales</li>
+                        <li>Nombrar variables siguiendo las convenciones de Python</li>
+                        <li>Usar la función <code>type()</code> para verificar tipos de datos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Variables -->
+            <div class="concept-card">
+                <h3>1. Variables en Python</h3>
+                <p>Una variable es un nombre que hace referencia a un valor almacenado en la memoria de la computadora. En Python, las variables se crean cuando se les asigna un valor por primera vez.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de variables
+nombre = "Ana"
+edad = 25
+estatura = 1.68
+estudiante = True</code></pre>
+                </div>
+                
+                <div class="note">
+                    <h4>📌 Nota Importante</h4>
+                    <p>En Python, no necesitas declarar explícitamente el tipo de variable. Python infiere el tipo basado en el valor asignado.</p>
+                </div>
+            </div>
+
+            <!-- Tipos de datos primitivos -->
+            <div class="concept-card">
+                <h3>2. Tipos de Datos Primitivos</h3>
+                
+                <div class="data-type">
+                    <h4>Enteros (<code>int</code>)</h4>
+                    <p>Números enteros, positivos o negativos, sin decimales.</p>
+                    <pre><code class="language-python">edad = 25
+año = 2023
+puntaje = -10</code></pre>
+                </div>
+
+                <div class="data-type">
+                    <h4>Números de punto flotante (<code>float</code>)</h4>
+                    <p>Números reales con punto decimal.</p>
+                    <pre><code class="language-python">pi = 3.1416
+precio = 19.99
+temperatura = -5.5</code></pre>
+                </div>
+
+                <div class="data-type">
+                    <h4>Cadenas de texto (<code>str</code>)</h4>
+                    <p>Secuencias de caracteres entre comillas simples o dobles.</p>
+                    <pre><code class="language-python">nombre = "Carlos"
+mensaje = 'Hola, ¿cómo estás?'
+direccion = "Calle Falsa 123"</code></pre>
+                </div>
+
+                <div class="data-type">
+                    <h4>Valores booleanos (<code>bool</code>)</h4>
+                    <p>Representan valores de verdad: <code>True</code> o <code>False</code> (Verdadero o Falso).</p>
+                    <pre><code class="language-python">es_estudiante = True
+tiene_descuento = False
+mayor_de_edad = True</code></pre>
+                </div>
+            </div>
+
+            <!-- Reglas para nombrar variables -->
+            <div class="concept-card">
+                <h3>3. Reglas para Nombrar Variables</h3>
+                <ul class="rules-list">
+                    <li>Pueden contener letras (a-z, A-Z), números (0-9) y guiones bajos (_)</li>
+                    <li>No pueden comenzar con un número</li>
+                    <li>Son sensibles a mayúsculas y minúsculas (edad, Edad y EDAD son variables diferentes)</li>
+                    <li>No pueden ser palabras reservadas de Python (como if, else, for, while, etc.)</li>
+                </ul>
+                
+                <div class="example">
+                    <h4>Ejemplos de nombres válidos:</h4>
+                    <pre><code class="language-python">nombre_usuario = "Ana"
+contador1 = 10
+precio_total = 99.99
+es_activo = True</code></pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplos de nombres no válidos:</h4>
+                    <pre><code class="language-python">1nombre = "Ana"       # No puede comenzar con número
+precio-total = 99.99  # No puede contener guiones
+if = 10               # No puede ser palabra reservada</code></pre>
+                </div>
+            </div>
+
+            <!-- Función type() -->
+            <div class="concept-card">
+                <h3>4. La Función <code>type()</code></h3>
+                <p>Esta función nos permite determinar el tipo de dato de una variable o valor.</p>
+                
+                <pre><code class="language-python"># Ejemplos de uso de type()
+elemento1 = 42
+elemento2 = 3.14
+elemento3 = "Hola"
+elemento4 = True
+
+print(type(elemento1))  # <class 'int'>
+print(type(elemento2))  # <class 'float'>
+print(type(elemento3))  # <class 'str'>
+print(type(elemento4))  # <class 'bool'></code></pre>
+
+                <div class="tip">
+                    <h4>💡 Consejo</h4>
+                    <p>Usa <code>type()</code> cuando necesites verificar el tipo de una variable, especialmente cuando trabajas con entradas de usuario o datos externos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Creación de Variables</h3>
+                <p>Crea un archivo llamado <code>variables.py</code> y declara las siguientes variables con valores apropiados:</p>
+                <ul>
+                    <li>Una variable para tu nombre</li>
+                    <li>Una variable para tu edad</li>
+                    <li>Una variable para tu estatura en metros</li>
+                    <li>Una variable booleana que indique si eres estudiante</li>
+                </ul>
+                <p>Luego, imprime cada variable junto con su tipo usando <code>type()</code>.</p>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda que en Python no necesitas declarar el tipo de variable. Simplemente asígnale un valor.</p>
+                        <pre><code class="language-python"># Ejemplo:
+nombre = "Ana"
+print(nombre, type(nombre))</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Conversión de Tipos</h3>
+                <p>Crea un programa que:</p>
+                <ol>
+                    <li>Pida al usuario su año de nacimiento</li>
+                    <li>Calcule su edad restando el año actual (puedes definirlo como una variable)</li>
+                    <li>Muestre un mensaje como: "Tienes X años"</li>
+                </ol>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda que <code>input()</code> siempre devuelve una cadena de texto. Necesitarás convertirla a entero para hacer cálculos.</p>
+                        <pre><code class="language-python"># Para convertir una cadena a entero:
+numero = int("123")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Calculadora de IMC</h3>
+                <p>Crea un programa que calcule el Índice de Masa Corporal (IMC).</p>
+                <p>Fórmula: IMC = peso (kg) / (estatura (m) * estatura (m))</p>
+                <p>El programa debe:</p>
+                <ol>
+                    <li>Pedir al usuario su peso en kilogramos</li>
+                    <li>Pedir al usuario su estatura en metros</li>
+                    <li>Calcular el IMC</li>
+                    <li>Mostrar el resultado con 2 decimales</li>
+                </ol>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para formatear un número con 2 decimales, puedes usar f-strings:</p>
+                        <pre><code class="language-python">resultado = 25.6789
+print(f"{resultado:.2f}")  # Muestra: 25.68</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Información Personal</h3>
+                <p>Crea un programa que muestre información personal formateada. El programa debe:</p>
+                <ol>
+                    <li>Pedir al usuario su nombre, edad, ciudad de residencia y profesión</li>
+                    <li>Almacenar cada dato en una variable con un nombre descriptivo</li>
+                    <li>Mostrar la información en un formato amigable, como:</li>
+                </ol>
+                
+                <pre><code class="language-text">=== INFORMACIÓN PERSONAL ===
+Nombre: [nombre]
+Edad: [edad] años
+Ciudad: [ciudad]
+Profesión: [profesión]
+=============================</code></pre>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Puedes usar múltiples <code>input()</code> para cada dato y luego imprimir todo junto con <code>print()</code>.</p>
+                        <p>Para el formato, puedes usar cadenas de varias líneas con comillas triples <code>"""..."""</code> o múltiples llamadas a <code>print()</code>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator" target="_blank" rel="noopener noreferrer">Tutorial oficial de Python - Tipos de datos</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_variables.asp" target="_blank" rel="noopener noreferrer">W3Schools - Variables en Python</a></li>
+                        <li><a href="https://realpython.com/python-variables/" target="_blank" rel="noopener noreferrer">Real Python - Variables en profundidad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=khKv-8q7YmY" target="_blank" rel="noopener noreferrer">Variables en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=W8KR3-HZu8M" target="_blank" rel="noopener noreferrer">Tipos de datos en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 1 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 2.1-2.3 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s3.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

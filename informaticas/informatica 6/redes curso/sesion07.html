@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 E7: Introducción a Direcciones IP y Clases</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 2, Sesión 7: Introducción a Direcciones IP 🔢</h1>
+        <p class="subtitle">La "Identidad Lógica" de la Red y sus Clases</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Dirección IP vs. Dirección MAC: La Diferencia Vital</h2>
+            <p>Ambas son direcciones, pero cumplen funciones totalmente diferentes en el proceso de comunicación (recuerda los modelos OSI/TCP-IP).</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Dirección IP (Lógica)</h3>
+                    <p>Es la "dirección de envío" del paquete (Capa 3 - Red).</p>
+                    <ul>
+                        <li>**Función:** Identifica la **red** y el dispositivo dentro de esa red.</li>
+                        <li>**Naturaleza:** Es **configurable** (se puede cambiar).</li>
+                        <li>**Formato (IPv4):** Cuatro números de 0 a 255 separados por puntos (ej. 192.168.1.10).</li>
+                        <li>**Analogía:** El número de tu casa (la dirección a donde debe llegar el paquete).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Dirección MAC (Física)</h3>
+                    <p>Es la "dirección del puerto" del dispositivo (Capa 2 - Enlace de Datos).</p>
+                    <ul>
+                        <li>**Función:** Identifica el **dispositivo** de manera única en una LAN.</li>
+                        <li>**Naturaleza:** Es **quemada** (grabada) por el fabricante (casi nunca se cambia).</li>
+                        <li>**Formato:** Seis pares de caracteres hexadecimales separados por guiones o dos puntos (ej. 00-1A-2B-3C-4D-5E).</li>
+                        <li>**Analogía:** El nombre de la persona dentro de esa casa (el dispositivo al que va dirigido).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Clases de Direcciones IP (IPv4)</h2>
+            <p>Las direcciones IPv4 se dividen en clases. Aunque hoy se usa más el enrutamiento sin clases (CIDR), los técnicos deben conocer las clases A, B y C, ya que definen qué parte de la dirección identifica a la **Red** y qué parte identifica al **Host**.</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Clase A (Grandes Redes)</h3>
+                    <ul>
+                        <li>**Rango Inicial:** 1.0.0.0 a 126.x.x.x</li>
+                        <li>**Uso:** Organismos gubernamentales y grandes corporaciones.</li>
+                        <li>**Máscara por Defecto:** 255.0.0.0 (Primer octeto es la RED, los otros tres son HOSTS).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Clase B (Redes Medianas)</h3>
+                    <ul>
+                        <li>**Rango Inicial:** 128.0.0.0 a 191.x.x.x</li>
+                        <li>**Uso:** Universidades y empresas medianas a grandes.</li>
+                        <li>**Máscara por Defecto:** 255.255.0.0 (Primeros dos octetos son la RED).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Clase C (Redes Pequeñas/Domésticas)</h3>
+                    <ul>
+                        <li>**Rango Inicial:** 192.0.0.0 a 223.x.x.x</li>
+                        <li>**Uso:** Pequeñas empresas, redes domésticas.</li>
+                        <li>**Máscara por Defecto:** 255.255.255.0 (Primeros tres octetos son la RED).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-container">
+                [Image of IPv4 address structure and octets]
+                <figcaption>Una dirección IPv4 se compone de 4 octetos, 32 bits en total.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>Práctica con Comandos de Diagnóstico</h2>
+            <p>Usaremos la línea de comandos para visualizar la IP, la Máscara y el Gateway, los tres componentes esenciales de la configuración de red de un host.</p>
+
+            <p><strong>Tarea Práctica (Comandos):</strong></p>
+            <ol>
+                <li>Abre la consola de comandos (CMD en Windows, Terminal en Linux/Mac).</li>
+                <li>Escribe el comando: **`ipconfig`** (Windows) o **`ifconfig`** (Linux/Mac).</li>
+                <li>Identifica la **Dirección IPv4**, la **Máscara de subred** y la **Puerta de Enlace Predeterminada (Default Gateway)**.</li>
+            </ol>
+            <p class="small-text"><sub>La Puerta de Enlace es la dirección IP de tu router, el punto de salida de tu red local.</sub></p>
+            <button id="ipconfigCheckBtn">Verificar Práctica</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S2 E7</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion06.html" class="nav-button">Anterior</a>
+        <a href="sesion08.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

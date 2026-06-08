@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema1">
+                <h2>Tema 1: Introducción a Excel: interfaz y conceptos básicos</h2>
+                <div class="tema-contenido">
+                    <p>Bienvenido al fascinante mundo de Microsoft Excel, una de las herramientas más poderosas para el manejo de datos, análisis y presentación de información. En este tema, exploraremos los fundamentos de Excel que te permitirán comenzar a trabajar con hojas de cálculo de manera efectiva.</p>
+                    
+                    <h3>1.1 ¿Qué es Microsoft Excel?</h3>
+                    <p>Microsoft Excel es una aplicación de hoja de cálculo desarrollada por Microsoft que forma parte de la suite de Microsoft Office. Permite a los usuarios organizar, analizar y visualizar datos de manera eficiente.</p>
+                    
+                    <div class="hardware-software">
+                        <div>
+                            <h5>Principales usos de Excel:</h5>
+                            <ul>
+                                <li>Análisis financiero y contable</li>
+                                <li>Creación de bases de datos</li>
+                                <li>Elaboración de informes</li>
+                                <li>Gráficos y visualización de datos</li>
+                                <li>Automatización de tareas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>1.2 La interfaz de Excel</h3>
+                    <p>La interfaz de Excel está diseñada para ser intuitiva y eficiente. Vamos a explorar sus componentes principales:</p>
+                    
+                    <div class="excel-interface">
+                        <img src="https://support.content.office.net/es-es/media/4a281d2a-9c92-4d6d-99ed-1a4495339661.png" alt="Interfaz de Excel">
+                        <div class="highlight">
+                            <strong>Elementos clave de la interfaz:</strong>
+                            <ol>
+                                <li><strong>Barra de acceso rápido:</strong> Contiene comandos usados frecuentemente como Guardar, Deshacer y Rehacer.</li>
+                                <li><strong>Barra de título:</strong> Muestra el nombre del libro actual.</li>
+                                <li><strong>Cinta de opciones:</strong> Contiene todas las herramientas organizadas en pestañas.</li>
+                                <li><strong>Barra de fórmulas:</strong> Muestra el contenido de la celda seleccionada.</li>
+                                <li><strong>Cuadro de nombres:</strong> Indica la referencia de la celda activa.</li>
+                                <li><strong>Área de trabajo:</strong> La cuadrícula donde se ingresan los datos.</li>
+                                <li><strong>Hojas:</strong> Pestañas en la parte inferior para cambiar entre hojas del libro.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <h3>1.3 Conceptos fundamentales</h3>
+                    <p>Antes de profundizar, es importante entender algunos conceptos clave:</p>
+                    
+                    <div class="hardware-software">
+                        <div>
+                            <h5>Libro de trabajo (Workbook)</h5>
+                            <p>Es el archivo de Excel que contiene una o más hojas de cálculo. Por defecto, un nuevo libro de Excel contiene una hoja de cálculo, pero puedes agregar más según lo necesites.</p>
+                            
+                            <h5>Hoja de cálculo (Worksheet)</h5>
+                            <p>Es una cuadrícula de celdas organizadas en filas (números) y columnas (letras). Cada hoja puede contener datos independientes.</p>
+                            
+                            <h5>Celda (Cell)</h5>
+                            <p>La intersección de una fila y una columna. Cada celda tiene una dirección única (por ejemplo, A1, B2, etc.)</p>
+                            
+                            <h5>Rango</h5>
+                            <p>Un grupo de celdas seleccionadas. Se identifica por las celdas en las esquinas opuestas (por ejemplo, A1:B10)</p>
+                        </div>
+                    </div>
+
+                    <h3>1.4 Practiquemos con celdas</h3>
+                    <p>Vamos a interactuar con una simulación de hoja de cálculo:</p>
+                    
+                    <div class="formula-bar">
+                        <span>Fórmula:</span>
+                        <input type="text" id="formulaInput" placeholder="Selecciona una celda para editar">
+                    </div>
+                    <div class="excel-grid" id="excelGrid">
+                        <!-- Las celdas se generarán con JavaScript -->
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Actividad: Identifica los elementos</h4>
+                        <p>Observa la siguiente imagen y etiqueta las partes de la interfaz de Excel:</p>
+                        <div class="draggable-activity">
+                            <p><strong>Instrucciones:</strong> Arrastra las etiquetas a su ubicación correcta en la imagen.</p>
+                            <div class="draggable-container" id="labelContainer">
+                                <span class="draggable" draggable="true">Barra de fórmulas</span>
+                                <span class="draggable" draggable="true">Barra de acceso rápido</span>
+                                <span class="draggable" draggable="true">Cinta de opciones</span>
+                                <span class="draggable" draggable="true">Cuadro de nombres</span>
+                            </div>
+                            <div class="drop-zone">
+                                <img src="https://support.content.office.net/es-es/media/4a281d2a-9c92-4d6d-99ed-1a4495339661.png" alt="Interfaz de Excel para etiquetar">
+                            </div>
+                            <button class="verify-btn" onclick="checkLabels()">Verificar respuestas</button>
+                        </div>
+                    </div>
+
+                    <h3>1.5 Guardar y abrir archivos</h3>
+                    <p>Es fundamental saber cómo guardar tu trabajo en Excel:</p>
+                    
+                    <div class="hardware-software">
+                        <div>
+                            <h5>Para guardar un archivo:</h5>
+                            <ol>
+                                <li>Haz clic en <strong>Archivo</strong> > <strong>Guardar como</strong></li>
+                                <li>Selecciona la ubicación donde deseas guardar</li>
+                                <li>Escribe un nombre para tu archivo</li>
+                                <li>Selecciona el formato (por defecto .xlsx)</li>
+                                <li>Haz clic en <strong>Guardar</strong></li>
+                            </ol>
+                            
+                            <h5>Formatos comunes:</h5>
+                            <ul>
+                                <li><strong>.xlsx</strong>: Formato estándar de Excel 2007 y versiones posteriores</li>
+                                <li><strong>.xls</strong>: Formato compatible con versiones anteriores a 2007</li>
+                                <li><strong>.csv</strong>: Valores separados por comas (solo datos, sin formato)</li>
+                                <li><strong>.pdf</strong>: Para compartir sin editar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="actividad">
+                        <h4>Práctica: Crea tu primer libro</h4>
+                        <p>Sigue estos pasos para crear tu primer libro de Excel:</p>
+                        <ol>
+                            <li>Abre Excel y crea un nuevo libro en blanco</li>
+                            <li>En la celda A1 escribe "Mi primer libro de Excel"</li>
+                            <li>En la celda A3 escribe "Fecha:"</li>
+                            <li>En la celda B3 ingresa la fecha de hoy</li>
+                            <li>Guarda el archivo con el nombre "MiPrimerLibro.xlsx"</li>
+                        </ol>
+                        <div class="nota">
+                            <h5>Consejo profesional:</h5>
+                            <p>Usa el atajo de teclado <kbd>Ctrl + G</kbd> para ir a una celda específica rápidamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Qué es una celda en Excel?</div>
+                        <div class="opcion">a) Un programa de computadora</div>
+                        <div class="opcion">b) La intersección de una fila y una columna</div>
+                        <div class="opcion">c) Un tipo de gráfico</div>
+                        <div class="opcion">d) Una función matemática</div>
+                        
+                        <div class="pregunta">2. ¿Qué muestra el cuadro de nombres?</div>
+                        <div class="opcion">a) El contenido de la celda activa</div>
+                        <div class="opcion">b) La fórmula de la celda activa</div>
+                        <div class="opcion">c) La dirección de la celda activa</div>
+                        <div class="opcion">d) El formato de la celda activa</div>
+                        
+                        <div class="pregunta">3. ¿Cuál es la extensión por defecto de los archivos de Excel 2019?</div>
+                        <div class="opcion">a) .xls</div>
+                        <div class="opcion">b) .xlsx</div>
+                        <div class="opcion">c) .xlsm</div>
+                        <div class="opcion">d) .csv</div>
+                        
+                        <div class="pregunta">4. ¿Qué combinación de teclas se usa para guardar un archivo?</div>
+                        <div class="opcion">a) Ctrl + N</div>
+                        <div class="opcion">b) Ctrl + O</div>
+                        <div class="opcion">c) Ctrl + S</div>
+                        <div class="opcion">d) Ctrl + P</div>
+                        
+                        <div class="pregunta">5. ¿Qué elemento de Excel contiene las herramientas organizadas en pestañas?</div>
+                        <div class="opcion">a) Barra de fórmulas</div>
+                        <div class="opcion">b) Cinta de opciones</div>
+                        <div class="opcion">c) Barra de estado</div>
+                        <div class="opcion">d) Barra de acceso rápido</div>
+                        
+                        <button class="verify-btn" onclick="checkAnswers()">Verificar respuestas</button>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Excel es una poderosa herramienta para el manejo y análisis de datos.</li>
+                            <li>La interfaz incluye elementos como la cinta de opciones, barra de fórmulas y cuadro de nombres.</li>
+                            <li>Un libro de trabajo puede contener múltiples hojas de cálculo.</li>
+                            <li>Las celdas son la unidad básica de una hoja de cálculo.</li>
+                            <li>Es importante guardar frecuentemente tu trabajo.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="siguiente-paso">
+                        <h3>Próximos pasos</h3>
+                        <p>Ahora que has aprendido los conceptos básicos de Excel, en el siguiente tema exploraremos las funciones básicas que te permitirán realizar cálculos y manipular datos de manera más eficiente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 2: Formato de celdas y hojas de cálculo -->
+            
+
+    <div class="navegacion-temas">
+        
+        <a href="tema2.html" class="btn btn-siguiente">Siguiente: Tema 2</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

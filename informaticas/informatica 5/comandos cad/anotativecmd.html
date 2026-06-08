@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCAD Masterclass: Objetos Anotativos (SESION 01)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>AutoCAD SESION 01: El Poder de los Objetos Anotativos</h1>
+            <p>Aprende a crear dibujos profesionales y dinámicos que se auto-escalan en AutoCAD 2021. Olvídate de rehacer textos y cotas.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="lesson-content">
+            <h2>1. Conceptos Fundamentales: La Revolución de la Escala Anotativa</h2>
+            <p>En el aprendizaje andragógico, el tiempo es oro. La propiedad <strong>Anotativa</strong> es la solución de AutoCAD para que tus textos, cotas, sombreados (hatches) y bloques mantengan *siempre* el mismo tamaño impreso en el papel (ej. 2.5 mm), independientemente de la escala de la ventana gráfica (Viewport) donde se muestren.</p>
+            
+            <div class="callout-box info">
+                <h4>🔑 El Concepto Clave</h4>
+                <p>No cambias el tamaño del objeto en el modelo. Le asignas una *Escala Anotativa* actual. AutoCAD se encarga del resto.</p>
+            </div>
+            
+            <p>Para lograrlo, AutoCAD utiliza una serie de variables de sistema y comandos que debemos conocer.</p>
+        </section>
+
+        <section class="command-grid">
+            <h2>2. La Caja de Herramientas del Genio: Comandos y Variables Clave</h2>
+            
+            <div class="card command-card" id="card-CANNOSCALE">
+                <h3><span class="command">CANNOSCALE</span></h3>
+                <p>Define la <strong>Escala Anotativa Actual</strong> para el espacio de dibujo (Modelo o Viewport). Es el valor de referencia sobre el que se calculan los tamaños.</p>
+                <p><em>Ejemplo: "Si CANNOSCALE es 1:50, un texto de 2.5mm se imprime de 2.5mm en 1:50."</em></p>
+            </div>
+            
+            <div class="card command-card" id="card-ANNOAUTOSCALE">
+                <h3><span class="command">ANNOAUTOSCALE</span></h3>
+                <p>Controla si una escala anotativa se añade automáticamente a los objetos cuando cambia la escala de la ventana gráfica actual. Es ideal para que los objetos "aprendan" nuevas escalas.</p>
+                <p><em>💡 Genial para el flujo de trabajo: Actívalo para que tus textos se escalen solos al moverlos entre viewports de distintas escalas.</em></p>
+            </div>
+
+            <div class="card command-card" id="card-ANNOALLVISIBLE">
+                <h3><span class="command">ANNOALLVISIBLE</span></h3>
+                <p>Un comando de visualización. Controla si todos los objetos anotativos son visibles, o *solo* aquellos que coinciden con la escala de anotación actual.</p>
+                <p><em>💡 Solución de problemas: Si un texto desaparece en un Layout, esta variable te ayuda a ver qué escalas tiene asignadas.</em></p>
+            </div>
+
+            <div class="card command-card" id="card-ANNOMONITOR">
+                <h3><span class="command">ANNOMONITOR</span></h3>
+                <p>¡El sistema de alerta! Esta variable controla el Monitor de Anotaciones, que muestra un icono de alerta junto a un objeto cuando su escala anotativa actual no coincide con la escala de la ventana gráfica, indicando una posible desactualización.</p>
+            </div>
+
+            <div class="card command-card" id="card-SELECTIONANNODISPLAY">
+                <h3><span class="command">SELECTIONANNODISPLAY</span></h3>
+                <p>Controla si los objetos anotativos seleccionados se muestran *sólo* en su escala activa, o en todas sus escalas asignadas. Es crucial para visualizar la "huella" de un objeto en múltiples escalas.</p>
+            </div>
+
+            <div class="card command-card" id="card-HPANNOTATIVE">
+                <h3><span class="command">HPANNOTATIVE</span></h3>
+                <p>Establece la propiedad anotativa por defecto para los nuevos sombreados (hatches). Ayuda a mantener la consistencia sin tener que activarlo manualmente en cada hatch.</p>
+            </div>
+
+            <div class="card command-card" id="card-ANNOTATIVEDWG">
+                <h3><span class="command">ANNOTATIVEDWG</span></h3>
+                <p>Una variable de sistema de dibujo que especifica si el dibujo actual es un dibujo anotativo. Esto es crucial cuando trabajas con bloques y referencias externas.</p>
+            </div>
+        </section>
+
+        <section class="lesson-workflow card">
+            <h2>3. Flujo de Trabajo Profesional</h2>
+            <ol>
+                <li><strong>Define tu Escala Final:</strong> Decide en qué escalas se imprimirá tu plano.</li>
+                <li><strong>Crea Objetos:</strong> Selecciona un texto, cota o hatch.</li>
+                <li><strong>Activa 'Anotativo':</strong> En la paleta Propiedades (Ctrl+1), cambia Anotativo a *Sí*.</li>
+                <li><strong>Asigna Escalas:</strong> En la misma paleta, haz clic en [...] junto a "Object Scale" y añade todas tus escalas objetivo.</li>
+                <li><strong>Verifica:</strong> Cambia `CANNOSCALE` o el Viewport y confirma que el objeto cambia de tamaño dinámicamente.</li>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="quiz-container card">
+            <h2>🧠 Desafío de Conocimiento (10 Preguntas - Estilo Kahoot)</h2>
+            <p>Demuestra lo que has aprendido. Responde rápido, pero con precisión. Una vez que contestes, la pregunta se bloqueará para siempre.</p>
+            
+            <div id="quiz-status" class="quiz-info">
+                Pregunta <span id="current-question-num">1</span> / 10 | Puntos: <span id="quiz-points">0</span>
+            </div>
+
+            <div id="quiz-question-container">
+                </div>
+            
+            <button id="print-results-btn" class="btn btn-primary btn-full-width" style="display: none;">🖨️ Ver Resumen y Resultados Finales</button>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Academia JMGV-PTEL | Diseño Andragógico Avanzado para Profesionales Técnicos.</p>
+            <p class="print-footer no-print">Imprime este recurso como una práctica "hoja de trucos".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion13: Gestión de Discos y Adquisición</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 13: Cuarentena y Adquisición Quirúrgica</h1>
+            <p class="intro-text">Bienvenido al nivel pericial. Has incautado un USB sospechoso. La regla de oro del análisis forense es: <strong>Nunca se trabaja sobre la evidencia original</strong>. Hoy aprenderemos a identificar el dispositivo físico, montarlo en cuarentena (solo lectura) y crear un clon exacto bit a bit usando tu Sandbox de Kali Linux.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Mapa del Territorio (lsblk y fdisk)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En Linux, los discos duros y USBs no son "C:" o "D:". Son dispositivos de bloque en la carpeta <code>/dev/</code> (ej. <em>sda</em>, <em>sdb</em>, <em>nvme0n1</em>). Antes de clonar, debes estar 100% seguro de cuál es tu disco (el sistema) y cuál es la evidencia.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Listar dispositivos de bloque (fácil de leer por el tamaño)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> lsblk
+
+<span class="comment"># Ver particiones y sistemas de archivos con detalle forense</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo fdisk -l</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: La Sala Blanca (Montaje Solo Lectura)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Si el sistema operativo monta el USB automáticamente, podría alterar los metadatos de "último acceso". Como forenses, intervenimos manualmente para montarlo como <strong>Read-Only (ro)</strong>.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># 1. Creamos la "mesa de disección" (el punto de montaje)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo mkdir -p /mnt/evidencia_cuarentena
+
+<span class="comment"># 2. Montamos la partición (suponiendo que es sdb1) en modo estricto</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo mount -o ro /dev/sdb1 /mnt/evidencia_cuarentena</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module hazard-module">
+                <div class="task-header">
+                    <h2>Paso 3: Simulador "Disk Destroyer" (Lógica dd)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El comando <code>dd</code> es ciego y obediente. Copia de <strong>if</strong> (Input File) hacia <strong>of</strong> (Output File). Si inviertes estos dos parámetros, escribirás un archivo vacío sobre el USB sospechoso, destruyendo la evidencia para siempre. <strong>Practica la lógica en este simulador antes de avanzar.</strong></p>
+                    
+                    <div class="dd-simulator">
+                        <div class="dd-logic-board">
+                            <div class="dd-select-group">
+                                <label>Input File (if=...)</label>
+                                <select id="dd-if" class="dd-select">
+                                    <option value="none">Seleccionar Origen...</option>
+                                    <option value="/dev/sda">/dev/sda (Tu Disco Principal Linux - 500GB)</option>
+                                    <option value="/dev/sdb">/dev/sdb (USB Incautado - 16GB)</option>
+                                    <option value="/dev/zero">/dev/zero (Generador de Nada)</option>
+                                </select>
+                            </div>
+                            <div class="dd-arrow">➡️</div>
+                            <div class="dd-select-group">
+                                <label>Output File (of=...)</label>
+                                <select id="dd-of" class="dd-select">
+                                    <option value="none">Seleccionar Destino...</option>
+                                    <option value="evidencia.img">evidencia.img (Archivo en tu carpeta local)</option>
+                                    <option value="/dev/sda">/dev/sda (Tu Disco Principal Linux - 500GB)</option>
+                                    <option value="/dev/sdb">/dev/sdb (USB Incautado - 16GB)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="btn-simulate-dd" class="btn btn-hazard">Validar Comando Virtual</button>
+                        <div id="dd-feedback" class="hidden"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El Clonador Universal (dd real)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Ahora que tu mente entiende el flujo de datos, ejecutaremos el comando. <code>dd</code> creará una imagen bit a bit (.img o .dd). Esta imagen incluirá incluso los archivos "borrados" que residen en el espacio libre del USB.</p>
+                    <div class="tip-card" style="border-left-color: #eab308; background-color: rgba(234, 179, 8, 0.08);">
+                        <strong style="color: #fde047;">Paciencia Forense:</strong> `dd` no muestra barra de progreso por defecto. Añadir `status=progress` es vital para no pensar que la terminal se ha congelado durante copias de cientos de Gigabytes.
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Clonamos el disco completo (sdb), no solo la partición (sdb1)</span>
+<span class="comment"># bs=4M acelera la copia usando bloques de memoria más grandes</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo dd if=/dev/sdb of=/home/kali/Desktop/evidencia_clon.img bs=4M status=progress</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #13. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

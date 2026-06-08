@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S31: Ilustración Pixel Art Vectorial</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 31: Ilustración Pixel Art Vectorial</h1>
+
+    <section>
+        <h2>1. Preparación de la Grilla para Pixel Art</h2>
+        
+        <p>El Pixel Art se basa en una cuadrícula estricta. Aunque Inkscape es vectorial, podemos simular el Pixel Art a cualquier escala utilizando su sistema de rejilla y ajuste.</p>
+        <div class="paso">
+            <strong>Paso 1: Configurar la Rejilla Rectangular</strong>
+            <p>Ve a <code>Archivo > Propiedades del Documento (Shift + Ctrl + D)</code>. Pestaña **Rejillas**. Crea una **Rejilla Rectangular**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Definir el "Pixel"</strong>
+            <p>Establece un valor simple para el **Espaciado en X** y **Espaciado en Y** (ej. 10px). Esto define el tamaño de tu "píxel" vectorial.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Ajuste Estricto</strong>
+            <p>Asegúrate de que el **Ajuste a rejilla** y, específicamente, el **Ajuste a nodos de rejilla** estén activados en el panel de ajuste. Esto obligará a tus objetos a alinearse perfectamente a la cuadrícula, simulando píxeles.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Dibujo por Píxeles (Cuadrados)</h2>
+        <p>El método más simple para crear un objeto de Pixel Art es dibujar "píxel por píxel".</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar el Módulo Base</strong>
+            <p>Usa la herramienta **Rectángulo (F4)**. Haz un clic y arrastra. Con el ajuste activado, es fácil dibujar un cuadrado perfecto (10x10 px) que coincida con la rejilla. Este es tu primer "píxel".</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Duplicación Rápida</strong>
+            <p>Selecciona el píxel. Usa **Ctrl + D** (Duplicar) y arrastra el duplicado a un nuevo punto de la cuadrícula. Repite el proceso para construir la forma de tu objeto (ej. un corazón, un personaje de videojuego simple).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Coloreado Rápido</strong>
+            <p>Para cambiar el color de varios píxeles a la vez, selecciónalos y simplemente haz clic en el color deseado en la paleta.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Optimización del Pixel Art Vectorial</h2>
+        <p>Dibujar muchos cuadrados individuales es ineficiente. El siguiente paso es fusionarlos en un único trayecto.</p>
+        <div class="paso">
+            <strong>Paso 1: Unificación de Color</strong>
+            <p>Dibuja tu ilustración completa, asegurándote de que todos los píxeles del mismo color estén juntos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Unión de Píxeles</strong>
+            <p>Selecciona **todos los píxeles de un mismo color** (ej. todos los tonos de piel). Aplica la operación booleana **Unión (Ctrl + +)**. Esto fusionará todos los cuadrados adyacentes de ese color en un único trayecto vectorial complejo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Ventaja Vectorial</strong>
+            <p>El resultado es una forma vectorial que parece Pixel Art. Puedes escalar esta forma a cualquier tamaño sin que pierda calidad (se pixele), manteniendo el estilo artístico.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Personaje 8-bits</h3>
+        <p><strong>Objetivo:</strong> Crear un icono o personaje de Pixel Art optimizado.</p>
+        <ol>
+            <li>Configura la rejilla a un espaciado de 5px o 10px.</li>
+            <li>Diseña un personaje simple (ej. un fantasma, una cabeza) usando solo cuadrados de colores.</li>
+            <li>Una vez satisfecho con el diseño, selecciona todos los píxeles de un color y aplica **Unión (Ctrl + +)**. Repite para cada color.</li>
+            <li>El resultado debe ser una ilustración con solo 3 o 4 trayectos (en lugar de 50 o 100 cuadrados).</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion30.html">Anterior</a>
+    <a href="sesion32.html">Siguiente</a>
+</nav>
+</body>
+</html>

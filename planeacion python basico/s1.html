@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: ¡Hola, Mundo! - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+        body h1, h2, h3, h4, h5, h6, p, span, a, li, ol, ul, table, th, td {
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <header class="header session-header">
+        <div class="container">
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1>Sesión 1: ¡Hola, Mundo! - Introducción a la Programación</h1>
+            <p>Módulo 1: Fundamentos de Python</p>
+        </div>
+    </header>
+
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#conceptos">Conceptos Clave</a></li>
+                <li><a href="#actividades">Actividades</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="objective-card">
+                <p>Comprender el ecosistema de la programación y dar los primeros pasos con Python, incluyendo la instalación, configuración del entorno y ejecución del primer programa.</p>
+            </div>
+        </section>
+
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3><i class="fas fa-question-circle"></i> ¿Qué es la programación?</h3>
+                    <p>La programación es el proceso de crear un conjunto de instrucciones que le dicen a una computadora cómo realizar una tarea. Es como escribir una receta detallada que la computadora puede seguir.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3><i class="fas fa-cogs"></i> ¿Qué es un algoritmo?</h3>
+                    <p>Un algoritmo es una secuencia lógica y finita de pasos para resolver un problema específico. Es independiente del lenguaje de programación.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3><i class="fas fa-code"></i> Código Fuente vs. Ejecutable</h3>
+                    <p><strong>Código fuente:</strong> Texto legible por humanos que contiene instrucciones en un lenguaje de programación.<br>
+                    <strong>Programa ejecutable:</strong> Archivo binario que la computadora puede ejecutar directamente.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3><i class="fab fa-python"></i> Python</h3>
+                    <p>Un lenguaje de programación interpretado, de alto nivel y con sintaxis fácil de leer. Es versátil y se utiliza en desarrollo web, ciencia de datos, IA, automatización y más.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="instalacion" class="session-section">
+            <h2><i class="fas fa-download"></i> Instalación y Configuración</h2>
+            
+            <div class="setup-steps">
+                <div class="step">
+                    <h3>1. Instalar Python</h3>
+                    <p>Descarga la última versión de Python desde el sitio oficial:</p>
+                    <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-python"></i> Descargar Python
+                    </a>
+                    <div class="note">
+                        <p><strong>Nota:</strong> Durante la instalación, asegúrate de marcar la casilla "Add Python to PATH".</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>2. Verificar la instalación</h3>
+                    <p>Abre una terminal o símbolo del sistema y escribe:</p>
+                    <pre><code class="language-bash">python --version</code></pre>
+                    <p>Deberías ver la versión de Python instalada, por ejemplo: <code>Python 3.9.7</code></p>
+                </div>
+
+                <div class="step">
+                    <h3>3. Elegir un editor de código</h3>
+                    <p>Algunas opciones recomendadas:</p>
+                    <div class="editors">
+                        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="editor">
+                            <i class="fas fa-code"></i>
+                            <span>Visual Studio Code</span>
+                        </a>
+                        <a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener noreferrer" class="editor">
+                            <i class="fas fa-jet-fighter"></i>
+                            <span>PyCharm</span>
+                        </a>
+                        <a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer" class="editor">
+                            <i class="fas fa-file-code"></i>
+                            <span>Sublime Text</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity" id="actividad1">
+                <h3>Actividad 1: Instalar Python</h3>
+                <p>Sigue los pasos de instalación anteriores y verifica que Python esté correctamente instalado en tu sistema.</p>
+                <div class="hint">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Si usas Windows, asegúrate de abrir una nueva ventana de terminal después de la instalación para que reconozca el comando <code>python</code>.</p>
+                </div>
+            </div>
+
+            <div class="activity" id="actividad2">
+                <h3>Actividad 2: Configurar tu editor</h3>
+                <p>Instala y configura tu editor de código preferido. Recomendamos VS Code con las siguientes extensiones:</p>
+                <ul>
+                    <li>Python (Microsoft)</li>
+                    <li>Pylance</li>
+                    <li>Jupyter</li>
+                </ul>
+            </div>
+
+            <div class="activity" id="actividad3">
+                <h3>Actividad 3: ¡Hola, Mundo!</h3>
+                <p>Crea tu primer programa en Python siguiendo estos pasos:</p>
+                <ol>
+                    <li>Abre tu editor de código</li>
+                    <li>Crea un nuevo archivo llamado <code>hola_mundo.py</code></li>
+                    <li>Escribe el siguiente código:
+                        <pre><code class="language-python"># Mi primer programa en Python
+print("¡Hola, Mundo!")
+
+# Preguntar el nombre al usuario
+nombre = input("¿Cuál es tu nombre? ")
+print(f"¡Bienvenido/a al curso de Python, {nombre}!")</code></pre>
+                    </li>
+                    <li>Guarda el archivo</li>
+                </ol>
+            </div>
+
+            <div class="activity" id="actividad4">
+                <h3>Actividad 4: Ejecutar desde la terminal</h3>
+                <p>Abre una terminal y navega hasta la carpeta donde guardaste tu archivo:</p>
+                <pre><code class="language-bash"># Navegar a la carpeta (ejemplo para Windows)
+cd ruta\a\tu\carpeta
+
+# Ejecutar el programa
+python hola_mundo.py</code></pre>
+                <div class="expected-output">
+                    <h4>Salida esperada:</h4>
+                    <pre><code class="language-plaintext">¡Hola, Mundo!
+¿Cuál es tu nombre? [Tu nombre]
+¡Bienvenido/a al curso de Python, [Tu nombre]!</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            <div class="resources">
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos Tutoriales</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=kqtD5dpn9C8" target="_blank" rel="noopener noreferrer">Python para Principiantes (YouTube)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" rel="noopener noreferrer">Aprende Python en 4 Horas (YouTube)</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3><i class="fas fa-file-alt"></i> Documentación</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/index.html" target="_blank" rel="noopener noreferrer">Tutorial Oficial de Python</a></li>
+                        <li><a href="https://www.learnpython.org/" target="_blank" rel="noopener noreferrer">LearnPython.org</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="session-section">
+            <div class="next-steps">
+                <h3><i class="fas fa-arrow-right"></i> Siguiente Sesión</h3>
+                <p>En la próxima sesión, aprenderemos sobre variables y tipos de datos en Python. ¡No olvides practicar lo aprendido hoy!</p>
+                <a href="s2.html" class="btn next-btn">Ir a la Sesión 2: Variables y Tipos de Datos <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Sesión 1: ¡Hola, Mundo!</p>
+            <div class="social-links">
+                <a href="#" aria-label="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Compartir en LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 4: Funciones de Texto y Fecha en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .funcion {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 4: Funciones de Texto y Fecha en Excel</h1>
+    
+    <div id="sesion4.1" class="sesion">
+        <h2>Sesión 4.1: Funciones de texto (IZQUIERDA, DERECHA, EXTRAE, CONCATENAR)</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Manipular y extraer texto de celdas</li>
+                <li>Combinar texto de diferentes celdas</li>
+                <li>Realizar operaciones avanzadas con cadenas de texto</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Función <span class="funcion">IZQUIERDA</span>:
+                    <ul>
+                        <li>Sintaxis: <span class="funcion">=IZQUIERDA(texto, núm_de_caracteres)</span></li>
+                        <li>Extrae caracteres desde el inicio del texto</li>
+                        <li>Ejemplo: <span class="funcion">=IZQUIERDA("Excel", 2)</span> devuelve "Ex"</li>
+                    </ul>
+                </li>
+                <li>Función <span class="funcion">DERECHA</span>:
+                    <ul>
+                        <li>Sintaxis: <span class="funcion">=DERECHA(texto, núm_de_caracteres)</span></li>
+                        <li>Extrae caracteres desde el final del texto</li>
+                        <li>Ejemplo: <span class="funcion">=DERECHA("Excel", 2)</span> devuelve "el"</li>
+                    </ul>
+                </li>
+                <li>Función <span class="funcion">EXTRAE</span>:
+                    <ul>
+                        <li>Sintaxis: <span class="funcion">=EXTRAE(texto, posición_inicial, núm_de_caracteres)</span></li>
+                        <li>Extrae caracteres desde cualquier posición del texto</li>
+                        <li>Ejemplo: <span class="funcion">=EXTRAE("Excel", 2, 3)</span> devuelve "xce"</li>
+                    </ul>
+                </li>
+                <li>Función <span class="funcion">CONCATENAR</span> y el operador <span class="funcion">&</span>:
+                    <ul>
+                        <li>Sintaxis: <span class="funcion">=CONCATENAR(texto1, texto2, ...)</span> o <span class="funcion">=texto1 & texto2</span></li>
+                        <li>Combina múltiples cadenas de texto</li>
+                        <li>Ejemplo: <span class="funcion">=CONCATENAR("Hola", " ", "Mundo")</span> o <span class="funcion">="Hola" & " " & "Mundo"</span> devuelven "Hola Mundo"</li>
+                    </ul>
+                </li>
+                <li>Otras funciones útiles:
+                    <ul>
+                        <li><span class="funcion">LARGO</span>: Devuelve la longitud de una cadena</li>
+                        <li><span class="funcion">MAYUSC</span>: Convierte texto a mayúsculas</li>
+                        <li><span class="funcion">MINUSC</span>: Convierte texto a minúsculas</li>
+                        <li><span class="funcion">NOMPROPIO</span>: Pone en mayúscula la primera letra de cada palabra</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico: Extraer códigos</h4>
+                <p>Datos: <span class="funcion">EMP-001-John-Doe</span></p>
+                <p>Extraer ID: <span class="funcion">=EXTRAE(A1, 5, 3)</span> → "001"</p>
+                <p>Extraer nombre: <span class="funcion">=EXTRAE(A1, 9, 4)</span> → "John"</p>
+                <p>Extraer apellido: <span class="funcion">=DERECHA(A1, LARGO(A1)-13)</span> → "Doe"</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear una hoja con una lista de códigos de productos (ej: "LAP-001-AZUL") y usar funciones de texto para extraer y organizar la información en columnas separadas (Categoría, Número, Color).</p>
+        </div>
+    </div>
+    
+    <div id="sesion4.2" class="sesion">
+        <h2>Sesión 4.2: Funciones de fecha y hora</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender cómo Excel maneja fechas y horas</li>
+                <li>Utilizar funciones para manipular fechas</li>
+                <li>Calcular diferencias entre fechas</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Entendiendo las fechas en Excel:
+                    <ul>
+                        <li>Las fechas son números secuenciales (1 = 1/1/1900)</li>
+                        <li>Las horas son fracciones de día (0.5 = 12:00 PM)</li>
+                    </ul>
+                </li>
+                <li>Funciones básicas de fecha:
+                    <ul>
+                        <li><span class="funcion">=HOY()</span>: Devuelve la fecha actual</li>
+                        <li><span class="funcion">=AHORA()</span>: Devuelve la fecha y hora actual</li>
+                        <li><span class="funcion">=FECHA(año, mes, día)</span>: Crea una fecha a partir de números</li>
+                        <li><span class="funcion">=DIA(fecha)</span>: Extrae el día de una fecha</li>
+                        <li><span class="funcion">=MES(fecha)</span>: Extrae el mes de una fecha</li>
+                        <li><span class="funcion">=AÑO(fecha)</span>: Extrae el año de una fecha</li>
+                    </ul>
+                </li>
+                <li>Cálculos con fechas:
+                    <ul>
+                        <li><span class="funcion">=DIAS(fecha_final, fecha_inicial)</span>: Días entre dos fechas</li>
+                        <li><span class="funcion">=DIAS.LAB(fecha_inicio, fecha_fin, [festivos])</span>: Días laborables</li>
+                        <li><span class="funcion">=FIN.MES(fecha_inicio, meses)</span>: Último día del mes</li>
+                        <li><span class="funcion">=FECHA.MES(fecha_inicio, meses)</span>: Suma meses a una fecha</li>
+                    </ul>
+                </li>
+                <li>Funciones de hora:
+                    <ul>
+                        <li><span class="funcion">=HORA(serie_de_número)</span>: Extrae la hora</li>
+                        <li><span class="funcion">=MINUTO(serie_de_número)</span>: Extrae los minutos</li>
+                        <li><span class="funcion">=SEGUNDO(serie_de_número)</span>: Extrae los segundos</li>
+                        <li><span class="funcion">=TIEMPO(hora, minuto, segundo)</span>: Crea una hora</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico: Cálculo de vencimientos</h4>
+                <p>Fecha de compra: <span class="funcion">15/07/2023</span></p>
+                <p>Días de crédito: <span class="funcion">30</span></p>
+                <p>Fecha de vencimiento: <span class="funcion">=A1+30</span> o <span class="funcion">=FECHA.MES(A1,1)</span></p>
+                <p>Días restantes: <span class="funcion">=DIAS(B1, HOY())</span></p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear un registro de préstamos con fechas de préstamo, devolución y calcular días transcurridos, días hábiles y estado (en tiempo, por vencer, vencido).</p>
+        </div>
+    </div>
+    
+    <div id="sesion4.3" class="sesion">
+        <h2>Sesión 4.3: Validación de datos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Restringir el tipo de datos que se pueden ingresar en una celda</li>
+                <li>Crear listas desplegables</li>
+                <li>Mostrar mensajes de entrada y error personalizados</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Configuración de validación de datos:
+                    <ul>
+                        <li>Seleccionar el rango de celdas</li>
+                        <li>Ir a la pestaña Datos > Validación de datos</li>
+                        <li>Configurar los criterios de validación</li>
+                    </ul>
+                </li>
+                <li>Tipos de validación:
+                    <ul>
+                        <li>Número entero o decimal</li>
+                        <li>Lista (para menús desplegables)</li>
+                        <li>Fecha u hora</li>
+                        <li>Longitud del texto</li>
+                        <li>Personalizada (usando fórmulas)</li>
+                    </ul>
+                </li>
+                <li>Mensajes de entrada y error:
+                    <ul>
+                        <li>Mensaje de entrada: Guía al usuario sobre qué datos ingresar</li>
+                        <li>Mensaje de error: Se muestra cuando los datos no cumplen con la validación</li>
+                        <li>Estilo de error: Detener, Advertencia o Información</li>
+                    </ul>
+                </li>
+                <li>Validación con fórmulas personalizadas:
+                    <ul>
+                        <li>Validar formato de correo electrónico</li>
+                        <li>Validar que no haya duplicados</li>
+                        <li>Validar según condiciones complejas</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo de validación personalizada</h4>
+                <p>Validar que un código postal tenga 5 dígitos:</p>
+                <p><span class="funcion">=Y(ESNUMERO(A1),LARGO(A1)=5)</span></p>
+                
+                <p>Validar que una fecha sea futura:</p>
+                <p><span class="funcion">=A1>HOY()</span></p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear un formulario de registro de empleados con validaciones para cada campo (nombre, correo, teléfono, fecha de ingreso, departamento con lista desplegable).</p>
+        </div>
+    </div>
+    
+    <div id="sesion4.4" class="sesion">
+        <h2>Sesión 4.4: Práctica guiada - Control de inventario</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar funciones de texto y fecha en un caso real</li>
+                <li>Implementar validaciones de datos</li>
+                <li>Crear un sistema de control de inventario funcional</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Crear un nuevo libro llamado "Control_Inventario"</li>
+                <li>En la primera hoja, diseñar un formulario de entrada con los siguientes campos (todos con validación):
+                    <ul>
+                        <li>Código de producto (formato: AAA-###, ej: TEL-001)</li>
+                        <li>Nombre del producto (texto)</li>
+                        <li>Categoría (lista desplegable: Electrónica, Ropa, Alimentos, Hogar)</li>
+                        <li>Precio unitario (número mayor que 0)</li>
+                        <li>Cantidad en stock (número entero mayor o igual a 0)</li>
+                        <li>Fecha de ingreso (fecha válida, no futura)</li>
+                        <li>Proveedor (texto)</li>
+                    </ul>
+                </li>
+                <li>Crear una tabla de inventario que se llene automáticamente al ingresar datos en el formulario</li>
+                <li>Agregar columnas calculadas:
+                    <ul>
+                        <li>Valor total (Precio unitario × Cantidad)</li>
+                        <li>Días en inventario (desde la fecha de ingreso)</li>
+                        <li>Estado (Usar formato condicional: Rojo si cantidad < 5, Amarillo si < 10, Verde si ≥ 10)</li>
+                    </ul>
+                </li>
+                <li>Crear un resumen que muestre:
+                    <ul>
+                        <li>Total de productos en inventario</li>
+                        <li>Valor total del inventario</li>
+                        <li>Productos por categoría</li>
+                        <li>Productos con stock bajo (< 5)</li>
+                    </ul>
+                </li>
+                <li>Agregar una hoja de "Movimientos" para registrar entradas y salidas de inventario</li>
+            </ol>
+            
+            <h3>Requisitos adicionales:</h3>
+            <ul>
+                <li>Usar funciones de texto para formatear códigos de producto</li>
+                <li>Usar funciones de fecha para calcular antigüedad en inventario</li>
+                <li>Implementar al menos 3 validaciones de datos diferentes</li>
+                <li>Crear un botón para limpiar el formulario</li>
+            </ul>
+            
+            <div class="consejo">
+                <h4>Consejo adicional:</h4>
+                <p>Usa la función <span class="funcion">SI.ERROR</span> para manejar posibles errores en las fórmulas, especialmente en columnas calculadas que podrían tener celdas vacías.</p>
+            </div>
+            
+            <h3>Entrega:</h3>
+            <p>Guardar el archivo con el nombre "Apellido_Nombre_Inventario.xlsx" y asegurarse de que todas las validaciones y fórmulas funcionen correctamente antes de enviar.</p>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

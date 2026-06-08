@@ -1,0 +1,2797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 22: Lectura de Archivos de Texto - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .file-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .file-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #00b894;
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .file-card h4 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .file-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #74b9ff;
+        }
+
+        .file-diagram {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .file-flow {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .file-flow.open {
+            border-color: #00cec9;
+            background: rgba(0, 206, 201, 0.1);
+        }
+
+        .file-flow.read {
+            border-color: #fd79a8;
+            background: rgba(253, 121, 168, 0.1);
+        }
+
+        .file-flow.close {
+            border-color: #a29bfe;
+            background: rgba(162, 155, 254, 0.1);
+        }
+
+        .file-flow h5 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .file-box {
+            background: #636e72;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #fab1a0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .practice-exercises {
+            margin: 30px 0;
+        }
+
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .file-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+        .file-description {
+            margin-top: 20px;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .file-showcase {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .file-showcase h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-showcase h3 i {
+            margin-right: 10px;
+        }
+
+        .file-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .file-example h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+
+        .text-processor {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .text-processor h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .text-processor h3 i {
+            margin-right: 10px;
+        }
+
+        .processor-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .processor-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+
+        .search-engine {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .search-engine h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-engine h3 i {
+            margin-right: 10px;
+        }
+
+        .search-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .search-example h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+        }
+
+        .csv-reader {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .csv-reader h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .csv-reader h3 i {
+            margin-right: 10px;
+        }
+
+        .csv-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .csv-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 22</h1>
+                <h2>Lectura de Archivos de Texto</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-12-38"
+                     role="progressbar"
+                     aria-valuenow="12.38"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">12.38% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a trabajar con información externa a tu programa mediante la lectura de archivos de texto. Dominarás las técnicas seguras para abrir, leer y procesar archivos, manejando diferentes codificaciones de caracteres y formatos de texto comunes.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Abrir y cerrar archivos de forma segura</li>
+                        <li>Usar diferentes modos de apertura de archivos</li>
+                        <li>Emplear el contexto manager 'with' correctamente</li>
+                        <li>Manejar diferentes codificaciones de caracteres</li>
+                        <li>Procesar archivos de configuración y logs</li>
+                        <li>Leer archivos CSV básicos</li>
+                    </ul>
+                </div>
+
+                <div class="file-diagram">
+                    <h3>Proceso de Lectura de Archivos</h3>
+                    <div class="file-diagram-container">
+                        <div class="file-flow open">
+                            <h5>1. Abrir Archivo</h5>
+                            <div class="file-box">with open('archivo.txt', 'r') as f:</div>
+                            <div class="file-box">archivo = open('datos.csv', 'r', encoding='utf-8')</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="file-flow read">
+                            <h5>2. Leer Contenido</h5>
+                            <div class="file-box">contenido = f.read()</div>
+                            <div class="file-box">lineas = f.readlines()</div>
+                            <div class="file-box">for linea in f:</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="file-flow close">
+                            <h5>3. Procesar y Cerrar</h5>
+                            <div class="file-box">procesar_datos(contenido)</div>
+                            <div class="file-box">analizar_lineas(lineas)</div>
+                            <div class="file-box"># Se cierra automáticamente</div>
+                        </div>
+                    </div>
+                    <p class="file-description">
+                        La lectura de archivos permite trabajar con información externa, desde archivos de configuración hasta grandes conjuntos de datos, de manera segura y eficiente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+
+            <!-- 1. Apertura y cierre seguro de archivos -->
+            <div class="concept-card">
+                <h3>1. Apertura y Cierre Seguro de Archivos</h3>
+                <p>La apertura segura de archivos es fundamental para evitar fugas de recursos y problemas de permisos. Python proporciona el contexto manager 'with' para garantizar que los archivos se cierren correctamente.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Métodos seguros para abrir y cerrar archivos
+
+# 1. Usando contexto manager 'with' (RECOMENDADO)
+def leer_archivo_seguro(ruta_archivo):
+    """Lee un archivo usando el contexto manager 'with'."""
+    try:
+        with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
+            contenido = archivo.read()
+            return contenido
+    except FileNotFoundError:
+        print(f"❌ Error: El archivo '{ruta_archivo}' no existe")
+        return None
+    except PermissionError:
+        print(f"❌ Error: No tienes permisos para leer '{ruta_archivo}'")
+        return None
+    except UnicodeDecodeError:
+        print(f"❌ Error: No se puede decodificar el archivo '{ruta_archivo}'")
+        return None
+
+# 2. Métodos de lectura básicos
+def demostrar_metodos_lectura():
+    """Demuestra diferentes métodos para leer archivos."""
+
+    # Crear archivo de ejemplo para demostración
+    with open('ejemplo.txt', 'w', encoding='utf-8') as f:
+        f.write("Línea 1: Hola Mundo\n")
+        f.write("Línea 2: Python es genial\n")
+        f.write("Línea 3: Programación estructurada\n")
+        f.write("Línea 4: Manejo de archivos\n")
+        f.write("Línea 5: Fin del archivo")
+
+    print("=== MÉTODOS DE LECTURA ===")
+
+    # Método 1: Leer todo el contenido
+    with open('ejemplo.txt', 'r', encoding='utf-8') as archivo:
+        contenido_completo = archivo.read()
+        print("📄 Contenido completo:")
+        print(contenido_completo)
+        print("-" * 50)
+
+    # Método 2: Leer línea por línea
+    print("📝 Lectura línea por línea:")
+    with open('ejemplo.txt', 'r', encoding='utf-8') as archivo:
+        contador = 1
+        for linea in archivo:
+            print(f"Línea {contador}: {linea.strip()}")
+            contador += 1
+        print("-" * 50)
+
+    # Método 3: Leer todas las líneas como lista
+    with open('ejemplo.txt', 'r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        print("📋 Todas las líneas como lista:")
+        for i, linea in enumerate(lineas, 1):
+            print(f"Línea {i}: {repr(linea)}")  # repr muestra caracteres especiales
+        print("-" * 50)
+
+    # Método 4: Leer línea por línea manualmente
+    print("🔍 Lectura manual línea por línea:")
+    with open('ejemplo.txt', 'r', encoding='utf-8') as archivo:
+        linea_actual = archivo.readline()
+        contador = 1
+        while linea_actual:
+            print(f"Línea {contador}: {linea_actual.strip()}")
+            linea_actual = archivo.readline()
+            contador += 1
+
+    # Limpiar archivo de ejemplo
+    import os
+    os.remove('ejemplo.txt')
+
+# 3. Modos de apertura de archivos
+def modos_de_apertura():
+    """Demuestra diferentes modos de apertura de archivos."""
+
+    print("\n=== MODOS DE APERTURA ===")
+
+    # Modo lectura (r) - archivo debe existir
+    try:
+        with open('archivo_lectura.txt', 'r') as f:
+            contenido = f.read()
+    except FileNotFoundError:
+        print("❌ Modo 'r': Archivo no encontrado")
+
+    # Modo escritura (w) - crea o sobreescribe archivo
+    with open('archivo_escritura.txt', 'w', encoding='utf-8') as f:
+        f.write("Este archivo fue creado con modo 'w'\n")
+        f.write("Contenido nuevo\n")
+    print("✅ Modo 'w': Archivo creado/sobreescrito")
+
+    # Modo append (a) - agrega al final del archivo
+    with open('archivo_escritura.txt', 'a', encoding='utf-8') as f:
+        f.write("Línea agregada con modo 'a'\n")
+        f.write("Más contenido agregado\n")
+    print("✅ Modo 'a': Contenido agregado")
+
+    # Modo lectura y escritura (r+) - archivo debe existir
+    try:
+        with open('archivo_escritura.txt', 'r+') as f:
+            contenido = f.read()
+            print(f"📄 Contenido actual: {len(contenido)} caracteres")
+            f.write("\n--- Línea agregada con modo 'r+' ---")
+    except FileNotFoundError:
+        print("❌ Modo 'r+': Archivo no encontrado")
+
+    # Modo escritura y lectura (w+) - crea o sobreescribe
+    with open('archivo_nuevo.txt', 'w+', encoding='utf-8') as f:
+        f.write("Archivo creado con modo 'w+'\n")
+        f.seek(0)  # Volver al inicio para leer
+        contenido = f.read()
+        print(f"📄 Contenido creado: {contenido.strip()}")
+
+    # Verificar archivos creados
+    archivos_creados = ['archivo_escritura.txt', 'archivo_nuevo.txt']
+    for archivo in archivos_creados:
+        if os.path.exists(archivo):
+            print(f"✅ Archivo '{archivo}' creado correctamente")
+            # Limpiar
+            os.remove(archivo)
+
+# 4. Codificaciones de caracteres
+def manejo_codificaciones():
+    """Demuestra el manejo de diferentes codificaciones."""
+
+    print("\n=== CODIFICACIONES DE CARACTERES ===")
+
+    # Crear archivo con caracteres especiales
+    texto_especial = "Hola ñáñó, ¿cómo estás? Café résumé naïve"
+
+    # UTF-8 (recomendado)
+    with open('archivo_utf8.txt', 'w', encoding='utf-8') as f:
+        f.write(texto_especial)
+
+    # Leer con UTF-8
+    with open('archivo_utf8.txt', 'r', encoding='utf-8') as f:
+        contenido_utf8 = f.read()
+    print(f"✅ UTF-8: {contenido_utf8}")
+
+    # Crear archivo con Latin-1
+    with open('archivo_latin1.txt', 'w', encoding='latin-1') as f:
+        f.write(texto_especial)
+
+    # Leer con Latin-1
+    with open('archivo_latin1.txt', 'r', encoding='latin-1') as f:
+        contenido_latin1 = f.read()
+    print(f"✅ Latin-1: {contenido_latin1}")
+
+    # Intentar leer UTF-8 con Latin-1 (puede fallar)
+    try:
+        with open('archivo_utf8.txt', 'r', encoding='latin-1') as f:
+            contenido_error = f.read()
+        print(f"✅ Latin-1 leyendo UTF-8: {contenido_error}")
+    except UnicodeDecodeError as e:
+        print(f"❌ Error leyendo UTF-8 con Latin-1: {e}")
+
+    # Limpiar archivos
+    for archivo in ['archivo_utf8.txt', 'archivo_latin1.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 5. Verificación de archivos
+def verificacion_archivos():
+    """Demuestra cómo verificar archivos antes de abrirlos."""
+
+    print("\n=== VERIFICACIÓN DE ARCHIVOS ===")
+
+    archivos_prueba = ['archivo_inexistente.txt', 'archivo_lectura.txt']
+
+    for ruta_archivo in archivos_prueba:
+        print(f"\n🔍 Verificando '{ruta_archivo}':")
+
+        # Verificar existencia
+        existe = os.path.exists(ruta_archivo)
+        print(f"  Existe: {existe}")
+
+        if existe:
+            # Verificar permisos de lectura
+            lectura = os.access(ruta_archivo, os.R_OK)
+            print(f"  Permisos de lectura: {lectura}")
+
+            # Verificar permisos de escritura
+            escritura = os.access(ruta_archivo, os.W_OK)
+            print(f"  Permisos de escritura: {escritura}")
+
+            # Información del archivo
+            estadisticas = os.stat(ruta_archivo)
+            print(f"  Tamaño: {estadisticas.st_size} bytes")
+            print(f"  Modificado: {time.ctime(estadisticas.st_mtime)}")
+
+            # Tipo de archivo
+            es_archivo = os.path.isfile(ruta_archivo)
+            es_directorio = os.path.isdir(ruta_archivo)
+            print(f"  Es archivo: {es_archivo}")
+            print(f"  Es directorio: {es_directorio}")
+
+# 6. Manejo de rutas de archivos
+def manejo_rutas():
+    """Demuestra el manejo de rutas absolutas y relativas."""
+
+    print("\n=== MANEJO DE RUTAS ===")
+
+    # Rutas relativas
+    print("📁 Rutas relativas:")
+    print(f"  Directorio actual: {os.getcwd()}")
+    print(f"  Ruta relativa ejemplo: {'datos/archivo.txt'}")
+
+    # Crear estructura de directorios para demostración
+    os.makedirs('datos/subdatos', exist_ok=True)
+
+    with open('datos/archivo.txt', 'w') as f:
+        f.write("Archivo en subdirectorio")
+
+    with open('datos/subdatos/archivo2.txt', 'w') as f:
+        f.write("Archivo en sub-subdirectorio")
+
+    # Listar archivos
+    print("📋 Archivos creados:")
+    for raiz, directorios, archivos in os.walk('datos'):
+        nivel = raiz.replace('datos', '').count(os.sep)
+        indentacion = ' ' * 2 * nivel
+        print(f"{indentacion}{os.path.basename(raiz)}/")
+        subindentacion = ' ' * 2 * (nivel + 1)
+        for archivo in archivos:
+            print(f"{subindentacion}{archivo}")
+
+    # Rutas absolutas
+    ruta_absoluta = os.path.abspath('datos/archivo.txt')
+    print(f"📍 Ruta absoluta: {ruta_absoluta}")
+
+    # Unir rutas
+    ruta_completa = os.path.join('datos', 'subdatos', 'archivo2.txt')
+    print(f"🔗 Ruta unida: {ruta_completa}")
+
+    # Leer con ruta completa
+    try:
+        with open(ruta_completa, 'r') as f:
+            contenido = f.read()
+        print(f"✅ Contenido: {contenido}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+    # Limpiar estructura de prueba
+    import shutil
+    shutil.rmtree('datos')
+
+# Ejecutar demostraciones
+if __name__ == "__main__":
+    import os
+    import time
+
+    print("🚀 DEMOSTRACIÓN DE LECTURA DE ARCHIVOS")
+
+    demostrar_metodos_lectura()
+    modos_de_apertura()
+    manejo_codificaciones()
+    verificacion_archivos()
+    manejo_rutas()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Modos de Apertura</h5>
+                        <ul>
+                            <li><strong>'r':</strong> Lectura (archivo debe existir)</li>
+                            <li><strong>'w':</strong> Escritura (crea o sobreescribe)</li>
+                            <li><strong>'a':</strong> Append (agrega al final)</li>
+                            <li><strong>'r+':</strong> Lectura y escritura</li>
+                            <li><strong>'w+':</strong> Escritura y lectura</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h5>Métodos de Lectura</h5>
+                        <ul>
+                            <li><strong>read():</strong> Lee todo el contenido</li>
+                            <li><strong>readline():</strong> Lee una línea</li>
+                            <li><strong>readlines():</strong> Lee todas las líneas como lista</li>
+                            <li><strong>Iteración:</strong> for linea in archivo:</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Mejores Prácticas</h4>
+                    <p>Sigue estas recomendaciones para trabajar con archivos:</p>
+                    <ul>
+                        <li>Siempre usa <code>with open()</code> para manejo automático de cierre</li>
+                        <li>Especifica la codificación explícitamente (utf-8 recomendado)</li>
+                        <li>Verifica la existencia del archivo antes de intentar abrirlo</li>
+                        <li>Maneja excepciones apropiadamente</li>
+                        <li>Usa rutas absolutas cuando sea posible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Modos de apertura y contexto manager -->
+            <div class="concept-card">
+                <h3>2. Modos de Apertura y Contexto Manager</h3>
+                <p>Python ofrece diferentes modos para abrir archivos según la operación que necesites realizar. El contexto manager 'with' garantiza que los archivos se cierren correctamente incluso si ocurre un error.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Demostración completa de modos de apertura y contexto manager
+
+# 1. Contexto manager básico
+def ejemplo_contexto_basico():
+    """Ejemplo básico del contexto manager."""
+    print("=== CONTEXTO MANAGER BÁSICO ===")
+
+    try:
+        with open('poema.txt', 'w', encoding='utf-8') as archivo:
+            archivo.write("En un lugar de la Mancha\n")
+            archivo.write("de cuyo nombre no quiero acordarme\n")
+            archivo.write("no ha mucho tiempo que vivía\n")
+            archivo.write("un hidalgo de los de lanza en astillero\n")
+
+        print("✅ Archivo creado exitosamente")
+
+        # El archivo ya está cerrado aquí automáticamente
+        # Intentar escribir después del contexto causaría error
+        # archivo.write("Esto fallaría")  # ❌ Descomentando esto causaría error
+
+        # Leer el archivo creado
+        with open('poema.txt', 'r', encoding='utf-8') as archivo:
+            contenido = archivo.read()
+            print(f"📖 Contenido leído:\n{contenido}")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+    finally:
+        # Limpiar
+        if os.path.exists('poema.txt'):
+            os.remove('poema.txt')
+
+# 2. Comparación: contexto manager vs manejo manual
+def comparacion_context_manager():
+    """Compara contexto manager vs manejo manual de archivos."""
+
+    print("\n=== COMPARACIÓN DE MÉTODOS ===")
+
+    # Método 1: Contexto manager (recomendado)
+    print("📁 Método 1: Contexto Manager (Recomendado)")
+    try:
+        with open('metodo1.txt', 'w') as f:
+            f.write("Este archivo usa contexto manager")
+        print("✅ Archivo creado con contexto manager")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+    # Método 2: Manejo manual (menos recomendado)
+    print("📁 Método 2: Manejo Manual")
+    archivo_manual = None
+    try:
+        archivo_manual = open('metodo2.txt', 'w')
+        archivo_manual.write("Este archivo usa manejo manual")
+        print("✅ Archivo creado manualmente")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+    finally:
+        if archivo_manual:
+            archivo_manual.close()
+            print("📁 Archivo cerrado manualmente")
+
+    # Verificar ambos archivos
+    for metodo in ['metodo1.txt', 'metodo2.txt']:
+        if os.path.exists(metodo):
+            print(f"✅ Archivo '{metodo}' existe")
+
+    # Limpiar
+    for archivo in ['metodo1.txt', 'metodo2.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 3. Modos de apertura avanzados
+def modos_avanzados():
+    """Demuestra modos de apertura avanzados."""
+
+    print("\n=== MODOS AVANZADOS ===")
+
+    # Crear archivo base
+    with open('base.txt', 'w') as f:
+        f.write("Línea 1\nLínea 2\nLínea 3\n")
+
+    # Modo append (a)
+    print("📝 Modo 'a' (append):")
+    with open('base.txt', 'a') as f:
+        f.write("Línea 4 (append)\n")
+        f.write("Línea 5 (append)\n")
+
+    with open('base.txt', 'r') as f:
+        contenido = f.read()
+    print(f"Contenido después de append:\n{contenido}")
+
+    # Modo lectura+escritura (r+)
+    print("📝 Modo 'r+' (lectura+escritura):")
+    with open('base.txt', 'r+') as f:
+        contenido_original = f.read()
+        print(f"Contenido original: {len(contenido_original)} caracteres")
+
+        # Agregar al final
+        f.write("Línea agregada con r+\n")
+
+    with open('base.txt', 'r') as f:
+        contenido_final = f.read()
+    print(f"Contenido final:\n{contenido_final}")
+
+    # Modo escritura+lectura (w+)
+    print("📝 Modo 'w+' (escritura+lectura):")
+    with open('nuevo.txt', 'w+') as f:
+        f.write("Contenido creado con w+\n")
+        f.seek(0)  # Volver al inicio
+        contenido_leido = f.read()
+        print(f"Contenido leído inmediatamente: {contenido_leido.strip()}")
+
+        # Agregar más contenido
+        f.seek(0, 2)  # Ir al final
+        f.write("Más contenido agregado\n")
+
+    with open('nuevo.txt', 'r') as f:
+        contenido_completo = f.read()
+    print(f"Contenido completo:\n{contenido_completo}")
+
+    # Limpiar archivos
+    for archivo in ['base.txt', 'nuevo.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 4. Manejo de archivos binarios
+def archivos_binarios():
+    """Demuestra lectura de archivos binarios."""
+
+    print("\n=== ARCHIVOS BINARIOS ===")
+
+    # Crear archivo binario de ejemplo
+    datos_binarios = bytes([65, 66, 67, 68, 69, 10, 255, 254, 253])
+
+    with open('datos.bin', 'wb') as f:
+        f.write(datos_binarios)
+
+    print(f"✅ Archivo binario creado con {len(datos_binarios)} bytes")
+
+    # Leer archivo binario
+    with open('datos.bin', 'rb') as f:
+        datos_leidos = f.read()
+
+    print(f"✅ Datos leídos: {len(datos_leidos)} bytes")
+    print(f"📊 Contenido: {list(datos_leidos)}")
+
+    # Leer por bloques
+    print("📦 Lectura por bloques:")
+    with open('datos.bin', 'rb') as f:
+        bloque = f.read(3)  # Leer 3 bytes
+        contador = 1
+        while bloque:
+            print(f"Bloque {contador}: {list(bloque)}")
+            bloque = f.read(3)
+            contador += 1
+
+    # Limpiar
+    if os.path.exists('datos.bin'):
+        os.remove('datos.bin')
+
+# 5. Archivos con diferentes separadores de línea
+def separadores_linea():
+    """Demuestra manejo de diferentes separadores de línea."""
+
+    print("\n=== SEPARADORES DE LÍNEA ===")
+
+    # Crear archivo con diferentes tipos de salto de línea
+    contenido = "Línea 1\r\nLínea 2\nLínea 3\rLínea 4\r\n"
+
+    with open('lineas.txt', 'w', newline='') as f:
+        f.write(contenido)
+
+    print("📋 Archivo creado con diferentes saltos de línea")
+
+    # Leer y mostrar líneas
+    with open('lineas.txt', 'r') as f:
+        lineas = f.readlines()
+
+    print("📖 Líneas leídas:")
+    for i, linea in enumerate(lineas, 1):
+        print(f"Línea {i}: {repr(linea)}")
+
+    # Procesar líneas limpiamente
+    with open('lineas.txt', 'r') as f:
+        lineas_limpias = [linea.strip() for linea in f.readlines()]
+
+    print("🧹 Líneas procesadas:")
+    for i, linea in enumerate(lineas_limpias, 1):
+        print(f"Línea {i}: '{linea}'")
+
+    # Limpiar
+    if os.path.exists('lineas.txt'):
+        os.remove('lineas.txt')
+
+# 6. Archivos grandes: lectura eficiente
+def archivos_grandes():
+    """Demuestra técnicas para manejar archivos grandes."""
+
+    print("\n=== ARCHIVOS GRANDES ===")
+
+    # Crear archivo grande para demostración
+    with open('archivo_grande.txt', 'w') as f:
+        for i in range(10000):
+            f.write(f"Línea número {i + 1}\n")
+
+    print("📁 Archivo grande creado (10,000 líneas)")
+
+    # Técnica 1: Procesar línea por línea (memoria eficiente)
+    print("🔄 Procesando línea por línea:")
+    contador_lineas = 0
+    suma_numeros = 0
+
+    with open('archivo_grande.txt', 'r') as f:
+        for linea in f:
+            contador_lineas += 1
+            # Extraer número de la línea
+            try:
+                numero = int(linea.split()[-1])
+                suma_numeros += numero
+            except (ValueError, IndexError):
+                pass
+
+    print(f"✅ Procesadas {contador_lineas} líneas")
+    print(f"✅ Suma de números: {suma_numeros}")
+
+    # Técnica 2: Leer en bloques
+    print("📦 Procesando en bloques:")
+    bloque_tamaño = 8192  # 8KB
+
+    with open('archivo_grande.txt', 'r') as f:
+        bloque = f.read(bloque_tamaño)
+        while bloque:
+            lineas_en_bloque = bloque.count('\n')
+            print(f"Bloque leído: {lineas_en_bloque} líneas")
+            bloque = f.read(bloque_tamaño)
+
+    # Técnica 3: Usar generador para procesamiento lazy
+    def leer_lineas_grandes(archivo, tamaño_buffer=8192):
+        """Generador para leer líneas de archivos grandes."""
+        with open(archivo, 'r') as f:
+            buffer = ""
+            while True:
+                chunk = f.read(tamaño_buffer)
+                if not chunk:
+                    if buffer:
+                        yield buffer
+                    break
+
+                buffer += chunk
+                while '\n' in buffer:
+                    linea, buffer = buffer.split('\n', 1)
+                    yield linea
+
+    print("⚡ Procesando con generador:")
+    contador = 0
+    for linea in leer_lineas_grandes('archivo_grande.txt'):
+        contador += 1
+        if contador <= 5:  # Solo mostrar primeras 5
+            print(f"Línea {contador}: {linea[:50]}...")
+
+    print(f"📊 Total de líneas procesadas: {contador}")
+
+    # Limpiar
+    if os.path.exists('archivo_grande.txt'):
+        os.remove('archivo_grande.txt')
+
+# Ejecutar todas las demostraciones
+if __name__ == "__main__":
+    import os
+
+    ejemplo_contexto_basico()
+    comparacion_context_manager()
+    modos_avanzados()
+    archivos_binarios()
+    separadores_linea()
+    archivos_grandes()
+
+    print("\n🎉 ¡Todas las demostraciones completadas!")</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Errores Comunes</h4>
+                    <ul>
+                        <li><strong>No cerrar archivos:</strong> Puede causar fugas de recursos</li>
+                        <li><strong>No usar contexto manager:</strong> Archivos pueden quedar abiertos en caso de error</li>
+                        <li><strong>No especificar codificación:</strong> Puede causar problemas con caracteres especiales</li>
+                        <li><strong>No verificar existencia:</strong> Errores inesperados al intentar abrir archivos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Procesamiento de archivos de configuración -->
+            <div class="concept-card">
+                <h3>3. Procesamiento de Archivos de Configuración</h3>
+                <p>Los archivos de configuración permiten que tus programas sean más flexibles y adaptables. Aprenderás a leer y procesar diferentes formatos de configuración comunes.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Procesamiento de archivos de configuración
+
+# 1. Archivo de configuración simple (clave=valor)
+def leer_configuracion_simple(archivo_config):
+    """Lee archivo de configuración en formato clave=valor."""
+
+    configuracion = {}
+
+    try:
+        with open(archivo_config, 'r', encoding='utf-8') as f:
+            for numero_linea, linea in enumerate(f, 1):
+                # Saltar líneas vacías y comentarios
+                linea = linea.strip()
+                if not linea or linea.startswith('#'):
+                    continue
+
+                # Buscar separador '='
+                if '=' not in linea:
+                    print(f"⚠️ Línea {numero_linea} no tiene formato clave=valor: {linea}")
+                    continue
+
+                clave, valor = linea.split('=', 1)  # Solo primer '='
+                clave = clave.strip()
+                valor = valor.strip()
+
+                # Convertir tipos automáticamente
+                if valor.lower() in ('true', 'false'):
+                    valor = valor.lower() == 'true'
+                elif valor.isdigit():
+                    valor = int(valor)
+                elif self._es_numero_decimal(valor):
+                    valor = float(valor)
+                # Si no, dejar como string
+
+                configuracion[clave] = valor
+
+    except FileNotFoundError:
+        print(f"❌ Archivo de configuración '{archivo_config}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error leyendo configuración: {e}")
+        return None
+
+    return configuracion
+
+def _es_numero_decimal(self, valor):
+    """Verifica si un string representa un número decimal."""
+    try:
+        float(valor)
+        return True
+    except ValueError:
+        return False
+
+# 2. Archivo de configuración INI-style
+def leer_configuracion_ini(archivo_config):
+    """Lee archivo de configuración en formato INI."""
+
+    configuracion = {}
+    seccion_actual = None
+
+    try:
+        with open(archivo_config, 'r', encoding='utf-8') as f:
+            for numero_linea, linea in enumerate(f, 1):
+                linea = linea.strip()
+
+                # Saltar líneas vacías y comentarios
+                if not linea or linea.startswith('#') or linea.startswith(';'):
+                    continue
+
+                # Detectar secciones [seccion]
+                if linea.startswith('[') and linea.endswith(']'):
+                    seccion_actual = linea[1:-1].strip()
+                    configuracion[seccion_actual] = {}
+                    continue
+
+                # Procesar clave=valor
+                if '=' in linea and seccion_actual:
+                    clave, valor = linea.split('=', 1)
+                    clave = clave.strip()
+                    valor = valor.strip()
+
+                    # Mantener valor como string por simplicidad
+                    configuracion[seccion_actual][clave] = valor
+
+    except FileNotFoundError:
+        print(f"❌ Archivo de configuración '{archivo_config}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error leyendo configuración INI: {e}")
+        return None
+
+    return configuracion
+
+# 3. Procesador de logs básico
+def procesar_archivo_log(archivo_log, nivel_minimo="INFO"):
+    """Procesa un archivo de log y extrae información útil."""
+
+    niveles = {
+        "DEBUG": 0,
+        "INFO": 1,
+        "WARNING": 2,
+        "ERROR": 3,
+        "CRITICAL": 4
+    }
+
+    nivel_minimo_num = niveles.get(nivel_minimo.upper(), 1)
+
+    estadisticas = {
+        "total_lineas": 0,
+        "lineas_filtradas": 0,
+        "errores": 0,
+        "advertencias": 0,
+        "mensajes_por_nivel": {nivel: 0 for nivel in niveles}
+    }
+
+    mensajes_importantes = []
+
+    try:
+        with open(archivo_log, 'r', encoding='utf-8') as f:
+            for linea in f:
+                estadisticas["total_lineas"] += 1
+                linea = linea.strip()
+
+                if not linea:
+                    continue
+
+                # Parsear línea de log (formato: TIMESTAMP LEVEL MESSAGE)
+                partes = linea.split(' ', 2)
+
+                if len(partes) >= 3:
+                    timestamp = partes[0]
+                    nivel = partes[1].strip('[]')
+                    mensaje = partes[2]
+
+                    nivel_num = niveles.get(nivel, 0)
+                    estadisticas["mensajes_por_nivel"][nivel] += 1
+
+                    # Filtrar por nivel mínimo
+                    if nivel_num >= nivel_minimo_num:
+                        estadisticas["lineas_filtradas"] += 1
+
+                        # Categorizar mensaje
+                        if nivel in ["ERROR", "CRITICAL"]:
+                            estadisticas["errores"] += 1
+                        elif nivel == "WARNING":
+                            estadisticas["advertencias"] += 1
+
+                        mensajes_importantes.append({
+                            "timestamp": timestamp,
+                            "nivel": nivel,
+                            "mensaje": mensaje
+                        })
+
+    except FileNotFoundError:
+        print(f"❌ Archivo de log '{archivo_log}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error procesando log: {e}")
+        return None
+
+    return {
+        "estadisticas": estadisticas,
+        "mensajes_importantes": mensajes_importantes
+    }
+
+# 4. Lector de archivos CSV básico
+def leer_archivo_csv(archivo_csv, delimitador=',', tiene_encabezados=True):
+    """Lee un archivo CSV básico."""
+
+    datos = []
+
+    try:
+        with open(archivo_csv, 'r', encoding='utf-8') as f:
+            if tiene_encabezados:
+                encabezados = f.readline().strip().split(delimitador)
+                encabezados = [col.strip() for col in encabezados]
+            else:
+                # Si no hay encabezados, crear nombres genéricos
+                primera_linea = f.readline().strip()
+                num_columnas = len(primera_linea.split(delimitador))
+                encabezados = [f"Columna_{i+1}" for i in range(num_columnas)]
+                # Procesar primera línea
+                datos.append(primera_linea.split(delimitador))
+
+            # Procesar resto de líneas
+            for linea in f:
+                linea = linea.strip()
+                if linea:
+                    valores = linea.split(delimitador)
+                    valores = [val.strip() for val in valores]
+
+                    # Crear fila como diccionario si hay encabezados
+                    if tiene_encabezados:
+                        fila = dict(zip(encabezados, valores))
+                    else:
+                        fila = valores
+
+                    datos.append(fila)
+
+    except FileNotFoundError:
+        print(f"❌ Archivo CSV '{archivo_csv}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error leyendo CSV: {e}")
+        return None
+
+    return {
+        "encabezados": encabezados if tiene_encabezados else None,
+        "datos": datos,
+        "total_filas": len(datos)
+    }
+
+# 5. Aplicación práctica: Procesador de configuración
+class ProcesadorConfiguracion:
+    """Clase para procesar archivos de configuración."""
+
+    def __init__(self, archivo_config):
+        self.archivo_config = archivo_config
+        self.configuracion = {}
+
+    def cargar_configuracion(self):
+        """Carga configuración desde archivo."""
+        try:
+            with open(self.archivo_config, 'r', encoding='utf-8') as f:
+                contenido = f.read()
+
+            # Procesar configuración simple
+            self.configuracion = {}
+            for linea in contenido.split('\n'):
+                linea = linea.strip()
+                if linea and not linea.startswith('#') and '=' in linea:
+                    clave, valor = linea.split('=', 1)
+                    clave = clave.strip()
+                    valor = valor.strip()
+                    self.configuracion[clave] = valor
+
+            return True
+
+        except FileNotFoundError:
+            print(f"❌ Archivo de configuración '{self.archivo_config}' no encontrado")
+            return False
+        except Exception as e:
+            print(f"❌ Error cargando configuración: {e}")
+            return False
+
+    def obtener_valor(self, clave, valor_por_defecto=None):
+        """Obtiene un valor de configuración."""
+        return self.configuracion.get(clave, valor_por_defecto)
+
+    def obtener_entero(self, clave, valor_por_defecto=0):
+        """Obtiene un valor entero."""
+        valor = self.obtener_valor(clave)
+        try:
+            return int(valor) if valor is not None else valor_por_defecto
+        except ValueError:
+            print(f"⚠️ Valor '{valor}' para '{clave}' no es un entero válido")
+            return valor_por_defecto
+
+    def obtener_booleano(self, clave, valor_por_defecto=False):
+        """Obtiene un valor booleano."""
+        valor = self.obtener_valor(clave)
+        if valor is None:
+            return valor_por_defecto
+
+        return valor.lower() in ('true', 'verdadero', 'si', '1', 'yes')
+
+# 6. Función de demostración
+def demo_procesadores():
+    """Demostración de todos los procesadores."""
+
+    print("🚀 DEMOSTRACIÓN DE PROCESADORES DE ARCHIVOS")
+
+    # Crear archivos de prueba
+    archivos_prueba = {
+        'config.ini': '''# Archivo de configuración
+[Base de Datos]
+servidor=localhost
+puerto=5432
+usuario=admin
+contrasena=secreta
+
+[Servidor Web]
+puerto=8080
+debug=true
+log_level=INFO
+
+[Características]
+max_usuarios=100
+habilitado=true
+''',
+
+        'app.log': '''2024-01-01 10:00:00 INFO Aplicación iniciada
+2024-01-01 10:01:00 DEBUG Conexión a base de datos establecida
+2024-01-01 10:05:00 WARNING Memoria baja: 15%
+2024-01-01 10:10:00 ERROR Fallo al conectar con servidor externo
+2024-01-01 10:15:00 INFO Usuario admin inició sesión
+2024-01-01 10:20:00 ERROR Error de permisos en archivo datos.txt
+2024-01-01 10:25:00 CRITICAL Sistema fuera de servicio
+''',
+
+        'datos.csv': '''nombre,edad,ciudad,salario
+Ana García,25,Madrid,45000
+Carlos López,30,Barcelona,52000
+María Rodríguez,28,Valencia,48000
+José Martín,35,Sevilla,55000
+'''
+    }
+
+    # Crear archivos
+    for nombre_archivo, contenido in archivos_prueba.items():
+        with open(nombre_archivo, 'w', encoding='utf-8') as f:
+            f.write(contenido)
+
+    # Procesar configuración INI
+    print("\n📋 Procesando configuración INI:")
+    config = leer_configuracion_ini('config.ini')
+    if config:
+        for seccion, valores in config.items():
+            print(f"[{seccion}]")
+            for clave, valor in valores.items():
+                print(f"  {clave} = {valor}")
+
+    # Procesar archivo de log
+    print("\n📊 Procesando archivo de log:")
+    resultado_log = procesar_archivo_log('app.log', nivel_minimo="WARNING")
+    if resultado_log:
+        stats = resultado_log['estadisticas']
+        print(f"Total líneas: {stats['total_lineas']}")
+        print(f"Líneas filtradas: {stats['lineas_filtradas']}")
+        print(f"Errores: {stats['errores']}")
+        print(f"Advertencias: {stats['advertencias']}")
+
+        print("\nMensajes importantes:")
+        for msg in resultado_log['mensajes_importantes'][:3]:  # Solo primeros 3
+            print(f"  {msg['timestamp']} [{msg['nivel']}] {msg['mensaje']}")
+
+    # Procesar archivo CSV
+    print("\n📈 Procesando archivo CSV:")
+    resultado_csv = leer_archivo_csv('datos.csv')
+    if resultado_csv:
+        print(f"Encabezados: {resultado_csv['encabezados']}")
+        print(f"Total filas: {resultado_csv['total_filas']}")
+
+        print("\nPrimeras filas:")
+        for fila in resultado_csv['datos'][:3]:
+            print(f"  {fila}")
+
+    # Demostrar procesador de configuración
+    print("\n⚙️ Procesador de configuración:")
+    procesador = ProcesadorConfiguracion('config.ini')
+    if procesador.cargar_configuracion():
+        print(f"Puerto BD: {procesador.obtener_valor('puerto')}")
+        print(f"Puerto Web: {procesador.obtener_entero('puerto', 8080)}")
+        print(f"Debug: {procesador.obtener_booleano('debug')}")
+
+    # Limpiar archivos de prueba
+    for archivo in archivos_prueba.keys():
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    import os
+
+    demo_procesadores()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Aplicaciones Prácticas</h4>
+                    <p>Usa archivos de configuración para:</p>
+                    <ul>
+                        <li><strong>Configuración de aplicaciones:</strong> Puertos, usuarios, rutas</li>
+                        <li><strong>Parámetros de ejecución:</strong> Niveles de log, límites, opciones</li>
+                        <li><strong>Personalización:</strong> Temas, idiomas, preferencias de usuario</li>
+                        <li><strong>Entornos múltiples:</strong> Desarrollo, pruebas, producción</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Búsqueda y filtrado en archivos -->
+            <div class="concept-card">
+                <h3>4. Búsqueda y Filtrado en Archivos</h3>
+                <p>Aprenderás técnicas avanzadas para buscar texto específico, filtrar contenido y extraer información relevante de archivos de texto grandes.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Técnicas avanzadas de búsqueda y filtrado en archivos
+
+# 1. Buscador básico de texto
+def buscar_texto_en_archivo(archivo, texto_buscado, sensible_mayusculas=False):
+    """Busca texto específico en un archivo."""
+
+    resultados = []
+
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            for numero_linea, linea in enumerate(f, 1):
+                linea_comparar = linea if sensible_mayusculas else linea.lower()
+                texto_comparar = texto_buscado if sensible_mayusculas else texto_buscado.lower()
+
+                if texto_comparar in linea_comparar:
+                    resultados.append({
+                        'linea': numero_linea,
+                        'contenido': linea.strip(),
+                        'posicion': linea_comparar.find(texto_comparar)
+                    })
+
+    except FileNotFoundError:
+        print(f"❌ Archivo '{archivo}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error buscando en archivo: {e}")
+        return None
+
+    return resultados
+
+# 2. Buscador avanzado con expresiones regulares
+def buscar_con_regex(archivo, patron, mostrar_contexto=2):
+    """Busca usando expresiones regulares."""
+
+    import re
+
+    resultados = []
+
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            lineas = f.readlines()
+
+        for numero_linea, linea in enumerate(lineas, 1):
+            linea = linea.strip()
+
+            # Buscar todas las coincidencias en la línea
+            coincidencias = list(re.finditer(patron, linea, re.IGNORECASE))
+
+            if coincidencias:
+                for coincidencia in coincidencias:
+                    # Obtener contexto alrededor de la coincidencia
+                    inicio = max(0, coincidencia.start() - mostrar_contexto)
+                    fin = min(len(linea), coincidencia.end() + mostrar_contexto)
+
+                    contexto = linea[inicio:fin]
+
+                    resultados.append({
+                        'linea': numero_linea,
+                        'coincidencia': coincidencia.group(),
+                        'contexto': contexto,
+                        'posicion': coincidencia.start()
+                    })
+
+    except FileNotFoundError:
+        print(f"❌ Archivo '{archivo}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error en búsqueda regex: {e}")
+        return None
+
+    return resultados
+
+# 3. Filtrado avanzado de líneas
+def filtrar_lineas_archivo(archivo, criterios):
+    """Filtra líneas de archivo según múltiples criterios."""
+
+    lineas_filtradas = []
+
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            for numero_linea, linea in enumerate(f, 1):
+                linea = linea.strip()
+                incluir_linea = True
+
+                # Aplicar criterios de filtrado
+                for criterio, valor in criterios.items():
+                    if criterio == "contiene":
+                        if valor not in linea:
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "no_contiene":
+                        if valor in linea:
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "empieza_con":
+                        if not linea.startswith(valor):
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "termina_con":
+                        if not linea.endswith(valor):
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "longitud_min":
+                        if len(linea) < valor:
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "longitud_max":
+                        if len(linea) > valor:
+                            incluir_linea = False
+                            break
+
+                    elif criterio == "regex":
+                        import re
+                        if not re.search(valor, linea, re.IGNORECASE):
+                            incluir_linea = False
+                            break
+
+                if incluir_linea:
+                    lineas_filtradas.append({
+                        'numero': numero_linea,
+                        'contenido': linea
+                    })
+
+    except FileNotFoundError:
+        print(f"❌ Archivo '{archivo}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error filtrando archivo: {e}")
+        return None
+
+    return lineas_filtradas
+
+# 4. Analizador de frecuencia de palabras
+def analizar_frecuencia_palabras(archivo, palabras_a_ignorar=None, top_n=10):
+    """Analiza la frecuencia de palabras en un archivo."""
+
+    from collections import Counter
+    import re
+
+    palabras_a_ignorar = palabras_a_ignorar or {
+        'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas',
+        'de', 'del', 'en', 'y', 'o', 'pero', 'que', 'como',
+        'a', 'ante', 'bajo', 'con', 'contra', 'desde', 'durante',
+        'entre', 'hacia', 'hasta', 'mediante', 'para', 'por',
+        'según', 'sin', 'sobre', 'tras', 'versus', 'vía', 'es', 'son'
+    }
+
+    frecuencia = Counter()
+
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            for linea in f:
+                linea = linea.strip().lower()
+
+                # Extraer palabras (solo letras y números)
+                palabras = re.findall(r'\b\w+\b', linea)
+
+                for palabra in palabras:
+                    if len(palabra) > 2 and palabra not in palabras_a_ignorar:
+                        frecuencia[palabra] += 1
+
+    except FileNotFoundError:
+        print(f"❌ Archivo '{archivo}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error analizando frecuencia: {e}")
+        return None
+
+    # Obtener palabras más frecuentes
+    palabras_frecuentes = frecuencia.most_common(top_n)
+
+    return {
+        'palabras_totales': len(frecuencia),
+        'palabras_unicas': sum(frecuencia.values()),
+        'frecuencia': dict(frecuencia),
+        'top_palabras': palabras_frecuentes
+    }
+
+# 5. Extracción de datos estructurados
+def extraer_datos_estructurados(archivo, patrones):
+    """Extrae datos usando múltiples patrones."""
+
+    import re
+
+    datos_extraidos = {nombre: [] for nombre in patrones.keys()}
+
+    try:
+        with open(archivo, 'r', encoding='utf-8') as f:
+            contenido = f.read()
+
+        # Buscar cada patrón
+        for nombre_patron, patron in patrones.items():
+            coincidencias = re.findall(patron, contenido, re.IGNORECASE | re.MULTILINE)
+
+            # Limpiar y procesar coincidencias
+            datos_limpios = []
+            for coincidencia in coincidencias:
+                if isinstance(coincidencia, tuple):
+                    # Si el patrón tiene grupos de captura
+                    datos_limpios.append(coincidencia)
+                else:
+                    # Si es coincidencia simple
+                    datos_limpios.append(coincidencia.strip())
+
+            datos_extraidos[nombre_patron] = datos_limpios
+
+    except FileNotFoundError:
+        print(f"❌ Archivo '{archivo}' no encontrado")
+        return None
+    except Exception as e:
+        print(f"❌ Error extrayendo datos: {e}")
+        return None
+
+    return datos_extraidos
+
+# 6. Aplicación práctica: Procesador de texto completo
+class ProcesadorTextoAvanzado:
+    """Clase para procesamiento avanzado de texto."""
+
+    def __init__(self, archivo):
+        self.archivo = archivo
+        self.contenido = None
+        self.lineas = None
+        self.estadisticas = {}
+
+    def cargar_archivo(self):
+        """Carga el archivo en memoria."""
+        try:
+            with open(self.archivo, 'r', encoding='utf-8') as f:
+                self.contenido = f.read()
+                self.lineas = self.contenido.split('\n')
+
+            self.estadisticas = {
+                'caracteres': len(self.contenido),
+                'lineas': len(self.lineas),
+                'palabras': len(self.contenido.split()),
+                'lineas_vacias': sum(1 for linea in self.lineas if not linea.strip())
+            }
+
+            return True
+
+        except FileNotFoundError:
+            print(f"❌ Archivo '{self.archivo}' no encontrado")
+            return False
+        except Exception as e:
+            print(f"❌ Error cargando archivo: {e}")
+            return False
+
+    def buscar(self, texto, sensible_mayusculas=False):
+        """Busca texto en el archivo."""
+        return buscar_texto_en_archivo(self.archivo, texto, sensible_mayusculas)
+
+    def buscar_regex(self, patron):
+        """Busca usando expresión regular."""
+        return buscar_con_regex(self.archivo, patron)
+
+    def filtrar(self, criterios):
+        """Filtra líneas según criterios."""
+        return filtrar_lineas_archivo(self.archivo, criterios)
+
+    def analizar_frecuencia(self, palabras_ignorar=None, top_n=20):
+        """Analiza frecuencia de palabras."""
+        return analizar_frecuencia_palabras(self.archivo, palabras_ignorar, top_n)
+
+    def extraer_datos(self, patrones):
+        """Extrae datos usando patrones."""
+        return extraer_datos_estructurados(self.archivo, patrones)
+
+    def generar_resumen(self):
+        """Genera un resumen completo del archivo."""
+
+        if not self.contenido:
+            return "❌ Archivo no cargado"
+
+        resumen = []
+        resumen.append("📊 RESUMEN DEL ARCHIVO")
+        resumen.append("=" * 50)
+        resumen.append(f"Archivo: {self.archivo}")
+        resumen.append(f"Caracteres: {self.estadisticas['caracteres']:,}")
+",:d")
+        resumen.append(f"Líneas: {self.estadisticas['lineas']:,}")
+",:d")
+        resumen.append(f"Palabras: {self.estadisticas['palabras']:,}")
+",:d")
+        resumen.append(f"Líneas vacías: {self.estadisticas['lineas_vacias']:,}")
+",:d")
+
+        # Análisis básico de frecuencia
+        analisis = self.analizar_frecuencia(top_n=5)
+        if analisis:
+            resumen.append("
+🏆 PALABRAS MÁS FRECUENTES:"            for palabra, frecuencia in analisis['top_palabras']:
+                resumen.append(f"  {palabra}: {frecuencia}")
+
+        return "\n".join(resumen)
+
+# 7. Función de demostración
+def demo_busqueda_avanzada():
+    """Demostración de técnicas avanzadas de búsqueda."""
+
+    print("🔍 DEMOSTRACIÓN DE BÚSQUEDA AVANZADA")
+
+    # Crear archivo de prueba complejo
+    contenido_prueba = """# Informe de Ventas - Q1 2024
+
+VENTAS TOTALES: $1,250,000.50
+Productos vendidos: 15,430 unidades
+Clientes atendidos: 2,847 personas
+
+DETALLE POR CATEGORÍA:
+- Electrónicos: $450,000 (36%)
+- Ropa: $325,000 (26%)
+- Hogar: $275,000 (22%)
+- Deportes: $200,000 (16%)
+
+VENTAS POR MES:
+Enero: $380,000 - 4,250 unidades
+Febrero: $420,000 - 4,680 unidades
+Marzo: $450,000 - 5,500 unidades
+
+CLIENTES DESTACADOS:
+- cliente_001@example.com: $15,600
+- cliente_002@empresa.com: $12,400
+- usuario_003@personal.com: $8,900
+
+NOTAS IMPORTANTES:
+- Error en sistema el 15/02/2024
+- Mantenimiento programado 01/03/2024
+- Nueva versión del software disponible
+
+INFORME GENERADO: 2024-03-31 15:30:00
+"""
+
+    with open('informe_ventas.txt', 'w', encoding='utf-8') as f:
+        f.write(contenido_prueba)
+
+    # Demostración de búsquedas
+    print("\n1️⃣ Búsqueda básica:")
+    resultados = buscar_texto_en_archivo('informe_ventas.txt', 'ventas')
+    print(f"Palabra 'ventas' encontrada en {len(resultados)} líneas")
+
+    print("\n2️⃣ Búsqueda con contexto:")
+    for resultado in resultados[:3]:
+        print(f"Línea {resultado['linea']}: ...{resultado['contenido']}...")
+
+    print("\n3️⃣ Búsqueda con regex (emails):")
+    patron_email = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    resultados_email = buscar_con_regex('informe_ventas.txt', patron_email)
+    print(f"Emails encontrados: {len(resultados_email)}")
+    for resultado in resultados_email:
+        print(f"  {resultado['coincidencia']}")
+
+    print("\n4️⃣ Filtrado avanzado:")
+    criterios = {
+        "contiene": "$",
+        "longitud_min": 10
+    }
+    lineas_filtradas = filtrar_lineas_archivo('informe_ventas.txt', criterios)
+    print(f"Líneas con '$' y longitud > 10: {len(lineas_filtradas)}")
+    for linea in lineas_filtradas[:3]:
+        print(f"  Línea {linea['numero']}: {linea['contenido']}")
+
+    print("\n5️⃣ Análisis de frecuencia:")
+    analisis = analizar_frecuencia_palabras('informe_ventas.txt', top_n=8)
+    if analisis:
+        print("Palabras más frecuentes:")
+        for palabra, frecuencia in analisis['top_palabras']:
+            print(f"  {palabra}: {frecuencia}")
+
+    print("\n6️⃣ Extracción de datos:")
+    patrones = {
+        "montos": r'\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?',
+        "fechas": r'\d{4}-\d{2}-\d{2}',
+        "porcentajes": r'\d+%',
+        "numeros_grandes": r'\d{1,3}(?:,\d{3})+'
+    }
+
+    datos_extraidos = extraer_datos_estructurados('informe_ventas.txt', patrones)
+    for tipo, valores in datos_extraidos.items():
+        print(f"{tipo}: {len(valores)} encontrados")
+
+    # Procesador completo
+    print("\n7️⃣ Procesador completo:")
+    procesador = ProcesadorTextoAvanzado('informe_ventas.txt')
+    if procesador.cargar_archivo():
+        resumen = procesador.generar_resumen()
+        print(resumen)
+
+    # Limpiar
+    if os.path.exists('informe_ventas.txt'):
+        os.remove('informe_ventas.txt')
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    import os
+
+    demo_busqueda_avanzada()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Consideraciones de Rendimiento</h4>
+                    <ul>
+                        <li><strong>Archivos grandes:</strong> Usa lectura por líneas o bloques</li>
+                        <li><strong>Búsquedas complejas:</strong> Considera usar índices o bases de datos</li>
+                        <li><strong>Memoria limitada:</strong> Procesa datos de forma incremental</li>
+                        <li><strong>Expresiones regulares:</strong> Pueden ser costosas en archivos grandes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+
+            <div class="card">
+                <h3>Ejemplo 1: Procesador de Archivos de Configuración</h3>
+                <p>Crearemos un sistema completo que lea y procese archivos de configuración en diferentes formatos.</p>
+
+                <div class="file-showcase">
+                    <h3><i class="fas fa-cogs"></i> Sistema de Configuración Avanzado</h3>
+
+                    <div class="file-example">
+                        <h5>Sistema Completo con Múltiples Formatos de Configuración</h5>
+                        <pre><code class="language-python"># Sistema avanzado de configuración
+
+import os
+import json
+from typing import Dict, Any, Optional
+
+class SistemaConfiguracion:
+    """Sistema avanzado para manejar archivos de configuración."""
+
+    def __init__(self, archivo_config: str = "config.json"):
+        self.archivo_config = archivo_config
+        self.configuracion = {}
+        self.historial_cambios = []
+
+    def cargar_configuracion(self) -> bool:
+        """Carga configuración desde archivo."""
+        try:
+            if not os.path.exists(self.archivo_config):
+                print(f"📁 Archivo de configuración no existe, creando configuración por defecto")
+                return self._crear_configuracion_por_defecto()
+
+            # Detectar formato por extensión
+            extension = os.path.splitext(self.archivo_config)[1].lower()
+
+            if extension == '.json':
+                return self._cargar_json()
+            elif extension in ['.ini', '.cfg', '.conf']:
+                return self._cargar_ini()
+            elif extension == '.yaml' or extension == '.yml':
+                return self._cargar_yaml()
+            else:
+                return self._cargar_simple()
+
+        except Exception as e:
+            print(f"❌ Error cargando configuración: {e}")
+            return False
+
+    def _cargar_json(self) -> bool:
+        """Carga configuración desde archivo JSON."""
+        try:
+            with open(self.archivo_config, 'r', encoding='utf-8') as f:
+                self.configuracion = json.load(f)
+
+            self.historial_cambios.append({
+                'accion': 'carga_json',
+                'archivo': self.archivo_config,
+                'timestamp': self._obtener_timestamp()
+            })
+
+            return True
+        except json.JSONDecodeError as e:
+            print(f"❌ Error en formato JSON: {e}")
+            return False
+        except Exception as e:
+            print(f"❌ Error leyendo JSON: {e}")
+            return False
+
+    def _cargar_ini(self) -> bool:
+        """Carga configuración desde archivo INI."""
+        import configparser
+
+        try:
+            config = configparser.ConfigParser()
+            config.read(self.archivo_config, encoding='utf-8')
+
+            # Convertir a diccionario anidado
+            self.configuracion = {}
+            for seccion in config.sections():
+                self.configuracion[seccion] = dict(config[seccion])
+
+            return True
+        except Exception as e:
+            print(f"❌ Error leyendo INI: {e}")
+            return False
+
+    def _cargar_yaml(self) -> bool:
+        """Carga configuración desde archivo YAML."""
+        try:
+            import yaml
+
+            with open(self.archivo_config, 'r', encoding='utf-8') as f:
+                self.configuracion = yaml.safe_load(f)
+
+            return True
+        except ImportError:
+            print("❌ PyYAML no instalado. Usa: pip install PyYAML")
+            return False
+        except Exception as e:
+            print(f"❌ Error leyendo YAML: {e}")
+            return False
+
+    def _cargar_simple(self) -> bool:
+        """Carga configuración desde formato simple."""
+        try:
+            with open(self.archivo_config, 'r', encoding='utf-8') as f:
+                self.configuracion = {}
+
+                for linea in f:
+                    linea = linea.strip()
+                    if linea and not linea.startswith('#') and '=' in linea:
+                        clave, valor = linea.split('=', 1)
+                        clave = clave.strip()
+                        valor = valor.strip()
+
+                        # Convertir tipos
+                        if valor.lower() in ('true', 'false'):
+                            valor = valor.lower() == 'true'
+                        elif valor.isdigit():
+                            valor = int(valor)
+                        elif self._es_float(valor):
+                            valor = float(valor)
+
+                        self.configuracion[clave] = valor
+
+            return True
+        except Exception as e:
+            print(f"❌ Error leyendo configuración simple: {e}")
+            return False
+
+    def _crear_configuracion_por_defecto(self) -> bool:
+        """Crea configuración por defecto."""
+        self.configuracion = {
+            'aplicacion': {
+                'nombre': 'Mi Aplicación',
+                'version': '1.0.0',
+                'autor': 'Desarrollador'
+            },
+            'servidor': {
+                'host': 'localhost',
+                'puerto': 8080,
+                'debug': False
+            },
+            'base_datos': {
+                'tipo': 'sqlite',
+                'archivo': 'datos.db'
+            },
+            'logging': {
+                'nivel': 'INFO',
+                'archivo': 'app.log'
+            }
+        }
+
+        return self.guardar_configuracion()
+
+    def guardar_configuracion(self) -> bool:
+        """Guarda configuración en archivo."""
+        try:
+            extension = os.path.splitext(self.archivo_config)[1].lower()
+
+            if extension == '.json':
+                return self._guardar_json()
+            elif extension in ['.ini', '.cfg', '.conf']:
+                return self._guardar_ini()
+            elif extension in ['.yaml', '.yml']:
+                return self._guardar_yaml()
+            else:
+                return self._guardar_simple()
+
+        except Exception as e:
+            print(f"❌ Error guardando configuración: {e}")
+            return False
+
+    def _guardar_json(self) -> bool:
+        """Guarda configuración como JSON."""
+        try:
+            os.makedirs(os.path.dirname(self.archivo_config), exist_ok=True)
+
+            with open(self.archivo_config, 'w', encoding='utf-8') as f:
+                json.dump(self.configuracion, f, indent=2, ensure_ascii=False)
+
+            self.historial_cambios.append({
+                'accion': 'guardar_json',
+                'archivo': self.archivo_config,
+                'timestamp': self._obtener_timestamp()
+            })
+
+            return True
+        except Exception as e:
+            print(f"❌ Error guardando JSON: {e}")
+            return False
+
+    def _guardar_ini(self) -> bool:
+        """Guarda configuración como INI."""
+        try:
+            import configparser
+
+            config = configparser.ConfigParser()
+
+            for seccion, valores in self.configuracion.items():
+                config[seccion] = valores
+
+            os.makedirs(os.path.dirname(self.archivo_config), exist_ok=True)
+
+            with open(self.archivo_config, 'w', encoding='utf-8') as f:
+                config.write(f)
+
+            return True
+        except Exception as e:
+            print(f"❌ Error guardando INI: {e}")
+            return False
+
+    def _guardar_yaml(self) -> bool:
+        """Guarda configuración como YAML."""
+        try:
+            import yaml
+
+            os.makedirs(os.path.dirname(self.archivo_config), exist_ok=True)
+
+            with open(self.archivo_config, 'w', encoding='utf-8') as f:
+                yaml.dump(self.configuracion, f, default_flow_style=False, allow_unicode=True)
+
+            return True
+        except ImportError:
+            print("❌ PyYAML no instalado")
+            return False
+        except Exception as e:
+            print(f"❌ Error guardando YAML: {e}")
+            return False
+
+    def _guardar_simple(self) -> bool:
+        """Guarda configuración como texto simple."""
+        try:
+            os.makedirs(os.path.dirname(self.archivo_config), exist_ok=True)
+
+            with open(self.archivo_config, 'w', encoding='utf-8') as f:
+                f.write("# Archivo de configuración generado automáticamente\n")
+                f.write(f"# Generado: {self._obtener_timestamp()}\n\n")
+
+                for clave, valor in self.configuracion.items():
+                    f.write(f"{clave} = {valor}\n")
+
+            return True
+        except Exception as e:
+            print(f"❌ Error guardando configuración simple: {e}")
+            return False
+
+    def obtener(self, clave: str, valor_por_defecto: Any = None) -> Any:
+        """Obtiene un valor de configuración."""
+        return self.configuracion.get(clave, valor_por_defecto)
+
+    def establecer(self, clave: str, valor: Any) -> bool:
+        """Establece un valor de configuración."""
+        try:
+            self.configuracion[clave] = valor
+
+            self.historial_cambios.append({
+                'accion': 'establecer',
+                'clave': clave,
+                'valor': valor,
+                'timestamp': self._obtener_timestamp()
+            })
+
+            return True
+        except Exception as e:
+            print(f"❌ Error estableciendo valor: {e}")
+            return False
+
+    def obtener_seccion(self, seccion: str) -> Dict:
+        """Obtiene una sección completa de configuración."""
+        return self.configuracion.get(seccion, {})
+
+    def mostrar_configuracion(self):
+        """Muestra la configuración actual."""
+        print("
+📋 CONFIGURACIÓN ACTUAL:"        print("=" * 50)
+
+        if not self.configuracion:
+            print("⚠️ No hay configuración cargada")
+            return
+
+        for clave, valor in self.configuracion.items():
+            print(f"{clave} = {valor}")
+
+    def validar_configuracion(self, esquema: Dict) -> Dict:
+        """Valida la configuración contra un esquema."""
+        errores = []
+        advertencias = []
+
+        for clave, reglas in esquema.items():
+            valor_actual = self.obtener(clave)
+
+            # Verificar si es requerido
+            if reglas.get('requerido', False) and valor_actual is None:
+                errores.append(f"Campo requerido '{clave}' no encontrado")
+                continue
+
+            # Si no es requerido y no existe, usar valor por defecto
+            if valor_actual is None:
+                valor_actual = reglas.get('valor_por_defecto')
+                if valor_actual is not None:
+                    self.establecer(clave, valor_actual)
+
+            # Validar tipo
+            tipo_esperado = reglas.get('tipo')
+            if tipo_esperado and valor_actual is not None:
+                if not isinstance(valor_actual, tipo_esperado):
+                    errores.append(f"Campo '{clave}' debe ser de tipo {tipo_esperado}")
+
+            # Validar rango
+            if 'rango' in reglas and valor_actual is not None:
+                min_val, max_val = reglas['rango']
+                if not (min_val <= valor_actual <= max_val):
+                    errores.append(f"Campo '{clave}' debe estar entre {min_val} y {max_val}")
+
+            # Validar opciones
+            if 'opciones' in reglas and valor_actual is not None:
+                opciones_validas = reglas['opciones']
+                if valor_actual not in opciones_validas:
+                    errores.append(f"Campo '{clave}' debe ser uno de: {opciones_validas}")
+
+        return {
+            'valido': len(errores) == 0,
+            'errores': errores,
+            'advertencias': advertencias
+        }
+
+    def _es_float(self, valor: str) -> bool:
+        """Verifica si un string representa un número decimal."""
+        try:
+            float(valor)
+            return True
+        except ValueError:
+            return False
+
+    def _obtener_timestamp(self) -> str:
+        """Obtiene timestamp actual."""
+        from datetime import datetime
+        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+# Función de demostración
+def demo_sistema_configuracion():
+    """Demostración del sistema de configuración."""
+
+    print("⚙️ DEMOSTRACIÓN DEL SISTEMA DE CONFIGURACIÓN")
+
+    # Crear sistema de configuración
+    sistema = SistemaConfiguracion("app_config.json")
+
+    # Definir esquema de validación
+    esquema = {
+        'app.nombre': {
+            'tipo': str,
+            'requerido': True,
+            'longitud_max': 50
+        },
+        'servidor.puerto': {
+            'tipo': int,
+            'rango': (1024, 65535),
+            'valor_por_defecto': 8080
+        },
+        'base_datos.tipo': {
+            'opciones': ['sqlite', 'postgresql', 'mysql'],
+            'valor_por_defecto': 'sqlite'
+        },
+        'logging.nivel': {
+            'opciones': ['DEBUG', 'INFO', 'WARNING', 'ERROR'],
+            'valor_por_defecto': 'INFO'
+        }
+    }
+
+    # Cargar configuración
+    print("\n1️⃣ Cargando configuración...")
+    if sistema.cargar_configuracion():
+        print("✅ Configuración cargada exitosamente")
+    else:
+        print("⚠️ Usando configuración por defecto")
+
+    # Mostrar configuración actual
+    sistema.mostrar_configuracion()
+
+    # Validar configuración
+    print("\n2️⃣ Validando configuración...")
+    resultado_validacion = sistema.validar_configuracion(esquema)
+
+    if resultado_validacion['valido']:
+        print("✅ Configuración válida")
+    else:
+        print("❌ Errores de validación:")
+        for error in resultado_validacion['errores']:
+            print(f"  - {error}")
+
+    # Modificar algunos valores
+    print("\n3️⃣ Modificando configuración...")
+    sistema.establecer('app.nombre', 'Mi Aplicación Avanzada')
+    sistema.establecer('servidor.puerto', 9000)
+    sistema.establecer('logging.nivel', 'DEBUG')
+
+    print("✅ Configuración modificada")
+
+    # Mostrar configuración actualizada
+    sistema.mostrar_configuracion()
+
+    # Guardar cambios
+    print("\n4️⃣ Guardando configuración...")
+    if sistema.guardar_configuracion():
+        print("✅ Configuración guardada exitosamente")
+    else:
+        print("❌ Error guardando configuración")
+
+    # Verificar archivo creado
+    if os.path.exists('app_config.json'):
+        print("✅ Archivo de configuración creado")
+
+        # Mostrar contenido del archivo
+        with open('app_config.json', 'r', encoding='utf-8') as f:
+            contenido = f.read()
+        print("
+📄 Contenido del archivo:"        print(contenido)
+
+        # Limpiar
+        os.remove('app_config.json')
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_sistema_configuracion()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplo 2: Analizador de Logs Avanzado</h3>
+                <p>Desarrollaremos un sistema que procese archivos de logs, extraiga información útil y genere reportes.</p>
+
+                <div class="text-processor">
+                    <h3><i class="fas fa-chart-line"></i> Analizador de Logs Profesional</h3>
+
+                    <div class="processor-example">
+                        <h5>Sistema Completo de Análisis de Logs</h5>
+                        <pre><code class="language-python"># Analizador avanzado de archivos de logs
+
+import re
+import json
+from collections import Counter, defaultdict
+from datetime import datetime, timedelta
+import os
+
+class AnalizadorLogs:
+    """Analizador avanzado de archivos de logs."""
+
+    def __init__(self, archivo_log):
+        self.archivo_log = archivo_log
+        self.entradas = []
+        self.estadisticas = {}
+
+    def cargar_logs(self) -> bool:
+        """Carga entradas del archivo de log."""
+        try:
+            with open(self.archivo_log, 'r', encoding='utf-8') as f:
+                for linea in f:
+                    entrada = self._parsear_entrada_log(linea.strip())
+                    if entrada:
+                        self.entradas.append(entrada)
+
+            self.estadisticas['total_entradas'] = len(self.entradas)
+            return True
+
+        except FileNotFoundError:
+            print(f"❌ Archivo de log '{self.archivo_log}' no encontrado")
+            return False
+        except Exception as e:
+            print(f"❌ Error cargando logs: {e}")
+            return False
+
+    def _parsear_entrada_log(self, linea: str) -> Optional[Dict]:
+        """Parsea una línea de log en componentes."""
+
+        # Patrones comunes de logs
+        patrones = [
+            # Formato: 2024-01-01 10:30:45 INFO Mensaje
+            r'(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\s+(\w+)\s+(.+)',
+
+            # Formato: [2024-01-01 10:30:45] [INFO] Mensaje
+            r'\[(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\]\s+\[(\w+)\]\s+(.+)',
+
+            # Formato: INFO: 2024-01-01 10:30:45 - Mensaje
+            r'(\w+):\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\s*-\s*(.+)',
+
+            # Formato simple: INFO Mensaje
+            r'(\w+)\s+(.+)'
+        ]
+
+        for patron in patrones:
+            coincidencia = re.match(patron, linea)
+            if coincidencia:
+                grupos = coincidencia.groups()
+
+                if len(grupos) == 3:
+                    timestamp_str, nivel, mensaje = grupos
+                elif len(grupos) == 2:
+                    if ':' in grupos[1] and '-' in grupos[1]:
+                        # Formato: NIVEL: timestamp - mensaje
+                        nivel, timestamp_str, mensaje = grupos[0], grupos[1], ""
+                    else:
+                        # Formato simple: NIVEL mensaje
+                        nivel, mensaje = grupos[0], grupos[1]
+                        timestamp_str = None
+                else:
+                    continue
+
+                # Convertir timestamp si existe
+                timestamp = None
+                if timestamp_str:
+                    try:
+                        # Intentar diferentes formatos de fecha
+                        formatos = [
+                            '%Y-%m-%d %H:%M:%S',
+                            '%Y-%m-%d %H:%M',
+                            '%d/%m/%Y %H:%M:%S'
+                        ]
+
+                        for formato in formatos:
+                            try:
+                                timestamp = datetime.strptime(timestamp_str, formato)
+                                break
+                            except ValueError:
+                                continue
+
+                    except Exception:
+                        timestamp = None
+
+                return {
+                    'timestamp': timestamp,
+                    'nivel': nivel.upper(),
+                    'mensaje': mensaje,
+                    'linea_original': linea
+                }
+
+        return None
+
+    def filtrar_por_nivel(self, niveles: list) -> List[Dict]:
+        """Filtra entradas por nivel de log."""
+        niveles = [nivel.upper() for nivel in niveles]
+        return [entrada for entrada in self.entradas if entrada['nivel'] in niveles]
+
+    def filtrar_por_tiempo(self, fecha_inicio: datetime = None, fecha_fin: datetime = None) -> List[Dict]:
+        """Filtra entradas por rango de tiempo."""
+        filtradas = []
+
+        for entrada in self.entradas:
+            if entrada['timestamp']:
+                if fecha_inicio and entrada['timestamp'] < fecha_inicio:
+                    continue
+                if fecha_fin and entrada['timestamp'] > fecha_fin:
+                    continue
+                filtradas.append(entrada)
+
+        return filtradas
+
+    def buscar_en_mensajes(self, patron: str, usar_regex: bool = False) -> List[Dict]:
+        """Busca patrón en mensajes de log."""
+        resultados = []
+
+        for entrada in self.entradas:
+            mensaje = entrada['mensaje']
+
+            if usar_regex:
+                if re.search(patron, mensaje, re.IGNORECASE):
+                    resultados.append(entrada)
+            else:
+                if patron.lower() in mensaje.lower():
+                    resultados.append(entrada)
+
+        return resultados
+
+    def analizar_errores(self) -> Dict:
+        """Analiza errores y problemas comunes."""
+        errores = []
+        ips_sospechosas = Counter()
+        usuarios_problematicos = Counter()
+
+        patrones_errores = {
+            'error_conexion': r'connection\s+(?:failed|error|timeout)',
+            'error_autenticacion': r'(?:auth|login|password)\s+(?:failed|error|invalid)',
+            'error_archivo': r'file\s+(?:not\s+found|permission|error)',
+            'error_memoria': r'(?:out\s+of\s+memory|memory\s+error|allocation\s+failed)',
+            'error_base_datos': r'(?:database|db|sql)\s+(?:error|connection\s+failed|timeout)'
+        }
+
+        for entrada in self.entradas:
+            if entrada['nivel'] in ['ERROR', 'CRITICAL', 'FATAL']:
+                errores.append(entrada)
+
+                # Buscar patrones específicos
+                mensaje = entrada['mensaje'].lower()
+
+                for tipo_error, patron in patrones_errores.items():
+                    if re.search(patron, mensaje):
+                        entrada['tipo_error'] = tipo_error
+                        break
+
+                # Buscar IPs sospechosas
+                ips = re.findall(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b', entrada['mensaje'])
+                for ip in ips:
+                    ips_sospechosas[ip] += 1
+
+                # Buscar usuarios
+                usuarios = re.findall(r'user[:\s]+(\w+)', entrada['mensaje'], re.IGNORECASE)
+                for usuario in usuarios:
+                    usuarios_problematicos[usuario] += 1
+
+        return {
+            'total_errores': len(errores),
+            'errores_por_tipo': self._categorizar_errores(errores),
+            'ips_sospechosas': ips_sospechosas.most_common(10),
+            'usuarios_problematicos': usuarios_problematicos.most_common(10),
+            'errores_detallados': errores[:50]  # Limitar para evitar salida muy larga
+        }
+
+    def _categorizar_errores(self, errores: List[Dict]) -> Dict:
+        """Categoriza errores por tipo."""
+        categorias = Counter()
+
+        for error in errores:
+            categoria = error.get('tipo_error', 'desconocido')
+            categorias[categoria] += 1
+
+        return dict(categorias)
+
+    def generar_estadisticas(self) -> Dict:
+        """Genera estadísticas completas del log."""
+
+        if not self.entradas:
+            return {}
+
+        # Estadísticas básicas
+        niveles = Counter(entrada['nivel'] for entrada in self.entradas)
+
+        # Estadísticas temporales
+        timestamps = [entrada['timestamp'] for entrada in self.entradas if entrada['timestamp']]
+
+        estadisticas_temporales = {}
+        if timestamps:
+            primera_fecha = min(timestamps)
+            ultima_fecha = max(timestamps)
+
+            estadisticas_temporales = {
+                'primera_entrada': primera_fecha,
+                'ultima_entrada': ultima_fecha,
+                'duracion_total': (ultima_fecha - primera_fecha).total_seconds() / 3600,  # horas
+                'entradas_por_hora': len(timestamps) / max(1, (ultima_fecha - primera_fecha).total_seconds() / 3600)
+            }
+
+        # Mensajes más comunes
+        mensajes_comunes = Counter(entrada['mensaje'] for entrada in self.entradas).most_common(20)
+
+        # Fuentes de logs (si están disponibles)
+        fuentes = Counter()
+        for entrada in self.entradas:
+            # Intentar extraer fuente del mensaje
+            fuente = re.search(r'(\w+\.py|\w+\.js|\w+\.java):', entrada['mensaje'])
+            if fuente:
+                fuentes[fuente.group(1)] += 1
+
+        return {
+            'total_entradas': self.estadisticas['total_entradas'],
+            'por_nivel': dict(niveles),
+            'temporales': estadisticas_temporales,
+            'mensajes_comunes': mensajes_comunes,
+            'fuentes': dict(fuentes.most_common(10))
+        }
+
+    def generar_reporte(self, archivo_salida: str = "reporte_logs.json") -> bool:
+        """Genera un reporte completo en formato JSON."""
+
+        try:
+            reporte = {
+                'archivo_analizado': self.archivo_log,
+                'fecha_analisis': datetime.now().isoformat(),
+                'estadisticas': self.generar_estadisticas(),
+                'analisis_errores': self.analizar_errores(),
+                'resumen': {
+                    'total_entradas': len(self.entradas),
+                    'periodo_analizado': 'todo',
+                    'niveles_encontrados': list(set(entrada['nivel'] for entrada in self.entradas))
+                }
+            }
+
+            with open(archivo_salida, 'w', encoding='utf-8') as f:
+                json.dump(reporte, f, indent=2, ensure_ascii=False, default=str)
+
+            print(f"✅ Reporte generado: {archivo_salida}")
+            return True
+
+        except Exception as e:
+            print(f"❌ Error generando reporte: {e}")
+            return False
+
+# Función de demostración
+def demo_analizador_logs():
+    """Demostración del analizador de logs."""
+
+    print("📊 DEMOSTRACIÓN DEL ANALIZADOR DE LOGS")
+
+    # Crear archivo de log de prueba
+    contenido_log = """2024-01-15 08:00:00 INFO Aplicación iniciada correctamente
+2024-01-15 08:05:00 DEBUG Conexión a base de datos establecida
+2024-01-15 08:10:00 INFO Usuario admin inició sesión
+2024-01-15 08:15:00 WARNING Memoria baja: 20% disponible
+2024-01-15 08:20:00 ERROR Fallo al conectar con servidor externo desde IP 192.168.1.100
+2024-01-15 08:25:00 INFO Usuario maria inició sesión
+2024-01-15 08:30:00 ERROR Error de autenticación para usuario testuser
+2024-01-15 08:35:00 DEBUG Procesando solicitud de datos
+2024-01-15 08:40:00 ERROR Archivo de configuración no encontrado: config/app.json
+2024-01-15 08:45:00 CRITICAL Sistema fuera de servicio - Error crítico en módulo principal
+2024-01-15 08:50:00 INFO Sistema reiniciado correctamente
+2024-01-15 08:55:00 DEBUG Nuevas conexiones aceptadas
+2024-01-15 09:00:00 WARNING Límite de conexiones alcanzado: 100/100
+2024-01-15 09:05:00 ERROR Timeout en consulta a base de datos desde servidor.py:150
+2024-01-15 09:10:00 INFO Backup automático completado
+2024-01-15 09:15:00 ERROR Usuario desconocido intentó acceso desde 10.0.0.5"""
+
+    with open('servidor.log', 'w', encoding='utf-8') as f:
+        f.write(contenido_log)
+
+    # Crear analizador y cargar logs
+    analizador = AnalizadorLogs('servidor.log')
+
+    print("\n1️⃣ Cargando logs...")
+    if analizador.cargar_logs():
+        print(f"✅ Logs cargados: {len(analizador.entradas)} entradas")
+
+    # Mostrar estadísticas básicas
+    print("\n2️⃣ Estadísticas básicas:")
+    stats = analizador.generar_estadisticas()
+
+    for nivel, cantidad in stats['por_nivel'].items():
+        print(f"  {nivel}: {cantidad}")
+
+    if stats['temporales']:
+        print(f"  Periodo: {stats['temporales']['primera_entrada']} a {stats['temporales']['ultima_entrada']}")
+
+    # Análisis de errores
+    print("\n3️⃣ Análisis de errores:")
+    analisis_errores = analizador.analizar_errores()
+
+    print(f"  Total errores: {analisis_errores['total_errores']}")
+
+    if analisis_errores['errores_por_tipo']:
+        print("  Por tipo:")
+        for tipo, cantidad in analisis_errores['errores_por_tipo'].items():
+            print(f"    {tipo}: {cantidad}")
+
+    if analisis_errores['ips_sospechosas']:
+        print("  IPs sospechosas:")
+        for ip, cantidad in analisis_errores['ips_sospechosas']:
+            print(f"    {ip}: {cantidad} errores")
+
+    # Búsquedas específicas
+    print("\n4️⃣ Búsquedas específicas:")
+
+    errores_conexion = analizador.buscar_en_mensajes('conexion|connect')
+    print(f"  Mensajes sobre conexión: {len(errores_conexion)}")
+
+    errores_usuario = analizador.buscar_en_mensajes('usuario|user')
+    print(f"  Mensajes sobre usuarios: {len(errores_usuario)}")
+
+    # Búsqueda con regex
+    errores_archivos = analizador.buscar_con_regex(r'(\w+\.(?:py|js|json|txt))', usar_regex=True)
+    print(f"  Archivos mencionados: {len(errores_archivos)}")
+
+    # Generar reporte
+    print("\n5️⃣ Generando reporte...")
+    if analizador.generar_reporte('reporte_analisis.json'):
+        print("✅ Reporte JSON generado")
+
+        # Mostrar parte del reporte
+        with open('reporte_analisis.json', 'r', encoding='utf-8') as f:
+            reporte = json.load(f)
+
+        print(f"\n📋 Resumen del reporte:")
+        resumen = reporte['resumen']
+        for clave, valor in resumen.items():
+            print(f"  {clave}: {valor}")
+
+    # Limpiar archivos
+    archivos_a_limpiar = ['servidor.log', 'reporte_analisis.json']
+    for archivo in archivos_a_limpiar:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_analizador_logs()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-cog"></i> Actividad 1: Lector de Archivos de Configuración</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Crea un programa que lea y procese archivos de configuración en formato clave=valor.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Leer archivos de configuración simples</li>
+                            <li>Convertir tipos de datos automáticamente</li>
+                            <li>Manejar comentarios y líneas vacías</li>
+                            <li>Validar existencia del archivo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-search"></i> Actividad 2: Buscador de Archivos Avanzado</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un programa que busque texto en archivos usando expresiones regulares.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+																								<ul>
+                            <li>Buscar texto con soporte para expresiones regulares</li>
+                            <li>Mostrar contexto alrededor de las coincidencias</li>
+                            <li>Procesar múltiples archivos</li>
+                            <li>Generar reportes de búsqueda</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-chart-bar"></i> Actividad 3: Analizador de Logs</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Crea un analizador que procese archivos de logs y extraiga información útil.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Parsear diferentes formatos de log</li>
+                            <li>Filtrar por nivel y tiempo</li>
+                            <li>Identificar errores comunes</li>
+                            <li>Generar estadísticas y reportes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-file-csv"></i> Actividad 4: Procesador de CSV Completo</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Desarrolla un sistema completo para leer y procesar archivos CSV con diferentes opciones.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Soportar diferentes delimitadores</li>
+                            <li>Manejar encabezados opcionales</li>
+                            <li>Convertir tipos de datos automáticamente</li>
+                            <li>Procesar archivos grandes eficientemente</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/inputoutput.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Input/Output</a></li>
+                        <li><a href="https://realpython.com/read-write-files-python/" target="_blank" rel="noopener noreferrer">Real Python - Leer y escribir archivos</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_file_handling.asp" target="_blank" rel="noopener noreferrer">W3Schools - Manejo de archivos</a></li>
+                        <li><a href="https://python-course.eu/python-tutorial/file-management.php" target="_blank" rel="noopener noreferrer">Python Course - Gestión de archivos</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=Uh2ebFW8OYM" target="_blank" rel="noopener noreferrer">Leer archivos en Python - Tutorial completo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=qJVymq5D8hg" target="_blank" rel="noopener noreferrer">Procesamiento de archivos de texto en Python</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=PaNkTIw2VZk" target="_blank" rel="noopener noreferrer">Manejo avanzado de archivos en Python</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 7 - "Python Crash Course" de Eric Matthes (Archivos)</li>
+                        <li>Sección 8 - "Fluent Python" de Luciano Ramalho (I/O)</li>
+                        <li>"Effective Python" de Brett Slatkin (Ítems 15, 46: Archivos)</li>
+                        <li>"Python Cookbook" - Recetas avanzadas de procesamiento de archivos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s21.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s23.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

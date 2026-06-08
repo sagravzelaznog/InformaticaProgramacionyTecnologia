@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Soluciones - Vite Masterclass</title>
+    <style>
+        @media print {
+            body { background: white !important; font-size: 11pt; }
+            .page-break { page-break-after: always; }
+            .no-print { display: none; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.4;
+            color: #2c3e50;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .solution-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header {
+            border-bottom: 4px solid #646cff;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .session-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e1e4e8;
+            border-left: 6px solid #646cff;
+            background: #fdfdfd;
+        }
+
+        h1 { color: #646cff; margin-bottom: 5px; }
+        h3 { color: #34495e; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
+        code {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        .key-note {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+
+<div class="no-print" style="background: #646cff; color: white; padding: 15px; text-align: center; margin-bottom: 20px; border-radius: 5px;">
+    <strong>MODO INSTRUCTOR:</strong> Presiona <b>Ctrl + P</b> para guardar esta guía técnica en PDF.
+</div>
+
+<div class="solution-container">
+    <header>
+        <h1>Guía Maestra de Soluciones</h1>
+        <p>Vite Masterclass: De Zero a Superhéroe (Instructor Copy)</p>
+    </header>
+
+    <div class="session-block">
+        <h3>Sesión 01: El Despegue</h3>
+        <p><strong>Comando clave:</strong> <code>npm create vite@latest mi-app -- --template vanilla</code></p>
+        <p><strong>Solución:</strong> Asegurarse de entrar a la carpeta: <code>cd mi-app</code> y ejecutar <code>npm install</code> seguido de <code>npm run dev</code>.</p>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 02: HMR y Activos</h3>
+        <p><strong>Código main.js:</strong></p>
+        <pre>import imgUrl from './logo.png'
+document.querySelector('#app').innerHTML = `&lt;img src="${imgUrl}" /&gt;`;</pre>
+        <div class="key-note">Nota: Vite convierte la importación en una URL válida automáticamente.</div>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 03: .env y Config</h3>
+        <p><strong>Archivo .env:</strong> <code>VITE_API_KEY=123456</code></p>
+        <p><strong>Acceso:</strong> <code>console.log(import.meta.env.VITE_API_KEY);</code></p>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 04: Tailwind CSS</h3>
+        <p><strong>Instalación:</strong> <code>npm install -D tailwindcss postcss autoprefixer</code></p>
+        <p><strong>Inicialización:</strong> <code>npx tailwindcss init -p</code></p>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 05: Frameworks (React)</h3>
+        <p><strong>Comando:</strong> <code>npm create vite@latest mi-react -- --template react</code></p>
+        <p><strong>Solución:</strong> Explicar que <code>main.jsx</code> es el punto de entrada y no requiere configuración extra.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="session-block">
+        <h3>Sesión 06: Rutas (React Router)</h3>
+        <p><strong>Código base:</strong></p>
+        <pre>import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Envolver App con BrowserRouter</pre>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 07: TypeScript</h3>
+        <p><strong>Interface:</strong></p>
+        <pre>interface User { id: number; name: string; }
+const user: User = { id: 1, name: "Genio" };</pre>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 08: Plugins (PWA)</h3>
+        <p><strong>Configuración vite.config.js:</strong></p>
+        <pre>import { VitePWA } from 'vite-plugin-pwa'
+export default { plugins: [VitePWA({ registerType: 'autoUpdate' })] }</pre>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 09: Build y Rollup</h3>
+        <p><strong>Comando:</strong> <code>npm run build</code></p>
+        <p><strong>Solución:</strong> Revisar la carpeta <code>/dist</code>. Explicar que el index.html está minificado.</p>
+    </div>
+
+    <div class="session-block">
+        <h3>Sesión 10: Despliegue</h3>
+        <p><strong>Pipeline:</strong> GitHub Repo -> Vercel Dashboard -> Import -> Auto-deploy.</p>
+        <div class="key-note">Solución de errores: Asegurar que el "Build Command" sea <code>npm run build</code> y el "Output Directory" sea <code>dist</code>.</div>
+    </div>
+
+    <footer>
+        <p>Material exclusivo para el Instructor - Prohibida su distribución sin permiso.</p>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interactivo de Salud e Higiene</title>
+    <style>
+        :root {
+            --color-red: #e21b3c;
+            --color-blue: #1368ce;
+            --color-yellow: #d89e00;
+            --color-green: #26890c;
+            --bg-color: #f2f2f2;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .quiz-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            color: var(--text-color);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: var(--color-blue);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+
+        /* Pantallas */
+        #start-screen, #quiz-screen, #result-screen {
+            display: none;
+        }
+
+        #start-screen.active, #quiz-screen.active, #result-screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos de las preguntas */
+        .question-text {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .option-btn:hover { opacity: 0.9; }
+        .option-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+
+        .opt-0 { background-color: var(--color-red); }
+        .opt-1 { background-color: var(--color-blue); }
+        .opt-2 { background-color: var(--color-yellow); }
+        .opt-3 { background-color: var(--color-green); }
+
+        /* Preguntas abiertas */
+        .open-input {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        /* Feedback / Comentarios */
+        #feedback-area {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+            font-size: 18px;
+        }
+
+        .correct-bg { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-bg { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info-bg { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-blue);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="active">
+            <h1>¡Desafío de Salud e Higiene!</h1>
+            <p>Pon a prueba tus conocimientos. Responde las opciones múltiples o escribe tus respuestas según corresponda.</p>
+            <button class="btn" onclick="startQuiz()">¡Comenzar Quiz!</button>
+        </div>
+
+        <!-- Pantalla del Quiz -->
+        <div id="quiz-screen">
+            <div class="header-info">
+                <span id="question-counter">Pregunta 1 de 11</span>
+                <span id="points-indicator">Puntos: 0</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <div id="question-text" class="question-text">¿Pregunta?</div>
+            
+            <div id="answer-area">
+                <!-- Los botones o campos de texto se inyectan aquí con JS -->
+            </div>
+
+            <div id="feedback-area"></div>
+
+            <button id="next-btn" class="btn" style="display:none;" onclick="nextQuestion()">Siguiente Pregunta</button>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="result-screen">
+            <h1>¡Has terminado!</h1>
+            <h2>Puntuación Final: <span id="final-score">0</span> / 25</h2>
+            <p>¡Gran trabajo revisando tus conocimientos sobre salud e higiene!</p>
+            <button class="btn" onclick="location.reload()">Volver a Jugar</button>
+        </div>
+
+        <footer>
+            <p>&copy; KYOR JMGV "TRANSFORMACION DIGITAL EN LA INFORMACION" MAYO 2026. TODOS LOS DERECH0S RESERVADOS</p>
+        </footer>
+    </div>
+
+
+    <script>
+        const questions = [
+            {
+                type: "mcq",
+                question: "¿Cuál es la definición de 'higiene'?",
+                points: 2,
+                options: [
+                    "Estudio exclusivo de la etimología griega de las palabras relacionadas con la salud.",
+                    "Es la ciencia que estudia únicamente la limpieza de los espacios públicos y el control de plagas.",
+                    "Rama de la medicina que aplica técnicas para mejorar, conservar la salud y prevenir enfermedades."
+                ],
+                correct: 2
+            },
+            {
+                type: "mcq",
+                question: "¿Cuántos vasos de agua al día recomiendan beber los profesionales de la salud según el texto?",
+                points: 2,
+                options: [
+                    "De 2 a 4 vasos",
+                    "Exactamente 12 vasos",
+                    "Entre 6 y 8 vasos"
+                ],
+                correct: 2
+            },
+            {
+                type: "mcq",
+                question: "¿La prevención primaria consiste en aplicar medidas higiénicas simples como lavar frutas y hervir agua?",
+                points: 2,
+                options: ["CIERTO", "FALSO"],
+                correct: 0
+            },
+            {
+                type: "mcq",
+                question: "¿Qué herramienta se menciona para medir y detectar niveles de violencia en las relaciones?",
+                points: 2,
+                options: [
+                    "Termómetro de salud",
+                    "Violentómetro",
+                    "Ley de violencia contra la mujer"
+                ],
+                correct: 1
+            },
+            {
+                type: "open",
+                question: "Explica brevemente por qué es fundamental el lavado de manos antes de comer y después de ir al baño.",
+                points: 3,
+                keywords: ["prevenir", "prevención", "infecciones", "enfermedades", "intestinales"],
+                feedback: "Comentario: SI MENCIONASTE LA PREVENCIÓN DE ENFERMEDADES COMO INFECCIONES INTESTINALES, ESTÁS EN LO CORRECTO."
+            },
+            {
+                type: "open",
+                question: "¿Qué tipos de fauna nociva pueden ser transmisores de enfermedades en ambientes con higiene deficiente? Menciona 3.",
+                points: 3,
+                keywords: ["cucarachas", "ratas", "moscas", "moscos", "perros"],
+                feedback: "Respuestas correctas esperadas: CUCARACHAS, RATAS, MOSCAS, MOSCOS. Si escribiste 3 de estas opciones, es correcto."
+            },
+            {
+                type: "mcq",
+                question: "¿La higiene colectiva también se denomina higiene ambiental?",
+                points: 2,
+                options: ["FALSO", "VERDADERO"],
+                correct: 1
+            },
+            {
+                type: "mcq",
+                question: "¿A qué se refiere el término 'Saneamiento del medio'?",
+                points: 2,
+                options: [
+                    "A la construcción de parques recreativos exclusivamente.",
+                    "Eliminación de excretas, aguas residuales y basura.",
+                    "A barrer las calles diariamente."
+                ],
+                correct: 1
+            },
+            {
+                type: "mcq",
+                question: "¿A qué se debe que la salud de cada región sea diferente?",
+                points: 2,
+                options: [
+                    "Depende exclusivamente del número de habitantes.",
+                    "No varía, la salud es igual en todas partes del mundo.",
+                    "Depende de su realidad geográfica, económica, social y cultural."
+                ],
+                correct: 2
+            },
+            {
+                type: "open",
+                question: "Menciona brevemente 3 acciones que nos indican que el agua es potable:",
+                points: 3,
+                keywords: ["ph", "olor", "color", "procedencia", "limpia", "incolora", "inodora", "sabor"],
+                feedback: "Comentario: SI MENCIONASTE EL PH, EL OLOR, EL COLOR Y EL LUGAR DE PROCEDENCIA DEL AGUA, ES CORRECTO."
+            },
+            {
+                type: "open",
+                question: "Menciona acciones para promover la salud:",
+                points: 2,
+                keywords: ["campaña", "vacunación", "publicidad", "prevenir", "ejercicio", "alimentación", "comida"],
+                feedback: "Comentario: SI MENCIONASTE CAMPAÑA DE VACUNACIÓN, PUBLICIDAD PARA PREVENIR ENFERMEDADES, O CAMPAÑAS PARA EJERCICIO Y BUENA ALIMENTACIÓN, ES CORRECTO."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.remove('active');
+            document.getElementById('quiz-screen').classList.add('active');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            document.getElementById('next-btn').style.display = 'none';
+            const feedbackArea = document.getElementById('feedback-area');
+            feedbackArea.style.display = 'none';
+            feedbackArea.className = '';
+            
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('question-counter').innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+            
+            // Barra de progreso
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+
+            const answerArea = document.getElementById('answer-area');
+            answerArea.innerHTML = '';
+
+            if (q.type === 'mcq') {
+                const grid = document.createElement('div');
+                grid.className = 'options-grid';
+                q.options.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `option-btn opt-${index % 4}`;
+                    btn.innerText = opt;
+                    btn.onclick = () => checkAnswerMCQ(index, btn);
+                    grid.appendChild(btn);
+                });
+                answerArea.appendChild(grid);
+            } else if (q.type === 'open') {
+                const textarea = document.createElement('textarea');
+                textarea.className = 'open-input';
+                textarea.placeholder = 'Escribe tu respuesta aquí...';
+                textarea.id = 'open-answer';
+                
+                const submitBtn = document.createElement('button');
+                submitBtn.className = 'btn';
+                submitBtn.innerText = 'Comprobar';
+                submitBtn.onclick = () => checkAnswerOpen();
+
+                answerArea.appendChild(textarea);
+                answerArea.appendChild(document.createElement('br'));
+                answerArea.appendChild(submitBtn);
+            }
+        }
+
+        function checkAnswerMCQ(selectedIndex, btnElement) {
+            // Deshabilitar botones
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            });
+            btnElement.style.opacity = '1';
+
+            const q = questions[currentQuestion];
+            const feedbackArea = document.getElementById('feedback-area');
+            feedbackArea.style.display = 'block';
+
+            if (selectedIndex === q.correct) {
+                score += q.points;
+                feedbackArea.innerText = "¡Correcto! +" + q.points + " puntos";
+                feedbackArea.className = 'correct-bg';
+            } else {
+                feedbackArea.innerText = "Incorrecto. La respuesta era: " + q.options[q.correct];
+                feedbackArea.className = 'incorrect-bg';
+            }
+            updatePoints();
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function checkAnswerOpen() {
+            const answer = document.getElementById('open-answer').value.toLowerCase();
+            if(answer.trim() === '') return alert('Por favor escribe una respuesta.');
+            
+            document.getElementById('open-answer').disabled = true;
+            event.target.style.display = 'none';
+
+            const q = questions[currentQuestion];
+            let matchedKeywords = 0;
+            
+            q.keywords.forEach(kw => {
+                if(answer.includes(kw)) matchedKeywords++;
+            });
+
+            // Asignar puntos si se detectan palabras clave (lógica simple de auto-calificación)
+            if(matchedKeywords > 0) {
+                score += q.points;
+            }
+
+            const feedbackArea = document.getElementById('feedback-area');
+            feedbackArea.style.display = 'block';
+            feedbackArea.innerHTML = `<strong>Respuesta enviada.</strong><br><br>${q.feedback}`;
+            feedbackArea.className = 'info-bg';
+            
+            updatePoints();
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function updatePoints() {
+            document.getElementById('points-indicator').innerText = `Puntos: ${score}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-screen').classList.remove('active');
+            document.getElementById('result-screen').classList.add('active');
+            document.getElementById('final-score').innerText = score;
+        }
+    </script>
+</body>
+</html>

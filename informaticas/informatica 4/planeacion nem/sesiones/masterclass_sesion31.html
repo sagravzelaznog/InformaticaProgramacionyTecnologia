@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 31: Funciones</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 31</h1>
+            <h2>Funciones: El Arte de No Repetirse</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Principio D.R.Y.</h3>
+            <p><strong>Objetivo:</strong> Comprender que copiar y pegar código es el pecado capital del programador.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🍝 Código Espagueti vs. 🧱 Código Modular</h4>
+                <p>Imagina que quieres saludar a 3 amigos:</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: #fff5f5; border: 1px solid #fc8181; padding: 10px; border-radius: 8px;">
+                        <p style="color: #e53e3e; font-weight: bold; font-size: 0.8rem;">❌ Sin Funciones (Repetitivo)</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.7rem; color: #333;">
+                            print("Hola Juan")<br>
+                            print("Bienvenido al curso")<br>
+                            print("Hola Ana")<br>
+                            print("Bienvenida al curso")<br>
+                            print("Hola Pedro")<br>
+                            print("Bienvenido al curso")
+                        </div>
+                        <p style="font-size: 0.6rem; color: #742a2a; margin-top: 5px;">Si quieres cambiar el mensaje, tienes que editar 3 líneas.</p>
+                    </div>
+
+                    <div class="stat-item" style="width: 45%; background: #f0fff4; border: 1px solid #68d391; padding: 10px; border-radius: 8px;">
+                        <p style="color: #2f855a; font-weight: bold; font-size: 0.8rem;">✅ Con Funciones (Modular)</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.7rem; color: #333;">
+                            <span style="color: #805ad5;">def</span> saludar(nombre):<br>
+                            &nbsp;&nbsp;print("Hola " + nombre)<br>
+                            &nbsp;&nbsp;print("Bienvenido/a")<br><br>
+                            saludar("Juan")<br>
+                            saludar("Ana")
+                        </div>
+                        <p style="font-size: 0.6rem; color: #22543d; margin-top: 5px;">Cambias una línea y se actualiza para todos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía de una Función</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">🛠️ Definir (Construir)</h4>
+                    <p>Es crear la máquina, pero <strong>no encenderla</strong>.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        <span style="color: #d69e2e;">def</span> <span style="color: #63b3ed;">suma</span>(a, b):<br>
+                        &nbsp;&nbsp;<span style="color: #d69e2e;">return</span> a + b
+                    </div>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">📞 Llamar (Usar)</h4>
+                    <p>Es usar la máquina con datos reales.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        resultado = <span style="color: #63b3ed;">suma</span>(5, 10)<br>
+                        <span style="color: #718096;"># resultado ahora vale 15</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🍞 La Función es una Tostadora</h4>
+                <p>Entender Parámetros (Input) y Return (Output).</p>
+                
+                <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px; gap: 10px;">
+                    
+                    <div style="text-align: center;">
+                        <div style="background: #edf2f7; padding: 5px; border-radius: 4px; font-size: 0.8rem;">Pan</div>
+                        <p style="font-size: 0.7rem; color: #718096; font-weight: bold;">(Parámetro)</p>
+                    </div>
+
+                    <div style="font-size: 1.5rem;">➡️</div>
+
+                    <div style="background: #6b46c1; color: white; padding: 15px; border-radius: 8px; width: 120px; text-align: center; position: relative;">
+                        <div style="font-family: 'Fira Code'; font-size: 0.8rem;">def tostar(x):</div>
+                        <div style="margin-top: 5px; font-size: 0.7rem;">calentar(x)</div>
+                        <div style="position: absolute; top: -10px; right: -10px; background: #f6ad55; color: #2d3748; padding: 2px 6px; border-radius: 10px; font-size: 0.6rem; font-weight: bold;">Caja Negra</div>
+                    </div>
+
+                    <div style="font-size: 1.5rem;">➡️</div>
+
+                    <div style="text-align: center;">
+                        <div style="background: #f6ad55; padding: 5px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Tostada</div>
+                        <p style="font-size: 0.7rem; color: #718096; font-weight: bold;">(Return)</p>
+                    </div>
+
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 15px;">Tú no necesitas saber cómo funcionan los cables dentro de la tostadora. Solo necesitas saber qué meterle y qué sale.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Lo que pasa en Las Vegas... (Scope)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Variables Locales vs Globales</h5>
+                    <p>Si creas una variable DENTRO de una función, ¿existe afuera?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Regla</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>NO. Es una variable LOCAL.</strong></p>
+                        <p>Nace cuando la función arranca y muere cuando la función termina. "Lo que pasa en la función, se queda en la función".</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>El error de "None"</h5>
+                    <p>Si tu función no tiene <code>return</code>, ¿qué devuelve?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Devuelve "None" (Nada).</strong> La tostadora hizo ruido, pero no sacó pan. Siempre recuerda poner <code>return</code> si necesitas el resultado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🏭 <strong>Misión del Día:</strong> Escribe en papel una función llamada <code>calcular_promedio(calif1, calif2, calif3)</code> que devuelva el resultado final.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 31 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

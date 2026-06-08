@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S29: Inclusión y Edición de Mapas de Bits</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 29: Inclusión y Edición de Mapas de Bits</h1>
+
+    <section>
+        <h2>1. Importar Mapas de Bits (Raster)</h2>
+        
+        <p>Los archivos vectoriales de Inkscape (SVG) pueden contener imágenes de píxeles (JPG, PNG). Es crucial saber cómo gestionarlas para mantener la portabilidad del archivo.</p>
+        <div class="paso">
+            <strong>Paso 1: Importación (Ctrl + I)</strong>
+            <p>Ve a <code>Archivo > Importar (Ctrl + I)</code> y selecciona tu imagen.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Enlazar vs. Incrustar</strong>
+            <p>Al importar, Inkscape te preguntará si deseas **Enlazar** (Link) o **Incrustar** (Embed).</p>
+            <ul>
+                <li>**Enlazar:** El SVG solo guarda la referencia a la ubicación del archivo. El SVG es más pequeño, pero la imagen debe estar siempre en la misma carpeta si mueves el archivo.</li>
+                <li>**Incrustar:** El SVG guarda la información de los píxeles dentro del propio archivo SVG. Esto aumenta el tamaño del SVG, pero lo hace independiente y portátil. **Se recomienda Incrustar** para proyectos finales.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Máscaras y Recortes (Clipping and Masking)</h2>
+        <p>Estas son técnicas esenciales para usar una forma vectorial y "recortar" una imagen de mapa de bits dentro de sus límites.</p>
+        <div class="paso">
+            <strong>Paso 1: Preparar Objetos</strong>
+            <p>Coloca la imagen de mapa de bits en el lienzo. Dibuja una forma vectorial (ej. un círculo, una estrella) **por encima** de la imagen, con la forma exacta que quieres que tenga el recorte.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Aplicar Recorte (Clip)</strong>
+            <p>Selecciona **ambos objetos** (primero la imagen, luego la forma de corte, o viceversa, asegurándote que la forma de corte esté arriba). Ve a <code>Objeto > Recorte > Aplicar Recorte (Set Clip)</code>. La imagen ahora solo será visible dentro de los límites de la forma vectorial.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Liberar el Recorte</strong>
+            <p>Para deshacer el recorte, selecciona el objeto recortado y ve a <code>Objeto > Recorte > Liberar Recorte (Release Clip)</code>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Filtros en Mapa de Bits</h2>
+        <p>Inkscape tiene una galería de filtros que se pueden aplicar tanto a vectores como a mapas de bits para darles efectos especiales.</p>
+        <div class="paso">
+            <strong>Aplicación de Filtros</strong>
+            <p>Selecciona la imagen de mapa de bits. Ve al menú **Filtros**. Explora las categorías (ej. Desenfoque, Distorsión). Aplica un filtro, como **Filtros > Desenfoques > Desenfoque Gaussiano**. Este desenfoque se aplica en tiempo real y es editable.</p>
+        </div>
+        <div class="paso">
+            <strong>Mezcla Vectorial/Raster</strong>
+            <p>Combina esto con la opacidad. Por ejemplo, usa un rectángulo con un **Degradado Radial** de color blanco a transparente, colócalo sobre la imagen, y reduce la opacidad del rectángulo. Esto crea un efecto de luz o viñeta sobre la imagen.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Foto de Perfil Circular</h3>
+        <p><strong>Objetivo:</strong> Usar recorte y efectos en una imagen.</p>
+        <ol>
+            <li>Importa una foto de perfil (o cualquier foto) en el lienzo. **Incrústala.**</li>
+            <li>Dibuja un círculo perfecto sobre la cara de la persona.</li>
+            <li>Selecciona la imagen y el círculo. Aplica **Recorte > Aplicar Recorte**.</li>
+            <li>Con el objeto recortado seleccionado, ve a **Filtros > Color > Duotono** (o algún otro filtro de color) para estilizar la imagen.</li>
+            <li>Añade un círculo concéntrico más grande detrás del recorte (Orden Z) para crear un borde decorativo.</li>
+        </ol>
+    </div>
+
+</body>
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion28.html">Anterior</a>
+    <a href="sesion30.html">Siguiente</a>
+</nav>
+</html>

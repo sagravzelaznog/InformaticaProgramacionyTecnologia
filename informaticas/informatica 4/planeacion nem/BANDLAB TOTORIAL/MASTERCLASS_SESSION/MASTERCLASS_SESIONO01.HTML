@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 01: El Lienzo Sonoro y Fundamentos del Ritmo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="no-print">
+        <div class="header-content">
+            <h1>Masterclass 1: El Lienzo Sonoro</h1>
+            <h2>Fundamentos del Ritmo en BandLab</h2>
+            <p class="objective"><strong>Objetivo:</strong> Dominar la interfaz del Mix Editor y construir tu primera base rítmica y armónica utilizando material preexistente.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="teoria" class="card no-print">
+            <h3>1. Navegación y Gestión del Tiempo</h3>
+            <p>El miedo al "lienzo en blanco" desaparece cuando entiendes tus herramientas. BandLab es un estudio completo en tu navegador. </p>
+            <ul class="features-list">
+                <li><strong>Mix Editor:</strong> Tu área principal. Aquí se apilan las pistas (Tracks) de audio y MIDI.</li>
+                <li><strong>Controles de Transporte:</strong> Play, Pause, Record. La barra superior es el cerebro de tu reproducción.</li>
+                <li><strong>BPM y Metrónomo:</strong> Los <em>Beats Per Minute</em> definen la velocidad de tu canción. El metrónomo es tu guía auditiva para mantener el tiempo perfecto.</li>
+            </ul>
+        </section>
+
+        <section id="ejercicio" class="card no-print">
+            <h3>2. Entregable Práctico: Tu Primer Beat</h3>
+            <p>Construye un boceto instrumental de 30 a 60 segundos siguiendo estos pasos:</p>
+            <div class="steps-container">
+                <div class="step">
+                    <h4>Paso 1: BandLab Sounds</h4>
+                    <p>Abre el panel derecho y selecciona <strong>"Sounds"</strong>. Filtra por "Loops" y busca un ritmo de batería (Drum Beat) que te inspire. </p>
+                </div>
+                <div class="step">
+                    <h4>Paso 2: Arrastrar y Soltar</h4>
+                    <p>Arrastra el loop hacia el Mix Editor. BandLab ajustará automáticamente el proyecto al BPM de ese loop para que todo suene sincronizado.</p>
+                </div>
+                <div class="step">
+                    <h4>Paso 3: Snap to Grid (Imán)</h4>
+                    <p>Asegúrate de que la función "Snap" (el ícono del imán) esté activada. Esto asegura que al mover, copiar o pegar tus loops, estos encajen perfectamente en los tiempos musicales (1, 2, 3, 4).</p>
+                </div>
+                <div class="step">
+                    <h4>Paso 4: Edición Básica (Slice)</h4>
+                    <p>Usa la herramienta <strong>Slice (Dividir)</strong> seleccionando una región y presionando la tecla "S". Borra la mitad de un loop para crear variaciones o silencios estratégicos (Drops).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="card quiz-card">
+            <div class="print-header only-print">
+                <h2>Masterclass 1: Resultados de Evaluación</h2>
+                <p>Módulo: BandLab - El Lienzo Sonoro y Fundamentos del Ritmo</p>
+                <hr>
+            </div>
+            
+            <h3 class="no-print">3. Reto de Producción Musical</h3>
+            <p class="no-print">Demuestra tu conocimiento de la interfaz. Piensa rápido, el ritmo no espera.</p>
+            
+            <div id="quiz-container" class="no-print">
+                <div class="progress-bar"><div id="progress"></div></div>
+                <h4 id="question-text">Pregunta...</h4>
+                <div id="answers-grid">
+                    </div>
+                <div id="feedback-message" class="hidden"></div>
+            </div>
+            
+            <div id="results-container" class="hidden">
+                <h4 id="score-text"></h4>
+                <div id="print-review" class="only-print">
+                    </div>
+                <div class="action-buttons no-print">
+                    <button id="restart-btn" class="btn-primary" onclick="initQuiz()">Reintentar Reto</button>
+                    <button id="print-btn" class="btn-secondary" onclick="window.print()">Imprimir PDF (Max 2 Hojas)</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>copyright &copy;JMGV-PTEL-2026. masterclass sesion 01 aprendiendo BandLab. Todos los derechos reservados</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

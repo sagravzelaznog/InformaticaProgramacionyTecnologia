@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S12: Vectorización de Mapas de Bits</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 12: Vectorización de Mapas de Bits (Trazar Mapa de Bits)</h1>
+
+    <section>
+        <h2>1. Importar y Preparar la Imagen</h2>
+        
+        <p>La **Vectorización** (o rastreo) es el proceso automático de convertir una imagen de píxeles (JPG, PNG) en un trayecto vectorial. Inkscape lo hace con la función **Trazar Mapa de Bits**.</p>
+        <div class="paso">
+            <strong>Paso 1: Importar la Imagen</strong>
+            <p>Ve a <code>Archivo > Importar (Ctrl + I)</code>. Se recomienda usar imágenes simples, en blanco y negro, o con pocos colores para mejores resultados.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Abrir el Diálogo de Trazado</strong>
+            <p>Selecciona la imagen importada. Ve a <code>Trayecto > Trazar Mapa de Bits... (Shift + Alt + B)</code>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Modos de Trazado Simple (Monocromático)</h2>
+        <p>Este es el método más rápido, ideal para logotipos, firmas o cualquier gráfico en blanco y negro.</p>
+        <div class="paso">
+            <strong>Paso 1: Seleccionar el Modo de Corte</strong>
+            <p>En la pestaña **Modo**, selecciona **Cortes de Luminosidad (Brightness Cutoff)**. Es el más común y se basa en el brillo de los píxeles.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Ajustar el Umbral (Threshold)</strong>
+            <p>El **Umbral** (Threshold) determina en qué punto (de 0.0 a 1.0) Inkscape divide el blanco y el negro. Sube o baja el valor y haz clic en **Actualizar** para ver el resultado en la vista previa. Un valor más bajo mantiene el detalle negro.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Opciones de Optimización</strong>
+            <p>Marca la casilla **Suavizar** (Smooth) para reducir la cantidad de nodos y crear bordes más limpios.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Modos de Trazado Múltiple (Color)</h2>
+        <p>Para imágenes con varios colores, usamos el rastreo de múltiples pasadas.</p>
+        <div class="paso">
+            <strong>Paso 1: Seleccionar Color o Gris</strong>
+            <p>En la pestaña **Modo**, selecciona **Múltiples Pasadas > Cuantización de color** o **Múltiples Pasadas > Grises**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Definir el Número de Pasadas/Colores</strong>
+            <p>Aumenta o disminuye el valor **Pasadas** (Scans). Este número define cuántas capas de color separadas creará Inkscape. Más pasadas = más detalle y colores, pero más nodos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Terminar el Proceso</strong>
+            <p>Una vez que el resultado en la vista previa te satisfaga, haz clic en **Aplicar**. El nuevo objeto vectorial aparecerá directamente sobre la imagen de píxeles original. Mueve el vector y elimina la imagen de píxeles.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Vectorizar un Logotipo</h3>
+        <p><strong>Objetivo:</strong> Convertir una imagen de píxeles en un vector limpio.</p>
+        <ol>
+            <li>Busca en Google una imagen simple en blanco y negro (ej. el símbolo de reciclaje o un icono simple).</li>
+            <li>Impórtala a Inkscape (Ctrl + I).</li>
+            <li>Abre el diálogo Trazar Mapa de Bits (Shift + Alt + B).</li>
+            <li>Usa el modo **Cortes de Luminosidad**. Ajusta el Umbral hasta que el trazado se vea limpio.</li>
+            <li>Aplica el trazado. Selecciona el nuevo vector, asígnale un color diferente y elimina la imagen original.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion11.html">Anterior</a>
+    <a href="sesion13.html">Siguiente</a>
+</nav>
+</body>
+</html>

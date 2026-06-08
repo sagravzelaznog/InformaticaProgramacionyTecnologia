@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 4: Textos y acotación</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 4: Textos y acotación</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 13 -->
+        <div id="sesion13" class="session">
+            <h2>Sesión 13: Introducción a los textos</h2>
+            <div class="content">
+                <p>En esta sesión aprenderemos a trabajar con textos en AutoCAD, desde la creación hasta el formateo avanzado.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear y editar textos de una línea</li>
+                        <li>Configurar estilos de texto</li>
+                        <li>Importar y exportar textos</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Texto de una línea (TEXTO)</strong>
+                        <ul>
+                            <li>Comando <span class="command">TEXT</span>
+                                <ul>
+                                    <li>Punto de inserción</li>
+                                    <li>Altura del texto</n                                    <li>Ángulo de rotación</li>
+                                    <li>Justificación</li>
+                                </ul>
+                            </li>
+                            <li>Edición de texto de una línea</li>
+                            <li>Propiedades de texto</li>
+                        </ul>
+                    </li>
+                    <li><strong>Texto multilínea (MTEXTO)</strong>
+                        <ul>
+                            <li>Comando <span class="command">MTEXT</span>
+                                <ul>
+                                    <li>Área de texto</li>
+                                    <li>Formato de párrafo</li>
+                                    <li>Estilos de fuente</li>
+                                    <li>Listas y viñetas</li>
+                                </ul>
+                            </li>
+                            <li>Editor de texto enriquecido</li>
+                            <li>Importar texto desde archivo</li>
+                        </ul>
+                    </li>
+                    <li><strong>Estilos de texto</strong>
+                        <ul>
+                            <li>Comando <span class="command">STYLE</span>
+                                <ul>
+                                    <li>Fuentes TrueType y SHX</li>
+                                    <li>Altura y ancho</li>
+                                    <li>Efectos de texto</li>
+                                </ul>
+                            </li>
+                            <li>Crear y modificar estilos</li>
+                            <li>Estilos anotativos</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <p>Crea un documento técnico que incluya:</p>
+                    <ul>
+                        <li>Un título principal con fuente Arial, tamaño 5, negrita</li>
+                        <li>Subtítulos con fuente Arial, tamaño 3.5, negrita</li>
+                        <li>Párrafos de texto con fuente Arial, tamaño 2.5</li>
+                        <li>Una lista numerada con especificaciones técnicas</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">SPELL</span> para revisar la ortografía de tus textos en AutoCAD.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominio de Textos en AutoCAD</h3>
+                    <p><strong>Objetivo:</strong> Aprender a crear, editar y formatear textos en dibujos técnicos.</p>
+                    
+                    <h4>Parte 1: Textos Básicos (40 min)</h4>
+                    <ol>
+                        <li><strong>Texto de una línea</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en milímetros</li>
+                                <li>Usa el comando <span class="command">TEXT</span> para añadir:
+                                    <ul>
+                                        <li>Título principal (altura 5mm, justificado al centro)</li>
+                                        <li>Subtítulos (altura 3.5mm, justificados a la izquierda)</li>
+                                        <li>Notas técnicas (altura 2.5mm)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Texto multilínea</strong>
+                            <ul>
+                                <li>Crea un cuadro de texto con el comando <span class="command">MTEXT</span></li>
+                                <li>Experimenta con diferentes formatos:
+                                    <ul>
+                                        <li>Negritas, cursivas y subrayados</li>
+                                        <li>Listas con viñetas y numeración</li>
+                                        <li>Columnas de texto</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Estilos de Texto (35 min)</h4>
+                    <ol>
+                        <li><strong>Creación de estilos</strong>
+                            <ul>
+                                <li>Usa el comando <span class="command">STYLE</span> para crear tres estilos:
+                                    <ul>
+                                        <li>Título: Arial, 5mm, Negrita</li>
+                                        <li>Subtítulo: Arial, 3.5mm, Negrita</li>
+                                        <li>Cuerpo: Arial, 2.5mm, Normal</li>
+                                    </ul>
+                                </li>
+                                <li>Asigna estos estilos a los textos creados anteriormente</li>
+                            </ul>
+                        </li>
+                        <li><strong>Importación de texto</strong>
+                            <ul>
+                                <li>Prepara un archivo .txt con información técnica</li>
+                                <li>Importa el texto a AutoCAD usando <span class="command">MTEXT</span></li>
+                                <li>Aplica formato al texto importado</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Ficha Técnica de Producto</h3>
+                    <p><strong>Duración:</strong> 60 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear una ficha técnica profesional utilizando diferentes estilos de texto.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Configuración (10 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en centímetros</li>
+                                <li>Configura tres estilos de texto:
+                                    <ul>
+                                        <li>Encabezado: Arial Black, 1cm</li>
+                                        <li>Subtítulo: Arial, 0.6cm, Negrita</li>
+                                        <li>Cuerpo: Arial, 0.4cm</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Diseño (35 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja el marco y el encabezado de la ficha técnica</li>
+                                <li>Agrega la siguiente información:
+                                    <ul>
+                                        <li>Nombre del producto (usando estilo Encabezado)</li>
+                                        <li>Especificaciones técnicas (usando estilo Subtítulo y Cuerpo)</li>
+                                        <li>Tabla de dimensiones</li>
+                                        <li>Instrucciones de uso</li>
+                                        <li>Precauciones de seguridad</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><strong>Revisión (15 min)</strong>
+                            <ol type="a">
+                                <li>Revisa la ortografía con <span class="command">SPELL</span></li>
+                                <li>Ajusta la alineación y espaciado</li>
+                                <li>Guarda como "Ficha_Tecnica_Sesion13.dwg"</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Tarea: Manual de Usuario Técnico</h3>
+                    <p><strong>Fecha de entrega:</strong> 4 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un manual técnico profesional utilizando las herramientas de texto de AutoCAD.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Investigación (1.5 horas)</strong>
+                            <ul>
+                                <li>Selecciona un dispositivo o herramienta técnica</li>
+                                <li>Recopila información sobre sus especificaciones y uso</li>
+                                <li>Prepara los diagramas necesarios</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (4 horas)</strong>
+                            <ol type="a">
+                                <li>Crea un documento en AutoCAD con:
+                                    <ul>
+                                        <li>Portada con título e imagen</li>
+                                        <li>Índice con hipervínculos</li>
+                                        <li>Secciones con títulos y subtítulos jerárquicos</li>
+                                        <li>Tablas de especificaciones</li>
+                                        <li>Diagramas con etiquetas</li>
+                                    </ul>
+                                </li>
+                                <li>Utiliza al menos tres estilos de texto diferentes</li>
+                                <li>Incorpora al menos una tabla de datos</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (1 hora)</strong>
+                            <ul>
+                                <li>Prepara una presentación de 5 minutos</li>
+                                <li>Explica tus decisiones de diseño</li>
+                                <li>Muestra cómo aplicaste los conceptos aprendidos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Requisitos de entrega:</strong></p>
+                    <ul>
+                        <li>Archivo .dwg del manual</li>
+                        <li>Archivo PDF del manual (usando la función PLOT)</li>
+                        <li>Presentación en PowerPoint (máx. 10 diapositivas)</li>
+                        <li>Documento con las fuentes de investigación</li>
+                    </ul>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio de Herramientas (40 puntos)</strong></p>
+                    <ul>
+                        <li>Uso correcto de estilos de texto (15pts)</li>
+                        <li>Formato y presentación (10pts)</li>
+                        <li>Uso de tablas y listas (10pts)</li>
+                        <li>Corrección ortográfica (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (40 puntos)</strong></p>
+                    <ul>
+                        <li>Claridad y organización (15pts)</li>
+                        <li>Precisión técnica (15pts)</li>
+                        <li>Creatividad y diseño (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Participación (20 puntos)</strong></p>
+                    <ul>
+                        <li>Colaboración en equipo (10pts)</li>
+                        <li>Puntualidad en la entrega (5pts)</li>
+                        <li>Presentación oral (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 14 -->
+        <div id="sesion14" class="session">
+            <h2>Sesión 14: Trabajo avanzado con textos</h2>
+            <div class="content">
+                <p>Profundizaremos en el uso avanzado de textos y su integración con otros elementos del dibujo.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear campos de texto</li>
+                        <li>Trabajar con tablas</li>
+                        <li>Usar estilos de texto anotativos</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Campos de texto</strong>
+                        <ul>
+                            <li>Insertar campos
+                                <ul>
+                                    <li>Propiedades de objeto</li>
+                                    <li>Fecha y hora</li>
+                                    <li>Variables de dibujo</li>
+                                    <li>Fórmulas</li>
+                                </ul>
+                            </li>
+                            <li>Actualizar campos</li>
+                            <li>Formato de campos</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tablas</strong>
+                        <ul>
+                            <li>Crear tablas
+                                <ul>
+                                    <li>Desde estilo de tabla</li>
+                                    <li>Desde datos vinculados</li>
+                                </ul>
+                            </li>
+                            <li>Modificar tablas
+                                <ul>
+                                    <li>Insertar/eliminar filas y columnas</li>
+                                    <li>Ajustar tamaño de celdas</li>
+                                    <li>Combinar celdas</li>
+                                </ul>
+                            </li>
+                            <li>Estilos de tabla</li>
+                            <li>Fórmulas en tablas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Texto anotativo</strong>
+                        <ul>
+                            <li>Concepto de anotación</li>
+                            <li>Configuración de escalas anotativas</li>
+                            <li>Crear objetos anotativos</li>
+                            <li>Escalas de anotación</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <p>Crea una tabla de especificaciones técnicas que incluya:</p>
+                    <ul>
+                        <li>Encabezados con formato especial</li>
+                        <li>Campos calculados (áreas, longitudes)</li>
+                        <li>Fórmulas para cálculos automáticos</li>
+                        <li>Escala anotativa para diferentes ventanas gráficas</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">TABLESTYLE</span> para crear estilos de tabla consistentes en tus dibujos.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Tablas y Campos Avanzados</h3>
+                    <p><strong>Objetivo:</strong> Dominar el uso de tablas, campos y texto anotativo en documentos técnicos.</p>
+                    
+                    <h4>Parte 1: Campos de Texto (30 min)</h4>
+                    <ol>
+                        <li><strong>Campos de información del dibujo</strong>
+                            <ul>
+                                <li>Crea un bloque de título con los siguientes campos:
+                                    <ul>
+                                        <li>Nombre del archivo</li>
+                                        <li>Fecha de última modificación</li>
+                                        <li>Escala actual</li>
+                                        <li>Número de revisión</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Fórmulas en campos</strong>
+                            <ul>
+                                <li>Crea un bloque de cálculo de áreas que:
+                                    <ul>
+                                        <li>Muestre el área total de un espacio</li>
+                                        <li>Calcule el área construida vs área libre</li>
+                                        <li>Actualice automáticamente al modificar el dibujo</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Tablas Avanzadas (45 min)</h4>
+                    <ol>
+                        <li><strong>Creación de tabla de especificaciones</strong>
+                            <ul>
+                                <li>Diseña una tabla con:
+                                    <ul>
+                                        <li>Encabezados con formato especial</li>
+                                        <li>Filas agrupadas</li>
+                                        <li>Celdas combinadas</li>
+                                        <li>Fórmulas de cálculo</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Vinculación con Excel</strong>
+                            <ul>
+                                <li>Importa datos desde un archivo de Excel</li>
+                                <li>Configura la actualización de datos vinculados</li>
+                                <li>Exporta la tabla a Excel</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Plano de Instalaciones con Anotaciones</h3>
+                    <p><strong>Duración:</strong> 70 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear un plano de instalaciones con anotaciones avanzadas.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Configuración (15 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en metros</li>
+                                <li>Configura estilos de texto anotativos</li>
+                                <li>Define escalas de anotación para:
+                                    <ul>
+                                        <li>Planta general (1:100)</li>
+                                        <li>Detalles constructivos (1:20)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (40 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja la planta de un espacio con instalaciones</li>
+                                <li>Agrega anotaciones con texto anotativo</li>
+                                <li>Incluye una tabla de especificaciones</li>
+                                <li>Agrega campos dinámicos para:
+                                    <ul>
+                                        <li>Áreas de ambientes</li>
+                                        <li>Fechas de actualización</li>
+                                        <li>Escalas de visualización</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (15 min)</strong>
+                            <ol type="a">
+                                <li>Prepara dos ventanas gráficas con diferentes escalas</li>
+                                <li>Verifica que las anotaciones se ajusten correctamente</li>
+                                <li>Exporta a PDF con las escalas correctas</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Documentación Técnica con Tablas Dinámicas</h3>
+                    <p><strong>Fecha de entrega:</strong> 5 días después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un conjunto de planos con documentación técnica avanzada.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Planos Técnicos</strong>
+                            <ul>
+                                <li>Planta arquitectónica con anotaciones</li>
+                                <li>Tabla de acabados</li>
+                                <li>Planilla de puertas y ventanas</li>
+                                <li>Memoria descriptiva con campos dinámicos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Elementos Requeridos</strong>
+                            <ul>
+                                <li>Mínimo 3 estilos de tabla diferentes</li>
+                                <li>Campos vinculados a propiedades del dibujo</li>
+                                <li>Texto anotativo en múltiples escalas</li>
+                                <li>Fórmulas en tablas para cálculos automáticos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Entrega</strong>
+                            <ul>
+                                <li>Archivo .dwg con todas las referencias</li>
+                                <li>PDF del conjunto de planos</li>
+                                <li>Presentación de 10 min explicando las soluciones implementadas</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Uso correcto de campos (15pts)</li>
+                        <li>Configuración de tablas (15pts)</li>
+                        <li>Texto anotativo (10pts)</li>
+                        <li>Fórmulas y cálculos (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión técnica (10pts)</li>
+                        <li>Organización de la información (10pts)</li>
+                        <li>Presentación visual (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong></p>
+                    <ul>
+                        <li>Utilidad de las soluciones implementadas (10pts)</li>
+                        <li>Eficiencia en el flujo de trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente</li>
+                        <li>80-89 puntos: Muy bueno</li>
+                        <li>70-79 puntos: Bueno</li>
+                        <li>60-69 puntos: Suficiente</li>
+                        <li>0-59 puntos: Insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 15 -->
+        <div id="sesion15" class="session">
+            <h2>Sesión 15: Introducción a la acotación</h2>
+            <div class="content">
+                <p>Fundamentos de la acotación en AutoCAD, desde conceptos básicos hasta técnicas avanzadas.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear cotas lineales, alineadas y angulares</li>
+                        <li>Configurar estilos de cota</li>
+                        <li>Modificar cotas existentes</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Tipos de cotas</strong>
+                        <ul>
+                            <li>Lineales
+                                <ul>
+                                    <li>Horizontal</li>
+                                    <li>Vertical</li>
+                                    <li>Rotadas</li>
+                                </ul>
+                            </li>
+                            <li>Alineadas</li>
+                            <li>Angulares</li>
+                            <li>Radiales y diámetros</li>
+                            <li>De radio con chaflán</li>
+                        </ul>
+                    </li>
+                    <li><strong>Estilos de cota</strong>
+                        <ul>
+                            <li>Comando <span class="command">DIMSTYLE</span>
+                                <ul>
+                                    <li>Líneas y flechas</li>
+                                    <li>Texto</li>
+                                    <li>Ajustes</li>
+                                    <li>Unidades alternativas</li>
+                                    <li>Estilos anotativos</li>
+                                </ul>
+                            </li>
+                            <li>Crear y modificar estilos</li>
+                            <li>Importar/exportar estilos</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modificación de cotas</strong>
+                        <ul>
+                            <li>Editar texto de cota</li>
+                            <li>Estirar cotas</li>
+                            <li>Actualizar cotas</li>
+                            <li>Espaciado de cotas</li>
+                            <li>Romper líneas de cota</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <p>Crea un plano técnico que incluya:</p>
+                    <ul>
+                        <li>Diferentes tipos de cotas (lineales, alineadas, angulares)</li>
+                        <li>Estilos de cota personalizados para diferentes escalas</li>
+                        <li>Acotación de elementos circulares y angulares</li>
+                        <li>Texto de cota personalizado donde sea necesario</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">DIMSPACE</span> para distribuir uniformemente las cotas paralelas.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominio de la Acotación</h3>
+                    <p><strong>Objetivo:</strong> Aprender a crear y modificar cotas profesionales en dibujos técnicos.</p>
+                    
+                    <h4>Parte 1: Cotas Básicas (40 min)</h4>
+                    <ol>
+                        <li><strong>Configuración inicial</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en milímetros</li>
+                                <li>Configura un estilo de cota llamado "TÉCNICA" con:
+                                    <ul>
+                                        <li>Texto: Arial Narrow, altura 2.5</li>
+                                        <li>Flechas: Arquitectónicas, tamaño 2.5</li>
+                                        <li>Líneas de cota: 0.5mm de desplazamiento</li>
+                                        <li>Precisión: 0 decimales</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Práctica de cotas</strong>
+                            <ol type="a">
+                                <li>Dibuja un rectángulo de 150x100mm</li>
+                                <li>Agrega cotas lineales horizontales y verticales</li>
+                                <li>Dibuja un triángulo equilátero de 80mm por lado</li>
+                                <li>Agrega cotas angulares y alineadas</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Cotas Avanzadas (50 min)</h4>
+                    <ol>
+                        <li><strong>Cotas especiales</strong>
+                            <ul>
+                                <li>Dibuja un círculo de 60mm de diámetro</li>
+                                <li>Agrega cotas de diámetro y radio</li>
+                                <li>Crea una línea de 100mm con ángulo de 30°</li>
+                                <li>Agrega una cota de ángulo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modificación de cotas</strong>
+                            <ul>
+                                <li>Usa <span class="command">DIMEDIT</span> para modificar texto</li>
+                                <li>Prueba <span class="command">DIMTEDIT</span> para reposicionar texto</li>
+                                <li>Experimenta con <span class="command">DIMBREAK</span> y <span class="command">DIMSPACE</span></li>
+                                <li>Actualiza estilos de cota y observa los cambios</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Plano de Mueble con Acotación Completa</h3>
+                    <p><strong>Duración:</strong> 80 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear un plano técnico completo de un mueble con acotación profesional.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Preparación (15 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en centímetros</li>
+                                <li>Configura dos estilos de cota:
+                                    <ul>
+                                        <li>PRINCIPAL: Para cotas generales</li>
+                                        <li>DETALLE: Para cotas de detalle (más pequeñas)</li>
+                                    </ul>
+                                </li>
+                                <li>Establece capas para diferentes tipos de líneas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (50 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja las vistas principales del mueble (planta, alzado, perfil)</li>
+                                <li>Agrega todas las cotas necesarias siguiendo normas técnicas</li>
+                                <li>Incluye cotas generales, de detalle y auxiliares</li>
+                                <li>Asegúrate de que no haya superposición de cotas</li>
+                                <li>Agrega una cota de nivel de referencia</li>
+                            </ol>
+                        </li>
+                        <li><strong>Revisión (15 min)</strong>
+                            <ol type="a">
+                                <li>Verifica que todas las cotas sean claras y legibles</li>
+                                <li>Ajusta el espaciado entre cotas paralelas</li>
+                                <li>Exporta a PDF con las escalas correctas</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Planos Técnicos con Acotación Profesional</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un conjunto de planos técnicos con acotación profesional.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Planos Requeridos</strong>
+                            <ul>
+                                <li>Planta de distribución con cotas generales</li>
+                                <li>Vistas ortogonales con cotas detalladas</li>
+                                <li>Detalles constructivos con acotación específica</li>
+                                <li>Tabla de superficies y áreas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Elementos Técnicos</strong>
+                            <ul>
+                                <li>Mínimo 3 estilos de cota diferentes</li>
+                                <li>Uso de cotas continuas y en cadena</li>
+                                <li>Acotación de elementos circulares y angulares</li>
+                                <li>Notas técnicas explicativas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Entrega</strong>
+                            <ul>
+                                <li>Archivo .dwg con todas las referencias</li>
+                                <li>PDF del conjunto de planos</li>
+                                <li>Memoria descriptiva explicando las decisiones de acotación</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Uso correcto de tipos de cotas (15pts)</li>
+                        <li>Configuración de estilos de cota (15pts)</li>
+                        <li>Modificación y actualización de cotas (10pts)</li>
+                        <li>Organización de la información (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en las medidas (10pts)</li>
+                        <li>Claridad y legibilidad (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong>
+                    <ul>
+                        <li>Cumplimiento de normas técnicas (10pts)</li>
+                        <li>Eficiencia en el flujo de trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de la acotación</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 16 -->
+        <div id="sesion16" class="session">
+            <h2>Sesión 16: Acotación avanzada</h2>
+            <div class="content">
+                <p>Técnicas avanzadas de acotación para proyectos profesionales.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear cotas rápidas y múltiples</li>
+                        <li>Trabajar con cotas anotativas</li>
+                        <li>Usar herramientas de acotación avanzada</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Acotación rápida</strong>
+                        <ul>
+                            <li>Comando <span class="command">QDIM</span>
+                                <ul>
+                                    <li>Acotación continua</li>
+                                    <li>Acotación en paralelo</li>
+                                    <li>Acotación de radio/diámetro</li>
+                                    <li>Acotación de coordenadas</li>
+                                </ul>
+                            </li>
+                            <li>Edición de cotas rápidas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Acotación anotativa</strong>
+                        <ul>
+                            <li>Configuración de escalas</li>
+                            <li>Estilos anotativos</li>
+                            <li>Agregar/eliminar escalas</li>
+                            <li>Sincronizar escalas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Herramientas avanzadas</strong>
+                        <ul>
+                            <li>Acotación de coordenadas</li>
+                            <li>Líneas de centro y marcas</li>
+                            <li>Tolerancias geométricas</li>
+                            <li>Acotación con referencias a objetos</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Ejercicio práctico:</h3>
+                <div class="exercise">
+                    <p>Crea un plano técnico avanzado que incluya:</p>
+                    <ul>
+                        <li>Acotación rápida de múltiples elementos</li>
+                        <li>Estilos de cota para diferentes escalas (1:50, 1:100)</li>
+                        <li>Tolerancias geométricas</li>
+                        <li>Notas técnicas con campos vinculados</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">DIMREASSOCIATE</span> para volver a asociar cotas a objetos después de modificarlos.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominio de la Acotación Avanzada</h3>
+                    <p><strong>Objetivo:</strong> Aplicar técnicas avanzadas de acotación en proyectos profesionales.</p>
+                    
+                    <h4>Parte 1: Acotación Rápida (45 min)</h4>
+                    <ol>
+                        <li><strong>Configuración inicial</strong>
+                            <ul>
+                                <li>Abre un dibujo con elementos arquitectónicos</li>
+                                <li>Crea un nuevo estilo de cota "AVANZADA" con:
+                                    <ul>
+                                        <li>Texto: Arial, altura 2.0, color rojo</li>
+                                        <li>Líneas: Color azul, grosor 0.25mm</li>
+                                        <li>Flechas: Punto cerrado, tamaño 2.0</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Práctica con QDIM</strong>
+                            <ol type="a">
+                                <li>Usa <span class="command">QDIM</span> para acotar múltiples elementos</li>
+                                <li>Prueba los diferentes modos: Continuo, Paralelo, Radio/Diámetro</li>
+                                <li>Edita las cotas generadas con <span class="command">DIMEDIT</span></li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Tolerancias Geométricas (45 min)</h4>
+                    <ol>
+                        <li><strong>Configuración de tolerancias</strong>
+                            <ul>
+                                <li>Crea un nuevo estilo de cota con tolerancias simétricas (±0.1)</li>
+                                <li>Configura un estilo de tolerancia geométrica</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ejercicio práctico</strong>
+                            <ol type="a">
+                                <li>Dibuja una pieza mecánica con medidas críticas</li>
+                                <li>Aplica tolerancias geométricas a características importantes</li>
+                                <li>Agrega marcas de centro y líneas auxiliares</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Plano Industrial con Acotación Avanzada</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un plano industrial con acotación avanzada y múltiples escalas.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Preparación (20 min)</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en milímetros</li>
+                                <li>Configura tres estilos de cota:
+                                    <ul>
+                                        <li>GENERAL: Para cotas principales</li>
+                                        <li>DETALLE: Para cotas de precisión</li>
+                                        <li>TOLERANCIA: Para características críticas</li>
+                                    </ul>
+                                </li>
+                                <li>Establece capas para diferentes tipos de cotas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (55 min)</strong>
+                            <ol type="a">
+                                <li>Dibuja las vistas principales de una pieza industrial</li>
+                                <li>Aplica cotas rápidas a elementos repetitivos</li>
+                                <li>Incluye una vista de sección con acotación detallada</li>
+                                <li>Agrega una tabla de tolerancias</li>
+                                <li>Configura escalas anotativas para diferentes ventanas gráficas</li>
+                            </ol>
+                        </li>
+                        <li><strong>Revisión (15 min)</strong>
+                            <ol type="a">
+                                <li>Verifica que todas las cotas sean claras y legibles</li>
+                                <li>Ajusta el espaciado entre cotas</li>
+                                <li>Exporta a PDF con las escalas correctas</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto Final: Documentación Técnica Completa</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear un conjunto completo de planos técnicos con acotación profesional.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Planos Requeridos</strong>
+                            <ul>
+                                <li>Planta general con acotación general</li>
+                                <li>Vistas detalladas con cotas de precisión</li>
+                                <li>Vista en explosión con lista de piezas</li>
+                                <li>Tabla de materiales y especificaciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Elementos Técnicos</strong>
+                            <ul>
+                                <li>Uso de múltiples estilos de cota</li>
+                                <li>Tolerancias geométricas en características críticas</li>
+                                <li>Acotación anotativa para diferentes escalas</li>
+                                <li>Notas técnicas con campos vinculados</li>
+                            </ul>
+                        </li>
+                        <li><strong>Entrega</strong>
+                            <ul>
+                                <li>Archivo .dwg con todas las referencias</li>
+                                <li>PDF del conjunto de planos</li>
+                                <li>Presentación de 10 minutos explicando las decisiones técnicas</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Uso de cotas rápidas (15pts)</li>
+                        <li>Configuración de tolerancias (15pts)</li>
+                        <li>Acotación anotativa (10pts)</li>
+                        <li>Organización de la información (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en las medidas (10pts)</li>
+                        <li>Claridad y legibilidad (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong>
+                    <ul>
+                        <li>Cumplimiento de normas técnicas (10pts)</li>
+                        <li>Eficiencia en el flujo de trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de la acotación avanzada</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica adicional</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos avanzados</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

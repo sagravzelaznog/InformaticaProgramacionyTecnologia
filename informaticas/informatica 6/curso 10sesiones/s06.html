@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Digital</title>
+    <link rel="stylesheet" href="s06.css">
+</head>
+<body>
+
+    <header>
+        <h1>Hola, soy [Tu Nombre]</h1>
+        <p>Bienvenido a mi primer portafolio web</p>
+        <button id="btn-tema">Cambiar a Modo Oscuro</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#proyectos">Mis Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="sobre-mi">
+            <h2>Sobre mí</h2>
+            <p>Soy estudiante de preparatoria y estoy aprendiendo a construir la web del futuro utilizando código limpio y tecnologías modernas.</p>
+        </section>
+
+        <section id="proyectos">
+            <h2>Mis Proyectos</h2>
+            <p>En esta sección mostraré los trabajos prácticos que desarrollaré a lo largo de este curso.</p>
+            
+            <div class="contenedor-proyectos" id="contenedor-proyectos">
+                
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contáctame</h2>
+            <p>¿Tienes alguna duda o quieres trabajar conmigo? Envíame un mensaje.</p>
+            
+            <form id="formulario-contacto">
+                <div class="grupo-formulario">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" placeholder="ejemplo@correo.com">
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                
+                <button type="submit" id="btn-enviar">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Creado con esfuerzo, código y mucha creatividad. 2026</p>
+    </footer>
+
+    <script src="s06.js"></script>
+</body>
+</html>

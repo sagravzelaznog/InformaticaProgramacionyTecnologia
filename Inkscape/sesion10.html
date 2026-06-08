@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S10: Operaciones Booleanas (Parte II)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 10: Trayectos y Operaciones Booleanas (Parte II)</h1>
+
+    <section>
+        <h2>1. División (Division)</h2>
+        
+        <p>La **División (Ctrl + /)** utiliza el objeto superior para cortar el objeto que se encuentra debajo en múltiples piezas. Ambos objetos originales desaparecen, dejando solo las piezas resultantes de la superposición.</p>
+        <div class="paso">
+            <strong>Ejemplo de Uso: Segmentación de Formas</strong>
+            <p>Dibuja un cuadrado y un círculo superpuestos. Aplica **División**. El resultado serán tres piezas separadas: las dos porciones del cuadrado cortadas por el círculo, y la porción del círculo que no tocaba el cuadrado (si aplica).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Exclusión (Exclusion) - El Anillo de Boda</h2>
+        <p>La **Exclusión (Ctrl + ^)** crea un resultado que es la **Unión** de los objetos, pero elimina el área de la superposición. Es el opuesto a la Intersección. El resultado adopta el estilo del objeto superior.</p>
+        <div class="paso">
+            <strong>Ejemplo de Uso: Anillo o Marco Hueco</strong>
+            <p>Dibuja dos círculos de tamaño similar que se superpongan un poco. Aplica **Exclusión**. El resultado es una forma única con un "agujero" en el centro donde se cruzaban. Perfecto para crear marcos o estructuras de anillos.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Cortar Trayecto (Cut Path) y Constructor de Formas</h2>
+        
+        <div class="paso">
+            <strong>Cortar Trayecto</strong>
+            <p>Utiliza un objeto superior (que puede ser solo una línea) para cortar un objeto inferior. El objeto inferior se divide en dos trayectos, siguiendo la línea del corte. El objeto superior (cuchillo) se elimina.</p>
+        </div>
+        <div class="paso">
+            <strong>Constructor de Formas (Shape Builder) - Novedad</strong>
+            <p>Aunque no es una booleana tradicional, la herramienta **Constructor de Formas (F4 en algunas versiones)** permite hacer clic y arrastrar sobre áreas superpuestas para unirlas o hacer Alt + clic para borrarlas. Ofrece una forma más interactiva de lograr las operaciones booleanas.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Una Cinta de Moño</h3>
+        <p><strong>Objetivo:</strong> Usar División y Exclusión.</p>
+        <ol>
+            <li>Dibuja dos círculos idénticos que se superpongan a la izquierda y a la derecha.</li>
+            <li>Selecciona ambos y aplica **Exclusión**. Esto crea el cuerpo central del moño.</li>
+            <li>Dibuja un rectángulo largo y delgado que cruce el moño (la cinta).</li>
+            <li>Selecciona el moño (el resultado de Exclusión) y el rectángulo (la cinta). Aplica **División**.</li>
+            <li>Ahora puedes seleccionar y mover cada pieza individualmente, dando un efecto tridimensional a la cinta que cruza el moño.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion09.html">Anterior</a>
+    <a href="sesion11.html">Siguiente</a>
+</nav>
+</body>
+</html>

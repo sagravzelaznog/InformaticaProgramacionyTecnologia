@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Lógicas en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .truth-table th, .truth-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .truth-table th {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones Lógicas en Excel</h1>
+            <p>Aprende a utilizar las funciones lógicas más útiles en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- FUNCIÓN SI -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('funcion-si')">
+                <h2>Función SI</h2>
+            </div>
+            <div class="function-content" id="funcion-si">
+                <p>Evalúa una condición y devuelve un valor si es verdadera y otro si es falsa.</p>
+                <p><strong>Sintaxis:</strong> <code>=SI(prueba_lógica, valor_si_verdadero, [valor_si_falso])</code></p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Aprobado/Reprobado</h4>
+                    <p>Si en A1 está la calificación de un estudiante (0-100):</p>
+                    <pre>=SI(A1>=70, "Aprobado", "Reprobado")</pre>
+                    <p>Si A1 es 85 → Resultado: "Aprobado"</p>
+                    <p>Si A1 es 65 → Resultado: "Reprobado"</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Descuento condicional</h4>
+                    <p>Si en A1 está el monto de compra y en B1 el tipo de cliente ("Premium" o "Regular"):</p>
+                    <pre>=SI(B1="Premium", A1*0.9, A1*0.95)</pre>
+                    <p>Clientes Premium obtienen 10% de descuento, otros obtienen 5%</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Categoría de edad</h4>
+                    <p>Datos: A1 = Edad de la persona</p>
+                    <p>Crea una fórmula que devuelva:</p>
+                    <ul>
+                        <li>"Niño" si la edad es menor a 13</li>
+                        <li>"Adolescente" si está entre 13 y 17</li>
+                        <li>"Adulto" si es 18 o más</li>
+                    </ul>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=SI(A1<13, "Niño", SI(A1<18, "Adolescente", "Adulto"))</pre>
+                        <p>Explicación: Se anidan funciones SI para manejar múltiples condiciones. Primero se verifica si es menor a 13, si no, se verifica si es menor a 18, y si no, se asume que es adulto.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Estado de inventario</h4>
+                    <p>Datos: A1 = Cantidad en inventario, B1 = Cantidad mínima requerida</p>
+                    <p>Si la cantidad en inventario es menor al 20% de la cantidad mínima, mostrar "Urgente". Si está entre 20% y 100% mostrar "Bajo". Si es igual o mayor mostrar "Suficiente".</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=SI(A1<(B1*0.2), "Urgente", SI(A1<(B1), "Bajo", "Suficiente"))</pre>
+                        <p>Explicación: Primero se verifica si es menor al 20% del mínimo. Si no, se verifica si es menor que el mínimo. Si no es ninguno de los dos casos, es suficiente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNCIONES DE MANEJO DE ERRORES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('manejo-errores')">
+                <h2>Manejo de Errores</h2>
+            </div>
+            <div class="function-content" id="manejo-errores" style="display: none;">
+                <p>Funciones para manejar errores en fórmulas de manera elegante.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: SI.ERROR</h4>
+                    <p>Si en A1 está un número y en B1 otro número, para dividirlos de forma segura:</p>
+                    <pre>=SI.ERROR(A1/B1, "Error en el cálculo")</pre>
+                    <p>Si B1 es 0, en lugar de mostrar #¡DIV/0!, mostrará "Error en el cálculo"</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: SI.ND (o SI.NA)</h4>
+                    <p>Al buscar un valor que podría no existir:</p>
+                    <pre>=SI.ND(BUSCARV(D1, A1:B10, 2, FALSO), "No encontrado")</pre>
+                    <p>Si BUSCARV devuelve #N/A, muestra "No encontrado" en su lugar</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Promedio seguro</h4>
+                    <p>Datos: A1:A10 contiene números y celdas vacías o texto</p>
+                    <p>Crea una fórmula que calcule el promedio de las celdas numéricas, ignorando errores y celdas no numéricas</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=PROMEDIO(SI.ERROR(A1:A10*1, ""))</pre>
+                        <p>Explicación: Multiplicar por 1 convierte texto a número (o da error), SI.ERROR convierte los errores en cadenas vacías, y PROMEDIO ignora las celdas vacías.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Búsqueda segura</h4>
+                    <p>Datos: A1:B10 contiene una tabla de productos (col A) y precios (col B)</p>
+                    <p>D1 contiene un código de producto a buscar. Crea una fórmula que devuelva el precio o "Producto no encontrado" si no existe.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=SI.NA(BUSCARV(D1, A1:B10, 2, FALSO), "Producto no encontrado")</pre>
+                        <p>Explicación: BUSCARV busca el producto en la primera columna y devuelve el valor de la segunda columna. SI.NA captura el error si el producto no se encuentra.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPERADORES LÓGICOS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('operadores-logicos')">
+                <h2>Operadores Lógicos</h2>
+            </div>
+            <div class="function-content" id="operadores-logicos" style="display: none;">
+                <p>Funciones para combinar múltiples condiciones lógicas.</p>
+                
+                <div class="example">
+                    <h4>Tabla de verdad de los operadores lógicos</h4>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y(A,B)</th>
+                            <th>O(A,B)</th>
+                            <th>XO(A,B)</th>
+                            <th>NO(A)</th>
+                        </tr>
+                        <tr>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                        </tr>
+                        <tr>
+                            <td>VERDADERO</td>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                            <td>FALSO</td>
+                        </tr>
+                        <tr>
+                            <td>FALSO</td>
+                            <td>VERDADERO</td>
+                            <td>FALSO</td>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                            <td>VERDADERO</td>
+                        </tr>
+                        <tr>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                            <td>FALSO</td>
+                            <td>VERDADERO</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Uso de Y y O</h4>
+                    <p>Si en A1 está la edad y en B1 los años de experiencia:</p>
+                    <pre>=SI(Y(A1>=18, B1>=2), "Calificado", "No calificado")</pre>
+                    <p>Debe tener al menos 18 años Y 2+ años de experiencia</p>
+                    
+                    <pre>=SI(O(A1>=65, B1>=30), "Puede jubilarse", "No puede jubilarse")</pre>
+                    <p>Puede jubilarse si tiene 65+ años O 30+ años de servicio</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Validación de contraseña</h4>
+                    <p>Datos: A1 = contraseña ingresada</p>
+                    <p>Crea una fórmula que devuelva "Válida" si la contraseña tiene entre 8 y 16 caracteres, y contiene al menos un número y una letra mayúscula.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=SI(Y(LARGO(A1)>=8, LARGO(A1)<=16, 
+      CONTAR.SI(A1, "*[0-9]*")>0, 
+      CONTAR.SI(A1, "*[A-Z]*")>0), 
+   "Válida", 
+   "No válida")</pre>
+                        <p>Explicación: La fórmula verifica la longitud y usa patrones con comodines para buscar al menos un número y una letra mayúscula.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Descuentos por categoría</h4>
+                    <p>Datos: A1 = Categoría ("A", "B" o "C"), B1 = Monto de compra</p>
+                    <p>Aplica descuentos según la categoría: A=10%, B=15%, C=20%. Si el monto es mayor a 1000, suma 5% adicional al descuento.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=SI(A1="A", 0.1, SI(A1="B", 0.15, 0.2)) + SI(B1>1000, 0.05, 0)</pre>
+                        <p>Explicación: La primera parte determina el descuento base según la categoría, y la segunda parte añade el 5% extra si el monto supera 1000.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNCIONES AVANZADAS (Office 365) -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('funciones-avanzadas')">
+                <h2>Funciones Avanzadas (Office 365)</h2>
+            </div>
+            <div class="function-content" id="funciones-avanzadas" style="display: none;">
+                <p>Funciones más recientes disponibles en Excel para Office 365.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: SI.CONJUNTO</h4>
+                    <p>Alternativa a anidar múltiples funciones SI:</p>
+                    <pre>=SI.CONJUNTO(
+    A1>90, "Excelente",
+    A1>80, "Muy bueno",
+    A1>70, "Bueno",
+    A1>=60, "Suficiente",
+    "Reprobado"
+)</pre>
+                    <p>Evalúa las condiciones en orden y devuelve el valor correspondiente a la primera condición verdadera.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: CAMBIAR</h4>
+                    <p>Similar a una estructura switch-case en programación:</p>
+                    <pre>=CAMBIAR(
+    DIASEMANA(A1),
+    1, "Domingo",
+    2, "Lunes",
+    3, "Martes",
+    4, "Miércoles",
+    5, "Jueves",
+    6, "Viernes",
+    7, "Sábado",
+    "Día inválido"
+)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Categorización de productos</h4>
+                    <p>Datos: A1 = Código de producto ("ELEC-001", "ROPA-101", "ALIM-205")</p>
+                    <p>Usa CAMBIAR para devolver la categoría completa ("Electrónicos", "Ropa", "Alimentos") basado en el prefijo del código.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+                    <div class="solution" id="sol7">
+                        <pre>=CAMBIAR(
+    IZQUIERDA(A1, 4),
+    "ELEC", "Electrónicos",
+    "ROPA", "Ropa",
+    "ALIM", "Alimentos",
+    "Otros"
+)</pre>
+                        <p>Explicación: IZQUIERDA extrae los primeros 4 caracteres del código, y CAMBIAR los compara con los valores dados.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Fórmula con LET</h4>
+                    <p>Datos: A1 = Radio de un círculo</p>
+                    <p>Calcula el área del círculo (πr²) usando LET para hacer la fórmula más legible.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+                    <div class="solution" id="sol8">
+                        <pre>=LET(
+    radio, A1,
+    PI(), * radio ^ 2
+)</pre>
+                        <p>Explicación: LET asigna el valor de A1 a 'radio' que luego se usa en el cálculo. Esto hace que la fórmula sea más legible y evita repetir A1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

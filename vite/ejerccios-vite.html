@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Ejercicios - Vite Masterclass</title>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { background: white !important; }
+            .page-break { page-break-after: always; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .workbook-container {
+            background: white;
+            padding: 40px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid #646cff;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        h1 { color: #646cff; margin: 0; text-transform: uppercase; }
+        h2 { color: #444; border-left: 5px solid #ffdf33; padding-left: 10px; margin-top: 30px; }
+        
+        .exercise-box {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .box {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #666;
+            margin-right: 10px;
+        }
+
+        code {
+            background: #e0e0e0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .badge-info {
+            float: right;
+            background: #646cff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="no-print" style="background: #ffdf33; padding: 10px; text-align: center; margin-bottom: 20px; border-radius: 5px;">
+    <strong>Instrucciones:</strong> Presiona <b>Ctrl + P</b> y selecciona "Guardar como PDF".
+</div>
+
+<div class="workbook-container">
+    <header>
+        <h1>WorkBook: Vite Masterclass</h1>
+        <p>Guía de Aplicación Práctica para el Estudiante</p>
+    </header>
+
+    <section>
+        <h2>Módulo 1: Velocidad y Entorno</h2>
+        
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 1</span>
+            <strong>Ejercicio 1.1: El Despegue</strong>
+            <p>Ejecuta los comandos necesarios para crear un proyecto llamado <code>mi-primera-app</code> usando el template de <code>Vanilla JS</code>.</p>
+            <div class="checkbox-item"><div class="box"></div> Node.js instalado (v18+)</div>
+            <div class="checkbox-item"><div class="box"></div> Ejecutar <code>npm create vite@latest</code></div>
+            <div class="checkbox-item"><div class="box"></div> Entrar a la carpeta e instalar dependencias</div>
+        </div>
+
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 2</span>
+            <strong>Ejercicio 1.2: Activos Inteligentes</strong>
+            <p>Importa una imagen en tu <code>main.js</code> y asígnala a un elemento <code>&lt;img&gt;</code> creado dinámicamente. Observa cómo Vite gestiona la ruta automáticamente.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Módulo 2: Estilizado y Frameworks</h2>
+        
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 4</span>
+            <strong>Ejercicio 2.1: Tailwind Turbo</strong>
+            <p>Configura Tailwind CSS. Crea un botón que cambie de color al pasar el mouse (hover) usando solo clases de utilidad.</p>
+            <div class="checkbox-item"><div class="box"></div> <code>tailwind.config.js</code> configurado</div>
+            <div class="checkbox-item"><div class="box"></div> Directivas @tailwind en CSS</div>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section>
+        <h2>Módulo 3: El Siguiente Nivel</h2>
+        
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 7</span>
+            <strong>Ejercicio 3.1: TypeScript Check</strong>
+            <p>Define una <code>interface</code> para un objeto "Usuario" (nombre, edad, email) y úsala para renderizar una lista de usuarios sin errores de tipo.</p>
+        </div>
+
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 8</span>
+            <strong>Ejercicio 3.2: Offline Mode</strong>
+            <p>Instala el plugin <code>vite-plugin-pwa</code> y verifica en el "Application Tab" de Chrome que el Service Worker se haya registrado.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Módulo 4: Final de Carrera</h2>
+        
+        <div class="exercise-box">
+            <span class="badge-info">Sesión 10</span>
+            <strong>Reto Final: El Despliegue</strong>
+            <p>Conecta tu repositorio de GitHub a Vercel. Realiza un cambio en tu código, haz <code>git push</code> y verifica que el sitio se actualice solo en menos de 30 segundos.</p>
+        </div>
+    </section>
+
+    <div style="margin-top: 40px; border: 2px dashed #ccc; padding: 20px; text-align: center;">
+        <h3 style="margin: 0;">Certificación de Competencia</h3>
+        <p>Espacio para firma del Instructor: ___________________________</p>
+    </div>
+
+    <footer>
+        <p>Vite Masterclass 2025 - Material Educativo de Propiedad Intelectual</p>
+    </footer>
+</div>
+
+</body>
+</html>

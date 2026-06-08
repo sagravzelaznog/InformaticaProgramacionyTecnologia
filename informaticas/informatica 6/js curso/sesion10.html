@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10: Proyecto Final - Adivina el Número</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a6fa5, #3a5a8c);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-complete {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+       
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h2 i {
+            color: var(--primary-color);
+        }
+
+        .card h3 {
+            margin: 1.5rem 0 0.8rem;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .game-header {
+            margin-bottom: 2rem;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .game-subtitle {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 0.3rem;
+        }
+
+        .game-input {
+            margin: 2rem 0;
+        }
+
+        .input-group {
+            max-width: 300px;
+            margin: 0 auto;
+            display: flex;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .input-group input {
+            flex-grow: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            font-size: 1.2rem;
+            text-align: center;
+            border: 2px solid #eee;
+            border-right: none;
+            border-radius: 50px 0 0 50px;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #3a5a8c;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: #212529;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+        }
+
+        .btn-info {
+            background: var(--info-color);
+        }
+
+        .btn-lg {
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 0 50px 50px 0;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+        }
+
+        .feedback {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .feedback.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .feedback.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .guess-history {
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .guess-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            border: 1px solid #eee;
+        }
+
+        .guess-item {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .guess-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .guess-number {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .guess-hint {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .guess-hint.higher {
+            color: var(--success-color);
+        }
+
+        .guess-hint.lower {
+            color: var(--danger-color);
+        }
+
+        .guess-hint.correct {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .game-instructions {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #eee;
+        }
+
+        .game-instructions h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .game-instructions ol {
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .game-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .celebration.active {
+            opacity: 1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            opacity: 0;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .trophy {
+            font-size: 10rem;
+            color: gold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            animation: bounce 1s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0) scale(1); }
+            to { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .celebration-message {
+            position: absolute;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s ease;
+        }
+
+        .celebration-message.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .dola-ai {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .dola-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dola-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .dola-btn:hover::before {
+            left: 100%;
+        }
+
+        .dola-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .dola-chat {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .dola-chat.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .dola-header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dola-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dola-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .dola-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dola-messages {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dola-message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: messageIn 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dola-message.user {
+            background: #f1f1f1;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+            color: #333;
+        }
+
+        .dola-message.bot {
+            background: #f0f4ff;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            color: #2c3e50;
+            border: 1px solid #e0e6ff;
+        }
+
+        .dola-input-container {
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        .dola-typing {
+            display: flex;
+            padding: 0 15px 10px;
+            gap: 5px;
+            display: none;
+        }
+
+        .dola-typing span {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dola-typing span:nth-child(1) { animation-delay: -0.32s; }
+        .dola-typing span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .dola-input {
+            display: flex;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .dola-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            background: transparent;
+        }
+
+        .dola-send {
+            background: none;
+            border: none;
+            color: #6c5ce7;
+            padding: 0 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .dola-send:hover {
+            color: #4a3d9c;
+        }
+
+        .dola-send i {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .game-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stat {
+                margin: 0.5rem 0;
+            }
+
+            .input-group {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dola-chat {
+                width: 90vw;
+                right: 5vw;
+                max-height: 70vh;
+            }
+
+            .btn-lg {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .game-title {
+                font-size: 1.8rem;
+            }
+
+            .celebration-message {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animaciones adicionales */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Estilos para la sección de código */
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+            box-shadow: var(--box-shadow);
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .code-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: #3a5a8c;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Estilos para el contador de intentos */
+        .attempts-counter {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .attempts-icon {
+            color: var(--warning-color);
+            font-size: 1.5rem;
+        }
+
+        /* Estilos para el rango de números */
+        .range-display {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .range-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .range-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        /* Estilos para el historial de intentos */
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .history-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+        }
+
+        .history-number {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .history-hint {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hint-icon {
+            font-size: 1.2rem;
+        }
+
+        .hint-icon.higher {
+            color: var(--success-color);
+        }
+
+        .hint-icon.lower {
+            color: var(--danger-color);
+        }
+
+        .hint-icon.correct {
+            color: var(--primary-color);
+        }
+
+        /* Estilos para el botón de reinicio */
+        .btn-restart {
+            background: var(--warning-color);
+            color: #212529;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-restart:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-restart:active {
+            transform: translateY(0);
+        }
+
+        /* Estilos para el contador de tiempo */
+        .timer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .timer-icon {
+            color: var(--warning-color);
+        }
+
+        /* Estilos para la sección de logros */
+        .achievements {
+            margin: 2rem 0;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            background: #f8f9ff;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .achievement-icon {
+            font-size: 1.8rem;
+            color: var(--warning-color);
+        }
+
+        .achievement-info h4 {
+            margin: 0 0 0.3rem 0;
+            color: var(--primary-color);
+        }
+
+        .achievement-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        /* Estilos para el contador de aciertos consecutivos */
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fff8e6;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            display: inline-flex;
+            border: 1px solid #ffeeba;
+        }
+
+        .streak-icon {
+            color: #ffc107;
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .streak-count {
+            font-weight: bold;
+            color: #856404;
+        }
+
+        /* Estilos para el modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #f0f0f0;
+            }
+
+            .card, .game-container, .game-instructions, .guess-item, .achievement {
+                background-color: #2d2d2d;
+                color: #f0f0f0;
+                border-color: #3d3d3d;
+            }
+
+            .game-stats, .guess-list {
+                background-color: #252525;
+                border-color: #3d3d3d;
+            }
+
+            .input-group input {
+                background-color: #3d3d3d;
+                color: #f0f0f0;
+                border-color: #4d4d4d;
+            }
+
+            .dola-message.bot {
+                background-color: #3d3d3d;
+                color: #f0f0f0;
+                border-color: #4d4d4d;
+            }
+
+            .dola-input {
+                background-color: #3d3d3d;
+                border-color: #4d4d4d;
+            }
+
+            .dola-input input {
+                background-color: transparent;
+                color: #f0f0f0;
+            }
+
+            .dola-send {
+                color: #a29bfe;
+            }
+
+            .dola-send:hover {
+                color: #7b6ff0;
+            }
+
+            .modal-content {
+                background-color: #2d2d2d;
+                color: #f0f0f0;
+            }
+
+            .modal-header, .modal-footer {
+                border-color: #3d3d3d;
+            }
+
+            .modal-close {
+                color: #a0a0a0;
+            }
+
+            .modal-close:hover {
+                color: #ff6b6b;
+            }
+
+            .code-block {
+                background-color: #252525;
+                border-color: #3d3d3d;
+            }
+
+            .copy-btn {
+                background-color: #4a6fa5;
+            }
+
+            .copy-btn:hover {
+                background-color: #3a5a8c;
+            }
+
+            .achievement.unlocked {
+                background-color: #353540;
+                border-left-color: #4a6fa5;
+            }
+
+            .achievement-info h4 {
+                color: #a29bfe;
+            }
+
+            .streak-counter {
+                background-color: #3d3d3d;
+                border-color: #4d4d4d;
+            }
+        }
+    </style>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Celebración -->
+    <div class="celebration" id="celebration">
+        <div class="trophy">🏆</div>
+        <div class="celebration-message" id="celebrationMessage">¡Ganaste!</div>
+    </div>
+
+    <!-- Modal de victoria -->
+    <div class="modal" id="victoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">¡Felicidades! 🎉</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+                    <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">¡Has ganado!</h2>
+                    <p id="victoryStats" style="margin-bottom: 1.5rem;"></p>
+                    <div class="achievement unlocked" style="max-width: 100%; margin: 1.5rem auto;">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-info">
+                            <h4>¡Primera victoria!</h4>
+                            <p>Has completado tu primer juego de "Adivina el Número". ¡Buen trabajo!</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" id="playAgainBtn" style="padding: 0.8rem 2rem; font-size: 1.1rem;">
+                        <i class="fas fa-redo"></i> Jugar de nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de ayuda -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-question-circle"></i> Cómo jugar</h3>
+                <button class="modal-close" id="closeHelpModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="game-instructions">
+                    <h3><i class="fas fa-info-circle"></i> Instrucciones del juego</h3>
+                    <p>El objetivo del juego es adivinar un número secreto entre 1 y 100. Sigue estas pistas para encontrarlo:</p>
+                    <ol>
+                        <li>Ingresa un número en el campo de texto y presiona "Adivinar".</li>
+                        <li>Recibirás pistas si el número es mayor o menor al número secreto.</li>
+                        <li>¡Intenta adivinarlo en la menor cantidad de intentos posible!</li>
+                        <li>El juego lleva registro de tus intentos y el tiempo que tardas.</li>
+                    </ol>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="code-title"><i class="fas fa-code"></i> Código de ejemplo</div>
+                        <button class="copy-btn" onclick="copyCode('gameCode')">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <pre id="gameCode"><code>// Generar número aleatorio entre 1 y 100
+const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+
+// Función para verificar el intento
+function verificarIntento(intento) {
+    if (intento === numeroSecreto) {
+        return 'correcto';
+    } else if (intento < numeroSecreto) {
+        return 'mayor';
+    } else {
+        return 'menor';
+    }
+}
+
+// Ejemplo de uso
+let miIntento = 50;
+let resultado = verificarIntento(miIntento);
+console.log(`Tu número es ${resultado} que el número secreto.`);</code></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeHelpModalBtn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1>Sesión 10: Proyecto Final</h1>
+            <p class="subtitle">"Adivina el Número" - Un juego con JavaScript</p>
+            <div class="course-complete">
+                <i class="fas fa-award"></i> ¡Has llegado al final del curso!
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="game-container">
+            <div class="game-header">
+                <h1 class="game-title">Adivina el Número</h1>
+                <p class="game-subtitle">¿Podrás adivinar el número secreto entre 1 y 100?</p>
+                
+                <div class="game-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="attemptsCount">0</div>
+                        <div class="stat-label">Intentos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="bestScore">-</div>
+                        <div class="stat-label">Mejor puntuación</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="timerDisplay">00:00</div>
+                        <div class="stat-label">Tiempo</div>
+                    </div>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+
+                <div class="game-input">
+                    <div class="input-group">
+                        <input type="number" id="guessInput" placeholder="Ingresa un número (1-100)" min="1" max="100">
+                        <button class="btn btn-primary btn-lg" id="guessButton">
+                            <i class="fas fa-paper-plane"></i> Adivinar
+                        </button>
+                    </div>
+                    <div class="range-display">
+                        <span>1</span>
+                        <span>100</span>
+                    </div>
+                    <div class="range-bar">
+                        <div class="range-progress" id="rangeProgress"></div>
+                    </div>
+                </div>
+
+                <div class="guess-history">
+                    <h3><i class="fas fa-history"></i> Historial de intentos</h3>
+                    <div class="guess-list" id="guessList"></div>
+                </div>
+
+                <div class="game-actions" style="margin-top: 2rem;">
+                    <button class="btn btn-warning btn-block" id="hintButton">
+                        <i class="fas fa-lightbulb"></i> Obtener una pista
+                    </button>
+                    <button class="btn btn-danger btn-block" id="newGameButton">
+                        <i class="fas fa-sync-alt"></i> Nuevo juego
+                    </button>
+                    <button class="btn btn-info btn-block" id="helpButton">
+                        <i class="fas fa-question-circle"></i> Cómo jugar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-graduation-cap"></i> Lo que has aprendido</h2>
+            <p>¡Felicidades por llegar al final del curso de JavaScript! A lo largo de estas 10 sesiones, has adquirido habilidades fundamentales en programación web:</p>
+            
+            <h3><i class="fas fa-check-circle"></i> Conceptos clave</h3>
+            <ul>
+                <li>Variables y tipos de datos</li>
+                <li>Estructuras de control (condicionales, bucles)</li>
+                <li>Funciones y parámetros</li>
+                <li>Manipulación del DOM</li>
+                <li>Manejo de eventos</li>
+                <li>Validación de formularios</li>
+                <li>Operaciones matemáticas</li>
+            </ul>
+
+            <h3><i class="fas fa-project-diagram"></i> Proyectos realizados</h3>
+            <ul>
+                <li>Calculadora de promedios</li>
+                <li>Juego de adivinar números</li>
+                <li>Manipulación interactiva de la página</li>
+                <li>Validación de formularios</li>
+            </ul>
+
+            <div class="code-block" style="margin-top: 2rem;">
+                <div class="code-header">
+                    <div class="code-title"><i class="fas fa-code"></i> Código del juego</div>
+                    <button class="copy-btn" onclick="copyCode('fullGameCode')">
+                        <i class="far fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <pre id="fullGameCode"><code>// Variables del juego
+let secretNumber;
+let attempts;
+let startTime;
+let timerInterval;
+let gameActive = false;
+
+// Elementos del DOM
+const guessInput = document.getElementById('guessInput');
+const guessButton = document.getElementById('guessButton');
+const feedback = document.getElementById('feedback');
+const attemptsCount = document.getElementById('attemptsCount');
+const guessList = document.getElementById('guessList');
+const timerDisplay = document.getElementById('timerDisplay');
+
+// Iniciar nuevo juego
+function startNewGame() {
+    // Generar número secreto
+    secretNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    gameActive = true;
+    
+    // Reiniciar interfaz
+    guessInput.value = '';
+    guessList.innerHTML = '';
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    updateAttempts();
+    
+    // Iniciar temporizador
+    startTimer();
+    
+    // Habilitar entrada
+    guessInput.disabled = false;
+    guessButton.disabled = false;
+    
+    console.log('Número secreto:', secretNumber); // Para depuración
+}
+
+// Verificar el intento del jugador
+function checkGuess() {
+    if (!gameActive) return;
+    
+    const guess = parseInt(guessInput.value);
+    
+    // Validar entrada
+    if (isNaN(guess) || guess < 1 || guess > 100) {
+        showFeedback('Por favor, ingresa un número entre 1 y 100', 'error');
+        return;
+    }
+    
+    // Incrementar intentos
+    attempts++;
+    updateAttempts();
+    
+    // Verificar el número
+    if (guess === secretNumber) {
+        gameWon();
+    } else {
+        const hint = guess < secretNumber ? 'mayor' : 'menor';
+        showFeedback(`El número es ${hint} que ${guess}`, hint === 'mayor' ? 'info' : 'warning');
+        addGuessToHistory(guess, hint);
+    }
+    
+    // Limpiar el campo de entrada
+    guessInput.value = '';
+    guessInput.focus();
+}
+
+// Mostrar mensaje de retroalimentación
+function showFeedback(message, type) {
+    feedback.textContent = message;
+    feedback.className = `feedback show ${type}`;
+}
+
+// Actualizar contador de intentos
+function updateAttempts() {
+    attemptsCount.textContent = attempts;
+}
+
+// Añadir intento al historial
+function addGuessToHistory(guess, hint) {
+    const li = document.createElement('div');
+    li.className = 'history-item';
+    
+    const guessSpan = document.createElement('span');
+    guessSpan.className = 'history-number';
+    guessSpan.textContent = guess;
+    
+    const hintSpan = document.createElement('span');
+    hintSpan.className = `history-hint ${hint}`;
+    
+    const icon = document.createElement('i');
+    icon.className = `fas fa-arrow-${hint === 'mayor' ? 'up' : 'down'} hint-icon ${hint}`;
+    
+    hintSpan.appendChild(icon);
+    hintSpan.appendChild(document.createTextNode(` El número es ${hint}`));
+    
+    li.appendChild(guessSpan);
+    li.appendChild(hintSpan);
+    
+    guessList.prepend(li);
+}
+
+// Juego ganado
+function gameWon() {
+    gameActive = false;
+    clearInterval(timerInterval);
+    
+    // Mostrar mensaje de victoria
+    showFeedback(`¡Correcto! Has adivinado en ${attempts} intentos.`, 'success');
+    
+    // Mostrar animación de celebración
+    celebrate();
+    
+    // Deshabilitar entrada
+    guessInput.disabled = true;
+    guessButton.disabled = true;
+    
+    // Mostrar modal de victoria
+    showVictoryModal();
+}
+
+// Iniciar temporizador
+function startTimer() {
+    startTime = new Date();
+    clearInterval(timerInterval);
+    
+    timerInterval = setInterval(() => {
+        const now = new Date();
+        const elapsed = Math.floor((now - startTime) / 1000);
+        const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+        const seconds = (elapsed % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+    }, 1000);
+}
+
+// Animación de celebración
+function celebrate() {
+    const celebration = document.getElementById('celebration');
+    const message = document.getElementById('celebrationMessage');
+    
+    // Mostrar mensaje
+    setTimeout(() => {
+        message.classList.add('show');
+    }, 500);
+    
+    // Crear confeti
+    for (let i = 0; i < 100; i++) {
+        createConfetti();
+    }
+    
+    celebration.classList.add('active');
+    
+    // Ocultar después de 5 segundos
+    setTimeout(() => {
+        celebration.classList.remove('active');
+        message.classList.remove('show');
+    }, 5000);
+}
+
+// Crear confeti
+function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    
+    // Posición aleatoria
+    const posX = Math.random() * 100;
+    const size = Math.random() * 10 + 5;
+    const duration = Math.random() * 3 + 2;
+    const delay = Math.random() * 5;
+    
+    // Color aleatorio
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Estilos
+    confetti.style.left = `${posX}%`;
+    confetti.style.width = `${size}px`;
+    confetti.style.height = `${size}px`;
+    confetti.style.background = color;
+    confetti.style.animationDuration = `${duration}s`;
+    confetti.style.animationDelay = `${delay}s`;
+    
+    document.getElementById('celebration').appendChild(confetti);
+    
+    // Eliminar después de la animación
+    setTimeout(() => {
+        confetti.remove();
+    }, (duration + delay) * 1000);
+}
+
+// Mostrar modal de victoria
+function showVictoryModal() {
+    const modal = document.getElementById('victoryModal');
+    const time = timerDisplay.textContent;
+    const statsText = `Completado en ${attempts} intentos y ${time} minutos.`;
+    
+    document.getElementById('victoryStats').textContent = statsText;
+    modal.classList.add('show');
+    
+    // Guardar mejor puntuación
+    saveBestScore(attempts, time);
+}
+
+// Guardar mejor puntuación
+function saveBestScore(attempts, time) {
+    const bestScore = localStorage.getItem('bestScore');
+    const currentScore = { attempts, time, date: new Date().toLocaleDateString() };
+    
+    if (!bestScore || JSON.parse(bestScore).attempts > attempts) {
+        localStorage.setItem('bestScore', JSON.stringify(currentScore));
+        updateBestScoreDisplay(currentScore);
+    } else {
+        updateBestScoreDisplay(JSON.parse(bestScore));
+    }
+}
+
+// Actualizar visualización de la mejor puntuación
+function updateBestScoreDisplay(score) {
+    const bestScoreElement = document.getElementById('bestScore');
+    bestScoreElement.textContent = `${score.attempts} (${score.time})`;
+    bestScoreElement.title = `Logrado el ${score.date}`;
+}
+
+// Event listeners
+guessButton.addEventListener('click', checkGuess);
+guessInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') checkGuess();
+});
+
+document.getElementById('newGameButton').addEventListener('click', startNewGame);
+document.getElementById('hintButton').addEventListener('click', giveHint);
+document.getElementById('helpButton').addEventListener('click', () => {
+    document.getElementById('helpModal').classList.add('show');
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('victoryModal').classList.remove('show');
+});
+
+document.getElementById('closeHelpModal').addEventListener('click', () => {
+    document.getElementById('helpModal').classList.remove('show');
+});
+
+document.getElementById('closeHelpModalBtn').addEventListener('click', () => {
+    document.getElementById('helpModal').classList.remove('show');
+});
+
+document.getElementById('playAgainBtn').addEventListener('click', () => {
+    document.getElementById('victoryModal').classList.remove('show');
+    startNewGame();
+});
+
+// Dar una pista
+function giveHint() {
+    if (!gameActive) return;
+    
+    // Dar una pista cada 3 intentos
+    if (attempts % 3 === 0) {
+        const range = Math.floor(100 / (attempts / 3 + 1));
+        const min = Math.max(1, secretNumber - range);
+        const max = Math.min(100, secretNumber + range);
+        
+        showFeedback(`Pista: El número está entre ${min} y ${max}`, 'info');
+    } else {
+        showFeedback(`Sigue intentando. Pista disponible en ${3 - (attempts % 3)} intentos.`, 'warning');
+    }
+}
+
+// Copiar código al portapapeles
+function copyCode(elementId) {
+    const codeElement = document.getElementById(elementId);
+    const range = document.createRange();
+    range.selectNode(codeElement);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    
+    // Mostrar notificación
+    const notification = document.createElement('div');
+    notification.textContent = '¡Código copiado!';
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.padding = '10px 20px';
+    notification.style.background = '#28a745';
+    notification.style.color = 'white';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = '1000';
+    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    notification.style.animation = 'fadeInOut 2s ease-in-out';
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 2000);
+}
+
+// Iniciar el juego al cargar la página
+window.addEventListener('load', () => {
+    // Cargar mejor puntuación guardada
+    const savedScore = localStorage.getItem('bestScore');
+    if (savedScore) {
+        updateBestScoreDisplay(JSON.parse(savedScore));
+    }
+    
+    // Iniciar nuevo juego
+    startNewGame();
+    
+    // Agregar estilos para la animación de notificación
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
+            15% { opacity: 1; transform: translate(-50%, 0); }
+            85% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, -20px); }
+        }
+    `;
+    document.head.appendChild(style);
+});</code></pre>
+            </div>
+
+            <div class="achievements">
+                <h3><i class="fas fa-trophy"></i> Logros</h3>
+                
+                <div class="achievement unlocked">
+                    <div class="achievement-icon">🎓</div>
+                    <div class="achievement-info">
+                        <h4>Curso completado</h4>
+                        <p>Has completado todas las lecciones del curso de JavaScript</p>
+                    </div>
+                </div>
+                
+                <div class="achievement" id="firstWinAchievement">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-info">
+                        <h4>Primera victoria</h4>
+                        <p>Completa tu primer juego de "Adivina el Número"</p>
+                    </div>
+                </div>
+                
+                <div class="achievement" id="underFiveAttempts">
+                    <div class="achievement-icon">⚡</div>
+                    <div class="achievement-info">
+                        <h4>Eficiencia</h4>
+                        <p>Adivina el número en menos de 5 intentos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dola AI Assistant -->
+    <div class="dola-ai">
+        <div class="dola-chat" id="dola-chat">
+            <div class="dola-header">
+                <h3><i class="fas fa-robot"></i> Dola - Asistente del Juego</h3>
+                <button class="dola-close" onclick="document.getElementById('dola-chat').classList.remove('active')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="dola-messages" id="dola-messages">
+                <div class="dola-message bot">
+                    ¡Hola! Soy Dola, tu asistente para el juego "Adivina el Número". ¿Neitas ayuda o tienes alguna pregunta?
+                </div>
+            </div>
+            <div class="dola-typing" id="dola-typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="dola-input-container">
+                <div class="dola-input">
+                    <input type="text" id="dola-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key === 'Enter') enviarMensaje()">
+                    <button class="dola-send" onclick="enviarMensaje()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button aria-label="Abrir asistente de juego" id="1222" class="dola-btn" onclick="document.getElementById('dola-chat').classList.toggle('active')">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        // ===========================================
+        // Código del juego "Adivina el Número"
+        // ===========================================
+        let secretNumber;
+        let attempts;
+        let startTime;
+        let timerInterval;
+        let gameActive = false;
+
+        // Elementos del DOM
+        const guessInput = document.getElementById('guessInput');
+        const guessButton = document.getElementById('guessButton');
+        const feedback = document.getElementById('feedback');
+        const attemptsCount = document.getElementById('attemptsCount');
+        const guessList = document.getElementById('guessList');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const rangeProgress = document.getElementById('rangeProgress');
+
+        // Iniciar nuevo juego
+        function startNewGame() {
+            // Generar número secreto
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            gameActive = true;
+            
+            // Reiniciar interfaz
+            guessInput.value = '';
+            guessList.innerHTML = '';
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+            updateAttempts();
+            updateRangeProgress(50); // Valor inicial en el medio
+            
+            // Iniciar temporizador
+            startTimer();
+            
+            // Habilitar entrada
+            guessInput.disabled = false;
+            guessButton.disabled = false;
+            
+            // Actualizar logros
+            updateAchievements();
+            
+            console.log('Número secreto:', secretNumber); // Para depuración
+        }
+
+        // Verificar el intento del jugador
+        function checkGuess() {
+            if (!gameActive) return;
+            
+            const guess = parseInt(guessInput.value);
+            
+            // Validar entrada
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                showFeedback('Por favor, ingresa un número entre 1 y 100', 'error');
+                guessInput.classList.add('shake');
+                setTimeout(() => guessInput.classList.remove('shake'), 500);
+                return;
+            }
+            
+            // Incrementar intentos
+            attempts++;
+            updateAttempts();
+            
+            // Verificar el número
+            if (guess === secretNumber) {
+                gameWon();
+            } else {
+                const hint = guess < secretNumber ? 'mayor' : 'menor';
+                showFeedback(`El número es ${hint} que ${guess}`, hint === 'mayor' ? 'info' : 'warning');
+                addGuessToHistory(guess, hint);
+                updateRangeProgress(guess);
+            }
+            
+            // Limpiar el campo de entrada
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        // Actualizar la barra de rango
+        function updateRangeProgress(guess) {
+            // Calcular la posición del número en el rango 1-100
+            const position = ((guess - 1) / 99) * 100;
+            rangeProgress.style.width = `${position}%`;
+            
+            // Cambiar color según la proximidad al número secreto
+            const difference = Math.abs(secretNumber - guess);
+            if (difference <= 5) {
+                rangeProgress.style.backgroundColor = '#28a745'; // Verde cuando está muy cerca
+            } else if (difference <= 15) {
+                rangeProgress.style.backgroundColor = '#ffc107'; // Amarillo cuando está cerca
+            } else {
+                rangeProgress.style.backgroundColor = '#007bff'; // Azul por defecto
+            }
+        }
+
+        // Mostrar mensaje de retroalimentación
+        function showFeedback(message, type) {
+            feedback.textContent = message;
+            feedback.className = `feedback show ${type}`;
+        }
+
+        // Actualizar contador de intentos
+        function updateAttempts() {
+            attemptsCount.textContent = attempts;
+            
+            // Actualizar logro de eficiencia
+            if (attempts === 5) {
+                document.getElementById('underFiveAttempts').classList.add('unlocked');
+            }
+        }
+
+        // Añadir intento al historial
+        function addGuessToHistory(guess, hint) {
+            const li = document.createElement('div');
+            li.className = 'history-item';
+            
+            const guessSpan = document.createElement('span');
+            guessSpan.className = 'history-number';
+            guessSpan.textContent = guess;
+            
+            const hintSpan = document.createElement('span');
+            hintSpan.className = `history-hint ${hint}`;
+            
+            const icon = document.createElement('i');
+            icon.className = `fas fa-arrow-${hint === 'mayor' ? 'up' : 'down'} hint-icon ${hint}`;
+            
+            hintSpan.appendChild(icon);
+            hintSpan.appendChild(document.createTextNode(` El número es ${hint}`));
+            
+            li.appendChild(guessSpan);
+            li.appendChild(hintSpan);
+            
+            guessList.prepend(li);
+        }
+
+        // Juego ganado
+        function gameWon() {
+            gameActive = false;
+            clearInterval(timerInterval);
+            
+            // Mostrar mensaje de victoria
+            const time = timerDisplay.textContent;
+            showFeedback(`¡Correcto! Has adivinado en ${attempts} intentos y ${time} minutos.`, 'success');
+            
+            // Mostrar animación de celebración
+            celebrate();
+            
+            // Deshabilitar entrada
+            guessInput.disabled = true;
+            guessButton.disabled = true;
+            
+            // Mostrar modal de victoria
+            showVictoryModal();
+            
+            // Desbloquear logro de primera victoria
+            document.getElementById('firstWinAchievement').classList.add('unlocked');
+        }
+
+        // Iniciar temporizador
+        function startTimer() {
+            startTime = new Date();
+            clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                const now = new Date();
+                const elapsed = Math.floor((now - startTime) / 1000);
+                const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+                const seconds = (elapsed % 60).toString().padStart(2, '0');
+                timerDisplay.textContent = `${minutes}:${seconds}`;
+            }, 1000);
+        }
+
+        // Animación de celebración
+        function celebrate() {
+            const celebration = document.getElementById('celebration');
+            const message = document.getElementById('celebrationMessage');
+            
+            // Mostrar mensaje
+            setTimeout(() => {
+                message.classList.add('show');
+            }, 500);
+            
+            // Crear confeti
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+            
+            celebration.classList.add('active');
+            
+            // Ocultar después de 5 segundos
+            setTimeout(() => {
+                celebration.classList.remove('active');
+                message.classList.remove('show');
+            }, 5000);
+        }
+
+        // Crear confeti
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Posición aleatoria
+            const posX = Math.random() * 100;
+            const size = Math.random() * 10 + 5;
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random() * 5;
+            
+            // Color aleatorio
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Estilos
+            confetti.style.left = `${posX}%`;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.background = color;
+            confetti.style.animationDuration = `${duration}s`;
+            confetti.style.animationDelay = `${delay}s`;
+            
+            document.getElementById('celebration').appendChild(confetti);
+            
+            // Eliminar después de la animación
+            setTimeout(() => {
+                confetti.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Mostrar modal de victoria
+        function showVictoryModal() {
+            const modal = document.getElementById('victoryModal');
+            const time = timerDisplay.textContent;
+            const statsText = `Completado en ${attempts} intentos y ${time} minutos.`;
+            
+            document.getElementById('victoryStats').textContent = statsText;
+            modal.classList.add('show');
+            
+            // Guardar mejor puntuación
+            saveBestScore(attempts, time);
+        }
+
+        // Guardar mejor puntuación
+        function saveBestScore(attempts, time) {
+            const bestScore = localStorage.getItem('bestScore');
+            const currentScore = { attempts, time, date: new Date().toLocaleDateString() };
+            
+            if (!bestScore || JSON.parse(bestScore).attempts > attempts) {
+                localStorage.setItem('bestScore', JSON.stringify(currentScore));
+                updateBestScoreDisplay(currentScore);
+            } else {
+                updateBestScoreDisplay(JSON.parse(bestScore));
+            }
+        }
+
+        // Actualizar visualización de la mejor puntuación
+        function updateBestScoreDisplay(score) {
+            const bestScoreElement = document.getElementById('bestScore');
+            bestScoreElement.textContent = `${score.attempts} (${score.time})`;
+            bestScoreElement.title = `Logrado el ${score.date}`;
+        }
+
+        // Dar una pista
+        function giveHint() {
+            if (!gameActive) return;
+            
+            // Dar una pista cada 3 intentos
+            if (attempts % 3 === 0) {
+                const range = Math.floor(100 / (attempts / 3 + 1));
+                const min = Math.max(1, secretNumber - range);
+                const max = Math.min(100, secretNumber + range);
+                
+                showFeedback(`Pista: El número está entre ${min} y ${max}`, 'info');
+            } else {
+                showFeedback(`Sigue intentando. Pista disponible en ${3 - (attempts % 3)} intentos.`, 'warning');
+            }
+        }
+
+        // Actualizar logros
+        function updateAchievements() {
+            // Verificar si ya se ganó antes
+            if (localStorage.getItem('gameWon')) {
+                document.getElementById('firstWinAchievement').classList.add('unlocked');
+            }
+        }
+
+        // Event listeners
+        guessButton.addEventListener('click', checkGuess);
+        guessInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkGuess();
+        });
+
+        document.getElementById('newGameButton').addEventListener('click', startNewGame);
+        document.getElementById('hintButton').addEventListener('click', giveHint);
+        document.getElementById('helpButton').addEventListener('click', () => {
+            document.getElementById('helpModal').classList.add('show');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('victoryModal').classList.remove('show');
+        });
+
+        document.getElementById('closeHelpModal').addEventListener('click', () => {
+            document.getElementById('helpModal').classList.remove('show');
+        });
+
+        document.getElementById('closeHelpModalBtn').addEventListener('click', () => {
+            document.getElementById('helpModal').classList.remove('show');
+        });
+
+        document.getElementById('playAgainBtn').addEventListener('click', () => {
+            document.getElementById('victoryModal').classList.remove('show');
+            startNewGame();
+        });
+
+        // Iniciar el juego al cargar la página
+        window.addEventListener('load', () => {
+            // Cargar mejor puntuación guardada
+            const savedScore = localStorage.getItem('bestScore');
+            if (savedScore) {
+                updateBestScoreDisplay(JSON.parse(savedScore));
+            }
+            
+            // Iniciar nuevo juego
+            startNewGame();
+        });
+
+        // ===========================================
+        // Funcionalidad del chat Dola
+        // ===========================================
+        function enviarMensaje() {
+            const input = document.getElementById('dola-input');
+            const mensaje = input.value.trim();
+            
+            if (mensaje === '') return;
+            
+            // Agregar mensaje del usuario
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeUsuario = document.createElement('div');
+            mensajeUsuario.className = 'dola-message user';
+            mensajeUsuario.textContent = mensaje;
+            mensajes.appendChild(mensajeUsuario);
+            
+            // Limpiar input y hacer scroll al final
+            input.value = '';
+            mensajes.scrollTop = mensajes.scrollHeight;
+            
+            // Mostrar "escribiendo..."
+            const typing = document.getElementById('dola-typing');
+            typing.style.display = 'flex';
+            mensajes.scrollTop = mensajes.scrollHeight;
+            
+            // Simular respuesta después de un retraso
+            setTimeout(() => responderMensaje(mensaje.toLowerCase()), 1000 + Math.random() * 2000);
+        }
+        
+        function responderMensaje(mensaje) {
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeBot = document.createElement('div');
+            mensajeBot.className = 'dola-message bot';
+            
+            // Ocultar "escribiendo..."
+            document.getElementById('dola-typing').style.display = 'none';
+            
+            // Determinar la respuesta según el mensaje
+            let respuesta = '';
+            
+            if (mensaje.includes('hola') || mensaje.includes('holi') || mensaje.includes('buenas')) {
+                respuesta = "¡Hola! Soy Dola, tu asistente para el juego 'Adivina el Número'. ¿En qué puedo ayudarte hoy?";
+            } else if (mensaje.includes('cómo jugar') || mensaje.includes('instrucciones') || mensaje.includes('ayuda')) {
+                respuesta = "El objetivo es adivinar un número entre 1 y 100. Te diré si el número es mayor o menor que tu intento. ¡Intenta adivinarlo en la menor cantidad de intentos posible!";
+            } else if (mensaje.includes('pista') || mensaje.includes('ayúdame')) {
+                respuesta = "Puedes usar el botón 'Obtener una pista' cada 3 intentos para reducir el rango de búsqueda. ¡Pero usa las pistas con sabiduría!";
+            } else if (mensaje.includes('número') && (mensaje.includes('cerca') || mensaje.includes('lejos'))) {
+                respuesta = "Presta atención a la barra de rango debajo del campo de entrada. Cambia de color según qué tan cerca estés del número secreto. ¡Verde significa que estás muy cerca!";
+            } else if (mensaje.includes('reiniciar') || mensaje.includes('nuevo juego')) {
+                respuesta = "Puedes hacer clic en el botón 'Nuevo juego' en cualquier momento para comenzar una nueva partida. ¡Intenta batir tu récord!";
+            } else if (mensaje.includes('gracias') || mensaje.includes('thanks')) {
+                respuesta = "¡De nada! ¿Hay algo más en lo que pueda ayudarte con el juego?";
+            } else if (mensaje.includes('adios') || mensaje.includes('chao') || mensaje.includes('hasta luego')) {
+                respuesta = "¡Hasta luego! Que tengas un excelente día. ¡Vuelve pronto para seguir jugando!";
+            } else {
+                // Respuestas aleatorias para mantener la conversación interesante
+                const respuestasGenericas = [
+                    "Interesante pregunta. ¿Podrías reformularla?",
+                    "No estoy seguro de entender. ¿Te refieres a cómo jugar o necesitas ayuda con algo específico?",
+                    "¡Buena estrategia! Sigue intentando y verás cómo mejoras.",
+                    "Recuerda que el número está entre 1 y 100. ¡Usa las pistas para acotar la búsqueda!",
+                    "¿Has probado a dividir el rango por la mitad? Es una estrategia efectiva llamada búsqueda binaria."
+                ];
+                respuesta = respuestasGenericas[Math.floor(Math.random() * respuestasGenericas.length)];
+            }
+            
+            // Agregar la respuesta al chat
+            mensajeBot.textContent = respuesta;
+            mensajes.appendChild(mensajeBot);
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('dola-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+
+        // Copiar código al portapapeles
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Mostrar notificación
+            const notification = document.createElement('div');
+            notification.textContent = '¡Código copiado!';
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.padding = '10px 20px';
+            notification.style.background = '#28a745';
+            notification.style.color = 'white';
+            notification.style.borderRadius = '5px';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            notification.style.animation = 'fadeInOut 2s ease-in-out';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        // Agregar estilos para la animación de notificación
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, 20px); }
+                15% { opacity: 1; transform: translate(-50%, 0); }
+                85% { opacity: 1; transform: translate(-50%, 0); }
+                100% { opacity: 0; transform: translate(-50%, -20px); }
+            }
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            .shake {
+                animation: shake 0.3s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

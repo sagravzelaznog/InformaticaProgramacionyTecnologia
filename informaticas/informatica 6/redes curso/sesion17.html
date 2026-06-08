@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S5 E17: Configuración de Dispositivos Finales (IP Estática y Dinámica)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 5, Sesión 17: Configuración de Dispositivos Finales (IP Estática y Dinámica)</h1>
+        <p class="subtitle">Conceptos Básicos y Fundamentos Teóricos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Elementos Esenciales de la Configuración IP</h2>
+            <p>Cada dispositivo (Host) en una red necesita obligatoriamente cuatro piezas de información para comunicarse eficazmente:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Dirección IP</h3>
+                    <p>La identidad lógica única del dispositivo (ej. 192.168.1.10).</p>
+                </div>
+                <div class="card">
+                    <h3>Máscara de Subred</h3>
+                    <p>Define los límites de la red local (ej. 255.255.255.0 o /24).</p>
+                </div>
+                <div class="card">
+                    <h3>Puerta de Enlace (Gateway)</h3>
+                    <p>La dirección IP del router local. Es el punto de salida hacia otras redes (ej. 192.168.1.1).</p>
+                </div>
+                <div class="card">
+                    <h3>Servidor DNS</h3>
+                    <p>El servidor que traduce nombres de dominio a IPs (ej. 8.8.8.8).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. IP Dinámica (DHCP) vs. IP Estática</h2>
+            <p>La forma en que asignamos la dirección IP tiene consecuencias en la administración de la red.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Asignación Dinámica (DHCP) - La Norma</h3>
+                    <p>La IP es asignada **automáticamente** por un servidor (usualmente el router). Es ideal para la mayoría de los dispositivos (laptops, móviles) ya que es fácil y no requiere intervención manual.</p>
+                </div>
+                <div>
+                    <h3>Asignación Estática - La Excepción</h3>
+                    <p>La IP es configurada **manualmente** y no cambia. Es obligatorio para dispositivos que necesitan ser encontrados por otros en la red (ej. **Servidores, Impresoras de Red, Routers**).</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Software Gratuito: NetSetMan</h2>
+            <p>**NetSetMan** es una herramienta gratuita y muy útil para técnicos que trabajan en diferentes redes (ej. en casa tienen una red y en la escuela otra). Permite guardar perfiles de configuración IP, Wi-Fi, DNS, etc., y cambiarlos con un solo clic.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>NetSetMan permite cambiar rápidamente entre configuraciones de red predefinidas.</figcaption>
+            </div>
+            
+            <p><strong>Tarea Práctica (Windows):</strong></p>
+            <ol>
+                <li>Instala NetSetMan (versión gratuita para uso no comercial).</li>
+                <li>Crea un perfil llamado "Casa" con la configuración IP de tu hogar (dinámica o estática).</li>
+                <li>Crea un perfil llamado "Taller" con una configuración estática ficticia (ej. 10.0.0.10, 255.0.0.0, Gateway 10.0.0.1).</li>
+            </ol>
+            <button id="netSetManCheckBtn">Verificar Práctica con NetSetMan</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S5 E17</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion16.html" class="nav-button">Anterior</a>
+        <a href="sesion18.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

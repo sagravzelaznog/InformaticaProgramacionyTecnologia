@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1 E3: Componentes de Hardware Fundamentales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Semana 1, Sesión 3: Componentes de Hardware 🛠️</h1>
+        <p class="subtitle">Routers, Switches y Tarjetas de Interfaz de Red (NIC)</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. El Router: El Director de Tráfico 🧭</h2>
+            <p>El **Router** es el dispositivo fundamental que conecta diferentes redes entre sí. Su función principal es **enrutar (routing)** los paquetes de datos por la mejor ruta hacia su destino.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Función Principal</h3>
+                    <ul>
+                        <li>**Conecta Redes Distintas:** Por ejemplo, conecta tu **Red Local (LAN)** con **Internet (WAN)**.</li>
+                        <li>**Toma Decisiones:** Utiliza las **Direcciones IP** para decidir a dónde enviar un paquete.</li>
+                        <li>**Tabla de Enrutamiento:** Mantiene una lista de rutas conocidas para tomar decisiones eficientes.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Analogía del Cartero</h3>
+                    <p class="highlight">Imagina que el Router es un cartero experto. Recibe una carta (paquete de datos) y, basándose en la dirección completa (Dirección IP), sabe exactamente qué camino tomar (la mejor ruta) para que llegue a otra ciudad (otra red).</p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. El Switch: El Organizador Local 🔗</h2>
+            <p>El **Switch** opera dentro de una única red local (LAN). Su trabajo es asegurar que los datos enviados desde un dispositivo lleguen únicamente al dispositivo correcto, y no a todos los demás.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Función Principal</h3>
+                    <ul>
+                        <li>**Interconexión Local:** Conecta múltiples dispositivos finales (PCs, impresoras, servidores) dentro del mismo segmento de red.</li>
+                        <li>**Uso de MAC:** Utiliza las **Direcciones MAC** (direcciones físicas únicas) para identificar con precisión a dónde enviar el paquete de datos, sin saturar la red.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Switch vs. Hub (Importante)</h3>
+                    <p>Antiguamente se usaban los **Hubs**, que eran "tontos": enviaban el dato a *todos* los puertos. El **Switch** es "inteligente": aprende qué dispositivo está en qué puerto, enviando el dato solo al puerto de destino, mejorando drásticamente el rendimiento.</p>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarjeta de Interfaz de Red (NIC) 🏷️</h2>
+            <p>La **NIC** (Network Interface Card) es el componente de hardware dentro de tu computadora o servidor que permite la conexión física a la red, ya sea por cable (Ethernet) o de forma inalámbrica (Wi-Fi).</p>
+
+            <div class="image-container">
+                
+                <figcaption>La NIC es la puerta de entrada de tu dispositivo a la red.</figcaption>
+            </div>
+
+            <p><strong>Dirección MAC:</strong> Cada NIC tiene una dirección única de 48 bits grabada por el fabricante, conocida como **Dirección MAC** (Media Access Control). Es la "huella digital" del dispositivo, usada principalmente por el Switch.</p>
+            
+            <button id="findMacBtn" onclick="openMacTool()">Práctica: Encontrar mi Dirección MAC</button>
+            <p class="small-text"><sub>*Esta herramienta abrirá tu consola de comandos para ejecutar un comando simple.*</sub></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S1 E3</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion02.html" class="nav-button">Anterior</a>
+        <a href="sesion04.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

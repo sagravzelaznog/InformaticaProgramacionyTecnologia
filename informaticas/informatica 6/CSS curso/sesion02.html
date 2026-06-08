@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: El Modelo de Caja - CSS3 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .box-model {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .box {
+            background-color: #e8f5e9;
+            border: 2px solid #a5d6a7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .box-demo {
+            width: 200px;
+            height: 100px;
+            background-color: #bbdefb;
+            border: 10px solid #64b5f6;
+            padding: 20px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .box-demo::before {
+            content: 'margin';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffcc80;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #5d4037;
+        }
+        
+        .box-demo::after {
+            content: 'border';
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            transform: translateY(-50%);
+            background: #90caf9;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #0d47a1;
+        }
+        
+        .box-demo .content {
+            width: 100%;
+            height: 100%;
+            background-color: #c8e6c9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .box-demo .content::after {
+            content: 'padding';
+            position: absolute;
+            top: -15px;
+            left: 0;
+            background: #a5d6a7;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #1b5e20;
+        }
+        
+        .box-sizing-demo {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .box-example {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .visual-box {
+            width: 150px;
+            height: 100px;
+            background-color: #e1f5fe;
+            border: 2px solid #0288d1;
+            padding: 10px;
+            margin: 10px auto;
+            position: relative;
+        }
+        
+        .visual-box.content-box {
+            box-sizing: content-box;
+        }
+        
+        .visual-box.border-box {
+            box-sizing: border-box;
+        }
+        
+        .visual-box .size-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .unit-demo {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .unit-example {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .pixel-box, .percent-box {
+            height: 100px;
+            background-color: #e1f5fe;
+            border: 1px solid #0288d1;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .pixel-box {
+            width: 200px;
+        }
+        
+        .percent-box {
+            width: 50%;
+        }
+        
+        .tetris-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tetris-piece {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            border-radius: 4px;
+        }
+        
+        .tetris-1 {
+            background-color: #e53935;
+            margin: 20px;
+            padding: 15px;
+        }
+        
+        .tetris-2 {
+            background-color: #3949ab;
+            margin: 30px 10px;
+            padding: 10px 25px;
+        }
+        
+        .tetris-3 {
+            background-color: #43a047;
+            margin: 10px 30px;
+            padding: 25px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: Conexión y Estética</a></li>
+                <li class="active"><a href="sesion02.html">Sesión 2: Modelo de Caja</a></li>
+                <li><a href="sesion03.html">Sesión 3: Posicionamiento</a></li>
+                <li><a href="sesion04.html">Sesión 4: Flexbox</a></li>
+                <li><a href="sesion05.html">Sesión 5: Diseño Responsive</a></li>
+                <li><a href="sesion06.html">Sesión 6: Animaciones</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>📦 Sesión 2: El Modelo de Caja</h1>
+                <p class="subtitle">La física de la web: Todo es un rectángulo</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Comprender el modelo de caja de CSS, la base del diseño web, y aprender a controlar el espacio que ocupan los elementos en la página.</p>
+            </section>
+
+            <section class="box-anatomy">
+                <h2>1. Anatomía del Rectángulo</h2>
+                
+                <p>En CSS, cada elemento es una caja rectangular con las siguientes partes:</p>
+                
+                <div class="box-model">
+                    <div class="box-demo">
+                        <div class="content">Contenido</div>
+                    </div>
+                    
+                    <div class="box">
+                        <h3>1. Contenido (Content)</h3>
+                        <p>El área donde se muestra el contenido (texto, imágenes, etc.). Sus dimensiones se controlan con <code>width</code> (ancho) y <code>height</code> (alto).</p>
+                        
+                        <h3>2. Relleno (Padding)</h3>
+                        <p>El espacio entre el contenido y el borde. Se controla con <code>padding</code>.</p>
+                        
+                        <h3>3. Borde (Border)</h3>
+                        <p>La línea que rodea el relleno. Se controla con <code>border</code>.</p>
+                        
+                        <h3>4. Margen (Margin)</h3>
+                        <p>El espacio exterior que separa el elemento de otros elementos. Se controla con <code>margin</code>.</p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code>/* Ejemplo de modelo de caja completo */
+.caja {
+    /* Dimensiones del contenido */
+    width: 200px;
+    height: 100px;
+    
+    /* Relleno */
+    padding: 20px;
+    
+    /* Borde */
+    border: 10px solid #64b5f6;
+    
+    /* Margen */
+    margin: 20px;
+    
+    /* Fondo para visualizar mejor */
+    background-color: #bbdefb;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>💡 Propiedades abreviadas</h3>
+                    <p>Puedes definir los lados individualmente o usar la propiedad abreviada:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/* Establecer cada lado individualmente */
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+
+/* Propiedad abreviada (sentido de las agujas del reloj: arriba, derecha, abajo, izquierda) */
+padding: 10px 20px 10px 20px;
+
+/* Arriba y abajo 10px, izquierda y derecha 20px */
+padding: 10px 20px;
+
+/* Todos los lados iguales */
+padding: 15px;</code></pre>
+                    </div>
+                    
+                    <p>Lo mismo aplica para <code>margin</code> y <code>border</code>.</p>
+                </div>
+            </section>
+
+            <section class="box-sizing">
+                <h2>2. El Gran Truco: <code>box-sizing: border-box</code></h2>
+                
+                <p>Por defecto, cuando estableces el <code>width</code> y <code>height</code> de un elemento, solo estás definiendo el tamaño del <strong>contenido</strong>. El padding y el borde se suman a estas dimensiones, lo que puede causar problemas de diseño.</p>
+                
+                <div class="box-sizing-demo">
+                    <div class="box-example">
+                        <h3>box-sizing: content-box (por defecto)</h3>
+                        <div class="visual-box content-box">
+                            Contenido
+                            <div class="size-label">width: 150px + 20px padding + 4px borde = 174px total</div>
+                        </div>
+                        <p>El ancho total del elemento es mayor que el especificado en <code>width</code>.</p>
+                    </div>
+                    
+                    <div class="box-example">
+                        <h3>box-sizing: border-box (recomendado)</h3>
+                        <div class="visual-box border-box">
+                            Contenido
+                            <div class="size-label">width: 150px (incluye padding y borde)</div>
+                        </div>
+                        <p>El ancho total del elemento es exactamente el especificado en <code>width</code>.</p>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code>/* Aplicar border-box a todos los elementos */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* O solo a elementos específicos */
+.mi-elemento {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 20px;
+    border: 5px solid #000;
+    /* El ancho total será de 200px, no 250px */
+}</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h3>💡 ¿Por qué usar <code>box-sizing: border-box</code>?</h3>
+                    <ul>
+                        <li>Hace que el diseño sea más predecible.</li>
+                        <li>Facilita los cálculos de ancho/alto.</li>
+                        <li>Es el estándar en la mayoría de los frameworks CSS.</li>
+                        <li>Evita problemas de diseño responsivo.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="dimensions">
+                <h2>3. Dimensiones: <code>width</code>, <code>height</code> y Unidades</h2>
+                
+                <p>Podemos controlar el tamaño de los elementos usando diferentes unidades de medida:</p>
+                
+                <div class="unit-demo">
+                    <div class="unit-example">
+                        <h3>Píxeles (px)</h3>
+                        <p>Unidad fija que no cambia con el tamaño de la pantalla.</p>
+                        <div class="pixel-box">200px × 100px</div>
+                        <pre><code>.caja {
+    width: 200px;
+    height: 100px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="unit-example">
+                        <h3>Porcentaje (%)</h3>
+                        <p>Relativo al tamaño del contenedor padre.</p>
+                        <div class="percent-box">50% del ancho del padre</div>
+                        <pre><code>.caja {
+    width: 50%;
+    height: 100px;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <h3>Otras unidades útiles:</h3>
+                    <ul>
+                        <li><strong>vw/vh</strong>: 1% del ancho (viewport width) o alto (viewport height) de la ventana.</li>
+                        <li><strong>rem</strong>: Relativo al tamaño de la fuente del elemento raíz (html).</li>
+                        <li><strong>em</strong>: Relativo al tamaño de la fuente del elemento padre.</li>
+                        <li><strong>min-content/max-content</strong>: Tamaño mínimo/máximo necesario para el contenido.</li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code>/* Ejemplo de unidades responsivas */
+.contenedor {
+    width: 90%; /* 90% del ancho del padre */
+    max-width: 1200px; /* No más ancho que 1200px */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+.columna {
+    width: 100%; /* Ocupa todo el ancho en móviles */
+    padding: 1rem; /* Espaciado relativo al tamaño de fuente */
+}
+
+@media (min-width: 768px) {
+    .columna {
+        width: 50%; /* 2 columnas en tablets */
+        float: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .columna {
+        width: 33.333%; /* 3 columnas en escritorio */
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="challenge">
+                <h2>🧩 Reto: "Tetris CSS"</h2>
+                
+                <p>Crea 3 cuadros de colores que se separen y respiren correctamente usando márgenes y rellenos.</p>
+                
+                <div class="activity">
+                    <h3>Instrucciones:</h3>
+                    <ol>
+                        <li>Crea un archivo HTML con 3 elementos <code>&lt;div&gt;</code>.</li>
+                        <li>Aplica estilos CSS para que cada uno tenga un color diferente.</li>
+                        <li>Usa márgenes y rellenos para espaciarlos correctamente:</li>
+                        <ul>
+                            <li>Primer cuadrado: margen de 20px en todos los lados, relleno de 15px.</li>
+                            <li>Segundo cuadrado: margen vertical de 30px, horizontal de 10px; relleno vertical de 10px, horizontal de 25px.</li>
+                            <li>Tercer cuadrado: margen vertical de 10px, horizontal de 30px; relleno vertical de 25px, horizontal de 10px.</li>
+                        </ul>
+                        <li>Usa <code>box-sizing: border-box</code> para que los márgenes no afecten las dimensiones finales.</li>
+                        <li>¡Abre el archivo en tu navegador para ver los resultados!</li>
+                    </ol>
+                    
+                    <h3>Resultado esperado:</h3>
+                    <div class="tetris-container">
+                        <div class="tetris-piece tetris-1">Caja 1</div>
+                        <div class="tetris-piece tetris-2">Caja 2</div>
+                        <div class="tetris-piece tetris-3">Caja 3</div>
+                    </div>
+                    
+                    <h3>Consejos:</h3>
+                    <ul>
+                        <li>Usa la propiedad abreviada <code>margin: arriba derecha abajo izquierda</code>.</li>
+                        <li>Recuerda que <code>padding</code> funciona igual que <code>margin</code> pero hacia adentro.</li>
+                        <li>Usa la herramienta de desarrollo del navegador (F12) para inspeccionar los elementos y ver sus márgenes y rellenos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                
+                <div class="checklist">
+                    <h3>Lo que aprendimos hoy:</h3>
+                    <ul>
+                        <li><strong>Modelo de Caja:</strong> Todo en CSS es una caja con contenido, padding, borde y margen.</li>
+                        <li><strong>Box Sizing:</strong> <code>box-sizing: border-box</code> hace que el ancho y alto incluyan el padding y el borde.</li>
+                        <li><strong>Unidades de Medida:</strong>
+                            <ul>
+                                <li><code>px</code>: Píxeles (tamaño fijo).</li>
+                                <li><code>%</code>: Porcentaje del elemento padre.</li>
+                                <li><code>vw/vh</code>: Porcentaje del viewport.</li>
+                                <li><code>rem/em</code>: Relativas al tamaño de fuente.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Propiedades Abreviadas:</strong> <code>margin: 10px 20px 10px 20px;</code> (arriba, derecha, abajo, izquierda).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! Soy Dola, tu asistente de aprendizaje. Puedes preguntarme cualquier duda sobre el modelo de caja. Por ejemplo:</p>
+                            <ul>
+                                <li>¿Cómo funciona exactamente el box-sizing?</li>
+                                <li>¿Cuál es la diferencia entre margin y padding?</li>
+                                <li>¿Por qué mi elemento no tiene el tamaño que esperaba?</li>
+                                <li>¿Cómo centrar un elemento horizontalmente?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion01.html" class="button">← Sesión Anterior</a>
+                    <a href="index.html" class="button">Inicio</a>
+                    <a href="sesion03.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE CSS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Script para el chat de Dola AI
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+                    
+                    addMessage(message, true);
+                    userInput.value = '';
+                    
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        let response = '';
+                        
+                        if (message.toLowerCase().includes('box-sizing') || message.toLowerCase().includes('tamaño de caja')) {
+                            response = `El <code>box-sizing</code> es una propiedad que controla cómo se calcula el ancho y alto de un elemento. Hay dos valores principales:<br><br>
+                            <strong>content-box (por defecto):</strong> El ancho/alto solo incluye el contenido. El padding y borde se suman al tamaño total.<br>
+                            <strong>border-box:</strong> El ancho/alto incluye el contenido, padding y borde. Es más predecible y recomendado.<br><br>
+                            Ejemplo:<br>
+                            <code>div {<br>
+                              box-sizing: border-box;<br>
+                              width: 200px;<br>
+                              padding: 20px;<br>
+                              border: 5px solid black;<br>
+                            }</code><br><br>
+                            El ancho total será exactamente 200px, no 250px.`;
+                        } 
+                        else if (message.toLowerCase().includes('margin') && message.toLowerCase().includes('padding')) {
+                            response = `La principal diferencia entre <code>margin</code> y <code>padding</code> es:<br><br>
+                            <strong>Margin (margen):</strong> Es el espacio <em>fuera</em> del borde del elemento, que lo separa de otros elementos.<br>
+                            <strong>Padding (relleno):</strong> Es el espacio <em>dentro</em> del borde del elemento, entre el borde y el contenido.<br><br>
+                            Visualización:<br>
+                            <div style='border:1px solid #ccc; padding:10px; margin:10px 0;'>
+                              <div style='background:#e3f2fd; padding:15px; border:2px solid #2196f3;'>
+                                Contenido<br>
+                                (El espacio azul claro es el padding)
+                              </div>
+                            </div>
+                            El espacio entre el borde azul y el borde gris es el margin.`;
+                        }
+                        else if (message.toLowerCase().includes('centrar') || message.toLowerCase().includes('centrado')) {
+                            response = `Para centrar un elemento horizontalmente, hay varias formas:<br><br>
+                            <strong>1. Para elementos de bloque con ancho definido:</strong><br>
+                            <code>margin: 0 auto;</code><br><br>
+                            
+                            <strong>2. Usando Flexbox (recomendado para layouts modernos):</strong><br>
+                            <code>.contenedor {<br>
+                              display: flex;<br>
+                              justify-content: center; /* centrado horizontal */<br>
+                              align-items: center;    /* centrado vertical */<br>
+                            }</code><br><br>
+                            
+                            <strong>3. Usando Grid:</strong><br>
+                            <code>.contenedor {<br>
+                              display: grid;<br>
+                              place-items: center; /* centrado en ambos ejes */<br>
+                            }</code><br><br>
+                            
+                            <strong>4. Para centrar texto:</strong><br>
+                            <code>text-align: center;</code>`;
+                        }
+                        else {
+                            const responses = [
+                                "El modelo de caja es fundamental en CSS. ¿Te gustaría que profundicemos en algún aspecto específico como márgenes, rellenos o bordes?",
+                                "¿Has probado a inspeccionar el elemento con las herramientas de desarrollo del navegador? Presiona F12 y usa la herramienta de selección para ver las dimensiones exactas.",
+                                "Recuerda que con <code>box-sizing: border-box</code>, el padding y el borde se incluyen en el ancho/alto que definas, lo que hace los cálculos mucho más sencillos.",
+                                "¿Neitas ayuda con algo específico sobre el reto del Tetris CSS? Puedo ayudarte con los márgenes, rellenos o cualquier otra duda que tengas.",
+                                "Una buena práctica es usar un reset CSS o normalizar los estilos predeterminados del navegador para evitar inconsistencias entre navegadores. ¿Te gustaría ver un ejemplo?"
+                            ];
+                            response = responses[Math.floor(Math.random() * responses.length)];
+                        }
+                        
+                        addMessage(response);
+                    }, 1000);
+                }
+                
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

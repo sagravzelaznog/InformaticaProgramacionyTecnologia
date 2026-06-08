@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Sesión 03: La Fábrica de Hechizos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🪄 Sesión 03: La Fábrica de Hechizos (Funciones)</h1>
+        <p>Aprende a encapsular tu código para no tener que escribir lo mismo mil veces.</p>
+    </header>
+
+    <main>
+        <section class="lesson-module">
+            <h2>⚙️ ¿Qué es una Función?</h2>
+            <p>Imagina una función como una <strong>Máquina Expendedora</strong>. Tú le metes monedas y seleccionas un código (esos son los <em>parámetros</em>), la máquina hace su magia adentro, y te devuelve un refresco (ese es el <em>return</em>).</p>
+            
+            <div class="theory-box">
+                <h3>Las 3 partes de un Hechizo (Función)</h3>
+                <ul>
+                    <li><strong>La Declaración:</strong> Usamos la palabra mágica <code>function</code> seguida del nombre de la función.</li>
+                    <li><strong>Los Parámetros <code>()</code>:</strong> Son los ingredientes que le pasas a la función para que trabaje. Van entre paréntesis.</li>
+                    <li><strong>El Retorno <code>return</code>:</strong> Es el resultado final que la función escupe hacia afuera para que lo uses.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="lesson-module">
+            <h2>🛠️ Ejemplo: La Calculadora de Daño RPG</h2>
+            <p>Vamos a crear un "hechizo" que calcule cuánto daño le haces a un monstruo, sumando tu fuerza base más el poder de tu arma.</p>
+            
+            <div class="example-box">
+                <div class="code-line">
+                    <span class="code">function calcularDanio(fuerza, arma) {</span>
+                    <span class="explanation">👉 1. Creamos la función y le decimos que necesita 2 ingredientes (parámetros): fuerza y arma.</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">&nbsp;&nbsp;let danioTotal = fuerza + arma;</span>
+                    <span class="explanation">👉 2. Adentro de la fábrica, sumamos los dos valores y los guardamos en una caja (variable).</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">&nbsp;&nbsp;return danioTotal;</span>
+                    <span class="explanation">👉 3. Escupimos (devolvemos) el resultado final hacia afuera de la función.</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">}</span>
+                    <span class="explanation">👉 4. Cerramos las puertas de la fábrica.</span>
+                </div>
+                <br>
+                <div class="code-line">
+                    <span class="code">let miAtaque = calcularDanio(10, 50);</span>
+                    <span class="explanation">👉 5. Invocamos (llamamos) a la función, le damos los valores reales (argumentos), y guardamos el resultado en "miAtaque".</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">console.log("Hiciste " + miAtaque + " puntos de daño.");</span>
+                    <span class="explanation">👉 6. Mostramos en la consola: "Hiciste 60 puntos de daño."</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <h2>🎮 Arena de Batalla: Demuestra tu Poder</h2>
+            <p>¿Entendiste cómo invocar hechizos? Demuéstralo en este desafío.</p>
+            <div id="quiz-container">
+                </div>
+            <div id="score-container" style="display: none;">
+                <h3>Puntaje Final: <span id="final-score">0</span>/10</h3>
+                <button onclick="location.reload()" class="reload-btn">Intentar de Nuevo</button>
+            </div>
+        </section>
+
+        <section class="teacher-zone">
+            <h2>🔐 Área Restringida</h2>
+            <p>Acceso exclusivo para el Game Master (Docente).</p>
+            <input type="password" id="teacher-password" placeholder="Código de acceso...">
+            <button id="unlock-btn">Desbloquear Tips</button>
+            
+            <div id="teacher-tips" style="display: none;">
+                <h3>🕵️‍♂️ Tips Pedagógicos del Genio para la Sesión 3:</h3>
+                <ul>
+                    <li><strong>Concepto Abstracto:</strong> La diferencia entre "Parámetro" (la variable en la definición) y "Argumento" (el valor real al invocarla) suele confundirlos. Usa la analogía de una receta: El parámetro dice "harina", el argumento es "2 tazas de harina real".</li>
+                    <li><strong>El poder del Return:</strong> Muchos alumnos creen que <code>console.log</code> es lo mismo que <code>return</code>. Recuérdales que <code>console.log</code> es solo "ver el refresco por el cristal", mientras que <code>return</code> es "sacar el refresco de la máquina para podértelo beber".</li>
+                    <li><strong>Gamificación:</strong> Pídeles que cada quien nombre a su función de forma única basándose en su videojuego favorito (ej: <code>curarPokemon(pocion)</code>, <code>construirBloque(madera)</code>).</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; JMGV-PTEL SESION 03 JS. TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

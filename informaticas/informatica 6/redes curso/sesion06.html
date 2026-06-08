@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 E6: Modelo TCP/IP y Encapsulamiento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 2, Sesión 6: El Modelo TCP/IP 🌐</h1>
+        <p class="subtitle">El Estándar Real de Internet y el Proceso de Encapsulamiento</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. El Modelo TCP/IP (El Estándar Práctico)</h2>
+            <p>Aunque el Modelo OSI es excelente para la enseñanza, el modelo que realmente utiliza Internet es el **Modelo TCP/IP**. Este modelo es más sencillo, ya que consolida algunas de las siete capas del OSI en solo cuatro capas:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>4. Aplicación</h3>
+                    <p>Agrupa las capas 5, 6 y 7 de OSI (Aplicación, Presentación, Sesión). Contiene protocolos como **HTTP, DNS**.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Transporte</h3>
+                    <p>Similar a la Capa 4 de OSI. Protocolos clave: **TCP** (confiable) y **UDP** (rápido).</p>
+                </div>
+                <div class="card">
+                    <h3>2. Internet</h3>
+                    <p>Similar a la Capa 3 de OSI (Red). Se encarga del direccionamiento lógico usando **IP** y del enrutamiento.</p>
+                </div>
+                <div class="card">
+                    <h3>1. Acceso a Red</h3>
+                    <p>Agrupa las capas 1 y 2 de OSI (Física y Enlace de Datos). Maneja la transmisión de bits y las **Direcciones MAC**.</p>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                
+                <figcaption>El modelo TCP/IP es más práctico y agrupa las funciones de varias capas OSI.</figcaption>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. El Proceso de Encapsulamiento 📦</h2>
+            <p>Cuando envías un mensaje, este no se manda completo. El **encapsulamiento** es el proceso mediante el cual los datos bajan por las capas del modelo TCP/IP (o OSI) y se les añade información de control (encabezados o *headers*) en cada nivel. Esto es como meter una carta en un sobre tras otro.</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Capas Superiores (Datos)</h3>
+                    <p>Tu mensaje original se convierte en **Datos** y baja a la Capa de Transporte.</p>
+                </div>
+                <div>
+                    <h3>Capa de Transporte (Segmento/Datagrama)</h3>
+                    <p>Se añade el encabezado TCP/UDP (que incluye los **Puertos**). El paquete se llama **Segmento** (TCP) o **Datagrama** (UDP).</p>
+                </div>
+                <div>
+                    <h3>Capa de Internet (Paquete)</h3>
+                    <p>Se añade el encabezado IP (que incluye las **Direcciones IP** de origen y destino). Ahora es un **Paquete**.</p>
+                </div>
+                <div>
+                    <h3>Capa de Acceso a Red (Trama)</h3>
+                    <p>Se añade el encabezado de Enlace (que incluye las **Direcciones MAC**). Ahora es una **Trama** y está lista para convertirse en bits y viajar por el medio físico.</p>
+                </div>
+            </div>
+
+            <div class="image-container">
+                
+                <figcaption>El dato original se "envuelve" con encabezados en cada capa para guiar su viaje.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>Práctica: Visualizando el Encapsulamiento en Packet Tracer</h2>
+            <p>Usaremos el modo de simulación de Packet Tracer para ver este proceso en acción. Es la mejor forma de entender cómo se añaden los encabezados.</p>
+
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>Abre el Packet Tracer y crea una red simple (PC conectado a un Switch, Switch conectado a otro PC).</li>
+                <li>Cambia al **Modo Simulación** (el botón de reloj).</li>
+                <li>Haz que el PC1 envíe un paquete **Ping** al PC2.</li>
+                <li>Haz clic en el paquete mientras se mueve y revisa las pestañas "Inbound PDU" y "Outbound PDU".</li>
+            </ol>
+            <p class="small-text"><sub>Observa cómo el paquete comienza con datos (Capas TCP/IP 4), luego recibe encabezados IP (Capa 3) y finalmente encabezados Ethernet (Capa 2).</sub></p>
+            <button id="encapsulationPktBtn">Confirmar Visualización</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S2 E6</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion05.html" class="nav-button">Anterior</a>
+        <a href="sesion07.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

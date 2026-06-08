@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10: Formularios de Usuario I - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 10: Formularios de Usuario I</h1>
+                <p class="objective"><strong>Objetivo:</strong> Introducir los conceptos básicos para crear interfaces
+                    de usuario personalizadas en Excel mediante UserForms.</p>
+            </header>
+
+            <div class="session-content">
+
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>Los UserForms son ventanas personalizables que permiten crear interfaces gráficas para que los
+                        usuarios interactúen con tus macros. En esta sesión, aprenderás a crear formularios básicos y
+                        agregar controles comunes para mejorar la experiencia del usuario.</p>
+
+                    <h3><i class="fas fa-check-circle"></i> Ventajas de los UserForms</h3>
+                    <ul>
+                        <li>Interfaz profesional y fácil de usar</li>
+                        <li>Validación de datos integrada</li>
+                        <li>Mejor experiencia de usuario que los cuadros de mensaje simples</li>
+                        <li>Mayor control sobre la entrada de datos</li>
+                    </ul>
+
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-sliders-h"></i> Controles Básicos</h3>
+                    <p>Los controles son elementos que permiten al usuario interactuar con el formulario. Algunos
+                        controles comunes incluyen:</p>
+                    <ul>
+                        <li><strong>Cuadros de texto:</strong> Para entrada de texto</li>
+                        <li><strong>Etiquetas:</strong> Para mostrar texto descriptivo</li>
+                        <li><strong>Botones de comando:</strong> Para ejecutar acciones</li>
+                        <li><strong>Casillas de verificación:</strong> Para opciones sí/no</li>
+                        <li><strong>Botones de opción:</strong> Para selección única entre opciones</li>
+                        <li><strong>Cuadros combinados:</strong> Para seleccionar de una lista desplegable</li>
+                    </ul>
+
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-plus-square"></i> 1. Crear un UserForm</h3>
+                    <p>Para crear un nuevo UserForm:</p>
+                    <ol>
+                        <li>Presiona <kbd>Alt + F11</kbd> para abrir el Editor VBA</li>
+                        <li>En el menú, selecciona <strong>Insertar</strong> > <strong>UserForm</strong></li>
+                        <li>Se abrirá un formulario en blanco y aparecerá el <strong>Cuadro de herramientas</strong>
+                        </li>
+                    </ol>
+
+                    <h3><i class="fas fa-tools"></i> 2. Agregar controles al formulario</h3>
+                    <p>Puedes arrastrar controles desde el <strong>Cuadro de herramientas</strong> al formulario:</p>
+
+                    <div class="example">
+                        <h4>Ejemplo: Formulario de registro simple</h4>
+                        <div class="form-example">
+                            <p><strong>Registro de Estudiante</strong></p>
+                            <p>Nombre: [___________]</p>
+                            <p>Edad: [___]</p>
+                            <p>Carrera: [▼]</p>
+                            <p>Intereses: [ ] Deportes [ ] Música [ ] Arte</p>
+                            <p>[ Guardar ] [ Cancelar ]</p>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-cog"></i> 3. Propiedades comunes</h3>
+                    <p>Cada control tiene propiedades que puedes configurar:</p>
+                    <ul>
+                        <li><strong>Name:</strong> Identificador único del control</li>
+                        <li><strong>Caption/Text:</strong> Texto que se muestra</li>
+                        <li><strong>BackColor/ForeColor:</strong> Colores de fondo y texto</li>
+                        <li><strong>Font:</strong> Fuente, tamaño y estilo del texto</li>
+                        <li><strong>Width/Height:</strong> Tamaño del control</li>
+                    </ul>
+
+                    <div class="example">
+                        <h4>Ejemplo: Configuración de propiedades</h4>
+                        <pre><code>' En el editor VBA, selecciona un control y ve a la ventana de propiedades
+' O configura propiedades mediante código:
+
+Private Sub UserForm_Initialize()
+    ' Configurar propiedades del formulario
+    Me.Caption = "Registro de Estudiante"
+    Me.Width = 300
+    Me.Height = 250
+    
+    ' Configurar un botón
+    CommandButton1.Caption = "Guardar"
+    CommandButton1.Width = 80
+    CommandButton1.Height = 24
+    
+    ' Configurar una etiqueta
+    Label1.Caption = "Nombre:"
+    Label1.Font.Bold = True
+End Sub</code></pre>
+                    </div>
+
+                    <h3><i class="fas fa-window-restore"></i> 4. Mostrar y ocultar formularios</h3>
+                    <p>Para mostrar un formulario desde un módulo estándar o desde otro formulario:</p>
+
+                    <div class="example">
+                        <h4>Mostrar un formulario</h4>
+                        <pre><code>Sub MostrarFormulario()
+    ' Crea una instancia del formulario
+    Dim miFormulario As UserForm1
+    Set miFormulario = New UserForm1
+    
+    ' Mostrar el formulario de forma modal (el usuario debe cerrarlo para continuar)
+    miFormulario.Show
+    
+    ' O mostrar de forma no modal (el usuario puede interactuar con Excel)
+    ' miFormulario.Show vbModeless
+End Sub</code></pre>
+
+                        <h4>Cerrar un formulario</h4>
+                        <pre><code>' Para cerrar el formulario actual
+Unload Me
+
+' O cerrar un formulario específico
+Unload UserForm1</code></pre>
+                    </div>
+
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <p>Crea un formulario de registro de estudiantes con los siguientes elementos:</p>
+                    <ol>
+                        <li>Un campo para el nombre (cuadro de texto)</li>
+                        <li>Un campo para la edad (cuadro numérico)</li>
+                        <li>Una lista desplegable para la carrera</li>
+                        <li>Casillas de verificación para intereses</li>
+                        <li>Botones para Guardar y Cancelar</li>
+                    </ol>
+
+                    <div class="example">
+                        <h4>Solución propuesta:</h4>
+                        <pre><code>' Código para el formulario (UserForm1)
+
+Private Sub UserForm_Initialize()
+    ' Configurar el formulario
+    Me.Caption = "Registro de Estudiante"
+    
+    ' Llenar el combo de carreras
+    With ComboBox1
+        .AddItem "Ingeniería en Sistemas"
+        .AddItem "Administración"
+        .AddItem "Contabilidad"
+        .AddItem "Derecho"
+        .ListIndex = 0  ' Seleccionar el primer elemento
+    End With
+    
+    ' Configurar botones
+    CommandButton1.Caption = "Guardar"
+    CommandButton2.Caption = "Cancelar"
+End Sub
+
+Private Sub CommandButton1_Click()
+    ' Validar que se ingresó un nombre
+    If TextBox1.Text = "" Then
+        MsgBox "Por favor ingrese un nombre", vbExclamation
+        TextBox1.SetFocus
+        Exit Sub
+    End If
+    
+    ' Validar la edad
+    If Not IsNumeric(TextBox2.Text) Or Val(TextBox2.Text) < 15 Or Val(TextBox2.Text) > 100 Then
+        MsgBox "Por favor ingrese una edad válida (15-100)", vbExclamation
+        TextBox2.SetFocus
+        Exit Sub
+    End If
+    
+    ' Procesar los datos (aquí podrías guardarlos en una hoja de Excel)
+    Dim intereses As String
+    If CheckBox1.Value Then intereses = intereses & "Deportes, "
+    If CheckBox2.Value Then intereses = intereses & "Música, "
+    If CheckBox3.Value Then intereses = intereses & "Arte, "
+    
+    ' Quitar la última coma y espacio
+    If Len(intereses) > 0 Then intereses = Left(intereses, Len(intereses) - 2)
+    
+    ' Mostrar un resumen (en una aplicación real, guardarías estos datos)
+    MsgBox "Registro exitoso:" & vbNewLine & _
+           "Nombre: " & TextBox1.Text & vbNewLine & _
+           "Edad: " & TextBox2.Text & vbNewLine & _
+           "Carrera: " & ComboBox1.Text & vbNewLine & _
+           "Intereses: " & IIf(intereses = "", "Ninguno", intereses), _
+           vbInformation, "Registro Exitoso"
+    
+    ' Cerrar el formulario
+    Unload Me
+End Sub
+
+Private Sub CommandButton2_Click()
+    ' Botón Cancelar
+    If MsgBox("¿Está seguro de que desea cancelar?", vbQuestion + vbYesNo) = vbYes Then
+        Unload Me
+    End If
+End Sub</code></pre>
+                    </div>
+
+                </section>
+
+                <section class="activity">
+                    <div class="activity-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad de la Sesión</h2>
+                    </div>
+                    <p>Crea un formulario de contacto con los siguientes campos:</p>
+                    <ol>
+                        <li>Nombre (obligatorio)</li>
+                        <li>Correo electrónico (validar formato)</li>
+                        <li>Asunto (lista desplegable con opciones: Consulta, Reclamo, Sugerencia, Otro)</li>
+                        <li>Mensaje (área de texto multilínea)</li>
+                        <li>Botones para Enviar y Limpiar</li>
+                    </ol>
+                    <p>El formulario debe validar que todos los campos obligatorios estén completos y que el correo
+                        electrónico tenga un formato válido.</p>
+
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>Los UserForms permiten crear interfaces gráficas personalizadas para las macros de Excel.
+                        </li>
+                        <li>Los controles básicos incluyen cuadros de texto, etiquetas, botones, casillas de
+                            verificación y cuadros combinados.</li>
+                        <li>Las propiedades de los controles se pueden configurar en tiempo de diseño o mediante código.
+                        </li>
+                        <li>Es importante validar la entrada del usuario antes de procesar los datos.</li>
+                        <li>Los formularios mejoran significativamente la experiencia del usuario al interactuar con las
+                            macros.</li>
+                    </ul>
+
+                </section>
+
+               
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

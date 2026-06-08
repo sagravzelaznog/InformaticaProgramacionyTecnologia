@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 07: Preproducción de Video</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 07</h1>
+            <h2>Producción de Video: El Lenguaje Visual</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. ¿Cómo Habla una Cámara?</h3>
+            <p><strong>Objetivo:</strong> Comprender que cada encuadre transmite una emoción diferente. No es lo mismo grabar de lejos que de cerca.</p>
+            
+            <div class="interactive-box">
+                <h4>🎥 La Escala de Planos</h4>
+                <p>Imagina que estás grabando a una persona. ¿Qué quieres contar?</p>
+                <div class="stats-grid" style="gap: 10px;">
+                    <div class="stat-item" style="background:#2d3748; color:white; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-label" style="color:#a0aec0;">PLANO GENERAL</span>
+                        <div style="font-size: 2rem;">🚶‍♂️🌲</div>
+                        <p style="font-size: 0.8rem; margin-top:5px;">Muestra el entorno. "Soledad", "Libertad".</p>
+                    </div>
+                    <div class="stat-item" style="background:#2d3748; color:white; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-label" style="color:#a0aec0;">PLANO MEDIO</span>
+                        <div style="font-size: 2rem;">🧍‍♂️💬</div>
+                        <p style="font-size: 0.8rem; margin-top:5px;">Cintura para arriba. "Diálogo", "Acción".</p>
+                    </div>
+                    <div class="stat-item" style="background:#2d3748; color:white; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-label" style="color:#a0aec0;">PRIMER PLANO</span>
+                        <div style="font-size: 2rem;">🙂😢</div>
+                        <p style="font-size: 0.8rem; margin-top:5px;">Solo el rostro. "Emoción", "Intimidad".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Preproducción: El Mapa de Ruta</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>📐 Ángulos de Cámara</h4>
+                    <p>La posición de la cámara cambia el estatus del personaje:</p>
+                    <ul>
+                        <li><strong>Picado (Desde arriba):</strong> Hace al sujeto verse pequeño, débil o inocente.</li>
+                        <li><strong>Contrapicado (Desde abajo):</strong> Hace al sujeto verse poderoso, heroico o amenazante.</li>
+                        <li><strong>Normal (A los ojos):</strong> Igualdad, neutralidad.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>📝 El Storyboard</h4>
+                    <p>Es el cómic de tu video antes de grabarlo.</p>
+                    <ul>
+                        <li><strong>Ahorra Tiempo:</strong> Sabes exactamente qué grabar.</li>
+                        <li><strong>Comunicación:</strong> Todo el equipo entiende la visión.</li>
+                        <li><strong>No necesitas saber dibujar:</strong> ¡Usa palitos y bolitas! Lo importante es la composición.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🖊️ Ejemplo de Guion Gráfico</h4>
+                <p>Una escena simple: "Alguien encuentra un tesoro".</p>
+                
+                <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-top: 15px;">
+                    <div style="min-width: 150px; border: 2px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <div style="height: 80px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🗺️</div>
+                        <p style="font-size: 0.7rem; font-weight: bold; margin-top: 5px;">1. Plano Detalle</p>
+                        <p style="font-size: 0.7rem; color: #666;">Manos sosteniendo un mapa viejo.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; color: var(--accent);">➡️</div>
+                    <div style="min-width: 150px; border: 2px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <div style="height: 80px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 2rem;">👀</div>
+                        <p style="font-size: 0.7rem; font-weight: bold; margin-top: 5px;">2. Primer Plano</p>
+                        <p style="font-size: 0.7rem; color: #666;">Cara de sorpresa mirando al frente.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; color: var(--accent);">➡️</div>
+                    <div style="min-width: 150px; border: 2px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <div style="height: 80px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 2rem;">⚱️✨</div>
+                        <p style="font-size: 0.7rem; font-weight: bold; margin-top: 5px;">3. Plano General</p>
+                        <p style="font-size: 0.7rem; color: #666;">El personaje junto al cofre brillante.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Manos a la Obra</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Regla de los Tercios</h5>
+                    <p>¿Dónde debes colocar los ojos del personaje en la pantalla?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>En las intersecciones superiores.</strong> Nunca exactamente en el centro (es aburrido), a menos que sea estilo Wes Anderson.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Error de Novato</h5>
+                    <p>¿Qué pasa si grabas mientras caminas sin estabilizador?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Solución</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Efecto Terremoto (Shaky Cam).</strong> Solución casera: Pega los codos a tu cuerpo y camina flexionando las rodillas ("Caminata Ninja").</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎬 <strong>Misión del Día:</strong> Dibuja un Storyboard de 3 cuadros sobre "Cómo llegar tarde a clase épicamente".</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 07 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

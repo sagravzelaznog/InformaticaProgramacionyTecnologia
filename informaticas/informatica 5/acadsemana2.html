@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 2: Precisión y Organización en AutoCAD</title>
+    <style>
+        :root {
+            --primary-color: #0078d4;
+            --secondary-color: #2c3e50;
+            --accent-color: #ff8c00;
+            --light-gray: #f4f4f9;
+            --dark-gray: #333;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 25px;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .session {
+            background-color: var(--white);
+            border-left: 7px solid var(--primary-color);
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .session:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        .session h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 1.8em;
+        }
+        .objectives, .pro-tip {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            background-color: var(--light-gray);
+            border: 1px solid #e1e1e1;
+        }
+        .objectives h3, .pro-tip h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .pro-tip {
+            border-left: 5px solid var(--accent-color);
+        }
+        .pro-tip h3 {
+            color: var(--accent-color);
+        }
+        code {
+            background-color: #e1e1e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #005a9e;
+        }
+        details {
+            margin: 15px 0;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #eef;
+            border-radius: var(--border-radius);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 2: Precisión en el dibujo</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 5: Coordenadas y Referencias -->
+        <section id="sesion5" class="session">
+            <h2>Sesión 5: Coordenadas y Referencias</h2>
+            <div class="content">
+                <p>Aprenderemos a trabajar con sistemas de coordenadas y referencias a objetos (OSNAP) para lograr una precisión milimétrica en nuestros dibujos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Dominar el uso de coordenadas absolutas, relativas y polares.</li>
+                        <li>Utilizar las referencias a objetos (OSNAP) para dibujar con exactitud.</li>
+                        <li>Aplicar modos de ayuda al dibujo como el rastreo polar y de objetos.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Sistemas de Coordenadas:</strong> Cartesianas (absolutas y relativas con <code>@</code>) y Polares (distancia<ángulo).</li>
+                        <li><strong>Referencias a Objetos (OSNAP):</strong> Puntos clave como finales, medios, centros e intersecciones.</li>
+                        <li><strong>Modos de Ayuda:</strong> <code>SNAP</code> (F9), <code>OSNAP</code> (F3), <code>POLAR</code> (F10) y Rastreo (F11).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Dominando las Coordenadas</summary>
+                    <p><strong>Objetivo:</strong> Utilizar diferentes sistemas de coordenadas y referencias.</p>
+                    <ol>
+                        <li><strong>Coordenadas Absolutas y Relativas (20 min):</strong> Dibuja formas geométricas precisas usando ambos métodos.</li>
+                        <li><strong>Referencias a Objetos (20 min):</strong> Activa <code>OSNAP</code> (F3) y practica uniendo puntos clave de diferentes objetos.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>La Entrada Dinámica (<code>F12</code>) es extremadamente útil. Mantenla activa para ver y editar longitudes y ángulos directamente junto al cursor. Para cambiar temporalmente a un modo de referencia específico, mantén presionada la tecla <code>Shift</code> y haz clic derecho.</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Plano de una Habitación</summary>
+                    <p><strong>Duración:</strong> 40 minutos</p>
+                    <p><strong>Instrucciones:</strong> Dibuja el plano de una habitación simple, incluyendo paredes, una puerta y una ventana, utilizando una combinación de coordenadas y referencias a objetos para posicionar todo con exactitud.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Diseño de un Apartamento Pequeño</summary>
+                    <p><strong>Fecha de entrega:</strong> Al inicio de la próxima semana.</p>
+                    <p>Diseña el plano completo de un apartamento pequeño, asegurándote de que todas las medidas sean precisas y que el mobiliario esté correctamente ubicado usando las técnicas de esta sesión. Documenta tu proceso.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Precisión en el uso de coordenadas y OSNAP (60%)</li>
+                        <li>Calidad y completitud del plano de la tarea (40%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 6: Herramientas de Precisión -->
+        <section id="sesion6" class="session">
+            <h2>Sesión 6: Herramientas de Precisión</h2>
+            <div class="content">
+                <p>Exploraremos las herramientas que garantizan la exactitud en nuestros dibujos, permitiéndonos trabajar de manera más rápida y eficiente.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Utilizar el modo Ortogonal (<code>F8</code>) y el Rastreo Polar (<code>F10</code>).</li>
+                        <li>Configurar y usar la Rejilla (<code>F7</code>) y el Forzado de cursor (<code>F9</code>).</li>
+                        <li>Aprovechar la Entrada Dinámica (<code>F12</code>) para un flujo de trabajo ágil.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Orto y Polar:</strong> Dibujo en ángulos rectos (Orto) o en ángulos predefinidos (Polar).</li>
+                        <li><strong>Rejilla y Forzado de Cursor (Grid/Snap):</strong> Uso de una cuadrícula de referencia y forzado del cursor a sus puntos.</li>
+                        <li><strong>Entrada Dinámica:</strong> Interfaz junto al cursor para introducir comandos y valores.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Dominando las Herramientas de Precisión</summary>
+                    <p><strong>Objetivo:</strong> Utilizar eficazmente las herramientas de precisión de AutoCAD.</p>
+                    <ol>
+                        <li><strong>Orto vs. Polar (15 min):</strong> Dibuja con ambos modos y compara su utilidad.</li>
+                        <li><strong>Grid y Snap (15 min):</strong> Configura una rejilla y dibuja una forma simple forzando el cursor a sus puntos.</li>
+                        <li><strong>Entrada Dinámica (15 min):</strong> Dibuja objetos especificando sus dimensiones directamente en pantalla.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>El Rastreo Polar (<code>F10</code>) es a menudo más versátil que el modo Ortogonal (<code>F8</code>). Te permite dibujar con precisión en los ángulos más comunes (como 45° o 30°) sin limitarte exclusivamente a 90°. ¡Aprende a alternar entre ellos para maximizar tu velocidad!</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Plano de un Mueble</summary>
+                    <p><strong>Duración:</strong> 45 minutos</p>
+                    <p><strong>Instrucciones:</strong> Dibuja el plano de un escritorio o estantería, utilizando una combinación de Orto, Snap y Entrada Dinámica para asegurar que todas las partes encajen perfectamente.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Diseño de un Módulo de Cocina</summary>
+                    <p><strong>Fecha de entrega:</strong> Al inicio de la próxima semana.</p>
+                    <p>Diseña el plano de un módulo de cocina con medidas específicas, aplicando todas las herramientas de precisión vistas. Documenta qué herramientas usaste y por qué.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Aplicación correcta de herramientas de precisión (60%)</li>
+                        <li>Calidad y exactitud del diseño de la tarea (40%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 7: Capas y Propiedades -->
+        <section id="sesion7" class="session">
+            <h2>Sesión 7: Capas y Propiedades</h2>
+            <div class="content">
+                <p>Aprenderemos a organizar nuestro trabajo de forma profesional mediante el uso de capas y a gestionar las propiedades de los objetos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Crear, configurar y gestionar capas de manera eficiente.</li>
+                        <li>Modificar las propiedades de los objetos (color, tipo de línea, grosor).</li>
+                        <li>Utilizar la herramienta <code>IGUALARPROP</code> (Match Properties) para clonar propiedades.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Gestión de Capas:</strong> Administrador de capas (<code>CAPA</code>), propiedades (color, tipo/grosor de línea), y estados (activar/desactivar, inutilizar/reutilizar, bloquear).</li>
+                        <li><strong>Propiedades de Objetos:</strong> Paleta de propiedades (<code>Ctrl+1</code>) para modificar objetos individuales.</li>
+                        <li><strong>Igualar Propiedades:</strong> Comando <code>IGUALARPROP</code> (alias <code>MA</code>) para copiar estilos rápidamente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Dominando Capas y Propiedades</summary>
+                    <p><strong>Objetivo:</strong> Gestionar capas y propiedades de forma efectiva.</p>
+                    <ol>
+                        <li><strong>Gestión de Capas (20 min):</strong> Crea un conjunto de capas para un plano, asignando diferentes propiedades a cada una.</li>
+                        <li><strong>Modificación de Propiedades (20 min):</strong> Dibuja varios objetos en una capa y luego modifica sus propiedades individualmente y con <code>IGUALARPROP</code>.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>Mantén siempre las propiedades de los objetos como <code>PORCAPA</code> (ByLayer). Esto significa que un objeto tomará el color, tipo de línea y grosor de la capa en la que se encuentra. Modificar propiedades individualmente debe ser la excepción, no la regla. Así, si necesitas cambiar el color de todos los muros, solo cambias el color de la capa "Muros" y listo.</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Organización de un Plano</summary>
+                    <p><strong>Duración:</strong> 50 minutos</p>
+                    <p><strong>Instrucciones:</strong> Dibuja un plano arquitectónico simple, creando y asignando capas para muros, puertas, ventanas, mobiliario y cotas. Asegúrate de que cada elemento esté en su capa correcta.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Proyecto de Vivienda con Capas</summary>
+                    <p><strong>Fecha de entrega:</strong> Al inicio de la próxima semana.</p>
+                    <p>Diseña el plano de una vivienda de dos niveles, organizando todo el dibujo en un sistema de capas lógico y bien estructurado (mínimo 10 capas). Documenta tu sistema de capas.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Correcta creación y gestión de capas (60%)</li>
+                        <li>Organización y limpieza del archivo de la tarea (40%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 8: Práctica Integradora -->
+        <section id="sesion8" class="session">
+            <h2>Sesión 8: Práctica Integradora</h2>
+            <div class="content">
+                <p>En esta sesión final, aplicaremos todos los conceptos aprendidos en un proyecto práctico que simula un encargo profesional.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Integrar coordenadas, referencias y herramientas de precisión en un solo flujo de trabajo.</li>
+                        <li>Aplicar una gestión de capas profesional para organizar un proyecto complejo.</li>
+                        <li>Desarrollar un dibujo desde la configuración inicial hasta la revisión final.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Proyecto Final en Clase: Diseño de un Estudio</summary>
+                    <p><strong>Duración:</strong> 2 horas</p>
+                    <p><strong>Objetivo:</strong> Demostrar la competencia en las habilidades fundamentales de AutoCAD 2D.</p>
+                    <ol>
+                        <li><strong>Fase 1: Configuración (20 min):</strong> Prepara tu entorno de trabajo, incluyendo unidades, límites y un sistema de capas bien definido.</li>
+                        <li><strong>Fase 2: Desarrollo (80 min):</strong> Dibuja el plano de un pequeño estudio o loft, utilizando coordenadas para la estructura base, referencias para los detalles y herramientas de precisión para asegurar la exactitud.</li>
+                        <li><strong>Fase 3: Revisión (20 min):</strong> Verifica las medidas, ajusta las propiedades de los objetos y asegúrate de que la organización de capas sea impecable.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>Un flujo de trabajo eficiente es tu mayor activo. Mi recomendación: <strong>1. Configura</strong> (unidades, capas). <strong>2. Dibuja</strong> (formas base). <strong>3. Modifica</strong> (detalla y refina). <strong>4. Anota</strong> (acota y añade texto). Repetir este ciclo te hará rápido y ordenado. Y recuerda: ¡guarda tu trabajo constantemente (<code>Ctrl+S</code>)!</p>
+                </div>
+
+                <details>
+                    <summary>Evaluación Final de la Semana</summary>
+                    <p>La evaluación se basará en la calidad, precisión y organización del proyecto final entregado.</p>
+                    <ul>
+                        <li>Precisión y uso correcto de herramientas (40%)</li>
+                        <li>Organización de capas (40%)</li>
+                        <li>Completitud del proyecto (20%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/* --- 1. Reset, Typography & Variables --- */
+:root {
+	--bg-dark: #2c3e50; /* Base, Trustworthy Navy */
+	--text-on-dark: #ecf0f1; /* Crisp light gray */
+	--primary-accent: #2980b9; /* Solid Tech Blue */
+	--primary-alt: #f1c40f; /* High-Visibility Ochre/Gold */
+	--success: #27ae60; /* Clear Green */
+	--error: #e74c3c; /* Sharp Red */
+	--bg-light: #f8f9fa; /* Page background */
+	--text-main: #343a40; /* Body text dark gray */
+	
+	--card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	--border-radius: 8px;
+	
+	--body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	--title-font: 'Segoe UI', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+	background-color: var(--bg-light);
+	color: var(--text-main);
+	font-family: var(--body-font);
+	line-height: 1.6;
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+	font-family: var(--title-font);
+	margin-bottom: 0.75em;
+	font-weight: 600;
+}
+
+h1 { font-size: 2.2em; color: var(--text-on-dark); }
+h2 { font-size: 1.8em; color: var(--bg-dark); border-bottom: 3px solid var(--primary-accent); padding-bottom: 0.25em; margin-bottom: 1em; }
+h3 { font-size: 1.3em; margin-bottom: 0.5em; }
+
+p { margin-bottom: 1.25em; }
+strong { font-weight: 600; color: var(--bg-dark); }
+
+/* --- 2. Common Layout Elements & Cards --- */
+.hero {
+	background-color: var(--bg-dark);
+	padding: 60px 0;
+	text-align: center;
+	border-bottom: 5px solid var(--primary-accent);
+}
+
+.lesson-content, .command-grid, .quiz-section { margin-bottom: 40px; }
+
+.card {
+	background: #ffffff;
+	padding: 30px;
+	border-radius: var(--border-radius);
+	box-shadow: var(--card-shadow);
+	margin-bottom: 25px;
+	page-break-inside: avoid;
+}
+
+.callout-box {
+	padding: 20px;
+	border-left: 5px solid;
+	border-radius: 4px;
+	margin-bottom: 1.5em;
+}
+.callout-box.info {
+	background-color: #e8f0fe;
+	border-color: var(--primary-accent);
+	color: var(--bg-dark);
+}
+.callout-box h4 { color: var(--bg-dark); margin-bottom: 0.25em; }
+
+ol { margin-left: 1.5em; margin-bottom: 1.5em; }
+ol li { margin-bottom: 0.75em; font-weight: 500; }
+
+/* --- 3. Command Grid & Cards --- */
+.command-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 20px;
+}
+
+.command-card {
+	background: #fff;
+	border: 1px solid #eee;
+	padding: 25px;
+	text-align: left;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.command-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); }
+.command { font-family: 'Courier New', Courier, monospace; font-weight: bold; color: var(--primary-accent); background-color: #e8f0fe; padding: 2px 5px; border-radius: 3px; }
+.command-card p em { color: #666; font-size: 0.9em; display: block; margin-top: 10px; }
+
+
+/* --- 4. Kahoot-style Quiz Section --- */
+.quiz-container {
+	padding: 30px;
+	margin-bottom: 40px;
+}
+
+.quiz-info {
+	background: var(--bg-dark);
+	color: var(--text-on-dark);
+	padding: 15px;
+	border-radius: 4px;
+	text-align: center;
+	font-weight: 600;
+	margin-bottom: 25px;
+}
+
+.quiz-question {
+	font-size: 1.25em;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.quiz-options {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
+
+.option-btn {
+	background: #fff;
+	border: 3px solid #eee;
+	border-radius: var(--border-radius);
+	padding: 20px;
+	font-family: var(--body-font);
+	font-size: 1.1em;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-align: left;
+	display: flex;
+	align-items: center;
+}
+.option-btn:hover { border-color: var(--primary-accent); background-color: #f0f7ff; }
+
+/* Estilos de respuesta inmediata */
+.option-btn.correct { background-color: var(--success); color: white; border-color: var(--success); }
+.option-btn.incorrect { background-color: var(--error); color: white; border-color: var(--error); }
+.option-btn.correct::before { content: "✅ "; }
+.option-btn.incorrect::before { content: "❌ "; }
+
+/* Estilo para opciones bloqueadas no seleccionadas */
+.option-btn.disabled-option { opacity: 0.6; pointer-events: none; border-color: #ddd; background-color: #f8f9fa; }
+
+/* Botones de control */
+.btn {
+	padding: 15px 30px;
+	font-weight: 600;
+	border: none;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	font-size: 1.1em;
+	transition: background-color 0.2s ease;
+}
+.btn-primary { background-color: var(--primary-accent); color: white; }
+.btn-primary:hover { background-color: #1a608e; }
+.btn-full-width { width: 100%; display: block; margin-top: 25px; }
+
+
+/* --- 5. Footer & Print Styles --- */
+.footer {
+	background-color: var(--bg-dark);
+	color: var(--text-on-dark);
+	padding: 30px 0;
+	text-align: center;
+	border-top: 5px solid var(--primary-accent);
+}
+
+.print-footer { display: none; }
+
+/* --- Directiva de Impresión: Max 2 páginas, resumen limpio --- */
+@media print {
+	body {
+					background-color: white;
+					color: black;
+					font-size: 11pt; /* Acomodar en 2 páginas */
+	}
+
+	.hero { background: none; border: none; padding: 20px 0; }
+	h1 { color: black; font-size: 18pt; margin: 0; }
+	.hero p { display: none; } /* Ocultar para ganar espacio */
+
+	.container { max-width: 100%; padding: 0; }
+
+	h2 { border-bottom: 2px solid #ccc; font-size: 14pt; margin-top: 15pt; }
+	h3 { font-size: 12pt; margin-top: 10pt; }
+	p { margin-bottom: 0.75em; }
+
+	.lesson-content, .command-grid, .lesson-workflow { margin-bottom: 20pt; }
+
+	.card {
+					padding: 0;
+					margin: 0 0 15pt 0;
+					border: none;
+					box-shadow: none;
+					background: none;
+	}
+
+	/* Diseño limpio de la grilla para impresión */
+	.command-grid {
+					display: block; /* Volver a flujo normal */
+					columns: 2; /* Dos columnas en papel */
+					column-gap: 20pt;
+	}
+
+	.command-card {
+					border-bottom: 1px solid #ddd;
+					padding-bottom: 10pt;
+					break-inside: avoid;
+	}
+	.command { background: none; color: black; font-weight: bold; border: 1px solid black; }
+
+	.lesson-workflow ol { list-style-position: inside; }
+
+	/* Ocultar elementos de la interfaz interactiva */
+	.hero p, .quiz-section, .footer p:not(.print-footer) { display: none !important; }
+
+	/* Mostrar un resumen simple de resultados y un mensaje final */
+	.footer { padding: 10pt 0; border: none; }
+	.print-footer { display: block; text-align: center; border-top: 1px solid #ccc; padding-top: 10pt; font-style: italic; }
+	
+	/* Mostrar resumen de quiz al final si se imprime */
+	#print-results-btn { display: none !important; }
+}
+
+/* --- 6. Responsive adjustments --- */
+@media (max-width: 768px) {
+	h1 { font-size: 1.8em; }
+	h2 { font-size: 1.5em; }
+	.hero { padding: 40px 0; }
+	.card { padding: 20px; }
+	.command-grid { grid-template-columns: 1fr; }
+	.quiz-options { grid-template-columns: 1fr; }
+}

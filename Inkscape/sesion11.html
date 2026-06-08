@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S11: Agrupar, Clonar y Capas</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 11: Agrupación, Clonación y Capas (Introducción)</h1>
+
+    <section>
+        <h2>1. Agrupar y Desagrupar (Grouping)</h2>
+        
+        <p>La **Agrupación (Ctrl + G)** es la forma más básica de organización. Permite tratar múltiples objetos como si fueran una sola entidad para moverlos o transformarlos.</p>
+        <div class="paso">
+            <strong>Paso 1: Agrupar</strong>
+            <p>Selecciona todos los objetos que quieres agrupar y presiona **Ctrl + G**. Ahora puedes mover y escalar el grupo como un todo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Editar un Objeto del Grupo</strong>
+            <p>Puedes editar un objeto dentro de un grupo sin desagruparlo haciendo **doble clic** sobre él. El resto del grupo aparecerá atenuado.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Desagrupar</strong>
+            <p>Selecciona el grupo y usa **Shift + Ctrl + G** para separarlos de nuevo en objetos individuales.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Clonación (Cloning)</h2>
+        
+        <p>A diferencia de la duplicación (**Ctrl + D**), un **Clon (Alt + D)** mantiene un vínculo dinámico con su original. Si modificas el original (ej. cambias el color), todos sus clones se actualizan automáticamente.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear y Usar un Clon</strong>
+            <p>Selecciona un objeto. Usa **Alt + D** para crear un clon. Mueve el clon a otra parte del lienzo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Desconectar Clon</strong>
+            <p>Si quieres que un clon vuelva a ser un objeto independiente, usa **Shift + Alt + D** (Desconectar clon). Ya no se actualizará con el original.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Capas (Layers) - Organización Introductoria</h2>
+        
+        <p>El panel **Capas (Shift + Ctrl + L)** te permite organizar el dibujo en niveles. Esto es vital para ilustraciones complejas o trabajos colaborativos.</p>
+        <div class="paso">
+            <strong>Paso 1: Añadir y Renombrar</strong>
+            <p>Abre el panel. Haz clic en el signo **+** para añadir una capa. Haz doble clic en el nombre para renombrarla (ej. Fondo, Líneas, Color, Texto).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Visibilidad y Bloqueo</strong>
+            <p>Utiliza el **ícono del ojo** para ocultar o mostrar una capa. Utiliza el **ícono del candado** para bloquear una capa, evitando que selecciones o modifiques los objetos que contiene (útil para proteger un fondo).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Mover Objetos entre Capas</strong>
+            <p>Selecciona un objeto. Haz clic derecho y selecciona **Mover a la capa...** para reubicarlo. Esto mantiene tu proyecto ordenado.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Flores Clónicas</h3>
+        <p><strong>Objetivo:</strong> Practicar la clonación y la organización en capas.</p>
+        <ol>
+            <li>**Capas:** Crea tres capas: **Fondo**, **Flor** y **Texto**. Bloquea la capa Fondo.</li>
+            <li>**Original:** Dibuja un pétalo simple con la herramienta Pluma o una elipse. Asígnale un relleno rojo.</li>
+            <li>**Clones:** Crea 5 clones (**Alt + D**) del pétalo. Usa la herramienta Selector para rotar y posicionar los clones formando una flor.</li>
+            <li>**Prueba Dinámica:** Regresa al pétalo original. Cambia su relleno a azul. Observa cómo todos los clones se actualizan.</li>
+            <li>**Organización:** Selecciona la flor completa y asegúrate de que esté en la capa **Flor**. En la capa **Texto**, añade tu nombre.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion10.html">Anterior</a>
+    <a href="sesion12.html">Siguiente</a>
+</nav>
+</body>
+</html>

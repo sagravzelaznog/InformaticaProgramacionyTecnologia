@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 10: Funciones Avanzadas II en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .tabla-ejemplo th, .tabla-ejemplo td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-ejemplo th {
+            background-color: #f2f2f2;
+        }
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .nota {
+            background-color: #e3f2fd;
+            border-left: 3px solid #2196f3;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 10: Funciones Avanzadas II en Excel</h1>
+    
+    <div id="sesion10.1" class="sesion">
+        <h2>Sesión 10.1: Funciones de texto avanzadas</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Dominar funciones avanzadas de manipulación de texto</li>
+                <li>Automatizar la limpieza y formato de datos de texto</li>
+                <li>Crear fórmulas complejas combinando funciones de texto</li>
+            </ul>
+            
+            <h3>1. Funciones esenciales de texto</h3>
+            
+            <h4>a) EXTRAE - Extraer partes de un texto</h4>
+            <div class="formula">=EXTRAE(texto, posición_inicial, núm_caracteres)</div>
+            <div class="ejemplo">
+                <p>Ejemplo: Extraer los primeros 3 caracteres de un código de producto</p>
+                <div class="formula">=EXTRAE(A2, 1, 3)</div>
+                <p>Si A2 contiene "PROD-001", devuelve "PRO"</p>
+            </div>
+            
+            <h4>b) ENCONTRAR y ENCONTRARB - Localizar texto dentro de otro</h4>
+            <div class="formula">=ENCONTRAR(texto_buscado, texto_donde_buscar, [núm_inicial])</div>
+            <div class="ejemplo">
+                <p>Ejemplo: Encontrar la posición del guión en un código</p>
+                <div class="formula">=ENCONTRAR("-", A2)</div>
+                <p>Si A2 contiene "PROD-001", devuelve 5</p>
+            </div>
+            
+            <h4>c) SUSTITUIR y SUSTITUIR.DEFINIDO - Reemplazar texto</h4>
+            <div class="formula">=SUSTITUIR(texto, texto_antiguo, texto_nuevo, [núm_de_aparición])</div>
+            <div class="ejemplo">
+                <p>Ejemplo: Cambiar guiones por espacios</p>
+                <div class="formula">=SUSTITUIR(A2, "-", " ")</div>
+                <p>Si A2 contiene "PROD-001", devuelve "PROD 001"</p>
+            </div>
+            
+            <h3>2. Funciones avanzadas de texto</h3>
+            
+            <h4>a) UNICAR y UNICODECAR - Trabajar con caracteres especiales</h4>
+            <div class="formula">=UNICAR(número)</div>
+            <div class="formula">=UNICODECAR(texto)</div>
+            
+            <h4>b) TEXTO - Formatear números como texto</h4>
+            <div class="formula">=TEXTO(valor, formato_texto)</div>
+            <div class="ejemplo">
+                <p>Ejemplo: Formatear una fecha</p>
+                <div class="formula">=TEXTO(AHORA(), "dddd, d \de mmmm \de yyyy")</div>
+                <p>Devuelve: "martes, 15 de julio de 2025"</p>
+            </div>
+            
+            <h4>c) VALOR - Convertir texto a número</h4>
+            <div class="formula">=VALOR(texto)</div>
+            
+            <h3>3. Combinación de funciones para casos prácticos</h3>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 1: Extraer el primer nombre</h4>
+                <p>Dado un nombre completo en A2 (ej. "Juan Pérez"):</p>
+                <div class="formula">=IZQUIERDA(A2, ENCONTRAR(" ", A2 & " ")-1)</div>
+            </div>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 2: Extraer el dominio de un correo electrónico</h4>
+                <p>Dado un correo en A3 (ej. "usuario@ejemplo.com"):</p>
+                <div class="formula">=DERECHA(A3, LARGO(A3)-ENCONTRAR("@", A3))</div>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Dada una lista de códigos de producto en el formato "PAIS-CODIGO-COLOR" (ej: "MEX-001-AZUL"):</p>
+                <ol>
+                    <li>Extraer el código de país (primeros 3 caracteres después del primer guión)</li>
+                    <li>Extraer el número de producto (entre guiones)</li>
+                    <li>Extraer el color (después del segundo guión)</li>
+                    <li>Crear una descripción formateada: "Producto [código] de color [color]"</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para trabajar con texto:</h4>
+                <ul>
+                    <li>Usa MAYUSC(), MINUSC() y NOMPROPIO() para estandarizar texto</li>
+                    <li>Combina ESPACIOS() con IZQUIERDA() para alinear texto</li>
+                    <li>Usa REPETIR() para crear separadores visuales</li>
+                    <li>Considera usar la herramienta "Texto en columnas" para tareas de extracción comunes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion10.2" class="sesion">
+        <h2>Sesión 10.2: Funciones de fecha y hora avanzadas</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Dominar funciones avanzadas de fecha y hora</li>
+                <li>Calcular diferencias entre fechas</li>
+                <li>Trabajar con días laborables y festivos</li>
+            </ul>
+            
+            <h3>1. Funciones esenciales de fecha y hora</h3>
+            
+            <h4>a) FECHA - Crear una fecha a partir de componentes</h4>
+            <div class="formula">=FECHA(año, mes, día)</div>
+            
+            <h4>b) DIA, MES, AÑO - Extraer componentes de una fecha</h4>
+            <div class="formula">=DIA(fecha)</div>
+            <div class="formula">=MES(fecha)</div>
+            <div class="formula">=AÑO(fecha)</div>
+            
+            <h3>2. Cálculos con fechas</h3>
+            
+            <h4>a) DIFERENCIA - Calcular días entre fechas</h4>
+            <div class="formula">=DIAS(fecha_final, fecha_inicial)</div>
+            
+            <h4>b) DIA.LAB - Calcular fechas laborables</h4>
+            <div class="formula">=DIA.LAB(fecha_inicio, días, [festivos])</div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Calcular la fecha de vencimiento de un proyecto que comienza hoy y tiene una duración de 15 días laborables, excluyendo fines de semana y festivos.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion10.3" class="sesion">
+        <h2>Sesión 10.3: Funciones de base de datos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Utilizar funciones de base de datos en Excel</li>
+                <li>Realizar búsquedas y cálculos condicionales</li>
+                <li>Automatizar informes con tablas dinámicas</li>
+            </ul>
+            
+            <h3>1. Funciones de base de datos esenciales</h3>
+            
+            <h4>a) BDSUMA - Sumar valores que cumplen criterios</h4>
+            <div class="formula">=BDSUMA(base_datos, campo, criterios)</div>
+            
+            <h4>b) BDPROMEDIO - Calcular promedio con criterios</h4>
+            <div class="formula">=BDPROMEDIO(base_datos, campo, criterios)</div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crear un informe de ventas por región y producto utilizando funciones de base de datos.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion10.4" class="sesion">
+        <h2>Sesión 10.4: Práctica guiada - Análisis de datos temporales</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar funciones avanzadas de texto, fecha y base de datos</li>
+                <li>Crear un panel de análisis de series temporales</li>
+                <li>Automatizar informes con fórmulas dinámicas</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Importar datos de ventas mensuales</li>
+                <li>Limpiar y formatear los datos utilizando funciones de texto</li>
+                <li>Calcular métricas clave utilizando funciones de fecha y base de datos</li>
+                <li>Crear un panel de control interactivo</li>
+            </ol>
+            
+            <div class="ejercicio">
+                <h4>Proyecto final:</h4>
+                <p>Desarrolla un sistema de seguimiento de proyectos que incluya:</p>
+                <ul>
+                    <li>Cálculo automático de fechas de vencimiento</li>
+                    <li>Seguimiento de días hábiles transcurridos</li>
+                    <li>Alertas de vencimiento próximos</li>
+                    <li>Informes por departamento y estado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

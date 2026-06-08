@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 09: Edición de Video</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 09</h1>
+            <h2>Edición de Video: El Arte del Montaje</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Metáfora de la Cocina</h3>
+            <p><strong>Objetivo:</strong> Entender el flujo de trabajo de la edición sin abrumarse con botones técnicos.</p>
+            
+            <div class="interactive-box">
+                <h4>🍳 ¿Cómo se cocina un video?</h4>
+                <div class="stats-grid" style="align-items: flex-start;">
+                    <div class="stat-item" style="width: 30%;">
+                        <span style="font-size: 2.5rem;">🥦🥩</span>
+                        <span class="stat-label" style="color:var(--text-dark); font-weight:bold; margin-top:5px;">1. INGREDIENTES</span>
+                        <p style="font-size: 0.8rem;">Tus clips de video, audios y fotos (Materia Prima).</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%;">
+                        <span style="font-size: 2.5rem;">🔪🪵</span>
+                        <span class="stat-label" style="color:var(--primary); font-weight:bold; margin-top:5px;">2. TABLA DE PICAR</span>
+                        <p style="font-size: 0.8rem;">La Línea de Tiempo (Timeline). Donde cortas y mezclas.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%;">
+                        <span style="font-size: 2.5rem;">🔥🍲</span>
+                        <span class="stat-label" style="color:var(--accent); font-weight:bold; margin-top:5px;">3. COCCIÓN</span>
+                        <p style="font-size: 0.8rem;">El Renderizado (Exportar). Convertir todo en un solo archivo MP4.</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"La edición es escribir la historia por segunda vez."</p>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Herramientas de Corte y Confección</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>✂️ El Corte (Split)</h4>
+                    <p>Es la herramienta más poderosa. Úsala para:</p>
+                    <ul>
+                        <li><strong>Quitar aire muerto:</strong> Esos segundos de silencio antes de hablar.</li>
+                        <li><strong>Jump Cut:</strong> Cortar frases largas para dar dinamismo (Estilo YouTuber).</li>
+                        <li><strong>Eliminar errores:</strong> "Eeh...", "Mmm...".</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🍰 El Sistema de Capas (Layers)</h4>
+                    <p>Imagina láminas de acetato una sobre otra:</p>
+                    <ul>
+                        <li><strong>V1 (Fondo):</strong> Tu video principal.</li>
+                        <li><strong>V2 (Overlay):</strong> B-Roll (imágenes de apoyo) o Textos.</li>
+                        <li><strong>Regla:</strong> Lo que está arriba TAPA a lo que está abajo.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🖥️ La Línea de Tiempo Visual (CapCut / DaVinci)</h4>
+                <p>Cómo se ve un proyecto profesional:</p>
+                
+                <div style="background: #1a202c; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: left; position: relative;">
+                    
+                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: red; z-index: 10;">
+                        <div style="width: 10px; height: 10px; background: red; border-radius: 50%; position: absolute; top: -5px; left: -4px;"></div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="width: 60px; color: #a0aec0; font-size: 0.7rem;">V2 (TXT)</div>
+                        <div style="flex-grow: 1; height: 30px; position: relative;">
+                            <div style="background: #ed64a6; width: 30%; height: 100%; position: absolute; left: 40%; border-radius: 4px; color: white; font-size: 0.6rem; display: flex; align-items: center; justify-content: center;">TÍTULO</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="width: 60px; color: #a0aec0; font-size: 0.7rem;">V1 (MAIN)</div>
+                        <div style="flex-grow: 1; height: 40px; position: relative; background: #2d3748; border-radius: 4px; overflow: hidden;">
+                            <div style="background: #4299e1; width: 45%; height: 100%; position: absolute; left: 0; border-right: 2px solid #1a202c;">CLIP A</div>
+                            <div style="background: #4299e1; width: 55%; height: 100%; position: absolute; left: 45%;">CLIP B</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; border-top: 1px solid #4a5568; paddingTop: 10px;">
+                        <div style="width: 60px; color: #a0aec0; font-size: 0.7rem;">A1 (AUDIO)</div>
+                        <div style="flex-grow: 1; height: 30px; position: relative; background: #2d3748; border-radius: 4px;">
+                            <div style="background: #48bb78; width: 100%; height: 100%; position: absolute; left: 0; opacity: 0.8;"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Exportación (Render)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿1080p o 4K?</h5>
+                    <p>Tu celular graba en 4K, pero ¿necesitas editar en 4K?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>1080p (Full HD) es suficiente.</strong> El 4K ocupa 4 veces más espacio y hace lenta tu computadora. Usa 4K solo si tienes mucho disco duro.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Los FPS (Cuadros por segundo)</h5>
+                    <p>¿Qué elijo al exportar: 24, 30 o 60 fps?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Guía</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>24 fps:</strong> Look de Cine (Cinemático).</p>
+                        <p><strong>30 fps:</strong> TV y Redes Sociales (Estándar).</p>
+                        <p><strong>60 fps:</strong> Solo para Videojuegos o Cámara Lenta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎞️ <strong>Misión del Día:</strong> En CapCut, une 3 videos cortos, ponles una transición suave (Disolver) y agrega tu nombre al inicio.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 09 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

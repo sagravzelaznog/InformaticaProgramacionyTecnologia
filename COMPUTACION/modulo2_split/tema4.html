@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema4">
+                <h2>Tema 4: Funciones lógicas y de búsqueda</h2>
+                <div class="tema-contenido">
+                    <p>Las funciones lógicas y de búsqueda son herramientas poderosas en Excel que permiten tomar decisiones y encontrar información específica en grandes conjuntos de datos. En este tema, exploraremos cómo utilizar estas funciones para analizar y manipular datos de manera eficiente.</p>
+                    
+                    <h3>4.1 Funciones lógicas</h3>
+                    <p>Las funciones lógicas permiten realizar pruebas lógicas y tomar decisiones basadas en condiciones. Son fundamentales para el análisis de datos complejos.</p>
+                    
+                    <div class="highlight">
+                        <h4>Funciones lógicas principales:</h4>
+                        <ul>
+                            <li><strong>SI()</strong>: Ejecuta una acción si se cumple una condición y otra si no se cumple.</li>
+                            <li><strong>Y()</strong>: Devuelve VERDADERO si todos los argumentos son verdaderos.</li>
+                            <li><strong>O()</strong>: Devuelve VERDADERO si al menos un argumento es verdadero.</li>
+                            <li><strong>NO()</strong>: Invierte el valor lógico de su argumento.</li>
+                            <li><strong>SI.ERROR()</strong>: Muestra un valor personalizado si una fórmula genera un error.</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Practica con funciones lógicas</h4>
+                        <p>Utiliza las funciones lógicas para resolver los siguientes problemas:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="logicasGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="formula-bar">
+                                <span>Fórmula:</span>
+                                <input type="text" id="formulaLogica" placeholder="Escribe tu fórmula aquí">
+                                <button class="verify-btn" onclick="evaluarFormulaLogica()">Calcular</button>
+                            </div>
+                        </div>
+                        <p><strong>Ejercicios:</strong> 
+                            <ol>
+                                <li>Si la calificación es mayor o igual a 6, muestra "Aprobado", de lo contrario "Reprobado"</li>
+                                <li>Verifica si la edad es mayor a 18 Y tiene identificación (Sí/No)</li>
+                                <li>Muestra "Descuento" si el total es mayor a 1000 O si es cliente frecuente</li>
+                            </ol>
+                        </p>
+                    </div>
+
+                    <h3>4.2 Funciones de búsqueda</h3>
+                    <p>Las funciones de búsqueda permiten encontrar y recuperar información específica de un conjunto de datos.</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones de búsqueda esenciales:</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Función</th>
+                                <th>Descripción</th>
+                                <th>Sintaxis</th>
+                                <th>Ejemplo</th>
+                            </tr>
+                            <tr>
+                                <td>BUSCARV</td>
+                                <td>Busca un valor en la primera columna de una tabla y devuelve un valor en la misma fila</td>
+                                <td>=BUSCARV(valor_buscado, tabla, num_indice, [ordenado])</td>
+                                <td>=BUSCARV("Juan", A2:B10, 2, FALSO)</td>
+                            </tr>
+                            <tr>
+                                <td>BUSCARH</td>
+                                <td>Busca en la primera fila de una tabla y devuelve un valor en la misma columna</td>
+                                <td>=BUSCARH(valor_buscado, tabla, num_indice, [ordenado])</td>
+                                <td>=BUSCARH("Ene", A1:M2, 2, FALSO)</td>
+                            </tr>
+                            <tr>
+                                <td>INDICE</td>
+                                <td>Devuelve un valor de una posición específica en un rango</td>
+                                <td>=INDICE(rango, num_fila, [num_col])</td>
+                                <td>=INDICE(A1:C10, 5, 2)</td>
+                            </tr>
+                            <tr>
+                                <td>COINCIDIR</td>
+                                <td>Busca un elemento en un rango y devuelve su posición relativa</td>
+                                <td>=COINCIDIR(valor_buscado, rango, [tipo_coincidencia])</td>
+                                <td>=COINCIDIR("Manzana", A1:A10, 0)</td>
+                            </tr>
+                            <tr>
+                                <td>INDICE + COINCIDIR</td>
+                                <td>Combinación poderosa para búsquedas avanzadas</td>
+                                <td>=INDICE(rango_resultado, COINCIDIR(valor, rango_busqueda, 0))</td>
+                                <td>=INDICE(B2:B10, COINCIDIR("Juan", A2:A10, 0))</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Práctica: Búsqueda de datos</h4>
+                        <p>Utiliza las funciones de búsqueda para resolver los siguientes problemas:</p>
+                        <div class="ejercicio-practico">
+                            <div class="problema">
+                                <p>1. Encuentra el precio del producto con ID "P-102":</p>
+                                <div class="mini-tabla" id="busqueda1">
+                                    <!-- Se generará con JavaScript -->
+                                </div>
+                                <div class="solucion">
+                                    <input type="text" id="solBusqueda1" placeholder="Escribe tu fórmula">
+                                    <button class="verify-btn" onclick="verificarBusqueda(1)">Verificar</button>
+                                    <span id="resultadoBusqueda1" class="resultado"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="problema">
+                                <p>2. Encuentra el departamento del empleado con ID "E-003":</p>
+                                <div class="solucion">
+                                    <input type="text" id="solBusqueda2" placeholder="Escribe tu fórmula">
+                                    <button class="verify-btn" onclick="verificarBusqueda(2)">Verificar</button>
+                                    <span id="resultadoBusqueda2" class="resultado"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>4.3 Búsquedas avanzadas</h3>
+                    <p>Combinando funciones lógicas y de búsqueda, podemos realizar análisis de datos más complejos.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Actividad: Búsqueda con múltiples criterios</h4>
+                        <p>Resuelve los siguientes problemas utilizando combinaciones de funciones:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="busquedaAvanzadaGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="instrucciones">
+                                <p><strong>Ejercicio 1:</strong> Encuentra el sueldo del empleado del departamento "Ventas" con más de 3 años de antigüedad.</p>
+                                <p><strong>Ejercicio 2:</strong> Calcula el promedio de ventas de los productos con precio mayor a $500.</p>
+                                <p><strong>Ejercicio 3:</strong> Cuenta cuántos empleados ganan más de $15,000 y pertenecen al departamento de "Tecnología".</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál es la función que busca un valor en la primera columna de una tabla y devuelve un valor en la misma fila?</div>
+                        <div class="opcion">a) BUSCARH</div>
+                        <div class="opcion">b) BUSCARV</div>
+                        <div class="opcion">c) ENCONTRAR</div>
+                        <div class="opcion">d) COINCIDIR</div>
+                        
+                        <div class="pregunta">2. ¿Qué devuelve la función =SI(Y(A1>10, B1<5), "Aceptado", "Rechazado")?</div>
+                        <div class="opcion">a) "Aceptado" si A1>10 o B1<5</div>
+                        <div class="opcion">b) "Aceptado" si A1>10 y B1<5</div>
+                        <div class="opcion">c) "Rechazado" si A1>10 o B1<5</div>
+                        <div class="opcion">d) "Rechazado" si A1>10 y B1<5</div>
+                        
+                        <div class="pregunta">3. ¿Cuál es la combinación correcta para buscar un valor en cualquier columna y devolver un valor de cualquier fila?</div>
+                        <div class="opcion">a) BUSCARV + INDICE</div>
+                        <div class="opcion">b) INDICE + COINCIDIR</div>
+                        <div class="opcion">c) BUSCARH + COINCIDIR</div>
+                        <div class="opcion">d) INDICE + BUSCARV</div>
+                        
+                        <button class="evaluation-btn" onclick="evaluarTema4()">Verificar respuestas</button>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Las funciones lógicas (SI, Y, O, NO) permiten tomar decisiones basadas en condiciones.</li>
+                            <li>Las funciones de búsqueda (BUSCARV, BUSCARH, INDICE, COINCIDIR) ayudan a encontrar información en grandes conjuntos de datos.</li>
+                            <li>La combinación de INDICE y COINCIDIR es más flexible que BUSCARV para búsquedas complejas.</li>
+                            <li>Las búsquedas con múltiples criterios requieren el uso de fórmulas matriciales o combinaciones de funciones.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="siguiente-paso">
+                        <h3>Próximos pasos</h3>
+                        <p>Ahora que dominas las funciones lógicas y de búsqueda, en el siguiente tema exploraremos cómo crear gráficos y tablas dinámicas para visualizar y analizar tus datos de manera efectiva.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 5: Gráficos y representación de datos -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema3.html" class="btn btn-anterior">Anterior: Tema 3</a>
+        <a href="tema5.html" class="btn btn-siguiente">Siguiente: Tema 5</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

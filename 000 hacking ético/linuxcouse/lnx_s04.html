@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion04: Búsqueda y Localización</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 04: Búsqueda y Localización de Artefactos</h1>
+            <p class="intro-text">Un disco duro moderno tiene cientos de miles de archivos. La navegación manual es inútil. Hoy afilaremos nuestras herramientas de búsqueda para localizar malware oculto, binarios sospechosos o evidencias modificadas recientemente en nuestro Sandbox de Kali Linux.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Identificación de Binarios (which)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Antes de confiar en un comando, un perito forense verifica de dónde se está ejecutando. Los atacantes suelen reemplazar comandos legítimos (como <code>ls</code>) por versiones maliciosas. <code>which</code> te dice la ruta exacta del ejecutable.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> which bash
+<span class="prompt">-(kali㉿kali)-[~]$</span> which ls
+<span class="prompt">-(kali㉿kali)-[~]$</span> which python3</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: La Búsqueda Rápida (locate)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><code>locate</code> busca en una base de datos preconstruida, por lo que es casi instantáneo. Sin embargo, si el archivo se acaba de crear, no aparecerá hasta que actualices la base de datos.</p>
+                    <div class="tip-card">
+                        <strong>Táctica de Investigador:</strong> Siempre actualiza la base de datos con <code>sudo updatedb</code> antes de hacer una búsqueda forense general.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Actualizamos el índice (pedirá la contraseña de 'kali')</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo updatedb
+
+<span class="comment"># Buscamos nuestro archivo de la sesión pasada</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> locate log_kernel.txt</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: El Bisturí Forense (find por nombre)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>A diferencia de locate, <code>find</code> escanea el disco duro en tiempo real. Es más lento, pero 100% preciso. Vamos a buscar todos los archivos de texto que creamos en nuestro escritorio.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Sintaxis: find [donde_buscar] [criterios]</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> find /home/kali/Desktop -type f -name "*.txt"</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Búsqueda por Comportamiento y el "Agujero Negro"</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Los atacantes cambian los nombres de los archivos, pero no pueden esconder <em>cuándo</em> los modificaron. Buscaremos archivos grandes modificados en el último día.</p>
+                    
+                    <div class="warning-box">
+                        <strong>Protección Cognitiva:</strong> Si buscas en la raíz (<code>/</code>), verás cientos de errores de "Permiso denegado". En Linux, enviamos esos errores a la papelera cósmica agregando <code>2>/dev/null</code> al final del comando.
+                    </div>
+
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Buscar archivos de más de 10MB modificados hace menos de 1 día (-1)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> find / -mtime -1 -size +10M 2>/dev/null</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #04. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

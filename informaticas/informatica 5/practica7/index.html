@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa con Flores en AutoCAD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-left: 4px solid #4CAF50;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .coordinates {
+            background: #e8f4f8;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            border-radius: 4px;
+        }
+        .preview {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>: Casa con Flores en AutoCAD</h1>
+        
+        <div class="preview">
+            <h3>Vista Previa del Resultado Final</h3>
+            <svg width="400" height="300" viewBox="0 0 400 300" style="border:1px solid #ccc;background:white;">
+                <!-- Casa -->
+                <rect x="100" y="150" width="200" height="120" fill="#f9e4b7" stroke="#333" stroke-width="2"/>
+                <polygon points="100,150 200,70 300,150" fill="#d9534f" stroke="#333" stroke-width="2"/>
+                <!-- Puerta y ventanas -->
+                <rect x="170" y="220" width="60" height="50" fill="#8b4513" stroke="#333" stroke-width="2"/>
+                <rect x="120" y="180" width="40" height="40" fill="#add8e6" stroke="#333" stroke-width="2"/>
+                <rect x="240" y="180" width="40" height="40" fill="#add8e6" stroke="#333" stroke-width="2"/>
+                <!-- Flores -->
+                <circle cx="80" cy="250" r="15" fill="#ff69b4"/>
+                <circle cx="80" cy="250" r="5" fill="#ffff00"/>
+                <line x1="80" y1="250" x2="80" y2="300" stroke="#228b22" stroke-width="3"/>
+                <circle cx="320" cy="250" r="15" fill="#ff69b4"/>
+                <circle cx="320" cy="250" r="5" fill="#ffff00"/>
+                <line x1="320" y1="250" x2="320" y2="300" stroke="#228b22" stroke-width="3"/>
+                <!-- Sol -->
+                <circle cx="330" cy="70" r="25" fill="#ffd700" stroke="#ffa500" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <div class="step">
+            <h2>1. Configuración Inicial</h2>
+            <ol>
+                <li>Abre AutoCAD y crea un nuevo dibujo.</li>
+                <li>Configura las unidades: <span class="command">UNIDADES</span> → Decimal, precisión 0.00.</li>
+                <li>Activa <span class="command">ORTO</span> (F8) y <span class="command">SNAP</span> (F9).</li>
+                <li>Establece los límites del dibujo: <span class="command">LIMITS</span> → <span class="command">0,0</span> → <span class="command">400,300</span>.</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2>2. Dibujar la Casa</h2>
+            <h3>Base de la Casa</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">100,150</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@200,120</span> → Enter</p>
+            </div>
+
+            <h3>Techo</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">L</span> → Enter</p>
+                <p>Puntos: <span class="command">100,270</span> → <span class="command">200,350</span> → <span class="command">300,270</span> → <span class="command">C</span> (para cerrar)</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>3. Agregar Puerta y Ventanas</h2>
+            <h3>Puerta</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">170,150</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@60,50</span> → Enter</p>
+            </div>
+
+            <h3>Ventana Izquierda</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">120,200</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@40,40</span> → Enter</p>
+            </div>
+
+            <h3>Ventana Derecha</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">240,200</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@40,40</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>4. Dibujar Flores</h2>
+            <h3>Flor Izquierda</h3>
+            <div class="coordinates">
+                <p>1. Dibujar el tallo:</p>
+                <p>Comando: <span class="command">L</span> → Enter</p>
+                <p>Puntos: <span class="command">80,120</span> → <span class="command">80,170</span> → Enter</p>
+                
+                <p>2. Dibujar los pétalos:</p>
+                <p>Comando: <span class="command">C</span> → Enter</p>
+                <p>Centro: <span class="command">80,170</span> → Enter</p>
+                <p>Radio: <span class="command">15</span> → Enter</p>
+                
+                <p>3. Dibujar el centro de la flor:</p>
+                <p>Comando: <span class="command">C</span> → Enter</p>
+                <p>Centro: <span class="command">80,170</span> → Enter</p>
+                <p>Radio: <span class="command">5</span> → Enter</p>
+            </div>
+
+            <h3>Flor Derecha</h3>
+            <div class="coordinates">
+                <p>1. Dibujar el tallo:</p>
+                <p>Comando: <span class="command">L</span> → Enter</p>
+                <p>Puntos: <span class="command">300,120</span> → <span class="command">80,170</span> → Enter</p>
+                
+                <p>2. Dibujar los pétalos:</p>
+                <p>Comando: <span class="command">C</span> → Enter</p>
+                <p>Centro: <span class="command">300,170</span> → Enter</p>
+                <p>Radio: <span class="command">15</span> → Enter</p>
+                
+                <p>3. Dibujar el centro de la flor:</p>
+                <p>Comando: <span class="command">C</span> → Enter</p>
+                <p>Centro: <span class="command">300,170</span> → Enter</p>
+                <p>Radio: <span class="command">5</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>5. Agregar el Sol</h2>
+            <div class="coordinates">
+                <p>Comando: <span class="command">C</span> → Enter</p>
+                <p>Centro: <span class="command">330,350</span> → Enter</p>
+                <p>Radio: <span class="command">25</span> → Enter</p>
+                
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>6. Colorear el Dibujo</h2>
+            <div class="coordinates">
+                <p>1. Seleccionar la herramienta <span class="command">SOMBREA</span> (SOMBREADO)</p>
+                <p>2. Seleccionar los siguientes elementos y aplicar colores:</p>
+                <ul>
+                    <li>Casa: Amarillo claro (#f9e4b7)</li>
+                    <li>Techo: Rojo (#d9534f)</li>
+                    <li>Puerta: Marrón (#8b4513)</li>
+                    <li>Ventanas: Azul claro (#add8e6)</li>
+                    <li>Flores: Rosas con centro amarillo (#ff69b4 y #ffff00)</li>
+                    <li>Tallos: Verde (#228b22)</li>
+                    <li>Sol: Amarillo (#ffd700)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <h3>Consejos:</h3>
+            <ul>
+                <li>Usa <span class="command">ZOOM</span> para acercar o alejar la vista según sea necesario.</li>
+                <li>Guarda tu trabajo frecuentemente con <span class="command">CTRL + S</span>.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="../index.html" class="back-link">← Volver al Menú Principal</a>
+        </div>
+    </div>
+</body>
+</html>

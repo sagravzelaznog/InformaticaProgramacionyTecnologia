@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Trabajo Paralelo y Tareas Específicas (Stash y Cherry Pick)</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        .important-box {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 9: Trabajo Paralelo y Tareas Específicas</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Guardado Temporal (Stashing)</button>
+    <div class="panel">
+        <p>Cuando estás a la mitad de un trabajo y necesitas cambiar de rama para resolver un problema rápido, no es necesario hacer un commit de código incompleto ni perder tus cambios. Para esto existe el comando <code>git stash</code> [1].</p>
+        
+        <h3>Guardar cambios (<code>git stash</code>)</h3>
+        <p>El comando <code>git stash</code> guarda el estado actual de tu directorio de trabajo y tu área de preparación (índice) en una pila de cambios inconclusos [2]. Al ejecutarlo, tu directorio quedará limpio y listo para cambiar de rama de forma segura [3].</p>
+
+        <h3>Listar guardados (<code>git stash list</code>)</h3>
+        <p>Puedes ver todos los "stashes" que tienes almacenados usando <code>git stash list</code> [4]. Esto listará los guardados en orden cronológico inverso, identificándolos con nombres como <code>stash@{0}</code> (el más reciente), <code>stash@{1}</code>, etc [4, 5].</p>
+
+        <h3>Restaurar cambios (<code>pop</code> y <code>apply</code>)</h3>
+        <ul>
+            <li><strong><code>git stash pop</code>:</strong> Elimina un estado guardado de la lista de stashes y lo aplica encima del estado actual de tu árbol de trabajo [5].</li>
+            <li><strong><code>git stash apply</code>:</strong> Hace exactamente lo mismo que <code>pop</code>, con la diferencia de que <strong>no elimina el estado de la lista</strong> [5]. Es muy útil si deseas aplicar los mismos cambios temporalmente en varias ramas [6].</li>
+        </ul>
+    </div>
+
+    <button class="accordion">2. Stash Interactivo y Opciones Específicas</button>
+    <div class="panel">
+        <p>Git te permite ser sumamente preciso sobre qué quieres enviar a la pila de "stash".</p>
+        
+        <h3>Mantener el área de preparación (<code>--keep-index</code>)</h3>
+        <p>Si deseas guardar (stash) tus modificaciones, pero dejar el área de preparación (los archivos que ya agregaste con <code>git add</code>) exactamente como está, puedes utilizar la bandera <code>--keep-index</code> [7, 8].</p>
+        <pre><code>git stash --keep-index</code></pre>
+
+        <h3>Stash interactivo o parcial (<code>-p</code>)</h3>
+        <p>Si deseas almacenar solo algunas diferencias de tu directorio de trabajo de forma interactiva, puedes usar <code>git stash -p</code> (o <code>--patch</code>) [4, 8]. Git te preguntará iterativamente qué fragmentos (hunks) te gustaría enviar al stash y cuáles te gustaría mantener en tu directorio de trabajo [8, 9].</p>
+        
+        <h3>Incluir archivos no rastreados</h3>
+        <p>Por defecto, <code>git stash</code> no guarda los archivos nuevos que aún no están siendo rastreados por Git. Si necesitas guardarlos también, puedes usar la bandera <code>-u</code> o <code>--include-untracked</code> [7, 8].</p>
+    </div>
+
+    <button class="accordion">3. Cherry Picking</button>
+    <div class="panel">
+        <p>A veces no deseas fusionar (merge) toda una rama, sino copiar los cambios de un <strong>commit específico</strong> de una rama a otra.</p>
+
+        <h3>Cómo hacer un Cherry-Pick</h3>
+        <p>La herramienta <code>git cherry-pick</code> toma el parche (las diferencias introducidas) de un commit y trata de reaplicarlo en la rama en la que te encuentras actualmente [10]. El comando básico es:</p>
+        <pre><code>git cherry-pick &lt;commit-hash&gt;</code></pre>
+        <p>Esto aplicará las modificaciones de dicho commit a tu rama actual, registrando un nuevo commit con el mismo mensaje pero con un hash (SHA-1) diferente [10, 11].</p>
+        
+        <h3>Copiar rangos de commits</h3>
+        <p>Si necesitas copiar varios commits, puedes especificar un rango utilizando dos puntos sucesivos (<code>..</code>) [12]:</p>
+        <pre><code>git cherry-pick &lt;commit-A&gt;..&lt;commit-B&gt;</code></pre>
+        <p>Esto tomará todos los commits posteriores a <code>commit-A</code>, hasta e incluyendo <code>commit-B</code>, y los colocará en tu rama actual [12].</p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

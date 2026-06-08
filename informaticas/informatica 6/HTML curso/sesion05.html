@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: HTML Semántico - HTML5 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .semantic-demo {
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .semantic-demo header,
+        .semantic-demo nav,
+        .semantic-demo main,
+        .semantic-demo section,
+        .semantic-demo article,
+        .semantic-demo aside,
+        .semantic-demo footer {
+            padding: 15px;
+            margin: 5px;
+            border-radius: 4px;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px dashed #4a90e2;
+        }
+        .semantic-demo nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .semantic-demo nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .semantic-demo .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .semantic-demo article {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .semantic-demo aside {
+            background: #f8f9fa;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        .bad-practice {
+            border-left: 4px solid #e74c3c;
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+        .good-practice {
+            border-left: 4px solid #2ecc71;
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+        .tag-example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .tag-example h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: El Génesis</a></li>
+                <li><a href="sesion02.html">Sesión 2: Jerarquía y Orden</a></li>
+                <li><a href="sesion03.html">Sesión 3: La Telaraña</a></li>
+                <li><a href="sesion04.html">Sesión 4: Multimedia</a></li>
+                <li class="active"><a href="sesion05.html">Sesión 5: Semántica</a></li>
+                <li><a href="sesion06.html">Sesión 6: Tablas</a></li>
+                <li><a href="sesion07.html">Sesión 7: Formularios</a></li>
+                <li><a href="sesion08.html">Sesión 8: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🏗️ Sesión 5: HTML Semántico</h1>
+                <p class="subtitle">Estructurando el Contenido con Significado</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Entender y aplicar los elementos semánticos de HTML5 para crear documentos web mejor estructurados, accesibles y fáciles de mantener.</p>
+            </section>
+
+            <section class="what-is-semantic">
+                <h2>¿Qué es el HTML Semántico?</h2>
+                <p>El HTML semántico utiliza etiquetas que dan significado al contenido, más allá de solo definir su apariencia. Esto ayuda a:</p>
+                <ul>
+                    <li>Mejorar la accesibilidad para usuarios con discapacidades</li>
+                    <li>Optimizar el SEO (posicionamiento en buscadores)</li>
+                    <li>Facilitar el mantenimiento del código</li>
+                    <li>Mejorar la compatibilidad con diferentes dispositivos</li>
+                </ul>
+            </section>
+
+            <section class="semantic-elements">
+                <h2>Elementos Semánticos Principales</h2>
+                
+                <div class="tag-example">
+                    <h4><code>&lt;header&gt;</code></h4>
+                    <p>Representa el encabezado de una sección o documento. Puede contener elementos de encabezado, logotipos, formularios de búsqueda, etc.</p>
+                    <pre><code>&lt;header&gt;
+    &lt;h1&gt;Título del Sitio&lt;/h1&gt;
+    &lt;p&gt;Lema o descripción corta&lt;/p&gt;
+&lt;/header&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;nav&gt;</code></h4>
+                    <p>Contiene enlaces de navegación principales. No todos los grupos de enlaces necesitan estar en un <code>&lt;nav&gt;</code>, solo los bloques principales de navegación.</p>
+                    <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="inicio.html"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="servicios.html"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;main&gt;</code></h4>
+                    <p>Representa el contenido principal del documento. Debe haber solo un <code>&lt;main&gt;</code> por documento y no debe estar dentro de <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;header&gt;</code>, o <code>&lt;nav&gt;</code>.</p>
+                    <pre><code>&lt;main&gt;
+    &lt;h1&gt;Artículo Principal&lt;/h1&gt;
+    &lt;p&gt;Contenido principal de la página...&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;article&gt;</code></h4>
+                    <p>Representa una composición auto-contenida que podría distribuirse o reutilizarse independientemente, como una entrada de blog, un artículo de periódico, un comentario, etc.</p>
+                    <pre><code>&lt;article&gt;
+    <h2>Título del Artículo</h2>
+    <p>Contenido del artículo...</p>
+    <footer>Publicado el <time datetime="2026-01-21">21 de enero de 2026</time></footer>
+&lt;/article&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;section&gt;</code></h4>
+                    <p>Representa una sección genérica de un documento, típicamente con un encabezado. Usa <code>&lt;article&gt;</code> cuando el contenido sea auto-contenido.</p>
+                    <pre><code>&lt;section&gt;
+    <h2>Nuestros Servicios</h2>
+    <p>Conoce todo lo que ofrecemos...</p>
+&lt;/section&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;aside&gt;</code></h4>
+                    <p>Representa contenido que está indirectamente relacionado con el contenido principal, como barras laterales, publicidad, biografías del autor, etc.</p>
+                    <pre><code>&lt;aside&gt;
+    <h3>Sobre el Autor</h3>
+    <p>Biografía corta del autor...</p>
+&lt;/aside&gt;</code></pre>
+                </div>
+
+                <div class="tag-example">
+                    <h4><code>&lt;footer&gt;</code></h4>
+                    <p>Representa el pie de página de una sección o documento. Normalmente contiene información sobre el autor, enlaces relacionados, derechos de autor, etc.</p>
+                    <pre><code>&lt;footer&gt;
+    <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+    <nav>
+        <a href="privacidad.html">Política de privacidad</a> | 
+        <a href="terminos.html">Términos de uso</a>
+    </nav>
+&lt;/footer&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="semantic-demo-section">
+                <h2>Ejemplo de Estructura Semántica</h2>
+                
+                <div class="semantic-demo">
+                    <header>
+                        <h1>Mi Sitio Web</h1>
+                        <nav>
+                            <ul>
+                                <li><a href="#">Inicio</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contacto</a></li>
+                            </ul>
+                        </nav>
+                    </header>
+                    
+                    <main>
+                        <article>
+                            <h2>Artículo Principal</h2>
+                            <p>Contenido principal del artículo...</p>
+                            <section>
+                                <h3>Sección del Artículo</h3>
+                                <p>Más detalles sobre el tema...</p>
+                            </section>
+                        </article>
+                        
+                        <aside>
+                            <h3>Artículos Relacionados</h3>
+                            <ul>
+                                <li><a href="#">Tema relacionado 1</a></li>
+                                <li><a href="#">Tema relacionado 2</a></li>
+                            </ul>
+                        </aside>
+                    </main>
+                    
+                    <footer>
+                        <p>&copy; 2026 Mi Sitio Web</p>
+                    </footer>
+                </div>
+                
+                <div class="code-example">
+                    <h4>Código HTML del Ejemplo:</h4>
+                    <pre><code>&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Mi Sitio Web&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Artículo Principal&lt;/h2&gt;
+            &lt;p&gt;Contenido principal del artículo...&lt;/p&gt;
+            &lt;section&gt;
+                &lt;h3&gt;Sección del Artículo&lt;/h3&gt;
+                &lt;p&gt;Más detalles sobre el tema...&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+        
+        &lt;aside&gt;
+            &lt;h3&gt;Artículos Relacionados&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Tema relacionado 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Tema relacionado 2&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2026 Mi Sitio Web&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="semantic-vs-non-semantic">
+                <h2>Semántico vs No Semántico</h2>
+                
+                <div class="comparison">
+                    <div class="bad-practice">
+                        <h3>❌ Código No Semántico</h3>
+                        <pre><code>&lt;div id="header"&gt;
+    &lt;div class="nav"&gt;
+        &lt;div class="menu"&gt;Inicio&lt;/div&gt;
+        &lt;div class="menu"&gt;Blog&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="main"&gt;
+    &lt;div class="post"&gt;
+        &lt;div class="post-title"&gt;Título&lt;/div&gt;
+        &lt;div class="post-content"&gt;Contenido...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="footer"&gt;Pie de página&lt;/div&gt;</code></pre>
+                        <p><strong>Problemas:</strong></p>
+                        <ul>
+                            <li>Difícil de entender el propósito de cada sección</li>
+                            <li>Peor accesibilidad para lectores de pantalla</li>
+                            <li>Más difícil de mantener</li>
+                            <li>Peor SEO</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="good-practice">
+                        <h3>✅ Código Semántico</h3>
+                        <pre><code>&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h1&gt;Título&lt;/h1&gt;
+        &lt;p&gt;Contenido...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;Pie de página&lt;/footer&gt;</code></pre>
+                        <p><strong>Ventajas:</strong></p>
+                        <ul>
+                            <li>Estructura clara y comprensible</li>
+                            <li>Mejor accesibilidad</li>
+                            <li>Más fácil de mantener</li>
+                            <li>Mejor SEO</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="example">
+                <h2>Ejemplo Práctico: Blog Semántico</h2>
+                
+                <p>Vamos a transformar un blog simple en uno semántico:</p>
+                
+                <div class="example-box">
+                    <h4>Instrucciones:</h4>
+                    <ol>
+                        <li>Crea una carpeta llamada <code>blog-semantico</code></li>
+                        <li>Crea un archivo <code>index.html</code> con la estructura básica</li>
+                        <li>Implementa la siguiente estructura semántica:
+                            <ul>
+                                <li>Un <code>&lt;header&gt;</code> con el título del blog</li>
+                                <li>Una <code>&lt;nav&gt;</code> con enlaces a categorías</li>
+                                <li>Un <code>&lt;main&gt;</code> que contenga varios <code>&lt;article&gt;</code></li>
+                                <li>Cada artículo debe tener un <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code> y <code>&lt;footer&gt;</code></li>
+                                <li>Un <code>&lt;aside&gt;</code> con información del autor</li>
+                                <li>Un <code>&lt;footer&gt;</code> con información de derechos de autor</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="activity">
+                <h2>Actividad Práctica</h2>
+                <p>Refactoriza una página web existente (o crea una nueva) siguiendo estos pasos:</p>
+                
+                <div class="checklist">
+                    <h4>Requisitos:</h4>
+                    <ol>
+                        <li>Identifica y reemplaza los <code>&lt;div&gt;</code> genéricos por elementos semánticos apropiados</li>
+                        <li>Asegúrate de que la estructura de encabezados sea lógica (solo un <code>&lt;h1&gt;</code> por página)</li>
+                        <li>Agrupa el contenido relacionado con <code>&lt;section&gt;</code></li>
+                        <li>Usa <code>&lt;article&gt;</code> para contenido independiente</li>
+                        <li>Incluye una barra lateral con <code>&lt;aside&gt;</code></li>
+                        <li>Agrega un pie de página semántico</li>
+                        <li>Verifica la accesibilidad con un validador</li>
+                    </ol>
+                </div>
+                
+                <div class="hint">
+                    <h4>💡 Consejo:</h4>
+                    <p>Usa la herramienta de desarrollo de tu navegador para inspeccionar la estructura de la página y asegurarte de que los elementos semánticos estén siendo utilizados correctamente.</p>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>Resumen de la Sesión</h2>
+                <ul>
+                    <li>El HTML semántico usa elementos que describen su significado de manera clara tanto para el navegador como para el desarrollador</li>
+                    <li>Elementos estructurales clave: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, y <code>&lt;footer&gt;</code></li>
+                    <li>Beneficios: mejor accesibilidad, SEO, mantenibilidad y legibilidad del código</li>
+                    <li>Evita el uso excesivo de <code>&lt;div&gt;</code> cuando exista un elemento semántico más apropiado</li>
+                    <li>La estructura semántica debe reflejar la jerarquía y relación del contenido</li>
+                </ul>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! ¿Tienes preguntas sobre HTML semántico? Pregúntame lo que necesites.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion04.html" class="button">← Sesión Anterior</a>
+                    <a href="#" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE HTML5. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

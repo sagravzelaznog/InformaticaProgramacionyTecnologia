@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Búsqueda y Referencia en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Búsqueda y Referencia en Excel</h1>
+            <p>Aprende a buscar datos y trabajar con referencias en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- FUNCIONES DE BÚSQUEDA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('busqueda')">
+                <h2>Funciones de Búsqueda</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="busqueda">
+                <p>Funciones para buscar valores en tablas y rangos de datos.</p>
+                
+                <div class="example">
+                    <h4>Tabla de ejemplo para búsquedas</h4>
+                    <table class="data-table">
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                        </tr>
+                        <tr>
+                            <td>P1001</td>
+                            <td>Laptop</td>
+                            <td>Tecnología</td>
+                            <td>15,000</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>P1002</td>
+                            <td>Smartphone</td>
+                            <td>Tecnología</td>
+                            <td>8,500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>P1003</td>
+                            <td>Tablet</td>
+                            <td>Tecnología</td>
+                            <td>5,200</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>P2001</td>
+                            <td>Escritorio</td>
+                            <td>Muebles</td>
+                            <td>3,200</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>P2002</td>
+                            <td>Silla</td>
+                            <td>Muebles</td>
+                            <td>1,800</td>
+                            <td>40</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: BUSCARV (Búsqueda Vertical)</h4>
+                    <pre>// Buscar el precio del producto con código P1002
+=BUSCARV("P1002", A2:E6, 4, FALSO)  // Devuelve 8,500
+
+// Buscar la categoría del producto con código P2001
+=BUSCARV("P2001", A2:E6, 3, FALSO)  // Devuelve "Muebles"</pre>
+                    <p>Parámetros: (valor_buscado, matriz_buscar_en, indicador_columnas, [ordenado])</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: BUSCARX (Versión moderna)</h4>
+                    <pre>// Buscar el precio del producto con código P1003
+=BUSCARX("P1003", A2:A6, D2:D6)  // Devuelve 5,200
+
+// Búsqueda con múltiples condiciones
+=BUSCARX(1, (A2:A6="P2002")*(C2:C6="Muebles"), B2:B6)  // Devuelve "Silla"</pre>
+                    <p>BUSCARX es más flexible y no requiere que el valor de búsqueda esté en la primera columna.</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Búsqueda de producto</h4>
+                    <p>Datos: La tabla de productos mostrada arriba (A1:E6)</p>
+                    <p>Crea una fórmula que busque el stock del producto con código P1001.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=BUSCARV("P1001", A2:E6, 5, FALSO)  // Devuelve 25</pre>
+                        <p>Explicación: Buscamos "P1001" en la primera columna (A) y devolvemos el valor de la columna 5 (Stock).</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Búsqueda con BUSCARX</h4>
+                    <p>Datos: La tabla de productos mostrada arriba (A1:E6)</p>
+                    <p>Usa BUSCARX para encontrar la categoría del producto "Tablet".</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=BUSCARX("Tablet", B2:B6, C2:C6)  // Devuelve "Tecnología"</pre>
+                        <p>Explicación: Buscamos "Tablet" en la columna B y devolvemos el valor correspondiente de la columna C.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INDICE Y COINCIDIR -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('indice-coincidir')">
+                <h2>INDICE y COINCIDIR</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="indice-coincidir" style="display: none;">
+                <p>Combinación poderosa para búsquedas más flexibles que BUSCARV.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: COINCIDIR (Encontrar posición)</h4>
+                    <pre>// Encontrar la posición de "Tablet" en la columna B
+=COINCIDIR("Tablet", B2:B6, 0)  // Devuelve 3</pre>
+                    <p>El tercer parámetro (0) indica búsqueda exacta.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: INDICE (Obtener valor por posición)</h4>
+                    <pre>// Obtener el valor de la fila 3, columna 2
+=INDICE(A2:E6, 3, 2)  // Devuelve "Tablet"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Combinación INDICE y COINCIDIR</h4>
+                    <pre>// Buscar el precio de "Smartphone"
+=INDICE(D2:D6, COINCIDIR("Smartphone", B2:B6, 0))  // Devuelve 8,500</pre>
+                    <p>Más flexible que BUSCARV porque puedes buscar en cualquier columna.</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Búsqueda bidireccional</h4>
+                    <p>Datos: La tabla de productos (A1:E6)</p>
+                    <p>Encuentra el código del producto "Silla" usando ÍNDICE y COINCIDIR.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=INDICE(A2:A6, COINCIDIR("Silla", B2:B6, 0))  // Devuelve P2002</pre>
+                        <p>Explicación: COINCIDIR encuentra la posición de "Silla" en la columna B, e ÍNDICE devuelve el valor correspondiente en la columna A.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Búsqueda con múltiples criterios</h4>
+                    <p>Datos: La tabla de productos (A1:E6)</p>
+                    <p>Encuentra el stock del producto de la categoría "Muebles" que cuesta 3,200.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=INDICE(E2:E6, COINCIDIR(1, (C2:C6="Muebles")*(D2:D6=3200), 0))  // Devuelve 15</pre>
+                        <p>Explicación: COINCIDIR busca la posición donde se cumplan ambas condiciones, e ÍNDICE devuelve el stock correspondiente.</p>
+                        <p>Nota: Esta es una fórmula matricial en versiones antiguas de Excel (presionar Ctrl+Mayús+Enter).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OTRAS FUNCIONES DE REFERENCIA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('otras-referencias')">
+                <h2>Otras Funciones de Referencia</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="otras-referencias" style="display: none;">
+                <p>Funciones adicionales para trabajar con referencias y rangos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: INDIRECTO (Referencia dinámica)</h4>
+                    <pre>// Si A1 contiene "B2" y B2 contiene "Hola":
+=INDIRECTO(A1)  // Devuelve "Hola"
+
+// Crear referencia a otra hoja:
+=INDIRECTO("'Hoja2'!A1")  // Devuelve el valor de A1 en Hoja2</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: ELEGIR (Selección por índice)</h4>
+                    <pre>// Devuelve el segundo valor de la lista
+=ELEGIR(2, "Lunes", "Martes", "Miércoles")  // Devuelve "Martes"
+
+// Con referencia a celda (si A1=3):
+=ELEGIR(A1, "Bajo", "Medio", "Alto")  // Devuelve "Alto"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: TRANSPONER (Girar tabla)</h4>
+                    <pre>// Convierte filas a columnas y viceversa
+=TRANSPONER(A1:C3)</pre>
+                    <p>Útil para cambiar la orientación de los datos.</p>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Referencia dinámica con INDIRECTO</h4>
+                    <p>Datos: A1 = "B2", B2 = "Excel"</p>
+                    <p>Crea una fórmula que use INDIRECTO para obtener el valor de la celda especificada en A1.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=INDIRECTO(A1)  // Devuelve "Excel"</pre>
+                        <p>Explicación: INDIRECTO convierte el texto "B2" en una referencia real a la celda B2.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Meses del año con ELEGIR</h4>
+                    <p>Datos: A1 = Número de mes (1-12)</p>
+                    <p>Crea una fórmula que devuelva el nombre del mes correspondiente al número en A1.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=ELEGIR(A1, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+               "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")</pre>
+                        <p>Explicación: ELEGIR devuelve el mes correspondiente al número en A1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

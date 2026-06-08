@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S6 E21: Uso y Funcionamiento del Switch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 6, Sesión 21: Uso y Funcionamiento del Switch</h1>
+        <p class="subtitle">Conceptos Básicos y Fundamentos Teóricos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Función del Switch en la Red LAN</h2>
+            <p>El **Switch** es un dispositivo de Capa 2 (Enlace de Datos, recuerda el Modelo OSI) que conecta múltiples dispositivos en el mismo segmento de red (LAN). Su función es conmutar (switch) el tráfico, enviando tramas de datos únicamente al puerto de destino correspondiente.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Switch vs. Hub</h3>
+                    <p>El **Hub** (antiguo) es un repetidor tonto que envía datos a *todos* los puertos. El **Switch** es inteligente y envía datos solo al puerto correcto, minimizando el tráfico innecesario (colisiones y broadcast).</p>
+                </div>
+                <div class="card">
+                    <h3>Velocidad y Duplex</h3>
+                    <p>Los puertos del Switch negocian la velocidad (100 Mbps, 1 Gbps, 10 Gbps) y el modo **Full-Duplex** (enviar y recibir al mismo tiempo), maximizando la eficiencia del ancho de banda.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. La Tabla de Direcciones MAC (CAM Table)</h2>
+            <p>El Switch logra su inteligencia gracias a la **Tabla MAC** (o CAM Table). Esta tabla es un caché de las direcciones MAC que ha "aprendido" y en qué puerto está conectada cada una.</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Proceso de Aprendizaje (Learning)</h3>
+                    <p>Cuando un dispositivo envía una trama, el Switch examina la **MAC de Origen** y la asocia al puerto por donde entró. Así, "aprende" dónde está cada dispositivo.</p>
+                </div>
+                <div>
+                    <h3>Proceso de Reenvío (Forwarding)</h3>
+                    <p>Cuando llega una trama, el Switch busca la **MAC de Destino** en su tabla. Si la encuentra, reenvía la trama solo a ese puerto. Si no la encuentra, la inunda a todos los puertos (excepto al de origen) hasta que aprende la MAC de destino.</p>
+                </div>
+            </div>
+
+            <div class="image-container">
+                
+                <figcaption>La Tabla MAC mapea direcciones MAC a números de puerto.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Simulación de Switch en Packet Tracer</h2>
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>En Packet Tracer, crea un **Switch** y 3 **PCs** con IPs asignadas.</li>
+                <li>Conecta los PCs al Switch (usa cable directo).</li>
+                <li>Envía una trama de PC1 a PC2 en **Modo Simulación**.</li>
+                <li>Observa el Switch. La **primera vez**, enviará la trama a PC2 y PC3 (inundación). La **segunda vez**, la enviará solo a PC2 (aprendizaje).</li>
+            </ol>
+            <button id="switchPktCheckBtn">Verificar Proceso de Aprendizaje</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S6 E21</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion20.html" class="nav-button">Anterior</a>
+        <a href="sesion22.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

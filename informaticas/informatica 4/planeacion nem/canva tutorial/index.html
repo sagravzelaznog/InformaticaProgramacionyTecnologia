@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass de Canva - Taller de Cultura Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #7D2AE8;
+            --secondary: #00C4CC;
+            --accent: #FF5353;
+            --success: #2ebd59;
+            --dark: #0E1318;
+            --light: #F4F6F8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .session-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .session-card.coming-soon {
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .session-card.coming-soon::after {
+            content: 'Próximamente';
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background: var(--accent);
+            color: white;
+            padding: 3px 25px;
+            transform: rotate(45deg);
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .session-number {
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .session-info {
+            padding: 1.5rem;
+        }
+
+        .session-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .session-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn.coming-soon {
+            background: #ddd;
+            border-color: #ddd;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Masterclass de Canva</h1>
+            <p class="subtitle">Taller de Cultura Digital - 4º Semestre</p>
+        </header>
+
+        <div class="sessions-grid">
+            <!-- Sesión 01 -->
+            <div class="session-card">
+                <div class="session-number">Sesión 01</div>
+                <div class="session-info">
+                    <h3 class="session-title">Introducción al Ecosistema Canva</h3>
+                    <p class="session-desc">Conoce la interfaz y crea tu primer diseño desde cero.</p>
+                    <a href="masterclass_sesion01.html" class="btn">Comenzar</a>
+                </div>
+            </div>
+
+            <!-- Sesión 02 -->
+            <div class="session-card">
+                <div class="session-number">Sesión 02</div>
+                <div class="session-info">
+                    <h3 class="session-title">Plantillas Inteligentes y Tipografía</h3>
+                    <p class="session-desc">Acelera tu flujo de trabajo y comunica con tipografía.</p>
+                    <a href="masterclass_sesion02.html" class="btn">Comenzar</a>
+                </div>
+            </div>
+
+            <!-- Sesión 03 -->
+            <div class="session-card">
+                <div class="session-number">Sesión 03</div>
+                <div class="session-info">
+                    <h3 class="session-title">Elementos, Imágenes y Capas</h3>
+                    <p class="session-desc">Domina la organización de elementos en el espacio de trabajo.</p>
+                    <a href="masterclass_sesion03.html" class="btn">Comenzar</a>
+                </div>
+            </div>
+
+            <!-- Sesión 04 -->
+            <div class="session-card">
+                <div class="session-number">Sesión 04</div>
+                <div class="session-info">
+                    <h3 class="session-title">El Poder del Color y Estilos</h3>
+                    <p class="session-desc">Aprende a usar la psicología del color en tus diseños.</p>
+                    <a href="masterclass_sesion04.html" class="btn">Comenzar</a>
+                </div>
+            </div>
+
+            <!-- Sesiones futuras del 05 al 15 -->
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 05</div>
+                <div class="session-info">
+                    <h3 class="session-title">Diseño de Logotipos</h3>
+                    <p class="session-desc">Crea identidades visuales memorables.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 06</div>
+                <div class="session-info">
+                    <h3 class="session-title">Diseño de Redes Sociales</h3>
+                    <p class="session-desc">Crea contenido atractivo para plataformas digitales.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 07</div>
+                <div class="session-info">
+                    <h3 class="session-title">Presentaciones Profesionales</h3>
+                    <p class="session-desc">Diseña presentaciones impactantes.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 08</div>
+                <div class="session-info">
+                    <h3 class="session-title">Animaciones Básicas</h3>
+                    <p class="session-desc">Dale vida a tus diseños con movimiento.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 09</div>
+                <div class="session-info">
+                    <h3 class="session-title">Diseño de Documentos</h3>
+                    <p class="session-desc">Crea informes y documentos profesionales.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 10</div>
+                <div class="session-info">
+                    <h3 class="session-title">Branding Personal</h3>
+                    <p class="session-desc">Desarrolla tu identidad visual personal.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 11</div>
+                <div class="session-info">
+                    <h3 class="session-title">Diseño de Invitaciones</h3>
+                    <p class="session-desc">Crea invitaciones digitales atractivas.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 12</div>
+                <div class="session-info">
+                    <h3 class="session-title">Infografías Efectivas</h3>
+                    <p class="session-desc">Comunica datos de forma visual.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 13</div>
+                <div class="session-info">
+                    <h3 class="session-title">Diseño para Impresión</h3>
+                    <p class="session-desc">Prepara tus diseños para impresión profesional.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 14</div>
+                <div class="session-info">
+                    <h3 class="session-title">Técnicas Avanzadas</h3>
+                    <p class="session-desc">Domina funciones avanzadas de Canva.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="session-card coming-soon">
+                <div class="session-number">Sesión 15</div>
+                <div class="session-info">
+                    <h3 class="session-title">Proyecto Final</h3>
+                    <p class="session-desc">Aplica todo lo aprendido en un proyecto integral.</p>
+                    <span class="btn coming-soon">Próximamente</span>
+                </div>
+            </div>
+            <div class="session-card">
+                <div class="session-number">Sesión 04</div>
+                <div class="session-info">
+                    <h3 class="session-title">El Poder del Color y Estilos</h3>
+                    <p class="session-desc">Aprende a usar la psicología del color en tus diseños.</p>
+                    <a href="canvaexamen.html" class="btn">Comenzar</a>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <p>© 2026 Taller de Cultura Digital - 4° Semestre | Prof. [Tu Nombre]</p>
+            <p>Instituto Tecnológico de [Tu Ciudad]</p>
+        </footer>
+    </div>
+</body>
+</html>

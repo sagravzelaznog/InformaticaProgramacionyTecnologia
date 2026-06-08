@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S58: Proyecto Integral I: Diseño de Packaging Vectorial</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #8B4513; }
+        .paso { background-color: #fff8e1; border-left: 5px solid #8B4513; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 58: Proyecto Integral I: Diseño de Packaging Vectorial</h1>
+
+    <section>
+        <h2>1. Creación del Trazado de Corte (Die-line)</h2>
+        [Image of a flat die-line template for a box with folding lines]
+        <p>El diseño de packaging comienza con la creación de la plantilla plana (o **die-line**), que define dónde se corta y dónde se dobla la caja.</p>
+        <div class="paso">
+            <strong>Paso 1: Medidas y Guías</strong>
+            <p>Define las medidas reales del empaque (ej. una caja de 10x5x15 cm). Usa la herramienta **Medir** y **Guías** para trazar la forma plana y desplegada de la caja con precisión.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Diferenciación de Líneas</strong>
+            <p>Usa la capa **"Trazado_Corte"** para la plantilla. Las líneas de corte deben ser de color sólido (ej. Negro, trazo 0.25 pt). Las líneas de pliegue deben ser un trazo discontinuo de otro color (ej. Magenta, trazo 0.25 pt punteado).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Aplicación del Diseño Vectorial</h2>
+        <p>Una vez definida la plantilla, aplicaremos el diseño (logotipo, textos, ilustraciones) en las áreas de impresión.</p>
+        <div class="paso">
+            <strong>Paso 1: Capa de Diseño</strong>
+            <p>Crea una capa **"Diseño_Impresion"** debajo de la capa "Trazado_Corte". Diseña cada cara de la caja como un elemento separado.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Sangrado y Textos Legales</strong>
+            <p>Extiende los fondos y las imágenes que llegan al borde 3-5mm más allá de la línea de corte (el **sangrado**). Los textos importantes (legales, ingredientes) deben estar al menos 5mm dentro de la línea de corte para evitar que se corten.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Exportación Final para Impresión</h2>
+        <p>El archivo final debe ser compatible con la imprenta.</p>
+        <div class="paso">
+            <strong>Separación de Capas</strong>
+            <p>El impresor a menudo necesita el trazado de corte en un archivo separado o en una capa separada. Asegúrate de que las dos capas (Trazado de Corte y Diseño) están claramente separadas.</p>
+        </div>
+        <div class="paso">
+            <strong>Exportación a PDF/X</strong>
+            <p>Asegúrate de que todo el diseño está en el modo de color adecuado (idealmente CMYK simulado, usando las paletas de Inkscape) y exporta como **PDF/X-1a** (ver Sesión 46). Esto incrusta fuentes y colores para una reproducción precisa.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Proyecto Sugerido: Diseño de Caja de Producto</h3>
+        <p><strong>Objetivo:</strong> Crear un diseño de packaging listo para impresión.</p>
+        <ol>
+            <li>Descarga o dibuja una plantilla (die-line) simple de una caja o bolsa.</li>
+            <li>Define líneas de corte (sólidas) y líneas de pliegue (discontinuas) en la capa **"Trazado_Corte"**.</li>
+            <li>Crea el diseño (logo, tipografía, ilustración) en la capa **"Diseño_Impresion"**.</li>
+            <li>Añade **3mm de sangrado** a los fondos que tocan el borde.</li>
+            <li>Guarda el archivo final como **PDF/X-1a**.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion57.html">Anterior</a>
+    <a href="sesion59.html">Siguiente</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Lógica Condicional con if-else - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 7</h1>
+                <h2>Lógica Condicional con if-else</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-21-875" 
+                     role="progressbar" 
+                     aria-valuenow="21.875" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Aprender a implementar la toma de decisiones en Python utilizando las estructuras condicionales <code>if</code>, <code>elif</code> y <code>else</code> para crear programas más dinámicos y flexibles.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Utilizar la estructura <code>if-else</code> para controlar el flujo de ejecución</li>
+                        <li>Implementar múltiples condiciones con <code>elif</code></li>
+                        <li>Anidar estructuras condicionales para casos complejos</li>
+                        <li>Aplicar la lógica condicional en escenarios prácticos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Estructura if-else -->
+            <div class="concept-card">
+                <h3>1. Estructura Básica <code>if-else</code></h3>
+                <p>La estructura <code>if-else</code> permite que el programa tome decisiones ejecutando diferentes bloques de código según se cumplan o no ciertas condiciones.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Sintaxis básica de if-else
+edad = 18
+
+if edad >= 18:
+    print("Eres mayor de edad")
+else:
+    print("Eres menor de edad")
+
+# También se puede usar sin else
+if edad > 0:
+    print("La edad es positiva")
+
+# Ejemplo con entrada de usuario
+puntuacion = int(input("Ingresa tu puntuación: "))
+if puntuacion >= 60:
+    print("¡Aprobado!")
+else:
+    print("Reprobado")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas prácticas</h4>
+                    <ul>
+                        <li>Usa sangría consistente (4 espacios o 1 tabulador)</li>
+                        <li>Los dos puntos (<code>:</code>) al final de la condición son obligatorios</li>
+                        <li>El bloque de código que pertenece a cada condición debe estar indentado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Condiciones múltiples con elif -->
+            <div class="concept-card">
+                <h3>2. Condiciones Múltiples con <code>elif</code></h3>
+                <p>Cuando necesitas verificar múltiples condiciones, puedes usar <code>elif</code> (abreviatura de "else if").</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de condiciones múltiples
+puntuacion = 85
+
+if puntuacion >= 90:
+    print("Calificación: A")
+elif puntuacion >= 80:
+    print("Calificación: B")  # Se ejecutará esto
+elif puntuacion >= 70:
+    print("Calificación: C")
+elif puntuacion >= 60:
+    print("Calificación: D")
+else:
+    print("Calificación: F")
+
+# El orden de las condiciones es importante
+# Las condiciones se evalúan de arriba hacia abajo
+# Solo se ejecutará el primer bloque cuya condición sea verdadera</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Importante</h4>
+                    <p>Python evalúa las condiciones en orden y ejecuta solo el primer bloque cuya condición sea verdadera. Una vez que encuentra una condición verdadera, ignora el resto de los bloques <code>elif</code> y <code>else</code>.</p>
+                </div>
+            </div>
+
+            <!-- Anidación de condiciones -->
+            <div class="concept-card">
+                <h3>3. Anidación de Condiciones</h3>
+                <p>Puedes anidar estructuras condicionales dentro de otras para manejar casos más complejos.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de anidación de condiciones
+edad = 20
+tiene_licencia = True
+
+if edad >= 18:
+    print("Eres mayor de edad")
+    if tiene_licencia:
+        print("Puedes conducir un automóvil")
+    else:
+        print("Necesitas obtener una licencia para conducir")
+else:
+    print("Eres menor de edad")
+    if edad >= 16:
+        print("Puedes obtener un permiso de aprendiz")
+    else:
+        print("Aún eres demasiado joven para conducir")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Consejo de legibilidad</h4>
+                    <p>Si tienes muchas condiciones anidadas, considera refactorizar tu código usando funciones o estructuras de datos como diccionarios para mejorar la legibilidad.</p>
+                </div>
+            </div>
+
+            <!-- Operador ternario -->
+            <div class="concept-card">
+                <h3>4. Operador Ternario</h3>
+                <p>Python ofrece una forma concisa de escribir declaraciones <code>if-else</code> en una sola línea.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Sintaxis: valor_si_verdadero if condicion else valor_si_falso
+
+# Forma tradicional
+edad = 20
+if edad >= 18:
+    estatus = "Mayor"
+else:
+    estatus = "Menor"
+
+# Equivalente con operador ternario
+estatus = "Mayor" if edad >= 18 else "Menor"
+
+# Ejemplos adicionales
+precio = 100
+descuento = precio * 0.2 if precio > 50 else precio * 0.1
+
+numero = 7
+resultado = "Par" if numero % 2 == 0 else "Impar"</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Uso adecuado</h4>
+                    <p>El operador ternario es útil para asignaciones simples, pero puede hacer que el código sea menos legible si se usa en exceso o con lógica compleja. Úsalo con moderación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Número Par o Impar</h3>
+                <p>Crea un programa que determine si un número ingresado por el usuario es par o impar.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== Verificador de Números Pares e Impares ===
+Ingresa un número entero: 7
+El número 7 es impar
+
+Ingresa un número entero: 12
+El número 12 es par</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda que un número es par si el residuo de su división entre 2 es 0. Puedes usar el operador módulo <code>%</code> para obtener el residuo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Adivina el Número</h3>
+                <p>Desarrolla un juego donde el programa elija un número aleatorio y el usuario intente adivinarlo.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Adivina el Número (1-100) ===
+Intento #1: 50
+Demasiado bajo
+Intento #2: 75
+Demasiado alto
+Intento #3: 63
+¡Correcto! Adivinaste en 3 intentos</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa el módulo <code>random</code> para generar un número aleatorio. Necesitarás un bucle (que aprenderás en la siguiente sesión) o múltiples condiciones para manejar los intentos del usuario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Verificador de Calificaciones</h3>
+                <p>Crea un programa que asigne una calificación en letra basada en una puntuación numérica.</p>
+                
+                <div class="expected-output">
+                    <h4>Escala de calificaciones:</h4>
+                    <ul>
+                        <li>90-100: A</li>
+                        <li>80-89: B</li>
+                        <li>70-79: C</li>
+                        <li>60-69: D</li>
+                        <li>0-59: F</li>
+                    </ul>
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-text">=== Verificador de Calificaciones ===
+Ingresa tu puntuación (0-100): 85
+Tu calificación es: B</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa una serie de condiciones <code>if-elif-else</code> para verificar en qué rango cae la puntuación. Asegúrate de validar que la entrada esté dentro del rango 0-100.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Menú de Opciones</h3>
+                <p>Desarrolla un programa que muestre un menú de opciones y realice diferentes acciones según la selección del usuario.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de menú:</h4>
+                    <pre><code class="language-text">=== Menú Principal ===
+1. Saludar
+2. Calcular el doble de un número
+3. Verificar si un número es positivo
+4. Salir
+
+Selecciona una opción (1-4): 2
+Ingresa un número: 7
+El doble de 7 es 14
+
+Selecciona una opción (1-4): 4
+¡Hasta luego!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa una estructura <code>if-elif-else</code> para manejar cada opción del menú. Para hacer que el menú se repita hasta que el usuario elija salir, necesitarás un bucle (que aprenderás en la siguiente sesión). Por ahora, puedes hacer que el programa se ejecute una sola vez.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/controlflow.html#if-statements" target="_blank" rel="noopener noreferrer">Documentación oficial - Declaraciones if</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_conditions.asp" target="_blank" rel="noopener noreferrer">W3Schools - Condiciones en Python</a></li>
+                        <li><a href="https://realpython.com/python-conditional-statements/" target="_blank" rel="noopener noreferrer">Real Python - Declaraciones condicionales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=H2SQrZKZwNc" target="_blank" rel="noopener noreferrer">Condicionales en Python - Píldoras Informáticas</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=1y_kfWUCFh8" target="_blank" rel="noopener noreferrer">Toma de decisiones en Python - HolaMundo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 5 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 2.7 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s6.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s8.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

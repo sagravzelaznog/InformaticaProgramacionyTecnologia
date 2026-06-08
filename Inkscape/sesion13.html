@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S13: trabajando con Texto</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 13: Trabajar con Texto</h1>
+
+    <section>
+        <h2>1. Herramienta Texto (T) y Creación</h2>
+        [Image of the Text Tool and its controls in Inkscape]
+        <p>La herramienta **Texto (T)** te permite añadir texto editable a tu diseño, manteniendo su calidad vectorial. Hay dos maneras de crear texto:</p>
+        <div class="paso">
+            <strong>Paso 1: Texto Artístico (Point Text)</strong>
+            <p>Haz un **solo clic** en el lienzo y comienza a escribir. Este texto es ideal para títulos y logotipos. Crece horizontalmente sin límites.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Texto de Párrafo (Flowed Text)</strong>
+            <p>Haz **clic y arrastra** para crear un marco de texto. El texto se ajustará automáticamente a este marco, ideal para bloques de texto largos o descripciones. Puedes redimensionar el marco con los manejadores.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Propiedades de Texto (Diálogo y Barra de Control)</h2>
+        <p>Con la herramienta Texto activa, la **Barra de Controles de Herramienta** ofrece las opciones más importantes:</p>
+        <div class="paso">
+            <strong>Fuentes y Tamaño</strong>
+            <p>Selecciona la tipografía y el tamaño. Instalar nuevas fuentes en tu sistema las hace disponibles en Inkscape.</p>
+        </div>
+        <div class="paso">
+            <strong>Espaciado y Interlineado</strong>
+            <p>Ajusta el **Kerning** (espacio entre dos letras específicas), el **Tracking** (espacio general entre letras de una selección) y el **Interlineado** (espacio entre líneas de texto).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Texto a Trayecto: Vectorizar el Texto</h2>
+        <p>Para manipular el texto con la herramienta Nodos o aplicarle operaciones booleanas, debes convertirlo a trayecto. **¡Advertencia!** Una vez vectorizado, el texto ya no es editable como texto.</p>
+        <div class="paso">
+            <strong>Paso 1: Convertir</strong>
+            <p>Selecciona el texto artístico. Ve a <code>Trayecto > Objeto a Trayecto (Shift + Ctrl + C)</code>. Cada letra se convierte en un grupo de trayectos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Edición de Nodos y Booleanas</strong>
+            <p>Desagrupa (**Shift + Ctrl + G**) el texto vectorizado. Ahora puedes usar la herramienta **Nodo (F2)** para modificar las curvas de las letras o aplicar operaciones booleanas, por ejemplo, cortando una forma de corazón en medio de una letra 'O'.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Título Vectorial Modificado</h3>
+        <p><strong>Objetivo:</strong> Practicar la edición de texto vectorizado.</p>
+        <ol>
+            <li>Escribe tu nombre o un título corto (Texto Artístico).</li>
+            <li>Elige una fuente sans-serif gruesa.</li>
+            <li>Convierte el texto a trayecto (**Shift + Ctrl + C**) y desagrupa (**Shift + Ctrl + G**).</li>
+            <li>Usa la herramienta **Nodo (F2)** para seleccionar una letra y modifica sus curvas para darle un estilo único (ej. hacer la parte superior de una 'M' puntiaguda).</li>
+            <li>Dibuja un círculo pequeño (corte) y úsalo para aplicar **Diferencia (Ctrl + -)** en una de las letras, creando un agujero.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion12.html">Anterior</a>
+    <a href="sesion14.html">Siguiente</a>
+</nav>
+</body>
+</html>

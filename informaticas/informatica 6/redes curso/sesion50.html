@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S13 E50: Planificación del Esquema de Direccionamiento IP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 13, Sesión 50: Esquema de Direccionamiento 🔢</h1>
+        <p class="subtitle">Definición de Subredes, Rangos y Direcciones Estáticas</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Definición de la Subred Principal (Red de Distribución)</h2>
+            <p>Para el proyecto, usaremos la red **192.168.10.0 /24**. Esta es la red de distribución inicial que contiene todos nuestros dispositivos.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Direcciones Estáticas (Prioridad)</h3>
+                    <ul>
+                        <li>Router/Gateway: **192.168.10.1**</li>
+                        <li>Servidor: **192.168.10.2**</li>
+                        <li>Impresora: **192.168.10.3**</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Rango DHCP (Clientes)</h3>
+                    <p>Necesitamos reservar IPs para los 20 usuarios. El Pool DHCP debe iniciar después de las IPs estáticas reservadas.</p>
+                    <p class="highlight">Pool Sugerido: **192.168.10.50 a 192.168.10.75** (26 Hosts, suficiente para 20 usuarios).</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. La Importancia de la Tabla de Direccionamiento</h2>
+            <p>La **Tabla de Direccionamiento** es la documentación lógica esencial. Debes crear una por cada subred, detallando la IP, el dispositivo, la máscara y el Gateway.</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Ejemplo de Segmentación (Si usáramos Subnetting)</h3>
+                    <p>Si la empresa fuera más grande y necesitáramos dos subredes, usaríamos Subnetting (ej. /26). Esto separaría lógicamente al personal de **Ventas** de **Contabilidad** con sus propios rangos IP (ej. 192.168.10.0/26 y 192.168.10.64/26).</p>
+                </div>
+                <div>
+                    <h3>Revisión de la Máscara</h3>
+                    <p>Asegúrate de que la máscara (**255.255.255.0**) y el Gateway (**192.168.10.1**) sean configurados consistentemente en *todos* los dispositivos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Crear la Tabla de Direccionamiento Lógico</h2>
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <p>Crea la tabla de direccionamiento completa del proyecto, incluyendo los 4 componentes IP (IP, Máscara, Gateway, DNS) para el Router, el Servidor y la Impresora. Además, define el rango exacto del Pool DHCP.</p>
+            <button id="ipSchemeCheckBtn">Verificar Esquema IP</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S13 E50</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion49.html" class="nav-button">Anterior</a>
+        <a href="sesion51.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

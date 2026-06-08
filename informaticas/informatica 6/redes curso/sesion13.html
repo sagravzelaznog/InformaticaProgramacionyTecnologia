@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S4 E13: Topologías de Red (Física y Lógica)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 4, Sesión 13: Topologías de Red 🌟</h1>
+        <p class="subtitle">Estructura Física y Flujo Lógico de los Datos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Qué es una Topología de Red?</h2>
+            <p>La **topología de red** define la disposición, la forma o el diseño de la red. Es esencialmente el mapa de cómo se interconectan los dispositivos. Hay dos tipos principales:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Topología Física</h3>
+                    <p>Describe la **disposición real de los cables y dispositivos**. Cómo se ven físicamente los nodos y los medios.</p>
+                </div>
+                <div class="card">
+                    <h3>Topología Lógica</h3>
+                    <p>Describe el **flujo de datos a través de la red**, independientemente de cómo estén cableados los dispositivos. Se centra en cómo los datos pasan de un nodo a otro.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Topologías Físicas Comunes</h2>
+            <p>Los diseños más comunes de redes se clasifican por su forma:</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Topología de Estrella (Star)</h3>
+                    <ul>
+                        <li>**Descripción:** Todos los dispositivos se conectan a un punto central (generalmente un Switch o Hub).</li>
+                        <li>**Ventaja:** Fácil de instalar y diagnosticar. Si un cable falla, solo se cae ese dispositivo.</li>
+                        <li>**Desventaja:** Si el dispositivo central falla, toda la red se cae.</li>
+                    </ul>
+                    [Image of Star Network Topology]
+                </div>
+                <div>
+                    <h3>Topología de Malla (Mesh)</h3>
+                    <ul>
+                        <li>**Descripción:** Cada dispositivo está conectado directamente a todos los demás.</li>
+                        <li>**Ventaja:** Gran redundancia y tolerancia a fallos (si una ruta se cae, hay muchas otras).</li>
+                        <li>**Desventaja:** Costo y complejidad de cableado muy altos. Típico en redes WAN/Routers críticos.</li>
+                    </ul>
+                    [Image of Mesh Network Topology]
+                </div>
+                <div>
+                    <h3>Topología de Anillo (Ring)</h3>
+                    <p>Los dispositivos se conectan formando un círculo. Hoy en día es poco común en LANs cableadas (sustituida por la Estrella), pero su concepto es vital en fibra óptica o tecnologías WAN.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>3. Práctica: Diseñando en Packet Tracer</h2>
+            <p>Usaremos Packet Tracer para diseñar y comparar el cableado necesario para diferentes topologías.</p>
+
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>En Packet Tracer, crea un Switch y 4 PCs. Conéctalos. Esta es una **Topología de Estrella**.</li>
+                <li>Ahora, elimina el Switch y conecta cada PC directamente a los otros 3 PCs (requiere 6 cables). Esta es una **Topología de Malla (Parcial)**.</li>
+                <li>Observa la complejidad de la Malla y la simplicidad de la Estrella. ¿Cuál es más fácil de mantener?</li>
+            </ol>
+            <button id="topologyQuizBtn">Verificar Conceptos</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S4 E13</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion12.html" class="nav-button">Anterior</a>
+        <a href="sesion14.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

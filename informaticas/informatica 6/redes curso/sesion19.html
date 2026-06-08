@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S5 E19: Configuración Básica de Router Doméstico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 5, Sesión 19: Router Doméstico 🏠</h1>
+        <p class="subtitle">Acceso a la Interfaz, Contraseñas y Configuración de IP/Gateway</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Acceso a la Interfaz Web del Router (Gateway)</h2>
+            <p>El router SOHO (Small Office/Home Office) es el punto central de tu red. Para configurarlo, debes acceder a su interfaz web a través del navegador.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Dirección de Acceso</h3>
+                    <p>La IP del router es tu **Puerta de Enlace (Gateway)**. Las más comunes son **192.168.1.1** o **192.168.0.1**.</p>
+                    <p>Simplemente escribe esta IP en la barra de direcciones de tu navegador.</p>
+                </div>
+                <div class="card">
+                    <h3>Credenciales de Acceso</h3>
+                    <p>Los routers vienen con credenciales por defecto (ej. admin/admin o admin/password).</p>
+                    <p class="highlight"><strong>¡ERROR DE NOVICIO!</strong> Lo primero es cambiar estas credenciales para evitar accesos no autorizados a tu red.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Configuración Esencial del Router</h2>
+            <p>Una vez dentro, hay configuraciones básicas que todo técnico debe saber manipular:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Configuración de WAN (Internet)</h3>
+                    <p>Es la interfaz que se conecta al proveedor de servicios de Internet (ISP). Puede ser por IP Dinámica (DHCP), Estática o PPPoE (común en líneas DSL).</p>
+                </div>
+                <div>
+                    <h3>Configuración de LAN (Red Local)</h3>
+                    <p>Aquí defines la **Dirección IP del Router** (el Gateway) y la Máscara de Red para tu red local. Es donde se define el rango IP que usarán todos tus dispositivos.</p>
+                </div>
+                <div>
+                    <h3>Configuración de Wi-Fi</h3>
+                    <p>Se establece el nombre de la red (**SSID**) y el tipo de seguridad (preferiblemente WPA2/WPA3).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Acceso y Documentación</h2>
+            <p><strong>Tarea Práctica (Real/Simulada):</strong></p>
+            <ol>
+                <li>Determina la IP de tu Gateway usando `ipconfig`.</li>
+                <li>Accede a tu router por el navegador.</li>
+                <li>Ubica la sección de "Administración" o "Seguridad" y verifica que las credenciales de administrador hayan sido cambiadas.</li>
+                <li>Documenta el rango de IP de tu LAN.</li>
+            </ol>
+            <button id="routerConfigBtn">Verificar IP del Router</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S5 E19</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion18.html" class="nav-button">Anterior</a>
+        <a href="sesion20.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

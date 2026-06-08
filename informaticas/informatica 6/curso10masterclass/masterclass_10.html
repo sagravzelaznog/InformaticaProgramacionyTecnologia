@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Web</title>
+    <link rel="stylesheet" href="Masterclass_10.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mi Portafolio Profesional</h1>
+        <button id="btn-tema" class="btn-accion">Cambiar a Modo Oscuro</button>
+        <nav>
+            <ul>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#diversion">Diversión</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="sobre-mi" class="seccion-animada">
+            <h2>¡Hola, mundo!</h2>
+            <p>Soy un estudiante apasionado por la tecnología y la cultura digital. He construido este sitio web desde cero integrando HTML5, CSS3 y JavaScript.</p>
+        </section>
+
+        <section id="habilidades" class="seccion-animada">
+            <h2>Mis Habilidades (Stats)</h2>
+            <div id="contenedor-habilidades">
+                </div>
+        </section>
+
+        <section id="proyectos" class="seccion-animada">
+            <h2>Mis Proyectos</h2>
+            
+            <div class="contenedor-filtros">
+                <button class="btn-filtro activo" data-filtro="todos">Todos</button>
+                <button class="btn-filtro" data-filtro="web">Web</button>
+                <button class="btn-filtro" data-filtro="diseno">Diseño</button>
+            </div>
+            
+            <div class="grid-proyectos">
+                <article class="proyecto-card" data-categoria="web">
+                    <h3>Página Tributo</h3>
+                    <p>Un sitio web dedicado a mi banda favorita usando HTML y CSS.</p>
+                    <button class="btn-abrir-modal">Ver detalles</button>
+                </article>
+                
+                <article class="proyecto-card" data-categoria="diseno">
+                    <h3>Logo Minimalista</h3>
+                    <p>Diseño vectorial creado para un proyecto escolar.</p>
+                    <button class="btn-abrir-modal">Ver detalles</button>
+                </article>
+                
+                <article class="proyecto-card" data-categoria="web">
+                    <h3>Calculadora JS</h3>
+                    <p>Una calculadora funcional programada con JavaScript puro.</p>
+                    <button class="btn-abrir-modal">Ver detalles</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="diversion" class="seccion-animada">
+            <h2>Rincón Geek</h2>
+            <p>Conectando con el mundo exterior mediante una API pública.</p>
+            <div class="caja-api">
+                <button id="btn-chiste" class="btn-accion">¡Obtener chiste de programación!</button>
+                <p id="texto-chiste">Presiona el botón para llamar a la API...</p>
+            </div>
+        </section>
+
+        <section id="contacto" class="seccion-animada">
+            <h2>Contáctame</h2>
+            <form id="formulario-contacto">
+                <div class="grupo-input">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+                </div>
+                
+                <div class="grupo-input">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="text" id="correo" placeholder="Ej. juan@correo.com">
+                </div>
+                
+                <div class="grupo-input">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                
+                <button type="submit" id="btn-enviar" class="btn-accion">Enviar Mensaje</button>
+                
+                <p id="mensaje-alerta" class="oculto"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Desarrollado con pasión. 2026.</p>
+    </footer>
+
+    <div id="fondo-modal" class="modal-superpuesto oculto">
+        <div class="modal-contenido">
+            <button id="btn-cerrar-modal" class="cerrar-btn">X</button>
+            <h2 id="modal-titulo">Título del Proyecto</h2>
+            <p id="modal-descripcion">Aquí va la descripción detallada del proyecto que elegiste. Este espacio es ideal para mostrar tu proceso creativo y capturas de pantalla.</p>
+        </div>
+    </div>
+
+    <script src="Masterclass_10.js"></script>
+</body>
+</html>

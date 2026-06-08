@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema3">
+                <h2>Tema 3: Fórmulas y funciones básicas</h2>
+                <div class="tema-contenido">
+                    <p>Las fórmulas y funciones son el corazón de Excel, permitiéndonos realizar cálculos complejos de manera sencilla. En este tema, aprenderás a crear fórmulas básicas y a utilizar las funciones más comunes para el análisis de datos.</p>
+                    
+                    <h3>3.1 Conceptos básicos de fórmulas</h3>
+                    <p>Una fórmula en Excel es una expresión que realiza cálculos con los valores de las celdas. Todas las fórmulas comienzan con el signo igual (=).</p>
+                    
+                    <div class="highlight">
+                        <h4>Componentes de una fórmula:</h4>
+                        <ul>
+                            <li><strong>Operadores:</strong> + (suma), - (resta), * (multiplicación), / (división), ^ (exponente)</li>
+                            <li><strong>Referencias a celdas:</strong> A1, B2, C3, etc.</n                            <li><strong>Constantes:</strong> Números o texto directamente en la fórmula</li>
+                            <li><strong>Funciones:</strong> SUMAR, PROMEDIO, CONTAR, etc.</li>
+                            <li><strong>Paréntesis:</strong> Para definir el orden de las operaciones</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Practica con fórmulas básicas</h4>
+                        <p>Intenta crear las siguientes fórmulas en la tabla interactiva:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="formulaGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="formula-bar">
+                                <span>Fórmula:</span>
+                                <input type="text" id="formulaInput" placeholder="Escribe tu fórmula aquí">
+                                <button class="verify-btn" onclick="evaluateFormula()">Calcular</button>
+                            </div>
+                        </div>
+                        <p><strong>Ejercicios:</strong> 
+                            <ol>
+                                <li>Suma los valores de las celdas A1 y B1</li>
+                                <li>Multiplica el valor de C1 por 1.16 (IVA)</li>
+                                <li>Resta D1 menos E1</li>
+                                <li>Divide F1 entre G1</li>
+                            </ol>
+                        </p>
+                    </div>
+
+                    <h3>3.2 Funciones básicas de Excel</h3>
+                    <p>Excel incluye cientos de funciones predefinidas que realizan cálculos específicos. Vamos a explorar las más utilizadas.</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Funciones esenciales:</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Función</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                                <th>Resultado</th>
+                            </tr>
+                            <tr>
+                                <td>=SUMA()</td>
+                                <td>Suma todos los números en un rango</td>
+                                <td>=SUMA(A1:A5)</td>
+                                <td>Suma de A1 a A5</td>
+                            </tr>
+                            <tr>
+                                <td>=PROMEDIO()</td>
+                                <td>Calcula el promedio de los números</td>
+                                <td>=PROMEDIO(B1:B10)</td>
+                                <td>Promedio de B1 a B10</td>
+                            </tr>
+                            <tr>
+                                <td>=CONTAR()</td>
+                                <td>Cuenta celdas con números</td>
+                                <td>=CONTAR(C1:C20)</td>
+                                <td>Cantidad de números en C1:C20</td>
+                            </tr>
+                            <tr>
+                                <td>=MAX()</td>
+                                <td>Devuelve el valor máximo</td>
+                                <td>=MAX(D1:D15)</td>
+                                <td>Valor más alto en D1:D15</td>
+                            </tr>
+                            <tr>
+                                <td>=MIN()</td>
+                                <td>Devuelve el valor mínimo</td>
+                                <td>=MIN(E1:E12)</td>
+                                <td>Valor más bajo en E1:E12</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="actividad-interactiva">
+                        <h4>Práctica: Aplica funciones</h4>
+                        <p>Utiliza las funciones aprendidas para resolver los siguientes problemas:</p>
+                        <div class="ejercicio-practico">
+                            <div class="problema">
+                                <p>1. Calcula el total de ventas diarias (columna B):</p>
+                                <div class="mini-tabla" id="ventasDiarias">
+                                    <!-- Se generará con JavaScript -->
+                                </div>
+                                <div class="solucion">
+                                    <input type="text" id="sol1" placeholder="Escribe tu fórmula">
+                                    <button class="verify-btn" onclick="verificarSolucion(1)">Verificar</button>
+                                    <span id="resultado1" class="resultado"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="problema">
+                                <p>2. Encuentra la venta más alta:</p>
+                                <div class="solucion">
+                                    <input type="text" id="sol2" placeholder="Escribe tu fórmula">
+                                    <button class="verify-btn" onclick="verificarSolucion(2)">Verificar</button>
+                                    <span id="resultado2" class="resultado"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>3.3 Referencias de celdas</h3>
+                    <p>Comprender los diferentes tipos de referencias es crucial para trabajar eficientemente con fórmulas.</p>
+                    
+                    <div class="highlight">
+                        <h4>Tipos de referencias:</h4>
+                        <ul>
+                            <li><strong>Relativas (A1):</strong> Se ajustan al copiar la fórmula</li>
+                            <li><strong>Absolutas ($A$1):</strong> No cambian al copiar la fórmula</li>
+                            <li><strong>Mixtas (A$1 o $A1):</strong> Fijan solo fila o columna</li>
+                        </ul>
+                    </div>
+
+                    <div class="ejercicio">
+                        <h4>Actividad: Práctica con referencias</h4>
+                        <p>Observa cómo cambian las fórmulas al copiarlas con diferentes tipos de referencias:</p>
+                        <div class="excel-interface">
+                            <div class="excel-grid" id="referenciasGrid">
+                                <!-- Se generará con JavaScript -->
+                            </div>
+                            <div class="instrucciones">
+                                <p>1. Escribe fórmulas con referencias relativas, absolutas y mixtas</p>
+                                <p>2. Copia las fórmulas hacia abajo y hacia los lados</p>
+                                <p>3. Observa cómo se comportan los diferentes tipos de referencias</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál es la fórmula correcta para sumar las celdas A1 hasta A10?</div>
+                        <div class="opcion">a) SUMA(A1-A10)</div>
+                        <div class="opcion">b) =SUMA(A1:A10)</div>
+                        <div class="opcion">c) =SUMAR(A1 a A10)</div>
+                        <div class="opcion">d) =A1+A2+A3+...+A10</div>
+                        
+                        <div class="pregunta">2. ¿Qué tipo de referencia es $B$5?</div>
+                        <div class="opcion">a) Relativa</div>
+                        <div class="opcion">b) Absoluta</div>
+                        <div class="opcion">c) Mixta</div>
+                        <div class="opcion">d) Ninguna de las anteriores</div>
+                        
+                        <div class="pregunta">3. ¿Qué función usarías para encontrar el promedio de los valores en el rango C1:C20?</div>
+                        <div class="opcion">a) =PROM(C1:C20)</div>
+                        <div class="opcion">b) =PROMEDIO(C1-C20)</div>
+                        <div class="opcion">c) =PROMEDIO(C1:C20)</div>
+                        <div class="opcion">d) =MEDIA(C1:C20)</div>
+                        
+                        <button class="evaluation-btn" onclick="evaluarTema3()">Verificar respuestas</button>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Las fórmulas comienzan con el signo igual (=) y pueden incluir operadores, referencias y funciones.</li>
+                            <li>Las funciones predefinidas como SUMA, PROMEDIO, MAX y MIN facilitan los cálculos comunes.</li>
+                            <li>Las referencias pueden ser relativas, absolutas o mixtas, lo que afecta cómo se copian las fórmulas.</li>
+                            <li>El uso correcto de referencias es esencial para crear hojas de cálculo dinámicas y fáciles de mantener.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="siguiente-paso">
+                        <h3>Próximos pasos</h3>
+                        <p>Ahora que dominas las fórmulas y funciones básicas, en el siguiente tema exploraremos funciones más avanzadas y cómo anidar funciones para realizar cálculos complejos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 4: Funciones lógicas y de búsqueda -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema2.html" class="btn btn-anterior">Anterior: Tema 2</a>
+        <a href="tema4.html" class="btn btn-siguiente">Siguiente: Tema 4</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Rápido de GitHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fab fa-github"></i> Curso Rápido de GitHub</h1>
+            <p class="subtitle">Aprende los conceptos básicos de Git y GitHub en minutos</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#configuracion">Configuración</a></li>
+                <li><a href="#comandos">Comandos Básicos</a></li>
+                <li><a href="#ramas">Ramas</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="inicio" class="active">
+            <h2>Bienvenido al Curso de GitHub</h2>
+            <p>Este curso te enseñará los conceptos básicos de Git y GitHub de manera rápida y efectiva.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <i class="fas fa-terminal"></i>
+                    <h3>Comandos Básicos</h3>
+                    <p>Aprende los comandos esenciales de Git para el control de versiones.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Trabajo con Ramas</h3>
+                    <p>Domina el manejo de ramas para un flujo de trabajo eficiente.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>Sube tu código a la nube y colabora con otros desarrolladores.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="configuracion">
+            <h2>Configuración Inicial</h2>
+            <div class="code-block">
+                <h3>Instalar Git</h3>
+                <p>Descarga e instala Git desde <a href="https://git-scm.com/" rel="noopener" target="_blank">git-scm.com</a></p>
+                
+                <h3>Configuración Básica</h3>
+                <pre><code># Configurar nombre de usuario
+git config --global user.name "Tu Nombre"
+
+# Configurar correo electrónico
+git config --global user.email "tu@email.com"
+
+# Verificar configuración
+git config --list</code></pre>
+            </div>
+        </section>
+
+        <section id="comandos">
+            <h2>Comandos Básicos</h2>
+            <div class="command">
+                <h3>Inicializar un repositorio</h3>
+                <pre><code># Inicializar repositorio local
+git init</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Verificar estado</h3>
+                <pre><code>git status</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Añadir archivos</h3>
+                <pre><code># Añadir un archivo específico
+git add nombre-archivo.ext
+
+# Añadir todos los archivos
+git add .</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Hacer commit</h3>
+                <pre><code>git commit -m "Mensaje descriptivo del cambio"</code></pre>
+            </div>
+        </section>
+
+        <section id="ramas">
+            <h2>Trabajando con Ramas</h2>
+            <div class="command">
+                <h3>Crear y cambiar de rama</h3>
+                <pre><code># Crear nueva rama
+git branch nombre-rama
+
+# Cambiar a la rama
+git checkout nombre-rama
+
+# Crear y cambiar de rama en un solo comando
+git checkout -b nombre-rama</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Fusionar ramas</h3>
+                <pre><code># Cambiar a la rama principal
+git checkout main
+
+# Fusionar la rama
+git merge nombre-rama</code></pre>
+            </div>
+        </section>
+
+        <section id="github">
+            <h2>Trabajando con GitHub</h2>
+            <div class="command">
+                <h3>Conectar repositorio local con GitHub</h3>
+                <pre><code># Añadir repositorio remoto
+git remote add origin https://github.com/usuario/repositorio.git
+
+# Verificar repositorios remotos
+git remote -v</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Subir cambios a GitHub</h3>
+                <pre><code># Subir rama principal
+git push -u origin main
+
+# Para ramas adicionales
+git push -u origin nombre-rama</code></pre>
+            </div>
+            
+            <div class="command">
+                <h3>Actualizar repositorio local</h3>
+                <pre><code>git pull origin main</code></pre>
+            </div>
+        </section>
+
+        <section id="flujo">
+            <h2>Flujo de Trabajo Básico</h2>
+            <ol class="workflow">
+                <li>
+                    <h3>Actualiza tu repositorio local</h3>
+                    <pre><code>git pull origin main</code></pre>
+                </li>
+                <li>
+                    <h3>Crea una nueva rama</h3>
+                    <pre><code>git checkout -b nombre-caracteristica</code></pre>
+                </li>
+                <li>
+                    <h3>Realiza tus cambios</h3>
+                    <p>Edita, añade o elimina archivos según sea necesario.</p>
+                </li>
+                <li>
+                    <h3>Añade los cambios</h3>
+                    <pre><code>git add .</code></pre>
+                </li>
+                <li>
+                    <h3>Haz commit de los cambios</h3>
+                    <pre><code>git commit -m "Descripción de los cambios"</code></pre>
+                </li>
+                <li>
+                    <h3>Sube los cambios</h3>
+                    <pre><code>git push -u origin nombre-caracteristica</code></pre>
+                </li>
+                <li>
+                    <h3>Crea un Pull Request</h3>
+                    <p>Ve a GitHub y crea un nuevo Pull Request para fusionar tus cambios.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="recursos">
+            <h2>Recursos Adicionales</h2>
+            <ul class="resources">
+                <li><a href="https://git-scm.com/doc" target="_blank" rel="noopener">Documentación oficial de Git</a></li>
+                <li><a href="https://guides.github.com/" target="_blank" rel="noopener">GitHub Guides</a></li>
+                <li><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank" rel="noopener">Git Cheat Sheet</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

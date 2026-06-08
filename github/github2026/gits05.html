@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Ramas (Branching) y Fusiones (Merging)</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 5: Ramas (Branching) y Fusiones (Merging)</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Gestión de Ramas</button>
+    <div class="panel">
+        <p>Una rama en Git es un entorno independiente donde puedes desarrollar nuevas características sin afectar la línea principal del código. Fundamentalmente, una rama es simplemente un puntero a un commit [1].</p>
+        
+        <h3>Crear y cambiar de ramas</h3>
+        <ul>
+            <li><strong>Crear una rama nueva:</strong> Estando en tu rama actual, usa <code>git branch &lt;nombre&gt;</code> para crearla [2].</li>
+            <li><strong>Cambiar a otra rama:</strong> Utiliza el comando <code>git checkout &lt;nombre&gt;</code> para moverte a una rama existente [2, 3].</li>
+            <li><strong>Atajo (crear y cambiar):</strong> Si deseas hacer ambas cosas en un solo paso, usa la bandera <code>-b</code> con checkout [3]:
+            <br><pre><code>git checkout -b &lt;nombre&gt;</code></pre></li>
+        </ul>
+
+        <h3>Listar ramas</h3>
+        <p>Para visualizar todas las ramas disponibles en tu repositorio (tanto locales como las que rastrean remotos), puedes usar la bandera <code>-a</code> o <code>--all</code> [4, 5]:</p>
+        <pre><code>git branch -a</code></pre>
+        <p>Git marcará con un asterisco (*) la rama en la que te encuentras actualmente [5].</p>
+    </div>
+
+    <button class="accordion">2. Mover y Borrar Ramas</button>
+    <div class="panel">
+        <p>Conforme avanza el desarrollo, necesitarás organizar y limpiar las ramas que ya no necesitas.</p>
+        
+        <h3>Renombrar (Mover) Ramas</h3>
+        <p>Puedes renombrar la rama en la que te encuentras actualmente usando el comando de mover (<code>-m</code> o <code>--move</code>) [4, 6]:</p>
+        <pre><code>git branch -m nuevo_nombre</code></pre>
+        <p>Si deseas renombrar una rama diferente a la actual, debes especificar el nombre antiguo primero: <code>git branch -m nombre_antiguo nuevo_nombre</code> [6].</p>
+
+        <h3>Eliminación de Ramas</h3>
+        <ul>
+            <li><strong>Eliminación Segura (<code>-d</code>):</strong> Eliminará la rama localmente, pero <strong>fallará de forma segura si la rama contiene cambios que no se han fusionado</strong> en otra rama [4, 7, 8].
+            <br><code>git branch -d &lt;nombre_rama&gt;</code></li>
+            <li><strong>Eliminación Forzada (<code>-D</code>):</strong> Si estás completamente seguro de que quieres eliminar una rama (por ejemplo, un experimento fallido), usa la D mayúscula. Esto ignorará las advertencias y eliminará la rama, causando la pérdida de commits no fusionados [4, 7, 9].
+            <br><code>git branch -D &lt;nombre_rama&gt;</code></li>
+        </ul>
+    </div>
+
+    <button class="accordion">3. Fusiones (Merging) y Conflictos</button>
+    <div class="panel">
+        <p>Fusionar (merge) es el proceso de integrar el trabajo realizado en una rama dentro de otra [10].</p>
+        
+        <h3>Unir ramas (`git merge`)</h3>
+        <p>Para fusionar una rama en tu rama actual (por ejemplo, en <code>master</code>), primero asegúrate de estar en la rama de destino y ejecuta [10]:</p>
+        <pre><code>git merge rama_entrante</code></pre>
+
+        <h3>Fast-forward frente a `--no-ff`</h3>
+        <p>Cuando la rama destino no ha divergido, Git hace un "fast-forward" (moviendo el puntero hacia adelante) sin crear un commit de fusión [11]. Sin embargo, si deseas preservar explícitamente el historial de que existió una rama de característica, puedes forzar un commit de fusión con la bandera <code>--no-ff</code> [11, 12]:</p>
+        <pre><code>git merge rama_entrante --no-ff -m "Mensaje de fusión"</code></pre>
+
+        <h3>Resolución manual de conflictos</h3>
+        <p>En ocasiones, Git no puede fusionar automáticamente porque las mismas partes de un archivo se cambiaron en ambas ramas. Te notificará de un "merge conflict" y dejará el archivo en estado "unmerged" [13].</p>
+        <p>Dentro del archivo afectado, Git añadirá marcadores de conflicto [14]:</p>
+        <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD: archivo.html
+Cambios en tu rama actual
+=======
+Cambios en la rama entrante
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; rama_entrante: archivo.html</code></pre>
+        <p>Para resolverlo <strong>debes editar manualmente el archivo</strong> eliminando los marcadores (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>) y decidiendo qué código se queda. Una vez finalizado, marca el conflicto como resuelto utilizando <code>git add &lt;archivo&gt;</code> y luego usa <code>git commit</code> para concluir la fusión [13, 14].</p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S17: Edición de Nodos (Avanzada)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 17: Edición de Nodos (Avanzada)</h1>
+
+    <section>
+        <h2>1. Unir y Separar Nodos y Segmentos</h2>
+        
+        <p>Aprender a controlar las conexiones entre nodos es crucial para trabajar con figuras complejas o editar formas importadas.</p>
+        <div class="paso">
+            <strong>Paso 1: Separar un Trayecto (Romper)</strong>
+            <p>Selecciona un nodo con la herramienta **Nodo (F2)**. Haz clic en el icono **"Romper el trayecto en los nodos seleccionados"**. El trayecto se abrirá en ese punto, creando dos nodos finales superpuestos que ya no están conectados.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Unir dos Nodos Finales</strong>
+            <p>Selecciona los dos nodos finales de un trayecto abierto (o de dos trayectos diferentes). Haz clic en el icono **"Unir nodos finales seleccionados con un nuevo segmento"**. Esto conecta los dos puntos, creando un trayecto continuo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Unir Nodos Superpuestos (Juntar)</strong>
+            <p>Si los dos nodos finales están perfectamente superpuestos, selecciónalos y usa el icono **"Unir nodos finales coincidentes"**. Esto fusiona ambos en un solo nodo, cerrando el hueco sin añadir un nuevo segmento visible.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Convertir y Manipular Segmentos</h2>
+        <p>No solo puedes manipular nodos, sino también los segmentos (las líneas o curvas) que los unen.</p>
+        <div class="paso">
+            <strong>Paso 1: Mover Segmentos</strong>
+            <p>Con la herramienta **Nodo (F2)**, puedes hacer **clic y arrastrar** directamente sobre un segmento de curva (no sobre el nodo) para modificar su forma, manteniendo los nodos anclados. Inkscape ajustará los tiradores automáticamente.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Convertir a Línea Recta o Curva</strong>
+            <p>Selecciona uno o más segmentos. Usa los iconos **"Convertir el segmento/s seleccionado/s en líneas"** o **"Convertir el segmento/s seleccionado/s en curvas"** en la barra de nodos. Esto es útil para limpiar o simplificar trazos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Eliminar Segmentos</strong>
+            <p>Selecciona un segmento (clic una vez). Presiona **Supr** (Delete). Esto crea un gran hueco en tu trayecto, rompiéndolo.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Herramienta Medir y Alineación de Nodos</h2>
+        <p>Para la precisión en el diseño, a veces necesitas alinear los nodos entre sí.</p>
+        <div class="paso">
+            <strong>Alinear Nodos</strong>
+            <p>Selecciona dos o más nodos. En la Barra de Controles de Herramienta de Nodos, usa los iconos **"Alinear nodos verticalmente"** u **"Alinear nodos horizontalmente"**. Esto ayuda a crear una base o un borde perfectamente recto dentro de una forma irregular.</p>
+        </div>
+        <div class="paso">
+            <strong>Herramienta Medir (Measure Tool)</strong>
+            <p>Aunque no es una herramienta de edición, la **Herramienta Medir (M)** es crucial para la precisión. Te permite hacer **clic y arrastrar** entre dos puntos o nodos para obtener la distancia exacta en la unidad de tu documento.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Onda Precisa</h3>
+        <p><strong>Objetivo:</strong> Practicar la manipulación de segmentos y la alineación de nodos.</p>
+        <ol>
+            <li>Dibuja un trazo abierto con la **Pluma (B)** usando 4 nodos.</li>
+            <li>Selecciona el trazo. Usa la herramienta **Nodo (F2)**. Selecciona los nodos 2 y 4 (dejando el 3 fuera) y alinéalos horizontalmente.</li>
+            <li>Mueve el segmento entre los nodos 2 y 3 para crear una curva. Convierte el nodo 3 a **Simétrico**.</li>
+            <li>Rompe el trayecto en el nodo 4. Mueve ligeramente el nodo final. Luego, vuelve a unirlo con el nodo 1 para cerrar la forma.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion16.html">Anterior</a>
+    <a href="sesion18.html">Siguiente</a>
+</nav>
+</body>
+</html>

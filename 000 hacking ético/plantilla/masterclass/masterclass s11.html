@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 11 - Hacking Ético Forense">
+    <title>Sesión 11: Anatomía del Disco y The Sleuth Kit | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header module-two">
+        <div class="container">
+            <h1>Módulo 2: Sistemas de Archivos</h1>
+            <nav>
+                <div class="status-badge scan">ESTADO: ESCANEO PROFUNDO INICIADO</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 11: La Geometría Oculta</h2>
+            <p><strong>Situación:</strong> Has asegurado la imagen del disco (Módulo 1). El sistema operativo dice que el disco está vacío, pero los cibercriminales rara vez guardan sus herramientas a simple vista. A menudo modifican la tabla de particiones para crear sectores "no asignados" donde ocultan su <em>malware</em> y datos exfiltrados.</p>
+            <p>Tu objetivo es utilizar herramientas de bajo nivel (como un bisturí forense) para leer la estructura bruta del disco. Encontrarás los mapas reales de los sectores y documentarás exactamente dónde comienza y termina la anomalía.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Extracción con `mmls`</h2>
+            <p>Inicia tu máquina virtual con Kali Linux. Utiliza la suite <em>The Sleuth Kit (TSK)</em> para realizar una autopsia a la tabla de particiones de tu imagen de evidencia.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Extraer la Tabla de Particiones (`mmls`)</h3>
+                    <p>Despliega el mapa de particiones (Media Management Tools) para visualizar el <em>layout</em> real del volumen, ignorando lo que el SO intenta decirte.</p>
+                    <div class="terminal">
+                        <code># Reemplaza 'imagen_evidencia.dd' por tu clon bit a bit<br>
+                        mmls -t dos ~/DFIR/Casos/Caso_001/Evidencia/imagen_evidencia.dd</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Extracción</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Identificar Particiones Ocultas</h3>
+                    <p>Analiza el <em>output</em> del comando anterior. Busca huecos en la estructura marcados como "Unallocated" (no asignados) que sean inusualmente grandes, o particiones con formatos desconocidos.</p>
+                    <div class="terminal">
+                        <code># Observa la columna 'Description' en tu terminal.<br>
+                        # Identifica la fila que muestra espacio no asignado (Unallocated).</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Confirmar Hallazgo</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Documentar Sectores (Inicio y Fin)</h3>
+                    <p>Un analista forense necesita precisión matemática. Documenta el sector exacto de inicio y fin (Start / End) del espacio oculto para poder extraerlo en la siguiente fase.</p>
+                    <div class="terminal">
+                        <code># Anexa los sectores clave al manifiesto del caso<br>
+                        echo "[ANOMALÍA DETECTADA] - Partición oculta encontrada." >> ~/DFIR/Casos/Caso_001/geometria.txt<br>
+                        echo "Sector Inicio: 2048 | Sector Fin: 4095" >> ~/DFIR/Casos/Caso_001/geometria.txt<br>
+                        cat ~/DFIR/Casos/Caso_001/geometria.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Sellar Documentación</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Geometría Mapeada con Éxito!</h3>
+                <p>Has mirado más allá de las ilusiones del sistema operativo. Al identificar los sectores ocultos mediante The Sleuth Kit, tienes las coordenadas exactas para extraer el <em>payload</em> del atacante. El análisis forense profundo acaba de comenzar.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 11. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

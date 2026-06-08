@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 34: Listas y Arreglos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 34</h1>
+            <h2>Listas y Arreglos: El Poder de la Colección</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Problema de la Variable Solitaria</h3>
+            <p><strong>Objetivo:</strong> Comprender que crear una variable para cada dato es ineficiente cuando tienes muchos datos relacionados.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🎒 La Mochila vs. Las Manos</h4>
+                <p>Imagina que tienes que llevar 10 libros a la escuela.</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.2rem;">Variables Sueltas</span>
+                        <p style="font-size: 0.8rem;">Llevas un libro en cada dedo, bajo el brazo, en la cabeza...</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.6rem; background: #eee; padding: 5px; margin-top: 5px;">
+                            libro1 = "Mate"<br>
+                            libro2 = "Español"<br>
+                            libro3 = "Inglés"...
+                        </div>
+                        <p style="font-size: 0.7rem; color: #742a2a; font-weight: bold;">(Caos Total)</p>
+                    </div>
+
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.2rem;">Lista (Array)</span>
+                        <p style="font-size: 0.8rem;">Metes todos los libros en UNA sola mochila.</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.6rem; background: #eee; padding: 5px; margin-top: 5px;">
+                            mochila = ["Mate", "Español", "Inglés"]
+                        </div>
+                        <p style="font-size: 0.7rem; color: #22543d; font-weight: bold;">(Ordenado y Limpio)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía de una Lista</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">📋 Crear una Lista</h4>
+                    <p>Usamos corchetes cuadrados <code>[]</code>.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        frutas = [<span style="color: #f6ad55;">"Manzana"</span>, <span style="color: #f6ad55;">"Pera"</span>, <span style="color: #f6ad55;">"Uva"</span>]
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">Puede guardar texto, números o mezclas.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">📍 El Índice (Index)</h4>
+                    <p>Es la "dirección" de cada elemento.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        print( frutas[<span style="color: #68d391;">0</span>] )
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">¡OJO! El primero siempre es el 0.</p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🚆 El Tren de Datos</h4>
+                <p>Visualiza la lista como vagones numerados.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 5px; margin-top: 20px; flex-wrap: wrap;">
+                    
+                    <div style="text-align: center;">
+                        <div style="background: #2d3748; color: white; padding: 2px 8px; border-radius: 4px 4px 0 0; font-size: 0.7rem; font-family: 'Fira Code';">Ind: 0</div>
+                        <div style="background: #9f7aea; color: white; width: 80px; height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #6b46c1; font-weight: bold;">"Ana"</div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; color: #a0aec0;">🔗</div>
+
+                    <div style="text-align: center;">
+                        <div style="background: #2d3748; color: white; padding: 2px 8px; border-radius: 4px 4px 0 0; font-size: 0.7rem; font-family: 'Fira Code';">Ind: 1</div>
+                        <div style="background: #9f7aea; color: white; width: 80px; height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #6b46c1; font-weight: bold;">"Beto"</div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; color: #a0aec0;">🔗</div>
+
+                    <div style="text-align: center;">
+                        <div style="background: #2d3748; color: white; padding: 2px 8px; border-radius: 4px 4px 0 0; font-size: 0.7rem; font-family: 'Fira Code';">Ind: 2</div>
+                        <div style="background: #9f7aea; color: white; width: 80px; height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #6b46c1; font-weight: bold;">"Carla"</div>
+                    </div>
+
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-family: 'Fira Code'; background: #edf2f7; padding: 10px; border-radius: 5px;">
+                    <span style="color: #553c9a;">lista_alumnos</span> = ["Ana", "Beto", "Carla"]
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Operaciones Mágicas</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Agregar al final (.append)</h5>
+                    <p>Llegó un alumno nuevo. ¿Cómo lo metes a la lista?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Código</button>
+                    <div id="ans1" class="answer hidden">
+                        <p style="font-family: 'Fira Code'; font-size: 0.8rem;">
+                            lista_alumnos.<span style="color: #d69e2e;">append</span>("Daniel")
+                        </p>
+                        <p>Ahora Daniel está en el índice 3.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>El Poder del Ciclo FOR</h5>
+                    <p>¿Cómo imprimes todos los nombres sin escribir <code>print</code> 3 veces?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Magia</button>
+                    <div id="ans2" class="answer hidden">
+                        <p style="font-family: 'Fira Code'; font-size: 0.8rem;">
+                            <span style="color: #805ad5;">for</span> alumno <span style="color: #805ad5;">in</span> lista_alumnos:<br>
+                            &nbsp;&nbsp;print("Hola " + alumno)
+                        </p>
+                        <p>El ciclo recorre la lista automáticamente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🛒 <strong>Misión del Día:</strong> Escribe en papel una lista de compras: <code>compras = ["Leche", "Huevos", "Pan"]</code>. ¿Qué código usarías para agregar "Galletas"?</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 34 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

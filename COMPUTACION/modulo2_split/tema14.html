@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema14">
+                <h2>Tema 14: Power Pivot: Modelado de datos</h2>
+                <div class="tema-contenido">
+                    <p>Power Pivot es una potente herramienta de modelado de datos que permite crear modelos de datos sofisticados directamente en Excel. En este tema, exploraremos cómo utilizar Power Pivot para analizar grandes conjuntos de datos, crear relaciones entre tablas y generar análisis avanzados con DAX (Data Analysis Expressions).</p>
+                    
+                    <h3>14.1 Introducción a Power Pivot</h3>
+                    <p>Power Pivot es un complemento de Excel que amplía las capacidades de análisis de datos, permitiendo trabajar con millones de filas de datos de múltiples fuentes.</p>
+                    
+                    <div class="concepto">
+                        <h4>¿Qué es Power Pivot?</h4>
+                        <p>Power Pivot es una herramienta de modelado de datos que te permite:</p>
+                        <ul>
+                            <li>Importar millones de filas de datos de múltiples fuentes</li>
+                            <li>Crear relaciones entre tablas sin necesidad de fórmulas VLOOKUP</li>
+                            <li>Crear medidas y columnas calculadas con DAX</li>
+                            <li>Generar análisis complejos con tablas dinámicas y gráficos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ejemplo">
+                        <h4>Ejemplo: Habilitar Power Pivot</h4>
+                        <p>Para comenzar a usar Power Pivot, sigue estos pasos:</p>
+                        <ol>
+                            <li>Abre Excel y ve a <strong>Archivo > Opciones > Complementos</strong></li>
+                            <li>En el menú desplegable, selecciona <strong>Complementos de COM</strong></li>
+                            <li>Busca <strong>Microsoft Power Pivot para Excel</strong> y haz clic en <strong>Ir...</strong></li>
+                            <li>Marca la casilla y haz clic en <strong>Aceptar</strong></li>
+                            <li>Reinicia Excel para ver la pestaña <strong>Power Pivot</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <h3>14.2 Creación de un modelo de datos</h3>
+                    <p>Un modelo de datos en Power Pivot es una colección de tablas con relaciones entre ellas que forman la base para el análisis.</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Componentes clave de un modelo de datos</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Componente</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                            </tr>
+                            <tr>
+                                <td>Tablas</td>
+                                <td>Conjuntos de datos relacionados</td>
+                                <td>Ventas, Productos, Clientes</td>
+                            </tr>
+                            <tr>
+                                <td>Relaciones</td>
+                                <td>Conexiones entre tablas</td>
+                                <td>Ventas[ID_Producto] → Productos[ID]</td>
+                            </tr>
+                            <tr>
+                                <td>Medidas</td>
+                                <td>Cálculos dinámicos con DAX</td>
+                                <td>Ventas Totales = SUM(Ventas[Monto])</td>
+                            </tr>
+                            <tr>
+                                <td>Jerarquías</td>
+                                <td>Niveles de navegación en datos</td>
+                                <td>Año > Trimestre > Mes > Día</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Crear un modelo de datos básico</h4>
+                        <p>Sigue estos pasos para crear tu primer modelo de datos:</p>
+                        <ol>
+                            <li>Importa dos tablas relacionadas (ej. Ventas y Productos)</li>
+                            <li>Crea una relación entre las tablas usando el campo común</li>
+                            <li>Agrega una medida para calcular el total de ventas</li>
+                            <li>Crea una tabla dinámica que muestre las ventas por categoría de producto</li>
+                        </ol>
+                        <button class="btn btn-descargar">Descargar datos de práctica</button>
+                    </div>
+                    
+                    <h3>14.3 Fórmulas DAX avanzadas</h3>
+                    <p>DAX (Data Analysis Expressions) es el lenguaje de fórmulas utilizado en Power Pivot para crear cálculos personalizados.</p>
+                    
+                    <div class="ejemplo-codigo">
+                        <h4>Funciones DAX esenciales</h4>
+                        <pre><code class="language-dax">// Ventas del año actual
+Ventas Año Actual = TOTALYTD(SUM(Ventas[Monto]), Calendario[Fecha])
+
+// Crecimiento interanual
+Crecimiento Anual = 
+VAR VentasActuales = SUM(Ventas[Monto])
+VAR VentasAnoAnterior = 
+    CALCULATE(
+        SUM(Ventas[Monto]),
+        SAMEPERIODLASTYEAR(Calendario[Fecha])
+    )
+RETURN
+    DIVIDE(
+        (VentasActuales - VentasAnoAnterior),
+        VentasAnoAnterior,
+        0
+    )
+
+// Clasificación de clientes
+Clasificación Cliente = 
+SWITCH(
+    TRUE(),
+    [Total Compras] > 10000, "Premium",
+    [Total Compras] > 5000, "Estándar",
+    "Básico"
+)</code></pre>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Ejercicio: Crear medidas DAX</h4>
+                        <p>Crea las siguientes medidas en tu modelo de datos:</p>
+                        <ol>
+                            <li>Ventas totales del año actual</li>
+                            <li>Promedio de ventas por transacción</li>
+                            <li>Porcentaje de participación de cada producto en las ventas totales</li>
+                            <li>Variación porcentual mes a mes</li>
+                        </ol>
+                    </div>
+                    
+                    <h3>14.4 Análisis con tablas dinámicas basadas en modelos</h3>
+                    <p>Las tablas dinámicas basadas en modelos de Power Pivot ofrecen capacidades avanzadas de análisis.</p>
+                    
+                    <div class="consejo">
+                        <h4>Consejos para tablas dinámicas avanzadas</h4>
+                        <ul>
+                            <li>Usa <strong>jerarquías</strong> para permitir el análisis por diferentes niveles de datos</li>
+                            <li>Aprovecha los <strong>filtros de segmentación</strong> para crear dashboards interactivos</li>
+                            <li>Utiliza <strong>KPI</strong> (Indicadores Clave de Rendimiento) para visualizar métricas importantes</li>
+                            <li>Crea <strong>conjuntos de campos</strong> para agrupar elementos de manera lógica</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Crear un dashboard ejecutivo</h4>
+                        <p>Crea un dashboard ejecutivo con los siguientes elementos:</p>
+                        <ul>
+                            <li>Un gráfico de líneas que muestre la tendencia de ventas mensuales</li>
+                            <li>Una tabla dinámica con las ventas por región y categoría</li>
+                            <li>Tarjetas con KPIs clave (ventas totales, crecimiento, margen)</li>
+                            <li>Segmentaciones por período, región y categoría</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Qué es DAX en Power Pivot?</div>
+                        <div class="opcion">a) Un formato de archivo de Excel</div>
+                        <div class="opcion">b) Un lenguaje de programación visual</div>
+                        <div class="opcion">c) Un lenguaje de fórmulas para análisis de datos</div>
+                        <div class="opcion">d) Un complemento para gráficos</div>
+                        
+                        <div class="pregunta">2. ¿Cuál de las siguientes NO es una función de DAX?</div>
+                        <div class="opcion">a) SUMX</div>
+                        <div class="opcion">b) CALCULATE</div>
+                        <div class="opcion">c) VLOOKUP</div>
+                        <div class="opcion">d) FILTER</div>
+                        
+                        <div class="pregunta">3. ¿Qué tipo de relación es la más común entre tablas en un modelo de datos?</div>
+                        <div class="opcion">a) Muchos a muchos</div>
+                        <div class="opcion">b) Uno a uno</div>
+                        <div class="opcion">c) Muchos a uno</div>
+                        <div class="opcion">d) Ninguna de las anteriores</div>
+                        
+                        <button id="evaluar-tema14" class="btn btn-evaluar">Ver resultados</button>
+                        <div id="resultado-evaluacion-tema14" class="resultado-evaluacion"></div>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Power Pivot permite crear modelos de datos avanzados en Excel.</li>
+                            <li>Las relaciones entre tablas son fundamentales para un buen modelo de datos.</li>
+                            <li>DAX es un lenguaje poderoso para crear medidas y columnas calculadas.</li>
+                            <li>Las tablas dinámicas basadas en modelos ofrecen capacidades avanzadas de análisis.</li>
+                            <li>Los dashboards ejecutivos ayudan a visualizar y analizar grandes conjuntos de datos.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recursos-adicionales">
+                        <h3>Recursos adicionales</h3>
+                        <ul>
+                            <li><a href="https://learn.microsoft.com/es-es/power-pivot/" target="_blank">Documentación oficial de Power Pivot</a></li>
+                            <li><a href="https://www.sqlbi.com/guides/dax/" target="_blank">Guía definitiva de DAX</a></li>
+                            <li><a href="https://www.youtube.com/playlist?list=PL1rW7d9j2nJ8n1appqn7xayVpPuyHshg_" target="_blank">Tutoriales de Power Pivot en YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navegacion-temas">
+                    <a href="#tema13" class="btn btn-anterior">Anterior: Tema 13</a>
+                    <a href="#tema15" class="btn btn-siguiente">Siguiente: Tema 15</a>
+                </div>
+            </div>
+
+            <!-- Tema 15: Dashboards Interactivos -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema13.html" class="btn btn-anterior">Anterior: Tema 13</a>
+        <a href="tema15.html" class="btn btn-siguiente">Siguiente: Tema 15</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

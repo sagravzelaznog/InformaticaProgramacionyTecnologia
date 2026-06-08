@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterClass: Excel Automatizado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #107c10; /* Excel Green */
+            --primary-dark: #0b570b;
+            --accent: #2b579a; /* Blue standard */
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --tip-bg: #ecfdf5;
+            --tip-border: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- Hero --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* --- Container --- */
+        main {
+            max-width: 900px;
+            margin: -3rem auto 3rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid transparent;
+            transition: transform 0.2s;
+        }
+
+        .card:hover { transform: translateY(-2px); }
+        .card.phase-1 { border-top-color: #3b82f6; }
+        .card.phase-2 { border-top-color: #8b5cf6; }
+        .card.phase-3 { border-top-color: #f59e0b; }
+        .card.phase-4 { border-top-color: #ef4444; }
+
+        h2 { font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent); }
+        
+        ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+
+        /* --- Code Blocks --- */
+        .code-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* Syntax Highlighting Sim */
+        .fn { color: #569cd6; font-weight: bold; } /* Functions */
+        .str { color: #ce9178; } /* Strings */
+        .ref { color: #9cdcfe; } /* References */
+        .num { color: #b5cea8; } /* Numbers */
+
+        /* --- Pedagogical Tips --- */
+        .pedagogy-tip {
+            background-color: var(--tip-bg);
+            border-left: 4px solid var(--tip-border);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .pedagogy-tip i { color: var(--tip-border); font-size: 1.2rem; margin-top: 0.2rem;}
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .nav-links { display: none; } /* Simple hiding for mobile demo */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-file-excel"></i> EduExcel Pro
+        </div>
+        <div class="nav-links">
+            <a href="#fase1">Base de Datos</a>
+            <a href="#fase2">Interfaz</a>
+            <a href="#fase3">Fórmulas</a>
+            <a href="#fase4">UX/Validación</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Sistema de Boletas Automatizadas</h1>
+        <p>Aprende a conectar múltiples hojas de cálculo usando referencias dinámicas e INDIRECTO.</p>
+    </header>
+
+    <main>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-lightbulb"></i> Objetivo del Curso</h2>
+            <p>Vamos a transformar un libro de Excel estático en una "Aplicación" de Gestión Escolar. Aprenderás a separar los datos (Backend) de la visualización (Frontend) usando lógica relacional.</p>
+        </div>
+
+        <div class="card phase-1" id="fase1">
+            <h2><i class="fa-solid fa-database"></i> Fase 1: Arquitectura de Datos (Backend)</h2>
+            <p>La consistencia es clave. Crearemos bases de datos estandarizadas para que las fórmulas puedan "viajar" entre ellas sin errores.</p>
+            
+            <h3>Paso 1: Configuración de Hojas</h3>
+            <ol>
+                <li>Crea 6 pestañas nuevas.</li>
+                <li>Nómbralas estrictamente: <code>Semestre 1</code>, <code>Semestre 2</code>... hasta <code>Semestre 6</code>.</li>
+            </ol>
+
+            <div class="pedagogy-tip">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                    <strong>Principio Pedagógico:</strong> Estandarización. Al mantener la misma estructura en todas las hojas (ej. Matemáticas siempre inicia en la columna F), reducimos la carga cognitiva y simplificamos la lógica de programación.
+                </div>
+            </div>
+
+            <h3>Paso 2: Estructura de Columnas</h3>
+            <ul>
+                <li><strong>Fila 1 (Encabezados):</strong> A1: Número, B1: Alumno. Combina celdas C1-E1 para "Español", F1-H1 para "Matemáticas".</li>
+                <li><strong>Fila 2 (Unidades):</strong> Debajo de cada materia, escribe P1, P2, P3.</li>
+                <li><strong>Columna A:</strong> Llénala con números consecutivos (ID del alumno).</li>
+            </ul>
+        </div>
+
+        <div class="card phase-2" id="fase2">
+            <h2><i class="fa-solid fa-desktop"></i> Fase 2: Interfaz de Usuario (Frontend)</h2>
+            <p>Esta es la hoja "Boleta". Debe ser limpia y contener solo lo necesario para el usuario final.</p>
+            
+            <h3>Controles de Mando (Inputs)</h3>
+            <p>Define celdas específicas donde el usuario introducirá los datos de búsqueda:</p>
+            <ul>
+                <li><strong>Celda E4:</strong> Para el número de Semestre.</li>
+                <li><strong>Celda G4:</strong> Para el número de Lista (ID) del alumno.</li>
+            </ul>
+            
+            <h3>Tabla de Resultados</h3>
+            <p>Dibuja la tabla donde aparecerán las calificaciones. Asegúrate de listar las materias en la <strong>columna A</strong> en el mismo orden que en tus bases de datos.</p>
+        </div>
+
+        <div class="card phase-3" id="fase3">
+            <h2><i class="fa-solid fa-gears"></i> Fase 3: El Motor Lógico</h2>
+            <p>Usaremos la función <code>INDIRECTO</code> para construir referencias de texto que Excel interprete como direcciones reales.</p>
+
+            <h3>1. Trayendo el Nombre</h3>
+            <p>Buscaremos el ID (G4) en la hoja definida por el Semestre (E4).</p>
+            
+            <div class="code-wrapper">
+                <button class="copy-btn" onclick="copyToClipboard('code1')">Copiar</button>
+                <pre id="code1"><code>=<span class="fn">BUSCARV</span>(<span class="ref">G4</span>, <span class="fn">INDIRECTO</span>(<span class="str">"'Semestre "</span>&<span class="ref">E4</span>&<span class="str">"'!A:B"</span>), <span class="num">2</span>, <span class="fn">FALSO</span>)</code></pre>
+            </div>
+
+            <h3>2. Trayendo Calificaciones (Español - Unidad 1)</h3>
+            <p>Supongamos que la materia Español está en las columnas C, D, E de las hojas de datos. Para traer la Unidad 1 (Columna C, que es la 3ra columna):</p>
+
+            <div class="code-wrapper">
+                <button class="copy-btn" onclick="copyToClipboard('code2')">Copiar</button>
+                <pre id="code2"><code>=<span class="fn">BUSCARV</span>(<span class="ref">$G$4</span>, <span class="fn">INDIRECTO</span>(<span class="str">"'Semestre "</span>&<span class="ref">$E$4</span>&<span class="str">"'!A:W"</span>), <span class="num">3</span>, <span class="num">0</span>)</code></pre>
+            </div>
+
+            <div class="pedagogy-tip">
+                <i class="fa-solid fa-microchip"></i>
+                <div>
+                    <strong>Lógica de Programación:</strong> La función INDIRECTO convierte el texto <code>"Semestre 1!A:W"</code> en una referencia válida. Al cambiar la celda E4 a "2", el texto cambia dinámicamente a <code>"Semestre 2!A:W"</code>, forzando a BUSCARV a leer otra hoja.
+                </div>
+            </div>
+        </div>
+
+        <div class="card phase-4" id="fase4">
+            <h2><i class="fa-solid fa-shield-halved"></i> Fase 4: Control de Errores (UX)</h2>
+            <p>Un buen desarrollador protege su código de entradas incorrectas.</p>
+
+            <h3>Validación de Datos</h3>
+            <ol>
+                <li>Selecciona la celda del Semestre (E4).</li>
+                <li>Ve a <em>Datos > Validación de Datos</em>.</li>
+                <li>Elige <strong>Lista</strong> y escribe: <code>1,2,3,4,5,6</code>.</li>
+            </ol>
+
+            <h3>Limpieza Visual</h3>
+            <p>Evita el error <code>#N/A</code> si el alumno no existe:</p>
+            <div class="code-wrapper">
+                <button class="copy-btn" onclick="copyToClipboard('code3')">Copiar</button>
+                <pre id="code3"><code>=<span class="fn">SI.ERROR</span>(<span class="fn">BUSCARV</span>(...), <span class="str">"-"</span>)</code></pre>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Generado con Inteligencia Artificial Pedagógica | 2024</p>
+    </footer>
+
+    <script>
+        // Función simple para copiar al portapapeles
+        function copyToClipboard(elementId) {
+            const codeText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert("¡Fórmula copiada al portapapeles!");
+            });
+        }
+    </script>
+
+</body>
+</html>

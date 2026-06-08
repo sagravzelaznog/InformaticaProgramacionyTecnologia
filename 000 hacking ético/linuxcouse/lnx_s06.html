@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion06: Propiedad y Permisos</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 06: La Matriz de Permisos (chmod/chown)</h1>
+            <p class="intro-text">En el análisis forense, los permisos te dicen quién tuvo la oportunidad de modificar la evidencia. En el hacking, un permiso mal configurado es la puerta trasera hacia el control total. Hoy aprenderemos a descifrar y manipular el ADN de la seguridad en Linux.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Leer el ADN del Archivo (ls -l)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Vamos a crear un archivo en nuestro Sandbox y analizaremos su estructura de propiedad. Los primeros caracteres en la salida de <code>ls -l</code> representan los permisos para el <strong>Dueño (u)</strong>, el <strong>Grupo (g)</strong> y <strong>Otros (o)</strong>.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> touch script_secreto.sh
+<span class="prompt">-(kali㉿kali)-[~]$</span> ls -l script_secreto.sh
+<span class="comment"># Salida esperada: -rw-r--r-- 1 kali kali 0 Apr 21 10:00 script_secreto.sh</span></code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Herramienta Cognitiva (El Sistema Octal)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En lugar de usar letras, los profesionales usan números (Sistema Octal). Cada permiso tiene un peso: <strong>Lectura (r)=4, Escritura (w)=2, Ejecución (x)=1</strong>. Juega con el siguiente decodificador antes de avanzar al comando real:</p>
+                    
+                    <div class="permission-decoder">
+                        <div class="decoder-section">
+                            <h3>Dueño (Owner)</h3>
+                            <label><input type="checkbox" class="perm-calc" data-target="owner" value="4"> Read (4)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="owner" value="2"> Write (2)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="owner" value="1"> eXecute (1)</label>
+                            <div class="octal-digit" id="octal-owner">0</div>
+                        </div>
+                        <div class="decoder-section">
+                            <h3>Grupo (Group)</h3>
+                            <label><input type="checkbox" class="perm-calc" data-target="group" value="4"> Read (4)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="group" value="2"> Write (2)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="group" value="1"> eXecute (1)</label>
+                            <div class="octal-digit" id="octal-group">0</div>
+                        </div>
+                        <div class="decoder-section">
+                            <h3>Otros (Others)</h3>
+                            <label><input type="checkbox" class="perm-calc" data-target="others" value="4"> Read (4)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="others" value="2"> Write (2)</label>
+                            <label><input type="checkbox" class="perm-calc" data-target="others" value="1"> eXecute (1)</label>
+                            <div class="octal-digit" id="octal-others">0</div>
+                        </div>
+                        <div class="final-chmod">Comando: <span>chmod <span id="final-octal">000</span> archivo</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Modificación de Permisos y Propiedad (chmod/chown)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Ahora aplicaremos el conocimiento. Le daremos permisos totales al dueño y quitaremos todos los permisos a los demás (Octal 700). Luego, cambiaremos al dueño del archivo a <em>root</em>.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Damos permisos 700 (rwx------)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> chmod 700 script_secreto.sh
+
+<span class="comment"># Cambiar de dueño requiere privilegios de superusuario</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo chown root:root script_secreto.sh
+<span class="prompt">-(kali㉿kali)-[~]$</span> ls -l script_secreto.sh</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El Ticket Dorado (Búsqueda de SUID)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El bit <strong>SUID</strong> permite a un usuario normal ejecutar un programa con los permisos de su creador (generalmente <em>root</em>). Si un atacante encuentra un binario vulnerable con SUID, el sistema está perdido. Así es como los peritos buscan este rastro:</p>
+                    <div class="warning-box" style="border-left-color: #a855f7; color: #d8b4fe; background-color: rgba(168, 85, 247, 0.1);">
+                        <strong style="color: #c084fc;">Hacking Mindset:</strong> El flag -perm -4000 le dice al comando find que busque el bit SUID activo en todo el sistema.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Buscar binarios con SUID, enviando errores al vacío</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> find / -type f -perm -4000 2>/dev/null</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #06. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

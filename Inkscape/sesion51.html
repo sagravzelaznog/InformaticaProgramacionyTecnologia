@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S51: Ilustración con Curvas Bézier Complejas</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 51: Ilustración con Curvas Bézier Complejas</h1>
+
+    <section>
+        <h2>1. El Principio del Mínimo de Nodos</h2>
+        
+        <p>La clave de la ilustración vectorial profesional es el **control de las curvas**. Una curva suave y perfecta se logra con el menor número de nodos posible. Menos nodos significa transiciones más limpias y archivos más ligeros.</p>
+        <div class="paso">
+            <strong>Nodos Suaves vs. Nodos Cúspide</strong>
+            <p>Al dibujar con la **Pluma (B)**, haz clic y arrastra para crear **Nodos Suaves**. Los manejadores de estos nodos siempre se mueven juntos, creando una curva continua. Haz clic y mantén **Ctrl** mientras arrastras para un mejor control angular.</p>
+            <p>Haz clic sin arrastrar para crear un **Nodo Cúspide** (esquina aguda). Para un control mixto, haz clic en un nodo y luego mantén **Shift** mientras mueves uno de los manejadores para moverlo independientemente (Nodo Suave Asimétrico).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Dibujo de Curvas con la Herramienta Pluma (B)</h2>
+        <p>La herramienta **Pluma (B)** es el caballo de batalla para el dibujo preciso.</p>
+        <div class="paso">
+            <strong>Curvas en C</strong>
+            <p>Para dibujar una curva suave en forma de "C", haz un clic largo en el punto de inicio (A), arrastra la línea de Bézier ligeramente en la dirección opuesta al sentido de la curva, y luego haz un clic largo en el punto final (B), arrastrando en la dirección de la curva. Esto crea la curva con solo dos nodos.</p>
+        </div>
+        <div class="paso">
+            <strong>Curvas en S</strong>
+            <p>Para la curva en "S", haz un clic largo en A, arrastrando. Luego, haz un clic largo en el punto de inflexión (medio), arrastrando el manejador solo un poco para definir la transición. Finalmente, haz un clic largo en C, arrastrando en la dirección opuesta. Tres nodos para la curva compleja.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Optimización de Trayectos con la Herramienta Nodo (F2)</h2>
+        <p>Una vez dibujado, el **Editor de Nodos (F2)** te da el control final.</p>
+        <div class="paso">
+            <strong>Simplificar y Limpiar</strong>
+            <p>Si un trayecto es demasiado complejo (muchos nodos), selecciona el trayecto y presiona **Ctrl + L** (**Simplificar**). Esto reducirá los nodos. Puedes repetir el proceso si es necesario.</p>
+        </div>
+        <div class="paso">
+            <strong>Eliminar Nodos sin Romper la Curva</strong>
+            <p>Selecciona un nodo con **F2** y presiona la tecla **Suprimir**. Inkscape intentará mantener la forma de la curva usando los nodos restantes. Si la curva se rompe, presiona **Ctrl + Z** y mueve el nodo adyacente para compensar antes de eliminar.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Hoja de Palmera</h3>
+        <p><strong>Objetivo:</strong> Usar curvas Bézier complejas y el mínimo de nodos.</p>
+        <ol>
+            <li>Dibuja el contorno exterior de una hoja o un pétalo orgánico usando el menor número de nodos posible (idealmente menos de 10).</li>
+            <li>Con el **Editor de Nodos (F2)**, selecciona el trayecto. Usa los botones de **Convertir nodo a suave** o **Convertir nodo a cúspide** para refinar las uniones y los picos.</li>
+            <li>Aplica un **Degradado Lineal** para darle volumen a la forma.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion50.html">Anterior</a>
+    <a href="sesion52.html">Siguiente</a>
+</nav>
+</body>
+</html>

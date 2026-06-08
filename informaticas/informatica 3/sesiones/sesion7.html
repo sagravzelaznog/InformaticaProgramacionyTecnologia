@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Trabajando con Hojas de Cálculo - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2><i class="fas fa-list-ul"></i> Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 7: Trabajando con Hojas de Cálculo en Excel VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a manipular hojas de cálculo mediante programación VBA, incluyendo su creación, eliminación, ocultamiento y manipulación de datos.</p>
+            </header>
+
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión exploraremos cómo trabajar con hojas de cálculo en Excel usando VBA. Aprenderás a crear, eliminar, copiar y manipular hojas de cálculo de forma programática.</p>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-link"></i> 1. Referenciar Hojas de Cálculo</h3>
+                    <p>Existen varias formas de hacer referencia a una hoja de cálculo en VBA:</p>
+                    <div class="code-example">
+                        <h4>Por nombre:</h4>
+                        <pre><code>Worksheets("Hoja1").Activate
+Sheets("Hoja1").Select</code></pre>
+                        
+                        <h4>Por índice:</h4>
+                        <pre><code>Worksheets(1).Activate  ' Primera hoja
+Sheets(2).Select     ' Segunda hoja</code></pre>
+                        
+                        <h4>Hoja activa:</h4>
+                        <pre><code>ActiveSheet.Name  ' Nombre de la hoja activa</code></pre>
+                    </div>
+
+                    <div class="tip">
+                        <h3>Consejo</h3>
+                        <p>Es preferible usar <code>Worksheets</code> en lugar de <code>Sheets</code> cuando solo trabajas con hojas de cálculo, ya que <code>Sheets</code> también incluye otros tipos de hojas como gráficos.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-plus-circle"></i> 2. Crear y eliminar hojas</h3>
+                    <p>Cómo crear y eliminar hojas de cálculo mediante código VBA.</p>
+                    <div class="code-example">
+                        <h4>Crear una nueva hoja:</h4>
+                        <pre><code>Sub CrearHoja()
+    ' Crear al final
+    Sheets.Add After:=Sheets(Sheets.Count)
+    ActiveSheet.Name = "NuevaHoja"
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-eye-slash"></i> 3. Ocultar/Mostrar Hojas</h3>
+                    <p>Cómo ocultar y mostrar hojas de cálculo mediante VBA.</p>
+                    <div class="code-example">
+                        <h4>Ocultar hoja:</h4>
+                        <pre><code>Sheets("Datos").Visible = xlSheetHidden</code></pre>
+                        
+                        <h4>Ocultar completamente (no se puede mostrar desde la interfaz):</h4>
+                        <pre><code>Sheets("Datos").Visible = xlSheetVeryHidden</code></pre>
+                        
+                        <h4>Mostrar hoja:</h4>
+                        <pre><code>Sheets("Datos").Visible = True</code></pre>
+                    </div>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-dumbbell"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <h3>Ejercicio: Organizador de Hojas</h3>
+                    <p>Vamos a crear una macro que:</p>
+                    <ol>
+                        <li>Crea 5 hojas nuevas con nombres específicos</li>
+                        <li>Las ordena alfabéticamente</li>
+                        <li>Oculta las hojas que no sean necesarias</li>
+                        <li>Aplica formato a todas las hojas visibles</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h3>Consejo</h3>
+                        <p>Puedes personalizar este código agregando más formatos, gráficos o cálculos según tus necesidades específicas.</p>
+                    </div>
+                </section>
+                
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad Práctica</h2>
+                    </div>
+                    <p>Crea una macro que:</p>
+                    <ol>
+                        <li>Pida al usuario que ingrese un nombre para una nueva hoja</li>
+                        <li>Verifique si la hoja ya existe</li>
+                        <li>Si no existe, cree la hoja con el nombre proporcionado</li>
+                        <li>Si existe, muestre un mensaje de error</li>
+                        <li>Ordene todas las hojas por nombre</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h3>Pista</h3>
+                        <p>Puedes usar una función para verificar si una hoja ya existe. Aquí tienes un ejemplo:</p>
+                        <pre><code>Function HojaExiste(nombreHoja As String) As Boolean
+    On Error Resume Next
+    HojaExiste = (Sheets(nombreHoja).Name = nombreHoja)
+    On Error GoTo 0
+End Function</code></pre>
+                    </div>
+                </section>
+                
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>El objeto <code>Worksheet</code> es fundamental para trabajar con hojas de cálculo en VBA</li>
+                        <li>Podemos crear, eliminar, copiar y organizar hojas de forma programática</li>
+                        <li>Es importante manejar correctamente los errores al trabajar con hojas</li>
+                        <li>Podemos controlar la visibilidad de las hojas según sea necesario</li>
+                    </ul>
+
+                    <div class="challenge">
+                        <h3>Desafío Adicional</h3>
+                        <p>Mejora la macro del ejercicio práctico para que también permita al usuario seleccionar la posición donde desea insertar la nueva hoja (al principio, al final o entre dos hojas existentes).</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

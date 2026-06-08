@@ -1,0 +1,43 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f8f9fa"/>
+    
+    <!-- Título -->
+    <text x="150" y="30" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Opciones de Fuente</text>
+    
+    <!-- Grupo de opciones -->
+    <g transform="translate(30, 50)">
+        <!-- Fila de fuente -->
+        <rect x="0" y="0" width="240" height="30" fill="#f1f1f1" rx="3"/>
+        <text x="10" y="20" font-family="Arial" font-size="12">Fuente:</text>
+        <rect x="60" y="5" width="120" height="20" fill="white" stroke="#ccc" rx="2"/>
+        <text x="70" y="20" font-family="Arial" font-size="12">Arial</text>
+        <polygon points="185,10 195,15 185,20" fill="#666"/>
+        
+        <!-- Fila de tamaño -->
+        <rect x="0" y="40" width="240" height="30" fill="#f1f1f1" rx="3"/>
+        <text x="10" y="60" font-family="Arial" font-size="12">Tamaño:</text>
+        <rect x="70" y="45" width="50" height="20" fill="white" stroke="#ccc" rx="2"/>
+        <text x="85" y="60" font-family="Arial" font-size="12">12</text>
+        <polygon points="125,50 135,55 125,60" fill="#666"/>
+        
+        <!-- Botones de estilo -->
+        <rect x="10" y="90" width="25" height="25" fill="#e6f2ff" stroke="#4d94ff" rx="2"/>
+        <text x="22" y="108" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">B</text>
+        
+        <rect x="45" y="90" width="25" height="25" fill="white" stroke="#ccc" rx="2"/>
+        <text x="57" y="108" font-family="Arial" font-size="14" font-style="italic" text-anchor="middle">I</text>
+        
+        <rect x="80" y="90" width="25" height="25" fill="white" stroke="#ccc" rx="2"/>
+        <text x="92" y="108" font-family="Arial" font-size="14" text-decoration="underline" text-anchor="middle">S</text>
+        
+        <!-- Selector de color -->
+        <rect x="130" y="90" width="25" height="25" fill="#ff5252" stroke="#ccc" rx="2"/>
+        <polygon points="160,90 170,95 160,100" fill="#666"/>
+        
+        <!-- Ejemplo de texto -->
+        <text x="10" y="150" font-family="Arial" font-size="14">Texto de ejemplo</text>
+        <text x="10" y="170" font-family="Arial" font-size="14" font-weight="bold">Texto en negrita</text>
+        <text x="10" y="190" font-family="Arial" font-size="14" font-style="italic">Texto en cursiva</text>
+    </g>
+</svg>

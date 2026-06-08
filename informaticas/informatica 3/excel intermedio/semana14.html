@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 14: Macros Básicas en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .paso {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+        }
+        .importante {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .codigo {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .nota-seguridad {
+            background-color: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 14: Macros Básicas en Excel</h1>
+    
+    <div id="sesion14.1" class="sesion">
+        <h2>Sesión 14.1: Introducción a macros</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender qué son las macros y para qué sirven</li>
+                <li>Habilitar la pestaña Desarrollador</li>
+                <li>Configurar la seguridad de macros</li>
+            </ul>
+            
+            <div class="nota-seguridad">
+                <h4>Nota importante sobre seguridad:</h4>
+                <p>Las macros pueden contener código malicioso. Solo habilita macros de fuentes confiables.</p>
+            </div>
+            
+            <h3>1. ¿Qué es una macro?</h3>
+            <p>Una macro es una secuencia de instrucciones que automatiza tareas repetitivas en Excel. Las macros se escriben en VBA (Visual Basic for Applications).</p>
+            
+            <div class="ejemplo">
+                <h4>Ejemplos de tareas que se pueden automatizar:</h4>
+                <ul>
+                    <li>Formatear informes</li>
+                    <li>Importar y procesar datos</li>
+                    <li>Generar informes periódicos</li>
+                    <li>Automatizar cálculos complejos</li>
+                </ul>
+            </div>
+            
+            <h3>2. Habilitar la pestaña Desarrollador</h3>
+            
+            <div class="paso">
+                <h4>Paso a paso:</h4>
+                <ol>
+                    <li>Haz clic derecho en la cinta de opciones y selecciona <strong>Personalizar la cinta de opciones</strong></li>
+                    <li>Marca la casilla <strong>Desarrollador</strong> en el panel derecho</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+            
+            <h3>3. Configuración de seguridad de macros</h3>
+            
+            <div class="paso">
+                <h4>Para habilitar macros:</h4>
+                <ol>
+                    <li>Ve a la pestaña <strong>Archivo</strong> > <strong>Opciones</strong></li>
+                    <li>Selecciona <strong>Centro de confianza</strong></li>
+                    <li>Haz clic en <strong>Configuración del Centro de confianza...</strong></li>
+                    <li>Selecciona <strong>Configuración de macros</strong></li>
+                    <li>Elige la opción que mejor se adapte a tus necesidades de seguridad</li>
+                    <li>Haz clic en <strong>Aceptar</strong> dos veces para guardar los cambios</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <ol>
+                    <li>Habilita la pestaña Desarrollador en tu Excel</li>
+                    <li>Configura la seguridad de macros para habilitar todas las macros con notificación</li>
+                    <li>Explora la pestaña Desarrollador y familiarízate con sus opciones</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para trabajar con macros:</h4>
+                <ul>
+                    <li>Guarda siempre una copia de seguridad de tus archivos antes de ejecutar macros</li>
+                    <li>Documenta tus macros con comentarios</li>
+                    <li>Prueba las macros en datos de prueba antes de usarlas en datos reales</li>
+                    <li>Mantén habilitada la notificación de seguridad de macros</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion14.2" class="sesion">
+        <h2>Sesión 14.2: Grabación de macros</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Grabar una macro paso a paso</li>
+                <li>Asignar métodos de ejecución</li>
+                <li>Probar y depurar macros grabadas</li>
+            </ul>
+            
+            <h3>1. Grabar una macro básica</h3>
+            
+            <div class="paso">
+                <h4>Paso a paso:</h4>
+                <ol>
+                    <li>Ve a la pestaña <strong>Desarrollador</strong></li>
+                    <li>Haz clic en <strong>Grabar macro</strong></li>
+                    <li>Asigna un nombre descriptivo (sin espacios)</li>
+                    <li>Selecciona dónde quieres guardar la macro</li>
+                    <li>Opcionalmente, asigna un método abreviado de teclado</li>
+                    <li>Haz clic en <strong>Aceptar</strong> para comenzar a grabar</li>
+                    <li>Realiza las acciones que deseas grabar</li>
+                    <li>Haz clic en <strong>Detener grabación</strong> cuando termines</li>
+                </ol>
+            </div>
+            
+            <h3>2. Ejecutar una macro grabada</h3>
+            
+            <div class="paso">
+                <h4>Métodos para ejecutar una macro:</h4>
+                <ol>
+                    <li><strong>Desde el cuadro de diálogo Macros:</strong> Desarrollador > Macros > Seleccionar macro > Ejecutar</li>
+                    <li><strong>Método abreviado de teclado:</strong> Si lo configuraste durante la grabación</li>
+                    <li><strong>Botón de la barra de herramientas de acceso rápido:</strong> Personalízala para incluir macros</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea una macro que:</p>
+                <ol>
+                    <li>Formatee un título con fuente Arial 14, negrita y color azul</li>
+                    <li>Inserte la fecha actual en la celda A2</li>
+                    <li>Formatee la fecha con el formato "dd/mm/aaaa"</li>
+                    <li>Asigna un botón en la hoja para ejecutar la macro</li>
+                </ol>
+            </div>
+            
+            <div class="importante">
+                <h4>Limitaciones de la grabadora de macros:</h4>
+                <ul>
+                    <li>No graba todas las acciones del usuario</li>
+                    <li>Puede incluir pasos innecesarios</li>
+                    <li>No maneja la interacción del usuario (cuadros de diálogo, mensajes)</li>
+                    <li>No incluye lógica condicional ni bucles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion14.3" class="sesion">
+        <h2>Sesión 14.3: Asignación de macros a botones</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Insertar controles de formulario</li>
+                <li>Asignar macros a botones</li>
+                <li>Personalizar la interfaz del usuario</li>
+            </ul>
+            
+            <h3>1. Insertar un botón de comando</h3>
+            
+            <div class="paso">
+                <h4>Paso a paso:</h4>
+                <ol>
+                    <li>Ve a la pestaña <strong>Desarrollador</strong></li>
+                    <li>Haz clic en <strong>Insertar</strong> en el grupo Controles</li>
+                    <li>Selecciona <strong>Botón (Control de formulario)</strong></li>
+                    <li>Dibuja el botón en la hoja de cálculo</li>
+                    <li>Selecciona la macro que deseas asignar</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                    <li>Edita el texto del botón según sea necesario</li>
+                </ol>
+            </div>
+            
+            <h3>2. Personalizar botones</h3>
+            
+            <div class="paso">
+                <h4>Opciones de formato:</h4>
+                <ul>
+                    <li><strong>Formato de forma:</strong> Color de relleno, borde, efectos</li>
+                    <li><strong>Propiedades:</strong> Bloquear, imprimir objeto, mover y cambiar tamaño con celdas</li>
+                    <li><strong>Texto alternativo:</strong> Descripción para accesibilidad</li>
+                </ul>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea un panel de control con tres botones que realicen las siguientes acciones:</p>
+                <ol>
+                    <li><strong>Formatear informe:</strong> Aplica formato a un rango de datos</li>
+                    <li><strong>Calcular totales:</strong> Realiza cálculos automáticos</li>
+                    <li><strong>Limpiar hoja:</strong> Prepara la hoja para un nuevo informe</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Buenas prácticas para interfaces de usuario:</h4>
+                <ul>
+                    <li>Usa nombres descriptivos para botones y controles</li>
+                    <li>Agrupa controles relacionados</li>
+                    <li>Usa colores consistentes</li>
+                    <li>Incluye instrucciones claras</li>
+                    <li>Prueba la interfaz con usuarios finales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion14.4" class="sesion">
+        <h2>Sesión 14.4: Práctica guiada - Automatización de tareas</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar los conceptos de macros en un proyecto real</li>
+                <li>Automatizar un flujo de trabajo completo</li>
+                <li>Crear una interfaz de usuario amigable</li>
+            </ul>
+            
+            <div class="paso">
+                <h4>1. Caso de estudio: Sistema de reportes</h4>
+                <p>Desarrollarás un sistema automatizado para generar reportes de ventas que incluya:</p>
+                <ul>
+                    <li>Importación de datos desde una hoja de cálculo</li>
+                    <li>Procesamiento y limpieza de datos</li>
+                    <li>Generación de resúmenes y gráficos</li>
+                    <li>Exportación del informe final</li>
+                </ul>
+            </div>
+            
+            <div class="paso">
+                <h4>2. Planificación del proyecto</h4>
+                <ol>
+                    <li>Identifica las tareas repetitivas que se pueden automatizar</li>
+                    <li>Diseña la estructura de las hojas de cálculo</li>
+                    <li>Crea un diagrama de flujo del proceso</li>
+                    <li>Diseña la interfaz de usuario</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Desarrolla un libro de Excel con las siguientes características:</p>
+                <ol>
+                    <li><strong>Hoja de datos:</strong> Para ingresar información de ventas</li>
+                    <li><strong>Hoja de resumen:</strong> Muestra totales y promedios</li>
+                    <li><strong>Panel de control:</strong> Con botones para:</li>
+                    <ul>
+                        <li>Importar datos</li>
+                        <li>Procesar información</li>
+                        <li>Generar informe</li>
+                        <li>Exportar a PDF</li>
+                    </ul>
+                    <li><strong>Validación de datos:</strong> Para asegurar la integridad de la información</li>
+                </ol>
+            </div>
+            
+            <div class="importante">
+                <h4>Entrega del proyecto:</h4>
+                <p>Prepara para entregar:</p>
+                <ol>
+                    <li>El archivo de Excel con las macros habilitadas</li>
+                    <li>Un documento con instrucciones de uso</li>
+                    <li>Un informe que explique:</li>
+                    <ul>
+                        <li>Las tareas que automatizaste</li>
+                        <li>Los desafíos que enfrentaste</li>
+                        <li>Las mejoras de eficiencia logradas</li>
+                    </ul>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para el desarrollo de macros:</h4>
+                <ul>
+                    <li>Empieza con versiones simples y ve añadiendo complejidad</li>
+                    <li>Prueba cada función por separado</li>
+                    <li>Documenta tu código con comentarios</li>
+                    <li>Maneja los posibles errores</li>
+                    <li>Considera crear una copia de seguridad de los datos antes de procesarlos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

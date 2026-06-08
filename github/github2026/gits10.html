@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10: Flujos de Trabajo en Git (Workflows)</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        .important-box {
+            background-color: #e6f7ff;
+            border-left: 4px solid #0099ff;
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 10: Flujos de Trabajo en Git (Workflows)</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Flujo Centralizado</button>
+    <div class="panel">
+        <p>Con este modelo de flujo de trabajo fundamental, una sola rama <code>master</code> contiene todo el desarrollo activo [1]. Es la aproximación más similar a sistemas antiguos como Subversion o CVS.</p>
+        
+        <h3>Cómo funciona</h3>
+        <p>Todos los desarrolladores tienen acceso al repositorio central y pueden hacer commits directamente sobre la rama <code>master</code> [1]. Debido a esto, los contribuidores deben asegurarse de hacer "pull" de los últimos cambios frecuentemente antes de continuar su desarrollo, ya que la rama cambiará muy rápido [1].</p>
+        
+        <div class="important-box">
+            <strong>Desventajas:</strong> Aunque Git es capaz de trabajar de esta manera, requiere preceder casi cada <code>push</code> con una fusión (merge). Resolver conflictos constantemente puede terminar consumiendo mucho tiempo valioso del equipo [1].
+        </div>
+    </div>
+
+    <button class="accordion">2. Gitflow Workflow</button>
+    <div class="panel">
+        <p>Propuesto originalmente por Vincent Driessen, Gitflow es un flujo de trabajo que utiliza varias ramas predefinidas con propósitos específicos para gestionar ciclos de desarrollo formales [2].</p>
+        
+        <h3>Estructura de ramas en Gitflow</h3>
+        <ul>
+            <li><strong><code>master</code>:</strong> Siempre contiene el código de producción más reciente. No se permite código experimental aquí [3].</li>
+            <li><strong><code>develop</code>:</strong> Contiene todo el desarrollo activo más reciente. El código aquí se trabaja y se prepara para la siguiente liberación [3].</li>
+            <li><strong><code>feature</code>:</strong> Ramas reservadas para desarrollar características grandes. Se separan del código principal para crear funcionalidades independientes y, al terminar, se fusionan en <code>develop</code> [3].</li>
+            <li><strong><code>release</code>:</strong> Se usan para liberar nuevos desarrollos pasando de <code>develop</code> a <code>master</code>. Aquí se realizan cambios de último minuto (como incrementar la versión) [3].</li>
+            <li><strong><code>hotfix</code>:</strong> Ramas para correcciones de errores urgentes que no pueden esperar al próximo ciclo de lanzamiento. Nacen directamente de <code>master</code> y al finalizar deben fusionarse de vuelta en <code>master</code> y también en <code>develop</code> [3].</li>
+        </ul>
+    </div>
+
+    <button class="accordion">3. Feature Branch y GitHub Flow</button>
+    <div class="panel">
+        <p>Estos flujos de trabajo se centran en el desarrollo ágil mediante aislamiento y revisiones colaborativas de código.</p>
+
+        <h3>Feature Branch Workflow</h3>
+        <p>La idea central es que todo el desarrollo de nuevas características debe llevarse a cabo en ramas dedicadas en lugar de en la rama <code>master</code> [4]. Esta encapsulación permite que varios desarrolladores trabajen sin perturbar el código principal, garantizando que <code>master</code> nunca contenga código roto (ideal para entornos de integración continua) [4].</p>
+
+        <h3>Pull Requests y GitHub Flow</h3>
+        <p>Encapsular características hace posible el uso de <strong>Pull Requests</strong>, una herramienta para iniciar discusiones sobre una rama y revisar el código antes de que se integre al proyecto oficial [5]. El flujo de GitHub (GitHub Flow) dictamina lo siguiente [6]:</p>
+        <ul>
+            <li>Cualquier cosa en la rama <code>master</code> debe ser desplegable (deployable) [6].</li>
+            <li>Trabajas en una rama descriptiva que nace de <code>master</code> [6].</li>
+            <li>Haces commits locales y subes la rama al servidor regularmente [6].</li>
+            <li>Abres un <strong>Pull Request</strong> para obtener comentarios y retroalimentación [6].</li>
+            <li>Una vez que alguien más revisa y aprueba el código, lo fusionas (merge) en <code>master</code> y despliegas inmediatamente [6].</li>
+        </ul>
+    </div>
+
+    <button class="accordion">4. Forking Workflow</button>
+    <div class="panel">
+        <p>Este flujo es fundamentalmente diferente a los demás y es <strong>ideal para proyectos de código abierto</strong> (Open Source) [7].</p>
+        
+        <h3>Mecánica del Forking</h3>
+        <p>En lugar de que todos los desarrolladores tengan acceso de escritura a un repositorio centralizado, <strong>cada desarrollador clona (hace un fork) su propio repositorio a partir del repositorio principal</strong> [7].</p>
+        <p>La ventaja de esto es que cada desarrollador puede subir (push) sus cambios a su propio repositorio privado y público, sin tocar el repositorio compartido. Finalmente, un "mantenedor" del proyecto original se encarga de revisar los Pull Requests y puede integrar los cambios de los repositorios clonados al repositorio original solo cuando lo considere apropiado [7].</p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 24: Mini-Proyecto 3: Generador de Contraseñas - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .password-generator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .password-card {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #00b894;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .password-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .password-card h4 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .password-card h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .password-strength {
+            margin: 20px 0;
+        }
+
+        .strength-meter {
+            width: 100%;
+            height: 8px;
+            background: #636e72;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .strength-weak { background: #d63031; width: 25%; }
+        .strength-fair { background: #fdcb6e; width: 50%; }
+        .strength-good { background: #00b894; width: 75%; }
+        .strength-strong { background: #00cec9; width: 100%; }
+
+        .strength-label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .password-display {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+            border: 2px solid #00b894;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #00b894;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #00a085;
+        }
+
+        .password-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-group {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 3px solid #74b9ff;
+        }
+
+        .option-group h5 {
+            margin-top: 0;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .option-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .option-item input[type="number"] {
+            width: 60px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #636e72;
+            background: #2d3436;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .generate-button {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .generate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .password-history {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .password-history h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-history h3 i {
+            margin-right: 10px;
+        }
+
+        .history-item {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid #fd79a8;
+        }
+
+        .history-password {
+            font-family: 'Courier New', monospace;
+            color: #74b9ff;
+            flex-grow: 1;
+        }
+
+        .history-date {
+            font-size: 0.8rem;
+            color: #b2bec3;
+            margin-left: 15px;
+        }
+
+        .history-strength {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .strength-badge-weak { background: #d63031; color: white; }
+        .strength-badge-fair { background: #fdcb6e; color: #2d3436; }
+        .strength-badge-good { background: #00b894; color: white; }
+        .strength-badge-strong { background: #00cec9; color: white; }
+
+        .security-tips {
+            background: rgba(253, 121, 168, 0.1);
+            border-left: 4px solid #fd79a8;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .security-tips h4 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .security-tips h4 i {
+            margin-right: 10px;
+        }
+
+        .security-tips ul {
+            margin: 15px 0;
+        }
+
+        .security-tips li {
+            margin: 8px 0;
+            color: #ffeaa7;
+        }
+
+        .project-architecture {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .project-architecture h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-architecture h3 i {
+            margin-right: 10px;
+        }
+
+        .architecture-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+        .module-box {
+            background: #2d3436;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .module-box h5 {
+            margin: 0 0 10px 0;
+            color: #74b9ff;
+        }
+
+        .module-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #b2bec3;
+        }
+
+        .arrow-down {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+
+        .code-preview {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .code-preview h4 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+
+        .code-preview h4 i {
+            margin-right: 10px;
+        }
+
+        .mini-project {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .mini-project h2 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .mini-project p {
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        .project-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            margin: 10px 0 0 0;
+            font-size: 0.9rem;
+        }
+
+        .interactive-demo {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .interactive-demo h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .interactive-demo h3 i {
+            margin-right: 10px;
+        }
+
+        .demo-interface {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px dashed #00cec9;
+        }
+
+        .demo-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .demo-button {
+            background: #00cec9;
+            color: #2d3436;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: #00b3a6;
+        }
+
+        .practice-exercises {
+            margin: 40px 0;
+        }
+
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #fd79a8;
+            transition: transform 0.3s ease;
+        }
+
+        .exercise-card:hover {
+            transform: translateX(10px);
+        }
+
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .exercise-card h4 i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .exercise-difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .exercise-requirements {
+            background: rgba(253, 121, 168, 0.1);
+            border-left: 3px solid #fd79a8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .exercise-requirements h5 {
+            margin-top: 0;
+            color: #fd79a8;
+        }
+
+        .exercise-requirements ul {
+            margin: 10px 0;
+        }
+
+        .exercise-requirements li {
+            margin: 8px 0;
+            color: #ffeaa7;
+        }
+
+        .project-showcase {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .project-showcase h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+
+        .project-showcase h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .showcase-code {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .showcase-output {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .showcase-output h5 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .file-structure {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .file-tree {
+            margin: 15px 0;
+        }
+
+        .file-item {
+            margin: 5px 0;
+            padding-left: 20px;
+            border-left: 2px solid #74b9ff;
+        }
+
+        .file-item.folder {
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .file-item.python {
+            color: #fdcb6e;
+        }
+
+        .password-display-hidden {
+            display: none;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 24</h1>
+                <h2>Mini-Proyecto 3: Generador de Contraseñas</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 3-4 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-12-5-38"
+                     role="progressbar"
+                     aria-valuenow="12.5"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">12.5% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#arquitectura"><i class="fas fa-project-diagram"></i> Arquitectura</a></li>
+                <li><a href="#implementacion"><i class="fas fa-code"></i> Implementación</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En este mini-proyecto integrarás todos los conceptos aprendidos sobre funciones, módulos y manejo de archivos para crear una aplicación completa y funcional: un generador avanzado de contraseñas seguras.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar este proyecto, habrás integrado:</h4>
+                    <ul>
+                        <li>✅ Diseño y desarrollo de aplicaciones modulares</li>
+                        <li>✅ Uso avanzado del módulo <code>string</code> y <code>random</code></li>
+                        <li>✅ Técnicas de generación de contraseñas seguras</li>
+                        <li>✅ Sistemas de validación y evaluación de seguridad</li>
+                        <li>✅ Persistencia de datos con archivos de historial</li>
+                        <li>✅ Interfaces de usuario intuitivas y funcionales</li>
+                        <li>✅ Manejo de errores y validación de entrada</li>
+                        <li>✅ Organización de código en múltiples archivos</li>
+                    </ul>
+                </div>
+
+                <div class="mini-project">
+                    <h2><i class="fas fa-key"></i> Generador de Contraseñas Profesional</h2>
+                    <p>Desarrollarás una aplicación completa que combina seguridad, usabilidad y funcionalidad avanzada</p>
+
+                    <div class="project-features">
+                        <div class="feature-card">
+                            <h4><i class="fas fa-cog"></i> Configuración Avanzada</h4>
+                            <p>Personaliza longitud, tipos de caracteres y criterios de seguridad específicos</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4><i class="fas fa-shield-alt"></i> Validación de Seguridad</h4>
+                            <p>Evalúa la fortaleza de las contraseñas generadas con métricas detalladas</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4><i class="fas fa-history"></i> Historial Completo</h4>
+                            <p>Mantén un registro persistente de todas las contraseñas generadas</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4><i class="fas fa-mobile-alt"></i> Interfaz Intuitiva</h4>
+                            <p>Diseño amigable que facilita la generación y gestión de contraseñas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+
+            <!-- 1. Fundamentos de generación de contraseñas -->
+            <div class="concept-card">
+                <h3>1. Fundamentos de Generación de Contraseñas</h3>
+                <p>La generación segura de contraseñas requiere combinar diferentes tipos de caracteres de manera aleatoria y controlada, asegurando tanto la seguridad como la usabilidad.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Fundamentos de generación de contraseñas seguras
+
+import random
+import string
+
+# 1. Caracteres básicos para contraseñas
+def obtener_caracteres_basicos():
+    """Define los conjuntos básicos de caracteres."""
+
+    print("=== CONJUNTOS DE CARACTERES ===")
+
+    # Definir conjuntos de caracteres
+    minusculas = string.ascii_lowercase  # 'abcdefghijklmnopqrstuvwxyz'
+    mayusculas = string.ascii_uppercase  # 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    numeros = string.digits             # '0123456789'
+    simbolos = "!@#$%^&*()_+-=[]{}|;:,.<>?"  # Símbolos comunes
+
+    print("Caracteres disponibles:")
+    print(f"Minúsculas ({len(minusculas)}): {minusculas}")
+    print(f"Mayúsculas ({len(mayusculas)}): {mayusculas}")
+    print(f"Números ({len(numeros)}): {numeros}")
+    print(f"Símbolos ({len(simbolos)}): {simbolos}")
+
+    # Combinar según criterios
+    caracteres_seleccionados = ""
+
+    incluir_minusculas = True
+    incluir_mayusculas = True
+    incluir_numeros = True
+    incluir_simbolos = True
+
+    if incluir_minusculas:
+        caracteres_seleccionados += minusculas
+    if incluir_mayusculas:
+        caracteres_seleccionados += mayusculas
+    if incluir_numeros:
+        caracteres_seleccionados += numeros
+    if incluir_simbolos:
+        caracteres_seleccionados += simbolos
+
+    print(f"\nCaracteres seleccionados ({len(caracteres_seleccionados)}): {caracteres_seleccionados}")
+
+    return caracteres_seleccionados
+
+# 2. Algoritmos de generación
+def algoritmos_generacion():
+    """Demuestra diferentes algoritmos de generación."""
+
+    print("\n=== ALGORITMOS DE GENERACIÓN ===")
+
+    caracteres = obtener_caracteres_basicos()
+
+    # Algoritmo 1: Selección aleatoria simple
+    def generar_simple(longitud, caracteres):
+        """Genera contraseña con selección aleatoria simple."""
+        contraseña = ""
+        for _ in range(longitud):
+            contraseña += random.choice(caracteres)
+        return contraseña
+
+    # Algoritmo 2: Mezcla controlada (asegura diversidad)
+    def generar_mezcla(longitud, caracteres):
+        """Genera contraseña asegurando diversidad de caracteres."""
+
+        # Separar por tipos
+        tipos = {
+            'minuscula': string.ascii_lowercase,
+            'mayuscula': string.ascii_uppercase,
+            'numero': string.digits,
+            'simbolo': "!@#$%^&*"
+        }
+
+        contraseña = []
+
+        # Asegurar al menos uno de cada tipo (si longitud lo permite)
+        tipos_seleccionados = [tipo for tipo in tipos.keys() if tipo in caracteres.lower() or tipo == 'numero']
+
+        posiciones_usadas = 0
+
+        # Colocar al menos uno de cada tipo requerido
+        for tipo in tipos_seleccionados:
+            if posiciones_usadas < longitud:
+                if tipo == 'minuscula':
+                    contraseña.append(random.choice(tipos['minuscula']))
+                elif tipo == 'mayuscula':
+                    contraseña.append(random.choice(tipos['mayuscula']))
+                elif tipo == 'numero':
+                    contraseña.append(random.choice(tipos['numero']))
+                elif tipo == 'simbolo':
+                    contraseña.append(random.choice(tipos['simbolo']))
+                posiciones_usadas += 1
+
+        # Completar con caracteres aleatorios
+        while posiciones_usadas < longitud:
+            contraseña.append(random.choice(caracteres))
+            posiciones_usadas += 1
+
+        # Mezclar la contraseña
+        random.shuffle(contraseña)
+
+        return ''.join(contraseña)
+
+    # Algoritmo 3: Patrón predecible (menos seguro pero fácil de recordar)
+    def generar_patron(longitud, caracteres):
+        """Genera contraseña con patrón predecible."""
+
+        patron = []
+
+        # Crear patrón: vocal-consonante-número-símbolo
+        ciclo = ['minuscula', 'mayuscula', 'numero', 'simbolo']
+        posicion = 0
+
+        for i in range(longitud):
+            tipo = ciclo[posicion % len(ciclo)]
+            posicion += 1
+
+            if tipo == 'minuscula':
+                patron.append(random.choice(string.ascii_lowercase))
+            elif tipo == 'mayuscula':
+                patron.append(random.choice(string.ascii_uppercase))
+            elif tipo == 'numero':
+                patron.append(random.choice(string.digits))
+            elif tipo == 'simbolo':
+                patron.append(random.choice("!@#$"))
+
+        return ''.join(patron)
+
+    # Demostrar algoritmos
+    longitud = 12
+
+    print(f"\nGenerando contraseñas de longitud {longitud}:")
+
+    contraseña_simple = generar_simple(longitud, caracteres)
+    print(f"Simple: {contraseña_simple}")
+
+    contraseña_mezcla = generar_mezcla(longitud, caracteres)
+    print(f"Mezcla: {contraseña_mezcla}")
+
+    contraseña_patron = generar_patron(longitud, caracteres)
+    print(f"Patrón: {contraseña_patron}")
+
+# 3. Evaluación de seguridad
+def evaluacion_seguridad():
+    """Evalúa la seguridad de las contraseñas generadas."""
+
+    print("\n=== EVALUACIÓN DE SEGURIDAD ===")
+
+    def evaluar_contraseña(contraseña):
+        """Evalúa la seguridad de una contraseña."""
+
+        puntuacion = 0
+        comentarios = []
+
+        # Criterios de evaluación
+        longitud = len(contraseña)
+
+        # Longitud
+        if longitud >= 8:
+            puntuacion += 1
+            comentarios.append("✅ Longitud adecuada (8+ caracteres)")
+        elif longitud >= 6:
+            comentarios.append("⚠️ Longitud mínima aceptable")
+        else:
+            comentarios.append("❌ Muy corta")
+
+        # Variedad de caracteres
+        tiene_minuscula = any(c.islower() for c in contraseña)
+        tiene_mayuscula = any(c.isupper() for c in contraseña)
+        tiene_numero = any(c.isdigit() for c in contraseña)
+        tiene_simbolo = any(not c.isalnum() for c in contraseña)
+
+        tipos_caracteres = sum([tiene_minuscula, tiene_mayuscula, tiene_numero, tiene_simbolo])
+
+        if tipos_caracteres >= 4:
+            puntuacion += 2
+            comentarios.append("✅ Excelente variedad de caracteres")
+        elif tipos_caracteres >= 3:
+            puntuacion += 1
+            comentarios.append("✅ Buena variedad de caracteres")
+        elif tipos_caracteres >= 2:
+            comentarios.append("⚠️ Variedad limitada")
+        else:
+            comentarios.append("❌ Muy pocos tipos de caracteres")
+
+        # Patrones comunes (penalización)
+        patrones_comunes = ['123', 'abc', 'qwe', 'aaa', '111']
+        tiene_patron_comun = any(patron in contraseña.lower() for patron in patrones_comunes)
+
+        if tiene_patron_comun:
+            puntuacion -= 1
+            comentarios.append("❌ Contiene patrón común (menos seguro)")
+
+        # Entropía aproximada (medida de aleatoriedad)
+        entropia = longitud * (tipos_caracteres ** 0.5)
+        if entropia > 50:
+            puntuacion += 1
+            comentarios.append("✅ Alta entropía (muy aleatoria)")
+        elif entropia > 30:
+            comentarios.append("✅ Entropía aceptable")
+        else:
+            comentarios.append("⚠️ Baja entropía")
+
+        # Clasificación final
+        if puntuacion >= 4:
+            nivel = "MUY FUERTE"
+            clase = "strength-strong"
+        elif puntuacion >= 3:
+            nivel = "FUERTE"
+            clase = "strength-good"
+        elif puntuacion >= 2:
+            nivel = "ACEPTABLE"
+            clase = "strength-fair"
+        else:
+            nivel = "DÉBIL"
+            clase = "strength-weak"
+
+        return {
+            'nivel': nivel,
+            'puntuacion': puntuacion,
+            'comentarios': comentarios,
+            'clase_css': clase
+        }
+
+    # Evaluar las contraseñas generadas anteriormente
+    contraseñas_ejemplo = [
+        "password123",
+        "P@ssw0rd2024!",
+        "Tr3sC@racolores",
+        "abcdefghijklmnop",
+        "A1B2C3D4E5F6G7H8I9J0!",
+        "x7$mN2pL9qR4tV8wY3zE6"
+    ]
+
+    print("Evaluación de contraseñas de ejemplo:")
+    print("-" * 60)
+
+    for contraseña in contraseñas_ejemplo:
+        evaluacion = evaluar_contraseña(contraseña)
+
+        print(f"\nContraseña: {contraseña}")
+        print(f"Nivel: {evaluacion['nivel']} (Puntuación: {evaluacion['puntuacion']})")
+        for comentario in evaluacion['comentarios']:
+            print(f"  {comentario}")
+
+# Ejecutar demostraciones
+if __name__ == "__main__":
+    print("🔐 FUNDAMENTOS DE GENERACIÓN DE CONTRASEÑAS")
+
+    obtener_caracteres_basicos()
+    algoritmos_generacion()
+    evaluacion_seguridad()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                </div>
+
+                <div class="password-generator">
+                    <div class="password-card">
+                        <h4><i class="fas fa-layer-group"></i> Componentes de Seguridad</h4>
+                        <div class="password-options">
+                            <div class="option-group">
+                                <h5>Tipos de Caracteres</h5>
+                                <div class="option-item">
+                                    <input type="checkbox" id="minusculas" checked>
+                                    <label for="minusculas">Minúsculas (a-z)</label>
+                                </div>
+                                <div class="option-item">
+                                    <input type="checkbox" id="mayusculas" checked>
+                                    <label for="mayusculas">Mayúsculas (A-Z)</label>
+                                </div>
+                                <div class="option-item">
+                                    <input type="checkbox" id="numeros" checked>
+                                    <label for="numeros">Números (0-9)</label>
+                                </div>
+                                <div class="option-item">
+                                    <input type="checkbox" id="simbolos" checked>
+                                    <label for="simbolos">Símbolos (!@#$%...)</label>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <h5>Configuración</h5>
+                                <div class="option-item">
+                                    <label for="longitud">Longitud:</label>
+                                    <input type="number" id="longitud" value="12" min="4" max="50" title="Longitud de la contraseña (4-50 caracteres)">
+                                </div>
+                                <div class="option-item">
+                                    <input type="checkbox" id="excluir_similares" checked>
+                                    <label for="excluir_similares">Excluir caracteres similares (i,l,1,L,o,0,O)</label>
+                                </div>
+                                <div class="option-item">
+                                    <input type="checkbox" id="evitar_patron" checked>
+                                    <label for="evitar_patron">Evitar patrones comunes</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="generate-button" onclick="generarContrasena()">
+                            <i class="fas fa-key"></i> Generar Contraseña Segura
+                        </button>
+                        <div class="password-display password-display-hidden" id="passwordDisplay">
+                            <button class="copy-button" onclick="copiarContrasena()">Copiar</button>
+                            <div id="generatedPassword"></div>
+                        </>
+                        <div class="password-strength">
+                            <div class="strength-label">Fortaleza: <span id="strengthLabel">No generada</span></div>
+                            <div class="strength-meter">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="password-card">
+                        <h4><i class="fas fa-shield-alt"></i> Análisis de Seguridad</h4>
+                        <div id="securityAnalysis">
+                            <p>Genera una contraseña para ver su análisis de seguridad</p>
+                        </div>
+                        <div class="security-tips">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Consejos de Seguridad</h4>
+                            <ul>
+                                <li>Usa contraseñas de al menos 12 caracteres</li>
+                                <li>Combina diferentes tipos de caracteres</li>
+                                <li>Evita información personal (fechas, nombres)</li>
+                                <li>No reutilices contraseñas en múltiples sitios</li>
+                                <li>Considera usar un gestor de contraseñas</li>
+                                <li>Cambia contraseñas regularmente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Validación y criterios de seguridad -->
+            <div class="concept-card">
+                <h3>2. Validación y Criterios de Seguridad</h3>
+                <p>Una contraseña segura debe cumplir múltiples criterios que evalúan su resistencia contra diferentes tipos de ataques. Implementaremos un sistema completo de validación.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Sistema avanzado de validación de contraseñas
+
+import re
+import math
+
+class ValidadorContrasenas:
+    """Sistema completo para validar contraseñas."""
+
+    def __init__(self):
+        # Patrones peligrosos
+        self.patrones_peligrosos = [
+            r'(.)\1{2,}',  # Caracteres repetidos (aaa, 111)
+            r'123|234|345|456|567|678|789|890',  # Secuencias numéricas
+            r'abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz',  # Secuencias alfabéticas
+            r'qwe|wer|ert|rty|tyu|yui|uio|iop|opa|pas|sdf|dfg|fgh|ghj|hjk|jkl|klñ',  # Patrones de teclado
+            r'admin|password|login|user|root|guest|test|demo',  # Palabras comunes
+        ]
+
+        # Caracteres similares (confusos)
+        self.similares = {
+            'i': ['l', '1', 'L'],
+            'l': ['i', '1', 'I'],
+            '1': ['i', 'l', 'I', 'L'],
+            'o': ['0', 'O'],
+            '0': ['o', 'O'],
+            'I': ['l', '1', 'i'],
+            'L': ['1', 'i', 'l']
+        }
+
+    def validar_contraseña(self, contraseña):
+        """Valida una contraseña contra múltiples criterios."""
+
+        resultado = {
+            'longitud': self._validar_longitud(contraseña),
+            'variedad': self._validar_variedad(contraseña),
+            'patrones': self._validar_patrones(contraseña),
+            'similares': self._validar_similares(contraseña),
+            'entropia': self._calcular_entropia(contraseña),
+            'tiempo_crackeo': self._estimar_tiempo_crackeo(contraseña)
+        }
+
+        # Calcular puntuación general
+        puntuacion = sum([
+            resultado['longitud']['puntuacion'],
+            resultado['variedad']['puntuacion'],
+            resultado['patrones']['puntuacion'],
+            resultado['similares']['puntuacion']
+        ])
+
+        resultado['puntuacion_total'] = puntuacion
+        resultado['nivel_seguridad'] = self._obtener_nivel_seguridad(puntuacion)
+
+        return resultado
+
+    def _validar_longitud(self, contraseña):
+        """Valida la longitud de la contraseña."""
+
+        longitud = len(contraseña)
+
+        if longitud >= 16:
+            return {'estado': 'excelente', 'puntuacion': 3, 'mensaje': 'Longitud excelente'}
+        elif longitud >= 12:
+            return {'estado': 'buena', 'puntuacion': 2, 'mensaje': 'Longitud buena'}
+        elif longitud >= 8:
+            return {'estado': 'aceptable', 'puntuacion': 1, 'mensaje': 'Longitud mínima aceptable'}
+        else:
+            return {'estado': 'insuficiente', 'puntuacion': 0, 'mensaje': 'Muy corta'}
+
+    def _validar_variedad(self, contraseña):
+        """Valida la variedad de tipos de caracteres."""
+
+        tipos = {
+            'minusculas': bool(re.search(r'[a-z]', contraseña)),
+            'mayusculas': bool(re.search(r'[A-Z]', contraseña)),
+            'numeros': bool(re.search(r'[0-9]', contraseña)),
+            'simbolos': bool(re.search(r'[^a-zA-Z0-9]', contraseña))
+        }
+
+        tipos_presentes = sum(tipos.values())
+
+        mensajes = []
+        if tipos['minusculas']:
+            mensajes.append('minúsculas')
+        if tipos['mayusculas']:
+            mensajes.append('mayúsculas')
+        if tipos['numeros']:
+            mensajes.append('números')
+        if tipos['simbolos']:
+            mensajes.append('símbolos')
+
+        if tipos_presentes >= 4:
+            return {'estado': 'excelente', 'puntuacion': 3, 'mensaje': f'Todos los tipos: {", ".join(mensajes)}'}
+        elif tipos_presentes == 3:
+            return {'estado': 'buena', 'puntuacion': 2, 'mensaje': f'Tres tipos: {", ".join(mensajes)}'}
+        elif tipos_presentes == 2:
+            return {'estado': 'aceptable', 'puntuacion': 1, 'mensaje': f'Dos tipos: {", ".join(mensajes)}'}
+        else:
+            return {'estado': 'insuficiente', 'puntuacion': 0, 'mensaje': 'Pocos tipos de caracteres'}
+
+    def _validar_patrones(self, contraseña):
+        """Busca patrones peligrosos en la contraseña."""
+
+        encontrados = []
+
+        for patron in self.patrones_peligrosos:
+            if re.search(patron, contraseña, re.IGNORECASE):
+                encontrados.append(patron)
+
+        if not encontrados:
+            return {'estado': 'bueno', 'puntuacion': 2, 'mensaje': 'No se encontraron patrones peligrosos'}
+        else:
+            return {'estado': 'riesgoso', 'puntuacion': 0, 'mensaje': f'Patrones encontrados: {", ".join(encontrados)}'}
+
+    def _validar_similares(self, contraseña):
+        """Verifica caracteres similares que pueden confundirse."""
+
+        encontrados = []
+
+        for char in contraseña:
+            if char in self.similares:
+                similares = self.similares[char]
+                for similar in similares:
+                    if similar in contraseña:
+                        encontrados.append(f'{char} ↔ {similar}')
+
+        if not encontrados:
+            return {'estado': 'bueno', 'puntuacion': 1, 'mensaje': 'No hay caracteres similares'}
+        else:
+            return {'estado': 'precaucion', 'puntuacion': 0, 'mensaje': f'Caracteres similares: {", ".join(set(encontrados))}'}
+
+    def _calcular_entropia(self, contraseña):
+        """Calcula la entropía (aleatoriedad) de la contraseña."""
+
+        # Conjunto único de caracteres usados
+        caracteres_unicos = len(set(contraseña))
+
+        # Entropía en bits: log2(caracteres_unicos ^ longitud)
+        if caracteres_unicos > 0:
+            entropia = len(contraseña) * math.log2(caracteres_unicos)
+        else:
+            entropia = 0
+
+        return {
+            'valor': entropia,
+            'estado': 'alta' if entropia > 60 else 'media' if entropia > 40 else 'baja',
+            'mensaje': f'Entropía: {entropia".1f"} bits'
+        }
+
+    def _estimar_tiempo_crackeo(self, contraseña):
+        """Estima el tiempo necesario para crackear la contraseña."""
+
+        entropia = self._calcular_entropia(contraseña)['valor']
+
+        # Suposiciones:
+        # - Ataque de fuerza bruta: 1000 intentos por segundo
+        # - Ataque con diccionario: 10^6 entradas, 100 intentos/segundo
+
+        tiempo_fuerza_bruta = 2 ** entropia / 1000  # segundos
+        tiempo_diccionario = 10**6 / 100  # segundos
+
+        tiempo_realista = min(tiempo_fuerza_bruta, tiempo_diccionario)
+
+        if tiempo_realista > 31536000 * 1000:  # Más de 1000 años
+            return {'tiempo': 'Siglos', 'estado': 'imposible', 'mensaje': 'Prácticamente imposible de crackear'}
+        elif tiempo_realista > 31536000:  # Más de 1 año
+            return {'tiempo': 'Años', 'estado': 'muy_seguro', 'mensaje': f'{tiempo_realista/31536000".0f"} años'}
+        elif tiempo_realista > 86400:  # Más de 1 día
+            return {'tiempo': 'Días', 'estado': 'seguro', 'mensaje': f'{tiempo_realista/86400".0f"} días'}
+        elif tiempo_realista > 3600:  # Más de 1 hora
+            return {'tiempo': 'Horas', 'estado': 'moderado', 'mensaje': f'{tiempo_realista/3600".0f"} horas'}
+        else:
+            return {'tiempo': 'Minutos', 'estado': 'inseguro', 'mensaje': f'{tiempo_realista/60".0f"} minutos'}
+
+    def _obtener_nivel_seguridad(self, puntuacion):
+        """Convierte puntuación numérica a nivel de seguridad."""
+
+        if puntuacion >= 8:
+            return {'nivel': 'EXCELENTE', 'clase': 'strength-strong', 'color': '#00cec9'}
+        elif puntuacion >= 6:
+            return {'nivel': 'MUY BUENO', 'clase': 'strength-good', 'color': '#00b894'}
+        elif puntuacion >= 4:
+            return {'nivel': 'BUENO', 'clase': 'strength-fair', 'color': '#fdcb6e'}
+        elif puntuacion >= 2:
+            return {'nivel': 'REGULAR', 'clase': 'strength-weak', 'color': '#e17055'}
+        else:
+            return {'nivel': 'DÉBIL', 'clase': 'strength-weak', 'color': '#d63031'}
+
+# Función de demostración
+def demo_validador():
+    """Demuestra el sistema de validación."""
+
+    validador = ValidadorContrasenas()
+
+    contraseñas_prueba = [
+        "contraseña123",
+        "P@ssw0rd!",
+        "MiContraseñaMuySegura2024!",
+        "abcdefghijklmnop",
+        "A1B2C3D4E5F6",
+        "xK9$mN2pL7qR4tV8wY3zE6aB5c",
+        "12345678",
+        "password"
+    ]
+
+    print("🔍 ANÁLISIS DE SEGURIDAD DE CONTRASEÑAS")
+    print("=" * 60)
+
+    for contraseña in contraseñas_prueba:
+        print(f"\n🔐 Contraseña: '{contraseña}'")
+        print("-" * 40)
+
+        resultado = validador.validar_contraseña(contraseña)
+
+        # Mostrar resultados
+        print(f"Longitud: {resultado['longitud']['mensaje']}")
+        print(f"Variedad: {resultado['variedad']['mensaje']}")
+        print(f"Patrones: {resultado['patrones']['mensaje']}")
+        print(f"Similares: {resultado['similares']['mensaje']}")
+        print(f"Entropía: {resultado['entropia']['mensaje']}")
+        print(f"Tiempo de crackeo: {resultado['tiempo_crackeo']['mensaje']}")
+
+        nivel = resultado['nivel_seguridad']
+        print(f"💯 NIVEL: {nivel['nivel']} (Puntuación: {resultado['puntuacion_total']}/9)")
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_validador()
+
+    print("\n✅ ¡Validación completada!")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Criterios de Seguridad</h5>
+                        <ul>
+                            <li><strong>Longitud:</strong> Mínimo 12 caracteres</li>
+                            <li><strong>Variedad:</strong> Al menos 3 tipos diferentes</li>
+                            <li><strong>Patrones:</strong> Evitar secuencias comunes</li>
+                            <li><strong>Entropía:</strong> Alta aleatoriedad</li>
+                            <li><strong>Caracteres similares:</strong> Evitar confusiones</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h5>Niveles de Seguridad</h5>
+                        <ul>
+                            <li><strong>Excelente:</strong> 8-9 puntos</li>
+                            <li><strong>Muy Bueno:</strong> 6-7 puntos</li>
+                            <li><strong>Bueno:</strong> 4-5 puntos</li>
+                            <li><strong>Regular:</strong> 2-3 puntos</li>
+                            <li><strong>Débil:</strong> 0-1 puntos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquitectura del proyecto -->
+        <section id="arquitectura" class="session-section">
+            <h2><i class="fas fa-project-diagram"></i> Arquitectura del Proyecto</h2>
+
+            <div class="project-architecture">
+                <h3><i class="fas fa-sitemap"></i> Estructura Modular del Proyecto</h3>
+                <p>El generador de contraseñas está diseñado con una arquitectura modular que facilita el mantenimiento, la extensión y la reutilización del código.</p>
+
+                <div class="architecture-diagram">
+                    <div class="module-box">
+                        <h5><i class="fas fa-key"></i> Generador</h5>
+                        <p>Módulo principal de generación de contraseñas</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="module-box">
+                        <h5><i class="fas fa-shield-alt"></i> Validador</h5>
+                        <p>Sistema de evaluación de seguridad</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="module-box">
+                        <h5><i class="fas fa-history"></i> Historial</h5>
+                        <p>Gestión de archivo de historial</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="module-box">
+                        <h5><i class="fas fa-desktop"></i> Interfaz</h5>
+                        <p>Interfaz de usuario interactiva</p>
+                    </div>
+                </div>
+
+                <div class="file-structure">
+                    <h4>Estructura de Archivos</h4>
+                    <div class="file-tree">
+                        <div class="file-item folder">password_generator/</div>
+                        <div class="file-item python">├── main.py</div>
+                        <div class="file-item python">├── generador.py</div>
+                        <div class="file-item python">├── validador.py</div>
+                        <div class="file-item python">├── historial.py</div>
+                        <div class="file-item python">├── interfaz.py</div>
+                        <div class="file-item text">├── README.md</div>
+                        <div class="file-item text">└── requirements.txt</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementación completa -->
+        <section id="implementacion" class="session-section">
+            <h2><i class="fas fa-code"></i> Implementación Completa</h2>
+
+            <div class="project-showcase">
+                <h3><i class="fas fa-key"></i> Generador de Contraseñas Avanzado</h3>
+                <p>A continuación presentamos la implementación completa del generador de contraseñas con todas sus funcionalidades.</p>
+
+                <div class="showcase-code">
+                    <h4><i class="fas fa-file-code"></i> generador.py - Módulo Principal</h4>
+                    <pre><code class="language-python"># Módulo principal del generador de contraseñas
+
+import random
+import string
+import json
+import os
+from datetime import datetime
+
+class GeneradorContrasenas:
+    """Generador avanzado de contraseñas seguras."""
+
+    def __init__(self):
+        self.caracteres_base = {
+            'minusculas': string.ascii_lowercase,
+            'mayusculas': string.ascii_uppercase,
+            'numeros': string.digits,
+            'simbolos': "!@#$%^&*()_+-=[]{}|;:,.<>?/"
+        }
+
+    def generar_contraseña(self, longitud=12, opciones=None):
+        """Genera una contraseña segura según las opciones especificadas."""
+
+        if opciones is None:
+            opciones = {
+                'minusculas': True,
+                'mayusculas': True,
+                'numeros': True,
+                'simbolos': True,
+                'excluir_similares': True,
+                'excluir_ambiguos': True
+            }
+
+        # Construir conjunto de caracteres
+        caracteres = ""
+
+        if opciones.get('minusculas', True):
+            caracteres += self.caracteres_base['minusculas']
+        if opciones.get('mayusculas', True):
+            caracteres += self.caracteres_base['mayusculas']
+        if opciones.get('numeros', True):
+            caracteres += self.caracteres_base['numeros']
+        if opciones.get('simbolos', True):
+            caracteres += self.caracteres_base['simbolos']
+
+        # Excluir caracteres similares si está habilitado
+        if opciones.get('excluir_similares', True):
+            caracteres = self._excluir_similares(caracteres)
+
+        # Excluir caracteres ambiguos si está habilitado
+        if opciones.get('excluir_ambiguos', True):
+            caracteres = self._excluir_ambiguos(caracteres)
+
+        if not caracteres:
+            raise ValueError("Debe seleccionar al menos un tipo de carácter")
+
+        # Generar contraseña asegurando diversidad
+        contraseña = self._generar_con_diversidad(longitud, caracteres, opciones)
+
+        return contraseña
+
+    def _excluir_similares(self, caracteres):
+        """Excluye caracteres que pueden confundirse visualmente."""
+
+        similares = "il1Lo0O"
+        return ''.join(c for c in caracteres if c not in similares)
+
+    def _excluir_ambiguos(self, caracteres):
+        """Excluye caracteres ambiguos o problemáticos."""
+
+        ambiguos = "{}[]()|\\'\"`,;.:"
+        return ''.join(c for c in caracteres if c not in ambiguos)
+
+    def _generar_con_diversidad(self, longitud, caracteres, opciones):
+        """Genera contraseña asegurando diversidad de caracteres."""
+
+        contraseña = []
+
+        # Asegurar al menos uno de cada tipo seleccionado
+        tipos_seleccionados = []
+
+        if opciones.get('minusculas', True):
+            tipos_seleccionados.append('minusculas')
+        if opciones.get('mayusculas', True):
+            tipos_seleccionados.append('mayusculas')
+        if opciones.get('numeros', True):
+            tipos_seleccionados.append('numeros')
+        if opciones.get('simbolos', True):
+            tipos_seleccionados.append('simbolos')
+
+        # Colocar al menos uno de cada tipo
+        posiciones_usadas = 0
+
+        for tipo in tipos_seleccionados:
+            if posiciones_usadas < longitud:
+                if tipo == 'minusculas':
+                    contraseña.append(random.choice(self.caracteres_base['minusculas']))
+                elif tipo == 'mayusculas':
+                    contraseña.append(random.choice(self.caracteres_base['mayusculas']))
+                elif tipo == 'numeros':
+                    contraseña.append(random.choice(self.caracteres_base['numeros']))
+                elif tipo == 'simbolos':
+                    simbolos_seguros = "!@#$%^&*"
+                    contraseña.append(random.choice(simbolos_seguros))
+
+                posiciones_usadas += 1
+
+        # Completar con caracteres aleatorios
+        while posiciones_usadas < longitud:
+            contraseña.append(random.choice(caracteres))
+            posiciones_usadas += 1
+
+        # Mezclar la contraseña
+        random.shuffle(contraseña)
+
+        return ''.join(contraseña)
+
+class ValidadorContrasenas:
+    """Sistema avanzado de validación de contraseñas."""
+
+    def __init__(self):
+        self.patrones_peligrosos = [
+            r'(.)\1{2,}',  # Repeticiones
+            r'123|234|345|456|567|678|789|890',  # Secuencias numéricas
+            r'abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz',  # Secuencias alfabéticas
+            r'qwe|wer|ert|rty|tyu|yui|uio|iop|opa|pas|sdf|dfg|fgh|ghj|hjk|jkl',  # Patrones teclado
+            r'admin|password|login|user|root|guest|test|demo',  # Palabras comunes
+        ]
+
+    def validar_contraseña(self, contraseña):
+        """Valida completamente una contraseña."""
+
+        resultado = {
+            'longitud': self._validar_longitud(contraseña),
+            'variedad': self._validar_variedad(contraseña),
+            'patrones': self._validar_patrones(contraseña),
+            'entropia': self._calcular_entropia(contraseña),
+            'estimacion_crackeo': self._estimar_tiempo_crackeo(contraseña)
+        }
+
+        # Calcular puntuación general (0-10)
+        puntuacion = (
+            resultado['longitud']['puntuacion'] +
+            resultado['variedad']['puntuacion'] +
+            resultado['patrones']['puntuacion']
+        )
+
+        resultado['puntuacion_total'] = min(puntuacion, 10)
+        resultado['nivel_seguridad'] = self._obtener_nivel_seguridad(puntuacion)
+
+        return resultado
+
+    def _validar_longitud(self, contraseña):
+        """Valida la longitud."""
+
+        longitud = len(contraseña)
+
+        if longitud >= 16:
+            return {'estado': 'excelente', 'puntuacion': 3, 'mensaje': 'Longitud excelente (16+)'}
+        elif longitud >= 12:
+            return {'estado': 'buena', 'puntuacion': 2, 'mensaje': 'Longitud buena (12+)'}
+        elif longitud >= 8:
+            return {'estado': 'aceptable', 'puntuacion': 1, 'mensaje': 'Longitud mínima (8+)'}
+        else:
+            return {'estado': 'insuficiente', 'puntuacion': 0, 'mensaje': 'Muy corta (<8)'}
+
+    def _validar_variedad(self, contraseña):
+        """Valida la variedad de caracteres."""
+
+        import re
+
+        tipos = {
+            'minusculas': bool(re.search(r'[a-z]', contraseña)),
+            'mayusculas': bool(re.search(r'[A-Z]', contraseña)),
+            'numeros': bool(re.search(r'[0-9]', contraseña)),
+            'simbolos': bool(re.search(r'[^a-zA-Z0-9]', contraseña))
+        }
+
+        tipos_presentes = sum(tipos.values())
+
+        if tipos_presentes >= 4:
+            return {'estado': 'excelente', 'puntuacion': 3, 'mensaje': 'Máxima variedad'}
+        elif tipos_presentes == 3:
+            return {'estado': 'buena', 'puntuacion': 2, 'mensaje': 'Buena variedad'}
+        elif tipos_presentes == 2:
+            return {'estado': 'aceptable', 'puntuacion': 1, 'mensaje': 'Variedad limitada'}
+        else:
+            return {'estado': 'insuficiente', 'puntuacion': 0, 'mensaje': 'Poca variedad'}
+
+    def _validar_patrones(self, contraseña):
+        """Busca patrones peligrosos."""
+
+        import re
+
+        encontrados = []
+        for patron in self.patrones_peligrosos:
+            if re.search(patron, contraseña, re.IGNORECASE):
+                encontrados.append(patron.pattern)
+
+        if not encontrados:
+            return {'estado': 'bueno', 'puntuacion': 2, 'mensaje': 'Sin patrones peligrosos'}
+        else:
+            return {'estado': 'riesgoso', 'puntuacion': 0, 'mensaje': f'Patrones: {", ".join(encontrados)}'}
+
+    def _calcular_entropia(self, contraseña):
+        """Calcula la entropía de la contraseña."""
+
+        caracteres_unicos = len(set(contraseña))
+
+        if caracteres_unicos > 0:
+            entropia = len(contraseña) * (caracteres_unicos ** 0.5)
+        else:
+            entropia = 0
+
+        return {
+            'valor': entropia,
+            'estado': 'alta' if entropia > 60 else 'media' if entropia > 40 else 'baja',
+            'mensaje': f'Entropía: {entropia".1f"} bits'
+        }
+
+    def _estimar_tiempo_crackeo(self, contraseña):
+        """Estima tiempo de crackeo."""
+
+        entropia = self._calcular_entropia(contraseña)['valor']
+
+        tiempo_segundos = 2 ** entropia / 1000000  # Asumiendo 1M intentos/segundo
+
+        if tiempo_segundos > 31536000 * 1000:  # Más de 1000 años
+            return {'tiempo': 'Siglos', 'estado': 'imposible', 'mensaje': 'Imposible de crackear'}
+        elif tiempo_segundos > 31536000:  # Más de 1 año
+            return {'tiempo': 'Años', 'estado': 'muy_seguro', 'mensaje': f'{tiempo_segundos/31536000".0f"} años'}
+        elif tiempo_segundos > 86400:  # Más de 1 día
+            return {'tiempo': 'Días', 'estado': 'seguro', 'mensaje': f'{tiempo_segundos/86400".0f"} días'}
+        elif tiempo_segundos > 3600:  # Más de 1 hora
+            return {'tiempo': 'Horas', 'estado': 'moderado', 'mensaje': f'{tiempo_segundos/3600".0f"} horas'}
+        else:
+            return {'tiempo': 'Minutos', 'estado': 'inseguro', 'mensaje': f'{tiempo_segundos/60".0f"} minutos'}
+
+    def _obtener_nivel_seguridad(self, puntuacion):
+        """Obtiene el nivel de seguridad basado en puntuación."""
+
+        if puntuacion >= 8:
+            return {'nivel': 'EXCELENTE', 'clase': 'strength-strong', 'color': '#00cec9'}
+        elif puntuacion >= 6:
+            return {'nivel': 'MUY BUENO', 'clase': 'strength-good', 'color': '#00b894'}
+        elif puntuacion >= 4:
+            return {'nivel': 'BUENO', 'clase': 'strength-fair', 'color': '#fdcb6e'}
+        elif puntuacion >= 2:
+            return {'nivel': 'REGULAR', 'clase': 'strength-weak', 'color': '#e17055'}
+        else:
+            return {'nivel': 'DÉBIL', 'clase': 'strength-weak', 'color': '#d63031'}
+
+# Funciones de utilidad
+def generar_contraseña_rapida(longitud=12):
+    """Genera una contraseña rápida con configuración estándar."""
+
+    generador = GeneradorContrasenas()
+
+    opciones = {
+        'minusculas': True,
+        'mayusculas': True,
+        'numeros': True,
+        'simbolos': True,
+        'excluir_similares': True,
+        'excluir_ambiguos': True
+    }
+
+    return generador.generar_contraseña(longitud, opciones)
+
+def validar_contraseña_rapida(contraseña):
+    """Valida una contraseña rápidamente."""
+
+    validador = ValidadorContrasenas()
+    return validador.validar_contraseña(contraseña)
+
+# Demostración del módulo
+if __name__ == "__main__":
+    print("🔐 DEMOSTRACIÓN DEL GENERADOR DE CONTRASEÑAS")
+    print("=" * 50)
+
+    # Crear instancias
+    generador = GeneradorContrasenas()
+    validador = ValidadorContrasenas()
+
+    # Generar varias contraseñas de prueba
+    print("\n1️⃣ GENERANDO CONTRASEÑAS DE PRUEBA:")
+    contraseñas_generadas = []
+
+    for i in range(5):
+        longitud = random.randint(8, 16)
+        contraseña = generar_contraseña_rapida(longitud)
+        contraseñas_generadas.append(contraseña)
+        print(f"  {i+1}. {contraseña} (longitud: {longitud})")
+
+    # Validar las contraseñas generadas
+    print("\n2️⃣ VALIDANDO CONTRASEÑAS GENERADAS:")
+    print("-" * 50)
+
+    for i, contraseña in enumerate(contraseñas_generadas, 1):
+        print(f"\n🔐 Contraseña {i}: {contraseña}")
+        resultado = validador.validar_contraseña(contraseña)
+
+        print(f"   Nivel: {resultado['nivel_seguridad']['nivel']}")
+        print(f"   Puntuación: {resultado['puntuacion_total']}/10")
+        print(f"   Tiempo de crackeo: {resultado['estimacion_crackeo']['mensaje']}")
+
+    print("\n✅ ¡Módulo funcionando correctamente!")</code></pre>
+                </div>
+
+                <div class="showcase-code">
+                    <h4><i class="fas fa-file-code"></i> historial.py - Gestión de Historial</h4>
+                    <pre><code class="language-python"># Módulo para gestión del historial de contraseñas
+
+import json
+import os
+from datetime import datetime
+from typing import List, Dict, Optional
+
+class GestorHistorial:
+    """Gestor del historial de contraseñas generadas."""
+
+    def __init__(self, archivo_historial="password_history.json"):
+        self.archivo_historial = archivo_historial
+        self._asegurar_archivo()
+
+    def _asegurar_archivo(self):
+        """Asegura que el archivo de historial existe."""
+
+        if not os.path.exists(self.archivo_historial):
+            os.makedirs(os.path.dirname(self.archivo_historial), exist_ok=True)
+            with open(self.archivo_historial, 'w', encoding='utf-8') as f:
+                json.dump({"historial": [], "configuracion": {}}, f, indent=2)
+
+    def agregar_contraseña(self, contraseña: str, metadata: Optional[Dict] = None):
+        """Agrega una contraseña al historial."""
+
+        # Crear entrada de historial
+        entrada = {
+            "contraseña": contraseña,
+            "fecha_generacion": datetime.now().isoformat(),
+            "longitud": len(contraseña),
+            "metadata": metadata or {}
+        }
+
+        try:
+            # Leer historial actual
+            with open(self.archivo_historial, 'r', encoding='utf-8') as f:
+                datos = json.load(f)
+
+            # Agregar nueva entrada
+            datos["historial"].append(entrada)
+
+            # Limitar tamaño del historial (últimas 1000 entradas)
+            if len(datos["historial"]) > 1000:
+                datos["historial"] = datos["historial"][-1000:]
+
+            # Guardar historial actualizado
+            with open(self.archivo_historial, 'w', encoding='utf-8') as f:
+                json.dump(datos, f, indent=2, ensure_ascii=False)
+
+            return True
+
+        except Exception as e:
+            print(f"❌ Error guardando en historial: {e}")
+            return False
+
+    def obtener_historial(self, limite: Optional[int] = None) -> List[Dict]:
+        """Obtiene el historial de contraseñas."""
+
+        try:
+            with open(self.archivo_historial, 'r', encoding='utf-8') as f:
+                datos = json.load(f)
+
+            historial = datos.get("historial", [])
+
+            if limite:
+                historial = historial[-limite:]
+
+            return historial
+
+        except Exception as e:
+            print(f"❌ Error leyendo historial: {e}")
+            return []
+
+    def buscar_contraseñas(self, criterio: str) -> List[Dict]:
+        """Busca contraseñas que contengan el criterio."""
+
+        historial = self.obtener_historial()
+
+        return [
+            entrada for entrada in historial
+            if criterio.lower() in entrada["contraseña"].lower()
+        ]
+
+    def limpiar_historial(self, dias_antiguos: int = 30) -> bool:
+        """Limpia entradas más antiguas que los días especificados."""
+
+        try:
+            from datetime import timedelta
+
+            fecha_limite = datetime.now() - timedelta(days=dias_antiguos)
+
+            with open(self.archivo_historial, 'r', encoding='utf-8') as f:
+                datos = json.load(f)
+
+            historial_original = datos.get("historial", [])
+            historial_filtrado = []
+
+            for entrada in historial_original:
+                fecha_entrada = datetime.fromisoformat(entrada["fecha_generacion"])
+
+                if fecha_entrada > fecha_limite:
+                    historial_filtrado.append(entrada)
+
+            datos["historial"] = historial_filtrado
+
+            with open(self.archivo_historial, 'w', encoding='utf-8') as f:
+                json.dump(datos, f, indent=2, ensure_ascii=False)
+
+            entradas_eliminadas = len(historial_original) - len(historial_filtrado)
+            print(f"✅ Historial limpiado: {entradas_eliminadas} entradas eliminadas")
+
+            return True
+
+        except Exception as e:
+            print(f"❌ Error limpiando historial: {e}")
+            return False
+
+    def obtener_estadisticas(self) -> Dict:
+        """Obtiene estadísticas del historial."""
+
+        historial = self.obtener_historial()
+
+        if not historial:
+            return {"total_contraseñas": 0, "longitud_promedio": 0}
+
+        longitudes = [entrada["longitud"] for entrada in historial]
+
+        return {
+            "total_contraseñas": len(historial),
+            "longitud_promedio": sum(longitudes) / len(longitudes),
+            "longitud_maxima": max(longitudes),
+            "longitud_minima": min(longitudes),
+            "fecha_primera": historial[0]["fecha_generacion"] if historial else None,
+            "fecha_ultima": historial[-1]["fecha_generacion"] if historial else None
+        }
+
+    def exportar_historial(self, formato: str = "json") -> Optional[str]:
+        """Exporta el historial en el formato especificado."""
+
+        historial = self.obtener_historial()
+
+        if formato.lower() == "json":
+            return json.dumps(historial, indent=2, ensure_ascii=False)
+
+        elif formato.lower() == "csv":
+            if not historial:
+                return None
+
+            csv_data = "Fecha,Contraseña,Longitud\n"
+
+            for entrada in historial:
+                fecha = entrada["fecha_generacion"]
+                contraseña = entrada["contraseña"]
+                longitud = entrada["longitud"]
+
+                csv_data += f"{fecha},{contraseña},{longitud}\n"
+
+            return csv_data
+
+        elif formato.lower() == "txt":
+            if not historial:
+                return None
+
+            txt_data = "HISTORIAL DE CONTRASEÑAS\n"
+            txt_data += "=" * 50 + "\n\n"
+
+            for entrada in historial:
+                txt_data += f"Fecha: {entrada['fecha_generacion']}\n"
+                txt_data += f"Contraseña: {entrada['contraseña']}\n"
+                txt_data += f"Longitud: {entrada['longitud']}\n"
+                txt_data += "-" * 30 + "\n"
+
+            return txt_data
+
+        else:
+            raise ValueError(f"Formato no soportado: {formato}")
+
+# Función de demostración
+def demo_gestor_historial():
+    """Demuestra el gestor de historial."""
+
+    print("📚 DEMOSTRACIÓN DEL GESTOR DE HISTORIAL")
+    print("=" * 50)
+
+    # Crear gestor
+    gestor = GestorHistorial("demo_history.json")
+
+    # Contraseñas de ejemplo
+    contraseñas_ejemplo = [
+        "MiContraseñaSegura123!",
+        "P@ssw0rd2024",
+        "xK9$mN2pL7qR4tV8wY3zE6",
+        "SimplePassword",
+        "C0mpl3x!P@ssw0rd"
+    ]
+
+    # Agregar contraseñas al historial
+    print("\n1️⃣ AGREGANDO CONTRASEÑAS AL HISTORIAL:")
+    for contraseña in contraseñas_ejemplo:
+        metadata = {"categoria": "demostracion", "fuente": "generador"}
+        if gestor.agregar_contraseña(contraseña, metadata):
+            print(f"  ✅ {contraseña}")
+
+    # Obtener historial
+    print("\n2️⃣ OBTENIENDO HISTORIAL:")
+    historial = gestor.obtener_historial(limite=3)
+
+    for entrada in historial:
+        print(f"  📅 {entrada['fecha_generacion'][:19]}: {entrada['contraseña']}")
+
+    # Buscar contraseñas
+    print("\n3️⃣ BUSCANDO CONTRASEÑAS:")
+    resultados = gestor.buscar_contraseñas("password")
+
+    print(f"  Encontradas {len(resultados)} contraseñas con 'password':")
+    for resultado in resultados:
+        print(f"    {resultado['contraseña']}")
+
+    # Estadísticas
+    print("\n4️⃣ ESTADÍSTICAS DEL HISTORIAL:")
+    estadisticas = gestor.obtener_estadisticas()
+
+    print(f"  Total contraseñas: {estadisticas['total_contraseñas']}")
+    print(f"  Longitud promedio: {estadisticas['longitud_promedio']".1f"}")
+    print(f"  Longitud máxima: {estadisticas['longitud_maxima']}")
+    print(f"  Longitud mínima: {estadisticas['longitud_minima']}")
+
+    # Exportar historial
+    print("\n5️⃣ EXPORTANDO HISTORIAL:")
+    historial_txt = gestor.exportar_historial("txt")
+
+    if historial_txt:
+        print("  Historial exportado a TXT (primeras líneas):")
+        lineas = historial_txt.split('\n')[:10]
+        for linea in lineas:
+            if linea.strip():
+                print(f"    {linea}")
+
+    # Limpiar archivo de demostración
+    if os.path.exists("demo_history.json"):
+        os.remove("demo_history.json")
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_gestor_historial()
+
+    print("\n✅ ¡Gestor de historial funcionando correctamente!")</code></pre>
+                </div>
+
+                <div class="showcase-output">
+                    <h5><i class="fas fa-terminal"></i> Ejemplo de Ejecución</h5>
+                    <pre><code>🔐 GENERADOR DE CONTRASEÑAS AVANZADO
+==================================================
+
+1️⃣ GENERANDO CONTRASEÑAS DE PRUEBA:
+  1. xK9$mN2pL7qR4tV8wY3zE6 (longitud: 20)
+  2. B4cH7jK2mN9pQ5rT8vW3x (longitud: 20)
+  3. E6fH9kM3nP7qS2tV8wY5z (longitud: 20)
+  4. A8dF3gJ7kM2nQ6rT9vW4x (longitud: 20)
+  5. C5eG8iK3lN7oR2sU6vX9y (longitud: 20)
+
+2️⃣ VALIDANDO CONTRASEÑAS GENERADAS:
+--------------------------------------------------
+
+🔐 Contraseña 1: xK9$mN2pL7qR4tV8wY3zE6
+   Nivel: EXCELENTE
+   Puntuación: 8/10
+   Tiempo de crackeo: Siglos
+
+🔐 Contraseña 2: B4cH7jK2mN9pQ5rT8vW3x
+   Nivel: EXCELENTE
+   Puntuación: 8/10
+   Tiempo de crackeo: Siglos
+
+🔐 Contraseña 3: E6fH9kM3nP7qS2tV8wY5z
+   Nivel: MUY BUENO
+   Puntuación: 7/10
+   Tiempo de crackeo: Años
+
+🔐 Contraseña 4: A8dF3gJ7kM2nQ6rT9vW4x
+   Nivel: EXCELENTE
+   Puntuación: 9/10
+   Tiempo de crackeo: Siglos
+
+🔐 Contraseña 5: C5eG8iK3lN7oR2sU6vX9y
+   Nivel: MUY BUENO
+   Puntuación: 7/10
+   Tiempo de crackeo: Años
+
+✅ ¡Aplicación funcionando correctamente!</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-key"></i> Actividad 1: Generador Básico de Contraseñas</h4>
+                    <p class="exercise-difficulty">Nivel: Básico</p>
+                    <p>Crea un generador básico que produzca contraseñas seguras con diferentes tipos de caracteres.</p>
+
+                    <div class="exercise-requirements">
+                        <h5>Requisitos mínimos:</h5>
+                        <ul>
+                            <li>Generar contraseñas de longitud configurable</li>
+                            <li>Incluir minúsculas, mayúsculas, números y símbolos</li>
+                            <li>Asegurar diversidad de caracteres</li>
+                            <li>Mostrar ejemplos de contraseñas generadas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-shield-alt"></i> Actividad 2: Sistema de Validación de Seguridad</h4>
+                    <p class="exercise-difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un sistema que evalúe la seguridad de contraseñas existentes y proporcione recomendaciones.</p>
+
+                    <div class="exercise-requirements">
+                        <h5>Requisitos mínimos:</h5>
+                        <ul>
+                            <li>Evaluar longitud de contraseña</li>
+                            <li>Verificar variedad de caracteres</li>
+                            <li>Detectar patrones peligrosos</li>
+                            <li>Calcular nivel de seguridad</li>
+                            <li>Proporcionar recomendaciones de mejora</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-history"></i> Actividad 3: Gestor de Historial de Contraseñas</h4>
+                    <p class="exercise-difficulty">Nivel: Intermedio</p>
+                    <p>Crea un sistema que mantenga un historial persistente de todas las contraseñas generadas.</p>
+
+                    <div class="exercise-requirements">
+                        <h5>Requisitos mínimos:</h5>
+                        <ul>
+                            <li>Guardar contraseñas en archivo JSON</li>
+                            <li>Incluir timestamp de generación</li>
+                            <li>Permitir búsqueda por contenido</li>
+                            <li>Limpiar historial antiguo automáticamente</li>
+                            <li>Exportar historial en múltiples formatos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-desktop"></i> Actividad 4: Interfaz Completa del Generador</h4>
+                    <p class="exercise-difficulty">Nivel: Avanzado</p>
+                    <p>Desarrolla una interfaz de usuario completa que integre generación, validación y gestión de historial.</p>
+
+                    <div class="exercise-requirements">
+                        <h5>Requisitos mínimos:</h5>
+                        <ul>
+                            <li>Menú interactivo para configuración</li>
+                            <li>Mostrar contraseña generada con indicador visual</li>
+                            <li>Integrar validación en tiempo real</li>
+                            <li>Guardar automáticamente en historial</li>
+                            <li>Mostrar estadísticas del historial</li>
+                            <li>Manejo robusto de errores</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/library/random.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Módulo random</a></li>
+                        <li><a href="https://docs.python.org/3/library/string.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Módulo string</a></li>
+                        <li><a href="https://owasp.org/www-community/password-special-characters" target="_blank" rel="noopener noreferrer">OWASP - Caracteres especiales en contraseñas</a></li>
+                        <li><a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noopener noreferrer">Have I Been Pwned - Verificar contraseñas</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=Uh2ebFW8OYM" target="_blank" rel="noopener noreferrer">Generación segura de contraseñas en Python</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=iB3t5jlwdx8" target="_blank" rel="noopener noreferrer">Análisis de seguridad de contraseñas</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=3NjQ9b3pgIg" target="_blank" rel="noopener noreferrer">Módulos string y random en Python</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 5 - "Automate the Boring Stuff with Python" (Manipulación de texto)</li>
+                        <li>Sección 3.6 - "Python for Everybody" (Cadenas y archivos)</li>
+                        <li>"Cracking Codes with Python" de Al Sweigart (Introducción a la criptografía)</li>
+                        <li>NIST SP 800-63B - Directrices de seguridad para contraseñas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s23.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s25.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+    <script>
+        function generarContrasena() {
+            // Obtener opciones del formulario
+            const longitud = parseInt(document.getElementById('longitud').value) || 12;
+            const opciones = {
+                minusculas: document.getElementById('minusculas').checked,
+                mayusculas: document.getElementById('mayusculas').checked,
+                numeros: document.getElementById('numeros').checked,
+                simbolos: document.getElementById('simbolos').checked,
+                excluir_similares: document.getElementById('excluir_similares').checked,
+                evitar_patron: document.getElementById('evitar_patron').checked
+            };
+
+            // Generar contraseña (simulada)
+            let caracteres = '';
+            if (opciones.minusculas) caracteres += 'abcdefghijklmnopqrstuvwxyz';
+            if (opciones.mayusculas) caracteres += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (opciones.numeros) caracteres += '0123456789';
+            if (opciones.simbolos) caracteres += '!@#$%^&*';
+
+            if (caracteres === '') {
+                alert('Selecciona al menos un tipo de carácter');
+                return;
+            }
+
+            // Excluir similares si está habilitado
+            if (opciones.excluir_similares) {
+                caracteres = caracteres.replace(/[il1Lo0O]/g, '');
+            }
+
+            let contraseña = '';
+            for (let i = 0; i < longitud; i++) {
+                contraseña += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+
+            // Mostrar contraseña
+            document.getElementById('generatedPassword').textContent = contraseña;
+            document.getElementById('passwordDisplay').style.display = 'block';
+
+            // Evaluar seguridad
+            evaluarSeguridad(contraseña);
+        }
+
+        function evaluarSeguridad(contraseña) {
+            let puntuacion = 0;
+            let comentarios = [];
+
+            // Longitud
+            if (contraseña.length >= 12) {
+                puntuacion += 2;
+                comentarios.push('Longitud excelente');
+            } else if (contraseña.length >= 8) {
+                puntuacion += 1;
+                comentarios.push('Longitud buena');
+            } else {
+                comentarios.push('Longitud insuficiente');
+            }
+
+            // Variedad
+            const tieneMinusculas = /[a-z]/.test(contraseña);
+            const tieneMayusculas = /[A-Z]/.test(contraseña);
+            const tieneNumeros = /[0-9]/.test(contraseña);
+            const tieneSimbolos = /[^a-zA-Z0-9]/.test(contraseña);
+
+            const tipos = [tieneMinusculas, tieneMayusculas, tieneNumeros, tieneSimbolos].filter(Boolean).length;
+
+            if (tipos >= 4) {
+                puntuacion += 3;
+                comentarios.push('Excelente variedad');
+            } else if (tipos >= 3) {
+                puntuacion += 2;
+                comentarios.push('Buena variedad');
+            } else if (tipos >= 2) {
+                puntuacion += 1;
+                comentarios.push('Variedad limitada');
+            } else {
+                comentarios.push('Poca variedad');
+            }
+
+            // Nivel de seguridad
+            let nivel, claseCSS;
+            if (puntuacion >= 8) {
+                nivel = 'EXCELENTE';
+                claseCSS = 'strength-strong';
+            } else if (puntuacion >= 6) {
+                nivel = 'MUY BUENO';
+                claseCSS = 'strength-good';
+            } else if (puntuacion >= 4) {
+                nivel = 'BUENO';
+                claseCSS = 'strength-fair';
+            } else if (puntuacion >= 2) {
+                nivel = 'REGULAR';
+                claseCSS = 'strength-weak';
+            } else {
+                nivel = 'DÉBIL';
+                claseCSS = 'strength-weak';
+            }
+
+            // Actualizar UI
+            document.getElementById('strengthLabel').textContent = `${nivel} (${puntuacion}/10)`;
+            const strengthFill = document.getElementById('strengthFill');
+            strengthFill.className = `strength-fill ${claseCSS}`;
+
+            // Mostrar análisis
+            const analysis = document.getElementById('securityAnalysis');
+            analysis.innerHTML = `
+                <h5>Análisis de Seguridad:</h5>
+                <ul>
+                    ${comentarios.map(comentario => `<li>${comentario}</li>`).join('')}
+                </ul>
+                <p><strong>Tip:</strong> Usa contraseñas de al menos 12 caracteres con múltiples tipos de caracteres</p>
+            `;
+        }
+
+        function copiarContrasena() {
+            const contraseña = document.getElementById('generatedPassword').textContent;
+            navigator.clipboard.writeText(contraseña).then(() => {
+                alert('Contraseña copiada al portapapeles');
+            });
+        }
+
+        // Generar contraseña inicial
+        window.addEventListener('load', () => {
+            generarContrasena();
+        });
+    </script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

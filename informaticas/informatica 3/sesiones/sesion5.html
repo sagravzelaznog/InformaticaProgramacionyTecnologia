@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Estructuras de Control en VBA - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 5: Estructuras de Control en VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a utilizar estructuras de control, bucles y manejo de errores en VBA.</p>
+            </header>
+            
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>Las estructuras de control son fundamentales en programación, ya que permiten que tu código tome decisiones y repita acciones de manera controlada. En esta sesión, aprenderás a dominarlas.</p>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-project-diagram"></i> Estructuras de Control en VBA</h3>
+                    <p>Las estructuras de control son fundamentales en programación, ya que permiten que tu código tome decisiones y repita acciones de manera controlada. En esta sesión, aprenderás a dominarlas.</p>
+                    
+                    <div class="example">
+                        <h3>Imagina que eres un semáforo:</h3>
+                        <p>Las estructuras de control son como las reglas que determinan cuándo el semáforo debe estar en rojo, amarillo o verde, y por cuánto tiempo debe permanecer en cada estado.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-code-branch"></i> Condicionales: Tomando Decisiones</h3>
+                    
+                    <h3>1. If...Then...Else</h3>
+                    <p>Permite ejecutar código solo si se cumple una condición.</p>
+                    
+                    <div class="code-block">
+                        <h4>Ejemplo Básico:</h4>
+                        <pre><code>If Nota >= 6 Then
+    MsgBox "¡Aprobado!"
+Else
+    MsgBox "Reprobado"
+End If</code></pre>
+                    </div>
+                    
+                    <h3>2. Select Case</h3>
+                    <p>Útil cuando hay múltiples condiciones a evaluar.</p>
+                    
+                    <div class="code-block">
+                        <h4>Ejemplo:</h4>
+                        <pre><code>Select Case DiaSemana
+    Case 1
+        MsgBox "Lunes"
+    Case 2
+        MsgBox "Martes"
+    ' ... más casos ...
+    Case Else
+        MsgBox "Fin de semana"
+End Select</code></pre>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-sync-alt"></i> Bucles: Repitiendo Acciones</h3>
+                    
+                    <h3>1. For...Next</h3>
+                    <p>Ideal cuando sabes exactamente cuántas veces quieres que se repita el código.</p>
+                    
+                    <div class="code-block">
+                        <h4>Ejemplo: Sumar números del 1 al 10</h4>
+                        <pre><code>Dim suma As Integer
+suma = 0
+
+For i = 1 To 10
+    suma = suma + i
+Next i
+
+MsgBox "La suma es: " & suma</code></pre>
+                    </div>
+                    
+                    <h3>2. Do While...Loop</h3>
+                    <p>Se ejecuta mientras una condición sea verdadera.</p>
+                    
+                    <div class="code-block">
+                        <h4>Ejemplo: Ingresar números hasta que se ingrese 0</h4>
+                        <pre><code>Dim numero As Integer
+numero = 1 ' Inicialización
+
+Do While numero <> 0
+    numero = InputBox("Ingrese un número (0 para terminar):")
+    ' Procesar el número...
+Loop</code></pre>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Manejo de Errores</h3>
+                    
+                    <p>El manejo de errores evita que tu macro se detenga inesperadamente.</p>
+                    
+                    <div class="code-block">
+                        <h4>Estructura básica:</h4>
+                        <pre><code>On Error GoTo ManejadorErrores
+
+' Código que podría generar errores
+' ...
+
+Exit Sub ' Importante para salir antes del manejador de errores
+
+ManejadorErrores:
+    MsgBox "Ocurrió un error: " & Err.Description
+    ' Código para manejar el error
+    ' ...
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    
+                    <p><strong>Objetivo:</strong> Crear una macro que pida al usuario un número y muestre si es primo o no.</p>
+                    
+                    <div class="step-by-step">
+                        <h3>Paso a paso:</h3>
+                        <ol>
+                            <li>Abre el Editor VBA (Alt + F11)</li>
+                            <li>Inserta un nuevo módulo</li>
+                            <li>Copia y pega el siguiente código:</li>
+                        </ol>
+                        
+                        <div class="code-block">
+                            <pre><code>Sub VerificarPrimo()
+    Dim numero As Integer
+    Dim esPrimo As Boolean
+    Dim i As Integer
+    
+    On Error GoTo ManejadorErrores
+    
+    ' Pedir número al usuario
+    numero = InputBox("Ingrese un número entero positivo:")
+    
+    ' Validar entrada
+    If numero <= 1 Then
+        MsgBox "Por favor ingrese un número mayor que 1."
+        Exit Sub
+    End If
+    
+    ' Verificar si es primo
+    esPrimo = True
+    For i = 2 To numero - 1
+        If numero Mod i = 0 Then
+            esPrimo = False
+            Exit For
+        End If
+    Next i
+    
+    ' Mostrar resultado
+    If esPrimo Then
+        MsgBox numero & " es un número primo."
+    Else
+        MsgBox numero & " NO es un número primo."
+    End If
+    
+    Exit Sub
+    
+ManejadorErrores:
+    MsgBox "Error " & Err.Number & ": " & Err.Description
+End Sub</code></pre>
+                        </div>
+                        
+                        <h3>¿Cómo funciona?</h3>
+                        <ol>
+                            <li>Pide un número al usuario</li>
+                            <li>Verifica si es mayor que 1</li>
+                            <li>Comprueba si es divisible por algún número entre 2 y n-1</li>
+                            <li>Muestra si es primo o no</li>
+                            <li>Incluye manejo de errores básico</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="activity">
+                    <div class="activity-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad</h2>
+                    </div>
+                    
+                    <p><strong>Crea una macro que:</strong></p>
+                    <ol>
+                        <li>Pida al usuario cuántos números desea ingresar</li>
+                        <li>Pida cada número uno por uno</li>
+                        <li>Muestre al final el mayor, el menor y el promedio de los números ingresados</li>
+                        <li>Incluya manejo de errores</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h4>💡 Pista:</h4>
+                        <p>Usa un array para almacenar los números y luego recórrelo para encontrar el mayor, el menor y calcular el promedio.</p>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>Las estructuras de control permiten tomar decisiones y repetir acciones</li>
+                        <li><code>If...Then...Else</code> y <code>Select Case</code> son estructuras condicionales</li>
+                        <li>Los bucles <code>For...Next</code> y <code>Do While...Loop</code> permiten repetir código</li>
+                        <li>El manejo de errores con <code>On Error</code> evita que las macros fallen inesperadamente</li>
+                        <li>Es importante validar las entradas del usuario</li>
+                    </ul>
+                    
+                    <div class="tip">
+                        <h4>✅ Consejo profesional:</h4>
+                        <p>Practica creando pequeños programas que utilicen estas estructuras. Por ejemplo, intenta hacer una calculadora simple o un juego de adivinanzas.</p>
+                    </div>
+                </section>
+
+                <div class="nav-buttons">
+                    <a href="sesion4.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion6.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <footer>
+        <p>&copy; JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

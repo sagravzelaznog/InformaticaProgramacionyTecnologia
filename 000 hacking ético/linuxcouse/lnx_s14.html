@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion14: Integridad y Cadena de Custodia</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 14: La Huella Dactilar Digital (Hashes)</h1>
+            <p class="intro-text">Tienes en tu poder el archivo <code>evidencia_clon.img</code>. ¿Cómo garantizas que nadie, ni siquiera tú por accidente, modificó un solo byte de ese archivo desde que fue extraído? La respuesta es la Función Hash: una huella digital matemática única e irrepetible para cada archivo.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Entendiendo el "Efecto Avalancha" (Simulador)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Un algoritmo de Hash (como SHA-256) toma cualquier cantidad de datos y los convierte en una cadena de 64 caracteres. Si cambias <strong>una sola letra</strong>, la cadena entera cambia de forma drástica e impredecible. Compruébalo tú mismo escribiendo en las siguientes cajas:</p>
+                    
+                    <div class="vault-simulator">
+                        <div class="vault-header">🔬 Laboratorio de Colisiones SHA-256</div>
+                        <div class="hash-comparison">
+                            <div class="hash-box">
+                                <label>Evidencia A (Original)</label>
+                                <textarea id="text-a" class="hash-input" rows="2">El atacante transfirió 1000 dolares.</textarea>
+                                <div class="hash-output-container">
+                                    <span class="hash-label">Firma SHA-256:</span>
+                                    <div id="hash-out-a" class="hash-string">Calculando...</div>
+                                </div>
+                            </div>
+                            <div class="hash-box">
+                                <label>Evidencia B (Modificada)</label>
+                                <textarea id="text-b" class="hash-input" rows="2">El atacante transfirió 1001 dolares.</textarea>
+                                <div class="hash-output-container">
+                                    <span class="hash-label">Firma SHA-256:</span>
+                                    <div id="hash-out-b" class="hash-string">Calculando...</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hash-status" class="hash-status-bar">Analizando integridad...</div>
+                    </div>
+                    <p class="note"><em>Nota cómo el simple cambio de un "0" a un "1" alteró el 100% de la huella criptográfica. Esta es la base de la cadena de custodia.</em></p>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Generación de Firmas en Terminal</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En el mundo forense, ya no usamos <code>md5sum</code> porque se han descubierto formas de falsificarlo (colisiones). El estándar legal actual es <strong>SHA-256</strong>. Vamos a firmar un archivo en tu Sandbox.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># 1. Creamos un archivo de prueba con texto</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> echo "Evidencia Forense 001" > doc_legal.txt
+
+<span class="comment"># 2. Generamos su huella SHA-256</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sha256sum doc_legal.txt</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Sellado de Evidencia (Exportar el Hash)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Ver el hash en pantalla no sirve de nada en un juicio; debes guardarlo en un archivo inmutable que acompañará a la evidencia física (el USB o el disco duro clonado).</p>
+                    <div class="tip-card" style="border-left-color: #94a3b8; background-color: rgba(148, 163, 184, 0.08);">
+                        <strong style="color: #cbd5e1;">Protocolo Legal:</strong> El archivo hash resultante SIEMPRE se entrega al juez o al equipo legal inmediatamente después de la adquisición, para garantizar que tú tampoco alteraste los datos posteriormente.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Redirigimos (>) la salida del hash a un archivo de firma</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sha256sum doc_legal.txt > doc_legal.sha256
+
+<span class="comment"># Verificamos que se guardó correctamente</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> cat doc_legal.sha256</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Auditoría Automática (La prueba final)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Imagina que pasaron tres meses y se abre el juicio. El abogado defensor te pregunta: <em>"¿Cómo sé que ese archivo es el mismo?"</em>. En Linux, usamos el flag <code>-c</code> (check) para que el sistema compare matemáticamente el archivo actual contra la firma que guardamos hace 3 meses.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># El comando leerá doc_legal.sha256 y verificará el archivo original automáticamente</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sha256sum -c doc_legal.sha256
+<span class="comment"># La salida deberá ser: doc_legal.txt: OK</span>
+
+<span class="comment"># Ejercicio: Modifica el archivo con 'echo "truco" >> doc_legal.txt' y vuelve a intentar el comando -c para ver cómo falla.</span></code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #14. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

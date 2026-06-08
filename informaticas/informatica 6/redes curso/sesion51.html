@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S13 E51: Implementación del Proyecto (Fase I: Cableado e IPs Estáticas)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 13, Sesión 51: Implementación del Proyecto (I) 🔌</h1>
+        <p class="subtitle">Conexión Física de Componentes y Configuración de IPs Estáticas</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Conexión Física en Packet Tracer</h2>
+            <p>Con base en tu diseño de topología, es hora de construir la red en el simulador. En la mayoría de los casos, usarás la **Topología de Estrella** para la LAN.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Selección de Equipos</h3>
+                    <p>Arrastra los componentes necesarios (Router genérico, Switch 2960, Servidor, 20 PCs/Laptops - usa menos si el simulador se pone lento). Conecta el Router a la **Nube de Internet** (simulado) para el acceso WAN.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Cableado (Cable Directo)</h3>
+                    <p>Utiliza **Cable Directo** (Cobre Recto) para conectar el Router al Switch, y todos los Hosts (PCs, Servidor, Impresora) al Switch. Recuerda, el cable directo es para dispositivos diferentes (Host a Switch).</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Configuración de IPs Estáticas (El Núcleo de la Red)</h2>
+            <p>El Router, el Servidor y la Impresora deben tener IPs fijas, según lo definido en la sesión 50.</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Router (Gateway)</h3>
+                    <p>Configura la IP **192.168.10.1** y la Máscara **255.255.255.0** en la interfaz LAN del Router. ¡Esta es la dirección más importante de toda la red!</p>
+                </div>
+                <div>
+                    <h3>Servidor e Impresora</h3>
+                    <p>Configura manualmente el Servidor (192.168.10.2) y la Impresora (192.168.10.3). Asegúrate de que su **Gateway** apunte correctamente al Router (192.168.10.1).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Prueba Inicial de Conectividad</h2>
+            <p><strong>Tarea Práctica (Diagnóstico en Packet Tracer):</strong></p>
+            <ol>
+                <li>Una vez configurados los estáticos, usa el **PDU simple** (icono de sobre) para enviar un paquete del Servidor a la Impresora. Debe ser **exitoso**.</li>
+                <li>Desde el Servidor, haz **`ping 192.168.10.1`** (al Router). Debe ser exitoso.</li>
+                <li>Si falla, verifica que todas las IPs estáticas y máscaras sean idénticas.</li>
+            </ol>
+            <button id="staticIPCheckBtn">Verificar Configuración Estática</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S13 E51</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion50.html" class="nav-button">Anterior</a>
+        <a href="sesion52.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

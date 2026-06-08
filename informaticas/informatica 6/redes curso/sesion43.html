@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S11 E43: Introducción a la Monitorización Centralizada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 11, Sesión 43: Monitorización Centralizada 👁️</h1>
+        <p class="subtitle">Nagios y Zabbix: La Vigilancia Proactiva de la Red</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Por Qué Monitorizar de Forma Centralizada?</h2>
+            <p>En lugar de hacer ping a cada dispositivo manualmente, las herramientas de **Monitorización Centralizada** vigilan proactivamente la salud y el rendimiento de toda la infraestructura (servidores, routers, switches) desde un único punto. Esto permite una **respuesta proactiva**.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Detección Temprana</h3>
+                    <p>Identifica problemas *antes* de que los usuarios los noten (ej. un disco duro de servidor que está por llenarse, un pico de latencia en un router).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Registro Histórico</h3>
+                    <p>Mantiene un registro de tendencias y métricas (uso de CPU, tráfico) para ayudar en la planificación de capacidades y la identificación de fallos intermitentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Software Gratuito: Nagios y Zabbix</h2>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Nagios Core</h3>
+                    <p>Uno de los pioneros. Es muy potente, basado en plugins y excelente para monitorizar el estado (UP/DOWN) de los hosts y servicios básicos (ping, puertos, etc.).</p>
+                </div>
+                <div>
+                    <h3>Zabbix</h3>
+                    <p>Una solución más moderna que ofrece una interfaz gráfica (GUI) muy completa, gráficas de tendencia y la posibilidad de usar **Agentes** (software en el host) para métricas detalladas.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Protocolo SNMP (Simple Network Management Protocol)</h2>
+            <p>La mayoría de los routers y switches profesionales se monitorizan usando **SNMP**. Este protocolo permite a la herramienta central (Zabbix/Nagios) consultar datos del dispositivo (ej. uso de CPU, estado del puerto, tráfico) de forma remota.</p>
+            
+            <p><strong>Tarea Práctica (Simulación de Interfaz):</strong></p>
+            <ol>
+                <li>(Teórico): Identifica en qué capa del modelo OSI crees que trabaja SNMP. (Respuesta: Aplicación, ya que es un protocolo de servicio).</li>
+                <li>Navega a la demo en línea de Zabbix o Nagios (búscala en Internet) y observa los dashboards.</li>
+                <li>Identifica qué métricas estás viendo (ej. uso de CPU, tráfico de interfaz).</li>
+            </ol>
+            <button id="monitoringQuizBtn">Verificar Monitoreo</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S11 E43</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion42.html" class="nav-button">Anterior</a>
+        <a href="sesion44.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

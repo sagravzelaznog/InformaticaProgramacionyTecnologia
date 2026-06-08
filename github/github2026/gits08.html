@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Rebase y Squashing</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        .important-box {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 8: Rebase y Squashing</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Rebase Local</button>
+    <div class="panel">
+        <p>El comando <code>git rebase</code> te permite "reaplicar" una serie de commits encima de otro commit diferente [1]. En la práctica, esto sirve para mantener un historial lineal y limpio, integrando los últimos cambios sin crear un commit de fusión (merge).</p>
+        
+        <h3>Cómo hacer un Rebase Local</h3>
+        <p>Para hacer un rebase de tu rama actual (por ejemplo, una rama <code>topic</code>) sobre la rama <code>master</code>, primero cambias a tu rama y luego ejecutas el comando [1]:</p>
+        <pre><code>git checkout topic
+git rebase master</code></pre>
+        <p>Alternativamente, puedes hacerlo en un solo paso con [1]:</p>
+        <pre><code>git rebase master topic</code></pre>
+
+        <div class="important-box">
+            <strong>⚠️ Importante:</strong> Después de un rebase, los commits aplicados tendrán un hash SHA-1 completamente diferente [1]. <strong>Nunca debes hacer rebase de commits que ya hayas empujado (pushed) a un repositorio remoto público</strong>, ya que podrías romper el historial de otros colaboradores y te verías obligado a forzar la subida con <code>git push --force</code> [1].
+        </div>
+    </div>
+
+    <button class="accordion">2. Rebase Interactivo</button>
+    <div class="panel">
+        <p>El rebase interactivo permite alterar, reordenar, dividir o combinar (squash) commits en el historial de forma manual antes de que se vuelvan a aplicar [2]. Se inicia añadiendo la bandera <code>-i</code> (interactive) [2].</p>
+        
+        <h3>Iniciando un Rebase Interactivo</h3>
+        <p>Si deseas reorganizar tus últimos 3 commits, ejecutarás [3]:</p>
+        <pre><code>git rebase -i HEAD~3</code></pre>
+        <p>Esto abrirá tu editor de texto predeterminado con una lista de commits y comandos disponibles [3]. Por defecto, todos los commits están marcados con <code>pick</code> [3].</p>
+        
+        <h3>Comandos interactivos comunes</h3>
+        <ul>
+            <li><strong><code>pick</code> (p):</strong> Usar este commit tal cual [4]. Para cambiar el orden de los commits, simplemente cambia el orden de las líneas en el editor [3].</li>
+            <li><strong><code>reword</code> (r):</strong> Usa el commit, pero detiene el proceso para permitirte editar el mensaje del commit [4].</li>
+            <li><strong><code>edit</code> (e):</strong> Usa el commit, pero detiene el proceso para que modifiques los archivos o dividas el commit en partes más pequeñas [5, 6].</li>
+            <li><strong>Eliminar un commit:</strong> Si ya no deseas que un commit forme parte de tu proyecto, simplemente borra esa línea en el editor [7].</li>
+        </ul>
+        <p>Una vez que guardes y cierres el archivo, Git ejecutará las instrucciones paso a paso [3, 8].</p>
+    </div>
+
+    <button class="accordion">3. Squashing (Combinar Commits)</button>
+    <div class="panel">
+        <p>El "Squashing" es el proceso de tomar múltiples commits separados y combinarlos en un solo commit cohesivo. Es una excelente estrategia para limpiar el historial antes de integrar una rama de características [9, 10].</p>
+
+        <h3>Squashing mediante Merge</h3>
+        <p>Si deseas incorporar todos los cambios de una rama y condensarlos en un único commit en tu rama actual en lugar de múltiples commits individuales, puedes usar [11]:</p>
+        <pre><code>git merge --squash nombre_rama
+git commit</code></pre>
+        <p>Esto prepara todos los cambios en el área de staging, dándote la oportunidad de agruparlos en un nuevo commit unificado [11].</p>
+
+        <h3>Squashing durante un Rebase Interactivo</h3>
+        <p>Si prefieres limpiar el historial de tu rama actual combinando varios commits anteriores en uno solo, puedes usar el rebase interactivo [11]. En el editor de texto (activado con <code>git rebase -i</code>), cambia la palabra <code>pick</code> por <code>squash</code> (o la letra <code>s</code>) en los commits que desees combinar [12].</p>
+        <pre><code>pick 08c275d Primer borrador: db.sql
+squash 06f81c9 Arreglo en la base de datos
+squash 0309336 Actualización de la lógica</code></pre>
+        <p>El commit marcado con <code>squash</code> se combinará con el commit inmediatamente anterior a él (hacia arriba) [13]. Luego de cerrar el editor, Git te pedirá que edites y confirmes un mensaje unificado para el nuevo commit resultante [14].</p>
+        <p><em>Nota: También existe <code>fixup</code> (f), que funciona igual que squash, pero descarta automáticamente el mensaje del commit fusionado [4].</em></p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

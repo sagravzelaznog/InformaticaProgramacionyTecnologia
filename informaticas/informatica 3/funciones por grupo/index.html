@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Excel - Inicio</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .function-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background-color: #d35400;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .function-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Excel</h1>
+            <p>Guía completa de funciones organizadas por categorías</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Explora las diferentes categorías de funciones</h2>
+            <p>Selecciona una categoría para ver ejemplos detallados, ejercicios prácticos y explicaciones paso a paso de cada función.</p>
+        </div>
+
+        <div class="function-grid">
+            <!-- Función 1 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Búsqueda y Referencia</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para buscar y hacer referencia a datos en tus hojas de cálculo, incluyendo BUSCAR, INDICE, COINCIDIR y más.</p>
+                    <a href="funciones_busqueda_referencia_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 2 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Fecha y Hora</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para trabajar con fechas y horas, incluyendo HOY, AHORA, DIA, MES, AÑO y más.</p>
+                    <a href="funciones_fechahora_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 3 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Información</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para obtener información sobre celdas, formatos y entornos, incluyendo ESBLANCO, ESERROR, TIPO y más.</p>
+                    <a href="funciones_informacion_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 4 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Financieras</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para cálculos financieros, incluyendo PAGO, TASA, VF, VA, NPER y más.</p>
+                    <a href="funciones_financieras_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 5 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Matemáticas y Trigonométricas</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones matemáticas básicas y trigonométricas, incluyendo SUMA, REDONDEAR, SENO, COSENO y más.</p>
+                    <a href="funciones_matematicas_trigonometricas_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 6 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Ingeniería</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para cálculos de ingeniería, incluyendo conversión de unidades, números complejos y funciones especiales.</p>
+                    <a href="funciones_ingenieria_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 7 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Lógicas</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para realizar pruebas lógicas, incluyendo SI, Y, O, NO y más.</p>
+                    <a href="funciones_logicas_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+
+            <!-- Función 8 -->
+            <div class="function-card">
+                <div class="card-header">
+                    <h3>Estadísticas</h3>
+                </div>
+                <div class="card-body">
+                    <p>Funciones para análisis estadístico, incluyendo PROMEDIO, MEDIANA, MODA, DESVEST y más.</p>
+                    <a href="funciones_estadisticas_excel.html" class="btn">Ver funciones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

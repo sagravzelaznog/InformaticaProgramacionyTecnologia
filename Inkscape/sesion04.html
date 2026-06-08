@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S4: Relleno y Borde Básico</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 4: Control de Relleno y Borde (Básico)</h1>
+
+    <section>
+        <h2>1. El Diálogo Relleno y Borde (Shift + Ctrl + F)</h2>
+        
+        <p>El diálogo **Relleno y Borde (Shift + Ctrl + F)** es el centro de control para el color y la apariencia de cualquier objeto. Contiene tres pestañas principales:</p>
+        <ul>
+            <li><strong>Relleno:</strong> Controla el color del interior del objeto.</li>
+            <li><strong>Color de Trazo:</strong> Controla el color de la línea de contorno.</li>
+            <li><strong>Estilo de Trazo:</strong> Controla el grosor, el patrón y el remate del contorno.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Pestaña Relleno (Fill)</h2>
+        <p>Esta pestaña te permite definir cómo se colorea el interior del objeto.</p>
+        <div class="paso">
+            <strong>Paso 1: Tipos de Relleno</strong>
+            <p>En la parte superior, puedes elegir el tipo de relleno:</p>
+            <ul>
+                <li><strong>"X" (Sin Relleno):</strong> El objeto es transparente por dentro.</li>
+                <li><strong>Color Plano:</strong> Un color sólido (el que usaremos hoy).</li>
+                <li><strong>Degradado Lineal/Radial:</strong> Temas de la sesión 15.</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Modos de Color y Opacidad</strong>
+            <p>Debajo, puedes elegir el modo de color (RGB, HSL, CMYK, Rueda). Para el diseño digital, **RGB** es el más común. La barra **A (Alpha)** controla la opacidad del relleno. (255 = totalmente opaco; 0 = invisible).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Uso Rápido con la Paleta</strong>
+            <p>Haz clic en un color de la Paleta de Colores inferior para aplicarlo como Relleno. Mantén presionada la tecla **Shift** y haz clic en un color para aplicarlo como **Color de Trazo**.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Pestaña Estilo de Trazo (Stroke Style)</h2>
+        <p>Aquí controlamos el grosor y el patrón de la línea de contorno.</p>
+        <div class="paso">
+            <strong>Paso 1: Grosor (Width)</strong>
+            <p>Define el grosor de la línea. Asegúrate de que la unidad esté en un valor adecuado (ej. px, mm).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Uniones y Remates (Joints & Caps)</strong>
+            <ul>
+                <li><strong>Uniones (Joints):</strong> Define cómo se ven las esquinas (Ej. Biselado, Redondeado, etc.).</li>
+                <li><strong>Remates (Caps):</strong> Define cómo terminan las líneas abiertas (Ej. Cuadrado, Redondeado). (Esto es más relevante para trazos abiertos).</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Guiones (Dashes)</strong>
+            <p>Selecciona un patrón de guiones para crear una línea punteada o discontinua. El campo **Desplazamiento** (Offset) permite ajustar dónde comienza el patrón.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Señal de Advertencia</h3>
+        <p><strong>Objetivo:</strong> Aplicar rellenos, trazos y patrones de línea.</p>
+        <ol>
+            <li>Dibuja un **Triángulo** usando la herramienta Estrella/Polígono (3 esquinas).</li>
+            <li>Abre el diálogo **Relleno y Borde** (Shift + Ctrl + F).</li>
+            <li>En la pestaña **Relleno**, aplica un color **amarillo** brillante.</li>
+            <li>En la pestaña **Color de Trazo**, aplica un color **negro**.</li>
+            <li>En la pestaña **Estilo de Trazo**, aumenta el **Grosor** de la línea para que sea muy visible (ej. 5 px).</li>
+            <li>Dibuja un **Círculo** en el centro. Asígnale relleno negro y **elimina el trazo** ("X" en la pestaña Color de Trazo).</li>
+            <li>Dibuja un segundo círculo que sirva de marco, sin relleno y con un trazo grueso, pero en la pestaña **Guiones**, selecciona un patrón punteado.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion03.html">Anterior</a>
+    <a href="sesion05.html">Siguiente</a>
+</nav>
+</body>
+</html>

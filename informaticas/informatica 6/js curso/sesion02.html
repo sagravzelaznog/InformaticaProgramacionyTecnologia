@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Tomando Decisiones - Curso de JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .condition-example {
+            background-color: #e6f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .truth-table th, .truth-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .truth-table th {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .truth-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .interactive-demo {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .interactive-demo input[type="number"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100px;
+        }
+        
+        .interactive-demo button {
+            background-color: #00a86b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+        }
+        
+        .interactive-demo button:hover {
+            background-color: #008c5a;
+        }
+        
+        #resultadoEdad {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li class="active"><a href="sesion02.html">Sesión 2: Tomando Decisiones</a></li>
+                <li><a href="#">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="#">Sesión 4: Listas y Bucles</a></li>
+                <li><a href="#">Sesión 5: Tocando el HTML</a></li>
+                <li><a href="#">Sesión 6: Escuchando al Usuario</a></li>
+                <li><a href="#">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🎯 Sesión 2: Tomando Decisiones (Condicionales)</h1>
+                <p class="subtitle">Aprende a hacer que tu código tome decisiones como un experto</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Entender cómo hacer que los programas tomen decisiones basadas en condiciones usando sentencias condicionales en JavaScript.</p>
+            </section>
+
+            <section class="introduction">
+                <h2>🔍 Comparadores: La base de las decisiones</h2>
+                <p>Antes de tomar decisiones, necesitamos saber comparar valores. En JavaScript usamos operadores de comparación:</p>
+                
+                <table class="truth-table">
+                    <tr>
+                        <th>Operador</th>
+                        <th>Significado</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>==</td>
+                        <td>Igual a (valor)</td>
+                        <td>5 == 5</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>===</td>
+                        <td>Igual en valor y tipo</td>
+                        <td>5 === '5'</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>!=</td>
+                        <td>No igual (valor)</td>
+                        <td>5 != 3</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>!==</td>
+                        <td>No igual en valor o tipo</td>
+                        <td>5 !== '5'</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>Mayor que</td>
+                        <td>10 > 5</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td><</td>
+                        <td>Menor que</td>
+                        <td>10 < 5</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>Mayor o igual que</td>
+                        <td>10 >= 10</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td><=</td>
+                        <td>Menor o igual que</td>
+                        <td>10 <= 5</td>
+                        <td>false</td>
+                    </tr>
+                </table>
+                
+                <div class="tip">
+                    <strong>💡 Buenas prácticas:</strong> Siempre usa <code>===</code> y <code>!==</code> en lugar de <code>==</code> y <code>!=</code> para evitar comportamientos inesperados.
+                </div>
+            </section>
+
+            <section class="conditionals">
+                <h2>🎚️ Estructuras Condicionales</h2>
+                
+                <h3>1. if - La decisión simple</h3>
+                <p>Ejecuta un bloque de código si una condición es verdadera.</p>
+                
+                <div class="Code">
+                    //let edad = 16;
+                    
+                   // if (edad >= 18) {
+                        console.log("¡Puedes votar!");
+                    }
+                </div>
+                
+                <h3>2. if...else - Dos caminos</h3>
+                <p>Ejecuta un bloque si la condición es verdadera y otro si es falsa.</p>
+                
+                <div class="code">
+                    let hora = 14; // 2 PM
+                    
+                    if (hora < 12) {
+                        console.log("Buenos días");
+                    } else {
+                        console.log("Buenas tardes");
+                    }
+                </div>
+                
+                <h3>3. if...else if...else - Múltiples condiciones</h3>
+                <p>Permite evaluar múltiples condiciones en secuencia.</p>
+                
+                <div class="code">
+                    let calificacion = 85;
+                    
+                    if (calificacion >= 90) {
+                        console.log("Excelente: A");
+                    } else if (calificacion >= 80) {
+                        console.log("Muy bien: B");
+                    } else if (calificacion >= 70) {
+                        console.log("Bien: C");
+                    } else if (calificacion >= 60) {
+                        console.log("Suficiente: D");
+                    } else {
+                        console.log("Reprobado: F");
+                    }
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Orden de las condiciones:</strong> Las condiciones se evalúan en orden. Coloca primero las condiciones más específicas.
+                </div>
+                
+                <h3>4. Operador Ternario (?:) - If en una línea</h3>
+                <p>Una forma concisa de escribir condiciones simples.</p>
+                
+                <div class="code">
+                    let edad = 20;
+                    let puedeVotar = (edad >= 18) ? "Puede votar" : "No puede votar";
+                    console.log(puedeVotar); // "Puede votar"
+                </div>
+            </section>
+
+            <section class="interactive-demo">
+                <h2>🎮 Demo Interactivo: El Portero de Discoteca</h2>
+                <p>Vamos a crear un programa que determine si puedes entrar a una discoteca según tu edad.</p>
+                
+                <div>
+                    <label for="edadInput">Ingresa tu edad: </label>
+                    <input type="number" id="edadInput" min="0" max="120" value="18">
+                    <button onclick="verificarEdad()">Verificar</button>
+                </div>
+                
+                <div id="resultadoEdad"></div>
+                
+                <div class="code" style="margin-top: 20px;">
+                    // Código del portero de discoteca
+                    function verificarEdad() {
+                        const edad = parseInt(document.getElementById('edadInput').value);
+                        const resultado = document.getElementById('resultadoEdad');
+                        
+                        if (isNaN(edad)) {
+                            resultado.textContent = "Por favor ingresa una edad válida";
+                            resultado.style.color = "red";
+                            return;
+                        }
+                        
+                        if (edad < 0) {
+                            resultado.textContent = "La edad no puede ser negativa";
+                            resultado.style.color = "red";
+                        } else if (edad < 18) {
+                            resultado.textContent = `Lo siento, solo tienes ${edad} años. Vuelve cuando tengas 18.`;
+                            resultado.style.color = "#d32f2f";
+                        } else if (edad >= 18 && edad < 21) {
+                            resultado.textContent = `¡Bienvenido! Tienes ${edad} años. Puedes entrar, pero no beber alcohol.`;
+                            resultado.style.color = "#1976d2";
+                        } else if (edad >= 21 && edad < 65) {
+                            resultado.textContent = `¡Bienvenido! Disfruta de la fiesta.`;
+                            resultado.style.color = "#2e7d32";
+                        } else if (edad >= 65) {
+                            resultado.textContent = `¡Bienvenido, señor(a)! Tenemos un descuento especial para personas mayores.`;
+                            resultado.style.color = "#7b1fa2";
+                        }
+                    }
+                </div>
+            </section>
+
+            <section class="activity">
+                <h2>🧩 Actividad Práctica</h2>
+                <p>Crea un programa que determine la estación del año según el mes (1-12).</p>
+                
+                <ol>
+                    <li>Crea una variable <code>mes</code> con un número del 1 al 12.</li>
+                    <li>Usa condicionales para determinar la estación del año:</li>
+                    <ul>
+                        <li>Diciembre, Enero, Febrero: Invierno</li>
+                        <li>Marzo, Abril, Mayo: Primavera</li>
+                        <li>Junio, Julio, Agosto: Verano</li>
+                        <li>Septiembre, Octubre, Noviembre: Otoño</li>
+                    </ul>
+                    <li>Muestra el resultado con <code>console.log()</code>.</li>
+                </ol>
+                
+                <button onclick="mostrarSolucion()">Ver solución</button>
+                <div id="solucion" style="display: none; margin-top: 10px;">
+                    <div class="code">
+                        let mes = 5; // Puedes cambiar este valor
+                        let estacion;
+                        
+                        if (mes === 12 || mes === 1 || mes === 2) {
+                            estacion = "Invierno";
+                        } else if (mes >= 3 && mes <= 5) {
+                            estacion = "Primavera";
+                        } else if (mes >= 6 && mes <= 8) {
+                            estacion = "Verano";
+                        } else if (mes >= 9 && mes <= 11) {
+                            estacion = "Otoño";
+                        } else {
+                            estacion = "Mes no válido";
+                        }
+                        
+                        console.log(`El mes ${mes} corresponde a: ${estacion}`);
+                    </div>
+                </div>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre condicionales? Pregúntame lo que necesites. Por ejemplo:</p>
+                <ul>
+                    <li>¿Cuál es la diferencia entre <code>==</code> y <code>===</code>?</li>
+                    <li>¿Cómo anidar múltiples condiciones?</li>
+                    <li>¿Cuándo usar <code>if...else if</code> en lugar de múltiples <code>if</code>?</li>
+                </ul>
+                <div class="chat-input">
+                    <input type="text" id="pregunta" placeholder="Escribe tu pregunta...">
+                    <button onclick="responderPregunta()">Preguntar</button>
+                </div>
+                <div id="respuesta" style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; min-height: 50px;"></div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                <ul>
+                    <li>Los operadores de comparación (<code>===</code>, <code>!==</code>, <code>></code>, <code><</code>, etc.) nos permiten comparar valores.</li>
+                    <li>Las estructuras <code>if</code>, <code>else if</code> y <code>else</code> nos permiten controlar el flujo del programa.</li>
+                    <li>El operador ternario (<code>condición ? valorSiVerdadero : valorSiFalso</code>) es una forma concisa de escribir condiciones simples.</li>
+                    <li>Es importante manejar todos los casos posibles en nuestras condiciones.</li>
+                    <li>Las condiciones se evalúan en orden, por lo que debemos ser cuidadosos con el orden de nuestras condiciones.</li>
+                </ul>
+                
+                <h3>Práctica para la próxima sesión</h3>
+                <p>Crea un programa que determine si un año es bisiesto o no. Un año es bisiesto si:</p>
+                <ol>
+                    <li>Es divisible entre 4, pero no entre 100, o</li>
+                    <li>Es divisible entre 400.</li>
+                </ol>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion01.html" class="button">← Sesión Anterior</a>
+                    <a href="sesion03.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Inicializar el demo al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            verificarEdad(); // Mostrar resultado inicial
+        });
+        
+        // Mostrar/ocultar solución
+        function mostrarSolucion() {
+            const solucion = document.getElementById('solucion');
+            if (solucion.style.display === 'none') {
+                solucion.style.display = 'block';
+            } else {
+                solucion.style.display = 'none';
+            }
+        }
+        
+        // Funcionalidad básica de Dola AI
+        function responderPregunta() {
+            const pregunta = document.getElementById('pregunta').value.toLowerCase();
+            const respuesta = document.getElementById('respuesta');
+            
+            if (pregunta.includes('==') && pregunta.includes('===')) {
+                respuesta.innerHTML = `<strong>Diferencia entre == y ===:</strong><br>
+                <code>==</code> compara solo el valor, mientras que <code>===</code> compara tanto el valor como el tipo de dato.<br><br>
+                <code>5 == '5'</code> es <code>true</code> (mismo valor)<br>
+                <code>5 === '5'</code> es <code>false</code> (mismo valor pero diferente tipo: number vs string)`;
+            } 
+            else if (pregunta.includes('anidar') || pregunta.includes('múltiples condiciones')) {
+                respuesta.innerHTML = `<strong>Anidando condiciones:</strong><br>
+                Puedes anidar condiciones usando <code>if...else if...else</code> o condiciones lógicas (<code>&&</code>, <code>||</code>):<br><br>
+                <code>if (hora < 12) {<br>
+                &nbsp;&nbsp;console.log("Buenos días");<br>
+                } else if (hora < 20) {<br>
+                &nbsp;&nbsp;console.log("Buenas tardes");<br>
+                } else {<br>
+                &nbsp;&nbsp;console.log("Buenas noches");<br>
+                }</code>`;
+            }
+            else if (pregunta.includes('ternario') || pregunta.includes('operador ?')) {
+                respuesta.innerHTML = `<strong>Operador Ternario:</strong><br>
+                Es una forma concisa de escribir una condición <code>if...else</code> en una sola línea:<br><br>
+                <code>// Forma larga<br>
+                let mensaje;<br>
+                if (edad >= 18) {<br>
+                &nbsp;&nbsp;mensaje = "Mayor de edad";<br>
+                } else {<br>
+                &nbsp;&nbsp;mensaje = "Menor de edad";<br>
+                }<br><br>
+                // Con operador ternario<br>
+                let mensaje = (edad >= 18) ? "Mayor de edad" : "Menor de edad";</code>`;
+            }
+            else {
+                const respuestas = [
+                    "¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con condicionales en JavaScript.",
+                    "¿Has probado a usar console.log() para ver el valor de tus variables mientras programas?",
+                    "¿Te gustaría ver un ejemplo práctico de cómo usar condicionales anidadas?",
+                    "Recuerda que puedes combinar múltiples condiciones con los operadores lógicos && (y) y || (o).",
+                    "¿Has revisado que todos tus bloques if/else estén correctamente cerrados con llaves?"
+                ];
+                respuesta.textContent = respuestas[Math.floor(Math.random() * respuestas.length)];
+            }
+            
+            // Limpiar el campo de pregunta
+            document.getElementById('pregunta').value = '';
+        }
+        
+        // Permitir presionar Enter para enviar pregunta
+        document.getElementById('pregunta').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                responderPregunta();
+            }
+        });
+    </script>
+</body>
+</html>

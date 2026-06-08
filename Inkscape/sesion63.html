@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S63: Pruebas de Escalabilidad y Versatilidad</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #8B4513; }
+        .paso { background-color: #fff8e1; border-left: 5px solid #8B4513; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 63: Pruebas de Escalabilidad y Versatilidad</h1>
+
+    <section>
+        <h2>1. Prueba de Escalado Extremo</h2>
+        
+        <p>El valor del diseño vectorial reside en su escalabilidad. Un diseño robusto debe funcionar perfectamente a cualquier tamaño.</p>
+        <div class="paso">
+            <strong>Escala Mínima (Favicon)</strong>
+            <p>Crea un cuadrado de 32x32px (el tamaño de un Favicon). Escala tu logo o elemento clave a este tamaño. Si el detalle se pierde, debes crear una **versión simplificada** (eliminando trazos finos o detalles pequeños) para usos miniatura.</p>
+        </div>
+        <div class="paso">
+            <strong>Escala Máxima (Valla Publicitaria)</strong>
+            <p>Escala tu diseño a un tamaño gigante (ej. 10,000px de ancho). Revisa el diseño. Si utilizaste la extensión **Contorno a Trayecto** en tus líneas, la apariencia se mantendrá perfecta. Si no, los trazos podrían verse desproporcionados o desaparecer si la opción de escala no se aplica correctamente.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Pruebas de Reproducción Monocromática</h2>
+        <p>Un diseño debe funcionar bien incluso cuando no se usan colores. Esto es crucial para la impresión en blanco y negro o en grabados a una tinta.</p>
+        <div class="paso">
+            <strong>Inversión de Color (Prueba de Contraste)</strong>
+            <p>Duplica tu logo y quítale todos los rellenos y degradados. Rellénalo de negro y el fondo de blanco. Luego, invierte la prueba: fondo negro y logo blanco. Si el logo se vuelve ilegible en alguna de las dos pruebas, el diseño necesita ajuste.</p>
+        </div>
+        <div class="paso">
+            <strong>Conversión a Semitonos (Medios Tonos)</strong>
+            <p>Para simular una impresión de bajo costo o serigrafía, convierte tu diseño a semitonos (aunque es un proceso complejo en Inkscape, el test de **Blanco y Negro** es suficiente). El logo debe seguir siendo reconocible.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Prueba de Consistencia Visual y Estilística</h2>
+        <div class="paso">
+            <strong>Consistencia de la Familia</strong>
+            <p>Si diseñaste un set de iconos o una familia de ilustraciones, compáralos uno al lado del otro. ¿El grosor del trazo, el radio de las esquinas y el nivel de detalle son idénticos? Usa el **Alineación y Distribución** para compararlos con precisión.</p>
+        </div>
+        <div class="paso">
+            <strong>Prueba de Flexibilidad</strong>
+            <p>¿El diseño permite ser animado o desagrupado? ¿Podrías cambiar el color de un solo elemento sin afectar a los demás? La flexibilidad es un indicador de la limpieza de la estructura vectorial.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Prueba del "Micro"</h3>
+        <p><strong>Objetivo:</strong> Asegurar la legibilidad mínima de tu logo.</p>
+        <ol>
+            <li>Crea una nueva página de 128x128px.</li>
+            <li>Pega tu logo en esa página. Escálalo para que encaje, pero no más de 32px de ancho.</li>
+            <li>Si el logo se ve como una mancha, identifica el detalle que lo ensucia (ej. una línea demasiado fina) y crea una **versión de reserva** simplificada que elimine ese detalle para el uso en tamaños pequeños.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion62.html">Anterior</a>
+    <a href="sesion64.html">Siguiente</a>
+</nav>
+</body>
+</html>

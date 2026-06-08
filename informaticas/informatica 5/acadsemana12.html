@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 12: Proyecto avanzado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .project {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .deliverable {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .timeline {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 12: Proyecto avanzado</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 45 -->
+        <div id="sesion45" class="session">
+            <h2>Sesión 45: Planificación del proyecto avanzado</h2>
+            <div class="content">
+                <p>En esta sesión definiremos los alcances y requerimientos del proyecto avanzado, que servirá como demostración de todos los conocimientos adquiridos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Definir los requisitos del proyecto</li>
+                        <li>Planificar la estructura del trabajo</li>
+                        <li>Establecer hitos y entregables</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller de Planificación: Definición del Proyecto (60 min)</h4>
+                    <p><strong>Objetivo:</strong> Establecer las bases para el desarrollo exitoso del proyecto de edificio comercial.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Análisis de Requisitos</h5>
+                        <ol>
+                            <li>Forma equipos de 3-4 personas</li>
+                            <li>Analicen los siguientes aspectos del proyecto:
+                                <ul>
+                                    <li>Requisitos del cliente (áreas, capacidad, normativas)</li>
+                                    <li>Restricciones del terreno (dimensiones, orientación, accesos)</li>
+                                    <li>Normativas de construcción locales</li>
+                                </ul>
+                            </li>
+                            <li>Documenten los requisitos clave en un informe de 1-2 páginas</li>
+                        </ol>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Propuesta de Distribución</h5>
+                        <ol>
+                            <li>Realicen bocetos a mano alzada de la distribución propuesta</li>
+                            <li>Incluyan:
+                                <ul>
+                                    <li>Flujos de circulación</li>
+                                    <li>Zonificación de espacios</li>
+                                    <li>Relaciones entre áreas</li>
+                                </ul>
+                            </li>
+                            <li>Presenten su propuesta al grupo (5 minutos por equipo)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h4>Proyecto: Edificio Comercial de Tres Niveles</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Requisitos Técnicos:</h5>
+                            <ul>
+                                <li><strong>Planta Baja (200m²):</strong>
+                                    <ul>
+                                        <li>Área de ventas (80m²)</li>
+                                        <li>Almacén (50m²)</li>
+                                        <li>Recepción (20m²)</li>
+                                        <li>Servicios (2 baños, cuarto de limpieza)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Primer Nivel (180m²):</strong>
+                                    <ul>
+                                        <li>Oficinas abiertas (100m²)</li>
+                                        <li>Sala de juntas (25m²)</li>
+                                        <li>Área de descanso (20m²)</li>
+                                        <li>Baños y servicios</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Segundo Nivel (150m²):</strong>
+                                    <ul>
+                                        <li>Almacenamiento adicional (100m²)</li>
+                                        <li>Área de servicios técnicos (30m²)</li>
+                                        <li>Cuarto de instalaciones</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Instalaciones:</h5>
+                            <ul>
+                                <li>Eléctricas (iluminación, tomas, fuerza)</li>
+                                <li>Sanitarias (agua fría/caliente, drenaje)</li>
+                                <li>Climatización</li>
+                                <li>Datos/Comunicaciones</li>
+                                <li>Protección civil (señalización, extintores)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline">
+                        <h5>Cronograma del Proyecto:</h5>
+                        <ol>
+                            <li><strong>Semana 1:</strong> Planificación y diseño conceptual</li>
+                            <li><strong>Semana 2:</strong> Desarrollo de plantas arquitectónicas</li>
+                            <li><strong>Semana 3:</strong> Detalles constructivos e instalaciones</li>
+                            <li><strong>Semana 4:</strong> Documentación final y presentación</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Informe de requisitos (PDF)</li>
+                                <li>Memoria descriptiva del proyecto</li>
+                                <li>Bocetos conceptuales (escaneados)</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Archivos CAD:</h5>
+                            <ul>
+                                <li>Estructura de capas propuesta (.xls/.pdf)</li>
+                                <li>Plantilla de dibujo (.dwt)</li>
+                                <li>Biblioteca de bloques inicial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Análisis de Requisitos (30 puntos)</strong></p>
+                    <ul>
+                        <li>Completitud del análisis (10pts)</li>
+                        <li>Identificación de restricciones (10pts)</li>
+                        <li>Viabilidad de la propuesta (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Propuesta de Diseño (40 puntos)</strong>
+                    <ul>
+                        <li>Distribución funcional (15pts)</li>
+                        <li>Creatividad e innovación (10pts)</li>
+                        <li>Consideración de normativas (10pts)</li>
+                        <li>Presentación de bocetos (5pts)</li>
+                    </ul>
+
+                    <p><strong>3. Planificación (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura de capas (10pts)</li>
+                        <li>Cronograma realista (10pts)</li>
+                        <li>Organización del equipo (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Utiliza referencias de proyectos similares para inspirarte. Documenta cada decisión de diseño con su justificación. Establece puntos de control semanales para evaluar el progreso. Recuerda que una buena planificación ahorra tiempo en fases posteriores del proyecto.
+            </div>
+        </div>
+
+        <!-- Sesión 46 -->
+        <div id="sesion46" class="session">
+            <h2>Sesión 46: Desarrollo del proyecto - Fase 1</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller de Desarrollo: Estructura Base (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Implementar la estructura base del proyecto aplicando estándares CAD y técnicas avanzadas de dibujo.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Configuración del Espacio de Trabajo</h5>
+                        <ol>
+                            <li>Crea un nuevo archivo basado en la plantilla del proyecto</li>
+                            <li>Configura las unidades de dibujo (métricas, precisión 0.001)</li>
+                            <li>Establece los límites del dibujo según las dimensiones del terreno</li>
+                            <li>Crea y configura las capas según el estándar establecido</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">UNITS</span> - Configurar unidades</p>
+                            <p><span class="command">LIMITS</span> - Establecer límites del dibujo</p>
+                            <p><span class="command">LAYER</span> - Administrar capas</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Trazado de Ejes y Niveles</h5>
+                        <ol>
+                            <li>Dibuja la cuadrícula de ejes estructurales</li>
+                            <li>Agrega cotas de referencia</li>
+                            <li>Configura estilos de cota según estándar</li>
+                            <li>Bloquea la capa de ejes para evitar modificaciones accidentales</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Utiliza referencias externas (XREF) para los ejes estructurales que se repetirán en todas las plantas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Fase 1: Desarrollo de Planta Baja</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Elementos a Incluir:</h5>
+                            <ul>
+                                <li><strong>Muros Exteriores</strong> (30cm de espesor)</li>
+                                <li><strong>Muros Interiores</strong> (15cm de espesor)</li>
+                                <li><strong>Puertas y Ventanas</strong> (usar bloques dinámicos)</li>
+                                <li><strong>Elementos Fijos</strong> (mostradores, estanterías)</li>
+                                <li><strong>Mobiliario Básico</strong> (bloques predefinidos)</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Consideraciones Técnicas:</h5>
+                            <ul>
+                                <li>Ancho mínimo de pasillos: 1.20m</li>
+                                <li>Altura libre mínima: 2.40m</li>
+                                <li>Accesibilidad universal</li>
+                                <li>Salidas de emergencia</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación</strong>
+                            <ul>
+                                <li>Crear capas específicas para cada elemento</li>
+                                <li>Configurar estilos de línea y sombreados</li>
+                                <li>Definir bloques dinámicos para elementos repetitivos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modelado 2D</strong>
+                            <ul>
+                                <li>Trazar muros usando polilíneas con ancho</li>
+                                <li>Insertar vanos para puertas y ventanas</li>
+                                <li>Agregar elementos estructurales (columnas, vigas)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos CAD:</h5>
+                            <ul>
+                                <li>Planta baja completa (.dwg)</li>
+                                <li>Biblioteca de bloques dinámicos</li>
+                                <li>Archivo de estilos de cota</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Capturas de pantalla del proceso</li>
+                                <li>Lista de capas utilizadas</li>
+                                <li>Reporte de problemas encontrados</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Precisión Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Exactitud en dimensiones (15pts)</li>
+                        <li>Cumplimiento de normativas (15pts)</li>
+                        <li>Consistencia en el dibujo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Organización (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura de capas (10pts)</li>
+                        <li>Uso de bloques (10pts)</li>
+                        <li>Documentación (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Calidad del Diseño (30 puntos)</strong>
+                    <ul>
+                        <li>Función y circulación (10pts)</li>
+                        <li>Eficiencia espacial (10pts)</li>
+                        <li>Creatividad en soluciones (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Mantén un registro de cambios y versiones de tu archivo. Usa la herramienta de comparación de dibujos para revisar modificaciones. No olvides hacer copias de seguridad periódicas.
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Configuración inicial</strong>
+                        <ul>
+                            <li>Plantilla de proyecto</li>
+                            <li>Estilos de cota y texto</li>
+                            <li>Capas y colores</li>
+                        </ul>
+                    </li>
+                    <li><strong>Desarrollo de plantas</strong>
+                        <ul>
+                            <li>Plantas paramétricas</li>
+                            <li>Bloques dinámicos para mobiliario</li>
+                            <li>Restricciones geométricas</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <ol>
+                        <li>Configura la plantilla con todos los estándares</li>
+                        <li>Desarrolla la planta baja con mobiliario paramétrico</li>
+                        <li>Implementa restricciones para mantener proporciones</li>
+                    </ol>
+                </div>
+
+                <div class="note">
+                    <strong>Nota:</strong> Mantén una copia de seguridad regular de tu trabajo.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 47 -->
+        <div id="sesion47" class="session">
+            <h2>Sesión 47: Desarrollo del proyecto - Fase 2</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller de Desarrollo: Elevaciones y Detalles (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Desarrollar las elevaciones arquitectónicas y detalles constructivos del proyecto aplicando técnicas avanzadas de dibujo.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Generación de Elevaciones</h5>
+                        <ol>
+                            <li>Configura una nueva presentación para elevaciones</li>
+                            <li>Utiliza la herramienta de proyección para generar elevaciones desde la planta</li>
+                            <li>Organiza las elevaciones en ventanas gráficas independientes</li>
+                            <li>Ajusta escalas y estilos de línea para cada vista</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">VIEWBASE</span> - Crear vistas base</p>
+                            <p><span class="command">VIEWSECTION</span> - Generar secciones</p>
+                            <p><span class="command">VIEWDETAIL</span> - Crear detalles</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Anotación y Acabados</h5>
+                        <ol>
+                            <li>Agrega cotas y etiquetas a las elevaciones</li>
+                            <li>Incorpora materiales y texturas</li>
+                            <li>Define niveles de piso terminado</li>
+                            <li>Incluye notas técnicas relevantes</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Utiliza estilos de anotación escalables para mantener la consistencia en diferentes escalas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Fase 2: Desarrollo de Elevaciones y Detalles</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Elementos a Incluir:</h5>
+                            <ul>
+                                <li><strong>Elevaciones Principales</strong> (Norte, Sur, Este, Oeste)</li>
+                                <li><strong>Secciones Transversales</strong> (2 secciones mínimo)</li>
+                                <li><strong>Detalles Constructivos</strong> (típicos y específicos)</li>
+                                <li><strong>Acabados</strong> (especificación de materiales)</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Consideraciones Técnicas:</h5>
+                            <ul>
+                                <li>Escalas recomendadas: 1:50 para elevaciones, 1:20 para detalles</li>
+                                <li>Niveles de piso terminado claramente marcados</li>
+                                <li>Indicación de materiales y texturas</li>
+                                <li>Coordinación con instalaciones</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación</strong>
+                            <ul>
+                                <li>Configurar estilos de cota para elevaciones</li>
+                                <li>Crear paleta de materiales</li>
+                                <li>Establecer bloques de anotación</li>
+                            </ul>
+                        </li>
+                        <li><strong>Modelado de Elevaciones</strong>
+                            <ul>
+                                <li>Generar proyecciones desde las plantas</li>
+                                <li>Refinar detalles arquitectónicos</li>
+                                <li>Agregar elementos de fachada</li>
+                            </ul>
+                        </li>
+                        <li><strong>Detalles Constructivos</strong>
+                            <ul>
+                                <li>Desarrollar detalles típicos</li>
+                                <li>Incluir anotaciones técnicas</li>
+                                <li>Referenciar a especificaciones</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos CAD:</h5>
+                            <ul>
+                                <li>Archivo de elevaciones (.dwg)</li>
+                                <li>Biblioteca de detalles constructivos</li>
+                                <li>Plantilla de presentación</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Memoria descriptiva de acabados</li>
+                                <li>Listado de materiales</li>
+                                <li>Reporte de coordinación</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en elevaciones (15pts)</li>
+                        <li>Completitud de detalles (15pts)</li>
+                        <li>Coordinación con plantas (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Especificaciones técnicas (10pts)</li>
+                        <li>Anotaciones claras (10pts)</li>
+                        <li>Organización de archivos (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Calidad Gráfica (30 puntos)</strong>
+                    <ul>
+                        <li>Presentación profesional (10pts)</li>
+                        <li>Uso de estilos (10pts)</li>
+                        <li>Consistencia visual (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Mantén un registro de cambios entre versiones de los planos. Utiliza referencias externas (XREFs) para gestionar los diferentes elementos del proyecto. Crea una biblioteca de detalles estándar para agilizar futuros proyectos.
+                </div>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <ol>
+                        <li>Genera las elevaciones principales</li>
+                        <li>Desarrolla detalles constructivos clave</li>
+                        <li>Implementa referencias externas para mantener la consistencia</li>
+                    </ol>
+                </div>
+                </div>
+
+                <div class="warning">
+                    <strong>¡Importante!</strong> Asegúrate de que todas las elevaciones estén correctamente alineadas con las plantas.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 48 -->
+        <div id="sesion48" class="session">
+            <h2>Sesión 48: Presentación y documentación final</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller Final: Preparación de Documentos Profesionales (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Preparar la documentación final del proyecto con estándares profesionales para su presentación y entrega.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Configuración de Layouts Profesionales</h5>
+                        <ol>
+                            <li>Crea un nuevo layout para presentación</li>
+                            <li>Configura el tamaño de página (ISO A1 o ARCH D)</li>
+                            <li>Inserta el cajetín normalizado</li>
+                            <li>Configura ventanas gráficas con escalas apropiadas</li>
+                            <li>Aplica estilos de trazado consistentes</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">PAGESETUP</span> - Configurar página</p>
+                            <p><span class="command">MVIEW</span> - Crear ventanas gráficas</p>
+                            <p><span class="command">VPCLIP</span> - Recortar ventanas</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Generación de Documentos Técnicos</h5>
+                        <ol>
+                            <li>Crea una portada profesional</li>
+                            <li>Desarrolla un índice de planos</li>
+                            <li>Prepara la memoria descriptiva</li>
+                            <li>Elabora especificaciones técnicas</li>
+                            <li>Genera planos en formato PDF</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Utiliza estilos de tabla para mantener consistencia en la documentación.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Fase Final: Documentación y Presentación</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Estructura de Carpetas:</h5>
+                            <ul>
+                                <li><strong>01_DWG/</strong> - Archivos fuente</li>
+                                <li><strong>02_PDF/</strong> - Planos en PDF</li>
+                                <li><strong>03_DOCS/</strong> - Documentación técnica</li>
+                                <li><strong>04_IMAGENES/</strong> - Render y gráficos</li>
+                                <li><strong>05_PRESENTACION/</strong> - Archivos de presentación</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Consideraciones Técnicas:</h5>
+                            <ul>
+                                <li>Resolución mínima 300 DPI para PDF</li>
+                                <li>Peso máximo por archivo: 10MB</li>
+                                <li>Formato de fechas: DD/MM/YYYY</li>
+                                <li>Escalas estándar: 1:50, 1:100, 1:200</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación de Archivos</strong>
+                            <ul>
+                                <li>Purga todos los elementos no utilizados</li>
+                                <li>Verifica referencias externas</li>
+                                <li>Actualiza bloques dinámicos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Generación de PDF</strong>
+                            <ul>
+                                <li>Configura el plotter PDF</li>
+                                <li>Establece capas de trazado</li>
+                                <li>Genera archivos individuales</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación</strong>
+                            <ul>
+                                <li>Prepara memoria descriptiva</li>
+                                <li>Incluye especificaciones técnicas</li>
+                                <li>Prepara presentación ejecutiva</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables Finales:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos Digitales:</h5>
+                            <ul>
+                                <li>Archivos fuente organizados (.dwg)</li>
+                                <li>Planos en PDF debidamente nombrados</li>
+                                <li>Documentación técnica completa</li>
+                                <li>Presentación ejecutiva</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Contenido Mínimo:</h5>
+                            <ul>
+                                <li>Portada y contraportada</li>
+                                <li>Índice general de planos</li>
+                                <li>Memoria descriptiva</li>
+                                <li>Planos técnicos completos</li>
+                                <li>Especificaciones técnicas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Documentación Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Completitud de la documentación (15pts)</li>
+                        <li>Calidad de presentación (15pts)</li>
+                        <li>Organización de archivos (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad de Planos (35 puntos)</strong>
+                    <ul>
+                        <li>Precisión y limpieza (15pts)</li>
+                        <li>Escalas apropiadas (10pts)</li>
+                        <li>Anotaciones claras (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Presentación General (25 puntos)</strong>
+                    <ul>
+                        <li>Profesionalismo (10pts)</li>
+                        <li>Creatividad (10pts)</li>
+                        <li>Cumplimiento de requisitos (5pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea una carpeta de respaldo adicional en la nube. Verifica que todos los archivos se abran correctamente antes de la entrega. Prepara una lista de verificación para asegurar que no falte ningún elemento.
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

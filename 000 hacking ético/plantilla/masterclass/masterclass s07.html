@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 7 - Hacking Ético Forense">
+    <title>Sesión 7: Drill de Precisión Quirúrgica | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge alert">ESTADO: EXTRACCIÓN CRÍTICA EN PROGRESO</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 07: La Evidencia Volátil</h2>
+            <p><strong>Situación:</strong> El equipo táctico acaba de recuperar un dispositivo USB del bolsillo del principal sospechoso antes de que pudiera destruirlo. Tienes información de inteligencia que sugiere que el dispositivo contiene un <em>script</em> destructivo (Bomba Lógica) diseñado para corromper el disco si el sistema operativo intenta montarlo.</p>
+            <p>Tu memoria muscular se pone a prueba nuevamente. Debes realizar una clonación <em>bit a bit</em> a ciegas, asegurando que ni un solo sector original sea tocado por tu <em>kernel</em>. El tiempo es crítico. Ejecuta el procedimiento de clonación que aprendiste en la Sesión 2, pero sin margen de error.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Clonación Bajo Fuego</h2>
+            <p>Abre tu máquina virtual con Kali Linux. Supera estos tres nodos de extracción validando tu progreso.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Intercepción del Dispositivo</h3>
+                    <p>Conecta la unidad USB de prueba. Intercepta su designación en el sistema sin permitir el auto-montaje.</p>
+                    <div class="terminal">
+                        <code># Vigila los mensajes del kernel en tiempo real<br>
+                        dmesg -w<br><br>
+                        # Identifica el bloque de almacenamiento asignado (Ej. sdb)<br>
+                        lsblk -f</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Intercepción</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Extracción Quirúrgica (`dd`)</h3>
+                    <p>Inicia el proceso de clonación a bajo nivel hacia tu bóveda de evidencia segura creada en sesiones anteriores.</p>
+                    <div class="terminal">
+                        <code>sudo dd if=/dev/sdX of=~/DFIR/Casos/Caso_003/Evidencia/usb_critico.dd bs=4M status=progress</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Clonación</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Validación de Inmutabilidad (Bloqueo de Escritura)</h3>
+                    <p>Monta la imagen clonada (jamás el original) aplicando el flag de solo lectura para asegurar la cadena de custodia.</p>
+                    <div class="terminal">
+                        <code>sudo mkdir -p /mnt/clon_critico<br>
+                        sudo mount -o ro,loop ~/DFIR/Casos/Caso_003/Evidencia/usb_critico.dd /mnt/clon_critico<br>
+                        # Intenta comprometer tu propio entorno para verificar el bloqueo<br>
+                        sudo touch /mnt/clon_critico/test.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Inmutabilidad</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Extracción Exitosa!</h3>
+                <p>El error "Read-only file system" acaba de salvar tu peritaje. Has clonado exitosamente un dispositivo crítico mediante memoria muscular pura. La integridad del bit original está asegurada.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 7. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 27: Ciclos y Bucles</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 27</h1>
+            <h2>Ciclos y Bucles: El Poder de la Repetición</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Ley del Mínimo Esfuerzo</h3>
+            <p><strong>Objetivo:</strong> Comprender que en programación, si estás copiando y pegando el mismo código muchas veces, lo estás haciendo mal.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🔄 El Castigo de Bart Simpson</h4>
+                <p>Imagina que tienes que escribir 100 veces "No debo desperdiciar tiza".</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.2rem;">✍️ A Mano</span>
+                        <p style="font-size: 0.8rem;">Escribir la línea 1.</p>
+                        <p style="font-size: 0.8rem;">Escribir la línea 2.</p>
+                        <p style="font-size: 0.8rem;">...</p>
+                        <p style="font-size: 0.8rem;">Escribir la línea 100.</p>
+                        <p style="font-size: 0.7rem; font-weight: bold;">(Te tardas horas)</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.2rem;">🤖 Con Ciclo</span>
+                        <p style="font-family: 'Fira Code', monospace; font-size: 0.8rem;">
+                            Repetir 100 veces {<br>
+                            &nbsp;&nbsp;Escribir "No debo..."<br>
+                            }
+                        </p>
+                        <p style="font-size: 0.7rem; font-weight: bold;">(Tardas 1 segundo)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Los Dos Grandes Ciclos</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #6b46c1; border-bottom: 2px solid #6b46c1;">🔢 El Ciclo FOR (Para)</h4>
+                    <p><strong>Úsalo cuando:</strong> Sabes exactamente cuántas veces vas a repetir algo.</p>
+                    <ul>
+                        <li>"Haz 10 lagartijas."</li>
+                        <li>"Imprime las 50 páginas."</li>
+                    </ul>
+                    <div style="background: #2d3748; color: #e9d8fd; padding: 5px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.7rem;">
+                        for (i=1; i<=10; i++)
+                    </div>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #d69e2e; border-bottom: 2px solid #d69e2e;">⏳ El Ciclo WHILE (Mientras)</h4>
+                    <p><strong>Úsalo cuando:</strong> NO sabes cuántas veces, pero sabes cuándo parar.</p>
+                    <ul>
+                        <li>"Corre MIENTRAS no estés cansado."</li>
+                        <li>"Juega HASTA QUE pierdas tus vidas."</li>
+                    </ul>
+                    <div style="background: #2d3748; color: #fefcbf; padding: 5px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.7rem;">
+                        while (vidas > 0)
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🎡 La Rueda de la Repetición</h4>
+                <p>Visualizando cómo funciona un ciclo por dentro.</p>
+                
+                <div style="display: flex; justify-content: center; margin-top: 20px;">
+                    <div style="position: relative; width: 200px; height: 150px;">
+                        
+                        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: #6b46c1; color: white; padding: 10px; border-radius: 5px; z-index: 2;">
+                            Imprimir "Hola"
+                        </div>
+
+                        <svg width="200" height="150" style="position: absolute; top: 0; left: 0;">
+                            <path d="M 100 40 L 100 80 Q 100 120 160 120 T 160 20 Q 100 20 100 40" 
+                                  stroke="#9f7aea" stroke-width="4" fill="transparent" stroke-dasharray="10 5" 
+                                  style="animation: dash 2s linear infinite;" />
+                        </svg>
+
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: #d69e2e; color: white; padding: 5px; border-radius: 20px; font-size: 0.7rem; z-index: 2;">
+                            ¿Falta?
+                        </div>
+                    </div>
+                </div>
+                
+                <style>
+                    @keyframes dash {
+                        to { stroke-dashoffset: -30; }
+                    }
+                </style>
+                <p style="text-align: center; font-size: 0.8rem; margin-top: 10px;">La computadora se queda atrapada aquí hasta que la condición sea Falsa.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. El Peligro del Infinito</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>El Loop Infinito</h5>
+                    <p>¿Qué pasa si le dices a la computadora: "Mientras 1 sea igual a 1, saluda"?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Consecuencia</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>💥 Se congela (Crash).</strong> Como 1 siempre es igual a 1, nunca para. Se llena la memoria y el programa se cierra. (El error clásico del novato).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Reto Matemático</h5>
+                    <p>¿Cómo harías la Tabla del 7 con un ciclo?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Algoritmo</button>
+                    <div id="ans2" class="answer hidden">
+                        <p style="font-family: 'Fira Code', monospace; font-size: 0.8rem;">
+                            FOR (numero = 1 HASTA 10) {<br>
+                            &nbsp;&nbsp;resultado = 7 * numero<br>
+                            &nbsp;&nbsp;Imprimir resultado<br>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🤖 <strong>Misión del Día:</strong> Escribe en tu cuaderno: ¿Qué ciclo usarías para comer cereal? (Pista: Comes MIENTRAS haya leche en el plato).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 27 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

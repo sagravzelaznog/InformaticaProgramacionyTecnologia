@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 18: Direccionamiento IP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 18</h1>
+            <h2>Direccionamiento IP: La Identidad en la Red</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El DNI de Internet</h3>
+            <p><strong>Objetivo:</strong> Entender que cada dispositivo conectado necesita un identificador único e irrepetible.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>📬 ¿Cómo sabe el cartero dónde vives?</h4>
+                <p>Porque tienes una dirección (Calle, Número, CP). En Internet es igual.</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #2b6cb0; font-size: 1.5rem;">MAC Address</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Física (Hardware)</p>
+                        <p style="font-size: 0.7rem;">Como tu Huella Digital. Viene de fábrica y no cambia.</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #2c5282; font-size: 1.5rem;">IP Address</span>
+                        <p style="font-size: 0.8rem; font-weight: bold;">Lógica (Software)</p>
+                        <p style="font-size: 0.7rem;">Como tu Dirección Postal. Cambia si te mudas (te conectas a otro WiFi).</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"Sin IP, eres invisible. No puedes enviar ni recibir nada."</p>
+            </div>
+        </section>
+        
+         
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía de una Dirección</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2b6cb0; border-bottom: 2px solid #2b6cb0;">📟 IPv4 (El Clásico)</h4>
+                    <p>4 números separados por puntos. (32 bits).</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; border-radius: 4px; text-align: center; margin: 10px 0; font-weight: bold;">192.168.1.1</div>
+                    <ul>
+                        <li><strong>Problema:</strong> Se acabaron. Solo hay 4 mil millones.</li>
+                        <li><strong>Estado:</strong> Todavía se usa en casi todo.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">🚀 IPv6 (El Futuro)</h4>
+                    <p>Letras y números (Hexadecimal). (128 bits).</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; border-radius: 4px; text-align: center; margin: 10px 0; font-size: 0.7rem;">2001:0db8:85a3:0000:0000...</div>
+                    <ul>
+                        <li><strong>Solución:</strong> Infinitas direcciones (para cada átomo de la tierra).</li>
+                        <li><strong>Estado:</strong> Implementación lenta.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🏠 IP Privada vs 🌍 IP Pública</h4>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 10px;">
+                    <div style="text-align: center; flex: 1;">
+                        <div style="font-size: 2rem;">📱💻📺</div>
+                        <p style="font-weight: bold; color: #2b6cb0;">Red LAN (Casa)</p>
+                        <p style="font-size: 0.7rem; background: #bee3f8; padding: 2px 5px; border-radius: 4px; display: inline-block;">192.168.1.X</p>
+                    </div>
+
+                    <div style="text-align: center; width: 100px; position: relative;">
+                        <div style="width: 100%; height: 2px; background: #cbd5e1; position: absolute; top: 50%; z-index: 0;"></div>
+                        <div style="background: #2d3748; color: white; padding: 10px; border-radius: 8px; position: relative; z-index: 1;">
+                            ROUTER (NAT)
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; flex: 1;">
+                        <div style="font-size: 2rem;">☁️🌎</div>
+                        <p style="font-weight: bold; color: #e53e3e;">Internet (WAN)</p>
+                        <p style="font-size: 0.7rem; background: #fed7d7; padding: 2px 5px; border-radius: 4px; display: inline-block;">200.56.89.12</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.8rem; color: #718096; margin-top: 10px; text-align: center;">*El Router traduce tus IPs privadas (muchas) a una sola IP pública.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Hacker Mode: La Terminal</h3>
+            <p>Vamos a usar la consola de comandos (CMD) para ver nuestra identidad.</p>
+            
+            <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; margin: 20px 0; font-family: 'Fira Code', monospace; color: #00ff00; font-size: 0.9rem; border: 1px solid #444;">
+                <div style="border-bottom: 1px solid #333; margin-bottom: 10px; padding-bottom: 5px; color: #ccc;">Simbolo del sistema</div>
+                
+                <p>C:\Users\Alumno> <span style="color: white;">ipconfig</span></p>
+                <p style="color: #ccc; margin-left: 10px;">
+                    Dirección IPv4. . . . . . . . . . . . . : <span style="color: #ffff00;">192.168.1.15</span><br>
+                    Máscara de subred . . . . . . . . . . . : 255.255.255.0<br>
+                    Puerta de enlace predeterminada . . . . : 192.168.1.1
+                </p>
+                <br>
+                <p>C:\Users\Alumno> <span style="color: white;">ping google.com</span></p>
+                <p style="color: #ccc; margin-left: 10px;">
+                    Haciendo ping a google.com [142.250.78.14] con 32 bytes de datos:<br>
+                    Respuesta desde 142.250.78.14: bytes=32 tiempo=14ms TTL=116<br>
+                    Respuesta desde 142.250.78.14: bytes=32 tiempo=15ms TTL=116
+                </p>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🕵️ <strong>Misión del Día:</strong> Abre el CMD en tu computadora (Windows+R -> cmd) y escribe <code>ipconfig</code>. Anota tu dirección IPv4.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 18 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

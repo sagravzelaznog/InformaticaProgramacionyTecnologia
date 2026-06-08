@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 E9: Protocolos de la Capa de Transporte (TCP y UDP)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 3, Sesión 9: TCP vs. UDP 🚦</h1>
+        <p class="subtitle">La Capa de Transporte: Confiabilidad vs. Velocidad</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Función de la Capa de Transporte (Capa 4)</h2>
+            <p>La Capa de Transporte es responsable de la **comunicación de extremo a extremo**. Define cómo se segmentan los datos y cómo se reensamblan en el destino. En esta capa operan los dos protocolos fundamentales de Internet: TCP y UDP.</p>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. TCP (Transmission Control Protocol): El Confiable</h2>
+            <p>TCP es un protocolo **orientado a la conexión** y **confiable**. Antes de enviar cualquier dato, establece una sesión asegurándose de que el destinatario esté listo. Si un segmento se pierde, se retransmite.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Características</h3>
+                    <ul>
+                        <li>**Conexión:** Establece el **Three-Way Handshake** (apretón de manos de tres vías).</li>
+                        <li>**Confianza:** Garantiza la entrega de datos y la ordenación correcta.</li>
+                        <li>**Control de Flujo:** Asegura que el emisor no sature al receptor.</li>
+                        <li>**Uso Típico:** Navegación Web (**HTTP/HTTPS**), Correo Electrónico (**SMTP, POP3, IMAP**), Transferencia de Archivos (**FTP**).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>El Three-Way Handshake</h3>
+                    <p class="highlight">Es el proceso de establecimiento de conexión: 1. **SYN** (Sincronizar) enviado; 2. **SYN-ACK** (Sincronizar-Aceptar) recibido; 3. **ACK** (Aceptar) enviado. Solo después de esto, los datos viajan.</p>
+                    [Image of TCP three-way handshake diagram]
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>3. UDP (User Datagram Protocol): El Rápido</h2>
+            <p>UDP es un protocolo **sin conexión** y **no confiable** (best-effort). Simplemente envía los datos (Datagramas) sin verificar si el receptor los recibió. Es mucho más rápido que TCP, ya que no tiene el overhead de la gestión de errores y conexiones.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Características</h3>
+                    <ul>
+                        <li>**Conexión:** No establece conexión previa (no hay Handshake).</li>
+                        <li>**Confianza:** No garantiza la entrega ni el orden.</li>
+                        <li>**Velocidad:** Es ideal para aplicaciones sensibles al tiempo.</li>
+                        <li>**Uso Típico:** Transmisión de Video/Voz en Tiempo Real (**VoIP**), Videojuegos Online, Consultas de Dominio (**DNS**), SNMP.</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+                    [Image of UDP datagram structure]
+                    <figcaption>UDP tiene un encabezado simple para mayor velocidad.</figcaption>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>Práctica con Puertos: El Punto Final de la Comunicación</h2>
+            <p>Tanto TCP como UDP usan **Puertos** (números del 0 al 65535) para identificar el proceso o aplicación específica en el host que debe recibir el dato. El puerto es esencial para que un paquete HTTP no termine en tu cliente de correo.</p>
+            
+            <p><strong>Tarea Práctica (Memorización de Puertos):</strong></p>
+            <ol>
+                <li>¿Qué puerto usa el protocolo de navegación web segura **HTTPS**?</li>
+                <li>¿Qué puerto usa el protocolo de transferencia de archivos **FTP** (control)?</li>
+                <li>¿Qué puerto usa el protocolo de resolución de nombres **DNS**?</li>
+            </ol>
+            <button id="portQuizBtn">Revisar Puertos Comunes</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S3 E9</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion08.html" class="nav-button">Anterior</a>
+        <a href="sesion10.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCAD Avanzado: Capas y Bloques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        body {
+            color: var(--dark-text);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"></path></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        main {
+            padding-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-bg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        h2 i {
+            color: var(--accent-color);
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            margin: 1.75rem 0 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h4 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Code & Commands */
+        code, .command {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f5f7fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #c7254e;
+            font-size: 0.9em;
+            border: 1px solid #e1e1e1;
+            white-space: nowrap;
+        }
+        
+        .command {
+            display: inline-block;
+            margin: 0.25rem 0;
+            color: var(--dark-text);
+            background: #f0f4f8;
+            border-left: 3px solid var(--accent-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+            white-space: pre-wrap;
+            width: 100%;
+        }
+        
+        .command-block {
+            margin: 0.5rem 0;
+        }
+        
+        /* Activity Sections */
+        .activity {
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .activity h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity h3 i {
+            font-size: 1.2em;
+        }
+        
+        .steps {
+            margin: 1.25rem 0 1.25rem 1.5rem;
+        }
+        
+        .steps li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .steps li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Details/Summary */
+        details {
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        summary {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        summary:hover {
+            background: var(--accent-color);
+        }
+        
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+        
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .solution {
+            background: white;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Command Badges */
+        .command-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.5rem 0.25rem 0.5rem 0;
+            font-weight: 600;
+        }
+        
+        .command-badge i {
+            margin-right: 0.5rem;
+            font-size: 0.9em;
+        }
+        
+        .layer-badge {
+            background: #8e44ad;
+        }
+        
+        .block-badge {
+            background: #16a085;
+        }
+        
+        .tip {
+            background: #e8f4fc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            th, td {
+                min-width: 150px;
+            }
+            
+            .command {
+                white-space: pre-wrap;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: white !important;
+                color: black !important;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #eee;
+                page-break-inside: avoid;
+            }
+            
+            details {
+                page-break-inside: avoid;
+            }
+            
+            details[open] {
+                break-inside: avoid;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--light-text);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+        
+        .tab.active {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-layer-group"></i> Organización Profesional en AutoCAD</h1>
+            <p class="subtitle">Domina el uso de Capas (LAYERS) y Bloques (BLOCKS) para dibujos profesionales</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+            <p>El uso efectivo de <strong>CAPAS (LAYERS)</strong> y <strong>BLOQUES (BLOCKS)</strong> es fundamental para la gestión de proyectos, la estandarización y la eficiencia en AutoCAD. Este documento te guiará a través de conceptos clave y ejercicios prácticos.</p>
+        </section>
+
+        <!-- Sección de Capas -->
+        <section class="card" id="capas">
+            <h2><i class="fas fa-layer-group"></i> I. Comando CAPAS (LAYER)</h2>
+            <p>Las capas actúan como acetatos transparentes donde se agrupan los objetos con características (color, tipo de línea, grosor) y funciones similares.</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="gestion-capas">Gestión de Capas</div>
+                <div class="tab" data-tab="ejemplos-capas">Ejemplos Prácticos</div>
+            </div>
+            
+            <div class="tab-content active" id="gestion-capas">
+                <h3><i class="fas fa-cog"></i> A. Gestión de Capas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Comando/Acción</th>
+                            <th>Utilidad Clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Administrador</strong></td>
+                            <td><code>CAPAS</code> (LA o LAYER)</td>
+                            <td>Abrir la paleta para crear, renombrar y configurar capas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capa Actual</strong></td>
+                            <td>Establecer una capa como "Actual" o "Corriente".</td>
+                            <td>Todo objeto nuevo se dibuja automáticamente en esa capa.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Propiedades</strong></td>
+                            <td>Color, Tipo de Línea, Grosor (Lineweight).</td>
+                            <td>Controlar la apariencia gráfica y la salida de impresión.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="ejemplos-capas">
+                <h3><i class="fas fa-clipboard-list"></i> B. Ejemplos Prácticos de Capas</h3>
+                
+                <div class="activity">
+                    <h4><i class="fas fa-magic"></i> 1. Crear Estándar</h4>
+                    <p><strong>Descripción:</strong> Crea las capas básicas para un plano arquitectónico.</p>
+                    <ol class="steps">
+                        <li>Abre el Administrador (<code>LA</code>).</li>
+                        <li>Crea 3 Capas Nuevas: Muros, Mobiliario y Ejes.</li>
+                        <li>Asigna colores: Muros (Magenta), Mobiliario (Cian), Ejes (Rojo).</li>
+                        <li>Asigna tipos de línea: Ejes debe usar un tipo de línea discontinua (Ej: CENTER o DASHED).</li>
+                    </ol>
+                </div>
+                
+                <div class="activity">
+                    <h4><i class="fas fa-eye"></i> 2. Control Visual</h4>
+                    <p><strong>Descripción:</strong> Congela, Descongela y Bloquea capas para facilitar la edición.</p>
+                    <ol class="steps">
+                        <li>Dibuja un cuadrado en Muros y un círculo en Mobiliario.</li>
+                        <li>Establece Muros como capa actual.</li>
+                        <li>Haz clic en el icono de Bloquear (candado) en Mobiliario. Intenta seleccionar el círculo (no se puede editar).</li>
+                        <li>Haz clic en el icono de Congelar (sol/copo de nieve) en Mobiliario. El círculo desaparece del dibujo.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Bloques -->
+        <section class="card" id="bloques">
+            <h2><i class="fas fa-cube"></i> II. Comando BLOQUES (BLOCK)</h2>
+            <p>Los bloques son colecciones de objetos que se combinan en un único objeto nombrado. Son esenciales para reutilizar elementos (muebles, ventanas, símbolos) y reducir el tamaño del archivo.</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="conceptos-bloques">Conceptos Clave</div>
+                <div class="tab" data-tab="ejemplos-bloques">Ejemplos Prácticos</div>
+            </div>
+            
+            <div class="tab-content active" id="conceptos-bloques">
+                <h3><i class="fas fa-cog"></i> A. Creación e Inserción</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Comando/Acción</th>
+                            <th>Utilidad Clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Crear Bloque</strong></td>
+                            <td><code>BLOQUE</code> (B o BLOCK)</td>
+                            <td>Define un conjunto de objetos como una entidad única, nombrando el Bloque.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Insertar Bloque</strong></td>
+                            <td><code>INSERTAR</code> (I o INSERT)</td>
+                            <td>Coloca una copia del bloque definido en el dibujo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Punto Base</strong></td>
+                            <td>Punto de referencia al crear/insertar</td>
+                            <td>Asegura que el bloque se inserte de manera predecible.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="ejemplos-bloques">
+                <h3><i class="fas fa-clipboard-list"></i> B. Ejemplos Prácticos de Bloques</h3>
+                
+                <div class="activity">
+                    <h4><i class="fas fa-chair"></i> 1. Bloque de Silla</h4>
+                    <p><strong>Descripción:</strong> Crea un bloque a partir de la geometría de una silla.</p>
+                    <ol class="steps">
+                        <li>Dibuja la geometría simple de una silla.</li>
+                        <li>Activa <code>BLOQUE</code> (B).</li>
+                        <li>Nombre: <code>Silla_Comedor</code>.</li>
+                        <li>Punto Base: La esquina posterior izquierda de la silla.</li>
+                        <li>Selecciona los objetos y Acepta.</li>
+                    </ol>
+                </div>
+                
+                <div class="activity">
+                    <h4><i class="fas fa-copy"></i> 2. Inserción Múltiple</h4>
+                    <p><strong>Descripción:</strong> Inserta el bloque de la silla 4 veces en una mesa.</p>
+                    <ol class="steps">
+                        <li>Dibuja la geometría simple de una mesa.</li>
+                        <li>Activa <code>INSERTAR</code> (I).</li>
+                        <li>Selecciona el bloque <code>Silla_Comedor</code>.</li>
+                        <li>Inserta la primera silla.</li>
+                        <li>Usa el comando <code>COPIAR</code> y la opción <code>Girar</code> o <code>MIRROR</code> (espejo) para colocar las 3 sillas restantes alrededor de la mesa.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades Integradas -->
+        <section class="card" id="actividades">
+            <h2><i class="fas fa-tasks"></i> III. Actividades Sugeridas (Integración de Capas y Bloques)</h2>
+            <p>Estas actividades requieren que uses los comandos de Capas y Bloques de manera coordinada.</p>
+            
+            <div class="activity">
+                <h3><i class="fas fa-building"></i> Actividad 1: La Oficina Estándar 🏢</h3>
+                <p><strong>Objetivo:</strong> Dibujar una pequeña oficina, garantizando que el mobiliario y la estructura estén en capas separadas para control de impresión.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Configuración de Capas:</strong>
+                        <ul class="steps">
+                            <li>Crea la capa <code>_Estructura</code> (Color Rojo, Grosor 0.40 mm).</li>
+                            <li>Crea la capa <code>_Mobiliario</code> (Color Azul, Grosor 0.20 mm).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Dibujar la Estructura:</strong>
+                        <ul class="steps">
+                            <li>Establece <code>_Estructura</code> como capa actual.</li>
+                            <li>Dibuja el contorno de un muro de 10×10 unidades (ej: con el comando <code>LINEA</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Crear el Bloque:</strong>
+                        <ul class="steps">
+                            <li>Dibuja un Escritorio simple (rectángulo de 4×2 unidades).</li>
+                            <li>Crea un Bloque llamado <code>Escritorio_Simple</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Insertar y Organizar:</strong>
+                        <ul class="steps">
+                            <li>Establece <code>_Mobiliario</code> como capa actual.</li>
+                            <li>Inserta el bloque <code>Escritorio_Simple</code> dentro de la oficina.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Prueba de Control:</strong>
+                        <ul class="steps">
+                            <li>Ve al Administrador de Capas.</li>
+                            <li>Apaga la luz (Turn Off) de la capa <code>_Mobiliario</code>. El escritorio debe desaparecer, quedando solo el muro.</li>
+                            <li>Vuelve a encender la luz.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <details>
+                    <summary><strong>Ver Solución (Concepto Clave)</strong></summary>
+                    <div class="solution">
+                        <p>El éxito de este ejercicio radica en que la geometría original del escritorio se dibujó en la capa 0. Sin embargo, al insertar el bloque, este toma las propiedades de la capa <code>_Mobiliario</code> que estaba actual. Si el bloque se hubiera dibujado en la capa <code>_Estructura</code> y luego se insertara en <code>_Mobiliario</code>, el bloque mantendría las propiedades de <code>_Estructura</code>, lo cual no sería deseable. La práctica estándar es dibujar la geometría interna del Bloque en la <strong>CAPA 0</strong>.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="activity">
+                <h3><i class="fas fa-sync-alt"></i> Actividad 2: Reemplazo Rápido de Símbolos 🔄</h3>
+                <p><strong>Objetivo:</strong> Usar bloques para demostrar la potencia de la modificación en un solo paso.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Crear Bloque 1 (Símbolo A):</strong>
+                        <ul class="steps">
+                            <li>Dibuja un Círculo (radio 1) en la Capa 0.</li>
+                            <li>Crea un bloque llamado <code>VALVULA</code> (Punto base en el centro).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Insertar Múltiple:</strong>
+                        <ul class="steps">
+                            <li>Inserta el bloque <code>VALVULA</code> cinco veces en lugares diferentes de tu dibujo.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modificación Global:</strong>
+                        <ul class="steps">
+                            <li>Activa el comando <code>EDITARBLOQUE</code> (BEDIT).</li>
+                            <li>Selecciona el bloque <code>VALVULA</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cambio de Símbolo:</strong>
+                        <ul class="steps">
+                            <li>Borra el círculo que define la <code>VALVULA</code>.</li>
+                            <li>Dibuja un Cuadrado de 2×2 unidades en su lugar (centrado en el punto base).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Guardar y Ver:</strong>
+                        <ul class="steps">
+                            <li>Haz clic en el botón <strong>GUARDAR CAMBIOS DE BLOQUE</strong> y cierra el Editor de Bloques.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <details>
+                    <summary><strong>Ver Solución (Resultado)</strong></summary>
+                    <div class="solution">
+                        <p>Todas las cinco inserciones de <code>VALVULA</code> que originalmente eran Círculos, ahora se habrán actualizado automáticamente para mostrar un Cuadrado. Esto demuestra la principal ventaja de usar bloques para elementos repetitivos: <strong>la capacidad de actualizar múltiples instancias con un solo cambio</strong>.</p>
+                        
+                        <div class="tip">
+                            <div class="tip-title"><i class="fas fa-lightbulb"></i> Consejo Profesional</div>
+                            <p>Esta técnica es extremadamente útil en planos de ingeniería y arquitectura, donde elementos como ventanas, puertas o símbolos eléctricos pueden necesitar ser actualizados en todo el dibujo de manera consistente.</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2><i class="fas fa-lightbulb"></i> Consejos Adicionales</h2>
+            <ul class="steps">
+                <li>Usa nombres descriptivos para capas y bloques (ej: <code>Muros_Exteriores</code>, <code>Mueble_Oficina_01</code>).</li>
+                <li>Establece un estándar de nombres antes de comenzar un proyecto grande.</li>
+                <li>Utiliza la opción <code>EXPLOTAR</code> con moderación, ya que rompe los bloques en sus componentes individuales.</li>
+                <li>Usa <code>ATTSYNC</code> si trabajas con bloques con atributos que necesitan actualizarse.</li>
+                <li>Guarda bloques comunes en archivos separados (<code>WBLOCK</code>) para usarlos en otros proyectos.</li>
+                <li>Usa <code>PURGE</code> periódicamente para eliminar bloques y capas no utilizados y reducir el tamaño del archivo.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© JMGV-PTEL 2025 - Ejercicios de AutoCAD - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Añadir animación de carga suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de aparición de las tarjetas
+            const cards = document.querySelectorAll('.card, .activity');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.animation = 'fadeIn 0.5s ease-out forwards';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                }, 0);
+            });
+            
+            // Funcionalidad de pestañas
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover clase active de todas las pestañas y contenidos
+                    const tabGroup = this.closest('.tabs');
+                    const tabContents = tabGroup.nextElementSibling.parentElement.querySelectorAll('.tab-content');
+                    
+                    tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Agregar clase active a la pestaña y contenido seleccionados
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Mejorar la experiencia de los detalles/desplegables
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    if (this.open) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+        });
+        
+        // Mejorar la impresión
+        window.onbeforeprint = function() {
+            // Abrir todos los detalles antes de imprimir
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+            
+            // Activar todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'block';
+            });
+        };
+    </script>
+</body>
+</html>

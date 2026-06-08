@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion01: Entorno de Laboratorio</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio Cero: El Sandbox Forense</h1>
+            <p class="intro-text">Un investigador digital no contamina su escena del crimen. Antes de ejecutar nuestro primer comando de Linux, crearemos un entorno hermético usando VirtualBox. Esto te permite experimentar sin miedo a dañar tu sistema operativo principal.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Instalación del Hipervisor</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Descarga e instala VirtualBox desde su sitio oficial. Es un software de virtualización gratuito y robusto.</p>
+                    <div class="code-encapsulated">
+                        <pre><code>https://www.virtualbox.org/wiki/Downloads</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Adquisición de la Imagen (Kali Linux)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Necesitamos el sistema operativo. Para forense, utilizaremos una imagen preconstruida de Kali Linux para VirtualBox. Esto ahorra horas de configuración.</p>
+                    <div class="code-encapsulated">
+                        <pre><code>https://www.kali.org/get-kali/#kali-virtual-machines</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Verificación de Integridad (Opcional pero recomendado)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En el análisis forense, nunca confiamos ciegamente en un archivo descargado. Comparamos su firma SHA256 con la oficial. Si usas Windows en tu máquina host, puedes usar PowerShell:</p>
+                    <div class="code-encapsulated">
+                        <pre><code>Get-FileHash C:\Ruta\A\Tu\Descarga\kali-linux.7z -Algorithm SHA256</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #01. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

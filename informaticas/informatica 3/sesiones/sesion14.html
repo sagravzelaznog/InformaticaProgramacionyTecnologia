@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 14: Optimización de Macros - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 14: Optimización de Macros</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender técnicas avanzadas para optimizar el
+                    rendimiento de las macros y crear código más eficiente.</p>
+            </header>
+
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>La optimización de macros es esencial para mejorar el rendimiento, especialmente cuando se
+                        trabaja con grandes volúmenes de datos. En esta sesión, exploraremos técnicas para hacer que tus
+                        macros sean más rápidas y eficientes.</p>
+
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-tachometer-alt"></i> Contenido</h2>
+
+                    <h3><i class="fas fa-wrench"></i> 1. Técnicas de Optimización</h3>
+                    <p>Varias estrategias pueden mejorar significativamente el rendimiento de tus macros:</p>
+                    <ul>
+                        <li><strong>Desactivar actualización de pantalla</strong>: Evita que Excel actualice la pantalla
+                            mientras se ejecuta el código.</li>
+                        <li><strong>Desactivar cálculos automáticos</strong>: Previene que Excel recalcule las fórmulas
+                            durante la ejecución.</li>
+                        <li><strong>Manejo eficiente de objetos</strong>: Reduce el acceso a objetos de Excel.</li>
+                        <li><strong>Uso de arreglos</strong>: Procesa datos en memoria en lugar de celda por celda.</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <pre><code>Sub OptimizarMacro()
+    ' Desactivar actualización de pantalla
+    Application.ScreenUpdating = False
+    ' Desactivar cálculos automáticos
+    Application.Calculation = xlCalculationManual
+    ' Desactivar eventos
+    Application.EnableEvents = False
+    
+    ' Código de la macro aquí
+    ' ...
+    
+    ' Restaurar configuración
+    Application.ScreenUpdating = True
+    Application.Calculation = xlCalculationAutomatic
+    Application.EnableEvents = True
+End Sub</code></pre>
+                    </div>
+
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-layer-group"></i> 2. Uso de Arreglos para Procesamiento Rápido</h3>
+                    <p>El procesamiento de datos mediante arreglos puede ser significativamente más rápido que trabajar
+                        celda por celda.</p>
+
+                    <div class="code-block">
+                        <pre><code>Sub ProcesarConArreglos()
+    Dim datos() As Variant
+    Dim i As Long, filas As Long
+    
+    ' Leer rango a un arreglo
+    datos = Range("A1:B10000").Value
+    
+    ' Procesar datos en memoria
+    For i = 1 To UBound(datos, 1)
+        If datos(i, 1) > 100 Then
+            datos(i, 2) = "Alto"
+        Else
+            datos(i, 2) = "Bajo"
+        End If
+    Next i
+    
+    ' Escribir resultados de vuelta a la hoja
+    Range("A1:B10000").Value = datos
+End Sub</code></pre>
+                    </div>
+
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-sync-alt"></i> 3. Optimización de Bucles</h3>
+                    <p>Los bucles pueden ser costosos en términos de rendimiento. Aquí hay algunas formas de
+                        optimizarlos:</p>
+
+                    <div class="code-block">
+                        <pre><code>Sub OptimizarBucles()
+    Dim i As Long, ultimaFila As Long
+    
+    ' Encontrar la última fila con datos de manera eficiente
+    ultimaFila = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    ' Usar For...Next en lugar de For Each para rangos grandes
+    For i = 1 To ultimaFila
+        ' Procesar cada celda
+        If Cells(i, 1).Value > 100 Then
+            Cells(i, 2).Value = "Alto"
+        End If
+    Next i
+End Sub</code></pre>
+                    </div>
+
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <p>Vamos a optimizar una macro que procesa datos de ventas:</p>
+                    <ol>
+                        <li>Crea una hoja con 10,000 filas de datos de ventas (o usa el generador de datos de ejemplo).
+                        </li>
+                        <li>Graba una macro que calcule el impuesto para cada venta (16%) y lo agregue en la columna C.
+                        </li>
+                        <li>Mide el tiempo de ejecución de la macro grabada.</li>
+                        <li>Optimiza la macro usando las técnicas aprendidas.</li>
+                        <li>Compara los tiempos de ejecución antes y después de la optimización.</li>
+                    </ol>
+
+                    <h4>Solución:</h4>
+                    <div class="code-block">
+                        <pre><code>Sub CalcularImpuestos()
+    Dim tiempoInicio As Double
+    Dim datos() As Variant
+    Dim i As Long, filas As Long
+    
+    ' Iniciar temporizador
+    tiempoInicio = Timer
+    
+    ' Configuración para optimización
+    Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+    
+    ' Leer datos a un arreglo
+    filas = Cells(Rows.Count, "B").End(xlUp).Row
+    datos = Range("B2:C" & filas).Value
+    
+    ' Procesar datos
+    For i = 1 To UBound(datos, 1)
+        datos(i, 2) = datos(i, 1) * 0.16 ' Calcular 16% de impuesto
+    Next i
+    
+    ' Escribir resultados
+    Range("C2").Resize(UBound(datos, 1), 1) = Application.Index(datos, 0, 2)
+    
+    ' Restaurar configuración
+    Application.ScreenUpdating = True
+    Application.Calculation = xlCalculationAutomatic
+    
+    ' Mostrar tiempo de ejecución
+    MsgBox "Tiempo de ejecución: " & Format(Timer - tiempoInicio, "0.00") & " segundos"
+End Sub</code></pre>
+                    </div>
+                    </div>
+                </section>
+
+                <section class="activity">
+                    <div class="activity-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad de la Sesión</h2>
+                    </div>
+                    <h3>Optimización de un Reporte de Ventas</h3>
+                    <p>Objetivo: Optimizar una macro existente que genera un reporte de ventas mensual.</p>
+
+                    <p><strong>Pasos:</strong></p>
+                    <ol>
+                        <li>Descarga el archivo de datos de ejemplo (o crea uno con al menos 5,000 registros).</li>
+                        <li>Analiza la macro existente e identifica oportunidades de optimización.</li>
+                        <li>Aplica al menos 3 técnicas de optimización diferentes.</li>
+                        <li>Documenta los cambios realizados y la mejora en el rendimiento.</li>
+                        <li>Crea un resumen con las métricas de rendimiento antes y después.</li>
+                    </ol>
+
+                    <h4>Preguntas de reflexión:</h4>
+                    <ul>
+                        <li>¿Qué técnica de optimización tuvo el mayor impacto en el rendimiento?</li>
+                        <li>¿Hay algún caso en el que no sea recomendable desactivar la actualización de pantalla?</li>
+                        <li>¿Cómo podrías optimizar aún más la macro?</li>
+                    </ul>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>La optimización de macros es esencial para mejorar el rendimiento, especialmente con grandes volúmenes de datos.</li>
+                        <li>Desactivar la actualización de pantalla y los cálculos automáticos puede mejorar significativamente el rendimiento.</li>
+                        <li>El uso de arreglos para el procesamiento de datos es mucho más rápido que trabajar celda por celda.</li>
+                        <li>Los bucles deben optimizarse para minimizar las operaciones de lectura/escritura en la hoja de cálculo.</li>
+                        <li>Es importante medir el rendimiento antes y después de optimizar para cuantificar las mejoras.</li>
+                    </ul>
+                </section>
+
+                <div class="nav-buttons">
+                    <a href="sesion13.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion15.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema5">
+                <h2>Tema 5: Gráficos y representación de datos</h2>
+                <div class="tema-contenido">
+                    <p>Los gráficos son herramientas poderosas para visualizar y comunicar información de manera efectiva. En este tema, aprenderás a crear, personalizar y analizar diferentes tipos de gráficos en Excel para presentar tus datos de manera profesional y comprensible.</p>
+                    
+                    <h3>5.1 Tipos de gráficos en Excel</h3>
+                    <p>Excel ofrece una amplia variedad de tipos de gráficos, cada uno adecuado para diferentes tipos de datos y propósitos de visualización.</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Principales tipos de gráficos:</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Tipo de Gráfico</th>
+                                <th>Descripción</th>
+                                <th>Uso Recomendado</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Columnas/Barras</strong></td>
+                                <td>Muestra comparaciones entre categorías</td>
+                                <td>Comparar valores entre categorías discretas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Líneas</strong></td>
+                                <td>Muestra tendencias a lo largo del tiempo</td>
+                                <td>Visualizar cambios a lo largo del tiempo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Circular</strong></td>
+                                <td>Muestra proporciones de un todo</td>
+                                <td>Mostrar distribución porcentual</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dispersión (XY)</strong></td>
+                                <td>Muestra relaciones entre variables</td>
+                                <td>Identificar correlaciones</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Área</strong></td>
+                                <td>Similar al de líneas pero con área rellena</td>
+                                <td>Mostrar cambios a lo largo del tiempo y magnitud</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>5.2 Creación de gráficos</h3>
+                    <p>Para crear un gráfico en Excel sigue estos pasos:</p>
+                    <ol>
+                        <li>Selecciona los datos que deseas incluir en el gráfico (incluyendo encabezados)</li>
+                        <li>Ve a la pestaña <strong>Insertar</strong> en la cinta de opciones</li>
+                        <li>Selecciona el tipo de gráfico que deseas crear</li>
+                        <li>Personaliza el diseño y formato según sea necesario</li>
+                    </ol>
+
+                    <div class="ejercicio-practico">
+                        <h4>Práctica: Crea tu primer gráfico</h4>
+                        <p>Usa los siguientes datos de ventas para crear un gráfico de columnas:</p>
+                        
+                        <div class="mini-tabla" id="tablaVentas">
+                            <!-- Se generará dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <p><strong>Instrucciones:</strong></p>
+                            <ol>
+                                <li>Selecciona los datos de la tabla</li>
+                                <li>Inserta un gráfico de columnas</li>
+                                <li>Agrega un título descriptivo</li>
+                                <li>Etiqueta los ejes X e Y</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <h3>5.3 Personalización de gráficos</h3>
+                    <p>Una vez creado un gráfico, puedes personalizar su apariencia para mejorar su claridad y atractivo visual.</p>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Personaliza un gráfico</h4>
+                        <p>Usa el gráfico que creaste anteriormente y realiza las siguientes personalizaciones:</p>
+                        
+                        <div class="personalizacion-grafico">
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="titulo" class="opcion-grafico">
+                                <label for="titulo">Cambiar título del gráfico</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="colores" class="opcion-grafico">
+                                <label for="colores">Modificar colores de las series</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="etiquetas" class="opcion-grafico">
+                                <label for="etiquetas">Agregar etiquetas de datos</label>
+                            </div>
+                            <div class="opcion-personalizacion">
+                                <input type="checkbox" id="leyenda" class="opcion-grafico">
+                                <label for="leyenda">Mover la leyenda</label>
+                            </div>
+                            <button id="aplicarPersonalizacion" class="verify-btn">Aplicar Cambios</button>
+                        </div>
+                        
+                        <div id="feedbackPersonalizacion" class="feedback"></div>
+                    </div>
+
+                    <h3>5.4 Gráficos avanzados</h3>
+                    <p>Explora tipos de gráficos más avanzados para análisis detallados:</p>
+                    
+                    <div class="ejercicio-avanzado">
+                        <h4>Gráficos combinados</h4>
+                        <p>Crea un gráfico que combine columnas y líneas para mostrar diferentes métricas:</p>
+                        
+                        <div class="mini-tabla" id="tablaCombinada">
+                            <!-- Se generará dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="instrucciones">
+                            <p><strong>Pasos:</strong></p>
+                            <ol>
+                                <li>Crea un gráfico de columnas con los datos de "Ventas" y "Meta"</li>
+                                <li>Selecciona la serie "% Cumplimiento" y cámbiala a tipo de gráfico de líneas</li>
+                                <li>Ajusta el eje secundario para el porcentaje</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Cuál es el tipo de gráfico más adecuado para mostrar la distribución de ventas por región?</div>
+                        <div class="opcion">a) Gráfico de líneas</div>
+                        <div class="opcion">b) Gráfico de columnas</div>
+                        <div class="opcion">c) Gráfico de dispersión</div>
+                        <div class="opcion">d) Gráfico de radar</div>
+                        
+                        <div class="pregunta">2. ¿Qué elemento de un gráfico muestra la escala de valores?</div>
+                        <div class="opcion">a) Título</div>
+                        <div class="opcion">b) Leyenda</div>
+                        <div class="opcion">c) Eje</div>
+                        <div class="opcion">d) Serie</div>
+                        
+                        <div class="pregunta">3. ¿Cómo se llama el área donde se ubican los elementos del gráfico?</div>
+                        <div class="opcion">a) Marco</div>
+                        <div class="opcion">b) Lienzo</div>
+                        <div class="opcion">c) Área de trazado</div>
+                        <div class="opcion">d) Superficie del gráfico</div>
+                        
+                        <button id="evaluarTema5" class="evaluation-btn">Verificar respuestas</button>
+                        <div id="resultadoEvaluacion5" class="resultado"></div>
+                    </div>
+
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Los gráficos son herramientas visuales poderosas para representar datos de manera clara y efectiva.</li>
+                            <li>Excel ofrece diversos tipos de gráficos, cada uno adecuado para diferentes propósitos.</li>
+                            <li>La personalización de gráficos mejora la claridad y el impacto visual.</li>
+                            <li>Los gráficos combinados permiten visualizar múltiples métricas con diferentes escalas.</li>
+                            <li>Los elementos del gráfico (títulos, ejes, leyendas) deben ser claros y descriptivos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="siguiente-paso">
+                        <h3>¡Siguiente paso!</h3>
+                        <p>Ahora que has aprendido a crear y personalizar gráficos, el siguiente paso es explorar técnicas avanzadas de análisis de datos con tablas dinámicas. Estas te permitirán resumir y analizar grandes conjuntos de datos de manera eficiente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 6: Tablas dinámicas -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema4.html" class="btn btn-anterior">Anterior: Tema 4</a>
+        <a href="tema6.html" class="btn btn-siguiente">Siguiente: Tema 6</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

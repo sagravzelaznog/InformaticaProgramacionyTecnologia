@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 14: Automatización - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la sesión 14 */
+        .macro-ejemplo {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6f42c1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        .ejercicio {
+            background-color: #f0f8ff;
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .ejercicio h4 {
+            margin-top: 0;
+            color: #6f42c1;
+        }
+        
+        .paso {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .paso:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #6f42c1;
+        }
+        
+        .contenedor-ejercicio {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .area-ejercicio {
+            flex: 1;
+            min-width: 300px;
+            border: 2px dashed #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 200px;
+            background-color: #fff;
+        }
+        
+        .pregunta {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #6f42c1;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .pregunta button {
+            background-color: #6f42c1;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .respuesta {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+        
+        .ejemplo-automatizacion {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .flujo-trabajo {
+            width: 100%;
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .paso-flujo {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            background-color: #6f42c1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        
+        .flecha {
+            position: absolute;
+            width: 20px;
+            height: 4px;
+            background-color: #6f42c1;
+        }
+        
+        .flecha:after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: -3px;
+            width: 0;
+            height: 0;
+            border-left: 5px solid #6f42c1;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        
+        @media (max-width: 768px) {
+            .contenedor-ejercicio {
+                flex-direction: column;
+            }
+            
+            .area-ejercicio {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sesión 14: Automatización en Microsoft Publisher</h1>
+            <p class="subtitulo">Aprende a optimizar tu flujo de trabajo con herramientas de automatización</p>
+        </header>
+        
+        <nav aria-label="Navegación">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sesión 14: Automatización</li>
+            </ul>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="d-none d-md-block">
+                    <div class="list-group">
+                        <a href="#introduccion" class="list-group-item list-group-item-action">Introducción</a>
+                        <a href="#macros" class="list-group-item list-group-item-action">Macros básicas</a>
+                        <a href="#plantillas" class="list-group-item list-group-item-action">Plantillas avanzadas</a>
+                        <a href="#bloques" class="list-group-item list-group-item-action">Bloques de construcción</a>
+                        <a href="#practica" class="list-group-item list-group-item-action">Práctica guiada</a>
+                        <a href="#ejercicios" class="list-group-item list-group-item-action">Ejercicios</a>
+                        <a href="#evaluacion" class="list-group-item list-group-item-action">Autoevaluación</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <section id="introduccion" class="seccion">
+                    <h2>Introducción a la Automatización</h2>
+                    <p>La automatización en Microsoft Publisher te permite ahorrar tiempo al realizar tareas repetitivas, garantizando consistencia y precisión en tus publicaciones. En esta sesión aprenderás a utilizar macros, plantillas y otras herramientas para optimizar tu flujo de trabajo.</p>
+                    
+                    <div class="contenedor-ejercicio">
+                        <div>
+                            <h4>¿Por qué automatizar?</h4>
+                            <p>La automatización te permite:</p>
+                            <ul>
+                                <li>Ahorrar tiempo en tareas repetitivas</li>
+                                <li>Reducir errores humanos</li>
+                                <li>Mantener consistencia en tus diseños</li>
+                                <li>Mejorar la productividad</li>
+                                <li>Estandarizar procesos</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="flujo-trabajo" id="flujo-automatizacion">
+                                <div class="paso-flujo paso-1">Tarea 1</div>
+                                <div class="flecha flecha-1"></div>
+                                <div class="paso-flujo paso-2">Tarea 2</div>
+                                <div class="flecha flecha-2"></div>
+                                <div class="paso-flujo paso-3">Tarea 3</div>
+                                
+                                <div class="paso-flujo paso-auto" id="tarea-auto">Automático</div>
+                                <div class="flecha flecha-auto-1"></div>
+                                <div class="flecha flecha-auto-2"></div>
+                                <div class="paso-flujo paso-final">¡Listo!</div>
+                            </div>
+                            <button id="btn-simular" class="btn btn-primary btn-sm">Simular automatización</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="macros" class="seccion">
+                    <h2>Macros Básicas</h2>
+                    <p>Las macros son secuencias de comandos que automatizan tareas en Publisher. Puedes grabarlas o programarlas usando VBA (Visual Basic for Applications).</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso a paso: Grabar una macro simple</h4>
+                        <div class="paso">1. Ve a la pestaña <strong>Vista</strong> y haz clic en <strong>Macros</strong> > <strong>Grabar macro</strong>.</div>
+                        <div class="paso">2. Asigna un nombre a tu macro (sin espacios).</div>
+                        <div class="paso">3. Realiza las acciones que deseas automatizar (ej. aplicar formato, insertar elementos).</div>
+                        <div class="paso">4. Detén la grabación desde el botón <strong>Detener grabación</strong>.</div>
+                        <div class="paso">5. Ejecuta la macro desde <strong>Vista</strong> > <strong>Macros</strong> > <strong>Ver macros</strong>.</div>
+                    </div>
+                    
+                    <div class="ejemplo-automatizacion">
+                        <h5>Ejemplo de código VBA para una macro:</h5>
+                        <div class="macro-ejemplo">Sub FormatearTitulo()
+    ' Macro para formatear automáticamente un título
+    With Selection.TextRange
+        .Font.Name = "Arial"
+        .Font.Size = 24
+        .Font.Bold = True
+        .Font.Color.RGB = RGB(111, 66, 193) ' Color morado
+        .ParagraphFormat.Alignment = pbParagraphAlignmentCenter
+    End With
+End Sub</div>
+                        <p class="text-muted mt-2">Esta macro formatea el texto seleccionado con un estilo de título consistente.</p>
+                    </div>
+                </section>
+                
+                <section id="plantillas" class="seccion">
+                    <h2>Plantillas Avanzadas</h2>
+                    <p>Las plantillas te permiten estandarizar el diseño de tus publicaciones y reutilizarlas como punto de partida para nuevos proyectos.</p>
+                    
+                    <div class="contenedor-ejercicio">
+                        <div class="area-ejercicio">
+                            <h5>Crear una plantilla personalizada:</h5>
+                            <ol>
+                                <li>Crea un nuevo documento con tu diseño base</li>
+                                <li>Incluye estilos, colores y elementos reutilizables</li>
+                                <li>Ve a <strong>Archivo</strong> > <strong>Guardar como</strong></li>
+                                <li>Selecciona <strong>Plantilla de Publisher (.pubx)</strong> como tipo de archivo</li>
+                                <li>Guarda en la carpeta de plantillas predeterminada</li>
+                            </ol>
+                        </div>
+                        <div class="area-ejercicio">
+                            <h5>Ventajas de usar plantillas:</h5>
+                            <ul>
+                                <li>Consistencia en el diseño</li>
+                                <li>Ahorro de tiempo en la creación de documentos</li>
+                                <li>Facilita la colaboración en equipo</li>
+                                <li>Mantiene la identidad corporativa</li>
+                                <li>Reduce errores de formato</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="bloques" class="seccion">
+                    <h2>Bloques de Construcción</h2>
+                    <p>Los bloques de construcción son elementos predefinidos que puedes guardar y reutilizar en diferentes publicaciones, como encabezados, pies de página o elementos de diseño comunes.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso a paso: Crear un bloque de construcción</h4>
+                        <div class="paso">1. Crea o selecciona el elemento que deseas guardar (ej. un encabezado).</div>
+                        <div class="paso">2. Selecciona el elemento y ve a <strong>Insertar</strong> > <strong>Partes rápidas</strong> > <strong>Guardar selección en la galería de partes rápidas</strong>.</div>
+                        <div class="paso">3. Completa la información del nuevo bloque de construcción.</div>
+                        <div class="paso">4. Para usarlo, ve a <strong>Insertar</strong> > <strong>Partes rápidas</strong> y selecciona tu bloque guardado.</div>
+                    </div>
+                    
+                    <div class="ejemplo-automatizacion">
+                        <h5>Elementos ideales para convertir en bloques:</h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>Encabezados</h6>
+                                <ul>
+                                    <li>Logotipos</li>
+                                    <li>Datos de contacto</li>
+                                    <li>Líneas divisorias</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Contenido</h6>
+                                <ul>
+                                    <li>Tablas de precios</li>
+                                    <li>Formularios</li>
+                                    <li>Galerías de imágenes</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Pies de página</h6>
+                                <ul>
+                                    <li>Derechos de autor</li>
+                                    <li>Números de página</li>
+                                    <li>Enlaces a redes sociales</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="practica" class="seccion">
+                    <h2>Práctica Guiada</h2>
+                    <p>Sigue estos pasos para crear y utilizar una macro que automatice el formato de un boletín informativo.</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso 1: Crear una macro de formato</h4>
+                        <div class="paso">1. Abre un nuevo documento en Publisher.</div>
+                        <div class="paso">2. Ve a <strong>Vista</strong> > <strong>Macros</strong> > <strong>Grabar macro</strong>.</div>
+                        <div class="paso">3. Nómbrala "FormatoBoletin".</div>
+                        <div class="paso">4. Realiza las siguientes acciones:
+                            <ul>
+                                <li>Establece los márgenes a 1.5 cm</li>
+                                <li>Crea un estilo de título con fuente Arial 24pt, negrita y color corporativo</li>
+                                <li>Configura los estilos de párrafo para el cuerpo del texto</li>
+                                <li>Inserta un encabezado con el logotipo</li>
+                            </ul>
+                        </div>
+                        <div class="paso">5. Detén la grabación.</div>
+                    </div>
+                    
+                    <div class="ejercicio">
+                        <h4>Paso 2: Guardar como plantilla</h4>
+                        <div class="paso">1. Con el documento aún abierto, ve a <strong>Archivo</strong> > <strong>Guardar como</strong>.</div>
+                        <div class="paso">2. Selecciona <strong>Plantilla de Publisher (.pubx)</strong> como tipo de archivo.</div>
+                        <div class="paso">3. Nómbrala "Plantilla_Boletin" y guárdala.</div>
+                    </div>
+                </section>
+                
+                <section id="ejercicios" class="seccion">
+                    <h2>Ejercicios Prácticos</h2>
+                    
+                    <div class="ejercicio">
+                        <h4>Ejercicio 1: Crear una macro personalizada</h4>
+                        <p>Crea una macro que realice las siguientes acciones automáticamente:</p>
+                        <div class="contenedor-ejercicio">
+                            <div>
+                                <h5>Requisitos:</h5>
+                                <ul>
+                                    <li>Insertar un encabezado con tu nombre y la fecha actual</li>
+                                    <li>Aplicar un tema de color corporativo</li>
+                                    <li>Configurar los estilos de título y subtítulo</li>
+                                    <li>Agregar un pie de página con número de página</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>Entrega:</h5>
+                                <p>Guarda la macro y documenta los pasos que automatiza. Prepara una breve explicación de cómo podría ahorrar tiempo en un flujo de trabajo real.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="seccion">
+                    <h2>Autoevaluación</h2>
+                    
+                    <div class="pregunta">
+                        <h4>1. ¿Cuáles son las ventajas de usar macros en Publisher?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta1">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta1">
+                            Las principales ventajas de usar macros en Publisher son:
+                            <ul>
+                                <li><strong>Ahorro de tiempo:</strong> Automatizan tareas repetitivas que de otra manera requerirían múltiples pasos manuales.</li>
+                                <li><strong>Consistencia:</strong> Aseguran que las acciones se realicen exactamente de la misma manera cada vez.</li>
+                                <li><strong>Reducción de errores:</strong> Minimizan la posibilidad de errores humanos en tareas repetitivas.</li>
+                                <li><strong>Personalización:</strong> Permiten adaptar Publisher a flujos de trabajo específicos.</li>
+                                <li><strong>Productividad:</strong> Liberan tiempo para tareas que requieren creatividad y pensamiento crítico.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>2. ¿Qué elementos de una publicación son buenos candidatos para convertirse en bloques de construcción?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta2">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta2">
+                            Los elementos ideales para convertir en bloques de construcción son aquellos que:
+                            <ul>
+                                <li><strong>Se repiten frecuentemente:</strong> Como encabezados, pies de página o elementos de navegación.</li>
+                                <li><strong>Requieren consistencia:</strong> Elementos de identidad corporativa como logotipos o información de contacto.</li>
+                                <li><strong>Tienen un diseño complejo:</strong> Como tablas de precios o formularios que toman tiempo recrear.</li>
+                                <li><strong>Son estándar en la organización:</strong> Como declaraciones de privacidad o información legal.</li>
+                                <li><strong>Se actualizan periódicamente:</strong> Como boletines mensuales o informes trimestrales.</li>
+                            </ul>
+                            Ejemplos específicos incluyen:
+                            <ul>
+                                <li>Encabezados con logotipo y datos de contacto</li>
+                                <li>Pies de página con información de derechos de autor</li>
+                                <li>Formularios de contacto o suscripción</li>
+                                <li>Elementos de navegación como barras laterales o menús</li>
+                                <li>Marcas de agua o sellos de confidencialidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>3. ¿Cómo puedes asegurar que tus plantillas sean fáciles de usar por otros miembros del equipo?</h4>
+                        <button class="btn-ver-respuesta" data-respuesta="respuesta3">Ver respuesta</button>
+                        <div class="respuesta" id="respuesta3">
+                            Para crear plantillas fáciles de usar por otros, sigue estas mejores prácticas:
+                            
+                            <h5>Diseño intuitivo</h5>
+                            <ul>
+                                <li>Usa guías y cuadrículas para alinear elementos</li>
+                                <li>Agrupa elementos relacionados</li>
+                                <li>Usa nombres descriptivos para capas y objetos</li>
+                            </ul>
+                            
+                            <h5>Documentación</h5>
+                            <ul>
+                                <li>Incluye una página de instrucciones</li>
+                                <li>Documenta los estilos y colores utilizados</li>
+                                <li>Explica el propósito de cada sección</li>
+                            </ul>
+                            
+                            <h5>Organización</h5>
+                            <ul>
+                                <li>Usa páginas maestras para elementos repetitivos</li>
+                                <li>Crea estilos de párrafo y carácter consistentes</li>
+                                <li>Agrupa elementos en capas lógicas</li>
+                            </ul>
+                            
+                            <h5>Facilidad de personalización</h5>
+                            <ul>
+                                <li>Usa marcadores de posición fáciles de identificar</li>
+                                <li>Proporciona instrucciones en notas del documento</li>
+                                <li>Incluye ejemplos de contenido</li>
+                            </ul>
+                            
+                            <h5>Pruebas</h5>
+                            <ul>
+                                <li>Prueba la plantilla con usuarios finales</li>
+                                <li>Recopila retroalimentación y realiza mejoras</li>
+                                <li>Asegúrate de que funcione en diferentes versiones de Publisher</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navegacion">
+                    <a href="sesion13.html" class="btn-anterior">← Sesión Anterior: Impresión</a>
+                    <a href="sesion15.html" class="btn-siguiente">Siguiente Sesión: Proyecto práctico →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticación
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const mainContent = document.querySelector('.container');
+            
+            if (!currentUser || !currentUser.key) {
+                window.location.href = '../iniciar-sesion.html';
+            } else {
+                mainContent.classList.remove('hidden');
+                document.getElementById('userName').textContent = currentUser.nombre || 'Usuario';
+            }
+            
+            // Simulación de automatización
+            const btnSimular = document.getElementById('btn-simular');
+            const tareaAuto = document.getElementById('tarea-auto');
+            
+            if (btnSimular && tareaAuto) {
+                btnSimular.addEventListener('click', function() {
+                    // Reiniciar animación
+                    tareaAuto.style.transform = 'scale(1)';
+                    tareaAuto.style.transition = 'none';
+                    void tareaAuto.offsetWidth; // Forzar reflow
+                    
+                    // Animar
+                    tareaAuto.style.transition = 'all 1s ease-in-out';
+                    tareaAuto.style.transform = 'scale(1.2)';
+                    
+                    // Volver al estado normal después de la animación
+                    setTimeout(() => {
+                        tareaAuto.style.transform = 'scale(1)';
+                    }, 1000);
+                });
+            }
+            
+            // Configurar botones de ver respuesta
+            const botonesRespuesta = document.querySelectorAll('.btn-ver-respuesta');
+            botonesRespuesta.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const idRespuesta = this.getAttribute('data-respuesta');
+                    const respuesta = document.getElementById(idRespuesta);
+                    if (respuesta.style.display === 'block') {
+                        respuesta.style.display = 'none';
+                        this.textContent = 'Ver respuesta';
+                    } else {
+                        respuesta.style.display = 'block';
+                        this.textContent = 'Ocultar respuesta';
+                    }
+                });
+            });
+            
+            // Configurar botón de cierre de sesión
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    sessionStorage.removeItem('currentUser');
+                    window.location.href = '../iniciar-sesion.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

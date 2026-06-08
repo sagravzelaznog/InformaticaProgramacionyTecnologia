@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S5: Lápiz y Pluma Bézier (Introducción)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 5: Herramienta Lápiz y Pluma Bézier (Introducción)</h1>
+
+    <section>
+        <h2>1. Herramienta Lápiz (P) - Dibujo a Mano Alzada</h2>
+        [Image of the Pencil tool controls in Inkscape]
+        <p>La herramienta **Lápiz (P)** permite dibujar trazados rápidamente, simulando un dibujo a mano alzada. Inkscape convierte tus movimientos del ratón en un trayecto vectorial.</p>
+        <div class="paso">
+            <strong>Paso 1: Configuración de Suavizado</strong>
+            <p>Selecciona el Lápiz. En la Barra de Controles de Herramienta, el valor **Suavizado** es clave. Un valor alto (ej. 80) crea líneas muy limpias, eliminando temblores. Un valor bajo (ej. 5) mantiene tu trazo original, pero con más nodos.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Dibujar y Cerrar Trazados</strong>
+            <p>Haz clic y arrastra para dibujar. Para crear una forma cerrada que puedas rellenar, asegúrate de terminar tu trazo cerca del punto de inicio; aparecerá un círculo pequeño que te indicará que se cerrará automáticamente.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Pluma Bézier (B) - El Corazón del Diseño Vectorial</h2>
+        [Image of using the Bezier Pen tool to create a curve with handles]
+        <p>La **Pluma Bézier (B)** es la herramienta más precisa y poderosa. Requiere práctica, pero te da control total sobre la forma de las curvas.</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar Líneas Rectas</strong>
+            <p>Haz **clic** en un punto y luego **clic** en otro. Inkscape unirá los dos puntos con un segmento recto. Continúa haciendo clic para formar polígonos o líneas en zigzag.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Dibujar Curvas (Manejo de Tangentes)</strong>
+            <p>Para crear una curva, haz **clic y arrastra** en lugar de solo hacer clic. Esto generará unos **tiradores** (o tangentes) que definen la dirección y la fuerza de la curva.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Cerrar la Forma</strong>
+            <p>Para finalizar y cerrar el trayecto, haz clic en el punto de inicio. Si solo quieres terminar un trazo abierto, presiona **Enter** o selecciona otra herramienta.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 4: Cambiar de Curva a Esquina</strong>
+            <p>Mientras dibujas, puedes hacer que el siguiente nodo sea una esquina aguda (sin tiradores) haciendo clic y luego presionando la tecla **Shift** mientras haces el siguiente punto.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Trazado Controlado</h3>
+        <p><strong>Objetivo:</strong> Dominar la creación básica de líneas rectas y curvas con la Pluma.</p>
+        <ol>
+            <li>Dibuja un cuadrado y un triángulo usando solo clics (líneas rectas).</li>
+            <li>Dibuja una forma de "S" suave usando solo dos nodos centrales, creando curvas al arrastrar los tiradores.</li>
+            <li>Intenta trazar el perfil de una nube simple: usa clics y arrastres para formar las curvas, y usa **Shift** + clic si necesitas esquinas agudas entre ellas.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion04.html">Anterior</a>
+    <a href="sesion06.html">Siguiente</a>
+</nav>
+</body>
+</html>

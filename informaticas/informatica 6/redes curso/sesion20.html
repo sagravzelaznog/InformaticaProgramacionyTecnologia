@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S5 E20: Configuración del Servicio DHCP en Router</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 5, Sesión 20: El Router como Servidor DHCP 🔄</h1>
+        <p class="subtitle">Definiendo el Pool de Direcciones y Excluyendo IPs</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Habilitar y Deshabilitar el Servidor DHCP</h2>
+            <p>En routers domésticos, el servidor DHCP está generalmente habilitado por defecto. Sin embargo, en redes empresariales o cuando se usan varios puntos de acceso, a veces es necesario **deshabilitarlo** para evitar conflictos (dos dispositivos repartiendo IPs) o centralizar el control.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>La configuración DHCP permite definir el rango de IPs para la red.</figcaption>
+            </div>
+            
+            <p class="highlight">Un error común de red: **Conflicto de DHCP**. Ocurre cuando dos routers/servidores en la misma LAN intentan repartir IPs, causando inestabilidad.</p>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Configuración del Pool de Direcciones</h2>
+            <p>El **Pool de Direcciones** es el rango de IPs que el router tiene permitido repartir a los clientes. Es crucial definirlo correctamente para evitar asignar IPs a dispositivos que ya usan IP Estática.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>IP Inicial y Final</h3>
+                    <p>Definen los límites del rango a repartir (ej. 192.168.1.100 hasta 192.168.1.254).</p>
+                </div>
+                <div class="card">
+                    <h3>Direcciones Reservadas/Excluidas</h3>
+                    <p>Son IPs que están dentro del rango de la red, pero que el servidor DHCP NO repartirá. Se usan para **asignaciones estáticas** críticas (servidores, impresoras).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Configuración y Prueba en Packet Tracer</h2>
+            <p><strong>Tarea Práctica (Simulación - Continuación de S3 E11):</strong></p>
+            <ol>
+                <li>En Packet Tracer, verifica que tu Router tenga el servicio DHCP habilitado.</li>
+                <li>Modifica el Pool para que solo reparta IPs en el rango **192.168.1.50 a 192.168.1.100**.</li>
+                <li>Conecta 3 PCs al Switch/Router y verifica que obtengan IPs dentro de ese nuevo Pool.</li>
+                <li>Asigna manualmente la IP **192.168.1.10** al PC4 (IP Estática). ¿Debería funcionar el DHCP en PC4? (No, porque la configuración manual anula el DHCP).</li>
+            </ol>
+            <button id="dhcpPoolQuizBtn">Verificar Rango IP</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S5 E20</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion19.html" class="nav-button">Anterior</a>
+        <a href="sesion21.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

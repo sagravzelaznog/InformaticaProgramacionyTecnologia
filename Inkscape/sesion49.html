@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S49: Dibujo a Mano Alzada Asistido</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 49: Dibujo a Mano Alzada Asistido (Pen Tablet)</h1>
+
+    <section>
+        <h2>1. Herramienta Dibujo a Mano Alzada (Lápiz - P)</h2>
+        [Image of the Freehand drawing tool options bar in Inkscape]
+        <p>La herramienta **Dibujo a Mano Alzada (Lápiz - P)** es la más orgánica en Inkscape. Permite crear trayectos de forma libre, ideal para bocetos rápidos, firmas o ilustraciones orgánicas.</p>
+        <div class="paso">
+            <strong>Modos de Dibujo</strong>
+            <p>En la barra de controles de la herramienta, puedes elegir:</p>
+            <ul>
+                <li>**Modo de Trayecto Regular:** Crea un trayecto con nodos al dibujar.</li>
+                <li>**Modo Bézier:** Intenta crear trayectos más suaves, optimizando automáticamente las curvas.</li>
+                <li>**Modo Spiro:** Utiliza la aproximación Spiro para curvas extremadamente suaves y estéticas. Ideal para caligrafía vectorial.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Suavizado (Smoothness) y Estabilidad</h2>
+        <p>El principal desafío del dibujo a mano alzada es la inestabilidad de la mano. La configuración de **Suavizado** es clave para corregir esto.</p>
+        <div class="paso">
+            <strong>Nivel de Suavizado</strong>
+            <p>En la barra de controles del Lápiz, el campo **Suavizado** (entre 0 y 100) define cuánto intentará Inkscape "limpiar" tu línea. Un valor bajo (0-20) conserva la línea original. Un valor alto (80+) crea curvas suaves y estilizadas, eliminando pequeños temblores.</p>
+        </div>
+        <div class="paso">
+            <strong>Re-trazado de Trayectos</strong>
+            <p>Puedes usar la herramienta Lápiz para dibujar sobre un trayecto existente. Si tienes seleccionado el trayecto y usas el Lápiz, el nuevo trazo **reemplazará** la forma anterior, permitiendo refinar una línea imperfecta.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Sensibilidad a la Presión (Tableta Gráfica)</h2>
+        <p>Si usas una tableta (Wacom, Huion, etc.), Inkscape puede variar el grosor o la opacidad del trazo según la presión que apliques.</p>
+        <div class="paso">
+            <strong>Activación de Presión</strong>
+            <p>Asegúrate de que la opción **Usar presión de la tableta para variar la anchura/opacidad del trazo** esté marcada en la barra de controles del Lápiz.</p>
+        </div>
+        <div class="paso">
+            <strong>Variación del Trazo</strong>
+            <p>La presión modificará el grosor del **Trazo** y creará un perfil variable. Esto es esencial para simular el efecto de un pincel caligráfico o un lápiz tradicional, donde la línea comienza fina y se engrosa con la presión.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Caligrafía Orgánica</h3>
+        <p><strong>Objetivo:</strong> Usar la herramienta Lápiz para crear una línea fluida.</p>
+        <ol>
+            <li>Activa la herramienta Lápiz (**P**).</li>
+            <li>Define un valor de **Suavizado** de 85.</li>
+            <li>Dibuja tu nombre o una palabra corta en una sola línea. Observa cómo Inkscape alisa las curvas.</li>
+            <li>Si usas tableta, experimenta con la sensibilidad a la presión. Si no, dibuja una línea simple, luego usa la herramienta **Editor de Nodos (F2)** y aplica el efecto **Engrosar/Adelgazar** de forma manual para simular el efecto de presión.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion48.html">Anterior</a>
+    <a href="sesion50.html">Siguiente</a>
+</nav>
+</body>
+</html>

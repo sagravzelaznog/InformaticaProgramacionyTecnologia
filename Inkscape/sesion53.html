@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S53: Gráficos de Barra y Anillo</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 53: Gráficos de Datos: Gráficos de Barra y Anillo</h1>
+
+    <section>
+        <h2>1. Creación de Gráficos de Barra Vectoriales</h2>
+        
+        <p>La precisión de Inkscape lo hace ideal para crear gráficos de barra limpios, escalables y estéticos. Usaremos la herramienta **Rectángulo (F4)**, el panel **Alinear y Distribuir** y la **Rejilla**.</p>
+        <div class="paso">
+            <strong>Paso 1: Configuración de la Base</strong>
+            <p>Dibuja el eje X (horizontal) y el eje Y (vertical) con líneas simples (Pluma B). Asegúrate de que el **Ajuste a rejilla** esté activo para la precisión.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Dibujar Barras y Distribución</strong>
+            <p>Dibuja el primer rectángulo (la primera barra). Ajusta su altura al valor deseado. Duplícalo (**Ctrl + D**) tantas veces como necesites. Con todas las barras seleccionadas, usa el panel **Alinear y Distribuir** para espaciarlas de manera uniforme (ej. entre los bordes derechos o izquierdos).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Estilo de Barra</strong>
+            <p>Aplica diferentes colores a las barras. Usa **Degradados Lineales** sutiles para dar un efecto de luz y volumen, o añade una sombra simple (Desenfoque Gaussiano) para un estilo **Neumórfico**.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Creación de Gráficos de Anillo (Doughnut Charts)</h2>
+        <p>El gráfico de anillo (similar al gráfico de pastel, pero con un agujero central) es más fácil de crear que el gráfico de pastel tradicional en Inkscape.</p>
+        <div class="paso">
+            <strong>Paso 1: El Objeto Anillo</strong>
+            <p>Usa la herramienta **Círculo/Elipse (F5)**. Dibuja un círculo. Con la herramienta activa, verás un pequeño **manejador en forma de Arco**. Arrástralo para convertir el círculo en un **Arco o Segmento**. Esto crea el efecto de "porción" o "rebanada".</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Crear el Agujero Central</strong>
+            <p>Dibuja un círculo más pequeño en el centro. Selecciona el círculo grande (la rebanada) y el círculo pequeño. Aplica **Diferencia (Ctrl + -)**. Esto corta el círculo pequeño del grande, dejando un anillo con la forma de la porción.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Ensamblaje de Anillos</strong>
+            <p>Duplica el anillo base. Rota y ajusta el manejador de arco para crear la siguiente porción. Repite hasta que todos los valores estén representados. Usa un **Círculo Central** para ocultar las uniones imperfectas de los arcos.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Anotaciones y Leyendas</h2>
+        <div class="paso">
+            <strong>Etiquetas de Datos</strong>
+            <p>Usa la herramienta **Texto (F8)** para añadir los porcentajes y los nombres de las categorías. Asegúrate de que el texto está alineado con precisión con el centro de las barras o las porciones de anillo.</p>
+        </div>
+        <div class="paso">
+            <strong>Leyendas (Swatches)</strong>
+            <p>Crea un pequeño cuadro de color para cada categoría. Agrupa el cuadro de color con su nombre de texto. Usa el panel **Alinear y Distribuir** para alinear todas las leyendas de forma consistente.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Gráfico de Barra 3D Estilizado</h3>
+        <p><strong>Objetivo:</strong> Crear un gráfico estético y legible.</p>
+        <ol>
+            <li>Crea un gráfico de barra de 4 valores.</li>
+            <li>Aplica un **Degradado Lineal** de un color a un tono ligeramente más oscuro del mismo color para dar profundidad a cada barra.</li>
+            <li>Dibuja un rectángulo delgado que simule el plano del suelo y aplícale un **Desenfoque Gaussiano** para simular una sombra proyectada por las barras.</li>
+            <li>Añade el texto de la leyenda y los valores de forma limpia.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion52.html">Anterior</a>
+    <a href="sesion54.html">Siguiente</a>
+</nav>
+</body>
+</html>

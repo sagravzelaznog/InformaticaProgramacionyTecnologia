@@ -1,0 +1,6 @@
+# Redirects para Netlify
+# Redirigir todas las rutas API a index.html
+/api/* /index.html 200
+
+# Redirigir todas las demás rutas a index.html para SPA
+/* /index.html 200

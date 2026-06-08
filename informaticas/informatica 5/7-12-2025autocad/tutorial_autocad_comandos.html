@@ -1,0 +1,659 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial AutoCAD: Empalme, Chaflán y Fusión</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f5f7fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            font-weight: 300;
+        }
+        
+        .command-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .command-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .command-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .command-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .command-shortcut {
+            background-color: #e8f4fc;
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: auto;
+            border: 1px solid #d0e3f2;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        p, li {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .example-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-title:before {
+            content: "→";
+            margin-right: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        code {
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+        
+        .steps {
+            counter-reset: step;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1rem;
+            counter-increment: step;
+        }
+        
+        .step:before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .activity {
+            background-color: #f0f7ff;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .activity-title {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-title:before {
+            content: "📝";
+            margin-right: 0.5rem;
+        }
+        
+        details {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        summary {
+            padding: 1rem;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: background-color 0.2s;
+        }
+        
+        summary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .solution {
+            padding: 1rem;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .challenge {
+            background-color: #fff8f0;
+            border-left: 4px solid #e67e22;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .challenge-title {
+            color: #d35400;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-title:before {
+            content: "🔍";
+            margin-right: 0.5rem;
+        }
+        
+        .tip {
+            background-color: #f0f8ff;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+        
+        .tip:before {
+            content: "💡";
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .tip-content {
+            margin-left: 2rem;
+        }
+        
+        .command-variation {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border: 1px dashed #d0d7de;
+        }
+        
+        .command-variation-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .command-variation-title:before {
+            content: "↳";
+            margin-right: 0.5rem;
+            color: #7f8c8d;
+        }
+        
+        .keyboard-key {
+            background-color: #f0f0f0;
+            border: 1px solid #d0d0d0;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            color: #333;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+            padding: 0.2em 0.5em;
+            white-space: nowrap;
+        }
+        
+        .note {
+            background-color: #fffaf0;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .note-title {
+            font-weight: 600;
+            color: #b7950b;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .command-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .command-shortcut {
+                margin: 1rem 0 0 0;
+                align-self: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .command-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <style>
+        .back-to-index {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem 0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1a252f;
+        }
+    </style></head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tutorial de AutoCAD</h1>
+            <p class="subtitle">Comandos Esenciales: Empalme, Chaflán y Fusión</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <p>Bienvenido a este tutorial sobre tres comandos fundamentales en AutoCAD que te permitirán modificar y unir objetos de manera eficiente. Aprenderás a redondear esquinas, crear biseles y unir objetos en una sola entidad.</p>
+            
+            <div class="tip">
+                <div class="tip-content">
+                    <strong>Consejo:</strong> Recuerda que estos comandos funcionan mejor cuando los objetos están en el mismo plano. Si tienes dificultades, verifica que los objetos estén en el mismo plano o usa el comando <code>FLATSHOT</code> para crear una vista plana de modelos 3D.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de EMPALME (FILLET) -->
+        <section id="empalme" class="command-section">
+            <div class="command-header">
+                <div class="command-icon">F</div>
+                <h2 class="command-title">EMPALME (FILLET)</h2>
+                <span class="command-shortcut">Comando: <code>FILLET</code> o <code>F</code></span>
+            </div>
+            
+            <p>El comando EMPALME te permite redondear las esquinas entre dos líneas o bordes con un arco de radio específico. Es especialmente útil para suavizar esquinas agudas.</p>
+            
+            <h3>Método 1: Empalme con Radio Definido</h3>
+            <p>Define el radio del arco que suavizará la esquina antes de seleccionar las dos entidades.</p>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 1.1: Redondeo de Esquina</div>
+                <p>Dibuja dos líneas que se cruzan y redondéalas con un radio de 5 unidades.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja <strong>LÍNEA 1</strong>: de (10,10) a (20,10).</div>
+                    <div class="step">Dibuja <strong>LÍNEA 2</strong>: de (20,10) a (20,20). (Una esquina de 90 grados).</div>
+                    <div class="step">Activa el comando <strong>EMPALME</strong> (F).</div>
+                    <div class="step">Escribe <code>R</code> (para seleccionar Radio).</div>
+                    <div class="step">Especifica el radio: <code>5</code>.</div>
+                    <div class="step">Haz clic en <strong>LÍNEA 1</strong> y luego en <strong>LÍNEA 2</strong>.</div>
+                    <div class="step">La esquina será reemplazada por un arco de radio 5.</div>
+                </div>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 1.2: Empalme Cero (Unir sin Radio)</div>
+                <p>Dibuja dos líneas que no se tocan y únelas para formar una esquina de 90 grados sin redondeo.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja <strong>LÍNEA 1</strong>: de (30,10) a (40,10).</div>
+                    <div class="step">Dibuja <strong>LÍNEA 2</strong>: de (50,20) a (50,30).</div>
+                    <div class="step">Activa <strong>EMPALME</strong> (F).</div>
+                    <div class="step">Escribe <code>R</code> (Radio).</div>
+                    <div class="step">Especifica el radio: <code>0</code> (Cero).</div>
+                    <div class="step">Haz clic en <strong>LÍNEA 1</strong> y luego en <strong>LÍNEA 2</strong>.</div>
+                    <div class="step">Las líneas se extenderán (o recortarán) hasta formar una esquina aguda.</div>
+                </div>
+            </div>
+            
+            <h3>Método 2: Empalme con Opción POLILÍNEA (P)</h3>
+            <p>Aplica el mismo radio de empalme a todas las esquinas de una polilínea cerrada a la vez.</p>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 2.1: Redondeo Rápido de Marco</div>
+                <p>Dibuja un rectángulo y redondea todas sus esquinas con un radio de 2 unidades.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja un <strong>RECTÁNGULO</strong> (REC) de 10x10.</div>
+                    <div class="step">Activa <strong>EMPALME</strong> (F).</div>
+                    <div class="step">Escribe <code>R</code> (Radio).</div>
+                    <div class="step">Especifica el radio: <code>2</code>.</div>
+                    <div class="step">Escribe <code>P</code> (para seleccionar Polilínea).</div>
+                    <div class="step">Haz clic en el rectángulo.</div>
+                    <div class="step">Las cuatro esquinas se redondearán simultáneamente.</div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <div class="note-title">Nota Importante</div>
+                <p>Si el radio de empalme es demasiado grande para la longitud de las líneas, AutoCAD mostrará un mensaje de error. Asegúrate de que el radio sea apropiado para las dimensiones de tus objetos.</p>
+            </div>
+        </section>
+        
+        <!-- Sección de CHAFLÁN (CHAMFER) -->
+        <section id="chamfer" class="command-section">
+            <div class="command-header">
+                <div class="command-icon">CHA</div>
+                <h2 class="command-title">CHAFLÁN (CHAMFER)</h2>
+                <span class="command-shortcut">Comando: <code>CHAMFER</code> o <code>CHA</code></span>
+            </div>
+            
+            <p>El comando CHAFLÁN te permite crear una transición biselada entre dos líneas o bordes, lo que es útil para crear esquinas cortadas o biseladas.</p>
+            
+            <h3>Método 1: Chaflán por Distancia (D)</h3>
+            <p>Define dos distancias (una para cada línea de la esquina) que se cortarán desde el vértice.</p>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 2.2: Bisel Asimétrico (5x2)</div>
+                <p>Dibuja un cuadrado y chaflana una esquina cortando 5 unidades en el eje X y 2 unidades en el eje Y.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja un <strong>RECTÁNGULO</strong> (REC) de 20x20.</div>
+                    <div class="step">Activa el comando <strong>CHAFLÁN</strong> (CHA).</div>
+                    <div class="step">Escribe <code>D</code> (para seleccionar Distancia).</div>
+                    <div class="step">Especifica la primera distancia: <code>5</code>.</div>
+                    <div class="step">Especifica la segunda distancia: <code>2</code>.</div>
+                    <div class="step">Haz clic en el primer lado (X=20) y luego en el segundo lado (Y=20) de una esquina.</div>
+                    <div class="step">El bisel tendrá una longitud de corte de 5 en la primera línea seleccionada y 2 en la segunda.</div>
+                </div>
+            </div>
+            
+            <h3>Método 2: Chaflán por Ángulo (A)</h3>
+            <p>Define una distancia de corte en la primera línea seleccionada y el ángulo que formará el bisel con esa línea.</p>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 2.3: Bisel a 30 Grados</div>
+                <p>Chaflana una esquina cortando 3 unidades en el primer lado y formando un ángulo de 30 grados con ese lado.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja una esquina de 90 grados (Ej: (0,0) a (10,0) a (10,10)).</div>
+                    <div class="step">Activa <strong>CHAFLÁN</strong> (CHA).</div>
+                    <div class="step">Escribe <code>A</code> (para seleccionar Ángulo).</div>
+                    <div class="step">Especifica la longitud del chaflán en la primera línea: <code>3</code>.</div>
+                    <div class="step">Especifica el ángulo desde la primera línea: <code>30</code>.</div>
+                    <div class="step">Haz clic en la primera línea (horizontal) y luego en la segunda línea (vertical).</div>
+                    <div class="step">La línea de chaflán cortará 3 unidades de la horizontal y se elevará a 30 grados.</div>
+                </div>
+            </div>
+            
+            <div class="command-variation">
+                <div class="command-variation-title">Opción Múltiple (M)</div>
+                <p>Permite aplicar el mismo chaflán a múltiples esquinas sin salir del comando.</p>
+                <p><strong>Uso:</strong> Activa CHAFLÁN, configura las distancias o ángulo, escribe <code>M</code> y selecciona las esquinas que desees modificar.</p>
+            </div>
+        </section>
+        
+        <!-- Sección de FUSIÓN (JOIN) -->
+        <section id="fusion" class="command-section">
+            <div class="command-header">
+                <div class="command-icon">J</div>
+                <h2 class="command-title">FUSIÓN (JOIN)</h2>
+                <span class="command-shortcut">Comando: <code>JOIN</code> o <code>J</code></span>
+            </div>
+            
+            <p>El comando FUSIÓN te permite unir líneas, arcos o polilíneas en una sola entidad, lo que facilita la edición y manipulación de objetos complejos.</p>
+            
+            <div class="example">
+                <div class="example-title">Ejemplo 2.4: Unir Líneas en Polilínea</div>
+                <p>Dibuja cuatro líneas separadas formando un cuadrado. Fusiónalas para crear una sola Polilínea.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja <strong>LÍNEA 1</strong>, <strong>LÍNEA 2</strong>, <strong>LÍNEA 3</strong>, <strong>LÍNEA 4</strong>, formando un cuadrado de 10x10.</div>
+                    <div class="step">Activa el comando <strong>FUSIÓN</strong> (J).</div>
+                    <div class="step">Selecciona las cuatro líneas (L1, L2, L3, L4). Presiona <code>Enter</code>.</div>
+                    <div class="step">Selecciona cualquiera de las líneas y verifica sus propiedades: ahora es una única Polilínea.</div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <div class="note-title">Requisitos para la Fusión</div>
+                <ul>
+                    <li>Las líneas deben estar en el mismo plano.</li>
+                    <li>Los extremos de las líneas deben coincidir exactamente (usa <code>FUSIONA</code> con <code>0</code> de radio para unir extremos que no coinciden).</li>
+                    <li>No pueden haber brechas entre los objetos a unir.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sección de ACTIVIDADES -->
+        <section id="actividades" class="activity">
+            <h2 class="activity-title">ACTIVIDADES PRÁCTICAS</h2>
+            
+            <div class="activity-content">
+                <h3>Actividad 1: El Soporte Redondeado y Biselado</h3>
+                <p><strong>Objetivo:</strong> Aplicar ambos comandos (Empalme y Chaflán) en diferentes esquinas de un mismo objeto.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja un <strong>RECTÁNGULO</strong> (REC) de 20x10.</div>
+                    <div class="step"><strong>Esquina Superior Izquierda:</strong> Aplica <strong>EMPALME</strong> (F) con radio <code>3</code>.</div>
+                    <div class="step"><strong>Esquina Superior Derecha:</strong> Aplica <strong>CHAFLÁN</strong> (CHA) con distancias <code>4</code> y <code>4</code>.</div>
+                    <div class="step"><strong>Esquina Inferior Izquierda:</strong> Dibuja dos líneas que se crucen en (0,0) y luego únelas usando <strong>EMPALME</strong> con radio <code>0</code>.</div>
+                </div>
+                
+                <details>
+                    <summary>Ver Solución (Ubicación del Error Potencial)</summary>
+                    <div class="solution">
+                        <p>El radio de 0 en la esquina inferior izquierda garantiza que el comando F (FILLET) actúe como una herramienta de extensión/recorte, creando una esquina aguda si las líneas no se tocan.</p>
+                        <p>La clave es usar la opción EMPALME (F) para la esquina inferior izquierda. Si se usan las líneas originales del rectángulo, estas se extenderán a 0,0.</p>
+                    </div>
+                </details>
+                
+                <h3>Actividad 2: El Perfil Único (Fusión y Edición)</h3>
+                <p><strong>Objetivo:</strong> Dibujar un perfil complejo usando líneas y arcos, y luego convertirlo en una única entidad para fácil edición.</p>
+                
+                <div class="steps">
+                    <div class="step">Dibuja <strong>LÍNEA A</strong>: de (0,0) a (10,0).</div>
+                    <div class="step">Dibuja <strong>ARCO B</strong>: Inicia en (10,0), Centro en (10,5), Fin en (15,5).</div>
+                    <div class="step">Dibuja <strong>LÍNEA C</strong>: de (15,5) a (15,10).</div>
+                    <div class="step">Utiliza el comando <strong>FUSIÓN</strong> (J) para unir estas tres entidades en una sola <strong>Polilínea</strong>.</div>
+                    <div class="step">Ahora, utiliza el comando <strong>EMPALME</strong> (F) con radio <code>1</code> y la opción <strong>POLILÍNEA</strong> (P) en la entidad fusionada.</div>
+                </div>
+                
+                <details>
+                    <summary>Ver Solución (Ubicación del Error Potencial)</summary>
+                    <div class="solution">
+                        <p>El arco B no es un arco continuo simple. El arco B se traza mejor como "Inicio, Fin, Centro" (10,0, 15,5, 10,5).</p>
+                        <p>Si la fusión (JOIN) es exitosa, el comando EMPALME (F) debe fallar en la esquina que ya es un arco (la unión entre la línea A y el arco B), pero aplicará el empalme en la unión entre el Arco B y la Línea C, ya que esa es una esquina de 90 grados.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <!-- Sección de RETOS -->
+        <section id="retos" class="challenge">
+            <h2 class="challenge-title">RETOS DE COMPRENSIÓN</h2>
+            
+            <div class="challenge-content">
+                <h3>RETO 1: El Chaflán de Esquina Múltiple (Opción M)</h3>
+                <p>Dibuja un rectángulo. Activa el comando <strong>CHAFLÁN</strong> (CHA). Define distancias 1 y 1. Antes de seleccionar la primera línea, utiliza la opción <strong>MÚLTIPLE</strong> (Multiple, M).</p>
+                
+                <p><strong>Verifica:</strong> ¿Puedes aplicar el chaflán a las cuatro esquinas consecutivamente sin salir del comando?</p>
+                
+                <div class="tip">
+                    <div class="tip-content">
+                        <strong>Solución:</strong> Sí, con la opción Múltiple (M) activada, puedes seleccionar todas las esquinas del rectángulo una tras otra sin salir del comando CHAFLÁN. AutoCAD recordará las distancias especificadas y las aplicará a cada esquina que selecciones.
+                    </div>
+                </div>
+                
+                <h3>RETO 2: La Fusión de Objetos No Contiguos</h3>
+                <p>Dibuja <strong>LÍNEA 1</strong> de (0,0) a (5,0). Dibuja <strong>LÍNEA 2</strong> de (10,0) a (15,0). (Están separadas). Utiliza el comando <strong>FUSIÓN</strong> (J) para unirlas.</p>
+                
+                <p><strong>Verifica:</strong> ¿FUSIONA (JOIN) las dos líneas? ¿Cuál es el resultado de la entidad final?</p>
+                
+                <div class="tip">
+                    <div class="tip-content">
+                        <strong>Solución:</strong> Sí, el comando FUSIÓN (JOIN) unirá las dos líneas en una sola entidad de polilínea, pero mantendrá la brecha entre ellas. La entidad final será una polilínea con dos segmentos rectos separados por la distancia que había originalmente entre las líneas (5 unidades en este caso).
+                    </div>
+                </div>
+                
+                <h3>RETO 3: Empalme con Opción Recortar</h3>
+                <p>Dibuja una esquina con dos líneas que se cruzan y se extienden mucho más allá de su intersección. Utiliza <strong>EMPALME</strong> (F) con radio 5. Antes de seleccionar las líneas, usa la opción <strong>RECORTAR</strong> (Trim, T) y selecciona <strong>SIN RECORTAR</strong> (No Trim, N).</p>
+                
+                <p><strong>Verifica:</strong> ¿El comando de empalme crea el arco de radio 5? ¿Las líneas originales se mantienen completas, o se recortan al punto de tangencia?</p>
+                
+                <div class="tip">
+                    <div class="tip-content">
+                        <strong>Solución:</strong> Cuando usas la opción "SIN RECORTAR" (No Trim), el comando EMPALME creará el arco de radio 5 entre las dos líneas, pero no recortará las líneas originales. Las líneas se mantendrán completas, y el arco de empalme se dibujará como un objeto independiente que conecta los puntos de tangencia en ambas líneas.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="conclusion">
+            <h2>Conclusión</h2>
+            <p>Los comandos <strong>EMPALME</strong> (FILLET), <strong>CHAFLÁN</strong> (CHAMFER) y <strong>FUSIÓN</strong> (JOIN) son herramientas esenciales en AutoCAD que te permiten modificar y unir objetos de manera eficiente. Dominar estos comandos te permitirá:</p>
+            
+            <ul>
+                <li>Crear diseños más precisos y profesionales.</li>
+                <li>Ahorrar tiempo al editar geometrías complejas.</li>
+                <li>Mantener la limpieza y precisión en tus dibujos.</li>
+                <li>Preparar tus diseños para operaciones más avanzadas como extrusión o revolución.</li>
+            </ul>
+            
+            <div class="tip">
+                <div class="tip-content">
+                    <strong>Práctica recomendada:</strong> Crea tus propios ejercicios combinando estos comandos. Por ejemplo, dibuja una forma compleja con múltiples esquinas y aplica diferentes tipos de empalmes y chaflanes para ver cómo interactúan entre sí.
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Tutorial creado para el curso de AutoCAD - Nivel Básico a Intermedio</p>
+            <p>© 2025 - Todos los derechos reservados</p>
+        </div>
+    
+    <div class="back-to-index">
+        <a href="index.html" class="back-button">← Volver al Índice</a>
+    </div></footer>
+</body>
+</html>
+

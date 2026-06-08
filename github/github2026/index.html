@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Git para Profesionales</title>
+    <style>
+        :root {
+            --primary-color: #F14E32; /* Git Logo Color */
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B'; /* Signo de suma */
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212"; /* Signo de resta */
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+        }
+        .panel p {
+            margin: 15px 0;
+        }
+        .panel ul {
+            margin-bottom: 15px;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: var(--secondary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Curso: Git para Profesionales</h1>
+    <p>Domina el control de versiones desde cero hasta niveles avanzados</p>
+</header>
+
+<div class="container">
+    <h2>Temario del Curso (10 Sesiones)</h2>
+
+    <button class="accordion">Sesión 1: Introducción a Git y Configuración Inicial</button>
+    <div class="panel">
+        <p>Aprenderás a crear repositorios vacíos con <code>git init</code> [1]. También cubriremos cómo configurar tu nombre de usuario y correo electrónico utilizando <code>git config</code> para asociar tu identidad correctamente antes de crear cualquier commit [2].</p>
+    </div>
+
+    <button class="accordion">Sesión 2: El Área de Preparación (Staging) y Commits</button>
+    <div class="panel">
+        <p>Aprenderás a mover tus cambios al área de preparación usando comandos como <code>git add .</code> o <code>git add -A</code> para preparar archivos [3]. Después, veremos cómo registrar esos cambios de manera permanente mediante <code>git commit</code> y las mejores prácticas para escribir un buen mensaje de commit [4, 5].</p>
+    </div>
+
+    <button class="accordion">Sesión 3: Exploración del Historial y Diferencias (Diff)</button>
+    <div class="panel">
+        <p>Exploraremos el comando <code>git log</code> para visualizar el historial cronológico de tu repositorio [6]. También utilizaremos <code>git diff</code> para comparar los cambios no preparados en tu directorio de trabajo frente al último commit [7].</p>
+    </div>
+
+    <button class="accordion">Sesión 4: Ignorar y Limpiar Archivos</button>
+    <div class="panel">
+        <p>Descubrirás cómo evitar rastrear archivos no deseados creando un archivo <code>.gitignore</code> para ignorar carpetas y extensiones específicas [8]. Además, aprenderás a usar <code>git clean -f</code> para eliminar archivos no rastreados [9].</p>
+    </div>
+
+    <button class="accordion">Sesión 5: Ramas (Branching) y Fusiones (Merging)</button>
+    <div class="panel">
+        <p>Domina el uso de <code>git branch &lt;name&gt;</code> para crear nuevas líneas de desarrollo aisladas [10]. Aprenderás cómo unir diferentes ramas utilizando el comando <code>git merge</code> y a resolver los posibles conflictos resultantes [11].</p>
+    </div>
+
+    <button class="accordion">Sesión 6: Trabajo con Remotos, Push y Pull</button>
+    <div class="panel">
+        <p>Entenderás cómo vincular repositorios locales con remotos usando <code>git remote</code> [12]. Veremos cómo descargar cambios de un servidor con <code>git pull</code> [13] y cómo subir tus cambios locales usando <code>git push</code> [14].</p>
+    </div>
+
+    <button class="accordion">Sesión 7: Deshacer Cambios y Recuperación</button>
+    <div class="panel">
+        <p>Aprenderás a retroceder en el tiempo de forma segura con <code>git reset</code> (en sus modos soft y hard) [15]. Exploraremos el "salvavidas" de Git, <code>git reflog</code>, para recuperar commits perdidos en los últimos 90 días [16, 17].</p>
+    </div>
+
+    <button class="accordion">Sesión 8: Rebase y Squashing</button>
+    <div class="panel">
+        <p>Comprenderás cómo <code>git rebase</code> reescribe el historial aplicando tus commits encima de otra rama [18]. También practicaremos cómo combinar (squash) varios commits en uno solo para mantener un historial limpio [19, 20].</p>
+    </div>
+
+    <button class="accordion">Sesión 9: Trabajo Paralelo y Tareas Específicas (Stash y Cherry Pick)</button>
+    <div class="panel">
+        <p>Utilizaremos <code>git stash</code> para guardar temporalmente cambios incompletos en una pila, permitiéndote cambiar de rama rápidamente sin perder trabajo [21]. Además, veremos <code>git cherry-pick</code> para copiar un commit específico de una rama a otra [22].</p>
+    </div>
+
+    <button class="accordion">Sesión 10: Flujos de Trabajo en Git (Workflows)</button>
+    <div class="panel">
+        <p>Analizaremos modelos de flujos de trabajo (Workflows) utilizados en la industria, desde el flujo Centralizado hasta modelos avanzados donde cada desarrollador tiene ramas de características o incluso sus propios repositorios clonados (Forking Workflow) [23, 24].</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>Basado en el manual "Git Notes for Professionals". Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    // JavaScript para la interactividad del acordeón
+    var accordions = document.getElementsByClassName("accordion");
+    
+    for (var i = 0; i < accordions.length; i++) {
+        accordions[i].addEventListener("click", function() {
+            // Cerrar otros paneles si se desea un comportamiento de acordeón estricto
+            /*
+            var currentActive = document.querySelector(".accordion.active");
+            if(currentActive && currentActive !== this) {
+                currentActive.classList.remove("active");
+                currentActive.nextElementSibling.style.maxHeight = null;
+            }
+            */
+
+            // Alternar clase "active" para cambiar el ícono
+            this.classList.toggle("active");
+
+            // Mostrar u ocultar el panel
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

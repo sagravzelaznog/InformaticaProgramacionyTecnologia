@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S9 E35: Introducción a VLANs (Redes de Área Local Virtuales)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 9, Sesión 35: VLANs 💻</h1>
+        <p class="subtitle">Segmentación Lógica de Redes en un Mismo Switch</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Por qué Necesitamos VLANs?</h2>
+            <p>En redes grandes (escuelas, empresas), es ineficiente usar un switch diferente para cada grupo de usuarios (ej. estudiantes, profesores, administración). Las **VLANs (Virtual Local Area Networks)** permiten tomar un solo Switch físico y dividirlo en **múltiples Switches lógicos**.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>Las VLANs permiten separar el tráfico (ej. Profesores de Estudiantes) aunque estén en el mismo hardware.</figcaption>
+            </div>
+            
+            <p class="highlight">Cada VLAN es una **red de broadcast separada**. Los dispositivos de una VLAN no pueden comunicarse directamente con los de otra, aumentando la seguridad y reduciendo el tráfico innecesario.</p>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Funcionamiento de las VLANs</h2>
+            <p>La magia de las VLANs ocurre en la Capa 2 (Enlace de Datos) con la adición de una etiqueta especial a la trama Ethernet.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Puertos de Acceso (Access Ports)</h3>
+                    <p>Se conectan a un dispositivo final (PC, Impresora). Solo manejan tráfico de **una única VLAN**.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Puertos de Troncal (Trunk Ports)</h3>
+                    <p>Conectan Switches entre sí o un Switch a un Router. Son capaces de llevar tráfico de **múltiples VLANs** a través de una sola conexión física (usando el protocolo de etiquetado **802.1Q**).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. El Rol del Router en las VLANs</h2>
+            <p>Dado que las VLANs son redes separadas, un dispositivo de Capa 3 (**Router**) sigue siendo necesario para que dos VLANs puedan comunicarse entre sí. Esto se conoce como **Inter-VLAN Routing**.</p>
+            
+            <p><strong>Tarea Práctica (Simulación en Packet Tracer):</strong></p>
+            <ol>
+                <li>Crea un Switch y 4 PCs. Define dos VLANs: VLAN 10 (PCs 1 y 2) y VLAN 20 (PCs 3 y 4).</li>
+                <li>Asigna IPs a los PCs dentro de sus respectivas redes (ej. VLAN 10 = 192.168.10.x).</li>
+                <li>Intenta hacer **ping** de PC1 (VLAN 10) a PC3 (VLAN 20).</li>
+                <li>(Resultado Teórico): El ping debe **fallar**, demostrando que las VLANs están aisladas.</li>
+            </ol>
+            <button id="vlanQuizBtn">Verificar Aislamiento de VLAN</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S9 E35</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion34.html" class="nav-button">Anterior</a>
+        <a href="sesion36.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 32: Proyecto Integrador</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 32</h1>
+            <h2>Proyecto Integrador: El Juego de Adivinar</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Reto del Programador</h3>
+            <p><strong>Objetivo:</strong> Unir todo lo aprendido (Variables, If, While, Input) para crear un software funcional que "piense".</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🎲 La Misión: "Adivina el Número"</h4>
+                <p>La computadora elegirá un número secreto entre 1 y 100. Tú tienes que adivinarlo.</p>
+                <p>La computadora te dará pistas: "Más alto" o "Más bajo".</p>
+                
+                <div class="stats-grid" style="gap: 15px; margin-top: 15px;">
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #6b46c1; font-size: 1.5rem;">Memoria</span>
+                        <p style="font-size: 0.7rem;">Variable para guardar el secreto.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #d69e2e; font-size: 1.5rem;">Decisión</span>
+                        <p style="font-size: 0.7rem;">IF para comparar tu número vs secreto.</p>
+                    </div>
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #3182ce; font-size: 1.5rem;">Repetición</span>
+                        <p style="font-size: 0.7rem;">WHILE para preguntar hasta que ganes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Construyendo el Código (Paso a Paso)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">1. El Cerebro (Random)</h4>
+                    <p>Necesitamos importar una librería para generar azar.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        <span style="color: #d69e2e;">import</span> random<br>
+                        secreto = random.randint(1, 100)
+                    </div>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">2. El Juego Eterno</h4>
+                    <p>Mientras NO adivines, el juego sigue.</p>
+                    <div style="background: #2d3748; padding: 5px; border-radius: 4px; font-family: 'Fira Code'; font-size: 0.7rem; color: #e2e8f0;">
+                        adivinado = <span style="color: #d53f8c;">False</span><br>
+                        <span style="color: #d69e2e;">while</span> adivinado == <span style="color: #d53f8c;">False</span>:
+                    </div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>📜 El Algoritmo Maestro</h4>
+                <p>Analiza la lógica línea por línea.</p>
+                
+                <div style="background: #1a202c; padding: 20px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #a0aec0; margin-top: 15px; position: relative;">
+                    
+                    <div><span style="color: #d69e2e;">import</span> random</div>
+                    <div>secreto = random.randint(1, 100)</div>
+                    <div>intentos = 0</div>
+                    <br>
+                    <div><span style="color: #d69e2e;">while</span> <span style="color: #d53f8c;">True</span>: <span style="color: #48bb78; float: right;">// Bucle infinito hasta ganar</span></div>
+                    <div style="padding-left: 20px;">
+                        usuario = <span style="color: #805ad5;">int</span>(input(<span style="color: #f6ad55;">"Dame un número: "</span>))
+                    </div>
+                    <div style="padding-left: 20px;">intentos = intentos + 1</div>
+                    <br>
+                    <div style="padding-left: 20px;">
+                        <span style="color: #d69e2e;">if</span> usuario == secreto:
+                    </div>
+                    <div style="padding-left: 40px;">
+                        print(<span style="color: #f6ad55;">"¡Ganaste en "</span> + <span style="color: #805ad5;">str</span>(intentos) + <span style="color: #f6ad55;">" intentos!"</span>)
+                    </div>
+                    <div style="padding-left: 40px;">
+                        <span style="color: #d69e2e;">break</span> <span style="color: #e53e3e; float: right;">// Rompe el ciclo</span>
+                    </div>
+                    
+                    <div style="padding-left: 20px;">
+                        <span style="color: #d69e2e;">elif</span> usuario < secreto:
+                    </div>
+                    <div style="padding-left: 40px;">
+                        print(<span style="color: #f6ad55;">"Más alto ⬆️"</span>)
+                    </div>
+                    
+                    <div style="padding-left: 20px;">
+                        <span style="color: #d69e2e;">else</span>:
+                    </div>
+                    <div style="padding-left: 40px;">
+                        print(<span style="color: #f6ad55;">"Más bajo ⬇️"</span>)
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Depuración (Debugging)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿Qué pasa si nunca termina?</h5>
+                    <p>Si el jugador pone siempre el mismo número incorrecto...</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Solución</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Bucle Infinito Controlado.</strong> No es un error, el programa espera hasta que se cumpla la condición de victoria (`break`).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Mejorando el Juego</h5>
+                    <p>¿Cómo harías para que tenga un límite de vidas (5 intentos)?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Lógica</button>
+                    <div id="ans2" class="answer hidden">
+                        <p>Cambia el `while True` por <code>while intentos < 5</code>. Si se acaban los intentos, muestras un "Game Over" fuera del bucle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🎮 <strong>Misión del Día:</strong> Copia este código en tu cuaderno o computadora. Juega con un compañero: uno ejecuta el programa y el otro intenta adivinar. ¿Quién lo logra en menos intentos?</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 32 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

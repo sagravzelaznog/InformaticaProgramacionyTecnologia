@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 23: Escritura en Archivos de Texto - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .writing-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .writing-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #00b894;
+        }
+
+        .writing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .writing-card h4 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .writing-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .writing-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #74b9ff;
+        }
+
+        .writing-diagram {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .writing-flow {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .writing-flow.create {
+            border-color: #00cec9;
+            background: rgba(0, 206, 201, 0.1);
+        }
+
+        .writing-flow.write {
+            border-color: #fd79a8;
+            background: rgba(253, 121, 168, 0.1);
+        }
+
+        .writing-flow.append {
+            border-color: #a29bfe;
+            background: rgba(162, 155, 254, 0.1);
+        }
+
+        .writing-flow h5 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .writing-box {
+            background: #636e72;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+
+        .writing-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #fab1a0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .practice-exercises {
+            margin: 30px 0;
+        }
+
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .writing-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+        .writing-description {
+            margin-top: 20px;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .writing-showcase {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .writing-showcase h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .writing-showcase h3 i {
+            margin-right: 10px;
+        }
+
+        .writing-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .writing-example h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+
+        .logger-system {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .logger-system h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .logger-system h3 i {
+            margin-right: 10px;
+        }
+
+        .logger-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .logger-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+
+        .report-generator {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .report-generator h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .report-generator h3 i {
+            margin-right: 10px;
+        }
+
+        .report-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .report-example h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+        }
+
+        .backup-system {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .backup-system h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .backup-system h3 i {
+            margin-right: 10px;
+        }
+
+        .backup-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .backup-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+
+        .data-exporter {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .data-exporter h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .data-exporter h3 i {
+            margin-right: 10px;
+        }
+
+        .export-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .export-example h5 {
+            margin-top: 0;
+            color: #00cec9;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 23</h1>
+                <h2>Escritura en Archivos de Texto</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-12-38"
+                     role="progressbar"
+                     aria-valuenow="12.38"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">12.38% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a persistir información en archivos externos mediante técnicas seguras de escritura. Dominarás diferentes modos de escritura, formateo de datos y estrategias de rendimiento para crear aplicaciones que puedan guardar y recuperar información permanentemente.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Escribir datos en archivos de forma segura</li>
+                        <li>Usar diferentes modos de escritura (write, append)</li>
+                        <li>Formatear datos para almacenamiento eficiente</li>
+                        <li>Crear sistemas de logging y registro</li>
+                        <li>Generar informes y backups automáticos</li>
+                        <li>Exportar datos en múltiples formatos</li>
+                    </ul>
+                </div>
+
+                <div class="writing-diagram">
+                    <h3>Proceso de Escritura de Archivos</h3>
+                    <div class="writing-diagram-container">
+                        <div class="writing-flow create">
+                            <h5>1. Crear/Abrir Archivo</h5>
+                            <div class="writing-box">with open('archivo.txt', 'w') as f:</div>
+                            <div class="writing-box">open('datos.csv', 'a', encoding='utf-8')</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="writing-flow write">
+                            <h5>2. Escribir Datos</h5>
+                            <div class="writing-box">f.write("texto formateado\n")</div>
+                            <div class="writing-box">f.writelines(lineas)</div>
+                            <div class="writing-box">print("datos", file=f)</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="writing-flow append">
+                            <h5>3. Formatear y Cerrar</h5>
+                            <div class="writing-box">formato_datos(datos)</div>
+                            <div class="writing-box">flush() si es necesario</div>
+                            <div class="writing-box"># Se cierra automáticamente</div>
+                        </div>
+                    </div>
+                    <p class="writing-description">
+                        La escritura de archivos permite crear sistemas de logging, generar reportes, hacer backups automáticos y exportar datos en múltiples formatos, asegurando la persistencia de información crítica.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+
+            <!-- 1. Escritura segura en archivos -->
+            <div class="concept-card">
+                <h3>1. Escritura Segura en Archivos</h3>
+                <p>La escritura segura implica usar el contexto manager 'with' para garantizar que los archivos se cierren correctamente, manejar diferentes modos de escritura y formatear los datos apropiadamente antes de escribirlos.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Escritura segura en archivos con diferentes técnicas
+
+# 1. Escritura básica segura
+def escritura_basica_segura():
+    """Demuestra escritura básica segura en archivos."""
+
+    print("=== ESCRITURA BÁSICA SEGURA ===")
+
+    datos_a_escribir = [
+        "Primera línea de datos",
+        "Segunda línea con números: 42",
+        "Tercera línea con caracteres especiales: ñáéíóú",
+        "Última línea del archivo"
+    ]
+
+    try:
+        # Escritura con contexto manager (modo 'w')
+        with open('datos_basicos.txt', 'w', encoding='utf-8') as archivo:
+            for dato in datos_a_escribir:
+                archivo.write(dato + '\n')  # Agregar salto de línea
+
+        print("✅ Archivo creado exitosamente con modo 'w'")
+
+        # Verificar contenido
+        with open('datos_basicos.txt', 'r', encoding='utf-8') as archivo:
+            contenido = archivo.read()
+        print(f"📄 Contenido escrito:\n{contenido}")
+
+        # Agregar más contenido (modo 'a')
+        with open('datos_basicos.txt', 'a', encoding='utf-8') as archivo:
+            archivo.write("Línea adicional agregada con modo 'a'\n")
+            archivo.write(f"Timestamp: {time.ctime()}\n")
+
+        print("✅ Contenido adicional agregado")
+
+        # Ver contenido final
+        with open('datos_basicos.txt', 'r', encoding='utf-8') as archivo:
+            contenido_final = archivo.read()
+        print(f"📄 Contenido final:\n{contenido_final}")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+    finally:
+        # Limpiar
+        if os.path.exists('datos_basicos.txt'):
+            os.remove('datos_basicos.txt')
+
+# 2. Métodos de escritura avanzados
+def metodos_escritura_avanzados():
+    """Demuestra métodos avanzados de escritura."""
+
+    print("\n=== MÉTODOS AVANZADOS DE ESCRITURA ===")
+
+    # Método 1: writelines() con lista de líneas
+    lineas_datos = [
+        "Línea 1 procesada\n",
+        "Línea 2 formateada\n",
+        "Línea 3 lista\n"
+    ]
+
+    with open('metodo1.txt', 'w', encoding='utf-8') as f:
+        f.writelines(lineas_datos)
+
+    print("✅ Método writelines(): lista de líneas escrita")
+
+    # Método 2: print() con argumento file
+    with open('metodo2.txt', 'w', encoding='utf-8') as f:
+        print("Esta línea fue escrita con print()", file=f)
+        print("Número formateado: {:.2f}".format(3.14159), file=f)
+        print("Fecha y hora:", time.ctime(), file=f)
+
+    print("✅ Método print(file=): datos formateados escritos")
+
+    # Método 3: Escritura con formateo avanzado
+    datos_estructurados = [
+        {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"},
+        {"nombre": "Carlos", "edad": 30, "ciudad": "Barcelona"},
+        {"nombre": "María", "edad": 28, "ciudad": "Valencia"}
+    ]
+
+    with open('metodo3.txt', 'w', encoding='utf-8') as f:
+        for persona in datos_estructurados:
+            linea = "{nombre},{edad},{ciudad}\n".format(**persona)
+            f.write(linea)
+
+    print("✅ Método format(): datos estructurados formateados")
+
+    # Método 4: Escritura binaria
+    datos_binarios = bytes([65, 66, 67, 68, 69, 10])  # ABCDE\n
+
+    with open('metodo4.bin', 'wb') as f:
+        f.write(datos_binarios)
+
+    print("✅ Método binario: datos binarios escritos")
+
+    # Verificar archivos creados
+    for archivo in ['metodo1.txt', 'metodo2.txt', 'metodo3.txt', 'metodo4.bin']:
+        if os.path.exists(archivo):
+            tamaño = os.path.getsize(archivo)
+            print(f"✅ {archivo}: {tamaño} bytes")
+
+            # Mostrar contenido de archivos de texto
+            if archivo.endswith('.txt'):
+                with open(archivo, 'r', encoding='utf-8') as f:
+                    contenido = f.read().strip()
+                print(f"   Contenido: {contenido}")
+
+    # Limpiar
+    for archivo in ['metodo1.txt', 'metodo2.txt', 'metodo3.txt', 'metodo4.bin']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 3. Modos de escritura y append
+def modos_escritura_append():
+    """Demuestra diferentes modos de escritura y append."""
+
+    print("\n=== MODOS DE ESCRITURA Y APPEND ===")
+
+    # Crear archivo base
+    with open('base.txt', 'w', encoding='utf-8') as f:
+        f.write("Contenido inicial\n")
+        f.write("Línea 2\n")
+        f.write("Línea 3\n")
+
+    print("📁 Archivo base creado")
+
+    # Modo append (a) - agregar al final
+    print("📝 Modo 'a' (append):")
+    with open('base.txt', 'a', encoding='utf-8') as f:
+        f.write("Línea agregada con 'a'\n")
+        f.write("Otra línea más\n")
+        f.write(f"Timestamp: {time.ctime()}\n")
+
+    with open('base.txt', 'r', encoding='utf-8') as f:
+        contenido = f.read()
+    print(f"Contenido después de append:\n{contenido}")
+
+    # Modo escritura+lectura (w+) - sobreescribe pero permite lectura
+    print("📝 Modo 'w+' (escritura+lectura):")
+    with open('nuevo.txt', 'w+', encoding='utf-8') as f:
+        f.write("Contenido creado con w+\n")
+        f.write("Segunda línea\n")
+
+        # Volver al inicio para leer
+        f.seek(0)
+        contenido = f.read()
+        print(f"Contenido leído inmediatamente: {contenido.strip()}")
+
+        # Agregar más al final
+        f.seek(0, 2)  # Ir al final
+        f.write("Línea agregada al final\n")
+
+    with open('nuevo.txt', 'r', encoding='utf-8') as f:
+        contenido_final = f.read()
+    print(f"Contenido final:\n{contenido_final}")
+
+    # Modo append+lectura (a+) - permite lectura y escritura al final
+    print("📝 Modo 'a+' (append+lectura):")
+    with open('base.txt', 'a+', encoding='utf-8') as f:
+        # Leer contenido actual
+        f.seek(0)
+        contenido_actual = f.read()
+        print(f"Contenido actual ({len(contenido_actual)} caracteres)")
+
+        # Agregar al final
+        f.write("Línea agregada con a+\n")
+
+    with open('base.txt', 'r', encoding='utf-8') as f:
+        contenido_completo = f.read()
+    print(f"Contenido completo:\n{contenido_completo}")
+
+    # Limpiar
+    for archivo in ['base.txt', 'nuevo.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 4. Formateo de datos para archivos
+def formateo_datos_archivos():
+    """Demuestra formateo de diferentes tipos de datos."""
+
+    print("\n=== FORMATEO DE DATOS ===")
+
+    # Datos de ejemplo
+    productos = [
+        {"nombre": "Laptop", "precio": 999.99, "categoria": "Electrónicos", "stock": 50},
+        {"nombre": "Mouse", "precio": 25.50, "categoria": "Accesorios", "stock": 200},
+        {"nombre": "Teclado", "precio": 75.00, "categoria": "Accesorios", "stock": 150}
+    ]
+
+    ventas = [
+        {"fecha": "2024-01-01", "producto": "Laptop", "cantidad": 2, "total": 1999.98},
+        {"fecha": "2024-01-02", "producto": "Mouse", "cantidad": 5, "total": 127.50},
+        {"fecha": "2024-01-03", "producto": "Teclado", "cantidad": 3, "total": 225.00}
+    ]
+
+    # Formato 1: CSV simple
+    print("📊 Formato CSV:")
+    with open('productos.csv', 'w', encoding='utf-8') as f:
+        # Encabezado
+        f.write("Nombre,Precio,Categoria,Stock\n")
+
+        # Datos
+        for producto in productos:
+            linea = f"{producto['nombre']},{producto['precio']},{producto['categoria']},{producto['stock']}\n"
+            f.write(linea)
+
+    with open('productos.csv', 'r', encoding='utf-8') as f:
+        contenido_csv = f.read()
+    print(contenido_csv)
+
+    # Formato 2: Texto formateado con columnas
+    print("📋 Formato texto formateado:")
+    with open('productos.txt', 'w', encoding='utf-8') as f:
+        f.write("INVENTARIO DE PRODUCTOS\n")
+        f.write("=" * 50 + "\n")
+        f.write(f"{'Nombre':<15"15"<15"{'Precio':<10"10"<10"{'Categoria':<15"15"<15"{'Stock'}\n")
+        f.write("-" * 50 + "\n")
+
+        for producto in productos:
+            f.write(f"{producto['nombre']:<15"15"<15"producto['precio']:<10.2f"producto['categoria']:<15"15"<15"ducto['stock']}\n")
+
+    with open('productos.txt', 'r', encoding='utf-8') as f:
+        contenido_txt = f.read()
+    print(contenido_txt)
+
+    # Formato 3: JSON (simulado)
+    print("📄 Formato JSON:")
+    with open('productos.json', 'w', encoding='utf-8') as f:
+        f.write("{\n")
+        f.write('  "productos": [\n')
+
+        for i, producto in enumerate(productos):
+            f.write("    {\n")
+            f.write(f'      "nombre": "{producto["nombre"]}",\n')
+            f.write(f'      "precio": {producto["precio"]},\n')
+            f.write(f'      "categoria": "{producto["categoria"]}",\n')
+            f.write(f'      "stock": {producto["stock"]}\n')
+            f.write("    }")
+            if i < len(productos) - 1:
+                f.write(",")
+            f.write("\n")
+
+        f.write("  ],\n")
+        f.write('  "total_productos": ' + str(len(productos)) + "\n")
+        f.write("}\n")
+
+    with open('productos.json', 'r', encoding='utf-8') as f:
+        contenido_json = f.read()
+    print(contenido_json)
+
+    # Limpiar archivos
+    for archivo in ['productos.csv', 'productos.txt', 'productos.json']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 5. Escritura eficiente para archivos grandes
+def escritura_archivos_grandes():
+    """Demuestra técnicas para escribir archivos grandes eficientemente."""
+
+    print("\n=== ESCRITURA DE ARCHIVOS GRANDES ===")
+
+    # Técnica 1: Escritura en bloques
+    print("📦 Escritura en bloques:")
+    bloque_tamaño = 8192  # 8KB
+
+    with open('archivo_grande.txt', 'w', encoding='utf-8') as f:
+        for i in range(1000):
+            linea = f"Línea número {i + 1} con datos adicionales para hacerla más larga\n"
+            f.write(linea)
+
+            # Flush ocasional para archivos muy grandes
+            if i % 100 == 0:
+                f.flush()
+
+    tamaño = os.path.getsize('archivo_grande.txt')
+    print(f"✅ Archivo creado: {tamaño:,}","ytes")
+
+    # Técnica 2: Buffer personalizado
+    print("🗂️ Buffer personalizado:")
+    buffer_lineas = []
+    tamaño_buffer = 100
+
+    with open('archivo_buffer.txt', 'w', encoding='utf-8') as f:
+        for i in range(500):
+            linea = f"Línea bufferizada {i + 1}: datos de ejemplo\n"
+            buffer_lineas.append(linea)
+
+            if len(buffer_lineas) >= tamaño_buffer:
+                f.writelines(buffer_lineas)
+                buffer_lineas = []
+
+        # Escribir líneas restantes
+        if buffer_lineas:
+            f.writelines(buffer_lineas)
+
+    tamaño_buffer = os.path.getsize('archivo_buffer.txt')
+    print(f"✅ Archivo con buffer: {tamaño_buffer:,}","ytes")
+
+    # Técnica 3: Escritura asíncrona simulada
+    print("⚡ Escritura asíncrona (simulada):")
+    import threading
+
+    def escribir_en_hilo(archivo, datos, hilo_id):
+        """Simula escritura en hilo separado."""
+        with open(archivo, 'a', encoding='utf-8') as f:
+            for dato in datos:
+                f.write(f"Hilo {hilo_id}: {dato}\n")
+                time.sleep(0.001)  # Simular procesamiento
+
+    # Datos para múltiples hilos
+    datos_hilo1 = [f"Dato {i}" for i in range(1, 101)]
+    datos_hilo2 = [f"Info {i}" for i in range(1, 101)]
+
+    # Crear hilos
+    hilo1 = threading.Thread(target=escribir_en_hilo, args=('archivo_hilos.txt', datos_hilo1, 1))
+    hilo2 = threading.Thread(target=escribir_en_hilo, args=('archivo_hilos.txt', datos_hilo2, 2))
+
+    # Ejecutar hilos
+    hilo1.start()
+    hilo2.start()
+
+    # Esperar a que terminen
+    hilo1.join()
+    hilo2.join()
+
+    print("✅ Escritura multi-hilo completada")
+
+    # Ver resultado
+    with open('archivo_hilos.txt', 'r', encoding='utf-8') as f:
+        lineas = f.readlines()
+
+    print(f"📊 Total líneas escritas: {len(lineas)}")
+
+    # Técnica 4: Escritura con compresión (simulada)
+    print("🗜️ Escritura con compresión:")
+    datos_comprimidos = []
+    contador_comprimido = 0
+
+    with open('archivo_comprimido.txt', 'w', encoding='utf-8') as f:
+        for i in range(1000):
+            if i % 10 == 0:  # Cada 10 líneas, comprimir referencia
+                contador_comprimido += 1
+                f.write(f"COMP:{contador_comprimido}:Líneas {i+1}-{min(i+10, 1000)}\n")
+            else:
+                f.write(f"Línea {i + 1}: datos normales\n")
+
+    tamaño_comprimido = os.path.getsize('archivo_comprimido.txt')
+    print(f"✅ Archivo comprimido: {tamaño_comprimido:,}","ytes")
+
+    # Limpiar archivos
+    for archivo in ['archivo_grande.txt', 'archivo_buffer.txt', 'archivo_hilos.txt', 'archivo_comprimido.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 6. Manejo de errores en escritura
+def manejo_errores_escritura():
+    """Demuestra manejo de errores durante escritura."""
+
+    print("\n=== MANEJO DE ERRORES ===")
+
+    # Error 1: Archivo de solo lectura
+    print("🚫 Archivo de solo lectura:")
+    try:
+        with open('solo_lectura.txt', 'w', encoding='utf-8') as f:
+            f.write("Esto debería funcionar")
+    except Exception as e:
+        print(f"❌ Error inesperado: {e}")
+
+    # Crear archivo de solo lectura (simulado)
+    with open('solo_lectura.txt', 'w', encoding='utf-8') as f:
+        f.write("Archivo de prueba")
+
+    # Cambiar permisos (solo en sistemas que lo soporten)
+    try:
+        os.chmod('solo_lectura.txt', 0o444)  # Solo lectura
+        print("✅ Archivo marcado como solo lectura")
+    except Exception:
+        print("⚠️ No se pudieron cambiar permisos (normal en Windows)")
+
+    # Intentar escribir en archivo de solo lectura
+    try:
+        with open('solo_lectura.txt', 'w', encoding='utf-8') as f:
+            f.write("Esto debería fallar")
+    except PermissionError:
+        print("❌ Error esperado: Permisos denegados")
+    except Exception as e:
+        print(f"❌ Otro error: {e}")
+
+    # Error 2: Disco lleno (simulado)
+    print("💾 Disco lleno (simulado):")
+    try:
+        # Crear archivo muy grande para simular disco lleno
+        with open('archivo_enorme.txt', 'w', encoding='utf-8') as f:
+            for i in range(1000000):  # Un millón de líneas
+                f.write(f"Línea muy larga número {i} con mucho contenido para ocupar espacio en disco\n")
+    except OSError as e:
+        if "No space left on device" in str(e) or "disk full" in str(e).lower():
+            print("❌ Error esperado: Disco lleno")
+        else:
+            print(f"❌ Otro error de disco: {e}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+    # Error 3: Ruta inválida
+    print("🛣️ Ruta inválida:")
+    ruta_invalida = "/ruta/que/no/existe/archivo.txt"
+
+    try:
+        with open(ruta_invalida, 'w', encoding='utf-8') as f:
+            f.write("Esto debería fallar")
+    except FileNotFoundError:
+        print("❌ Error esperado: Directorio no existe")
+    except Exception as e:
+        print(f"❌ Otro error: {e}")
+
+    # Limpiar archivos de prueba
+    archivos_prueba = ['solo_lectura.txt', 'archivo_enorme.txt']
+    for archivo in archivos_prueba:
+        if os.path.exists(archivo):
+            try:
+                os.remove(archivo)
+            except Exception:
+                pass  # Ignorar errores de limpieza
+
+# Ejecutar todas las demostraciones
+if __name__ == "__main__":
+    import os
+    import time
+
+    print("🚀 DEMOSTRACIÓN DE ESCRITURA DE ARCHIVOS")
+
+    escritura_basica_segura()
+    metodos_escritura_avanzados()
+    modos_escritura_append()
+    formateo_datos_archivos()
+    escritura_archivos_grandes()
+    manejo_errores_escritura()
+
+    print("\n✅ ¡Todas las demostraciones completadas!")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Modos de Escritura</h5>
+                        <ul>
+                            <li><strong>'w':</strong> Escritura (crea o sobreescribe)</li>
+                            <li><strong>'a':</strong> Append (agrega al final)</li>
+                            <li><strong>'w+':</strong> Escritura y lectura</li>
+                            <li><strong>'a+':</strong> Append y lectura</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h5>Métodos de Escritura</h5>
+                        <ul>
+                            <li><strong>write():</strong> Escribe string</li>
+                            <li><strong>writelines():</strong> Escribe lista de strings</li>
+                            <li><strong>print(file=):</strong> Escribe con formateo automático</li>
+                            <li><strong>flush():</strong> Fuerza escritura inmediata</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Mejores Prácticas de Escritura</h4>
+                    <p>Sigue estas recomendaciones para escribir archivos eficientemente:</p>
+                    <ul>
+                        <li>Siempre usa <code>with open()</code> para manejo automático de cierre</li>
+                        <li>Especifica la codificación UTF-8 explícitamente</li>
+                        <li>Usa <code>writelines()</code> para listas grandes de líneas</li>
+                        <li>Llama <code>flush()</code> para escritura inmediata cuando sea crítico</li>
+                        <li>Maneja excepciones apropiadamente (espacio en disco, permisos)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Formateo de datos para archivos -->
+            <div class="concept-card">
+                <h3>2. Formateo de Datos para Archivos</h3>
+                <p>El formateo adecuado de datos es esencial para crear archivos legibles y estructurados. Aprenderás técnicas para convertir diferentes tipos de datos en formatos de texto apropiados.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Formateo avanzado de datos para archivos
+
+# 1. Formateo básico de tipos de datos
+def formateo_basico_datos():
+    """Demuestra formateo básico de diferentes tipos de datos."""
+
+    print("=== FORMATEO BÁSICO DE DATOS ===")
+
+    # Datos de ejemplo
+    datos = {
+        'texto': 'Hola Mundo',
+        'entero': 42,
+        'flotante': 3.14159,
+        'booleano': True,
+        'lista': [1, 2, 3, 4, 5],
+        'diccionario': {'nombre': 'Ana', 'edad': 25},
+        'fecha': datetime.now(),
+        'nulo': None
+    }
+
+    # Método 1: Conversión simple a string
+    with open('datos_basicos.txt', 'w', encoding='utf-8') as f:
+        f.write("FORMATO BÁSICO DE DATOS\n")
+        f.write("=" * 40 + "\n")
+
+        for clave, valor in datos.items():
+            # Convertir cada tipo de dato apropiadamente
+            if valor is None:
+                valor_str = "None"
+            elif isinstance(valor, bool):
+                valor_str = "True" if valor else "False"
+            elif isinstance(valor, (int, float)):
+                valor_str = str(valor)
+            elif isinstance(valor, (list, dict)):
+                valor_str = str(valor)
+            elif isinstance(valor, datetime):
+                valor_str = valor.strftime('%Y-%m-%d %H:%M:%S')
+            else:
+                valor_str = str(valor)
+
+            f.write(f"{clave}: {valor_str}\n")
+
+    print("✅ Datos básicos formateados")
+
+    # Método 2: Formateo estructurado
+    print("\n📋 Datos formateados:")
+    with open('datos_basicos.txt', 'r', encoding='utf-8') as f:
+        contenido = f.read()
+    print(contenido)
+
+    # Método 3: Formateo tabular
+    productos = [
+        {"producto": "Laptop", "precio": 999.99, "cantidad": 10},
+        {"producto": "Mouse", "precio": 25.50, "cantidad": 50},
+        {"producto": "Teclado", "precio": 75.00, "cantidad": 30}
+    ]
+
+    with open('productos_tabla.txt', 'w', encoding='utf-8') as f:
+        # Encabezado
+        f.write(f"{'Producto'"<15"{'Precio'"<10"{'Cantidad'"<10"{'Total'}\n")
+        f.write("-" * 45 + "\n")
+
+        # Datos con formateo
+        total_general = 0
+        for producto in productos:
+            total_producto = producto['precio'] * producto['cantidad']
+            total_general += total_producto
+
+            f.write(f"{producto['producto']"<15"producto['precio']"<10.2f"producto['cantidad']"<10"tal_producto"<10.2f"\n")
+
+        f.write("-" * 45 + "\n")
+        f.write(f"{'TOTAL GENERAL':"<35"tal_general"<10.2f"\n")
+
+    print("✅ Tabla de productos creada")
+
+    with open('productos_tabla.txt', 'r', encoding='utf-8') as f:
+        tabla = f.read()
+    print("\n" + tabla)
+
+    # Limpiar
+    for archivo in ['datos_basicos.txt', 'productos_tabla.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 2. Formateo avanzado con templates
+def formateo_con_templates():
+    """Demuestra formateo usando templates y cadenas formateadas."""
+
+    print("\n=== FORMATEO CON TEMPLATES ===")
+
+    # Template básico
+    template_linea = "Usuario: {nombre}, Edad: {edad}, Ciudad: {ciudad}\n"
+
+    usuarios = [
+        {"nombre": "Ana García", "edad": 25, "ciudad": "Madrid"},
+        {"nombre": "Carlos López", "edad": 30, "ciudad": "Barcelona"},
+        {"nombre": "María Rodríguez", "edad": 28, "ciudad": "Valencia"}
+    ]
+
+    with open('usuarios_template.txt', 'w', encoding='utf-8') as f:
+        f.write("LISTADO DE USUARIOS\n")
+        f.write("=" * 50 + "\n")
+
+        for usuario in usuarios:
+            f.write(template_linea.format(**usuario))
+
+        # Resumen
+        total_usuarios = len(usuarios)
+        edad_promedio = sum(u['edad'] for u in usuarios) / total_usuarios
+
+        f.write(f"\nRESUMEN:\n")
+        f.write(f"Total usuarios: {total_usuarios}\n")
+        f.write(f"Edad promedio: {edad_promedio".1f"}\n")
+
+    print("✅ Archivo con template creado")
+
+    with open('usuarios_template.txt', 'r', encoding='utf-8') as f:
+        contenido = f.read()
+    print(contenido)
+
+    # Template avanzado con formateo numérico
+    template_factura = """FACTURA #{numero"06d"
+Cliente: {cliente}
+Fecha: {fecha}
+
+DETALLE DE COMPRA:
+{'Producto'"<20"{'Cantidad'"<10"{'Precio'"<10"{'Total'}
+{'-' * 50}
+{productos}
+{'-' * 50}
+TOTAL: ${total"<10.2f"
+
+Gracias por su compra!
+"""
+
+    factura = {
+        'numero': 12345,
+        'cliente': 'Empresa XYZ S.A.',
+        'fecha': '2024-01-15',
+        'productos': [
+            {'producto': 'Laptop Dell', 'cantidad': 2, 'precio': 899.99},
+            {'producto': 'Monitor 24"', 'cantidad': 1, 'precio': 199.99},
+            {'producto': 'Teclado mecánico', 'cantidad': 3, 'precio': 79.99}
+        ]
+    }
+
+    # Calcular totales
+    productos_formateados = []
+    total_factura = 0
+
+    for producto in factura['productos']:
+        total_producto = producto['cantidad'] * producto['precio']
+        total_factura += total_producto
+        productos_formateados.append(
+            f"{producto['producto']"<20"producto['cantidad']"<10"producto['precio']"<10.2f"tal_producto"<10.2f"
+        )
+
+    factura['productos'] = '\n'.join(productos_formateados)
+    factura['total'] = total_factura
+
+    with open('factura.txt', 'w', encoding='utf-8') as f:
+        f.write(template_factura.format(**factura))
+
+    print("✅ Factura formateada creada")
+
+    with open('factura.txt', 'r', encoding='utf-8') as f:
+        factura_contenido = f.read()
+    print(factura_contenido)
+
+    # Limpiar
+    for archivo in ['usuarios_template.txt', 'factura.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 3. Formateo especializado por tipo de archivo
+def formateo_especializado():
+    """Demuestra formateo especializado para diferentes tipos de archivo."""
+
+    print("\n=== FORMATEO ESPECIALIZADO ===")
+
+    # Datos de ejemplo
+    datos_ventas = [
+        {"producto": "Laptop", "ventas": 150, "ingresos": 150000.00, "categoria": "Electrónicos"},
+        {"producto": "Smartphone", "ventas": 300, "ingresos": 180000.00, "categoria": "Electrónicos"},
+        {"producto": "Tablet", "ventas": 75, "ingresos": 37500.00, "categoria": "Electrónicos"},
+        {"producto": "Auriculares", "ventas": 200, "ingresos": 15000.00, "categoria": "Accesorios"}
+    ]
+
+    # 1. Formato CSV con headers
+    print("📊 Formato CSV:")
+    with open('ventas.csv', 'w', encoding='utf-8') as f:
+        # Headers
+        headers = ['Producto', 'Ventas', 'Ingresos', 'Categoria']
+        f.write(','.join(headers) + '\n')
+
+        # Datos
+        for venta in datos_ventas:
+            fila = [str(venta['producto']), str(venta['ventas']),
+                   f"{venta['ingresos']".2f"}", venta['categoria']]
+            f.write(','.join(fila) + '\n')
+
+    with open('ventas.csv', 'r', encoding='utf-8') as f:
+        csv_content = f.read()
+    print(csv_content)
+
+    # 2. Formato JSON estructurado
+    print("📄 Formato JSON:")
+    import json
+
+    datos_json = {
+        'reporte_ventas': {
+            'fecha_generacion': datetime.now().isoformat(),
+            'periodo': 'Q1 2024',
+            'productos': datos_ventas,
+            'resumen': {
+                'total_productos': len(datos_ventas),
+                'ventas_totales': sum(p['ventas'] for p in datos_ventas),
+                'ingresos_totales': sum(p['ingresos'] for p in datos_ventas)
+            }
+        }
+    }
+
+    with open('ventas.json', 'w', encoding='utf-8') as f:
+        json.dump(datos_json, f, indent=2, ensure_ascii=False)
+
+    with open('ventas.json', 'r', encoding='utf-8') as f:
+        json_content = f.read()
+    print(json_content)
+
+    # 3. Formato XML básico (simulado)
+    print("🔖 Formato XML:")
+    with open('ventas.xml', 'w', encoding='utf-8') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<reporte_ventas>\n')
+        f.write(f'  <fecha_generacion>{datetime.now().isoformat()}</fecha_generacion>\n')
+        f.write(f'  <periodo>Q1 2024</periodo>\n')
+        f.write('  <productos>\n')
+
+        for venta in datos_ventas:
+            f.write('    <producto>\n')
+            f.write(f'      <nombre>{venta["producto"]}</nombre>\n')
+            f.write(f'      <ventas>{venta["ventas"]}</ventas>\n')
+            f.write(f'      <ingresos>{venta["ingresos"]".2f"}</ingresos>\n')
+            f.write(f'      <categoria>{venta["categoria"]}</categoria>\n')
+            f.write('    </producto>\n')
+
+        f.write('  </productos>\n')
+        f.write('  <resumen>\n')
+        f.write(f'    <total_productos>{len(datos_ventas)}</total_productos>\n')
+        f.write(f'    <ventas_totales>{sum(p["ventas"] for p in datos_ventas)}</ventas_totales>\n')
+        f.write(f'    <ingresos_totales>{sum(p["ingresos"] for p in datos_ventas)".2f"}</ingresos_totales>\n')
+        f.write('  </resumen>\n')
+        f.write('</reporte_ventas>\n')
+
+    with open('ventas.xml', 'r', encoding='utf-8') as f:
+        xml_content = f.read()
+    print(xml_content)
+
+    # 4. Formato tabular avanzado
+    print("📋 Formato tabular avanzado:")
+    with open('ventas_tabla.txt', 'w', encoding='utf-8') as f:
+        # Título
+        f.write("REPORTE DE VENTAS Q1 2024\n")
+        f.write("=" * 60 + "\n\n")
+
+        # Tabla con formateo avanzado
+        f.write(f"{'Producto'"<20"{'Ventas'"<10"{'Ingresos'"<15"{'Categoría'}\n")
+        f.write("-" * 60 + "\n")
+
+        for venta in datos_ventas:
+            f.write(f"{venta['producto']"<20"venta['ventas']"<10"venta['ingresos']"<15.2f"venta['categoria']}\n")
+
+        f.write("-" * 60 + "\n")
+
+        # Resumen
+        total_ventas = sum(p['ventas'] for p in datos_ventas)
+        total_ingresos = sum(p['ingresos'] for p in datos_ventas)
+
+        f.write(f"{'TOTALES':"<20"tal_ventas"<10"tal_ingresos"<15.2f"\n")
+
+        # Estadísticas adicionales
+        promedio_ventas = total_ventas / len(datos_ventas)
+        producto_mas_vendido = max(datos_ventas, key=lambda x: x['ventas'])['producto']
+
+        f.write(f"\nESTADÍSTICAS:\n")
+        f.write(f"Promedio de ventas por producto: {promedio_ventas".1f"}\n")
+        f.write(f"Producto más vendido: {producto_mas_vendido}\n")
+
+    with open('ventas_tabla.txt', 'r', encoding='utf-8') as f:
+        tabla_content = f.read()
+    print(tabla_content)
+
+    # Limpiar archivos
+    for archivo in ['ventas.csv', 'ventas.json', 'ventas.xml', 'ventas_tabla.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 4. Escritura de datos binarios
+def escritura_datos_binarios():
+    """Demuestra escritura de datos binarios."""
+
+    print("\n=== ESCRITURA DE DATOS BINARIOS ===")
+
+    # Datos binarios de ejemplo
+    datos_imagen = bytes([
+        0xFF, 0xD8, 0xFF, 0xE0,  # Header JPEG de ejemplo
+        0x00, 0x10, 0x4A, 0x46,  # Más datos JPEG
+        0x49, 0x46, 0x00, 0x01,  # JFIF marker
+        0x01, 0x01, 0x00, 0x48,  # Dimensiones
+        0x00, 0x48, 0x00, 0x00,  # Más datos
+        0xFF, 0xD9              # End JPEG
+    ])
+
+    # Escribir datos binarios
+    with open('imagen.bin', 'wb') as f:
+        f.write(datos_imagen)
+
+    print(f"✅ Datos binarios escritos: {len(datos_imagen)} bytes")
+
+    # Leer y verificar
+    with open('imagen.bin', 'rb') as f:
+        datos_leidos = f.read()
+
+    print(f"✅ Datos leídos: {len(datos_leidos)} bytes")
+    print(f"✅ Datos idénticos: {datos_imagen == datos_leidos}")
+
+    # Escribir datos estructurados binarios
+    import struct
+
+    # Datos estructurados
+    registros = [
+        ('Ana', 25, 165.5, True),
+        ('Carlos', 30, 175.2, False),
+        ('María', 28, 160.8, True)
+    ]
+
+    with open('registros.bin', 'wb') as f:
+        for nombre, edad, altura, activo in registros:
+            # Empaquetar datos: string(10), int, float, char(bool)
+            nombre_padded = nombre.ljust(10)[:10]  # Nombre de 10 caracteres máximo
+            datos_empaquetados = struct.pack('10s i f ?',
+                                          nombre_padded.encode('utf-8'),
+                                          edad, altura, activo)
+            f.write(datos_empaquetados)
+
+    print(f"✅ Registros binarios escritos: {len(registros)} registros")
+
+    # Leer registros binarios
+    with open('registros.bin', 'rb') as f:
+        print("\n📊 Registros leídos:")
+        for i in range(len(registros)):
+            datos = f.read(struct.calcsize('10s i f ?'))
+            nombre, edad, altura, activo = struct.unpack('10s i f ?', datos)
+
+            # Limpiar nombre (remover padding)
+            nombre = nombre.decode('utf-8').rstrip()
+
+            print(f"  {nombre}: edad={edad}, altura={altura".1f"}, activo={activo}")
+
+    # Limpiar archivos binarios
+    for archivo in ['imagen.bin', 'registros.bin']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# 5. Escritura eficiente con buffers
+def escritura_con_buffers():
+    """Demuestra técnicas de escritura eficiente con buffers."""
+
+    print("\n=== ESCRITURA CON BUFFERS ===")
+
+    # Técnica 1: Buffer manual
+    print("🗂️ Buffer manual:")
+    buffer_lineas = []
+    tamaño_buffer = 50
+
+    with open('archivo_buffer.txt', 'w', encoding='utf-8') as f:
+        for i in range(200):
+            linea = f"Línea {i + 1}: Datos de ejemplo con información adicional\n"
+            buffer_lineas.append(linea)
+
+            if len(buffer_lineas) >= tamaño_buffer:
+                f.writelines(buffer_lineas)
+                buffer_lineas = []
+
+        # Escribir líneas restantes
+        if buffer_lineas:
+            f.writelines(buffer_lineas)
+
+    tamaño = os.path.getsize('archivo_buffer.txt')
+    print(f"✅ Archivo con buffer creado: {tamaño:,}","ytes")
+
+    # Técnica 2: Escritura con flush controlado
+    print("⚡ Escritura con flush controlado:")
+    with open('archivo_flush.txt', 'w', encoding='utf-8') as f:
+        for i in range(100):
+            f.write(f"Línea con flush {i + 1}\n")
+
+            # Flush cada 20 líneas
+            if (i + 1) % 20 == 0:
+                f.flush()
+                print(f"  Flush en línea {i + 1}")
+
+    print("✅ Escritura con flush completada")
+
+    # Técnica 3: Comparación de rendimiento
+    print("🏃 Comparación de rendimiento:")
+
+    import time
+
+    # Sin buffer (flush automático)
+    inicio = time.time()
+    with open('test_sin_buffer.txt', 'w', encoding='utf-8') as f:
+        for i in range(1000):
+            f.write(f"Línea {i + 1}\n")
+            f.flush()  # Flush después de cada línea
+    tiempo_sin_buffer = time.time() - inicio
+
+    # Con buffer (flush automático del sistema)
+    inicio = time.time()
+    with open('test_con_buffer.txt', 'w', encoding='utf-8') as f:
+        for i in range(1000):
+            f.write(f"Línea {i + 1}\n")
+        # Flush automático al cerrar
+    tiempo_con_buffer = time.time() - inicio
+
+    print(f"  Sin buffer (flush cada línea): {tiempo_sin_buffer".3f"}s")
+    print(f"  Con buffer (flush al final): {tiempo_con_buffer".3f"}s")
+    print(f"  Mejora: {((tiempo_sin_buffer - tiempo_con_buffer) / tiempo_sin_buffer * 100)".1f"}% más rápido")
+
+    # Limpiar archivos de prueba
+    for archivo in ['archivo_buffer.txt', 'archivo_flush.txt', 'test_sin_buffer.txt', 'test_con_buffer.txt']:
+        if os.path.exists(archivo):
+            os.remove(archivo)
+
+# Ejecutar todas las demostraciones
+if __name__ == "__main__":
+    import os
+    from datetime import datetime
+
+    formateo_basico_datos()
+    formateo_con_templates()
+    formateo_especializado()
+    escritura_datos_binarios()
+    escritura_con_buffers()
+
+    print("\n✅ ¡Todas las demostraciones de formateo completadas!")</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Consideraciones de Formateo</h4>
+                    <ul>
+                        <li><strong>Locales diferentes:</strong> Usa formatos que funcionen en diferentes países</li>
+                        <li><strong>Tipos de datos:</strong> Convierte datos apropiadamente antes de formatear</li>
+                        <li><strong>Separadores:</strong> Elige separadores apropiados para el tipo de archivo</li>
+                        <li><strong>Codificación:</strong> Considera la codificación al escribir caracteres especiales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Sistemas de logging y registro -->
+            <div class="concept-card">
+                <h3>3. Sistemas de Logging y Registro</h3>
+                <p>Los sistemas de logging permiten registrar eventos importantes de tu aplicación de manera estructurada y configurable. Aprenderás a crear sistemas de registro robustos y útiles.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Sistemas avanzados de logging y registro
+
+# 1. Sistema de logging básico
+def sistema_logging_basico():
+    """Crea un sistema básico de logging."""
+
+    print("=== SISTEMA DE LOGGING BÁSICO ===")
+
+    def escribir_log(mensaje, nivel="INFO", archivo_log="app.log"):
+        """Escribe un mensaje en el archivo de log con timestamp."""
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Formato del mensaje de log
+        formato_log = f"[{timestamp}] [{nivel.upper()}] {mensaje}\n"
+
+        try:
+            with open(archivo_log, 'a', encoding='utf-8') as f:
+                f.write(formato_log)
+        except Exception as e:
+            print(f"❌ Error escribiendo en log: {e}")
+
+    # Demostración del sistema de logging
+    print("📝 Escribiendo mensajes de log...")
+
+    escribir_log("Aplicación iniciada correctamente", "INFO")
+    escribir_log("Conexión a base de datos establecida", "DEBUG")
+    escribir_log("Usuario admin inició sesión", "INFO")
+    escribir_log("Memoria baja: 15% disponible", "WARNING")
+    escribir_log("Error de conexión con servidor externo", "ERROR")
+    escribir_log("Sistema crítico fuera de servicio", "CRITICAL")
+
+    print("✅ Mensajes de log escritos")
+
+    # Leer y mostrar log
+    print("\n📋 Contenido del archivo de log:")
+    with open('app.log', 'r', encoding='utf-8') as f:
+        contenido = f.read()
+    print(contenido)
+
+    # Limpiar
+    if os.path.exists('app.log'):
+        os.remove('app.log')
+
+# 2. Sistema de logging avanzado
+def sistema_logging_avanzado():
+    """Crea un sistema avanzado de logging con rotación y niveles."""
+
+    print("\n=== SISTEMA DE LOGGING AVANZADO ===")
+
+    class LoggerAvanzado:
+        """Sistema avanzado de logging."""
+
+        def __init__(self, archivo_log="app.log", nivel_minimo="DEBUG"):
+            self.archivo_log = archivo_log
+            self.nivel_minimo = nivel_minimo.upper()
+            self.niveles = {
+                'DEBUG': 0,
+                'INFO': 1,
+                'WARNING': 2,
+                'ERROR': 3,
+                'CRITICAL': 4
+            }
+
+        def _debe_loggear(self, nivel):
+            """Determina si debe loggear según nivel mínimo."""
+            return self.niveles.get(nivel.upper(), 0) >= self.niveles.get(self.nivel_minimo, 0)
+
+        def _formatear_mensaje(self, nivel, mensaje, contexto=None):
+            """Formatea el mensaje de log."""
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+
+            # Obtener información del contexto si está disponible
+            contexto_str = ""
+            if contexto:
+                contexto_str = f" | {contexto}"
+
+            return f"[{timestamp}] [{nivel.upper()}] {mensaje}{contexto_str}\n"
+
+        def debug(self, mensaje, contexto=None):
+            """Loggea mensaje de debug."""
+            if self._debe_loggear('DEBUG'):
+                mensaje_formateado = self._formatear_mensaje('DEBUG', mensaje, contexto)
+                self._escribir_log(mensaje_formateado)
+
+        def info(self, mensaje, contexto=None):
+            """Loggea mensaje informativo."""
+            if self._debe_loggear('INFO'):
+                mensaje_formateado = self._formatear_mensaje('INFO', mensaje, contexto)
+                self._escribir_log(mensaje_formateado)
+
+        def warning(self, mensaje, contexto=None):
+            """Loggea advertencia."""
+            if self._debe_loggear('WARNING'):
+                mensaje_formateado = self._formatear_mensaje('WARNING', mensaje, contexto)
+                self._escribir_log(mensaje_formateado)
+
+        def error(self, mensaje, contexto=None):
+            """Loggea error."""
+            if self._debe_loggear('ERROR'):
+                mensaje_formateado = self._formatear_mensaje('ERROR', mensaje, contexto)
+                self._escribir_log(mensaje_formateado)
+
+        def critical(self, mensaje, contexto=None):
+            """Loggea error crítico."""
+            if self._debe_loggear('CRITICAL'):
+                mensaje_formateado = self._formatear_mensaje('CRITICAL', mensaje, contexto)
+                self._escribir_log(mensaje_formateado)
+
+        def _escribir_log(self, mensaje_formateado):
+            """Escribe el mensaje formateado en el archivo."""
+            try:
+                with open(self.archivo_log, 'a', encoding='utf-8') as f:
+                    f.write(mensaje_formateado)
+            except Exception as e:
+                print(f"❌ Error escribiendo en log: {e}")
+
+        def limpiar_log(self, dias_antiguos=7):
+            """Limpia entradas de log más antiguas que los días especificados."""
+            try:
+                if not os.path.exists(self.archivo_log):
+                    return
+
+                # Leer todas las líneas
+                with open(self.archivo_log, 'r', encoding='utf-8') as f:
+                    lineas = f.readlines()
+
+                # Filtrar líneas recientes
+                lineas_recientes = []
+                corte_tiempo = datetime.now() - timedelta(days=dias_antiguos)
+
+                for linea in lineas:
+                    # Extraer timestamp de la línea
+                    try:
+                        # Formato: [2024-01-15 10:30:45.123] [NIVEL] mensaje
+                        timestamp_str = linea[1:24]  # Extraer timestamp
+                        timestamp = datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S.%f')
+
+                        if timestamp > corte_tiempo:
+                            lineas_recientes.append(linea)
+                    except (ValueError, IndexError):
+                        # Si no se puede parsear, mantener la línea
+                        lineas_recientes.append(linea)
+
+                # Reescribir archivo con líneas recientes
+                with open(self.archivo_log, 'w', encoding='utf-8') as f:
+                    f.writelines(lineas_recientes)
+
+                print(f"✅ Log limpiado: mantenidas {len(lineas_recientes)}/{len(lineas)} líneas")
+
+            except Exception as e:
+                print(f"❌ Error limpiando log: {e}")
+
+    # Demostración del logger avanzado
+    logger = LoggerAvanzado("app_avanzado.log", nivel_minimo="INFO")
+
+    print("📝 Escribiendo mensajes con logger avanzado...")
+
+    logger.debug("Este mensaje de debug no aparecerá")
+    logger.info("Aplicación iniciada")
+    logger.info("Configuración cargada", "config.py:25")
+    logger.warning("Memoria baja", "memoria: 20%")
+    logger.error("Error de conexión", "database.py:150")
+    logger.critical("Sistema fuera de servicio", "main.py:300")
+
+    print("✅ Mensajes escritos")
+
+    # Leer log
+    print("\n📋 Contenido del log avanzado:")
+    with open('app_avanzado.log', 'r', encoding='utf-8') as f:
+        contenido = f.read()
+    print(contenido)
+
+    # Limpiar
+    if os.path.exists('app_avanzado.log'):
+        os.remove('app_avanzado.log')
+
+# 3. Generador de informes automático
+def generador_informes():
+    """Crea un sistema que genera informes automáticamente."""
+
+    print("\n=== GENERADOR DE INFORMES ===")
+
+    class GeneradorInformes:
+        """Sistema para generar informes automáticos."""
+
+        def __init__(self, directorio_informes="informes/"):
+            self.directorio_informes = directorio_informes
+            os.makedirs(directorio_informes, exist_ok=True)
+
+        def generar_informe_ventas(self, datos_ventas):
+            """Genera informe de ventas."""
+
+            fecha_actual = datetime.now().strftime('%Y-%m-%d')
+            nombre_archivo = f"{self.directorio_informes}ventas_{fecha_actual}.txt"
+
+            with open(nombre_archivo, 'w', encoding='utf-8') as f:
+                # Encabezado
+                f.write("INFORME DE VENTAS DIARIAS\n")
+                f.write("=" * 50 + "\n")
+                f.write(f"Fecha: {fecha_actual}\n")
+                f.write(f"Generado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+                # Datos de ventas
+                f.write("DETALLE DE VENTAS:\n")
+                f.write("-" * 50 + "\n")
+
+                total_ventas = 0
+                total_ingresos = 0
+
+                for venta in datos_ventas:
+                    f.write(f"Producto: {venta['producto']}\n")
+                    f.write(f"Cantidad: {venta['cantidad']}\n")
+                    f.write(f"Precio unitario: ${venta['precio']".2f"}\n")
+                    f.write(f"Total: ${venta['cantidad'] * venta['precio']".2f"}\n")
+                    f.write("-" * 30 + "\n")
+
+                    total_ventas += venta['cantidad']
+                    total_ingresos += venta['cantidad'] * venta['precio']
+
+                # Resumen
+                f.write("\nRESUMEN:\n")
+                f.write("-" * 50 + "\n")
+                f.write(f"Total productos vendidos: {total_ventas}\n")
+                f.write(f"Ingresos totales: ${total_ingresos".2f"}\n")
+                f.write(f"Promedio por producto: ${total_ingresos / len(datos_ventas)".2f"}\n")
+
+            print(f"✅ Informe de ventas generado: {nombre_archivo}")
+            return nombre_archivo
+
+        def generar_informe_sistema(self, estadisticas_sistema):
+            """Genera informe del estado del sistema."""
+
+            fecha_actual = datetime.now().strftime('%Y-%m-%d')
+            nombre_archivo = f"{self.directorio_informes}sistema_{fecha_actual}.txt"
+
+            with open(nombre_archivo, 'w', encoding='utf-8') as f:
+                f.write("INFORME DEL ESTADO DEL SISTEMA\n")
+                f.write("=" * 50 + "\n")
+                f.write(f"Fecha: {fecha_actual}\n")
+                f.write(f"Generado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+                # Información del sistema
+                f.write("ESTADÍSTICAS DEL SISTEMA:\n")
+                f.write("-" * 50 + "\n")
+
+                for categoria, datos in estadisticas_sistema.items():
+                    f.write(f"{categoria.upper()}:\n")
+
+                    if isinstance(datos, dict):
+                        for clave, valor in datos.items():
+                            f.write(f"  {clave}: {valor}\n")
+                    else:
+                        f.write(f"  {datos}\n")
+
+                    f.write("\n")
+
+            print(f"✅ Informe del sistema generado: {nombre_archivo}")
+            return nombre_archivo
+
+    # Datos de ejemplo
+    datos_ventas_ejemplo = [
+        {"producto": "Laptop", "cantidad": 5, "precio": 999.99},
+        {"producto": "Mouse", "cantidad": 20, "precio": 25.50},
+        {"producto": "Teclado", "cantidad": 10, "precio": 75.00}
+    ]
+
+    estadisticas_sistema_ejemplo = {
+        "cpu": {"uso": "45%", "temperatura": "65°C"},
+        "memoria": {"disponible": "8GB", "total": "16GB", "uso": "50%"},
+        "disco": {"disponible": "500GB", "total": "1TB", "uso": "50%"},
+        "red": {"conexiones_activas": 150, "ancho_banda": "100Mbps"}
+    }
+
+    # Crear generador y generar informes
+    generador = GeneradorInformes()
+
+    informe_ventas = generador.generar_informe_ventas(datos_ventas_ejemplo)
+    informe_sistema = generador.generar_informe_sistema(estadisticas_sistema_ejemplo)
+
+    # Mostrar informes generados
+    print("\n📋 Informes generados:")
+    for archivo in [informe_ventas, informe_sistema]:
+        if os.path.exists(archivo):
+            print(f"\n--- {os.path.basename(archivo)} ---")
+            with open(archivo, 'r', encoding='utf-8') as f:
+                contenido = f.read()
+            print(contenido)
+
+    # Limpiar
+    import shutil
+    if os.path.exists('informes'):
+        shutil.rmtree('informes')
+
+# 4. Sistema de backup automático
+def sistema_backup_automatico():
+    """Crea un sistema de backup automático."""
+
+    print("\n=== SISTEMA DE BACKUP AUTOMÁTICO ===")
+
+    class SistemaBackup:
+        """Sistema para hacer backups automáticos."""
+
+        def __init__(self, directorio_backup="backups/"):
+            self.directorio_backup = directorio_backup
+            os.makedirs(directorio_backup, exist_ok=True)
+
+        def crear_backup_archivos(self, archivos_origen, nombre_backup=None):
+            """Crea backup de archivos específicos."""
+
+            if nombre_backup is None:
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                nombre_backup = f"backup_{timestamp}.txt"
+
+            ruta_backup = os.path.join(self.directorio_backup, nombre_backup)
+
+            archivos_backup = []
+
+            try:
+                with open(ruta_backup, 'w', encoding='utf-8') as f:
+                    f.write("BACKUP DE ARCHIVOS\n")
+                    f.write("=" * 50 + "\n")
+                    f.write(f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                    f.write(f"Archivos incluidos: {len(archivos_origen)}\n\n")
+
+                    for archivo in archivos_origen:
+                        if os.path.exists(archivo):
+                            try:
+                                with open(archivo, 'r', encoding='utf-8') as f_origen:
+                                    contenido = f_origen.read()
+
+                                f.write(f"--- ARCHIVO: {archivo} ---\n")
+                                f.write(contenido)
+                                f.write("\n" + "=" * 50 + "\n")
+
+                                archivos_backup.append(archivo)
+
+                            except Exception as e:
+                                f.write(f"--- ERROR LEYENDO: {archivo} ---\n")
+                                f.write(f"Error: {e}\n")
+                                f.write("=" * 50 + "\n")
+
+                print(f"✅ Backup creado: {ruta_backup}")
+                print(f"📁 Archivos incluidos: {len(archivos_backup)}/{len(archivos_origen)}")
+
+                return ruta_backup
+
+            except Exception as e:
+                print(f"❌ Error creando backup: {e}")
+                return None
+
+        def crear_backup_directorio(self, directorio_origen, extensiones=None):
+            """Crea backup de un directorio completo."""
+
+            if extensiones is None:
+                extensiones = ['.txt', '.py', '.json', '.csv', '.log']
+
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            nombre_backup = f"backup_directorio_{timestamp}.txt"
+            ruta_backup = os.path.join(self.directorio_backup, nombre_backup)
+
+            archivos_procesados = 0
+            archivos_totales = 0
+
+            try:
+                with open(ruta_backup, 'w', encoding='utf-8') as f:
+                    f.write("BACKUP DE DIRECTORIO\n")
+                    f.write("=" * 50 + "\n")
+                    f.write(f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                    f.write(f"Directorio origen: {directorio_origen}\n")
+                    f.write(f"Extensiones: {', '.join(extensiones)}\n\n")
+
+                    for raiz, directorios, archivos in os.walk(directorio_origen):
+                        for archivo in archivos:
+                            archivos_totales += 1
+
+                            # Verificar extensión
+                            _, extension = os.path.splitext(archivo)
+                            if extension.lower() in extensiones:
+                                ruta_completa = os.path.join(raiz, archivo)
+
+                                try:
+                                    with open(ruta_completa, 'r', encoding='utf-8') as f_origen:
+                                        contenido = f_origen.read()
+
+                                    # Calcular ruta relativa
+                                    ruta_relativa = os.path.relpath(ruta_completa, directorio_origen)
+
+                                    f.write(f"--- ARCHIVO: {ruta_relativa} ---\n")
+                                    f.write(contenido)
+                                    f.write("\n" + "=" * 50 + "\n")
+
+                                    archivos_procesados += 1
+
+                                except Exception as e:
+                                    f.write(f"--- ERROR LEYENDO: {ruta_relativa} ---\n")
+                                    f.write(f"Error: {e}\n")
+                                    f.write("=" * 50 + "\n")
+
+                print(f"✅ Backup de directorio creado: {ruta_backup}")
+                print(f"📁 Archivos procesados: {archivos_procesados}/{archivos_totales}")
+
+                return ruta_backup
+
+            except Exception as e:
+                print(f"❌ Error creando backup de directorio: {e}")
+                return None
+
+    # Crear archivos de prueba
+    os.makedirs('datos_prueba', exist_ok=True)
+
+    archivos_prueba = [
+        'datos_prueba/config.txt',
+        'datos_prueba/usuarios.txt',
+        'datos_prueba/ventas.csv'
+    ]
+
+    for archivo in archivos_prueba:
+        with open(archivo, 'w', encoding='utf-8') as f:
+            f.write(f"Contenido de prueba para {archivo}\n")
+
+    # Crear sistema de backup
+    backup = SistemaBackup()
+
+    # Backup de archivos específicos
+    backup1 = backup.crear_backup_archivos(archivos_prueba, "backup_manual.txt")
+
+    # Backup de directorio completo
+    backup2 = backup.crear_backup_directorio('datos_prueba')
+
+    # Mostrar backups creados
+    print("\n📋 Backups creados:")
+    for archivo_backup in [backup1, backup2]:
+        if archivo_backup and os.path.exists(archivo_backup):
+            tamaño = os.path.getsize(archivo_backup)
+            print(f"  {os.path.basename(archivo_backup)}: {tamaño:,}","ytes")
+
+    # Limpiar
+    import shutil
+    if os.path.exists('datos_prueba'):
+        shutil.rmtree('datos_prueba')
+    if os.path.exists('backups'):
+        shutil.rmtree('backups')
+
+# Ejecutar todas las demostraciones
+if __name__ == "__main__":
+    import os
+    from datetime import datetime, timedelta
+
+    sistema_logging_basico()
+    sistema_logging_avanzado()
+    generador_informes()
+    sistema_backup_automatico()
+
+    print("\n✅ ¡Todas las demostraciones de logging completadas!")</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Aplicaciones Prácticas de Logging</h4>
+                    <p>Usa sistemas de logging para:</p>
+                    <ul>
+                        <li><strong>Debugging:</strong> Rastrear el flujo de ejecución</li>
+                        <li><strong>Monitoreo:</strong> Seguimiento de errores y eventos importantes</li>
+                        <li><strong>Auditoría:</strong> Registro de acciones de usuarios</li>
+                        <li><strong>Análisis:</strong> Estadísticas de uso y rendimiento</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+
+            <div class="card">
+                <h3>Ejemplo 1: Sistema de Registro de Actividades</h3>
+                <p>Crearemos un sistema completo que registre todas las actividades importantes de una aplicación.</p>
+
+                <div class="logger-system">
+                    <h3><i class="fas fa-history"></i> Sistema Avanzado de Registro de Actividades</h3>
+
+                    <div class="logger-example">
+                        <h5>Sistema Completo de Logging con Múltiples Características</h5>
+                        <pre><code class="language-python"># Sistema avanzado de registro de actividades
+
+import json
+import threading
+from datetime import datetime, timedelta
+from collections import defaultdict
+import os
+
+class SistemaRegistroActividades:
+    """Sistema completo para registrar actividades de aplicaciones."""
+
+    def __init__(self, archivo_log="actividades.log", tamaño_maximo=10*1024*1024):  # 10MB
+        self.archivo_log = archivo_log
+        self.tamaño_maximo = tamaño_maximo
+        self.lock = threading.Lock()  # Para acceso seguro desde múltiples hilos
+
+        # Crear directorio si no existe
+        os.makedirs(os.path.dirname(archivo_log), exist_ok=True)
+
+    def registrar_actividad(self, usuario, accion, detalles=None, nivel="INFO"):
+        """Registra una actividad en el sistema."""
+
+        timestamp = datetime.now()
+
+        entrada_log = {
+            'timestamp': timestamp.isoformat(),
+            'usuario': usuario,
+            'accion': accion,
+            'nivel': nivel.upper(),
+            'detalles': detalles or {}
+        }
+
+        # Acceso seguro para múltiples hilos
+        with self.lock:
+            try:
+                # Verificar tamaño del archivo y rotar si es necesario
+                if os.path.exists(self.archivo_log):
+                    tamaño_actual = os.path.getsize(self.archivo_log)
+                    if tamaño_actual > self.tamaño_maximo:
+                        self._rotar_archivo_log()
+
+                # Escribir entrada
+                with open(self.archivo_log, 'a', encoding='utf-8') as f:
+                    f.write(json.dumps(entrada_log) + '\n')
+
+            except Exception as e:
+                print(f"❌ Error registrando actividad: {e}")
+
+    def _rotar_archivo_log(self):
+        """Rota el archivo de log cuando alcanza el tamaño máximo."""
+
+        try:
+            # Crear nombre para archivo antiguo
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            archivo_antiguo = f"{self.archivo_log}.old.{timestamp}"
+
+            # Renombrar archivo actual
+            if os.path.exists(self.archivo_log):
+                os.rename(self.archivo_log, archivo_antiguo)
+
+            print(f"✅ Archivo de log rotado: {archivo_antiguo}")
+
+        except Exception as e:
+            print(f"❌ Error rotando archivo de log: {e}")
+
+    def consultar_actividades(self, usuario=None, accion=None, fecha_inicio=None, fecha_fin=None):
+        """Consulta actividades según criterios."""
+
+        actividades = []
+
+        try:
+            with open(self.archivo_log, 'r', encoding='utf-8') as f:
+                for linea in f:
+                    try:
+                        entrada = json.loads(linea.strip())
+
+                        # Aplicar filtros
+                        if usuario and entrada.get('usuario') != usuario:
+                            continue
+
+                        if accion and entrada.get('accion') != accion:
+                            continue
+
+                        if fecha_inicio or fecha_fin:
+                            timestamp = datetime.fromisoformat(entrada['timestamp'])
+
+                            if fecha_inicio and timestamp < fecha_inicio:
+                                continue
+
+                            if fecha_fin and timestamp > fecha_fin:
+                                continue
+
+                        actividades.append(entrada)
+
+                    except json.JSONDecodeError:
+                        continue  # Saltar líneas mal formateadas
+
+        except FileNotFoundError:
+            print(f"⚠️ Archivo de log '{self.archivo_log}' no encontrado")
+        except Exception as e:
+            print(f"❌ Error consultando actividades: {e}")
+
+        return actividades
+
+    def generar_reporte_actividades(self, fecha_inicio=None, fecha_fin=None):
+        """Genera un reporte de actividades."""
+
+        actividades = self.consultar_actividades(fecha_inicio=fecha_inicio, fecha_fin=fecha_fin)
+
+        if not actividades:
+            return "No hay actividades que mostrar"
+
+        # Estadísticas
+        actividades_por_usuario = defaultdict(int)
+        actividades_por_accion = defaultdict(int)
+        actividades_por_nivel = defaultdict(int)
+
+        primera_fecha = None
+        ultima_fecha = None
+
+        for actividad in actividades:
+            usuario = actividad.get('usuario', 'desconocido')
+            accion = actividad.get('accion', 'desconocida')
+            nivel = actividad.get('nivel', 'INFO')
+            timestamp = datetime.fromisoformat(actividad['timestamp'])
+
+            actividades_por_usuario[usuario] += 1
+            actividades_por_accion[accion] += 1
+            actividades_por_nivel[nivel] += 1
+
+            if primera_fecha is None or timestamp < primera_fecha:
+                primera_fecha = timestamp
+
+            if ultima_fecha is None or timestamp > ultima_fecha:
+                ultima_fecha = timestamp
+
+        # Generar reporte
+        reporte = []
+        reporte.append("REPORTE DE ACTIVIDADES")
+        reporte.append("=" * 50)
+        reporte.append(f"Período: {primera_fecha} a {ultima_fecha}")
+        reporte.append(f"Total actividades: {len(actividades)}")
+        reporte.append("")
+
+        reporte.append("POR USUARIO:")
+        for usuario, cantidad in sorted(actividades_por_usuario.items()):
+            reporte.append(f"  {usuario}: {cantidad}")
+
+        reporte.append("\nPOR ACCIÓN:")
+        for accion, cantidad in sorted(actividades_por_accion.items()):
+            reporte.append(f"  {accion}: {cantidad}")
+
+        reporte.append("\nPOR NIVEL:")
+        for nivel, cantidad in sorted(actividades_por_nivel.items()):
+            reporte.append(f"  {nivel}: {cantidad}")
+
+        return "\n".join(reporte)
+
+    def limpiar_actividades_antiguas(self, dias_antiguos=30):
+        """Limpia actividades más antiguas que los días especificados."""
+
+        fecha_corte = datetime.now() - timedelta(days=dias_antiguos)
+
+        try:
+            # Leer todas las actividades
+            actividades_actuales = []
+            actividades_antiguas = 0
+
+            with open(self.archivo_log, 'r', encoding='utf-8') as f:
+                for linea in f:
+                    try:
+                        entrada = json.loads(linea.strip())
+                        timestamp = datetime.fromisoformat(entrada['timestamp'])
+
+                        if timestamp > fecha_corte:
+                            actividades_actuales.append(linea)
+                        else:
+                            actividades_antiguas += 1
+
+                    except (json.JSONDecodeError, ValueError):
+                        # Mantener líneas mal formateadas
+                        actividades_actuales.append(linea)
+
+            # Reescribir archivo
+            with open(self.archivo_log, 'w', encoding='utf-8') as f:
+                f.writelines(actividades_actuales)
+
+            print(f"✅ Limpieza completada: eliminadas {actividades_antiguas} actividades antiguas")
+
+        except Exception as e:
+            print(f"❌ Error limpiando actividades: {e}")
+
+# Función de demostración
+def demo_sistema_registro():
+    """Demostración del sistema de registro de actividades."""
+
+    print("📝 DEMOSTRACIÓN DEL SISTEMA DE REGISTRO")
+
+    # Crear sistema de registro
+    sistema = SistemaRegistroActividades("actividades_demo.log")
+
+    # Simular actividades de diferentes usuarios
+    actividades_ejemplo = [
+        ("admin", "inicio_sesion", {"ip": "192.168.1.100", "exitoso": True}),
+        ("usuario1", "crear_archivo", {"archivo": "documento.txt", "tipo": "texto"}),
+        ("admin", "eliminar_usuario", {"usuario_eliminado": "spammer", "razon": "spam"}),
+        ("usuario2", "descargar_archivo", {"archivo": "imagen.jpg", "tamano": "2MB"}),
+        ("admin", "cambiar_configuracion", {"configuracion": "puerto", "valor_anterior": 8080, "valor_nuevo": 9000}),
+        ("usuario1", "compartir_archivo", {"archivo": "documento.txt", "destinatario": "usuario2"}),
+        ("usuario2", "ver_perfil", {"perfil": "usuario1"}),
+        ("admin", "backup_sistema", {"tipo": "completo", "duracion": "5 minutos"}),
+        ("usuario1", "cerrar_sesion", {"sesion_duracion": "2 horas"}),
+        ("admin", "error_sistema", {"error": "conexion_db", "codigo": 500})
+    ]
+
+    print("\n1️⃣ Registrando actividades...")
+    for usuario, accion, detalles in actividades_ejemplo:
+        sistema.registrar_actividad(usuario, accion, detalles)
+
+        # Simular tiempo entre actividades
+        import time
+        time.sleep(0.1)
+
+    print("✅ Actividades registradas")
+
+    # Consultar actividades
+    print("\n2️⃣ Consultando actividades...")
+
+    # Todas las actividades
+    todas_actividades = sistema.consultar_actividades()
+    print(f"Total actividades registradas: {len(todas_actividades)}")
+
+    # Actividades del admin
+    actividades_admin = sistema.consultar_actividades(usuario="admin")
+    print(f"Actividades del admin: {len(actividades_admin)}")
+
+    # Actividades de inicio de sesión
+    sesiones = sistema.consultar_actividades(accion="inicio_sesion")
+    print(f"Sesiones de inicio: {len(sesiones)}")
+
+    # Generar reporte
+    print("\n3️⃣ Generando reporte...")
+    reporte = sistema.generar_reporte_actividades()
+    print(reporte)
+
+    # Limpiar actividades antiguas (simulado)
+    print("\n4️⃣ Limpiando actividades antiguas...")
+    sistema.limpiar_actividades_antiguas(dias_antiguos=0)  # Eliminar todas para demo
+
+    # Verificar limpieza
+    actividades_restantes = sistema.consultar_actividades()
+    print(f"Actividades restantes después de limpieza: {len(actividades_restantes)}")
+
+    # Limpiar archivo de demostración
+    if os.path.exists('actividades_demo.log'):
+        os.remove('actividades_demo.log')
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_sistema_registro()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplo 2: Generador de Informes Avanzado</h3>
+                <p>Desarrollaremos un sistema que genere informes detallados en múltiples formatos a partir de datos estructurados.</p>
+
+                <div class="report-generator">
+                    <h3><i class="fas fa-chart-bar"></i> Generador Profesional de Informes</h3>
+
+                    <div class="report-example">
+                        <h5>Sistema Completo de Generación de Informes</h5>
+                        <pre><code class="language-python"># Generador avanzado de informes
+
+import json
+import csv
+from datetime import datetime, timedelta
+import os
+
+class GeneradorInformesAvanzado:
+    """Sistema avanzado para generar informes en múltiples formatos."""
+
+    def __init__(self, directorio_salida="informes/"):
+        self.directorio_salida = directorio_salida
+        os.makedirs(directorio_salida, exist_ok=True)
+
+    def generar_informe_ventas(self, datos_ventas, formato="texto"):
+        """Genera informe de ventas en el formato especificado."""
+
+        fecha_actual = datetime.now().strftime('%Y-%m-%d')
+        nombre_base = f"ventas_{fecha_actual}"
+
+        if formato == "texto":
+            return self._generar_informe_texto(datos_ventas, nombre_base)
+        elif formato == "csv":
+            return self._generar_informe_csv(datos_ventas, nombre_base)
+        elif formato == "json":
+            return self._generar_informe_json(datos_ventas, nombre_base)
+        elif formato == "html":
+            return self._generar_informe_html(datos_ventas, nombre_base)
+        else:
+            raise ValueError(f"Formato no soportado: {formato}")
+
+    def _generar_informe_texto(self, datos, nombre_base):
+        """Genera informe en formato texto."""
+
+        archivo = f"{self.directorio_salida}{nombre_base}.txt"
+
+        with open(archivo, 'w', encoding='utf-8') as f:
+            # Encabezado
+            f.write("INFORME DE VENTAS\n")
+            f.write("=" * 60 + "\n")
+            f.write(f"Fecha del informe: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"Productos incluidos: {len(datos)}\n\n")
+
+            # Tabla de productos
+            f.write("DETALLE DE PRODUCTOS:\n")
+            f.write("-" * 60 + "\n")
+            f.write(f"{'Producto'"<20"{'Ventas'"<10"{'Precio'"<12"{'Ingresos'}\n")
+            f.write("-" * 60 + "\n")
+
+            total_ventas = 0
+            total_ingresos = 0
+
+            for producto in datos:
+                ingresos = producto['ventas'] * producto['precio']
+                total_ventas += producto['ventas']
+                total_ingresos += ingresos
+
+                f.write(f"{producto['producto']"<20"producto['ventas']"<10"producto['precio']"<12.2f"ingresos"<12.2f"\n")
+
+            f.write("-" * 60 + "\n")
+            f.write(f"{'TOTALES':"<20"tal_ventas"<10"tal_ingresos"<12.2f"\n")
+
+            # Estadísticas adicionales
+            promedio_ventas = total_ventas / len(datos)
+            producto_mas_vendido = max(datos, key=lambda x: x['ventas'])
+
+            f.write("
+ESTADÍSTICAS ADICIONALES:\n")
+            f.write("-" * 60 + "\n")
+            f.write(f"Promedio de ventas por producto: {promedio_ventas".1f"}\n")
+            f.write(f"Producto más vendido: {producto_mas_vendido['producto']} ({producto_mas_vendido['ventas']} unidades)\n")
+            f.write(f"Ingreso promedio por producto: ${total_ingresos / len(datos)".2f"}\n")
+
+        return archivo
+
+    def _generar_informe_csv(self, datos, nombre_base):
+        """Genera informe en formato CSV."""
+
+        archivo = f"{self.directorio_salida}{nombre_base}.csv"
+
+        # Agregar campos calculados
+        datos_con_calculos = []
+        for producto in datos:
+            producto_calculado = producto.copy()
+            producto_calculado['ingresos'] = producto['ventas'] * producto['precio']
+            producto_calculado['margen'] = producto_calculado['ingresos'] * 0.3  # 30% margen simulado
+            datos_con_calculos.append(producto_calculado)
+
+        # Escribir CSV
+        with open(archivo, 'w', newline='', encoding='utf-8') as f:
+            escritor = csv.DictWriter(f, fieldnames=datos_con_calculos[0].keys())
+            escritor.writeheader()
+            escritor.writerows(datos_con_calculos)
+
+        return archivo
+
+    def _generar_informe_json(self, datos, nombre_base):
+        """Genera informe en formato JSON."""
+
+        archivo = f"{self.directorio_salida}{nombre_base}.json"
+
+        informe = {
+            'metadata': {
+                'tipo': 'informe_ventas',
+                'fecha_generacion': datetime.now().isoformat(),
+                'productos_totales': len(datos)
+            },
+            'productos': datos,
+            'resumen': self._calcular_resumen(datos)
+        }
+
+        with open(archivo, 'w', encoding='utf-8') as f:
+            json.dump(informe, f, indent=2, ensure_ascii=False)
+
+        return archivo
+
+    def _generar_informe_html(self, datos, nombre_base):
+        """Genera informe en formato HTML."""
+
+        archivo = f"{self.directorio_salida}{nombre_base}.html"
+
+        with open(archivo, 'w', encoding='utf-8') as f:
+            f.write("<!DOCTYPE html>\n")
+            f.write("<html lang='es'>\n")
+            f.write("<head>\n")
+            f.write("    <title>Informe de Ventas</title>\n")
+            f.write("    <style>\n")
+            f.write("        body { font-family: Arial, sans-serif; margin: 40px; }\n")
+            f.write("        table { border-collapse: collapse; width: 100%; }\n")
+            f.write("        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }\n")
+            f.write("        th { background-color: #f2f2f2; }\n")
+            f.write("        .total { font-weight: bold; background-color: #e9f7fd; }\n")
+            f.write("        .resumen { background-color: #f9f9f9; padding: 20px; margin: 20px 0; }\n")
+            f.write("    </style>\n")
+            f.write("</head>\n")
+            f.write("<body>\n")
+            f.write("    <h1>Informe de Ventas</h1>\n")
+            f.write(f"    <p><strong>Fecha:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>\n")
+            f.write(f"    <p><strong>Productos:</strong> {len(datos)}</p>\n\n")
+
+            f.write("    <h2>Detalle de Productos</h2>\n")
+            f.write("    <table>\n")
+            f.write("        <thead>\n")
+            f.write("            <tr>\n")
+            f.write("                <th>Producto</th>\n")
+            f.write("                <th>Ventas</th>\n")
+            f.write("                <th>Precio</th>\n")
+            f.write("                <th>Ingresos</th>\n")
+            f.write("            </tr>\n")
+            f.write("        </thead>\n")
+            f.write("        <tbody>\n")
+
+            total_ventas = 0
+            total_ingresos = 0
+
+            for producto in datos:
+                ingresos = producto['ventas'] * producto['precio']
+                total_ventas += producto['ventas']
+                total_ingresos += ingresos
+
+                f.write("            <tr>\n")
+                f.write(f"                <td>{producto['producto']}</td>\n")
+                f.write(f"                <td>{producto['ventas']}</td>\n")
+                f.write(f"                <td>${producto['precio']".2f"}</td>\n")
+                f.write(f"                <td>${ingresos".2f"}</td>\n")
+                f.write("            </tr>\n")
+
+            f.write("            <tr class='total'>\n")
+            f.write(f"                <td>TOTAL</td>\n")
+            f.write(f"                <td>{total_ventas}</td>\n")
+            f.write("                <td>-</td>\n")
+            f.write(f"                <td>${total_ingresos".2f"}</td>\n")
+            f.write("            </tr>\n")
+            f.write("        </tbody>\n")
+            f.write("    </table>\n\n")
+
+            # Resumen estadístico
+            resumen = self._calcular_resumen(datos)
+            f.write("    <div class='resumen'>\n")
+            f.write("        <h2>Resumen Estadístico</h2>\n")
+            f.write(f"        <p><strong>Producto más vendido:</strong> {resumen['producto_mas_vendido']}</p>\n")
+            f.write(f"        <p><strong>Promedio de ventas:</strong> {resumen['promedio_ventas']".1f"}</p>\n")
+            f.write(f"        <p><strong>Ingreso promedio:</strong> ${resumen['ingreso_promedio']".2f"}</p>\n")
+            f.write("    </div>\n")
+
+            f.write("
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>\n")
+            f.write("</html>\n")
+
+        return archivo
+
+    def _calcular_resumen(self, datos):
+        """Calcula estadísticas resumen de los datos."""
+
+        total_ventas = sum(p['ventas'] for p in datos)
+        total_ingresos = sum(p['ventas'] * p['precio'] for p in datos)
+
+        promedio_ventas = total_ventas / len(datos)
+        ingreso_promedio = total_ingresos / len(datos)
+
+        producto_mas_vendido = max(datos, key=lambda x: x['ventas'])['producto']
+
+        return {
+            'total_ventas': total_ventas,
+            'total_ingresos': total_ingresos,
+            'promedio_ventas': promedio_ventas,
+            'ingreso_promedio': ingreso_promedio,
+            'producto_mas_vendido': producto_mas_vendido
+        }
+
+# Función de demostración
+def demo_generador_informes():
+    """Demostración del generador de informes avanzado."""
+
+    print("📊 DEMOSTRACIÓN DEL GENERADOR DE INFORMES")
+
+    # Datos de ejemplo
+    datos_ventas = [
+        {"producto": "Laptop Dell", "ventas": 45, "precio": 899.99},
+        {"producto": "Mouse Inalámbrico", "ventas": 120, "precio": 25.50},
+        {"producto": "Teclado Mecánico", "ventas": 80, "precio": 129.99},
+        {"producto": "Monitor 24\"", "ventas": 35, "precio": 199.99},
+        {"producto": "Webcam HD", "ventas": 60, "precio": 79.99},
+        {"producto": "Auriculares Bluetooth", "ventas": 90, "precio": 59.99}
+    ]
+
+    # Crear generador
+    generador = GeneradorInformesAvanzado("informes_demo/")
+
+    # Generar informes en diferentes formatos
+    print("\n1️⃣ Generando informes en múltiples formatos...")
+
+    formatos = ["texto", "csv", "json", "html"]
+
+    archivos_generados = {}
+    for formato in formatos:
+        try:
+            archivo = generador.generar_informe_ventas(datos_ventas, formato)
+            archivos_generados[formato] = archivo
+            print(f"✅ Informe {formato}: {archivo}")
+        except Exception as e:
+            print(f"❌ Error generando informe {formato}: {e}")
+
+    # Mostrar contenido de algunos informes
+    print("\n2️⃣ Contenido de informes generados:")
+
+    # Informe de texto
+    if "texto" in archivos_generados:
+        print("\n📄 INFORME DE TEXTO:")
+        with open(archivos_generados["texto"], 'r', encoding='utf-8') as f:
+            contenido = f.read()
+        print(contenido)
+
+    # Informe CSV (mostrar primeras líneas)
+    if "csv" in archivos_generados:
+        print("\n📊 INFORME CSV (primeras líneas):")
+        with open(archivos_generados["csv"], 'r', encoding='utf-8') as f:
+            lector = csv.reader(f)
+            for i, fila in enumerate(lector):
+                if i < 5:  # Solo primeras 5 líneas
+                    print(", ".join(fila))
+                else:
+                    break
+
+    # Informe JSON (estructura)
+    if "json" in archivos_generados:
+        print("\n📋 INFORME JSON (estructura):")
+        with open(archivos_generados["json"], 'r', encoding='utf-8') as f:
+            datos_json = json.load(f)
+
+        print(f"Tipo: {datos_json['metadata']['tipo']}")
+        print(f"Productos: {datos_json['metadata']['productos_totales']}")
+        print(f"Total ingresos: ${datos_json['resumen']['total_ingresos']".2f"")
+
+    # Verificar archivo HTML
+    if "html" in archivos_generados:
+        print(f"\n🌐 Archivo HTML generado: {archivos_generados['html']}")
+        if os.path.exists(archivos_generados["html"]):
+            tamaño = os.path.getsize(archivos_generados["html"])
+            print(f"   Tamaño: {tamaño} bytes")
+
+    # Listar todos los archivos generados
+    print("
+📁 ARCHIVOS GENERADOS:"    if os.path.exists("informes_demo"):
+        archivos = os.listdir("informes_demo")
+        for archivo in sorted(archivos):
+            ruta_completa = os.path.join("informes_demo", archivo)
+            tamaño = os.path.getsize(ruta_completa)
+            print(f"  {archivo}: {tamaño:,}","ytes")
+
+    # Limpiar archivos de demostración
+    import shutil
+    if os.path.exists("informes_demo"):
+        shutil.rmtree("informes_demo")
+
+# Ejecutar demostración
+if __name__ == "__main__":
+    demo_generador_informes()
+
+    print("\n✅ ¡Demostración completada!")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-file-alt"></i> Actividad 1: Programa de Registro de Actividades</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Crea un programa que registre actividades de usuarios en un archivo de log con diferentes niveles.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Registrar actividades con timestamp</li>
+                            <li>Diferentes niveles de log (INFO, WARNING, ERROR)</li>
+                            <li>Formato estructurado y legible</li>
+                            <li>Manejo seguro de archivos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-chart-line"></i> Actividad 2: Generador de Informes en Archivo</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un programa que genere informes formateados a partir de datos estructurados.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                            <ul>
+                                <li>Generar informes en formato tabular</li>
+                                <li>Incluir encabezados y resúmenes</li>
+                                <li>Formateo numérico adecuado</li>
+                                <li>Estructura clara y profesional</li>
+                            </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-copy"></i> Actividad 3: Sistema de Backup Automático</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Crea un sistema que haga backups automáticos de archivos importantes con rotación.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Backup de múltiples archivos</li>
+                            <li>Rotación automática por tamaño</li>
+                            <li>Registro de operaciones de backup</li>
+                            <li>Verificación de integridad</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-exchange-alt"></i> Actividad 4: Programa de Exportación de Datos</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Desarrolla un sistema que exporte datos en múltiples formatos (CSV, JSON, XML) según la elección del usuario.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Soporte para múltiples formatos de exportación</li>
+                            <li>Validación de formato antes de exportar</li>
+                            <li>Manejo eficiente de grandes volúmenes de datos</li>
+                            <li>Interfaz de usuario para seleccionar formato</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/inputoutput.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Input/Output</a></li>
+                        <li><a href="https://realpython.com/working-with-files-in-python/" target="_blank" rel="noopener noreferrer">Real Python - Trabajar con archivos</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_file_handling.asp" target="_blank" rel="noopener noreferrer">W3Schools - Manejo de archivos</a></li>
+                        <li><a href="https://python-course.eu/python-tutorial/file-management.php" target="_blank" rel="noopener noreferrer">Python Course - Gestión de archivos</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=Uh2ebFW8OYM" target="_blank" rel="noopener noreferrer">Escribir archivos en Python - Tutorial completo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=qJVymq5D8hg" target="_blank" rel="noopener noreferrer">Procesamiento avanzado de archivos en Python</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=PaNkTIw2VZk" target="_blank" rel="noopener noreferrer">Manejo avanzado de archivos en Python</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 7 - "Python Crash Course" de Eric Matthes (Archivos)</li>
+                        <li>Sección 8 - "Fluent Python" de Luciano Ramalho (I/O)</li>
+                        <li>"Effective Python" de Brett Slatkin (Ítems 15, 46: Archivos)</li>
+                        <li>"Python Cookbook" - Recetas avanzadas de procesamiento de archivos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s22.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s24.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script></body>
+</html>

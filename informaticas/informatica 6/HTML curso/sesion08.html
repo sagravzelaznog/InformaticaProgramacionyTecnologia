@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Proyecto Final - HTML5 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .checklist {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4a90e2;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .checklist h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .checklist ul {
+            margin-bottom: 0;
+        }
+        
+        .checklist li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .code-review {
+            background-color: #f0f7ff;
+            border: 1px solid #d0e3ff;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .code-review h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #d0e3ff;
+            padding-bottom: 10px;
+        }
+        
+        .deployment-steps {
+            counter-reset: step;
+            margin: 30px 0;
+        }
+        
+        .deployment-step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+            min-height: 50px;
+        }
+        
+        .deployment-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .deployment-step h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .project-structure {
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 15px 0;
+        }
+        
+        .file {
+            margin-left: 20px;
+            color: #2c3e50;
+        }
+        
+        .folder {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .folder:before {
+            content: "📁 ";
+        }
+        
+        .file:before {
+            content: "📄 ";
+        }
+        
+        .rubric {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .rubric th, .rubric td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .rubric th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .rubric tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-bug {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .badge-junior {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .badge-architect {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .screenshot {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .next-steps {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            margin: 30px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .next-steps h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: El Génesis</a></li>
+                <li><a href="sesion02.html">Sesión 2: Jerarquía y Orden</a></li>
+                <li><a href="sesion03.html">Sesión 3: La Telaraña</a></li>
+                <li><a href="sesion04.html">Sesión 4: Multimedia</a></li>
+                <li><a href="sesion05.html">Sesión 5: Semántica</a></li>
+                <li><a href="sesion06.html">Sesión 6: Tablas</a></li>
+                <li><a href="sesion07.html">Sesión 7: Formularios</a></li>
+                <li class="active"><a href="sesion08.html">Sesión 8: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🏆 Sesión 8: Proyecto Final</h1>
+                <p class="subtitle">Integración y Despliegue de un Sitio Web Completo</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Consolidar todos los conocimientos adquiridos durante el curso para crear, optimizar y desplegar un sitio web completo y funcional.</p>
+            </section>
+
+            <section class="project-overview">
+                <h2>Proyecto: Mi Portafolio Personal</h2>
+                <p>Vamos a crear un portafolio personal de 3 secciones que muestre tus habilidades en HTML5. Este será tu proyecto final que integrará todo lo aprendido en el curso.</p>
+                
+                <div class="checklist">
+                    <h4>📋 Requisitos del Proyecto</h4>
+                    <ul>
+                        <li><strong>Página de Inicio (index.html)</strong> - Presentación personal y resumen</li>
+                        <li><strong>Sección de Proyectos (proyectos.html)</strong> - Muestra de tus trabajos</li>
+                        <li><strong>Formulario de Contacto (contacto.html)</strong> - Para que los visitantes se pongan en contacto contigo</li>
+                        <li><strong>Navegación consistente</strong> - Menú de navegación en todas las páginas</li>
+                        <li><strong>Diseño responsive</strong> - Que se vea bien en todos los dispositivos</li>
+                        <li><strong>Elementos multimedia</strong> - Imágenes, videos o audio relevantes</li>
+                        <li><strong>Formulario funcional</strong> - Con validación HTML5</li>
+                    </ul>
+                </div>
+                
+                <div class="project-structure">
+                    <div class="folder">mi-portafolio/</div>
+                    <div class="file">index.html</div>
+                    <div class="file">proyectos.html</div>
+                    <div class="file">contacto.html</div>
+                    <div class="folder">css/</div>
+                    <div class="file" style="margin-left: 20px;">style.css</div>
+                    <div class="folder">js/</div>
+                    <div class="file" style="margin-left: 20px;">script.js</div>
+                    <div class="folder">images/</div>
+                    <div class="file" style="margin-left: 20px;">foto-perfil.jpg</div>
+                    <div class="file" style="margin-left: 20px;">proyecto1.jpg</div>
+                    <div class="file" style="margin-left: 20px;">proyecto2.jpg</div>
+                </div>
+            </section>
+
+            <section class="code-quality">
+                <h2>Limpieza y Optimización de Código</h2>
+                
+                <div class="code-review">
+                    <h4>✅ Revisión de Código</h4>
+                    <p>Antes de desplegar tu sitio, asegúrate de que tu código esté limpio y optimizado:</p>
+                    
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Indentación consistente</strong> - Usa espaciado uniforme (2 o 4 espacios)</li>
+                            <li><strong>Comentarios</strong> - Agrega comentarios para explicar secciones complejas</li>
+                            <li><strong>Validación W3C</strong> - Usa el validador de W3C para encontrar errores</li>
+                            <li><strong>Optimización de imágenes</strong> - Comprime imágenes sin perder calidad</li>
+                            <li><strong>Minificación</strong> - Minifica CSS y JavaScript (puedes usar herramientas en línea)</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>🔍 Validador de HTML</h4>
+                    <p>Usa el <a href="https://validator.w3.org/" target="_blank">Validador de HTML del W3C</a> para asegurarte de que tu código no tenga errores.</p>
+                </div>
+                
+                <div class="code-example">
+                    <h4>📝 Ejemplo de Estructura HTML Limpia</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Portafolio personal de [Tu Nombre] - Desarrollador Web"&gt;
+    &lt;meta name="keywords" content="portafolio, desarrollo web, HTML5, CSS, JavaScript"&gt;
+    &lt;meta name="author" content="[Tu Nombre]"&gt;
+    
+    &lt;title&gt;[Tu Nombre] - Portafolio&lt;/title&gt;
+    
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+    &lt;link rel="icon" href="images/favicon.ico" type="image/x-icon"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Contenido de la página --&gt;
+    
+    &lt;script src="js/script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="metadata-seo">
+                <h2>Metadatos y SEO Básico</h2>
+                
+                <p>Los metadatos son esenciales para el SEO y la experiencia del usuario. Asegúrate de incluir:</p>
+                
+                <div class="checklist">
+                    <ul>
+                        <li><strong>Descripción (description)</strong> - Un resumen de 150-160 caracteres de la página</li>
+                        <li><strong>Palabras clave (keywords)</strong> - Términos relevantes separados por comas</li>
+                        <li><strong>Autor (author)</strong> - Tu nombre o el nombre de tu organización</li>
+                        <li><strong>Viewport</strong> - Para diseño responsive</li>
+                        <li><strong>Favicon</strong> - Un ícono para tu sitio</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h4>📝 Ejemplo de Metadatos</h4>
+                    <pre><code>&lt;!-- Metadatos básicos --&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+<!-- SEO --&gt;
+&lt;meta name="description" content="Portafolio profesional de [Tu Nombre]. Desarrollador web especializado en HTML5, CSS y JavaScript. Echa un vistazo a mis proyectos y contáctame para colaboraciones."&gt;
+&lt;meta name="keywords" content="portafolio, desarrollador web, HTML5, CSS, JavaScript, programador, diseño web"&gt;
+&lt;meta name="author" content="[Tu Nombre]"&gt;
+
+<!-- Open Graph / Facebook --&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:url" content="https://tusitio.com/"&gt;
+&lt;meta property="og:title" content="[Tu Nombre] - Portafolio Profesional"&gt;
+&lt;meta property="og:description" content="Desarrollador web especializado en HTML5, CSS y JavaScript. Echa un vistazo a mis proyectos."&gt;
+&lt;meta property="og:image" content="https://tusitio.com/images/preview.jpg"&gt;
+
+<!-- Twitter --&gt;
+&lt;meta property="twitter:card" content="summary_large_image"&gt;
+&lt;meta property="twitter:url" content="https://tusitio.com/"&gt;
+&lt;meta property="twitter:title" content="[Tu Nombre] - Portafolio Profesional"&gt;
+&lt;meta property="twitter:description" content="Desarrollador web especializado en HTML5, CSS y JavaScript."&gt;
+&lt;meta property="twitter:image" content="https://tusitio.com/images/preview.jpg"&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="deployment">
+                <h2>Despliegue del Sitio Web</h2>
+                
+                <p>Vamos a desplegar tu sitio web para que esté disponible en Internet. Hay varias opciones gratuitas:</p>
+                
+                <div class="deployment-steps">
+                    <div class="deployment-step">
+                        <h4>1. GitHub Pages (Recomendado para principiantes)</h4>
+                        <ol>
+                            <li>Crea una cuenta en <a href="https://github.com/" target="_blank">GitHub</a> si no tienes una</li>
+                            <li>Crea un nuevo repositorio llamado <code>usuario.github.io</code> (donde 'usuario' es tu nombre de usuario)</li>
+                            <li>Sube tus archivos al repositorio</li>
+                            <li>Tu sitio estará disponible en <code>https://usuario.github.io</code></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="deployment-step">
+                        <h4>2. Netlify (Fácil y con funciones avanzadas)</h4>
+                        <ol>
+                            <li>Sube tus archivos a un repositorio de GitHub, GitLab o Bitbucket</li>
+                            <li>Regístrate en <a href="https://www.netlify.com/" target="_blank">Netlify</a></li>
+                            <li>Selecciona "New site from Git" y sigue las instrucciones</li>
+                            <li>Netlify te proporcionará una URL única para tu sitio</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="deployment-step">
+                        <h4>3. Vercel (Excelente para desarrolladores)</h4>
+                        <ol>
+                            <li>Sube tus archivos a un repositorio de GitHub</li>
+                            <li>Regístrate en <a href="https://vercel.com/" target="_blank">Vercel</a></li>
+                            <li>Importa tu repositorio y sigue las instrucciones</li>
+                            <li>Vercel desplegará tu sitio automáticamente</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="checklist">
+                    <h4>🔍 Verificación Post-Despliegue</h4>
+                    <ul>
+                        <li>Prueba todos los enlaces en tu sitio</li>
+                        <li>Verifica que las imágenes se carguen correctamente</li>
+                        <li>Prueba el formulario de contacto</li>
+                        <li>Verifica que el sitio sea responsive en diferentes dispositivos</li>
+                        <li>Usa <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">PageSpeed Insights</a> para ver el rendimiento</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="project-submission">
+                <h2>Presentación del Proyecto Final</h2>
+                
+                <p>Para completar el curso, deberás presentar tu proyecto final que incluya:</p>
+                
+                <div class="checklist">
+                    <ul>
+                        <li>URL del sitio web desplegado</li>
+                        <li>Enlace al repositorio de código (GitHub, GitLab, etc.)</li>
+                        <li>Breve descripción de las características implementadas</li>
+                        <li>Desafíos encontrados y cómo los resolviste</li>
+                    </ul>
+                </div>
+                
+                <h3>Rúbrica de Evaluación</h3>
+                
+                <table class="rubric">
+                    <thead>
+                        <tr>
+                            <th>Criterio</th>
+                            <th>Bug en el Sistema (0-59)</th>
+                            <th>Script Kiddie (60-79)</th>
+                            <th>Desarrollador Junior (80-95)</th>
+                            <th>Arquitecto Web (96-100)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estructura HTML</strong></td>
+                            <td>Etiquetas sin cerrar, estructura rota</td>
+                            <td>Funciona pero con malas prácticas</td>
+                            <td>Bien estructurado y semántico</td>
+                            <td>Estructura impecable y lógica</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diseño y Estilo</strong></td>
+                            <td>Sin estilos o diseño roto</td>
+                            <td>Estilos básicos, falta de consistencia</td>
+                            <td>Diseño atractivo y consistente</td>
+                            <td>Diseño profesional y pulido</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Responsividad</strong></td>
+                            <td>No es responsive</td>
+                            <td>Algunos problemas en móviles</td>
+                            <td>Se ve bien en todos los dispositivos</td>
+                            <td>Diseño adaptativo perfecto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Funcionalidad</strong></td>
+                            <td>Funcionalidades rotas</td>
+                            <td>Funciona pero con errores</td>
+                            <td>Todo funciona correctamente</td>
+                            <td>Funcionalidad impecable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contenido</strong></td>
+                            <td>Contenido incompleto o placeholder</td>
+                            <td>Contenido básico</td>
+                            <td>Contenido completo y relevante</td>
+                            <td>Contenido excepcional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="next-steps">
+                <h3>🚀 Próximos Pasos en tu Aprendizaje</h3>
+                <p>¡Felicidades por completar el curso de HTML5! Aquí tienes algunas sugerencias para continuar tu aprendizaje:</p>
+                
+                <div class="checklist">
+                    <ul>
+                        <li><strong>Aprende CSS Avanzado</strong> - Flexbox, Grid, Animaciones</li>
+                        <li><strong>JavaScript Básico</strong> - Para agregar interactividad a tus sitios</li>
+                        <li><strong>Frameworks CSS</strong> - Como Bootstrap o Tailwind CSS</li>
+                        <li><strong>Control de Versiones con Git</strong> - Para trabajar en equipo</li>
+                        <li><strong>Accesibilidad Web</strong> - Para hacer sitios inclusivos</li>
+                        <li><strong>SEO</strong> - Para mejorar el posicionamiento en buscadores</li>
+                    </ul>
+                </div>
+                
+                <p>Recuerda que el aprendizaje es continuo en el desarrollo web. ¡Sigue practicando y construyendo proyectos!</p>
+            </section>
+
+            <section class="summary">
+                <h2>Resumen del Curso</h2>
+                <p>En este curso hemos cubierto los fundamentos del desarrollo web con HTML5:</p>
+                
+                <div class="checklist">
+                    <ul>
+                        <li><strong>Sesión 1:</strong> Estructura básica de HTML5</li>
+                        <li><strong>Sesión 2:</strong> Jerarquía y elementos de texto</li>
+                        <li><strong>Sesión 3:</strong> Enlaces y navegación</li>
+                        <li><strong>Sesión 4:</strong> Elementos multimedia</li>
+                        <li><strong>Sesión 5:</strong> HTML semántico</li>
+                        <li><strong>Sesión 6:</strong> Tablas</li>
+                        <li><strong>Sesión 7:</strong> Formularios</li>
+                        <li><strong>Sesión 8:</strong> Proyecto final y despliegue</li>
+                    </ul>
+                </div>
+                
+                <p>¡Ahora tienes las bases sólidas para seguir aprendiendo y convertirte en un desarrollador web profesional!</p>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Felicidades por completar el curso! ¿En qué más puedo ayudarte con tu proyecto final o con tu aprendizaje continuo?</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion07.html" class="button">← Sesión Anterior</a>
+                    <span></span> <!-- Espacio vacío para alinear a la derecha -->
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE HTML5. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // Script para el chat de Dola AI
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+                    
+                    addMessage(message, true);
+                    userInput.value = '';
+                    
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        const responses = [
+                            "¡Excelente pregunta! Para el proyecto final, asegúrate de que tu código esté bien estructurado y validado.",
+                            "Puedes usar GitHub Pages para desplegar tu sitio de forma gratuita. ¿Neitas ayuda con los pasos?",
+                            "Recuerda que la accesibilidad es clave. Asegúrate de usar etiquetas semánticas y atributos alt en las imágenes.",
+                            "¿Has probado a validar tu código HTML con el validador de W3C? Es una excelente práctica antes de desplegar.",
+                            "¡Felicidades por llegar hasta aquí! Estoy impresionado con tu progreso. ¿En qué más puedo ayudarte?"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000);
+                }
+                
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+            
+            // Mostrar mensaje de bienvenida después de cargar la página
+            setTimeout(() => {
+                if (chatMessages) {
+                    const welcomeMessage = document.createElement('div');
+                    welcomeMessage.className = 'message ai';
+                    welcomeMessage.innerHTML = `
+                        <p>¡Hola! Soy Dola, tu asistente de aprendizaje. Estoy aquí para ayudarte con tu proyecto final. Puedes preguntarme sobre:</p>
+                        <ul>
+                            <li>Estructura de archivos</li>
+                            <li>Validación de código</li>
+                            <li>Opciones de despliegue</li>
+                            <li>Buenas prácticas de HTML5</li>
+                            <li>Y cualquier otra duda que tengas</li>
+                        </ul>
+                        <p>¿En qué puedo ayudarte hoy?</p>
+                    `;
+                    chatMessages.appendChild(welcomeMessage);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

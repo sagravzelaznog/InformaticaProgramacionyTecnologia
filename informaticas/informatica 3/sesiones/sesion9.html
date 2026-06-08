@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Trabajando con Datos - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 9: Trabajando con Datos en Excel VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a manipular y analizar datos en Excel usando VBA, incluyendo filtrado, ordenamiento y validación de datos.</p>
+            </header>
+
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión, aprenderás a trabajar con conjuntos de datos en Excel usando VBA. Aprenderás a filtrar, ordenar y validar datos de manera eficiente, lo que te permitirá manejar grandes volúmenes de información de forma automatizada.</p>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-filter"></i> 1. Filtrado de Datos</h3>
+                    <p>El filtrado de datos es una técnica poderosa para trabajar con subconjuntos específicos de información.</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo de filtrado básico:</h4>
+                        <pre><code>Sub FiltrarDatos()
+    ' Activar la hoja de trabajo
+    Sheets("Datos").Activate
+    
+    ' Aplicar filtro
+    Range("A1").AutoFilter Field:=1, Criteria1:=">100"
+    
+    ' Copiar datos filtrados
+    Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible).Copy
+    
+    ' Pegar en nueva hoja
+    Sheets.Add After:=ActiveSheet
+    ActiveSheet.Paste
+    
+    ' Limpiar filtros
+    Sheets("Datos").AutoFilterMode = False
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-sort"></i> 2. Ordenamiento de Datos</h3>
+                    <p>Ordenar datos es fundamental para el análisis y presentación de información.</p>
+                    
+                    <div class="code-example">
+                        <h4>Ejemplo de ordenamiento:</h4>
+                        <pre><code>Sub OrdenarDatos()
+    ' Ordenar por columna B (2) de forma ascendente
+    Range("A1").CurrentRegion.Sort _
+        Key1:=Range("B1"), _
+        Order1:=xlAscending, _
+        Header:=xlYes
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <h3>Crear un informe de ventas</h3>
+                    <p>Vamos a crear una macro que:</p>
+                    <ol>
+                        <li>Ordene los datos de ventas por fecha</li>
+                        <li>Filtre solo las ventas del mes actual</li>
+                        <li>Cree un resumen en una nueva hoja</li>
+                    </ol>
+                    
+                    <div class="code-example">
+                        <h4>Solución:</h4>
+                        <pre><code>Sub CrearInformeVentas()
+    Dim wsDatos As Worksheet
+    Dim wsResumen As Worksheet
+    Dim ultimaFila As Long
+    
+    ' Referencia a la hoja de datos
+    Set wsDatos = ThisWorkbook.Sheets("Ventas")
+    
+    ' Ordenar por fecha
+    With wsDatos.Sort
+        .SortFields.Clear
+        .SortFields.Add Key:=Range("A2"), Order:=xlAscending
+        .SetRange wsDatos.Range("A1").CurrentRegion
+        .Header = xlYes
+        .Apply
+    End With
+    
+    ' Filtrar por mes actual
+    wsDatos.Range("A1").AutoFilter Field:=1, _
+        Criteria1:=">=" & DateSerial(Year(Date), Month(Date), 1), _
+        Operator:=xlAnd, _
+        Criteria2:="<" & DateSerial(Year(Date), Month(Date) + 1, 1)
+    
+    ' Crear hoja de resumen
+    On Error Resume Next
+    Application.DisplayAlerts = False
+    ThisWorkbook.Sheets("Resumen").Delete
+    Application.DisplayAlerts = True
+    On Error GoTo 0
+    
+    Set wsResumen = ThisWorkbook.Sheets.Add(After:=wsDatos)
+    wsResumen.Name = "Resumen"
+    
+    ' Copiar encabezados
+    wsDatos.Range("A1:D1").Copy wsResumen.Range("A1")
+    
+    ' Copiar datos filtrados
+    wsDatos.Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible).Copy _
+        wsResumen.Range("A2")
+    
+    ' Aplicar formato
+    With wsResumen
+        .Columns("A").NumberFormat = "dd/mm/yyyy"
+        .Columns("C:D").NumberFormat = "$#,##0.00"
+        .Columns("A:D").AutoFit
+        .Range("A1:D1").Interior.Color = RGB(200, 230, 255)
+        .Range("A1:D1").Font.Bold = True
+    End With
+    
+    ' Limpiar filtros
+    wsDatos.AutoFilterMode = False
+    
+    MsgBox "Informe de ventas generado exitosamente", vbInformation
+End Sub</code></pre>
+                    </div>
+                </section>
+                
+                <section class="activity">
+                    <div class="activity-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad de la Sesión</h2>
+                    </div>
+                    <p>Crea una macro que:</p>
+                    <ol>
+                        <li>Pida al usuario que ingrese un rango de fechas</li>
+                        <li>Filtre los datos para mostrar solo ese rango</li>
+                        <li>Genere un resumen con el total de ventas y el promedio</li>
+                        <li>Incluya manejo de errores para entradas inválidas</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h4><i class="fas fa-lightbulb"></i> Pista:</h4>
+                        <p>Usa <code>Application.InputBox</code> con <code>Type:=1</code> para fechas y asegúrate de validar que la fecha final sea mayor o igual a la fecha inicial.</p>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>El filtrado de datos permite trabajar con subconjuntos específicos de información</li>
+                        <li>El ordenamiento es esencial para el análisis y presentación de datos</li>
+                        <li>Podemos combinar filtros y ordenamiento para crear informes dinámicos</li>
+                        <li>Es importante incluir manejo de errores al trabajar con datos del usuario</li>
+                    </ul>
+
+                    <div class="challenge">
+                        <h3><i class="fas fa-trophy"></i> Desafío Adicional</h3>
+                        <p>Amplía el ejercicio práctico para que también genere un gráfico de barras que muestre las ventas por categoría en el rango de fechas seleccionado.</p>
+                    </div>
+                </section>
+            </div>
+
+          
+        </main>
+    </div>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

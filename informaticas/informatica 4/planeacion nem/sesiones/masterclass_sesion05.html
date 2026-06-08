@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 05: El Poder del Audio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 05</h1>
+            <h2>Introducción al Podcast y Guion</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Era del Audio (Podcast)</h3>
+            <p><strong>Objetivo:</strong> Descubrir por qué el audio es el medio más íntimo y potente para conectar con una audiencia.</p>
+            
+            <div class="interactive-box">
+                <h4>🎙️ "El Cine de la Mente"</h4>
+                <p>A diferencia del video, el audio obliga al cerebro a imaginar. Es una conexión directa.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">464M</span>
+                        <span class="stat-label">Oyentes de podcast en el mundo</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30min</span>
+                        <span class="stat-label">Tiempo promedio de escucha</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"Tu voz es tu huella digital sonora. Nadie suena igual a ti."</p>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Preproducción: El Mapa del Tesoro</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🦴 Anatomía de un Episodio</h4>
+                    <p>Todo buen podcast tiene un esqueleto invisible:</p>
+                    <ul>
+                        <li><strong>Intro (Teaser):</strong> Gancho de 15 segundos + Música.</li>
+                        <li><strong>Cuerpo:</strong> El desarrollo del tema o entrevista.</li>
+                        <li><strong>Outro (CTA):</strong> "Suscríbete", "Comparte" + Despedida.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>📻 Tipos de Podcast</h4>
+                    <p>Elige tu estilo antes de grabar:</p>
+                    <ul>
+                        <li><strong>Monólogo:</strong> Tú y el micrófono (Experto).</li>
+                        <li><strong>Entrevista:</strong> Conversación dinámica (Periodístico).</li>
+                        <li><strong>Narrativo:</strong> Contar historias con efectos de sonido (Ficción).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>📝 El Guion Técnico (La Herramienta Secreta)</h4>
+                <p>No improvises. Escribe lo que dirás y lo que sonará.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 10px; margin-top: 15px; text-align: left;">
+                    <div style="background:var(--primary); color:white; padding:5px; font-weight:bold;">TIEMPO</div>
+                    <div style="background:var(--primary); color:white; padding:5px; font-weight:bold;">AUDIO (LO QUE SE OYE)</div>
+                    <div style="background:var(--primary); color:white; padding:5px; font-weight:bold;">EFECTOS (FX)</div>
+                    
+                    <div style="background:#f0fdfa; padding:5px;">00:00 - 00:15</div>
+                    <div style="background:#f0fdfa; padding:5px;">LOCUTOR: ¡Hola! Bienvenidos a "Cultura Digital"...</div>
+                    <div style="background:#f0fdfa; padding:5px;">Música Intro (Fade In)</div>
+                    
+                    <div style="background:white; padding:5px; border-bottom:1px solid #eee;">00:15 - 00:45</div>
+                    <div style="background:white; padding:5px; border-bottom:1px solid #eee;">LOCUTOR: Hoy hablaremos de IA...</div>
+                    <div style="background:white; padding:5px; border-bottom:1px solid #eee;">Música de fondo (Baja)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. La Prueba de Fuego</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Tip de Locución #1</h5>
+                    <p>¿Qué hacer si te equivocas grabando?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Consejo</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>¡Aplaude! 👏</strong> El pico de audio en la onda te servirá de marca visual para cortar el error al editar.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Tip de Locución #2</h5>
+                    <p>¿A qué distancia debo estar del micrófono/celular?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Consejo</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>La regla de la "Cuarta" (Una mano).</strong> Unos 10-15 cm. Demasiado cerca causa "Popeo" (golpes de aire en la P y B).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎙️ <strong>Misión del Día:</strong> Escribe en tu cuaderno la INTRO de tu podcast (3 líneas) y grábala en una nota de voz para probar tu tono.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 05 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

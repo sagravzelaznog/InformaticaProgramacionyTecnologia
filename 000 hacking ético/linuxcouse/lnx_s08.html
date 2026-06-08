@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion08: Gestión y Auditoría de Paquetes</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 08: La Ilusión de Normalidad (Gestión de Paquetes)</h1>
+            <p class="intro-text">Un atacante comprometió tu servidor. ¿Cómo sabes que el comando <code>ls</code> que usas no fue reemplazado por una versión maliciosa que oculta los archivos del hacker? Hoy aprenderemos a instalar herramientas forenses de forma segura y a auditar la integridad de todo el software instalado en nuestro Sandbox.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Origen de la Verdad (sources.list)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Linux descarga software desde repositorios oficiales. Un atacante podría modificar esta lista para que tu sistema descargue actualizaciones falsas desde un servidor controlado por él. Revisemos las fuentes de tu Kali Linux.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Leemos el archivo donde se configuran los repositorios</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> cat /etc/apt/sources.list</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Instalación de Arsenal Forense (apt)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Utilizaremos el gestor de paquetes de alto nivel, <code>apt</code>, para instalar dos herramientas vitales: <strong>debsums</strong> (para verificar la integridad de los archivos) y <strong>rkhunter</strong> (un buscador de rootkits).</p>
+                    <div class="tip-card">
+                        <strong>Estrategia de Perito:</strong> Siempre actualiza el índice de repositorios (update) antes de instalar (install) para asegurar que descargas la última versión con parches de seguridad.
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Actualizamos índices e instalamos (requiere sudo)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo apt update
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo apt install debsums rkhunter -y</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Instalación Offline (dpkg)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En un incidente real, el equipo comprometido estará desconectado de Internet para evitar que el malware se propague. Tendrás que instalar tus herramientas forenses transfiriéndolas en un USB y usando el instalador de bajo nivel <code>dpkg</code>.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Sintaxis teórica para instalar un archivo .deb localmente</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo dpkg -i mi_herramienta_forense.deb
+
+<span class="comment"># Para listar todo el software instalado en el sistema actualmente</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> dpkg -l</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Auditoría de Integridad (La Caza del Troyano)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Aquí brilla el analista. <code>debsums</code> compara el hash (huella digital) de cada archivo instalado en tu sistema contra el hash oficial del creador. Si un atacante modificó un binario, este comando lo detectará.</p>
+                    
+                    <div class="audit-panel" id="audit-simulator">
+                        <div class="audit-header">
+                            <button id="btn-run-audit" class="btn btn-primary" style="padding: 0.2rem 0.8rem; font-size: 0.8rem;">Ejecutar Simulación de debsums -c</button>
+                            <span id="audit-status">Esperando ejecución...</span>
+                        </div>
+                        <div class="audit-console" id="audit-output">
+                            </div>
+                    </div>
+
+                    <p style="margin-top: 1rem;">Ahora ejecuta el comando real en tu máquina virtual. Al usar el flag <code>-c</code> (changed), el comando será silencioso a menos que encuentre un archivo corrupto o modificado.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Ejecutamos la verificación de integridad en todo el sistema</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo debsums -c</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #08. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

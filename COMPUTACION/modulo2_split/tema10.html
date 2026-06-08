@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema10">
+        <h2>Tema 10: Macros Básicas en Excel</h2>
+        <div class="tema-contenido">
+            <p>Las macros son una poderosa herramienta de automatización en Excel que te permiten grabar y ejecutar secuencias de comandos para realizar tareas repetitivas de manera eficiente. En este tema, aprenderás los conceptos fundamentales de las macros, cómo crearlas, editarlas y ejecutarlas para optimizar tu flujo de trabajo.</p>
+            
+            <h3>10.1 Introducción a las macros</h3>
+            <p>Una macro es una secuencia de instrucciones que automatiza tareas en Excel. Puedes pensar en ellas como una grabadora que captura tus acciones para reproducirlas más tarde.</p>
+            
+            <div class="concepto-importante">
+                <h4>¿Por qué usar macros?</h4>
+                <ul>
+                    <li><strong>Ahorro de tiempo:</strong> Automatiza tareas repetitivas con un solo clic.</li>
+                    <li><strong>Reducción de errores:</strong> Elimina la posibilidad de errores humanos en procesos repetitivos.</li>
+                    <li><strong>Consistencia:</strong> Asegura que las tareas se realicen de la misma manera cada vez.</li>
+                    <li><strong>Personalización:</strong> Crea herramientas adaptadas a tus necesidades específicas.</li>
+                </ul>
+            </div>
+            
+            <h3>10.2 Habilitar la pestaña Programador</h3>
+            <p>Antes de comenzar a trabajar con macros, necesitas habilitar la pestaña Programador en la cinta de opciones:</p>
+            
+            <div class="pasos">
+                <div class="paso">
+                    <h4>Paso 1: Abrir opciones de Excel</h4>
+                    <p>Haz clic en <strong>Archivo</strong> &gt; <strong>Opciones</strong> &gt; <strong>Personalizar cinta de opciones</strong>.</p>
+                </div>
+                <div class="paso">
+                    <h4>Paso 2: Habilitar la pestaña Programador</h4>
+                    <p>Marca la casilla <strong>Programador</strong> en el panel derecho y haz clic en <strong>Aceptar</strong>.</p>
+                </div>
+            </div>
+            
+            <h3>10.3 Grabando tu primera macro</h3>
+            <p>Vamos a grabar una macro simple que formatee un informe de ventas:</p>
+            
+            <div class="ejercicio-practico">
+                <h4>Actividad: Graba una macro de formato</h4>
+                <p>Sigue estos pasos para grabar una macro que dé formato a un informe de ventas:</p>
+                
+                <div class="pasos">
+                    <div class="paso">
+                        <h5>1. Prepara los datos</h5>
+                        <p>Crea una tabla simple con los siguientes encabezados: <code>Producto</code>, <code>Ventas</code>, <code>Costo</code>, <code>Utilidad</code> y algunos datos de ejemplo.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>2. Inicia la grabación</h5>
+                        <p>Ve a la pestaña <strong>Programador</strong> y haz clic en <strong>Grabar macro</strong>.</p>
+                        <ul>
+                            <li>Nombre: <code>FormatoInformeVentas</code></li>
+                            <li>Método de acceso: <code>Ctrl+Mayus+V</code></li>
+                            <li>Guardar en: <code>Este libro</code></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>3. Realiza las acciones</h5>
+                        <p>Realiza las siguientes acciones mientras se graba la macro:</p>
+                        <ol>
+                            <li>Selecciona los encabezados y aplica negrito y fondo azul claro.</li>
+                            <li>Ajusta el ancho de las columnas al contenido.</li>
+                            <li>Aplica bordes a toda la tabla.</li>
+                            <li>Formatea las celdas de ventas, costo y utilidad como moneda.</li>
+                            <li>Aplica formato condicional a la columna de utilidad para resaltar valores negativos en rojo.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>4. Detén la grabación</h5>
+                        <p>Haz clic en <strong>Detener grabación</strong> en la pestaña Programador.</p>
+                    </div>
+                </div>
+                
+                <div class="consejo">
+                    <h5>Consejo:</h5>
+                    <p>Antes de grabar una macro, practica los pasos que deseas automatizar para asegurarte de que todo funcione correctamente.</p>
+                </div>
+            </div>
+            
+            <h3>10.4 Ejecutando y probando tu macro</h3>
+            <p>Ahora que has grabado tu primera macro, es hora de probarla:</p>
+            
+            <div class="actividad-interactiva">
+                <h4>Prueba tu macro</h4>
+                <p>Sigue estos pasos para probar la macro que acabas de crear:</p>
+                
+                <div class="pasos">
+                    <div class="paso">
+                        <h5>1. Crea una nueva hoja</h5>
+                        <p>Inserta una nueva hoja en tu libro de trabajo.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>2. Ingresa datos de prueba</h5>
+                        <p>Crea una tabla con los mismos encabezados pero con diferentes valores.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>3. Ejecuta la macro</h5>
+                        <p>Puedes ejecutar la macro de tres formas:</p>
+                        <ul>
+                            <li>Usa el atajo de teclado <kbd>Ctrl+Mayus+V</kbd></li>
+                            <li>Ve a <strong>Programador</strong> &gt; <strong>Macros</strong>, selecciona <code>FormatoInformeVentas</code> y haz clic en <strong>Ejecutar</strong></li>
+                            <li>Asigna la macro a un botón en la hoja (ver siguiente sección)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h5>Pregunta de reflexión:</h5>
+                    <p>¿Qué sucedió cuando ejecutaste la macro? ¿Se aplicaron todos los formatos correctamente? Si algo no salió como esperabas, ¿qué crees que pudo haber salido mal durante la grabación?</p>
+                </div>
+            </div>
+            
+            <h3>10.5 Creando botones para ejecutar macros</h3>
+            <p>Para hacer que tus macros sean más accesibles, puedes asignarlas a botones en la hoja de cálculo:</p>
+            
+            <div class="ejercicio-practico">
+                <h4>Actividad: Crea un botón para tu macro</h4>
+                
+                <div class="pasos">
+                    <div class="paso">
+                        <h5>1. Inserta un botón de formulario</h5>
+                        <p>Ve a la pestaña <strong>Programador</strong> &gt; <strong>Insertar</strong> &gt; <strong>Botón (Control de formulario)</strong>.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>2. Dibuja el botón</h5>
+                        <p>Haz clic y arrastra en la hoja para dibujar el botón. Aparecerá un cuadro de diálogo para asignar una macro.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>3. Asigna la macro</h5>
+                        <p>Selecciona <code>FormatoInformeVentas</code> de la lista y haz clic en <strong>Aceptar</strong>.</p>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>4. Personaliza el botón</h5>
+                        <p>Haz clic derecho en el botón, selecciona <strong>Editar texto</strong> y cámbiale el nombre a algo descriptivo como "Aplicar Formato".</p>
+                    </div>
+                </div>
+                
+                <div class="consejo">
+                    <h5>Consejo:</h5>
+                    <p>Puedes formatear el botón con diferentes colores, fuentes y estilos usando las herramientas de formato de la pestaña <strong>Formato</strong>.</p>
+                </div>
+            </div>
+            
+            <div class="navegacion-temas">
+                <a href="#tema9" class="btn btn-anterior">Anterior: Tema 9</a>
+                <a href="#tema10-parte2" class="btn btn-siguiente">Siguiente: Tema 10 (Parte 2)</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Segunda parte del Tema 10 -->
+    
+
+    <div class="navegacion-temas">
+        <a href="tema9.html" class="btn btn-anterior">Anterior: Tema 9</a>
+        <a href="tema11.html" class="btn btn-siguiente">Siguiente: Tema 11</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

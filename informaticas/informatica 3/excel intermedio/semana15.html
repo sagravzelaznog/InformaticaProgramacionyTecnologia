@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 15: Importación y Exportación de Datos en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .paso {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+        }
+        .importante {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .formato-archivo {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .formato-archivo h4 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .nota-seguridad {
+            background-color: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 15: Importación y Exportación de Datos en Excel</h1>
+    
+    <div id="sesion15.1" class="sesion">
+        <h2>Sesión 15.1: Importación de datos desde archivos de texto</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Importar datos desde archivos de texto (CSV, TXT)</li>
+                <li>Configurar correctamente el asistente de importación</li>
+                <li>Manejar diferentes formatos de datos durante la importación</li>
+            </ul>
+            
+            <h3>1. Formatos de archivo compatibles</h3>
+            
+            <div class="formato-archivo">
+                <h4>Archivos de texto plano (.txt, .csv)</h4>
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>CSV (Valores Separados por Comas)</li>
+                    <li>Campos delimitados por comas, punto y coma o tabulaciones</li>
+                    <li>Sin formato de texto enriquecido</li>
+                </ul>
+            </div>
+            
+            <h3>2. Proceso de importación</h3>
+            
+            <div class="paso">
+                <h4>Paso a paso para importar:</h4>
+                <ol>
+                    <li>Ve a la pestaña <strong>Datos</strong></li>
+                    <li>Haz clic en <strong>Obtener datos</strong> > <strong>Desde archivo</strong> > <strong>Desde texto/CSV</strong></li>
+                    <li>Navega hasta la ubicación del archivo y selecciónalo</li>
+                    <li>En la ventana de vista previa, configura:
+                        <ul>
+                            <li>Juego de caracteres (generalmente 65001: Unicode UTF-8)</li>
+                            <li>Delimitador (coma, tabulador, etc.)</li>
+                            <li>Formato de datos para cada columna</li>
+                        </ul>
+                    </li>
+                    <li>Haz clic en <strong>Cargar</strong> o <strong>Transformar datos</strong> según necesites</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <ol>
+                    <li>Descarga un archivo CSV de datos de ejemplo (por ejemplo, datos meteorológicos o de ventas)</li>
+                    <li>Importa los datos a Excel, asegurándote de que:
+                        <ul>
+                            <li>Las fechas se importen correctamente</li>
+                            <li>Los números con decimales usen el formato correcto</li>
+                            <li>Los encabezados se reconozcan correctamente</li>
+                        </ul>
+                    </li>
+                    <li>Aplica formato de tabla a los datos importados</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para importación de datos:</h4>
+                <ul>
+                    <li>Revisa siempre la vista previa antes de importar</li>
+                    <li>Configura el tipo de datos correcto para cada columna</li>
+                    <li>Considera usar "Transformar datos" para limpieza adicional</li>
+                    <li>Guarda una copia de los datos originales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion15.2" class="sesion">
+        <h2>Sesión 15.2: Conexión a fuentes de datos externas</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Conectar Excel a bases de datos externas</li>
+                <li>Importar datos desde la web</li>
+                <li>Actualizar conexiones de datos</li>
+            </ul>
+            
+            <h3>1. Tipos de conexiones de datos</h3>
+            
+            <div class="formato-archivo">
+                <h4>Fuentes de datos soportadas:</h4>
+                <ul>
+                    <li>Bases de datos SQL (SQL Server, Access, MySQL, etc.)</li>
+                    <li>Servicios web y API REST</li>
+                    <li>Archivos de Excel y Access</li>
+                    <li>Servicios de análisis (Analysis Services)</li>
+                    <li>Otros orígenes OLE DB u ODBC</li>
+                </ul>
+            </div>
+            
+            <h3>2. Conexión a una base de datos</h3>
+            
+            <div class="paso">
+                <h4>Para conectar a una base de datos SQL:</h4>
+                <ol>
+                    <li>Ve a la pestaña <strong>Datos</strong></li>
+                    <li>Haz clic en <strong>Obtener datos</strong> > <strong>Desde base de datos</strong> > <strong>Desde SQL Server</strong></li>
+                    <li>Ingresa el nombre del servidor y las credenciales</li>
+                    <li>Selecciona la base de datos y la(s) tabla(s) que deseas importar</li>
+                    <li>Configura las opciones de carga (carga directa o modelo de datos)</li>
+                    <li>Haz clic en <strong>Cargar</strong></li>
+                </ol>
+            </div>
+            
+            <h3>3. Importar datos desde la web</h3>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Importa datos de una página web a Excel:</p>
+                <ol>
+                    <li>Ve a la pestaña <strong>Datos</strong> > <strong>Obtener datos</strong> > <strong>Desde la web</strong></li>
+                    <li>Ingresa la URL de una página web con datos tabulares (por ejemplo, una tabla de tasas de cambio)</li>
+                    <li>En el navegador de consultas, selecciona la tabla que deseas importar</li>
+                    <li>Configura las opciones de carga y haz clic en <strong>Cargar</strong></li>
+                    <li>Configura la actualización automática de los datos</li>
+                </ol>
+            </div>
+            
+            <div class="importante">
+                <h4>Consideraciones de seguridad:</h4>
+                <ul>
+                    <li>Nunca compartas archivos con conexiones a bases de datos que contengan credenciales sensibles</li>
+                    <li>Usa la autenticación de Windows cuando sea posible</li>
+                    <li>Considera usar consultas con parámetros para limitar la cantidad de datos recuperados</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion15.3" class="sesion">
+        <h2>Sesión 15.3: Power Query básico</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Introducción a Power Query Editor</li>
+                <li>Transformaciones básicas de datos</li>
+                <li>Combinar y anexar consultas</li>
+            </ul>
+            
+            <h3>1. Interfaz de Power Query Editor</h3>
+            
+            <div class="paso">
+                <h4>Componentes principales:</h4>
+                <ul>
+                    <li><strong>Cinta de opciones:</strong> Contiene todas las herramientas de transformación</li>
+                    <li><strong>Panel de consultas:</strong> Muestra todas las consultas en el libro actual</li>
+                    <li><strong>Vista previa de datos:</strong> Muestra los datos de la consulta seleccionada</li>
+                    <li><strong>Configuración de consulta:</strong> Muestra los pasos aplicados</li>
+                </ul>
+            </div>
+            
+            <h3>2. Transformaciones comunes</h3>
+            
+            <div class="paso">
+                <h4>Operaciones básicas:</h4>
+                <ol>
+                    <li><strong>Eliminar filas:</strong> Filtrar, quitar duplicados, quinar filas en blanco</li>
+                    <li><strong>Dividir columnas:</strong> Por delimitador, por número de caracteres</li>
+                    <li><strong>Cambiar tipos de datos:</strong> Texto, números, fechas</li>
+                    <li><strong>Reemplazar valores:</strong> Valores nulos o específicos</li>
+                    <li><strong>Ordenar y filtrar:</strong> Orden ascendente/descendente, filtros básicos</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea una consulta que:</p>
+                <ol>
+                    <li>Importe datos de un archivo CSV con información de ventas</li>
+                    <li>Limpie los datos:
+                        <ul>
+                            <li>Elimina filas con valores faltantes</li>
+                            <li>Cambia los tipos de datos según corresponda</li>
+                            <li>Divide la columna "Nombre completo" en "Nombre" y "Apellido"</li>
+                        </ul>
+                    </li>
+                    <li>Crea una columna personalizada que calcule el total de ventas (cantidad * precio unitario)</li>
+                    <li>Agrupa los datos por categoría y calcula el total de ventas por categoría</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Buenas prácticas en Power Query:</h4>
+                <ul>
+                    <li>Nombra tus consultas de manera descriptiva</li>
+                    <li>Documenta los pasos importantes</li>
+                    <li>Usa la vista previa para verificar cada transformación</li>
+                    <li>Considera el rendimiento al trabajar con grandes volúmenes de datos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion15.4" class="sesion">
+        <h2>Sesión 15.4: Práctica guiada - Flujo de trabajo de datos completo</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Integrar múltiples fuentes de datos</li>
+                <li>Automatizar la actualización de informes</li>
+                <li>Crear un panel de control interactivo</li>
+            </ul>
+            
+            <div class="paso">
+                <h4>1. Preparación del entorno</h4>
+                <ol>
+                    <li>Crea una carpeta para tu proyecto</li>
+                    <li>Descarga los siguientes archivos de ejemplo:
+                        <ul>
+                            <li>Un archivo CSV con datos de ventas</li>
+                            <li>Un archivo Excel con información de productos</li>
+                            <li>Un archivo de texto con datos de inventario</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <div class="paso">
+                <h4>2. Importación y transformación de datos</h4>
+                <p>Crea consultas para cada fuente de datos:</p>
+                <ol>
+                    <li>Importa cada archivo a Power Query</li>
+                    <li>Aplica las transformaciones necesarias</li>
+                    <li>Combina las consultas según sea necesario</li>
+                    <li>Crea medidas calculadas</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Desarrolla un informe de análisis de ventas que incluya:</p>
+                <ol>
+                    <li><strong>Hoja de resumen:</strong> Con KPIs principales</li>
+                    <li><strong>Análisis por producto:</strong> Ventas, márgenes, rendimiento</li>
+                    <li><strong>Análisis temporal:</strong> Tendencias mensuales y estacionalidad</li>
+                    <li><strong>Panel de control:</strong> Con gráficos interactivos</li>
+                    <li><strong>Botones de actualización:</strong> Para actualizar todos los datos con un clic</li>
+                </ol>
+            </div>
+            
+            <div class="importante">
+                <h4>Entrega del proyecto:</h4>
+                <p>Prepara para entregar:</p>
+                <ol>
+                    <li>El archivo de Excel con todas las conexiones configuradas</li>
+                    <li>Un documento con instrucciones de uso</li>
+                    <li>Un informe que explique:
+                        <ul>
+                            <li>Las fuentes de datos utilizadas</li>
+                            <li>Las transformaciones aplicadas</li>
+                            <li>Los hallazgos clave del análisis</li>
+                            <li>Las limitaciones y posibles mejoras</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para el flujo de trabajo de datos:</h4>
+                <ul>
+                    <li>Mantén tus datos fuente organizados</li>
+                    <li>Documenta tus procesos de ETL (Extracción, Transformación y Carga)</li>
+                    <li>Prueba las actualizaciones de datos periódicamente</li>
+                    <li>Considera la automatización con Power Automate para flujos de trabajo recurrentes</li>
+                    <li>Implementa controles de calidad de datos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

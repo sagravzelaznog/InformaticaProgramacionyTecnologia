@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 18: Parámetros y Argumentos en Funciones - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .parameter-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .param-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #e17055;
+        }
+        
+        .param-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .param-card h4 {
+            margin-top: 0;
+            color: #fab1a0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .param-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .param-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fd79a8;
+        }
+        
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #00b894;
+        }
+        
+        .advanced-examples {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #6c5ce7;
+        }
+        
+        .advanced-examples h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+        
+        .advanced-examples h3 i {
+            margin-right: 10px;
+        }
+        
+        .example-function {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .example-function h5 {
+            margin-top: 0;
+            color: #74b9ff;
+        }
+        
+        .function-signature {
+            background: #636e72;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+        
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+        
+        .practice-exercises {
+            margin: 30px 0;
+        }
+        
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #fd79a8;
+        }
+        
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+        
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+        
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .exercise-card .expected-output {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .flexible-formatter {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+        
+        .flexible-formatter h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flexible-formatter h3 i {
+            margin-right: 10px;
+        }
+        
+        .formatter-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .formatter-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+        
+        .report-generator {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+        
+        .report-generator h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+        
+        .report-generator h3 i {
+            margin-right: 10px;
+        }
+        
+        .generator-options {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .generator-options h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+        
+        .statistics-function {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+        
+        .statistics-function h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .statistics-function h3 i {
+            margin-right: 10px;
+        }
+        
+        .stats-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .stats-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 18</h1>
+                <h2>Parámetros y Argumentos en Funciones</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-6-25" 
+                     role="progressbar" 
+                     aria-valuenow="6.25" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">6.25% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, profundizarás en el manejo avanzado de parámetros y argumentos en funciones Python. Aprenderás a crear funciones más flexibles y versátiles que puedan adaptarse a diferentes situaciones de uso, utilizando técnicas como argumentos por nombre, valores por defecto y argumentos variables.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Diferenciar entre parámetros obligatorios y opcionales</li>
+                        <li>Usar argumentos por posición y por nombre correctamente</li>
+                        <li>Definir valores por defecto para parámetros opcionales</li>
+                        <li>Manejar número variable de argumentos usando <code>*args</code> y <code>**kwargs</code></li>
+                        <li>Crear funciones altamente configurables y reutilizables</li>
+                        <li>Mejorar la legibilidad y mantenibilidad de tu código mediante buenas prácticas</li>
+                    </ul>
+                </div>
+                
+                <div class="parameter-types">
+                    <div class="param-card">
+                        <h4><i class="fas fa-star"></i> Parámetros Obligatorios</h4>
+                        <p>Son parámetros que <strong>siempre deben</strong> ser proporcionados cuando se llama a la función.</p>
+                        <pre><code class="language-python">def dividir(a, b):  # Ambos parámetros son obligatorios
+    return a / b</code></pre>
+                    </div>
+                    
+                    <div class="param-card">
+                        <h4><i class="fas fa-star-half-alt"></i> Parámetros Opcionales</h4>
+                        <p>Son parámetros que tienen <strong>valores por defecto</strong> y pueden ser omitidos en la llamada.</p>
+                        <pre><code class="language-python">def saludar(nombre, saludo="Hola"):  # saludo es opcional
+    return f"{saludo}, {nombre}"</code></pre>
+                    </div>
+                    
+                    <div class="param-card">
+                        <h4><i class="fas fa-ellipsis-h"></i> Argumentos Variables</h4>
+                        <p>Permiten pasar un <strong>número variable</strong> de argumentos a la función.</p>
+                        <pre><code class="language-python">def sumar_todos(*numeros):  # Puede recibir cualquier cantidad
+    return sum(numeros)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Parámetros obligatorios vs opcionales -->
+            <div class="concept-card">
+                <h3>1. Parámetros Obligatorios vs Opcionales</h3>
+                <p>Los parámetros pueden ser obligatorios (sin valor por defecto) u opcionales (con valor por defecto). Los parámetros opcionales siempre deben ir después de los obligatorios.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Parámetros obligatorios (sin valores por defecto)
+def calcular_area_rectangulo(ancho, largo):
+    """Calcula el área de un rectángulo."""
+    return ancho * largo
+
+# Parámetros opcionales (con valores por defecto)
+def crear_usuario(nombre, edad, ciudad="Ciudad no especificada", activo=True):
+    """
+    Crea un perfil de usuario con información básica.
+    
+    Args:
+        nombre (str): Nombre del usuario (obligatorio)
+        edad (int): Edad del usuario (obligatorio)
+        ciudad (str): Ciudad del usuario (opcional, por defecto "Ciudad no especificada")
+        activo (bool): Estado activo del usuario (opcional, por defecto True)
+        
+    Returns:
+        dict: Diccionario con la información del usuario
+    """
+    return {
+        "nombre": nombre,
+        "edad": edad,
+        "ciudad": ciudad,
+        "activo": activo
+    }
+
+# Función con parámetros mixtos
+def generar_informe(titulo, datos, formato="texto", incluir_fecha=True, separador="="):
+    """
+    Genera un informe formateado.
+    
+    Args:
+        titulo (str): Título del informe (obligatorio)
+        datos (dict): Datos a incluir en el informe (obligatorio)
+        formato (str): Formato del informe (opcional, por defecto "texto")
+        incluir_fecha (bool): Incluir fecha en el informe (opcional, por defecto True)
+        separador (str): Carácter separador para el título (opcional, por defecto "=")
+        
+    Returns:
+        str: Informe formateado
+    """
+    # Construir el encabezado
+    linea_separadora = separador * len(titulo)
+    informe = [linea_separadora, titulo, linea_separadora, ""]
+    
+    # Agregar fecha si está habilitado
+    if incluir_fecha:
+        from datetime import datetime
+        fecha_actual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        informe.append(f"Fecha: {fecha_actual}")
+        informe.append("")
+    
+    # Agregar los datos
+    for clave, valor in datos.items():
+        informe.append(f"{clave}: {valor}")
+    
+    return "\n".join(informe)
+
+# Uso de las funciones
+area = calcular_area_rectangulo(10, 5)  # Ambos parámetros obligatorios
+print(f"Área: {area}")
+
+usuario1 = crear_usuario("Ana", 25)  # Solo parámetros obligatorios
+usuario2 = crear_usuario("Luis", 30, "Madrid")  # Ciudad opcional especificada
+usuario3 = crear_usuario("María", 28, "Barcelona", False)  # Todos los parámetros
+
+print("\nUsuarios creados:")
+for usuario in [usuario1, usuario2, usuario3]:
+    print(usuario)
+
+# Ejemplo de informe
+datos_informe = {
+    "Proyecto": "Sistema de Gestión",
+    "Versión": "1.0",
+    "Desarrollador": "Equipo Python",
+    "Estado": "En desarrollo"
+}
+
+informe_texto = generar_informe("INFORME DE PROYECTO", datos_informe)
+print(f"\n{informe_texto}")
+
+informe_html = generar_informe("INFORME DE PROYECTO", datos_informe, formato="html", incluir_fecha=True)
+print(f"\n{informe_html}")</code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Regla Importante</h4>
+                    <p>Los parámetros opcionales (con valores por defecto) <strong>siempre deben ir después</strong> de los parámetros obligatorios en la definición de la función. Si colocas un parámetro obligatorio después de uno opcional, Python generará un error de sintaxis.</p>
+                </div>
+            </div>
+
+            <!-- 2. Argumentos por posición y nombre -->
+            <div class="concept-card">
+                <h3>2. Argumentos por Posición y por Nombre</h3>
+                <p>Python permite pasar argumentos de dos maneras: por posición (el orden importa) o por nombre (usando el nombre del parámetro). Puedes combinar ambos métodos, pero los argumentos por posición deben ir primero.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Función de ejemplo
+def configurar_servidor(host, puerto, protocolo="http", seguridad=True, tiempo_espera=30):
+    """
+    Configura un servidor con parámetros específicos.
+    
+    Args:
+        host (str): Dirección del servidor
+        puerto (int): Puerto del servidor
+        protocolo (str): Protocolo de comunicación
+        seguridad (bool): Habilitar seguridad
+        tiempo_espera (int): Tiempo de espera en segundos
+        
+    Returns:
+        dict: Configuración del servidor
+    """
+    return {
+        "host": host,
+        "puerto": puerto,
+        "protocolo": protocolo,
+        "seguridad": seguridad,
+        "tiempo_espera": tiempo_espera
+    }
+
+# 1. Solo argumentos por posición (orden importa)
+config1 = configurar_servidor("localhost", 8080)
+print("Configuración 1:", config1)
+# Equivalente a: host="localhost", puerto=8080, protocolo="http", seguridad=True, tiempo_espera=30
+
+# 2. Solo argumentos por nombre (orden no importa)
+config2 = configurar_servidor(
+    puerto=443,
+    host="example.com",
+    protocolo="https"
+)
+print("Configuración 2:", config2)
+# Equivalente a: host="example.com", puerto=443, protocolo="https", seguridad=True, tiempo_espera=30
+
+# 3. Mezcla de argumentos por posición y nombre
+config3 = configurar_servidor("api.example.com", 8080, protocolo="https", tiempo_espera=60)
+print("Configuración 3:", config3)
+# Equivalente a: host="api.example.com", puerto=8080, protocolo="https", seguridad=True, tiempo_espera=60
+
+# 4. Ejemplo más complejo con argumentos mixtos
+def crear_perfil_personal(
+    nombre,          # Obligatorio, por posición
+    apellido,        # Obligatorio, por posición  
+    edad,           # Obligatorio, por posición
+    ciudad="Desconocida",    # Opcional
+    pais="España",          # Opcional
+    profesion=None,         # Opcional
+    hobbies=[],             # Opcional (lista mutable - cuidado!)
+    activo=True             # Opcional
+):
+    """Crea un perfil personal completo."""
+    return {
+        "nombre_completo": f"{nombre} {apellido}",
+        "edad": edad,
+        "ubicacion": f"{ciudad}, {pais}",
+        "profesion": profesion,
+        "hobbies": hobbies,
+        "activo": activo
+    }
+
+# Diferentes formas de llamar a la función
+perfil1 = crear_perfil_personal("Ana", "García", 25)
+perfil2 = crear_perfil_personal("Luis", "Martínez", 30, ciudad="Madrid")
+perfil3 = crear_perfil_personal(
+    nombre="María",
+    apellido="López", 
+    edad=28,
+    ciudad="Barcelona",
+    profesion="Ingeniera",
+    hobbies=["leer", "viajar"]
+)
+
+print("\nPerfil 1:", perfil1)
+print("Perfil 2:", perfil2)
+print("Perfil 3:", perfil3)
+
+# Buenas prácticas para argumentos por nombre
+def procesar_archivo(archivo, operacion="leer", formato="texto", codificacion="utf-8", validar=True):
+    """Procesa un archivo con diferentes operaciones."""
+    print(f"Procesando {archivo}")
+    print(f"Operación: {operacion}")
+    print(f"Formato: {formato}")
+    print(f"Codificación: {codificacion}")
+    print(f"Validar: {validar}")
+
+# Llamada clara usando argumentos por nombre
+procesar_archivo(
+    archivo="datos.txt",
+    operacion="escribir",
+    formato="json",
+    validar=True
+)</code></pre>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Argumentos por Posición</h5>
+                        <ul>
+                            <li>Se asignan según el orden en que aparecen</li>
+                            <li>No necesitas especificar el nombre del parámetro</li>
+                            <li>Más concisos para funciones simples</li>
+                            <li>El orden <strong>sí importa</strong></li>
+                        </ul>
+                        <pre><code class="language-python">funcion(valor1, valor2, valor3)</code></pre>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h5>Argumentos por Nombre</h5>
+                        <ul>
+                            <li>Se asignan usando el nombre del parámetro</li>
+                            <li>Especificas explícitamente qué valor va a qué parámetro</li>
+                            <li>Más legibles para funciones complejas</li>
+                            <li>El orden <strong>no importa</strong></li>
+                        </ul>
+                        <pre><code class="language-python">funcion(param1=valor1, param2=valor2)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Recomendación</h4>
+                    <p>Usa argumentos por nombre cuando:</p>
+                    <ul>
+                        <li>La función tiene muchos parámetros</li>
+                        <li>Algunos parámetros tienen valores por defecto</li>
+                        <li>Quieres mejorar la legibilidad del código</li>
+                        <li>Estás trabajando en equipo y quieres que el código sea auto-documentado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Número variable de argumentos -->
+            <div class="concept-card">
+                <h3>3. Número Variable de Argumentos (*args, **kwargs)</h3>
+                <p>Python permite crear funciones que acepten un número variable de argumentos usando <code>*args</code> (para argumentos posicionales) y <code>**kwargs</code> (para argumentos por nombre).</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># *args: Número variable de argumentos posicionales
+def sumar_todos(*numeros):
+    """
+    Suma todos los números pasados como argumentos.
+    
+    Args:
+        *numeros: Números a sumar (cualquier cantidad)
+        
+    Returns:
+        float: Suma de todos los números
+    """
+    return sum(numeros)
+
+# Uso de *args
+suma1 = sumar_todos(1, 2, 3)           # 6
+suma2 = sumar_todos(10, 20, 30, 40)    # 100
+suma3 = sumar_todos()                  # 0 (sin argumentos)
+
+print(f"Suma 1: {suma1}, Suma 2: {suma2}, Suma 3: {suma3}")
+
+# **kwargs: Número variable de argumentos por nombre
+def configurar_base_datos(**configuracion):
+    """
+    Configura una base de datos con parámetros variables.
+    
+    Args:
+        **configuracion: Parámetros de configuración (nombre=valor)
+        
+    Returns:
+        dict: Configuración aplicada
+    """
+    print("Configuración de base de datos:")
+    for clave, valor in configuracion.items():
+        print(f"  {clave}: {valor}")
+    return configuracion
+
+# Uso de **kwargs
+config1 = configurar_base_datos(host="localhost", puerto=5432, usuario="admin")
+config2 = configurar_base_datos(
+    host="db.example.com",
+    puerto=3306,
+    usuario="root",
+    contrasena="secreta",
+    base_datos="produccion"
+)
+
+# Combinación de parámetros normales con *args y **kwargs
+def generar_reporte(titulo, *datos, **opciones):
+    """
+    Genera un reporte con datos variables y opciones de formato.
+    
+    Args:
+        titulo (str): Título del reporte
+        *datos: Datos a incluir en el reporte
+        **opciones: Opciones de formato
+        
+    Returns:
+        str: Reporte formateado
+    """
+    # Procesar opciones con valores por defecto
+    formato = opciones.get("formato", "texto")
+    incluir_total = opciones.get("incluir_total", True)
+    separador = opciones.get("separador", "-")
+    
+    if formato == "html":
+        # Construir reporte en formato HTML desde el principio
+        reporte = [f"<h2>{titulo}</h2>"]
+        
+        # Filtrar elementos válidos (no None, no vacío)
+        elementos_validos = []
+        if datos:
+            elementos_validos = [dato for dato in datos if dato and str(dato).strip()]
+        
+        # Solo crear <ul> si hay elementos válidos
+        if elementos_validos:
+            reporte.append("<ul>")
+            for dato in elementos_validos:
+                reporte.append(f"<li>{dato}</li>")
+            reporte.append("</ul>")
+        
+        if incluir_total:
+            total = len(elementos_validos)
+            reporte.append(f"<p><strong>Total: {total}</strong></p>")
+        
+        return "\n".join(reporte)
+    else:
+        # Construir reporte en formato texto
+        reporte = [f"=== {titulo} ==="]
+        
+        for i, dato in enumerate(datos, 1):
+            reporte.append(f"{i}. {dato}")
+        
+        if incluir_total:
+            total = len(datos)
+            reporte.append(f"\nTotal de elementos: {total}")
+        
+        return f"\n{separador * 20}\n".join(reporte)
+
+# Uso de la función combinada
+reporte1 = generar_reporte("Productos", "Manzanas", "Peras", "Plátanos")
+print(reporte1)
+
+reporte2 = generar_reporte(
+    "Ventas del Mes",
+    "Producto A", "Producto B", "Producto C", "Producto D",
+    formato="html",
+    incluir_total=True,
+    separador="="
+)
+print(f"\n{reporte2}")
+
+# Función avanzada: calculadora flexible
+def calculadora_flexible(operacion, *numeros, **opciones):
+    """
+    Calculadora que acepta operaciones y números variables.
+    
+    Args:
+        operacion (str): Operación a realizar (+, -, *, /)
+        *numeros: Números para la operación
+        **opciones: Opciones adicionales
+        
+    Returns:
+        float or str: Resultado de la operación
+    """
+    if not numeros:
+        return "Error: No se proporcionaron números"
+    
+    # Obtener opciones
+    precision = opciones.get("precision", 2)
+    
+    try:
+        if operacion == "+":
+            resultado = sum(numeros)
+        elif operacion == "-":
+            resultado = numeros[0]
+            for num in numeros[1:]:
+                resultado -= num
+        elif operacion == "*":
+            resultado = 1
+            for num in numeros:
+                resultado *= num
+        elif operacion == "/":
+            resultado = numeros[0]
+            for num in numeros[1:]:
+                if num == 0:
+                    return "Error: División por cero"
+                resultado /= num
+        else:
+            return f"Error: Operación '{operacion}' no soportada"
+        
+        if opciones.get("redondear", False):
+            resultado = round(resultado, precision)
+            
+        return resultado
+        
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+# Uso de la calculadora flexible
+print("\nCalculadora flexible:")
+print(f"Suma: {calculadora_flexible('+', 10, 20, 30)}")
+print(f"Resta: {calculadora_flexible('-', 100, 25, 15)}")
+print(f"Multiplicación: {calculadora_flexible('*', 2, 3, 4, 5)}")
+print(f"División: {calculadora_flexible('/', 100, 2, 5)}")
+print(f"Con redondeo: {calculadora_flexible('+', 1.1, 2.2, 3.3, redondear=True)}")</code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Cuidado con Listas Mutables</h4>
+                    <p>Cuando uses listas o diccionarios como valores por defecto para parámetros opcionales, <strong>todos los llamados compartirán la misma instancia</strong>. Esto puede causar efectos inesperados:</p>
+                    <pre><code class="language-python"># ¡Problema potencial!
+def agregar_elemento(elemento, lista=[]):
+    lista.append(elemento)
+    return lista
+
+resultado1 = agregar_elemento(1)  # [1]
+resultado2 = agregar_elemento(2)  # [1, 2] ¡Incluye el 1 también!
+
+# Solución correcta:
+def agregar_elemento(elemento, lista=None):
+    if lista is None:
+        lista = []
+    lista.append(elemento)
+    return lista</code></pre>
+                </div>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> ¿Cuándo usar *args y **kwargs?</h4>
+                    <ul>
+                        <li><strong>*args:</strong> Cuando necesitas aceptar un número variable de argumentos posicionales</li>
+                        <li><strong>**kwargs:</strong> Cuando necesitas aceptar un número variable de argumentos por nombre</li>
+                        <li><strong>Ambos:</strong> Para crear funciones altamente flexibles y reutilizables</li>
+                        <li><strong>Úsalos con moderación:</strong> Pueden hacer que las funciones sean más difíciles de entender y mantener</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+            
+            <div class="card">
+                <h3>Ejemplo 1: Función de Cálculo de Estadísticas</h3>
+                <p>Crearemos una función flexible que calcule diferentes estadísticas de una lista de números.</p>
+                
+                <div class="statistics-function">
+                    <h3><i class="fas fa-chart-bar"></i> Función de Estadísticas Flexible</h3>
+                    
+                    <div class="stats-example">
+                        <h5>Implementación Completa</h5>
+                        <pre><code class="language-python">def calcular_estadisticas(
+    numeros,                    # Lista de números (obligatorio)
+    incluir_media=True,        # Calcular media (opcional)
+    incluir_mediana=True,      # Calcular mediana (opcional)
+    incluir_moda=True,         # Calcular moda (opcional)
+    incluir_desviacion=True,   # Calcular desviación estándar (opcional)
+    precision=2,               # Precisión decimal (opcional)
+    ordenar_resultados=False   # Ordenar resultados alfabéticamente (opcional)
+):
+    """
+    Calcula estadísticas básicas de una lista de números.
+    
+    Args:
+        numeros (list): Lista de números para analizar
+        incluir_media (bool): Incluir cálculo de media
+        incluir_mediana (bool): Incluir cálculo de mediana
+        incluir_moda (bool): Incluir cálculo de moda
+        incluir_desviacion (bool): Incluir desviación estándar
+        precision (int): Número de decimales para resultados
+        ordenar_resultados (bool): Ordenar resultados alfabéticamente
+        
+    Returns:
+        dict: Diccionario con las estadísticas calculadas
+    """
+    if not numeros:
+        return {"error": "La lista de números está vacía"}
+    
+    resultados = {}
+    
+    # Estadísticas básicas siempre incluidas
+    resultados["cantidad"] = len(numeros)
+    resultados["minimo"] = min(numeros)
+    resultados["maximo"] = max(numeros)
+    resultados["suma"] = sum(numeros)
+    
+    # Media (promedio)
+    if incluir_media:
+        resultados["media"] = round(sum(numeros) / len(numeros), precision)
+    
+    # Mediana
+    if incluir_mediana:
+        numeros_ordenados = sorted(numeros)
+        n = len(numeros_ordenados)
+        if n % 2 == 0:
+            mediana = (numeros_ordenados[n//2 - 1] + numeros_ordenados[n//2]) / 2
+        else:
+            mediana = numeros_ordenados[n//2]
+        resultados["mediana"] = round(mediana, precision)
+    
+    # Moda (número que más se repite)
+    if incluir_moda:
+        from collections import Counter
+        conteo = Counter(numeros)
+        max_frecuencia = max(conteo.values())
+        modas = [num for num, freq in conteo.items() if freq == max_frecuencia]
+        resultados["moda"] = modas if len(modas) > 1 else modas[0] if modas else None
+    
+    # Desviación estándar
+    if incluir_desviacion:
+        import math
+        media = sum(numeros) / len(numeros)
+        varianza = sum((x - media) ** 2 for x in numeros) / len(numeros)
+        desviacion = math.sqrt(varianza)
+        resultados["desviacion_estandar"] = round(desviacion, precision)
+    
+    # Ordenar resultados si se solicita
+    if ordenar_resultados:
+        resultados = dict(sorted(resultados.items()))
+    
+    return resultados
+
+# Uso de la función con diferentes configuraciones
+datos = [85, 92, 78, 85, 88, 92, 85, 76, 92, 88]
+
+# Todas las estadísticas
+estadisticas_completas = calcular_estadisticas(datos)
+print("Estadísticas completas:")
+for clave, valor in estadisticas_completas.items():
+    print(f"  {clave}: {valor}")
+
+# Solo estadísticas básicas
+estadisticas_basicas = calcular_estadisticas(
+    datos,
+    incluir_media=False,
+    incluir_mediana=False,
+    incluir_moda=False,
+    incluir_desviacion=False
+)
+print(f"\nEstadísticas básicas: {estadisticas_basicas}")
+
+# Estadísticas ordenadas con precisión específica
+estadisticas_ordenadas = calcular_estadisticas(
+    datos,
+    precision=3,
+    ordenar_resultados=True
+)
+print(f"\nEstadísticas ordenadas (3 decimales): {estadisticas_ordenadas}")
+
+# Solo media y desviación estándar
+estadisticas_parciales = calcular_estadisticas(
+    datos,
+    incluir_mediana=False,
+    incluir_moda=False,
+    precision=4
+)
+print(f"\nEstadísticas parciales: {estadisticas_parciales}")</code></pre>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 2: Formateador de Mensajes Flexible</h3>
+                <p>Crearemos un formateador de mensajes que pueda adaptarse a diferentes formatos y estilos.</p>
+                
+                <div class="flexible-formatter">
+                    <h3><i class="fas fa-font"></i> Formateador de Mensajes Avanzado</h3>
+                    
+                    <div class="formatter-example">
+                        <h5>Implementación Completa</h5>
+                        <pre><code class="language-python">def formatear_mensaje(
+    mensaje,                    # Mensaje principal (obligatorio)
+    tipo="info",               # Tipo de mensaje (opcional)
+    *args,                     # Información adicional (variable)
+    estilo="normal",           # Estilo de formato (opcional)
+    mayusculas=False,          # Convertir a mayúsculas (opcional)
+    incluir_timestamp=True,    # Incluir marca de tiempo (opcional)
+    separador=" | ",           # Separador entre elementos (opcional)
+    **kwargs                   # Opciones adicionales (variable)
+):
+    """
+    Formatea un mensaje con múltiples opciones de estilo y formato.
+    
+    Args:
+        mensaje (str): Mensaje principal a formatear
+        tipo (str): Tipo de mensaje ("info", "warning", "error", "success")
+        *args: Información adicional a incluir
+        estilo (str): Estilo de formato ("normal", "titulo", "lista")
+        mayusculas (bool): Convertir mensaje a mayúsculas
+        incluir_timestamp (bool): Incluir marca de tiempo
+        separador (str): Separador entre elementos
+        **kwargs: Opciones adicionales para formateo
+        
+    Returns:
+        str: Mensaje formateado
+    """
+    # Diccionario de prefijos por tipo
+    prefijos = {
+        "info": "ℹ️",
+        "warning": "⚠️",
+        "error": "❌",
+        "success": "✅",
+        "debug": "🔍"
+    }
+    
+    # Diccionario de colores por tipo (para futuras mejoras)
+    colores = {
+        "info": "azul",
+        "warning": "amarillo",
+        "error": "rojo",
+        "success": "verde",
+        "debug": "gris"
+    }
+    
+    # Construir el mensaje formateado
+    elementos = []
+    
+    # Agregar prefijo según el tipo
+    prefijo = prefijos.get(tipo.lower(), prefijos["info"])
+    elementos.append(prefijo)
+    
+    # Procesar el mensaje principal
+    texto = mensaje
+    if mayusculas:
+        texto = texto.upper()
+    
+    elementos.append(texto)
+    
+    # Agregar información adicional si existe
+    if args:
+        info_adicional = separador.join(str(arg) for arg in args)
+        elementos.append(f"({info_adicional})")
+    
+    # Agregar marca de tiempo si está habilitada
+    if incluir_timestamp:
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        elementos.append(f"[{timestamp}]")
+    
+    # Aplicar estilo específico
+    resultado = separador.join(elementos)
+    
+    if estilo == "titulo":
+        resultado = f"=== {resultado} ==="
+    elif estilo == "lista":
+        resultado = f"• {resultado}"
+    elif estilo == "caja":
+        resultado = f"┌─ {resultado} ─┐"
+    
+    # Aplicar opciones adicionales
+    if kwargs.get("centrado", False):
+        ancho = kwargs.get("ancho", 50)
+        resultado = resultado.center(ancho)
+    
+    if kwargs.get("negrita", False):
+        resultado = f"**{resultado}**"
+    
+    return resultado
+
+# Uso del formateador flexible
+print("=== EJEMPLOS DE FORMATEO ===\n")
+
+# Mensaje básico
+print(formatear_mensaje("Sistema iniciado correctamente"))
+
+# Mensaje con información adicional
+print(formatear_mensaje(
+    "Usuario conectado",
+    "success",
+    "Ana García",
+    "desde IP 192.168.1.100"
+))
+
+# Mensaje de error con estilo
+print(formatear_mensaje(
+    "Error de conexión",
+    "error",
+    "Base de datos no disponible",
+    estilo="titulo",
+    mayusculas=True
+))
+
+# Mensaje de advertencia con opciones avanzadas
+print(formatear_mensaje(
+    "Espacio en disco bajo",
+    "warning",
+    "85% utilizado",
+    estilo="caja",
+    centrado=True,
+    ancho=60
+))
+
+# Mensaje de debug con múltiples argumentos
+print(formatear_mensaje(
+    "Procesando archivo",
+    "debug",
+    "documento.pdf",
+    "tamaño: 2.5MB",
+    "páginas: 15",
+    incluir_timestamp=True
+))
+
+# Mensaje personalizado con argumentos por nombre
+print(formatear_mensaje(
+    mensaje="Operación completada",
+    tipo="success",
+    estilo="normal",
+    mayusculas=False,
+    incluir_timestamp=True,
+    negrita=True
+))</code></pre>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 3: Generador de Informes Personalizable</h3>
+                <p>Crearemos un generador de informes altamente configurable que pueda adaptarse a diferentes necesidades.</p>
+                
+                <div class="report-generator">
+                    <h3><i class="fas fa-file-alt"></i> Generador de Informes Avanzado</h3>
+                    
+                    <div class="generator-options">
+                        <h5>Opciones de Configuración</h5>
+                        <pre><code class="language-python">def generar_informe_personalizado(
+    titulo,                          # Título del informe (obligatorio)
+    datos,                          # Datos a incluir (obligatorio)
+    formato="texto",                # Formato de salida (opcional)
+    *secciones,                     # Secciones adicionales (variable)
+    estilo_encabezado="normal",     # Estilo del encabezado (opcional)
+    incluir_resumen=True,           # Incluir sección de resumen (opcional)
+    incluir_conclusiones=True,      # Incluir conclusiones (opcional)
+    ordenar_claves=False,           # Ordenar claves alfabéticamente (opcional)
+    limite_decimales=2,             # Límite de decimales (opcional)
+    unidad_moneda="$",              # Unidad de moneda (opcional)
+    **opciones_formato               # Opciones adicionales de formato (variable)
+):
+    """
+    Genera un informe altamente personalizable con múltiples opciones.
+    
+    Args:
+        titulo (str): Título del informe
+        datos (dict): Datos principales del informe
+        formato (str): Formato de salida ("texto", "html", "json")
+        *secciones: Secciones adicionales a incluir
+        estilo_encabezado (str): Estilo del encabezado
+        incluir_resumen (bool): Incluir sección de resumen
+        incluir_conclusiones (bool): Incluir sección de conclusiones
+        ordenar_claves (bool): Ordenar claves alfabéticamente
+        limite_decimales (int): Número máximo de decimales
+        unidad_moneda (str): Símbolo de moneda
+        **opciones_formato: Opciones adicionales de formato
+        
+    Returns:
+        str: Informe formateado según las especificaciones
+    """
+    # Procesar claves de datos
+    claves_datos = list(datos.keys())
+    if ordenar_claves:
+        claves_datos.sort()
+    
+    # Construir encabezado según el estilo
+    if estilo_encabezado == "titulo":
+        encabezado = f"=== {titulo} ==="
+    elif estilo_encabezado == "subrayado":
+        encabezado = f"{titulo}\n{'=' * len(titulo)}"
+    elif estilo_encabezado == "caja":
+        encabezado = f"┌{'─' * (len(titulo) + 2)}┐\n│ {titulo} │\n└{'─' * (len(titulo) + 2)}┘"
+    else:
+        encabezado = titulo
+    
+    lineas = [encabezado, ""]
+    
+    # Agregar datos principales
+    lineas.append("DATOS PRINCIPALES:")
+    lineas.append("-" * 20)
+    
+    for clave in claves_datos:
+        valor = datos[clave]
+        
+        # Formatear valores numéricos
+        if isinstance(valor, (int, float)):
+            if "." in str(valor):
+                valor = round(valor, limite_decimales)
+            if "precio" in clave.lower() or "costo" in clave.lower():
+                valor = f"{unidad_moneda}{valor:,.{limite_decimales}f}"
+        
+        lineas.append(f"{clave.replace('_', ' ').title()}: {valor}")
+    
+    # Agregar secciones adicionales
+    for seccion in secciones:
+        lineas.extend(["", seccion.upper() + ":", "-" * 20])
+        # Aquí podrías agregar lógica específica para cada sección
+    
+    # Agregar resumen si está habilitado
+    if incluir_resumen:
+        lineas.extend([
+            "",
+            "RESUMEN:",
+            "-" * 10,
+            generar_resumen(datos)
+        ])
+    
+    # Agregar conclusiones si están habilitadas
+    if incluir_conclusiones:
+        lineas.extend([
+            "",
+            "CONCLUSIONES:",
+            "-" * 15,
+            generar_conclusiones(datos, opciones_formato)
+        ])
+    
+    # Agregar metadatos si están habilitados
+    if opciones_formato.get("incluir_metadata", False):
+        from datetime import datetime
+        lineas.extend([
+            "",
+            "METADATOS:",
+            "-" * 11,
+            f"Generado: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}",
+            f"Formato: {formato}",
+            f"Opciones: {opciones_formato}"
+        ])
+    
+    resultado = "\n".join(lineas)
+    
+    # Aplicar formato específico si se solicita
+    if formato == "html":
+        resultado = convertir_a_html(resultado)
+    elif formato == "json":
+        resultado = convertir_a_json(titulo, datos, secciones, opciones_formato)
+    
+    return resultado
+
+def generar_resumen(datos):
+    """Genera un resumen básico de los datos."""
+    resumen = []
+    if "total" in datos:
+        resumen.append(f"Total general: {datos['total']}")
+    if "promedio" in datos:
+        resumen.append(f"Valor promedio: {datos['promedio']}")
+    if "cantidad" in datos:
+        resumen.append(f"Elementos procesados: {datos['cantidad']}")
+    
+    return "\n".join(resumen) if resumen else "Resumen no disponible"
+
+def generar_conclusiones(datos, opciones):
+    """Genera conclusiones basadas en los datos."""
+    conclusiones = []
+    
+    # Ejemplo de lógica de conclusiones
+    if "eficiencia" in datos and datos["eficiencia"] > 90:
+        conclusiones.append("✅ Excelente rendimiento alcanzado")
+    elif "eficiencia" in datos and datos["eficiencia"] > 70:
+        conclusiones.append("⚠️ Rendimiento aceptable, hay margen de mejora")
+    else:
+        conclusiones.append("❌ Rendimiento por debajo del estándar")
+    
+    if opciones.get("recomendaciones", True):
+        conclusiones.append("💡 Revisar procesos para optimización continua")
+    
+    return "\n".join(conclusiones) if conclusiones else "Conclusiones no disponibles"
+
+def convertir_a_html(texto_plano):
+    """Convierte texto plano a formato HTML básico."""
+    lineas = texto_plano.split('\n')
+    html_lineas = ["<div class='informe'>"]
+    
+    for linea in lineas:
+        if linea.startswith("===") and linea.endswith("==="):
+            html_lineas.append(f"<h1>{linea.strip('=')}</h1>")
+        elif linea.startswith("---"):
+            html_lineas.append("<hr>")
+        elif ": " in linea:
+            clave, valor = linea.split(": ", 1)
+            html_lineas.append(f"<p><strong>{clave}:</strong> {valor}</p>")
+        elif linea.strip():
+            html_lineas.append(f"<p>{linea}</p>")
+    
+    html_lineas.append("</div>")
+    return "\n".join(html_lineas)
+
+def convertir_a_json(titulo, datos, secciones, opciones):
+    """Convierte datos a formato JSON."""
+    import json
+    
+    estructura = {
+        "titulo": titulo,
+        "datos": datos,
+        "secciones": list(secciones),
+        "opciones": opciones,
+        "timestamp": datetime.now().isoformat()
+    }
+    
+    return json.dumps(estructura, indent=2, ensure_ascii=False)
+
+# Uso del generador de informes
+datos_ventas = {
+    "producto": "Laptop Gaming",
+    "precio_unitario": 1200.50,
+    "cantidad_vendida": 25,
+    "total": 30012.50,
+    "eficiencia": 87.5,
+    "cliente_principal": "Empresa TechCorp"
+}
+
+# Informe básico en formato texto
+informe_basico = generar_informe_personalizado(
+    "Reporte de Ventas - Laptop Gaming",
+    datos_ventas
+)
+print("=== INFORME BÁSICO ===")
+print(informe_basico)
+
+# Informe avanzado con múltiples opciones
+informe_avanzado = generar_informe_personalizado(
+    "Análisis Detallado de Ventas",
+    datos_ventas,
+    formato="texto",
+    estilo_encabezado="caja",
+    incluir_resumen=True,
+    incluir_conclusiones=True,
+    ordenar_claves=True,
+    limite_decimales=0,
+    unidad_moneda="€",
+    "Análisis de Mercado",
+    "Proyecciones 2024",
+    incluir_metadata=True,
+    recomendaciones=True
+)
+print("\n=== INFORME AVANZADO ===")
+print(informe_avanzado)
+
+# Informe en formato HTML (simulado)
+print("\n=== INFORME HTML (SIMULADO) ===")
+print(generar_informe_personalizado(
+    "Reporte HTML",
+    datos_ventas,
+    formato="html",
+    incluir_resumen=True
+)[:200] + "...")  # Solo primeras líneas para no extender demasiado</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-chart-bar"></i> Actividad 1: Función de Cálculo de Estadísticas</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Crea una función flexible que calcule diferentes estadísticas de una lista de números con múltiples opciones de configuración.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Parámetros obligatorios: lista de números</li>
+                            <li>Parámetros opcionales: qué estadísticas calcular</li>
+                            <li>Soporte para diferentes niveles de precisión</li>
+                            <li>Opción de ordenar resultados</li>
+                            <li>Manejo de listas vacías</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-font"></i> Actividad 2: Formateador de Mensajes Flexible</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un formateador de mensajes que pueda adaptarse a diferentes formatos y estilos usando parámetros flexibles.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Diferentes tipos de mensaje (info, warning, error, success)</li>
+                            <li>Estilos de formato (normal, título, lista, caja)</li>
+                            <li>Información adicional variable</li>
+                            <li>Opciones de formateo avanzadas</li>
+                            <li>Marca de tiempo opcional</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-file-alt"></i> Actividad 3: Generador de Informes Personalizable</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Construye un generador de informes altamente configurable que pueda adaptarse a diferentes necesidades y formatos de salida.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Múltiples formatos de salida (texto, HTML, JSON)</li>
+                            <li>Secciones adicionales variables</li>
+                            <li>Opciones de formateo avanzadas</li>
+                            <li>Generación automática de resúmenes y conclusiones</li>
+                            <li>Metadatos opcionales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-calculator"></i> Actividad 4: Funciones con Múltiples Opciones</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Crea funciones que demuestren diferentes técnicas avanzadas de manejo de parámetros y argumentos.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones a crear:</h5>
+                        <ul>
+                            <li><code>procesar_archivos(*archivos, operacion="copiar", destino=".", **opciones)</code></li>
+                            <li><code>generar_grafico(tipo, datos, titulo="Gráfico", *series, **estilos)</code></li>
+                            <li><code>enviar_notificacion(mensaje, *destinatarios, metodo="email", **configuracion)</code></li>
+                            <li><code>convertir_datos(datos, formato_origen, formato_destino, *campos, **opciones_conversion)</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions" target="_blank" rel="noopener noreferrer">Documentación oficial - Funciones avanzadas</a></li>
+                        <li><a href="https://realpython.com/python-kwargs-and-args/" target="_blank" rel="noopener noreferrer">Real Python - *args y **kwargs</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_functions.asp" target="_blank" rel="noopener noreferrer">W3Schools - Parámetros de funciones</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=BI8zbFkEOoA" target="_blank" rel="noopener noreferrer">Parámetros y argumentos en Python - Tutorial completo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=4KjLgjVYrQE" target="_blank" rel="noopener noreferrer">*args y **kwargs en Python - Explicación detallada</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 8 - "Python Crash Course" de Eric Matthes (Funciones avanzadas)</li>
+                        <li>Sección 5.1 - "Fluent Python" de Luciano Ramalho (Funciones de primera clase)</li>
+                        <li>"Python Cookbook" de David Beazley y Brian K. Jones (Técnicas avanzadas con funciones)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s17.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s19.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

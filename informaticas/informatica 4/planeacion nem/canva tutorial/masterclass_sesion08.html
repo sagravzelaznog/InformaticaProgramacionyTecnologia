@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 08: Narrativa Audiovisual - Video y Audio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta "Cine Digital" - Contraste para edición audiovisual */
+            --primary: #8A2BE2; /* Azul violeta - Creatividad profunda */
+            --secondary: #00E5FF; /* Cian brillante - Tecnología y fluidez */
+            --dark-bg: #121212; /* Fondo oscuro simulando editor de video */
+            --dark-surface: #1E1E1E; /* Paneles del editor */
+            --text-light: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --accent-pink: #FF007F; /* Acento para pistas de audio */
+            
+            /* Colores Kahoot */
+            --k-red: #E21B3C;
+            --k-blue: #1368CE;
+            --k-gold: #D89E00;
+            --k-green: #26890C;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Fondo general claro para lectura */
+            color: #1F2937;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+
+        /* --- HEADER ARQUITECTÓNICO (Estilo Cinematográfico) --- */
+        header {
+            background: linear-gradient(to right, var(--dark-bg), #2D0B5A);
+            color: var(--text-light);
+            padding: 4.5rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto de "Cinta de Película" de fondo */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.05) 40px, rgba(255,255,255,0.05) 80px);
+            z-index: 1;
+        }
+
+        .header-content { position: relative; z-index: 2; }
+
+        .session-tag {
+            background: rgba(0, 229, 255, 0.2);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.8rem; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main { max-width: 900px; margin: -2rem auto 2rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+
+        section {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        section:hover { transform: translateY(-3px); }
+
+        h2 { color: var(--primary); margin-bottom: 1rem; font-size: 1.8rem; display: flex; align-items: center; gap: 10px; }
+
+        /* --- SIMULADOR DE LÍNEA DE TIEMPO (INTERACTIVO) --- */
+        .editor-simulator {
+            background: var(--dark-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            color: var(--text-light);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .simulator-header { text-align: center; margin-bottom: 15px; font-family: 'Outfit', sans-serif; color: var(--text-muted); }
+
+        .timeline-container {
+            background: var(--dark-surface);
+            border-radius: 6px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .track {
+            display: flex;
+            height: 50px;
+            background: #2A2A2A;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            align-items: center;
+            padding: 0 5px;
+            gap: 5px;
+        }
+
+        .track::before {
+            content: attr(data-label);
+            position: absolute;
+            left: -100px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Clips generados por JS */
+        .clip-video { background: var(--primary); color: white; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; animation: popIn 0.3s ease; }
+        .clip-audio { background: var(--accent-pink); color: white; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; opacity: 0.9; animation: popIn 0.3s ease; }
+        .clip-transition { background: var(--secondary); width: 15px !important; height: 40px; border-radius: 2px; }
+
+        @keyframes popIn { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+
+        .editor-controls { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        
+        .btn-editor {
+            background: #333; color: white; border: 1px solid #555; padding: 8px 16px;
+            border-radius: 4px; font-weight: 500; cursor: pointer; transition: 0.2s;
+        }
+        .btn-editor:hover { background: var(--secondary); color: var(--dark-bg); border-color: var(--secondary); }
+
+        /* --- INSTRUCCIONES PRÁCTICAS --- */
+        .step-list { margin-left: 0; list-style: none; counter-reset: my-counter; }
+        .step-list li {
+            position: relative; padding-left: 3rem; margin-bottom: 1.2rem;
+        }
+        .step-list li::before {
+            counter-increment: my-counter; content: counter(my-counter);
+            position: absolute; left: 0; top: -2px;
+            width: 30px; height: 30px; background: rgba(138, 43, 226, 0.1);
+            color: var(--primary); font-family: 'Outfit', sans-serif;
+            font-weight: 900; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .tool-highlight { font-weight: 600; color: var(--accent-pink); background: rgba(255,0,127,0.05); padding: 2px 6px; border-radius: 4px; }
+
+        /* --- QUIZ KAHOOT --- */
+        #quiz-zone { background: #46178F; color: white; text-align: center; border-top: none; }
+        #quiz-zone h2 { color: white; justify-content: center; }
+
+        .q-box { font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 700; font-family: 'Outfit', sans-serif; }
+        .ans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .ans-btn {
+            padding: 20px; border: none; border-radius: 6px; font-family: 'Inter', sans-serif;
+            font-size: 1.05rem; font-weight: 600; color: white; cursor: pointer;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2); transition: transform 0.1s;
+        }
+        .ans-btn:active { transform: translateY(5px); box-shadow: none; }
+
+        .k-feedback { margin-top: 20px; font-size: 1.2rem; font-weight: 700; min-height: 35px; }
+
+        /* --- FOOTER ESTRICTO --- */
+        footer {
+            text-align: center; padding: 2.5rem 1rem; color: #6B7280;
+            font-size: 0.85rem; background: #FFFFFF; border-top: 1px solid #E5E7EB;
+            margin-top: 3rem; font-family: monospace;
+        }
+
+        @media (max-width: 600px) {
+            .ans-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .track { height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <span class="session-tag">Sesión 08</span>
+            <h1>Narrativa Audiovisual</h1>
+            <p>Estructurando el tiempo: Cortar, unir y musicalizar el conocimiento.</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎬 El Lienzo se mueve: La Línea de Tiempo</h2>
+            <p>Hasta ahora, nuestros diseños en Canva eran estáticos (espaciales). Al entrar al modo de video, Canva añade la dimensión del <strong>Tiempo</strong>. En lugar de páginas, tenemos una <strong>Línea de Tiempo (Timeline)</strong> en la parte inferior de la pantalla.</p>
+            <p>La psicología audiovisual nos dice que los cortes rápidos generan energía, mientras que los planos largos y la música suave invitan a la reflexión. <strong>Tú controlas esa emoción.</strong></p>
+        </section>
+
+        <section>
+            <h2>🕹️ Simulador de Edición</h2>
+            <p>Comprende la arquitectura de un editor de video. Usa los botones para agregar clips visuales y sonoros a las pistas inferiores. ¡Observa cómo interactúan!</p>
+            
+            <div class="editor-simulator">
+                <div class="simulator-header">TIMELINE EDITOR</div>
+                
+                <div class="timeline-container">
+                    <div class="track" id="video-track" style="background: #333;">
+                        </div>
+                    <div class="track" id="audio-track" style="background: #222;">
+                        </div>
+                </div>
+
+                <div class="editor-controls">
+                    <button class="btn-editor" onclick="addClip('video')">+ Agregar Video Clip</button>
+                    <button class="btn-editor" onclick="addClip('transition')">⚡ Añadir Transición</button>
+                    <button class="btn-editor" onclick="addClip('audio')">🎵 Añadir Pista de Audio</button>
+                    <button class="btn-editor" onclick="clearTimeline()" style="background: #7F1D1D; border-color: #991B1B;">Vaciar</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: Tu primer "Reel/TikTok" Educativo</h2>
+            <p>Vamos a aplicar la teoría creando un video vertical de 15 segundos sobre un tema que te apasione.</p>
+            
+            <ol class="step-list">
+                <li>En la página de inicio de Canva, selecciona <strong>"Video para móviles"</strong> (1080x1920).</li>
+                <li>Ve a la pestaña <strong>"Elementos"</strong> y busca la palabra "Naturaleza". Filtra los resultados para ver solo <strong>Videos</strong>.</li>
+                <li>Arrastra dos videos diferentes a tu línea de tiempo inferior (aparecerán como cuadros uno al lado del otro).</li>
+                <li><strong>El Corte:</strong> Haz clic en el primer clip, ubica el cabezal (la línea negra vertical) en el medio del video, haz clic derecho y selecciona <span class="tool-highlight">Dividir página (Split)</span>. Borra la mitad que no quieras.</li>
+                <li>Pasa el ratón entre los dos videos en la línea de tiempo. Haz clic en el símbolo <strong>"+"</strong> y elige <strong>"Añadir transición"</strong> (te sugiero 'Disolver').</li>
+                <li>Ve a la pestaña <strong>"Audio"</strong> (o sube tu propia canción), y arrástrala debajo de tus videos. </li>
+                <li>Haz clic en <strong>Compartir > Descargar</strong> y asegúrate de elegir el formato <strong>Video MP4</strong>.</li>
+            </ol>
+        </section>
+
+        <section id="quiz-zone">
+            <h2>⚡ Quiz de Producción</h2>
+            <div id="quiz-wrapper">
+                <div id="q-text" class="q-box">Cargando...</div>
+                <div id="ans-container" class="ans-grid">
+                    </div>
+                <div id="feedback-msg" class="k-feedback"></div>
+                <button id="next-btn" style="display:none; margin: 15px auto 0; padding: 12px 30px; border-radius: 5px; border: none; font-weight: bold; background: white; color: var(--primary); cursor: pointer;">Siguiente Pregunta ➡</button>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion07.html">sesion 7</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion09.html">sesion 9</a>
+        </div>
+
+    </main>
+
+    <footer>copyright &copy;JMGV-PTEL-2026. sesion 08 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados</footer>
+
+    <script>
+        // --- 1. LÓGICA DEL SIMULADOR DE LÍNEA DE TIEMPO ---
+        let videoCount = 0;
+        let audioCount = 0;
+
+        function addClip(type) {
+            const videoTrack = document.getElementById('video-track');
+            const audioTrack = document.getElementById('audio-track');
+
+            const el = document.createElement('div');
+
+            if (type === 'video') {
+                videoCount++;
+                el.className = 'clip-video';
+                // Variar el ancho para simular diferente duración de clips
+                const width = Math.floor(Math.random() * (120 - 60 + 1) + 60); 
+                el.style.width = width + 'px';
+                el.innerText = 'V' + videoCount;
+                videoTrack.appendChild(el);
+            } 
+            else if (type === 'transition') {
+                if (videoTrack.children.length > 0 && !videoTrack.lastChild.classList.contains('clip-transition')) {
+                    el.className = 'clip-transition';
+                    videoTrack.appendChild(el);
+                } else {
+                    alert("Añade un video primero para poder poner una transición después de él.");
+                }
+            } 
+            else if (type === 'audio') {
+                audioCount++;
+                el.className = 'clip-audio';
+                // El audio suele ser más largo
+                const width = Math.floor(Math.random() * (200 - 100 + 1) + 100); 
+                el.style.width = width + 'px';
+                el.innerText = 'Audio ' + audioCount;
+                audioTrack.appendChild(el);
+            }
+        }
+
+        function clearTimeline() {
+            document.getElementById('video-track').innerHTML = '';
+            document.getElementById('audio-track').innerHTML = '';
+            videoCount = 0;
+            audioCount = 0;
+        }
+
+        // --- 2. LÓGICA DEL QUIZ KAHOOT STYLE ---
+        const quizData = [
+            {
+                q: "En la línea de tiempo de Canva, ¿para qué sirve la herramienta 'Dividir página' (Split)?",
+                a: ["Para duplicar la pantalla", "Para cortar un clip de video en dos partes independientes", "Para separar el audio del video", "Para borrar todo el proyecto"],
+                c: 1
+            },
+            {
+                q: "¿Dónde se colocan exactamente las 'Transiciones' (como Disolver o Cortina)?",
+                a: ["Al principio de la pista de audio", "Encima del texto", "Justo en medio de dos clips de video", "En el menú de configuraciones ocultas"],
+                c: 2
+            },
+            {
+                q: "Para que tu proyecto mantenga movimiento y sonido al enviarlo a alguien, ¿en qué formato debes Descargarlo?",
+                a: ["PDF para impresión", "JPG de alta calidad", "Video MP4", "Documento de Word"],
+                c: 2
+            }
+        ];
+
+        let qIndex = 0;
+        let score = 0;
+
+        const qText = document.getElementById('q-text');
+        const ansContainer = document.getElementById('ans-container');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const nextBtn = document.getElementById('next-btn');
+
+        function renderQuestion() {
+            if (qIndex >= quizData.length) {
+                showFinal();
+                return;
+            }
+
+            const current = quizData[qIndex];
+            qText.innerText = current.q;
+            ansContainer.innerHTML = '';
+            feedbackMsg.innerText = '';
+            nextBtn.style.display = 'none';
+
+            // Colores estilo Kahoot
+            const colors = ['var(--k-red)', 'var(--k-blue)', 'var(--k-gold)', 'var(--k-green)'];
+
+            current.a.forEach((ans, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `ans-btn`;
+                btn.style.backgroundColor = colors[idx];
+                btn.innerText = ans;
+                btn.onclick = () => evaluateAnswer(idx, current.c);
+                ansContainer.appendChild(btn);
+            });
+        }
+
+        function evaluateAnswer(selectedIdx, correctIdx) {
+            const buttons = document.querySelectorAll('.ans-btn');
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selectedIdx === correctIdx) {
+                score++;
+                feedbackMsg.innerText = "¡Corte Perfecto! ✅";
+                feedbackMsg.style.color = "#4ade80"; // Verde brillante
+                buttons[selectedIdx].style.border = "4px solid white";
+            } else {
+                feedbackMsg.innerText = "Corte fallido. Toma 2. 🎬❌";
+                feedbackMsg.style.color = "#f87171"; // Rojo
+                buttons[selectedIdx].style.opacity = "0.4";
+                buttons[correctIdx].style.border = "4px solid white"; 
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.onclick = () => {
+            qIndex++;
+            renderQuestion();
+        };
+
+        function showFinal() {
+            qText.innerText = "¡Módulo de Edición de Video Completado!";
+            ansContainer.innerHTML = '';
+            nextBtn.style.display = 'none';
+            
+            feedbackMsg.innerHTML = `
+                Rendimiento de edición: ${score} de ${quizData.length} aciertos.<br><br>
+                <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; cursor:pointer; font-weight:bold; border-radius:5px; border:none; color: #121212;">Reiniciar Grabación</button>
+            `;
+            feedbackMsg.style.color = "white";
+        }
+
+        // Init Quiz
+        renderQuestion();
+    </script>
+</body>
+</html>

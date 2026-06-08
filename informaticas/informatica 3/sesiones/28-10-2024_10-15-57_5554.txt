@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+	<Folder>
+		<open>1</open>
+		<visibility>1</visibility>
+		<name>My localization</name>
+		<TimeStamp>
+			<when>2024-11-05T17:29:52.259Z</when>
+		</TimeStamp>
+		<Placemark>
+			<name>.1</name>
+			<description>&lt;p&gt;Latitud: 13R 668080&lt;/p&gt;&lt;p&gt;Longitud: 13R 2826812&lt;/p&gt;&lt;p&gt;https://www.google.com/maps/search/?api=1&amp;query=25.549126848119496,-103.32698460553989&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Altitud: 1119 m&lt;/p&gt;&lt;p&gt;Fecha de lectura de ubicación: 28/10/24, 10:15 a.m.&lt;/p&gt;&lt;p&gt;Fuente de ubicación: Fusionado&lt;/p&gt;&lt;p&gt;Guarde la fecha: 28/10/24, 10:15 a.m.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Calle: Avenida Bromo 9061&lt;/p&gt;&lt;p&gt;Ciudad: Torreón 27083&lt;/p&gt;&lt;p&gt;Estado: Coah.&lt;/p&gt;&lt;p&gt;País: México&lt;/p&gt;</description>
+			<open>0</open>
+			<visibility>1</visibility>
+			<TimeStamp>
+				<when>2024-10-28T16:15:47.001Z</when>
+			</TimeStamp>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<extrude>1</extrude>
+				<coordinates>-103.32698460553989,25.549126848119496,1121.0353072531332</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Casa </name>
+			<description>&lt;p&gt;Latitud: 13R 668709&lt;/p&gt;&lt;p&gt;Longitud: 13R 2824100&lt;/p&gt;&lt;p&gt;https://www.google.com/maps/search/?api=1&amp;query=25.52457214792268,-103.32106869054388&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Altitud: 1118 m&lt;/p&gt;&lt;p&gt;Fecha de lectura de ubicación: 03/11/24, 8:26 p.m.&lt;/p&gt;&lt;p&gt;Fuente de ubicación: Fusionado&lt;/p&gt;&lt;p&gt;Guarde la fecha: 03/11/24, 8:27 p.m.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Calle: Calle Nogal 913&lt;/p&gt;&lt;p&gt;Ciudad: Torreón 27087&lt;/p&gt;&lt;p&gt;Estado: Coah.&lt;/p&gt;&lt;p&gt;País: México&lt;/p&gt;</description>
+			<open>0</open>
+			<visibility>1</visibility>
+			<TimeStamp>
+				<when>2024-11-04T02:26:34.001Z</when>
+			</TimeStamp>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<extrude>1</extrude>
+				<coordinates>-103.32106869054388,25.52457214792268,1119.4123562127352</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Casa </name>
+			<description>&lt;p&gt;Latitud: 13R 668699&lt;/p&gt;&lt;p&gt;Longitud: 13R 2824099&lt;/p&gt;&lt;p&gt;https://www.google.com/maps/search/?api=1&amp;query=25.524570784964897,-103.32116993491917&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Altitud: 1119 m&lt;/p&gt;&lt;p&gt;Fecha de lectura de ubicación: 03/11/24, 8:27 p.m.&lt;/p&gt;&lt;p&gt;Fuente de ubicación: Fusionado&lt;/p&gt;&lt;p&gt;Guarde la fecha: 03/11/24, 8:27 p.m.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Calle: Calle Nogal 915&lt;/p&gt;&lt;p&gt;Ciudad: Torreón 27087&lt;/p&gt;&lt;p&gt;Estado: Coah.&lt;/p&gt;&lt;p&gt;País: México&lt;/p&gt;</description>
+			<open>0</open>
+			<visibility>1</visibility>
+			<TimeStamp>
+				<when>2024-11-04T02:27:14.000Z</when>
+			</TimeStamp>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<extrude>1</extrude>
+				<coordinates>-103.32116993491917,25.524570784964897,1116.5958241755143</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Casa </name>
+			<description>&lt;p&gt;Latitud: 13R 668702&lt;/p&gt;&lt;p&gt;Longitud: 13R 2824110&lt;/p&gt;&lt;p&gt;https://www.google.com/maps/search/?api=1&amp;query=25.52466113909475,-103.32113374597543&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Altitud: 1118 m&lt;/p&gt;&lt;p&gt;Fecha de lectura de ubicación: 03/11/24, 8:28 p.m.&lt;/p&gt;&lt;p&gt;Fuente de ubicación: Fusionado&lt;/p&gt;&lt;p&gt;Guarde la fecha: 03/11/24, 8:28 p.m.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Calle: Calle Nogal 915&lt;/p&gt;&lt;p&gt;Ciudad: Torreón 27087&lt;/p&gt;&lt;p&gt;Estado: Coah.&lt;/p&gt;&lt;p&gt;País: México&lt;/p&gt;</description>
+			<open>0</open>
+			<visibility>1</visibility>
+			<TimeStamp>
+				<when>2024-11-04T02:28:42.000Z</when>
+			</TimeStamp>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<extrude>1</extrude>
+				<coordinates>-103.32113374597543,25.52466113909475,1121.280722097489</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Casa</name>
+			<description>&lt;p&gt;Latitud: 13R 668708&lt;/p&gt;&lt;p&gt;Longitud: 13R 2824112&lt;/p&gt;&lt;p&gt;https://www.google.com/maps/search/?api=1&amp;query=25.524679211104136,-103.32107766422905&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Altitud: 1118 m&lt;/p&gt;&lt;p&gt;Fecha de lectura de ubicación: 03/11/24, 8:29 p.m.&lt;/p&gt;&lt;p&gt;Fuente de ubicación: Fusionado&lt;/p&gt;&lt;p&gt;Guarde la fecha: 03/11/24, 8:29 p.m.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Calle: Calle Nogal 913&lt;/p&gt;&lt;p&gt;Ciudad: Torreón 27087&lt;/p&gt;&lt;p&gt;Estado: Coah.&lt;/p&gt;&lt;p&gt;País: México&lt;/p&gt;</description>
+			<open>0</open>
+			<visibility>1</visibility>
+			<TimeStamp>
+				<when>2024-11-04T02:29:24.000Z</when>
+			</TimeStamp>
+			<Point>
+				<altitudeMode>absolute</altitudeMode>
+				<extrude>1</extrude>
+				<coordinates>-103.32107766422905,25.524679211104136,1117.6916643129662</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</kml>

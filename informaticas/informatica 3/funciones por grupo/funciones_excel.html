@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Excel - Texto</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Texto en Excel</h1>
+            <p>Aprende a utilizar las funciones de texto más útiles en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- CONCATENAR -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('concatenar')">
+                <h2>CONCATENAR / CONCAT</h2>
+            </div>
+            <div class="function-content" id="concatenar">
+                <p>Une varios elementos de texto en uno solo.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Unir nombre y apellido</h4>
+                    <p>Si en A1 tenemos "Juan" y en B1 "Pérez":</p>
+                    <pre>=CONCATENAR(A1, " ", B1)  // Resultado: "Juan Pérez"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Crear un correo electrónico</h4>
+                    <p>Si en A1 está "juan" y en B1 "empresa.com":</p>
+                    <pre>=CONCATENAR(A1, "@", B1)  // Resultado: "juan@empresa.com"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Crear dirección completa</h4>
+                    <p>Datos: A1 = "Calle" | B1 = "Reforma" | C1 = "123" | D1 = "Colonia Centro"</p>
+                    <p>Crea una dirección completa en el formato: "Calle Reforma #123, Colonia Centro"</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=CONCATENAR(A1, " ", B1, " #", C1, ", ", D1)</pre>
+                        <p>Explicación: La función concatena todos los elementos de texto, añadiendo espacios, # y comas según sea necesario.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Formatear fecha</h4>
+                    <p>Datos: A1 = 15 | B1 = "Enero" | C1 = 2023</p>
+                    <p>Crea una fecha en formato: "15 de Enero de 2023"</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=CONCATENAR(A1, " de ", B1, " de ", C1)</pre>
+                        <p>Explicación: La función concatena el día, mes y año con las preposiciones "de" entre ellos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IZQUIERDA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('izquierda')">
+                <h2>IZQUIERDA</h2>
+            </div>
+            <div class="function-content" id="izquierda" style="display: none;">
+                <p>Devuelve el primer carácter o caracteres de una cadena de texto.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Obtener código de país</h4>
+                    <p>Si en A1 está el código de teléfono "+52-55-1234-5678":</p>
+                    <pre>=IZQUIERDA(A1, 3)  // Resultado: "+52"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Obtener iniciales</h4>
+                    <p>Si en A1 está el nombre completo "Juan Carlos Pérez":</p>
+                    <pre>=IZQUIERDA(A1, 1)  // Resultado: "J"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Extraer código de producto</h4>
+                    <p>Datos: A1 = "PROD-00123-XL"</p>
+                    <p>Extrae solo el código de producto (los primeros 9 caracteres)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=IZQUIERDA(A1, 9)  // Resultado: "PROD-0012"</pre>
+                        <p>Explicación: La función extrae los primeros 9 caracteres de la cadena.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Obtener siglas</h4>
+                    <p>Datos: A1 = "Organización de las Naciones Unidas"</p>
+                    <p>Crea una fórmula que devuelva "ONU" (las primeras letras de cada palabra)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=IZQUIERDA(A1, 1) & IZQUIERDA(BUSCAR(" ", A1) + A1, 1) & IZQUIERDA(BUSCAR(" ", A1, BUSCAR(" ", A1)+1) + A1, 1)</pre>
+                        <p>Explicación: Esta fórmula avanzada extrae la primera letra de cada palabra. Para una solución más sencilla, se podría usar =IZQUIERDA(A1,1) & IZQUIERDA(DERECHA(A1,LARGO(A1)-ENCONTRAR(" ",A1)),1) & IZQUIERDA(DERECHA(A1,LARGO(A1)-ENCONTRAR(" ",A1,ENCONTRAR(" ",A1)+1)),1)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DERECHA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('derecha')">
+                <h2>DERECHA</h2>
+            </div>
+            <div class="function-content" id="derecha" style="display: none;">
+                <p>Devuelve el último carácter o caracteres de una cadena de texto.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Obtener extensión de archivo</h4>
+                    <p>Si en A1 está el nombre de archivo "documento.pdf":</p>
+                    <pre>=DERECHA(A1, 3)  // Resultado: "pdf"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Obtener últimos dígitos</h4>
+                    <p>Si en A1 está el número de tarjeta "1234 5678 9012 3456":</p>
+                    <pre>=DERECHA(SUSTITUIR(A1, " ", ""), 4)  // Resultado: "3456"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Obtener año de una fecha</h4>
+                    <p>Datos: A1 = "15/01/2023"</p>
+                    <p>Extrae solo el año (últimos 4 caracteres)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=DERECHA(A1, 4)  // Resultado: "2023"</pre>
+                        <p>Explicación: La función extrae los últimos 4 caracteres de la cadena.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Obtener dominio de correo</h4>
+                    <p>Datos: A1 = "usuario@empresa.com"</p>
+                    <p>Extrae solo el dominio (todo lo que está después de la @)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=DERECHA(A1, LARGO(A1) - ENCONTRAR("@", A1))  // Resultado: "empresa.com"</pre>
+                        <p>Explicación: La función calcula la longitud total de la cadena y le resta la posición del símbolo @, luego extrae esa cantidad de caracteres desde la derecha.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXTRAE -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('extrae')">
+                <h2>EXTRAE</h2>
+            </div>
+            <div class="function-content" id="extrae" style="display: none;">
+                <p>Devuelve un número específico de caracteres desde una posición inicial.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Extraer código de área</h4>
+                    <p>Si en A1 está el número de teléfono "+52 55 1234 5678":</p>
+                    <pre>=EXTRAE(A1, 5, 2)  // Resultado: "55"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Obtener mes de una fecha</h4>
+                    <p>Si en A1 está la fecha "15/01/2023":</p>
+                    <pre>=EXTRAE(A1, 4, 2)  // Resultado: "01"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Extraer código de producto</h4>
+                    <p>Datos: A1 = "REF-2023-001-ES"</p>
+                    <p>Extrae solo el año (los 4 dígitos después del primer guión)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+                    <div class="solution" id="sol7">
+                        <pre>=EXTRAE(A1, 5, 4)  // Resultado: "2023"</pre>
+                        <p>Explicación: La función extrae 4 caracteres comenzando desde la posición 5.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Obtener iniciales de nombre completo</h4>
+                    <p>Datos: A1 = "Juan Carlos Pérez López"</p>
+                    <p>Crea una fórmula que devuelva "JCPL" (las iniciales de cada nombre y apellido)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+                    <div class="solution" id="sol8">
+                        <pre>=IZQUIERDA(A1,1) & EXTRAE(A1, ENCONTRAR(" ",A1)+1, 1) & EXTRAE(A1, ENCONTRAR(" ",A1,ENCONTRAR(" ",A1)+1)+1, 1) & DERECHA(A1,1)</pre>
+                        <p>Explicación: Esta fórmula avanzada encuentra los espacios en blanco para localizar cada inicial. Para una solución más sencilla, se podría usar =IZQUIERDA(A1,1) & IZQUIERDA(DERECHA(A1,LARGO(A1)-ENCONTRAR(" ",A1)),1) & IZQUIERDA(DERECHA(A1,LARGO(A1)-ENCONTRAR(" ",A1,ENCONTRAR(" ",A1)+1)),1) & DERECHA(A1,1)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LARGO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('largo')">
+                <h2>LARGO</h2>
+            </div>
+            <div class="function-content" id="largo" style="display: none;">
+                <p>Devuelve el número de caracteres de una cadena de texto.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Validar longitud de contraseña</h4>
+                    <p>Si en A1 está la contraseña "Segura123":</p>
+                    <pre>=SI(LARGO(A1)>=8, "Válida", "Muy corta")  // Resultado: "Válida"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Contar caracteres en un texto</h4>
+                    <p>Si en A1 está el texto "Hola, ¿cómo estás?":</p>
+                    <pre>=LARGO(A1)  // Resultado: 18</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Validar número de tarjeta</h4>
+                    <p>Datos: A1 = "1234 5678 9012 3456"</p>
+                    <p>Crea una fórmula que valide si el número de tarjeta tiene 16 dígitos (sin contar espacios)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol9')">Mostrar Solución</button>
+                    <div class="solution" id="sol9">
+                        <pre>=SI(LARGO(SUSTITUIR(A1, " ", ""))=16, "Válido", "Inválido")  // Resultado: "Válido"</pre>
+                        <p>Explicación: La función SUSTITUIR elimina los espacios, luego LARGO cuenta los caracteres restantes, y SI devuelve si es válido o no.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Recortar texto a una longitud máxima</h4>
+                    <p>Datos: A1 = "Este es un texto de ejemplo que puede ser muy largo"</p>
+                    <p>Crea una fórmula que recorte el texto a 20 caracteres y añada "..." si es más largo</p>
+                    <button class="show-solution" onclick="toggleSolution('sol10')">Mostrar Solución</button>
+                    <div class="solution" id="sol10">
+                        <pre>=SI(LARGO(A1)>20, IZQUIERDA(A1, 20) & "...", A1)</pre>
+                        <p>Explicación: La función verifica si el texto es más largo de 20 caracteres, si es así, toma los primeros 20 y añade "...", de lo contrario, devuelve el texto original.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAYUSC -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('mayusc')">
+                <h2>MAYUSC</h2>
+            </div>
+            <div class="function-content" id="mayusc" style="display: none;">
+                <p>Convierte el texto a mayúsculas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Convertir nombre a mayúsculas</h4>
+                    <p>Si en A1 está el nombre "Juan Pérez":</p>
+                    <pre>=MAYUSC(A1)  // Resultado: "JUAN PÉREZ"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Validar código en mayúsculas</h4>
+                    <p>Si en A1 está el código "AbC123":</p>
+                    <pre>=SI(A1=MAYUSC(A1), "Válido", "Debe estar en mayúsculas")  // Resultado: "Debe estar en mayúsculas"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Normalizar códigos de producto</h4>
+                    <p>Datos: A1 = "prod-001-a"</p>
+                    <p>Convierte el código a mayúsculas</p>
+                    <button class="show-solution" onclick="toggleSolution('sol11')">Mostrar Solución</button>
+                    <div class="solution" id="sol11">
+                        <pre>=MAYUSC(A1)  // Resultado: "PROD-001-A"</pre>
+                        <p>Explicación: La función convierte todos los caracteres del texto a mayúsculas.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Validar código de departamento</h4>
+                    <p>Datos: A1 = "ventas"</p>
+                    <p>Crea una fórmula que verifique si el código de departamento es "VENTAS" (sin importar mayúsculas/minúsculas)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol12')">Mostrar Solución</button>
+                    <div class="solution" id="sol12">
+                        <pre>=SI(MAYUSC(A1)="VENTAS", "Válido", "Inválido")  // Resultado: "Válido"</pre>
+                        <p>Explicación: La función convierte el texto a mayúsculas antes de compararlo con "VENTAS".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MINUSC -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('minusc')">
+                <h2>MINUSC</h2>
+            </div>
+            <div class="function-content" id="minusc" style="display: none;">
+                <p>Convierte el texto a minúsculas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Normalizar correo electrónico</h4>
+                    <p>Si en A1 está el correo "Usuario@Empresa.COM":</p>
+                    <pre>=MINUSC(A1)  // Resultado: "usuario@empresa.com"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Crear nombre de usuario</h4>
+                    <p>Si en A1 está el nombre "Juan Pérez" y en B1 el dominio "empresa.com":</p>
+                    <pre>=MINUSC(SUSTITUIR(A1, " ", ".")) & "@" & MINUSC(B1)  // Resultado: "juan.pérez@empresa.com"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Normalizar etiquetas HTML</h4>
+                    <p>Datos: A1 = "<DIV CLASS='container'>"</p>
+                    <p>Convierte la etiqueta HTML a minúsculas</p>
+                    <button class="show-solution" onclick="toggleSolution('sol13')">Mostrar Solución</button>
+                    <div class="solution" id="sol13">
+                        <pre>=MINUSC(A1)  // Resultado: "<div class='container'>"</pre>
+                        <p>Explicación: La función convierte todos los caracteres del texto a minúsculas.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Validar nombre de usuario</h4>
+                    <p>Datos: A1 = "USUARIO123"</p>
+                    <p>Crea una fórmula que verifique si el nombre de usuario solo contiene letras minúsculas y números</p>
+                    <button class="show-solution" onclick="toggleSolution('sol14')">Mostrar Solución</button>
+                    <div class="solution" id="sol14">
+                        <pre>=SI(Y(ESNUMERO(VALOR(DERECHA(A1,1))), A1=MINUSC(A1)), "Válido", "Inválido")</pre>
+                        <p>Explicación: La función verifica que el último carácter sea un número y que todo el texto esté en minúsculas. Esta es una solución simplificada y podría necesitar ajustes para casos más complejos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOMPROPIO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('nompropio')">
+                <h2>NOMPROPIO</h2>
+            </div>
+            <div class="function-content" id="nompropio" style="display: none;">
+                <p>Pone en mayúscula la primera letra de cada palabra.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Formatear nombre completo</h4>
+                    <p>Si en A1 está el nombre "juan perez garcia":</p>
+                    <pre>=NOMPROPIO(A1)  // Resultado: "Juan Perez Garcia"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Formatear dirección</h4>
+                    <p>Si en A1 está la dirección "av. insurgentes sur 123":</p>
+                    <pre>=NOMPROPIO(A1)  // Resultado: "Av. Insurgentes Sur 123"</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Formatear nombres de ciudades</h4>
+                    <p>Datos: A1 = "ciudad de méxico"</p>
+                    <p>Formatea correctamente el nombre de la ciudad</p>
+                    <button class="show-solution" onclick="toggleSolution('sol15')">Mostrar Solución</button>
+                    <div class="solution" id="sol15">
+                        <pre>=NOMPROPIO(A1)  // Resultado: "Ciudad De México"</pre>
+                        <p>Explicación: La función pone en mayúscula la primera letra de cada palabra. Nota: Para "México" con tilde, la función NOMPROPIO no afecta la letra acentuada, solo pone en mayúscula la primera letra.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Formatear nombres propios con apellidos compuestos</h4>
+                    <p>Datos: A1 = "maría de los ángeles lópez garcía"</p>
+                    <p>Formatea correctamente el nombre completo</p>
+                    <button class="show-solution" onclick="toggleSolution('sol16')">Mostrar Solución</button>
+                    <div class="solution" id="sol16">
+                        <pre>=NOMPROPIO(A1)  // Resultado: "María De Los Ángeles López García"</pre>
+                        <p>Explicación: La función pone en mayúscula la primera letra de cada palabra, incluyendo las preposiciones. Para un formato más avanzado que maneje correctamente mayúsculas en apellidos compuestos, se necesitaría una fórmula más compleja o una macro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

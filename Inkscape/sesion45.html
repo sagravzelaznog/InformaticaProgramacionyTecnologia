@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S45: Exportación para Web y Apps</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 45: Exportación para Web y Apps (Formatos y DPI)</h1>
+
+    <section>
+        <h2>1. El Diálogo de Exportación (Shift + Ctrl + E)</h2>
+        
+        <p>El diálogo **Exportar (Shift + Ctrl + E)** es crucial. Permite exportar tu trabajo en varios formatos de mapa de bits (PNG, JPG) a la resolución adecuada para diferentes dispositivos.</p>
+        <div class="paso">
+            <strong>Áreas de Exportación</strong>
+            <ul>
+                <li>**Selección:** Exporta solo los objetos que tienes seleccionados (ideal para iconos).</li>
+                <li>**Dibujo:** Exporta todos los objetos que existan en el lienzo.</li>
+                <li>**Página:** Exporta solo el área definida por la página del documento.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Gestión de Resoluciones para DPI/PPI</h2>
+        <p>En el diseño web y móvil, es común exportar activos en múltiples resoluciones (ej. 1x, 2x, 3x) para dispositivos con diferentes densidades de píxeles (DPI/PPI).</p>
+        <div class="paso">
+            <strong>Resolución Base (1x)</strong>
+            <p>Define la resolución base (1x) en el tamaño requerido (ej. un icono de 64x64px). La resolución estándar para la web es **96 DPI**. Asegúrate de que este valor esté configurado en el diálogo de exportación.</p>
+        </div>
+        <div class="paso">
+            <strong>Exportación 2x (Retina)</strong>
+            <p>Para la resolución 2x (Retina o pantallas de alta densidad), debes exportar el doble de grande. Si tu base es 64x64px, exporta a 128x128px. En Inkscape, puedes introducir el tamaño en el campo **Ancho/Alto** o simplemente ajustar el **Factor de escala** a **2.0** en el diálogo de exportación. El archivo resultante debe ser nombrado con el sufijo **@2x** (ej. <code>icono_home@2x.png</code>).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Optimización para SVG (Vectorial)</h2>
+        <p>El formato ideal para la web es el SVG. Necesita estar lo más limpio posible.</p>
+        <div class="paso">
+            <strong>SVG Plano (Plain SVG)</strong>
+            <p>Guarda siempre los archivos finales para la web como **SVG plano de Inkscape (\*.svg)**. Esto elimina metadatos, historial de edición y otras etiquetas innecesarias, reduciendo drásticamente el tamaño del archivo y facilitando la animación o manipulación con código.</p>
+        </div>
+        <div class="paso">
+            <strong>Convertir Trazo a Trayecto</strong>
+            <p>Si tu diseño usa muchos trazos (líneas con grosor), selecciona los trazos y ve a <code>Trayecto > Contorno a Trayecto (Ctrl + Alt + C)</code>. Esto convierte la línea con grosor en una forma rellena. Esto asegura que el grosor se mantenga consistente en todos los navegadores, especialmente si el SVG se manipula con código.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Icono Multi-Resolución</h3>
+        <p><strong>Objetivo:</strong> Exportar un icono para diferentes densidades de píxeles.</p>
+        <ol>
+            <li>Dibuja un icono simple de 32x32px.</li>
+            <li>Abre el diálogo de **Exportar (Shift + Ctrl + E)** y selecciona tu icono.</li>
+            <li>Exporta la versión **1x (96 DPI)**, nombrándola <code>icono_menu.png</code>.</li>
+            <li>Ajusta el **Factor de Escala** a **2.0** y exporta la versión **2x (192 DPI)**, nombrándola <code>icono_menu@2x.png</code>.</li>
+            <li>Ajusta el **Factor de Escala** a **3.0** y exporta la versión **3x (288 DPI)**, nombrándola <code>icono_menu@3x.png</code>.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion44.html">Anterior</a>
+    <a href="sesion46.html">Siguiente</a>
+</nav>
+</body>
+</html>

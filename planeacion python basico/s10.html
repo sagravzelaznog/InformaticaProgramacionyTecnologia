@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10: Operaciones con Listas - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 10</h1>
+                <h2>Operaciones con Listas</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 2: Estructuras de Datos y Bucles</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-31-25" 
+                     role="progressbar" 
+                     aria-valuenow="31.25" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, profundizarás en las operaciones avanzadas con listas en Python, aprendiendo a manipular y transformar datos de manera eficiente. Dominarás los métodos esenciales y técnicas que te permitirán trabajar con colecciones de datos de manera más efectiva.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Utilizar métodos avanzados de listas como <code>append()</code>, <code>insert()</code>, <code>remove()</code> y <code>pop()</code></li>
+                        <li>Manipular listas usando la función <code>len()</code> y técnicas de <em>slicing</em></li>
+                        <li>Trabajar con listas anidadas para estructuras de datos más complejas</li>
+                        <li>Aplicar operaciones de lista en situaciones prácticas del mundo real</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Métodos de listas -->
+            <div class="concept-card">
+                <h3>1. Métodos Esenciales de Listas</h3>
+                <p>Python proporciona varios métodos incorporados para manipular listas. Aquí están los más utilizados:</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Crear una lista de ejemplo
+frutas = ["manzana", "banana", "cereza"]
+
+# Añadir elementos
+frutas.append("naranja")      # Añade al final
+frutas.insert(1, "kiwi")      # Inserta en posición específica
+
+# Eliminar elementos
+frutas.remove("banana")       # Elimina el primer elemento con ese valor
+ultima = frutas.pop()         # Elimina y devuelve el último elemento
+elemento = frutas.pop(1)      # Elimina y devuelve el elemento en el índice 1
+
+# Otras operaciones
+frutas.index("manzana")       # Devuelve el índice del elemento
+frutas.count("manzana")       # Cuenta ocurrencias
+frutas.sort()                 # Ordena la lista
+frutas.reverse()              # Invierte el orden
+
+print(frutas)  # Muestra el estado actual de la lista</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Nota sobre métodos de lista</h4>
+                    <p>Recuerda que métodos como <code>sort()</code>, <code>reverse()</code>, <code>append()</code> y <code>insert()</code> modifican la lista original. Si necesitas mantener la lista original, crea una copia primero con <code>copia = lista_original.copy()</code>.</p>
+                </div>
+            </div>
+
+            <!-- 2. Función len() y slicing -->
+            <div class="concept-card">
+                <h3>2. Longitud y Rebanado de Listas</h3>
+                <p>La función <code>len()</code> y el operador de rebanado (<em>slicing</em>) son herramientas poderosas para trabajar con listas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Obtener la longitud
+tamano = len(numeros)  # Devuelve 10
+
+# Rebanado básico
+primeros_tres = numeros[0:3]    # [0, 1, 2]
+ultimos_tres = numeros[-3:]      # [7, 8, 9]
+
+# Con paso
+pares = numeros[::2]            # [0, 2, 4, 6, 8]
+invertida = numeros[::-1]        # Lista invertida
+
+# Reemplazar una sección
+numeros[3:6] = [30, 40, 50]     # Reemplaza los elementos del índice 3 al 5
+
+# Eliminar una sección
+del numeros[2:5]                # Elimina elementos del índice 2 al 4</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Truco de rebanado</h4>
+                    <p>Puedes usar <code>lista[:]</code> para crear una copia superficial de la lista. Es equivalente a <code>lista.copy()</code> o <code>list(lista)</code>.</p>
+                </div>
+            </div>
+
+            <!-- 3. Listas anidadas -->
+            <div class="concept-card">
+                <h3>3. Listas Anidadas</h3>
+                <p>Las listas pueden contener otras listas, lo que permite crear estructuras de datos más complejas como matrices o tablas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Crear una matriz 3x3
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Acceder a elementos
+primer_elemento = matriz[0][0]  # 1
+elemento_central = matriz[1][1]  # 5
+
+# Modificar elementos
+matriz[0][1] = 20  # Cambia el 2 por 20
+
+# Recorrer una matriz anidada
+for fila in matriz:
+    for elemento in fila:
+        print(elemento, end=" ")
+    print()  # Nueva línea después de cada fila
+
+# Lista de diccionarios
+estudiantes = [
+    {"nombre": "Ana", "edad": 20, "notas": [8, 9, 7]},
+    {"nombre": "Luis", "edad": 22, "notas": [7, 8, 9]},
+    {"nombre": "Marta", "edad": 21, "notas": [9, 9, 10]}
+]</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Cuidado con las copias de listas anidadas</h4>
+                    <p>Al copiar listas anidadas con <code>copy()</code> o <code>[:]</code>, solo se crea una copia superficial. Para una copia profunda, usa el módulo <code>copy</code> con <code>copy.deepcopy()</code>.</p>
+                </div>
+            </div>
+
+            <!-- 4. Operaciones con listas -->
+            <div class="concept-card">
+                <h3>4. Operaciones Avanzadas con Listas</h3>
+                <p>Python ofrece varias formas de trabajar con listas de manera más eficiente.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Comprensión de listas (más en sesiones futuras)
+cuadrados = [x**2 for x in range(10)]
+pares = [x for x in range(20) if x % 2 == 0]
+
+# Ordenamiento personalizado
+estudiantes = [
+    {"nombre": "Ana", "puntos": 85},
+    {"nombre": "Luis", "puntos": 92},
+    {"nombre": "Marta", "puntos": 78}
+]
+
+# Ordenar por puntuación (de mayor a menor)
+estudiantes_ordenados = sorted(estudiantes, key=lambda x: x["puntos"], reverse=True)
+
+# Unir listas
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+combinada = lista1 + lista2  # [1, 2, 3, 4, 5, 6]
+
+# Repetir listas
+repetida = [0] * 5  # [0, 0, 0, 0, 0]
+
+# Verificar pertenencia
+print(3 in [1, 2, 3])  # True
+print(5 not in [1, 2, 3])  # True</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Desempaquetado de listas</h4>
+                    <p>Puedes desempaquetar listas en variables individuales: <code>primero, segundo, *resto = [1, 2, 3, 4, 5]</code>. Esto asigna 1 a <code>primero</code>, 2 a <code>segundo</code> y <code>[3, 4, 5]</code> a <code>resto</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Gestión de Contactos</h3>
+                <p>Crea un programa que permita gestionar una lista de contactos con sus números de teléfono.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== Gestor de Contactos ===
+1. Ver contactos
+2. Agregar contacto
+3. Buscar contacto
+4. Eliminar contacto
+5. Salir
+
+Opción: 2
+Nombre: Ana Pérez
+Teléfono: 555-1234
+Contacto agregado correctamente.
+
+Opción: 1
+Lista de contactos:
+1. Ana Pérez - 555-1234
+2. Carlos López - 555-5678</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa una lista de diccionarios para almacenar los contactos. Cada contacto puede ser un diccionario con las claves 'nombre' y 'telefono'. Para el menú, usa un bucle <code>while</code> con opciones numéricas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Analizador de Listas Numéricas</h3>
+                <p>Desarrolla un programa que analice una lista de números y muestre estadísticas detalladas.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Analizador de Números ===
+Ingrese números separados por espacios: 5 10 15 20 25 30 35 40 45 50
+
+Resultados:
+Total de números: 10
+Suma: 275
+Promedio: 27.5
+Máximo: 50
+Mínimo: 5
+Números pares: 5
+Números impares: 5
+Números ordenados: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa <code>input().split()</code> para obtener los números como una lista de cadenas, luego conviértelos a enteros. Utiliza funciones como <code>sum()</code>, <code>max()</code>, <code>min()</code> y <code>len()</code> para los cálculos. Para contar pares e impares, usa una comprensión de lista o un bucle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Sistema de Calificaciones</h3>
+                <p>Crea un programa que gestione las calificaciones de los estudiantes de una clase.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-text">=== Sistema de Calificaciones ===
+1. Agregar estudiante
+2. Ver todos los estudiantes
+3. Ver estadísticas
+4. Salir
+
+Opción: 1
+Nombre del estudiante: Ana
+Calificaciones separadas por espacios: 9 8 7 10 9
+Estudiante agregado correctamente.
+
+Opción: 3
+Estadísticas de la clase:
+Total estudiantes: 3
+Promedio general: 8.2
+Mejor promedio: Ana con 8.6
+Peor promedio: Luis con 7.8</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Almacena cada estudiante como un diccionario dentro de una lista. Cada diccionario debe tener las claves 'nombre' y 'calificaciones' (esta última es una lista). Para calcular promedios, usa <code>sum(calificaciones) / len(calificaciones)</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Sistema de Inventario Básico</h3>
+                <p>Desarrolla un programa que gestione un inventario de productos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Sistema de Inventario ===
+1. Agregar producto
+2. Ver inventario
+3. Buscar producto
+4. Actualizar stock
+5. Salir
+
+Opción: 1
+Nombre del producto: Laptop
+Precio: 15000
+Cantidad en stock: 10
+Producto agregado correctamente.
+
+Opción: 2
+=== Inventario Actual ===
+1. Laptop - $15,000.00 - Stock: 10
+2. Mouse - $500.00 - Stock: 25
+Valor total del inventario: $162,500.00</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa una lista de diccionarios para almacenar los productos. Cada producto puede tener claves como 'nombre', 'precio' y 'stock'. Para el valor total del inventario, suma el producto del precio por la cantidad de cada artículo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists" target="_blank" rel="noopener noreferrer">Documentación oficial - Más sobre listas</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_lists_methods.asp" target="_blank" rel="noopener noreferrer">W3Schools - Métodos de listas</a></li>
+                        <li><a href="https://realpython.com/python-lists-tuples/" target="_blank" rel="noopener noreferrer">Real Python - Listas y Tuplas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=1y_kfWUCFh8" target="_blank" rel="noopener noreferrer">Operaciones con listas - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=tw7ror9x32s" target="_blank" rel="noopener noreferrer">Listas en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 4 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 4.6 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s9.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s11.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

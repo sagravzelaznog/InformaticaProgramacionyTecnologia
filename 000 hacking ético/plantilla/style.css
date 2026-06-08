@@ -1,0 +1,2576 @@
+/* ==========================================================================
+   Variables Globales (Escalabilidad y Mantenimiento)
+   ========================================================================== */
+			:root {
+    /* Paleta de colores */
+    --color-bg-main: #f4f7f6;
+    --color-text-main: #2d3436;
+    --color-primary: #0984e3;
+    --color-primary-hover: #74b9ff;
+    --color-header-bg: #2d3436;
+    --color-header-text: #dfe6e9;
+
+    /* Tipografía y Espaciado */
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --border-radius: 8px;
+}
+
+/* ==========================================================================
+   Reset y Estilos Base
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Crucial para evitar desbordes en el layout */
+}
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Jerarquía Visual y Componentes
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+    padding: var(--spacing-md) 0;
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos fluyan en pantallas pequeñas */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-links a {
+    color: var(--color-header-text);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary-hover);
+}
+
+.chunk-content {
+    background: #ffffff;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.app-footer {
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Responsividad (Mobile-First approach optimizado)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .app-header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .chunk-content {
+        padding: var(--spacing-md);
+    }
+}
+/* Variables Globales */
+:root {
+	--color-bg-main: #f0f2f5;
+	--color-text-main: #2d3436;
+	--color-primary: #00cec9;
+	--color-primary-hover: #81ecec;
+	--color-dark: #2d3436;
+	--color-success: #00b894;
+	--color-terminal-bg: #1e272e;
+	--color-terminal-text: #00d2d3;
+	--font-base: 'Segoe UI', system-ui, sans-serif;
+	--font-mono: 'Courier New', Courier, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+	font-family: var(--font-base);
+	background-color: var(--color-bg-main);
+	color: var(--color-text-main);
+	line-height: 1.6;
+}
+
+.container {
+	width: 90%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+/* Header & UX Narrative */
+.app-header {
+	background-color: var(--color-dark);
+	color: #fff;
+	padding: 20px 0;
+	border-bottom: 4px solid var(--color-primary);
+}
+
+.app-header .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.status-badge {
+	background: rgba(0, 206, 201, 0.2);
+	padding: 5px 15px;
+	border: 1px solid var(--color-primary);
+	border-radius: 20px;
+	font-weight: bold;
+	color: var(--color-primary);
+}
+
+/* Chunks de Aprendizaje */
+.chunk-content {
+	background: #ffffff;
+	padding: 30px;
+	margin: 30px 0;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.story-box {
+	border-left: 5px solid var(--color-primary);
+}
+
+.lab-box h2 {
+	margin-bottom: 20px;
+	color: var(--color-dark);
+}
+
+/* Interfaz del Laboratorio */
+.task-item {
+	background: #fdfdfd;
+	border: 1px solid #e1e5eb;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 6px;
+	transition: all 0.3s ease;
+}
+
+.task-item.completed {
+	border-color: var(--color-success);
+	background-color: #f0fff4;
+}
+
+.terminal {
+	background-color: var(--color-terminal-bg);
+	color: var(--color-terminal-text);
+	font-family: var(--font-mono);
+	padding: 15px;
+	border-radius: 5px;
+	margin: 15px 0;
+	overflow-x: auto;
+}
+
+.btn-primary {
+	background-color: var(--color-primary);
+	color: var(--color-dark);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background 0.3s;
+}
+
+.btn-primary:hover {
+	background-color: var(--color-primary-hover);
+}
+
+.success-box {
+	background-color: var(--color-success);
+	color: white;
+	padding: 20px;
+	border-radius: 8px;
+	text-align: center;
+	margin-top: 20px;
+	animation: fadeIn 0.5s ease-in;
+}
+
+.hidden { display: none; }
+
+/* Responsive Mobile-First */
+@media (max-width: 768px) {
+	.app-header .container { flex-direction: column; text-align: center; gap: 15px; }
+	.chunk-content { padding: 20px; }
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(-10px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   Variables y Reset (Arquitectura Escalable)
+   ========================================================================== */
+			:root {
+    --color-bg-main: #0f172a; /* Tono oscuro tipo terminal moderna */
+    --color-text-main: #94a3b8;
+    --color-primary: #38bdf8;
+    --color-primary-hover: #0ea5e9;
+    --color-dark: #1e293b;
+    --color-success: #10b981;
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #22c55e;
+    --color-white: #f8fafc;
+    --font-base: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Jerarquía Visual (UX Learning)
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 6px 16px;
+    border: 1px solid var(--color-primary);
+    border-radius: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+}
+
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.story-box {
+    border-left: 4px solid var(--color-primary);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Interfaz de Laboratorio y Gamificación
+   ========================================================================== */
+.task-item {
+    background: #0f172a;
+    border: 1px solid #334155;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-terminal-text);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg-main);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.2);
+    border: 1px solid var(--color-success);
+    color: var(--color-white);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+    animation: slideUp 0.5s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; text-align: center; gap: 15px; }
+    .chunk-content { padding: 20px; }
+    .task-item { padding: 15px; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   Variables Nativas - Dark Theme Forense
+   ========================================================================== */
+   :root {
+    --color-bg-main: #0a0a0a;
+    --color-text-main: #a3a3a3;
+    --color-primary: #f39c12; /* Naranja ámbar para alertas tácticas */
+    --color-primary-hover: #f1c40f;
+    --color-dark: #171717;
+    --color-success: #27ae60;
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #f39c12;
+    --color-white: #ffffff;
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header y UX de Estado
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+}
+
+.status-badge {
+    background: rgba(243, 156, 18, 0.15);
+    padding: 6px 18px;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Estructura de Chunking (Bloques de Conocimiento)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 35px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #262626;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-white);
+}
+
+/* ==========================================================================
+   Interfaz de Laboratorio Práctico
+   ========================================================================== */
+.task-item {
+    background: #121212;
+    border: 1px dashed #404040;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    border-style: solid;
+    background-color: rgba(39, 174, 96, 0.05);
+}
+
+.task-item.completed h3 {
+    color: var(--color-success);
+}
+
+/* Consola interactiva para el código */
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 18px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid #333;
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-terminal-bg);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+/* Recompensa Final */
+.success-box {
+    background-color: rgba(39, 174, 96, 0.15);
+    border-left: 5px solid var(--color-success);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 30px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    border-top: 1px solid #262626;
+    color: #525252;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Responsive (Mobile First)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 15px; text-align: center; }
+    .chunk-content { padding: 20px; }
+    .task-item { padding: 15px; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   Variables y Estructura Base (UX Learning)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #e2e8f0; /* Tono gris claro forense */
+    --color-text-main: #1e293b;
+    --color-primary: #0284c7; /* Azul táctico */
+    --color-primary-hover: #0369a1;
+    --color-dark: #0f172a;
+    --color-success: #059669; /* Verde de validación */
+    --color-accent: #f59e0b; /* Ámbar de precaución (escena) */
+    --color-terminal-bg: #1e1e1e;
+    --color-terminal-text: #38bdf8;
+    --color-white: #ffffff;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Jerarquía Visual y Navegación
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 22px 0;
+    border-bottom: 4px solid var(--color-accent); /* Borde de precaución */
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    background: rgba(245, 158, 11, 0.15);
+    padding: 6px 16px;
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Chunking Activo: Bloques de Contenido
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-white);
+    padding: 35px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-accent);
+    background-color: #fffbeb; /* Fondo sutil ambarino */
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-dark);
+    margin-bottom: 15px;
+}
+
+.story-box strong {
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Laboratorio y Gamificación
+   ========================================================================== */
+.task-item {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item h3 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: #ecfdf5; /* Fondo sutil verde */
+    box-shadow: inset 4px 0 0 var(--color-success);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 16px;
+    border-radius: 6px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border: 1px solid #334155;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:disabled {
+    background-color: var(--color-success);
+    cursor: default;
+}
+
+/* Loop de Dopamina (Recompensa) */
+.success-box {
+    background-color: var(--color-success);
+    color: var(--color-white);
+    padding: 25px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 30px;
+    animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #64748b;
+    font-size: 0.85rem;
+    border-top: 1px solid #cbd5e1;
+}
+
+/* ==========================================================================
+   Mobile-First Responsiveness
+   ========================================================================== */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 15px; text-align: center; }
+    .chunk-content { padding: 25px; }
+    .task-item { padding: 20px; }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+/* ==========================================================================
+   Variables y Estructura (Arquitectura Cognitiva)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #111827; /* Dark mode forense */
+    --color-text-main: #d1d5db;
+    --color-primary: #ef4444; /* Rojo alerta para "Write-Blockers" */
+    --color-primary-hover: #dc2626;
+    --color-dark: #1f2937;
+    --color-success: #10b981; /* Verde confirmación */
+    --color-terminal-bg: #030712;
+    --color-terminal-text: #ef4444;
+    --color-white: #f9fafb;
+    
+    --font-base: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Cabecera Inmersiva (Contexto del Rol)
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 24px 0;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.4rem;
+}
+
+.status-badge {
+    background: rgba(239, 68, 68, 0.15);
+    padding: 6px 14px;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Contenedores de Conocimiento (Chunking)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Zona de Laboratorio (Loops de Dopamina)
+   ========================================================================== */
+.task-item {
+    background: #111827;
+    border: 1px solid #4b5563;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid #374151;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Escalada de Privilegios Final */
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid var(--color-success);
+    color: var(--color-text-main);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 25px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 8px;
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border-top: 1px solid #374151;
+}
+
+/* Responsive Constraints */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+    .task-item { padding: 15px; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   Variables y Estructura (Arquitectura Cognitiva)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #111827; /* Dark mode forense */
+    --color-text-main: #d1d5db;
+    --color-primary: #ef4444; /* Rojo alerta para "Write-Blockers" */
+    --color-primary-hover: #dc2626;
+    --color-dark: #1f2937;
+    --color-success: #10b981; /* Verde confirmación */
+    --color-terminal-bg: #030712;
+    --color-terminal-text: #ef4444;
+    --color-white: #f9fafb;
+    
+    --font-base: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Cabecera Inmersiva (Contexto del Rol)
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 24px 0;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.4rem;
+}
+
+.status-badge {
+    background: rgba(239, 68, 68, 0.15);
+    padding: 6px 14px;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Contenedores de Conocimiento (Chunking)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Zona de Laboratorio (Loops de Dopamina)
+   ========================================================================== */
+.task-item {
+    background: #111827;
+    border: 1px solid #4b5563;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid #374151;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Escalada de Privilegios Final */
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid var(--color-success);
+    color: var(--color-text-main);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 25px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 8px;
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border-top: 1px solid #374151;
+}
+
+/* Responsive Constraints */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+    .task-item { padding: 15px; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   Variables - Cyber-Drill Theme (Velocidad y Tensión Controlada)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #0b0f19; 
+    --color-text-main: #9ca3af;
+    --color-primary: #fbbf24; /* Amarillo de advertencia / Acción rápida */
+    --color-primary-hover: #f59e0b;
+    --color-dark: #111827;
+    --color-success: #34d399; /* Verde esmeralda de éxito */
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #fbbf24;
+    --color-white: #f3f4f6;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 2px dashed var(--color-primary); /* Borde punteado de alerta */
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    background: rgba(251, 191, 36, 0.2);
+    padding: 6px 18px;
+    border: 1px solid var(--color-primary);
+    border-radius: 2px; /* Más cuadrado, más técnico */
+    font-weight: 800;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.blink {
+    animation: blinker 2s linear infinite;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Chunking)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+    background: linear-gradient(90deg, rgba(251,191,36,0.05) 0%, rgba(17,24,39,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Interacción y Recompensas (Gamificación)
+   ========================================================================== */
+.task-item {
+    background: #0b0f19;
+    border: 1px solid #374151;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(52, 211, 153, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-primary);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(52, 211, 153, 0.1);
+    border: 1px solid var(--color-success);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 25px;
+    animation: slideDown 0.4s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #4b5563;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+/* Animaciones */
+@keyframes blinker {
+    50% { opacity: 0.5; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 10px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Cyber-Forensic Theme (UX Learning)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #0a0f14; 
+    --color-text-main: #a1b0be;
+    --color-primary: #06b6d4; /* Cian táctico / Quirúrgico */
+    --color-primary-hover: #0891b2;
+    --color-dark: #111820;
+    --color-success: #10b981; 
+    --color-alert: #ef4444;
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #06b6d4;
+    --color-white: #f8fafc;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--color-primary); 
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    padding: 6px 18px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.status-badge.alert {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid var(--color-alert);
+    color: var(--color-alert);
+    animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Chunking Activo)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+    background: linear-gradient(90deg, rgba(6,182,212,0.05) 0%, rgba(17,24,32,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Gamificación)
+   ========================================================================== */
+.task-item {
+    background: #0a0f14;
+    border: 1px solid #334155;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 18px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid #334155;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg-main);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid var(--color-success);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #475569;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #1e293b;
+}
+
+/* Animaciones y Responsividad */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Crypto-Audit Theme (UX Learning)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #0d0a14; 
+    --color-text-main: #b8b2c6;
+    --color-primary: #a855f7; /* Violeta criptográfico */
+    --color-primary-hover: #c084fc;
+    --color-dark: #141021;
+    --color-success: #10b981; 
+    --color-warn: #f43f5e; /* Rojo neón para urgencia */
+    --color-terminal-bg: #05040a;
+    --color-terminal-text: #a855f7;
+    --color-white: #f8fafc;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--color-primary); 
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.status-badge.warn {
+    background: rgba(244, 63, 94, 0.15);
+    border: 1px solid var(--color-warn);
+    color: var(--color-warn);
+    animation: flash 1.5s infinite alternate;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Chunking Activo)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #2d2442;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+    background: linear-gradient(90deg, rgba(168,85,247,0.05) 0%, rgba(20,16,33,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-warn);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Gamificación)
+   ========================================================================== */
+.task-item {
+    background: #0d0a14;
+    border: 1px solid #2d2442;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 18px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid #2d2442;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid var(--color-success);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 30px;
+    animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #6b6382;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #2d2442;
+}
+
+/* Animaciones y Responsividad */
+@keyframes flash {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Active Hazard Theme (Hackeando el Enfoque)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #0a0a0a; 
+    --color-text-main: #9ca3af;
+    --color-primary: #a3e635; /* Verde Neón / Ácido */
+    --color-primary-hover: #bef264;
+    --color-dark: #171717;
+    --color-success: #22c55e; 
+    --color-hazard: #eab308; /* Amarillo Peligro */
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #a3e635;
+    --color-white: #f8fafc;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 2px dashed var(--color-hazard); 
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: 2px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+}
+
+.status-badge.hazard {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid var(--color-hazard);
+    color: var(--color-hazard);
+    animation: alarmBlink 1s infinite alternate;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Chunking Activo)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 4px;
+    border: 1px solid #262626;
+    box-shadow: 0 4px 20px rgba(163, 230, 53, 0.05);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-hazard);
+    background: linear-gradient(90deg, rgba(234,179,8,0.05) 0%, rgba(23,23,23,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-hazard);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Gamificación)
+   ========================================================================== */
+.task-item {
+    background: #0a0a0a;
+    border: 1px solid #262626;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.task-item.completed {
+    border-color: var(--color-primary);
+    background-color: rgba(163, 230, 53, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 18px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-primary);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(163, 230, 53, 0.15);
+    border-left: 4px solid var(--color-primary);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 30px;
+    animation: fadeInScale 0.4s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #525252;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #262626;
+}
+
+/* Animaciones y Responsividad */
+@keyframes alarmBlink {
+    from { opacity: 1; text-shadow: 0 0 8px rgba(234, 179, 8, 0.8); }
+    to { opacity: 0.7; text-shadow: none; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Final Audit Theme (UX Learning Avanzado)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #050505; 
+    --color-text-main: #d1d5db;
+    --color-primary: #dc2626; /* Rojo Carmesí Crítico */
+    --color-primary-hover: #ef4444;
+    --color-dark: #111111;
+    --color-success: #10b981; 
+    --color-critical: #991b1b; 
+    --color-terminal-bg: #000000;
+    --color-terminal-text: #ef4444;
+    --color-white: #ffffff;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico (Estado de Certificación)
+   ========================================================================== */
+.app-header {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 3px solid var(--color-primary); 
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-badge {
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.status-badge.critical {
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    animation: pulseRed 1.5s infinite;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Jerarquía Visual)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 35px;
+    margin: 30px 0;
+    border-radius: 4px;
+    border: 1px solid #262626;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-primary);
+    background: linear-gradient(90deg, rgba(220,38,38,0.05) 0%, rgba(17,17,17,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.story-box strong {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Gamificación)
+   ========================================================================== */
+.task-item {
+    background: #0a0a0a;
+    border: 1px solid #262626;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-primary);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    padding: 12px 24px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 5px solid var(--color-success);
+    padding: 30px;
+    border-radius: 4px;
+    margin-top: 35px;
+    animation: moduleUnlock 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+    color: #4b5563;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #262626;
+}
+
+/* Animaciones y Responsividad */
+@keyframes pulseRed {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+@keyframes moduleUnlock {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 15px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Deep Scan Theme (Módulo 2: Sistemas de Archivos)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #060913; 
+    --color-text-main: #b4c5d6;
+    --color-primary: #3b82f6; /* Azul profundo forense */
+    --color-primary-hover: #60a5fa;
+    --color-dark: #0f172a;
+    --color-success: #10b981; 
+    --color-accent: #0ea5e9; /* Cian para elementos de escaneo */
+    --color-terminal-bg: #020617;
+    --color-terminal-text: #38bdf8;
+    --color-white: #f8fafc;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico (Módulo 2)
+   ========================================================================== */
+.app-header.module-two {
+    background-color: var(--color-dark);
+    padding: 20px 0;
+    border-bottom: 3px solid var(--color-primary); 
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-badge {
+    padding: 6px 18px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.status-badge.scan {
+    background: rgba(14, 165, 233, 0.15);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    animation: radarSweep 3s infinite linear;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Jerarquía Visual UX/LX)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 35px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-accent);
+    background: linear-gradient(90deg, rgba(14,165,233,0.05) 0%, rgba(15,23,42,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Retención y Recompensas)
+   ========================================================================== */
+.task-item {
+    background: #060913;
+    border: 1px solid #1e293b;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-primary);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 5px solid var(--color-success);
+    padding: 30px;
+    border-radius: 4px;
+    margin-top: 35px;
+    animation: fadeUp 0.5s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+    color: #475569;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #1e293b;
+}
+
+/* Animaciones y Responsividad */
+@keyframes radarSweep {
+    0% { box-shadow: inset 0 0 0 0 rgba(14, 165, 233, 0); }
+    50% { box-shadow: inset 50px 0 20px -20px rgba(14, 165, 233, 0.2); }
+    100% { box-shadow: inset 0 0 0 0 rgba(14, 165, 233, 0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 15px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}
+/* ==========================================================================
+   Variables - Theme "Dark Forensic" (Módulo 2)
+   ========================================================================== */
+   :root {
+    --color-bg-main: #090a0f; 
+    --color-text-main: #a3adc2;
+    --color-primary: #8b5cf6; /* Morado Hacker para recuperación de datos */
+    --color-primary-hover: #a78bfa;
+    --color-dark: #111827;
+    --color-success: #10b981; 
+    --color-accent: #0ea5e9; /* Cian terminal */
+    --color-terminal-bg: #030408;
+    --color-terminal-text: #a78bfa;
+    --color-white: #f8fafc;
+    
+    --font-base: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Táctico (Módulo 2)
+   ========================================================================== */
+.app-header.module-two {
+    background-color: var(--color-dark);
+    padding: 22px 0;
+    border-bottom: 2px solid var(--color-primary); 
+}
+
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header h1 {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.status-badge.forensic-scan {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   Bloques de Contenido (Chunking y Jerarquía)
+   ========================================================================== */
+.chunk-content {
+    background: var(--color-dark);
+    padding: 35px;
+    margin: 30px 0;
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.story-box {
+    border-left: 5px solid var(--color-accent);
+    background: linear-gradient(90deg, rgba(14,165,233,0.05) 0%, rgba(17,24,39,1) 100%);
+}
+
+.story-box h2, .lab-box h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.story-box strong {
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Laboratorio Interactivo (Gamificación y Loops de Dopamina)
+   ========================================================================== */
+.task-item {
+    background: #090a0f;
+    border: 1px solid #1f2937;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: transform 0.2s, border-color 0.3s;
+}
+
+.task-item h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.task-item.completed {
+    border-color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.terminal {
+    background-color: var(--color-terminal-bg);
+    color: var(--color-terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 18px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+    border-left: 3px solid var(--color-primary);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+.success-box {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid var(--color-success);
+    padding: 25px;
+    border-radius: 4px;
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.success-box h3 {
+    color: var(--color-success);
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: var(--color-white);
+}
+
+.hidden { display: none; }
+
+.app-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    color: #4b5563;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid #1f2937;
+}
+
+/* Animaciones y Responsividad */
+@keyframes glow {
+    from { box-shadow: 0 0 5px rgba(139, 92, 246, 0.2); }
+    to { box-shadow: 0 0 15px rgba(139, 92, 246, 0.6); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .app-header .container { flex-direction: column; gap: 12px; text-align: center; }
+    .chunk-content { padding: 20px; }
+}

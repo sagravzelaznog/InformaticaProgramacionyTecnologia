@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S18: Simplificación y Trazado Dinámico</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 18: Simplificación y Trazado Dinámico</h1>
+
+    <section>
+        <h2>1. Simplificación de Trayectos (Path Simplification)</h2>
+        
+        <p>La **Simplificación (Ctrl + L)** es vital para optimizar tus archivos y limpiar trayectos dibujados a mano (con el Lápiz o vectorizados) que tienen demasiados nodos innecesarios. Menos nodos significa archivos más ligeros y fáciles de editar.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicación Rápida</strong>
+            <p>Selecciona un objeto con muchos nodos (puedes verlo con la herramienta Nodo). Presiona **Ctrl + L**. Repite el atajo para simplificar aún más, pero ten cuidado de no perder el detalle deseado.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Ajuste Manual de Parámetros</strong>
+            <p>Para un control más fino, ve a <code>Trayecto > Simplificar...</code>. Esto abre una ventana donde puedes ajustar el **Factor de umbral** manualmente. Un umbral más alto resulta en una mayor simplificación (menos nodos).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Trazado Dinámico (Offset)</h2>
+        
+        <p>El **Trazado Dinámico (Dynamic Offset, Ctrl + J)** es una técnica increíblemente útil para crear contornos perfectos o formas internas a partir de un trayecto existente.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar el Trazado Dinámico</strong>
+            <p>Selecciona un objeto y ve a <code>Trayecto > Trazado Dinámico (Ctrl + J)</code>. El objeto se convertirá en un trazado dinámico con un solo **manejador en forma de diamante**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Editar el Contorno</strong>
+            <p>Usa la herramienta **Selector (F1)** o **Nodo (F2)**. Arrastra el **manejador de diamante** hacia afuera para crear un contorno (offset positivo) o hacia adentro para reducir el tamaño (offset negativo). ¡La forma siempre conserva la suavidad y el estilo del original!</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Trazado Enlazado (Linked Offset)</h2>
+        <p>Similar al Trazado Dinámico, pero crea un nuevo objeto que es un clon enlazado al trazado original. Si editas el trayecto original, el offset enlazado se actualiza.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear el Trazado Enlazado</strong>
+            <p>Selecciona el objeto original. Ve a <code>Trayecto > Trazado Enlazado (Shift + Ctrl + J)</code>. Aparecerá un nuevo objeto con un manejador de diamante.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Ventaja del Enlazado</strong>
+            <p>Puedes cambiar el color y el estilo del offset enlazado de forma independiente, pero si usas la herramienta **Nodo (F2)** para editar el objeto *original*, la forma del *clon* enlazado se actualizará, manteniendo su offset.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Sombra y Borde Perfecto</h3>
+        <p><strong>Objetivo:</strong> Crear un borde limpio y simplificar un trazado.</p>
+        <ol>
+            <li>Dibuja una forma orgánica compleja con la herramienta **Lápiz (P)** con poco suavizado.</li>
+            <li>Presiona **Ctrl + L** varias veces para simplificar drásticamente los nodos.</li>
+            <li>Con la forma simplificada seleccionada, aplica **Trazado Dinámico (Ctrl + J)**.</li>
+            <li>Arrastra el manejador de diamante hacia afuera para crear un borde grueso de color diferente.</li>
+            <li>Duplica la forma original (**Ctrl + D**). Aplica **Trazado Enlazado (Shift + Ctrl + J)** a este duplicado y úsalo para crear una sombra interior.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion17.html">Anterior</a>
+    <a href="sesion19.html">Siguiente</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12: Bucles while - Repetición Condicional - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 12</h1>
+                <h2>Bucles while - Repetición Condicional</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 2: Estructuras de Datos y Bucles</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-37-5" 
+                     role="progressbar" 
+                     aria-valuenow="37.5" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a utilizar los bucles <code>while</code> en Python para crear estructuras de repetición controladas por condiciones. A diferencia de los bucles <code>for</code>, los bucles <code>while</code> son ideales cuando no sabes de antemano cuántas veces necesitas repetir un bloque de código.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Comprender la diferencia entre los bucles <code>for</code> y <code>while</code></li>
+                        <li>Implementar correctamente condiciones de parada para evitar bucles infinitos</li>
+                        <li>Crear menús interactivos y programas que requieren entrada del usuario</li>
+                        <li>Resolver problemas donde el número de iteraciones no es conocido de antemano</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Sintaxis del bucle while -->
+            <div class="concept-card">
+                <h3>1. Sintaxis Básica del Bucle <code>while</code></h3>
+                <p>El bucle <code>while</code> ejecuta un bloque de código mientras una condición sea verdadera. Es fundamental asegurar que la condición eventualmente se convierta en falsa para evitar bucles infinitos.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Sintaxis básica
+contador = 0
+while contador < 5:  # Mientras la condición sea True
+    print(f"Contador: {contador}")
+    contador += 1  # Importante: modificar la variable de control
+
+# Bucle con entrada del usuario
+respuesta = ""
+while respuesta.lower() != "salir":
+    respuesta = input("Escribe 'salir' para terminar: ")
+    print(f"Escribiste: {respuesta}")
+
+# Bucle con break
+while True:  # Bucle infinito controlado
+    opcion = input("Selecciona una opción (1-3) o 'q' para salir: ")
+    if opcion == 'q':
+        print("¡Hasta luego!")
+        break  # Sale del bucle
+    elif opcion in ['1', '2', '3']:
+        print(f"Ejecutando opción {opcion}")
+    else:
+        print("Opción no válida. Intenta de nuevo.")
+
+# Bucle con continue
+numero = 0
+while numero < 10:
+    numero += 1
+    if numero % 2 == 0:  # Si el número es par
+        continue  # Salta a la siguiente iteración
+    print(f"Número impar: {numero}")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Diferencia clave: <code>for</code> vs <code>while</code></h4>
+                    <p>Usa <code>for</code> cuando sepas de antemano cuántas veces necesitas iterar (ej: recorrer una lista). Usa <code>while</code> cuando necesites repetir un bloque de código hasta que se cumpla una condición que puede depender de factores externos o de la entrada del usuario.</p>
+                </div>
+            </div>
+
+            <!-- 2. Condiciones de parada y bucles infinitos -->
+            <div class="concept-card">
+                <h3>2. Condiciones de Parada y Bucles Infinitos</h3>
+                <p>Un bucle infinito ocurre cuando la condición del <code>while</code> nunca se vuelve falsa. Es un error común que puede hacer que el programa se cuelgue.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de bucle infinito (¡No ejecutar tal cual!)
+# contador = 0
+# while contador < 5:
+#     print("Este bucle nunca terminará")
+#     # Falta incrementar el contador
+
+# Cómo evitar bucles infinitos
+contador = 0
+while contador < 5:
+    print(f"Iteración {contador + 1}")
+    contador += 1  # Variable de control que asegura la terminación
+
+# Usando un booleano como bandera
+activo = True
+while activo:
+    respuesta = input("¿Deseas continuar? (s/n): ")
+    if respuesta.lower() == 'n':
+        activo = False  # Cambia la condición para salir del bucle
+    print("Continuando...")
+
+# Uso de break para salir de bucles while
+while True:  # Bucle aparentemente infinito
+    numero = int(input("Ingresa un número (0 para salir): "))
+    if numero == 0:
+        print("Saliendo...")
+        break  # Sale del bucle
+    print(f"El cuadrado es: {numero ** 2}")
+
+# Contador con límite de intentos
+intentos = 3
+while intentos > 0:
+    contraseña = input("Ingresa la contraseña: ")
+    if contraseña == "secreto":
+        print("¡Acceso concedido!")
+        break
+    else:
+        intentos -= 1
+        print(f"Contraseña incorrecta. Te quedan {intentos} intentos.")
+else:
+    print("Has agotado tus intentos. Cuenta bloqueada.")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Prevención de bucles infinitos</h4>
+                    <p>Siempre asegúrate de que exista una condición de salida clara en tus bucles <code>while</code>. Si estás probando código con bucles, considera agregar un contador de seguridad que fuerce la salida después de un número máximo de iteraciones.</p>
+                </div>
+            </div>
+
+            <!-- 3. Aplicaciones prácticas de while -->
+            <div class="concept-card">
+                <h3>3. Aplicaciones Prácticas de los Bucles <code>while</code></h3>
+                <p>Los bucles <code>while</code> son ideales para situaciones donde necesitas repetir una acción hasta que se cumpla una condición que no depende de un contador o secuencia predefinida.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Menú interactivo
+def mostrar_menu():
+    print("\n=== MENÚ PRINCIPAL ===")
+    print("1. Ver perfil")
+    print("2. Configuración")
+    print("3. Ayuda")
+    print("4. Salir")
+
+while True:
+    mostrar_menu()
+    opcion = input("Selecciona una opción (1-4): ")
+    
+    if opcion == '1':
+        print("\nMostrando perfil del usuario...")
+    elif opcion == '2':
+        print("\nAbriendo configuración...")
+    elif opcion == '3':
+        print("\nMostrando ayuda...")
+    elif opcion == '4':
+        print("\n¡Hasta luego!")
+        break
+    else:
+        print("\nOpción no válida. Intenta de nuevo.")
+
+# Juego de adivinanza
+import random
+
+numero_secreto = random.randint(1, 100)
+intentos = 0
+max_intentos = 5
+adivinado = False
+
+print("\n=== JUEGO DE ADIVINANZA ===")
+print(f"Tienes {max_intentos} intentos para adivinar el número (1-100).")
+
+while intentos < max_intentos and not adivinado:
+    try:
+        intento = int(input("\nIngresa tu suposición: "))
+        intentos += 1
+        
+        if intento < numero_secreto:
+            print("El número es mayor. Intenta de nuevo.")
+        elif intento > numero_secreto:
+            print("El número es menor. Intenta de nuevo.")
+        else:
+            print(f"¡Felicidades! Adivinaste el número en {intentos} intentos.")
+            adivinado = True
+            
+        if not adivinado and intentos < max_intentos:
+            print(f"Te quedan {max_intentos - intentos} intentos.")
+            
+    except ValueError:
+        print("Por favor, ingresa un número válido.")
+
+if not adivinado:
+    print(f"\n¡Se acabaron los intentos! El número era {numero_secreto}.")
+
+# Validación de entrada
+while True:
+    try:
+        edad = int(input("Ingresa tu edad: "))
+        if 0 < edad <= 120:  # Rango de edades razonable
+            break
+        else:
+            print("Por favor, ingresa una edad entre 1 y 120 años.")
+    except ValueError:
+        print("Error: Debes ingresar un número entero.")
+
+print(f"Tienes {edad} años.")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Mejores prácticas con bucles <code>while</code></h4>
+                    <p>1. Siempre inicializa las variables de control antes del bucle.<br>
+                    2. Asegúrate de que la condición del bucle eventualmente se vuelva falsa.<br>
+                    3. Usa <code>break</code> para salir del bucle cuando sea necesario.<br>
+                    4. Considera usar un contador de seguridad para evitar bucles infinitos accidentales.</p>
+                </div>
+            </div>
+
+            <!-- 4. Bucles anidados y patrones -->
+            <div class="concept-card">
+                <h3>4. Bucles Anidados y Patrones con <code>while</code></h3>
+                <p>Los bucles <code>while</code> pueden anidarse para crear patrones o manejar estructuras de datos multidimensionales.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Patrón de triángulo con while
+fila = 1
+max_filas = 5
+
+while fila <= max_filas:
+    columna = 1
+    while columna <= fila:
+        print("*", end=" ")
+        columna += 1
+    print()  # Nueva línea al final de cada fila
+    fila += 1
+
+# Tabla de multiplicar con while
+numero = 1
+while numero <= 10:
+    multiplicador = 1
+    print(f"\nTabla del {numero}:")
+    print("-" * 15)
+    
+    while multiplicador <= 10:
+        resultado = numero * multiplicador
+        print(f"{numero} x {multiplicador:2} = {resultado:2}")
+        multiplicador += 1
+    
+    numero += 1
+    if numero <= 10:
+        input("\nPresiona Enter para ver la siguiente tabla...")
+
+# Búsqueda en una matriz
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+fila = 0
+encontrado = False
+buscar = 5  # Número a buscar
+
+while fila < len(matriz) and not encontrado:
+    columna = 0
+    while columna < len(matriz[fila]):
+        if matriz[fila][columna] == buscar:
+            print(f"Encontrado {buscar} en la posición [{fila}][{columna}]")
+            encontrado = True
+            break  # Sale del bucle interno
+        columna += 1
+    fila += 1
+
+if not encontrado:
+    print(f"El número {buscar} no se encuentra en la matriz")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Optimización de bucles anidados</h4>
+                    <p>Cuando trabajes con bucles anidados, recuerda que el bucle más interno se ejecutará el mayor número de veces. Si el rendimiento es crítico, intenta colocar las condiciones que terminan el bucle lo antes posible para evitar iteraciones innecesarias.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Menú Interactivo con Opciones</h3>
+                <p>Crea un programa que muestre un menú interactivo con varias opciones y permita al usuario navegar por ellas hasta que elija salir.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== MENÚ PRINCIPAL ===
+1. Ver saldo
+2. Depositar dinero
+3. Retirar dinero
+4. Ver últimos movimientos
+5. Salir
+
+Selecciona una opción (1-5): 2
+
+Ingresa la cantidad a depositar: 1000
+Depósito exitoso. Saldo actual: $1000
+
+Presiona Enter para continuar...</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un bucle <code>while</code> infinito con una variable booleana (ej: <code>ejecutando = True</code>) que controle cuándo terminar el programa. Dentro del bucle, muestra el menú, solicita la opción al usuario y usa una estructura <code>if-elif-else</code> para manejar cada opción. La opción de salida debe cambiar la variable booleana a <code>False</code> para terminar el bucle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Juego de Adivinanza con Límite de Intentos</h3>
+                <p>Desarrolla un juego donde el jugador debe adivinar un número secreto generado aleatoriamente, con un número limitado de intentos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== ADIVINA EL NÚMERO ===
+Tienes 5 intentos para adivinar un número entre 1 y 50.
+
+Intento 1/5: 25
+El número es mayor. ¡Sigue intentando!
+
+Intento 2/5: 40
+El número es menor. ¡Sigue intentando!
+
+Intento 3/5: 35
+¡Felicidades! Adivinaste el número en 3 intentos.</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa <code>import random</code> y <code>random.randint(1, 50)</code> para generar el número secreto. Crea un bucle <code>while</code> que se ejecute mientras el número de intentos sea menor que el máximo y el jugador no haya adivinado. Dentro del bucle, solicita el número al jugador, compara con el número secreto y proporciona pistas. Usa variables para llevar la cuenta de los intentos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Programa de Validación de Datos</h3>
+                <p>Desarrolla un programa que valide diferentes tipos de entrada del usuario hasta que sean correctos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== VALIDACIÓN DE DATOS ===
+Ingresa tu edad: dieciocho
+Error: Debes ingresar un número entero.
+Ingresa tu edad: 5
+Edad no válida. Debes tener al menos 13 años.
+Ingresa tu edad: 25
+
+Ingresa tu correo electrónico: usuario@
+Formato de correo inválido. Debe contener @ y un dominio.
+Ingresa tu correo electrónico: usuario@ejemplo.com
+
+Ingresa una contraseña (mínimo 8 caracteres): clave
+La contraseña es demasiado corta.
+Ingresa una contraseña (mínimo 8 caracteres): contraseña123
+
+¡Datos registrados correctamente!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Crea funciones separadas para validar cada tipo de dato (edad, correo, contraseña) que devuelvan <code>True</code> si la validación es exitosa. Usa bucles <code>while</code> para cada entrada, que continúen solicitando datos hasta que sean válidos. Para validar el correo, verifica que contenga '@' y un dominio. Para la contraseña, verifica la longitud mínima.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Simulador de Máquina Expendedora</h3>
+                <p>Crea un programa que simule una máquina expendedora que acepta monedas y permite seleccionar productos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== MÁQUINA EXPENDEDORA ===
+1. Refresco - $15.00
+2. Galletas - $10.00
+3. Chocolates - $20.00
+4. Papas - $12.00
+5. Salir
+
+Selecciona un producto (1-5): 2
+
+Has seleccionado: Galletas - $10.00
+
+Ingresa monedas (5, 10, 20, 50, 100) o 'p' para pagar:
+Moneda: 20
+Saldo actual: $20.00
+Moneda: 50
+Saldo actual: $70.00
+Moneda: p
+
+Compra exitosa. Tu cambio es de $60.00
+¡Gracias por tu compra!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un diccionario para almacenar los productos y sus precios. Crea un bucle principal para el menú y otro bucle anidado para la inserción de monedas. Lleva la cuenta del saldo acumulado y verifica si es suficiente para comprar el producto seleccionado. Calcula el cambio restando el precio del producto al saldo. Usa <code>while True</code> con <code>break</code> para salir de los bucles cuando sea necesario.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/reference/compound_stmts.html#the-while-statement" target="_blank" rel="noopener noreferrer">Documentación oficial - Bucles while</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_while_loops.asp" target="_blank" rel="noopener noreferrer">W3Schools - Bucles while en Python</a></li>
+                        <li><a href="https://realpython.com/python-while-loop/" target="_blank" rel="noopener noreferrer">Real Python - Guía de bucles while</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=HZARImHpC4Y" target="_blank" rel="noopener noreferrer">Bucles while en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=YVnJJos7qjY" target="_blank" rel="noopener noreferrer">Diferencia entre for y while - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 7 - "Python Crash Course" de Eric Matthes (Sección sobre bucles while)</li>
+                        <li>Sección 2.7 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                        <li>"Python para todos" de Charles Severance (Capítulo sobre estructuras de control)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s11.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s13.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

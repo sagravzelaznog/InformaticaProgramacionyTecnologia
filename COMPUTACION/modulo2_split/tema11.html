@@ -1,0 +1,852 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema11">
+        <h2>Tema 11: Funciones Avanzadas de Texto en Excel</h2>
+        <div class="tema-contenido">
+            <p>Las funciones de texto en Excel son herramientas poderosas para manipular, formatear y analizar datos de texto. En este tema, exploraremos funciones avanzadas que te permitirán trabajar con texto de manera más eficiente, desde la extracción de información hasta la combinación inteligente de cadenas de texto.</p>
+            
+            <h3>11.1 Funciones básicas de texto</h3>
+            <p>Antes de adentrarnos en funciones más avanzadas, repasemos algunas funciones básicas de texto que son fundamentales para el manejo de datos.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Funciones básicas de texto:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Función</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>MAYUSC()</td>
+                        <td>Convierte el texto a mayúsculas</td>
+                        <td>=MAYUSC("hola")</td>
+                        <td>HOLA</td>
+                    </tr>
+                    <tr>
+                        <td>MINUSC()</td>
+                        <td>Convierte el texto a minúsculas</td>
+                        <td>=MINUSC("HOLA")</td>
+                        <td>hola</td>
+                    </tr>
+                    <tr>
+                        <td>NOMPROPIO()</td>
+                        <td>Pone en mayúscula la primera letra de cada palabra</td>
+                        <td>=NOMPROPIO("juan perez")</td>
+                        <td>Juan Perez</td>
+                    </tr>
+                    <tr>
+                        <td>IZQUIERDA()</td>
+                        <td>Extrae caracteres del inicio del texto</td>
+                        <td>=IZQUIERDA("Excel", 2)</td>
+                        <td>Ex</td>
+                    </tr>
+                    <tr>
+                        <td>DERECHA()</td>
+                        <td>Extrae caracteres del final del texto</td>
+                        <td>=DERECHA("Excel", 3)</td>
+                        <td>cel</td>
+                    </tr>
+                    <tr>
+                        <td>EXTRAE()</td>
+                        <td>Extrae caracteres de una posición específica</td>
+                        <td>=EXTRAE("Excel", 2, 3)</td>
+                        <td>xce</td>
+                    </tr>
+                    <tr>
+                        <td>LARGO()</td>
+                        <td>Cuenta el número de caracteres en un texto</td>
+                        <td>=LARGO("Excel")</td>
+                        <td>5</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="actividad-interactiva">
+                <h4>Actividad: Practica con funciones básicas</h4>
+                <p>Usa las funciones básicas de texto para completar la siguiente tabla:</p>
+                
+                <div class="ejercicio-practico">
+                    <table class="tabla-ejercicio">
+                        <tr>
+                            <th>Texto Original</th>
+                            <th>Función a Aplicar</th>
+                            <th>Tu Respuesta</th>
+                            <th>Resultado Correcto</th>
+                        </tr>
+                        <tr>
+                            <td>excel avanzado</td>
+                            <td>=NOMPROPIO(A2)</td>
+                            <td><input type="text" id="ej1" class="respuesta-texto"></td>
+                            <td>Excel Avanzado</td>
+                        </tr>
+                        <tr>
+                            <td>FUNCIONES DE TEXTO</td>
+                            <td>=MINUSC(A3)</td>
+                            <td><input type="text" id="ej2" class="respuesta-texto"></td>
+                            <td>funciones de texto</td>
+                        </tr>
+                        <tr>
+                            <td>informe final 2023.xlsx</td>
+                            <td>=IZQUIERDA(A4, 7)</td>
+                            <td><input type="text" id="ej3" class="respuesta-texto"></td>
+                            <td>informe</td>
+                        </tr>
+                        <tr>
+                            <td>documento_importante.pdf</td>
+                            <td>=DERECHA(A5, 3)</td>
+                            <td><input type="text" id="ej4" class="respuesta-texto"></td>
+                            <td>pdf</td>
+                        </tr>
+                    </table>
+                    <button onclick="verificarEjercicioBasico()" class="btn-verificar">Verificar Respuestas</button>
+                    <div id="resultado-basico" class="resultado"></div>
+                </div>
+            </div>
+            
+            <h3>11.2 Funciones avanzadas de búsqueda y reemplazo</h3>
+            <p>Estas funciones te permiten buscar, extraer y reemplazar texto de manera dinámica dentro de cadenas de texto más grandes.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Funciones de búsqueda y reemplazo:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Función</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>ENCONTRAR()</td>
+                        <td>Busca un texto dentro de otro (distingue mayúsculas)</td>
+                        <td>=ENCONTRAR("a", "Manzana")</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>HALLAR()</td>
+                        <td>Busca un texto dentro de otro (no distingue mayúsculas)</td>
+                        <td>=HALLAR("A", "manzana")</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>SUSTITUIR()</td>
+                        <td>Reemplaza texto en una cadena</td>
+                        <td>=SUSTITUIR("Hola Juan", "Juan", "María")</td>
+                        <td>Hola María</td>
+                    </tr>
+                    <tr>
+                        <td>REEMPLAZAR()</td>
+                        <td>Reemplaza caracteres en una posición específica</td>
+                        <td>=REEMPLAZAR("2023001", 4, 3, "-")</td>
+                        <td>2023-001</td>
+                    </tr>
+                    <tr>
+                        <td>REPETIR()</td>
+                        <td>Repite un texto varias veces</td>
+                        <td>=REPETIR("*", 5)</td>
+                        <td>*****</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio Práctico: Extraer información de códigos</h4>
+                <p>Tienes una lista de códigos de producto en el formato "PAIS-CODIGO-AÑO" (ej: MEX-AB123-2023). Crea fórmulas para extraer cada componente por separado:</p>
+                
+                <div class="ejercicio-practico">
+                    <table class="tabla-ejercicio">
+                        <tr>
+                            <th>Código Completo</th>
+                            <th>País</th>
+                            <th>Código</th>
+                            <th>Año</th>
+                        </tr>
+                        <tr>
+                            <td>MEX-AB123-2023</td>
+                            <td><input type="text" id="pais1" class="respuesta-texto" placeholder="Fórmula para país"></td>
+                            <td><input type="text" id="codigo1" class="respuesta-texto" placeholder="Fórmula para código"></td>
+                            <td><input type="text" id="anio1" class="respuesta-texto" placeholder="Fórmula para año"></td>
+                        </tr>
+                        <tr>
+                            <td>USA-XY789-2024</td>
+                            <td><input type="text" id="pais2" class="respuesta-texto"></td>
+                            <td><input type="text" id="codigo2" class="respuesta-texto"></td>
+                            <td><input type="text" id="anio2" class="respuesta-texto"></td>
+                        </tr>
+                    </table>
+                    <button onclick="verificarExtraccion()" class="btn-verificar">Verificar Fórmulas</button>
+                    <div id="resultado-extraccion" class="resultado"></div>
+                </div>
+            </div>
+            
+            <h3>11.3 Funciones de limpieza y formato</h3>
+            <p>Estas funciones son esenciales para limpiar y estandarizar datos de texto que pueden contener espacios en blanco adicionales o caracteres no imprimibles.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Funciones de limpieza:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Función</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>ESPACIOS()</td>
+                        <td>Elimina espacios adicionales entre palabras</td>
+                        <td>=ESPACIOS("Hola   mundo")</td>
+                        <td>Hola mundo</td>
+                    </tr>
+                    <tr>
+                        <td>ESPACIOS.IMPRIMIBLES()</td>
+                        <td>Elimina caracteres no imprimibles</td>
+                        <td>=ESPACIOS.IMPRIMIBLES(CHAR(9)&"Hola")</td>
+                        <td>Hola</td>
+                    </tr>
+                    <tr>
+                        <td>LIMPIA()</td>
+                        <td>Elimina caracteres no imprimibles</td>
+                        <td>=LIMPIA(CHAR(10)&"Texto"&CHAR(13))</td>
+                        <td>Texto</td>
+                    </tr>
+                    <tr>
+                        <td>VALOR()</td>
+                        <td>Convierte texto a número</td>
+                        <td>=VALOR("123")+1</td>
+                        <td>124</td>
+                    </tr>
+                    <tr>
+                        <td>TEXTO()</td>
+                        <td>Formatea un número como texto</td>
+                        <td>=TEXTO(FECHA(2023,1,1), "dd/mm/aaaa")</td>
+                        <td>01/01/2023</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="actividad-interactiva">
+                <h4>Actividad: Limpieza de datos</h4>
+                <p>Tienes una lista de datos sucios que necesitan ser limpiados. Usa las funciones de limpieza para estandarizar la información:</p>
+                
+                <div class="ejercicio-practico">
+                    <table class="tabla-ejercicio">
+                        <tr>
+                            <th>Dato Sucio</th>
+                            <th>Función de Limpieza</th>
+                            <th>Resultado Esperado</th>
+                        </tr>
+                        <tr>
+                            <td>"   Juan   Pérez   "</td>
+                            <td><input type="text" id="limp1" class="respuesta-texto" placeholder="Fórmula"></td>
+                            <td>Juan Pérez</td>
+                        </tr>
+                        <tr>
+                            <td>"Nº 123"</td>
+                            <td><input type="text" id="limp2" class="respuesta-texto" placeholder="Fórmula"></td>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td>CHAR(10)&"Correo: "&"usuario@ejemplo.com"</td>
+                            <td><input type="text" id="limp3" class="respuesta-texto" placeholder="Fórmula"></td>
+                            <td>Correo: usuario@ejemplo.com</td>
+                        </tr>
+                    </table>
+                    <button onclick="verificarLimpieza()" class="btn-verificar">Verificar Soluciones</button>
+                    <div id="resultado-limpieza" class="resultado"></div>
+                </div>
+            </div>
+            
+            <h3>11.4 Funciones avanzadas de concatenación</h3>
+            <p>La concatenación de texto es una operación común en Excel. Aprende a usar funciones avanzadas para combinar texto de manera efectiva.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Funciones de concatenación:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Método</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>Operador &</td>
+                        <td>Concatena textos</td>
+                        <td>="Hola "&"Mundo"</td>
+                        <td>Hola Mundo</td>
+                    </tr>
+                    <tr>
+                        <td>CONCATENAR()</td>
+                        <td>Concatena múltiples textos</td>
+                        <td>=CONCATENAR("Hola ", "Mundo")</td>
+                        <td>Hola Mundo</td>
+                    </tr>
+                    <tr>
+                        <td>TEXTO.CONCATENAR()</td>
+                        <td>Concatena con delimitador (Excel 2019+)</td>
+                        <td>=TEXTO.CONCATENAR(", ", "Manzana", "Pera", "Uva")</td>
+                        <td>Manzana, Pera, Uva</td>
+                    </tr>
+                    <tr>
+                        <td>UNIRCADENAS()</td>
+                        <td>Une cadenas con separador (Excel 365)</td>
+                        <td>=UNIRCADENAS(" ", TRUE, "Hola", "a", "todos")</td>
+                        <td>Hola a todos</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio: Crear direcciones completas</h4>
+                <p>Usa las funciones de concatenación para crear direcciones completas a partir de los siguientes datos:</p>
+                
+                <div class="ejercicio-practico">
+                    <table class="tabla-ejercicio">
+                        <tr>
+                            <th>Calle</th>
+                            <th>Número</th>
+                            <th>Colonia</th>
+                            <th>CP</th>
+                            <th>Ciudad</th>
+                            <th>Dirección Completa</th>
+                        </tr>
+                        <tr>
+                            <td>Reforma</td>
+                            <td>123</td>
+                            <td>Centro</td>
+                            <td>06000</td>
+                            <td>CDMX</td>
+                            <td><input type="text" id="dir1" class="respuesta-texto" placeholder="Fórmula"></td>
+                        </tr>
+                        <tr>
+                            <td>Hidalgo</td>
+                            <td>456</td>
+                            <td>Juárez</td>
+                            <td>06600</td>
+                            <td>CDMX</td>
+                            <td><input type="text" id="dir2" class="respuesta-texto"></td>
+                        </tr>
+                    </table>
+                    <p>Formato esperado: Calle y Número, Colonia, CP, Ciudad (ej: Reforma 123, Centro, 06000, CDMX)</p>
+                    <button onclick="verificarDirecciones()" class="btn-verificar">Verificar Direcciones</button>
+                    <div id="resultado-direcciones" class="resultado"></div>
+                </div>
+            </div>
+            
+            <h3>11.5 Funciones avanzadas de búsqueda con comodines</h3>
+            <p>Las funciones BUSCARX, XBUSCAR y otras funciones modernas de Excel permiten realizar búsquedas avanzadas con mayor flexibilidad.</p>
+            
+            <div class="tabla-funciones">
+                <h4>Funciones avanzadas de búsqueda:</h4>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Función</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                        <th>Uso</th>
+                    </tr>
+                    <tr>
+                        <td>BUSCARX()</td>
+                        <td>Busca en cualquier dirección y devuelve el valor correspondiente</td>
+                        <td>=BUSCARX("Manzana", A1:A10, B1:B10)</td>
+                        <td>Busca "Manzana" en A1:A10 y devuelve el valor correspondiente de B1:B10</td>
+                    </tr>
+                    <tr>
+                        <td>XBUSCAR()</td>
+                        <td>Búsqueda mejorada con manejo de errores</td>
+                        <td>=XBUSCAR("Manzana", A1:A10, B1:B10, "No encontrado")</td>
+                        <td>Similar a BUSCARX pero con manejo de errores personalizado</td>
+                    </tr>
+                    <tr>
+                        <td>BUSCAR()</td>
+                        <td>Busca en una fila o columna</td>
+                        <td>=BUSCAR("Manzana", A1:A10, B1:B10)</td>
+                        <td>Busca en la primera columna y devuelve valor de la segunda</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="actividad-interactiva">
+                <h4>Actividad: Búsqueda avanzada de productos</h4>
+                <p>Usa las funciones de búsqueda avanzada para encontrar información en la siguiente tabla de productos:</p>
+                
+                <div class="ejercicio-practico">
+                    <table class="tabla-ejercicio">
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                        </tr>
+                        <tr>
+                            <td>P001</td>
+                            <td>Laptop HP 15"</td>
+                            <td>Computadoras</td>
+                            <td>15,999</td>
+                        </tr>
+                        <tr>
+                            <td>P002</td>
+                            <td>Mouse inalámbrico</td>
+                            <td>Accesorios</td>
+                            <td>499</td>
+                        </tr>
+                        <tr>
+                            <td>P003</td>
+                            <td>Teclado mecánico</td>
+                            <td>Accesorios</td>
+                            <td>1,299</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="ejercicio-busqueda">
+                        <p>1. Encuentra el precio del producto con ID "P002":</p>
+                        <input type="text" id="busq1" class="respuesta-texto" placeholder="Fórmula">
+                        
+                        <p>2. Encuentra la categoría del producto "Teclado mecánico":</p>
+                        <input type="text" id="busq2" class="respuesta-texto">
+                        
+                        <p>3. Usa BUSCARX para encontrar el ID del producto que cuesta 499:</p>
+                        <input type="text" id="busq3" class="respuesta-texto">
+                        
+                        <button onclick="verificarBusquedaAvanzada()" class="btn-verificar">Verificar Búsquedas</button>
+                        <div id="resultado-busqueda" class="resultado"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>11.6 Evaluación del Tema</h3>
+            <p>Responde las siguientes preguntas para evaluar tu comprensión de las funciones avanzadas de texto en Excel.</p>
+            
+            <div class="evaluacion">
+                <h4>Preguntas de opción múltiple</h4>
+                
+                <div class="pregunta">1. ¿Cuál de las siguientes funciones elimina espacios adicionales entre palabras pero deja un solo espacio entre ellas?</div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1a" value="a">
+                    <label for="p1a">a) LIMPIAR()</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1b" value="b">
+                    <label for="p1b">b) ESPACIOS()</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1c" value="c">
+                    <label for="p1c">c) RECORTAR()</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p1" id="p1d" value="d">
+                    <label for="p1d">d) LIMPIAR.ESPACIOS()</label>
+                </div>
+                
+                <div class="pregunta">2. ¿Qué fórmula usarías para extraer el dominio de un correo electrónico (lo que va después del @)?</div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2a" value="a">
+                    <label for="p2a">a) =DERECHA(A1, ENCONTRAR("@",A1))</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2b" value="b">
+                    <label for="p2b">b) =DERECHA(A1, LARGO(A1)-ENCONTRAR("@",A1))</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2c" value="c">
+                    <label for="p2c">c) =EXTRAE(A1, ENCONTRAR("@",A1), LARGO(A1))</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p2" id="p2d" value="d">
+                    <label for="p2d">d) Tanto b como c son correctas</label>
+                </div>
+                
+                <div class="pregunta">3. ¿Cuál es la diferencia principal entre BUSCARV() y BUSCARX()?</div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3a" value="a">
+                    <label for="p3a">a) BUSCARX puede buscar en cualquier dirección, no solo de izquierda a derecha</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3b" value="b">
+                    <label for="p3b">b) BUSCARV es más rápida que BUSCARX</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3c" value="c">
+                    <label for="p3c">c) BUSCARX solo funciona en versiones antiguas de Excel</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" name="p3" id="p3d" value="d">
+                    <label for="p3d">d) No hay diferencia, son lo mismo</label>
+                </div>
+                
+                <button onclick="evaluarTema11()" class="btn-evaluar">Enviar Evaluación</button>
+                <div id="resultado-evaluacion" class="resultado-evaluacion"></div>
+            </div>
+            
+            <div class="resumen">
+                <h3>Resumen del Tema</h3>
+                <p>En este tema has aprendido a utilizar funciones avanzadas de texto en Excel para manipular, limpiar y analizar datos de manera eficiente. Estas habilidades son esenciales para trabajar con grandes conjuntos de datos y automatizar tareas repetitivas de procesamiento de texto.</p>
+                
+                <h4>Puntos clave:</h4>
+                <ul>
+                    <li>Las funciones básicas como IZQUIERDA, DERECHA y EXTRAE te permiten manipular cadenas de texto.</li>
+                    <li>Las funciones de búsqueda como ENCONTRAR y HALLAR son útiles para localizar texto dentro de cadenas.</li>
+                    <li>Las funciones de limpieza como ESPACIOS y LIMPIAR ayudan a estandarizar datos.</li>
+                    <li>Las funciones de concatenación como CONCATENAR y TEXTO.CONCATENAR permiten combinar texto de manera flexible.</li>
+                    <li>Las funciones avanzadas de búsqueda como BUSCARX ofrecen mayor potencia y flexibilidad.</li>
+                </ul>
+                
+                <div class="consejo">
+                    <h4>Consejo Práctico:</h4>
+                    <p>Cuando trabajes con datos de texto, es útil crear columnas auxiliares para realizar transformaciones paso a paso. Esto hace que tus fórmulas sean más fáciles de entender y depurar. Una vez que todo funcione correctamente, puedes combinar las fórmulas en una sola si es necesario.</p>
+                </div>
+            </div>
+            
+            <div class="navegacion-temas">
+                <a href="#tema10-parte2" class="btn btn-anterior">Anterior: Tema 10 (Parte 2)</a>
+                <a href="#tema11" class="btn btn-siguiente">Volver al Inicio del Tema</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Función para verificar el ejercicio básico
+        function verificarEjercicioBasico() {
+            const respuestas = {
+                'ej1': 'Excel Avanzado',
+                'ej2': 'funciones de texto',
+                'ej3': 'informe',
+                'ej4': 'pdf'
+            };
+            
+            let aciertos = 0;
+            const total = Object.keys(respuestas).length;
+            let resultado = '';
+            
+            for (const [id, valor] of Object.entries(respuestas)) {
+                const elemento = document.getElementById(id);
+                if (elemento && elemento.value.trim().toLowerCase() === valor.toLowerCase()) {
+                    aciertos++;
+                    elemento.classList.add('correcto');
+                    elemento.classList.remove('incorrecto');
+                } else {
+                    elemento.classList.add('incorrecto');
+                    elemento.classList.remove('correcto');
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / total) * 100);
+            const mensaje = `Has acertado ${aciertos} de ${total} (${porcentaje}%)`;
+            
+            const resultadoDiv = document.getElementById('resultado-basico');
+            resultadoDiv.textContent = mensaje;
+            resultadoDiv.className = 'resultado ' + (porcentaje >= 75 ? 'correcto' : 'incorrecto');
+        }
+        
+        // Función para verificar la extracción de códigos
+        function verificarExtraccion() {
+            const respuestas = {
+                'pais1': '=IZQUIERDA(A2,3)',
+                'codigo1': '=EXTRAE(A2,5,5)',
+                'anio1': '=DERECHA(A2,4)',
+                'pais2': '=IZQUIERDA(A3,3)',
+                'codigo2': '=EXTRAE(A3,5,5)',
+                'anio2': '=DERECHA(A3,4)'
+            };
+            
+            let aciertos = 0;
+            const total = Object.keys(respuestas).length;
+            let resultado = '';
+            
+            for (const [id, formulaCorrecta] of Object.entries(respuestas)) {
+                const elemento = document.getElementById(id);
+                const formulaUsuario = elemento.value.trim().toUpperCase().replace(/\s+/g, '');
+                const formulaEsperada = formulaCorrecta.toUpperCase().replace(/\s+/g, '');
+                
+                if (formulaUsuario === formulaEsperada) {
+                    aciertos++;
+                    elemento.classList.add('correcto');
+                    elemento.classList.remove('incorrecto');
+                } else {
+                    elemento.classList.add('incorrecto');
+                    elemento.classList.remove('correcto');
+                    resultado += `Para ${id}, la fórmula correcta es: ${formulaCorrecta}<br>`;
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / total) * 100);
+            resultado = `Has acertado ${aciertos} de ${total} (${porcentaje}%)<br><br>${resultado}`;
+            
+            const resultadoDiv = document.getElementById('resultado-extraccion');
+            resultadoDiv.innerHTML = resultado;
+            resultadoDiv.className = 'resultado ' + (porcentaje >= 75 ? 'correcto' : 'incorrecto');
+        }
+        
+        // Funciones para el Tema 11: Funciones Avanzadas de Texto
+        
+        // Función para verificar respuestas de limpieza de datos
+        function verificarLimpieza() {
+            const respuestas = {
+                limp1: '=ESPACIOS("   Juan   Pérez   ")',
+                limp2: '=VALOR(SUSTITUIR("Nº 123","Nº ",""))',
+                limp3: '=LIMPIA(CHAR(10)&"Correo: "&"usuario@ejemplo.com")'
+            };
+            
+            let aciertos = 0;
+            const totalPreguntas = Object.keys(respuestas).length;
+            const resultadoDiv = document.getElementById('resultado-limpieza');
+            
+            for (const [id, respuestaCorrecta] of Object.entries(respuestas)) {
+                const input = document.getElementById(id);
+                const respuestaUsuario = input.value.trim();
+                
+                if (respuestaUsuario.toLowerCase() === respuestaCorrecta.toLowerCase()) {
+                    input.style.borderColor = 'green';
+                    aciertos++;
+                } else {
+                    input.style.borderColor = 'red';
+                    // Mostrar pista después de un tiempo
+                    setTimeout(() => {
+                        input.placeholder = respuestaCorrecta;
+                    }, 1000);
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / totalPreguntas) * 100);
+            resultadoDiv.innerHTML = `
+                <div class="resultado-final">
+                    <p>Has acertado ${aciertos} de ${totalPreguntas} (${porcentaje}%)</p>
+                    ${porcentaje === 100 ? 
+                        '<p class="correcto">¡Excelente trabajo! Has dominado las funciones de limpieza.</p>' :
+                        '<p class="ayuda">Revisa las respuestas incorrectas e inténtalo de nuevo.</p>'
+                    }
+                </div>
+            `;
+            
+            resultadoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Función para verificar direcciones concatenadas
+        function verificarDirecciones() {
+            const respuestas = [
+                '=A2&" "&B2&", "&C2&", "&D2&", "&E2',
+                '=CONCATENAR(A3," ",B3,", ",C3,", ",D3,", ",E3)'
+            ];
+            
+            let aciertos = 0;
+            const totalPreguntas = respuestas.length;
+            const resultadoDiv = document.getElementById('resultado-direcciones');
+            
+            for (let i = 0; i < respuestas.length; i++) {
+                const input = document.getElementById(`dir${i+1}`);
+                const respuestaUsuario = input.value.trim().toLowerCase();
+                const respuestaCorrecta = respuestas[i].toLowerCase();
+                
+                // Verificar si la respuesta es correcta (puede tener variaciones)
+                const esCorrecta = 
+                    respuestaUsuario === respuestaCorrecta ||
+                    respuestaUsuario === '="reforma"&" "&123&", centro, 06000, cdmx"' ||
+                    respuestaUsuario === '=concatenar("reforma"," ",123,", centro, 06000, cdmx")';
+                
+                if (esCorrecta) {
+                    input.style.borderColor = 'green';
+                    aciertos++;
+                } else {
+                    input.style.borderColor = 'red';
+                    // Mostrar pista después de un tiempo
+                    setTimeout(() => {
+                        input.placeholder = respuestas[i];
+                    }, 1000);
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / totalPreguntas) * 100);
+            resultadoDiv.innerHTML = `
+                <div class="resultado-final">
+                    <p>Has completado ${aciertos} de ${totalPreguntas} direcciones correctamente (${porcentaje}%)</p>
+                    ${porcentaje === 100 ? 
+                        '<p class="correcto">¡Perfecto! Sabes concatenar textos como un experto.</p>' :
+                        '<p class="ayuda">Revisa los ejemplos y verifica las fórmulas.</p>'
+                    }
+                </div>
+            `;
+            
+            resultadoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Función para verificar búsquedas avanzadas
+        function verificarBusquedaAvanzada() {
+            const respuestas = {
+                busq1: '=BUSCARV("P002",A2:D4,4,FALSO)',
+                busq2: '=BUSCARV("Teclado mecánico",B2:D4,2,FALSO)',
+                busq3: '=BUSCARX(499,D2:D4,A2:A4)'
+            };
+            
+            let aciertos = 0;
+            const totalPreguntas = Object.keys(respuestas).length;
+            const resultadoDiv = document.getElementById('resultado-busqueda');
+            
+            for (const [id, respuestaCorrecta] of Object.entries(respuestas)) {
+                const input = document.getElementById(id);
+                const respuestaUsuario = input.value.trim().toLowerCase();
+                
+                // Verificar si la respuesta es correcta (puede tener variaciones)
+                const esCorrecta = 
+                    respuestaUsuario === respuestaCorrecta.toLowerCase() ||
+                    (id === 'busq1' && (respuestaUsuario.includes('buscar') && respuestaUsuario.includes('p002'))) ||
+                    (id === 'busq2' && (respuestaUsuario.includes('buscar') && respuestaUsuario.includes('teclado'))) ||
+                    (id === 'busq3' && (respuestaUsuario.includes('buscarx') && respuestaUsuario.includes('499')));
+                
+                if (esCorrecta) {
+                    input.style.borderColor = 'green';
+                    aciertos++;
+                } else {
+                    input.style.borderColor = 'red';
+                    // Mostrar pista después de un tiempo
+                    setTimeout(() => {
+                        input.placeholder = respuestaCorrecta;
+                    }, 1000);
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / totalPreguntas) * 100);
+            resultadoDiv.innerHTML = `
+                <div class="resultado-final">
+                    <p>Has acertado ${aciertos} de ${totalPreguntas} búsquedas (${porcentaje}%)</p>
+                    ${porcentaje === 100 ? 
+                        '<p class="correcto">¡Impresionante! Dominas las búsquedas avanzadas en Excel.</p>' :
+                        '<p class="ayuda">Revisa las fórmulas y los parámetros de las funciones de búsqueda.</p>'
+                    }
+                </div>
+            `;
+            
+            resultadoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Función para evaluar el cuestionario del tema
+        function evaluarTema11() {
+            const respuestas = {
+                p1: 'c',  // RECORTAR()
+                p2: 'd',  // Tanto b como c son correctas
+                p3: 'a'   // BUSCARX puede buscar en cualquier dirección
+            };
+            
+            let aciertos = 0;
+            const totalPreguntas = Object.keys(respuestas).length;
+            const resultadoDiv = document.getElementById('resultado-evaluacion');
+            
+            // Verificar cada pregunta
+            for (const [pregunta, respuestaCorrecta] of Object.entries(respuestas)) {
+                const respuestaSeleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
+                
+                if (respuestaSeleccionada && respuestaSeleccionada.value === respuestaCorrecta) {
+                    aciertos++;
+                    // Marcar como correcta
+                    respuestaSeleccionada.parentElement.style.color = 'green';
+                    respuestaSeleccionada.parentElement.style.fontWeight = 'bold';
+                } else if (respuestaSeleccionada) {
+                    // Marcar como incorrecta
+                    respuestaSeleccionada.parentElement.style.color = 'red';
+                    // Resaltar la correcta
+                    document.querySelector(`#${pregunta}${respuestaCorrecta}`).parentElement.style.color = 'green';
+                    document.querySelector(`#${pregunta}${respuestaCorrecta}`).parentElement.style.fontWeight = 'bold';
+                }
+            }
+            
+            const porcentaje = Math.round((aciertos / totalPreguntas) * 100);
+            let mensaje = '';
+            
+            if (porcentaje >= 90) {
+                mensaje = '¡Excelente trabajo! Has dominado las funciones avanzadas de texto en Excel.';
+            } else if (porcentaje >= 70) {
+                mensaje = 'Buen trabajo, pero hay algunos conceptos que podrías repasar.';
+            } else {
+                mensaje = 'Te recomendamos repasar el material y volver a intentarlo.';
+            }
+            
+            resultadoDiv.innerHTML = `
+                <div class="resultado-final">
+                    <h4>Resultado de la evaluación: ${porcentaje}%</h4>
+                    <p>Has respondido correctamente ${aciertos} de ${totalPreguntas} preguntas.</p>
+                    <p>${mensaje}</p>
+                    ${porcentaje < 90 ? 
+                        '<button onclick="window.scrollTo({top: 0, behavior: \'smooth\'})" class="btn-repasar">Repasar Tema</button>' : 
+                        '<button onclick="window.scrollTo({top: 0, behavior: \'smooth\'})" class="btn-siguiente-tema">Siguiente Tema</button>'
+                    }
+                </div>
+            `;
+            
+            resultadoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    
+    <!-- Tema 12: Análisis de hipótesis -->
+    
+
+    <div class="navegacion-temas">
+        <a href="tema10.html" class="btn btn-anterior">Anterior: Tema 10</a>
+        <a href="tema12.html" class="btn btn-siguiente">Siguiente: Tema 12</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 3 - Hacking Ético Forense">
+    <title>Sesión 3: Adquisición y Hashing | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge">Estado: Especialista DFIR Nivel 3</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 03: La Huella Digital Inmutable</h2>
+            <p><strong>Situación:</strong> Has aislado la red y creado un clon en frío. Pero, ¿cómo le demuestras a un juez que el archivo <em>clonado</em> es exactamente igual al original y que no plantaste evidencia?</p>
+            <p>Necesitas extraer la evidencia calculando simultáneamente su huella digital criptográfica (Hash). Si un solo bit de los miles de millones copiados difiere, el Hash será completamente distinto (Efecto Avalancha) y la evidencia será invalidada. Es hora de blindar tu trabajo.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Criptografía y `dc3dd`</h2>
+            <p>Abre tu máquina virtual con Kali Linux. Ejecuta esta escalada de comandos y registra la firma digital de la evidencia.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Adquirir Evidencia Digital usando `dc3dd`</h3>
+                    <p>La herramienta <code>dc3dd</code> es una versión forense de <code>dd</code>. Permite extraer datos y calcular hashes al vuelo, guardando un registro exacto (log).</p>
+                    <div class="terminal">
+                        <code># Reemplaza /dev/sdX por tu unidad USB<br>
+                        sudo dc3dd if=/dev/sdX of=~/DFIR/Casos/Caso_001/Evidencia/imagen_forense.dd hash=md5 hash=sha256 log=~/DFIR/Casos/Caso_001/Evidencia/adquisicion.log</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Ejecución</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Generación Manual de Hashes (MD5 y SHA256)</h3>
+                    <p>Por principio de redundancia, siempre validamos la integridad de la imagen recién creada con herramientas independientes del sistema.</p>
+                    <div class="terminal">
+                        <code># Calcular Hash MD5<br>
+                        md5sum ~/DFIR/Casos/Caso_001/Evidencia/imagen_forense.dd<br><br>
+                        # Calcular Hash SHA256 (Más robusto contra colisiones)<br>
+                        sha256sum ~/DFIR/Casos/Caso_001/Evidencia/imagen_forense.dd</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Ejecución</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Documentar en la Cadena de Custodia</h3>
+                    <p>La evidencia no existe legalmente si no está documentada. Anexa de forma automática los hashes calculados a tu archivo de Cadena de Custodia.</p>
+                    <div class="terminal">
+                        <code># Inyectar el registro de tiempo y los hashes en el documento maestro<br>
+                        echo "[$(date)] - Adquisición completada." >> ~/DFIR/Casos/Caso_001/cadena_custodia.txt<br>
+                        sha256sum ~/DFIR/Casos/Caso_001/Evidencia/imagen_forense.dd >> ~/DFIR/Casos/Caso_001/cadena_custodia.txt<br>
+                        cat ~/DFIR/Casos/Caso_001/cadena_custodia.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Ejecución</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Integridad Verificada!</h3>
+                <p>Tu evidencia ahora es criptográficamente irrefutable. Tienes la base legal y técnica para presentar estos datos en cualquier tribunal del mundo sin riesgo de invalidación.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 3. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

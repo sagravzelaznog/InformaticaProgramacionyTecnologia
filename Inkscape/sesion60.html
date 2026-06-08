@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S60: Retoque Artístico y Filtros Avanzados (Mapas de Desplazamiento)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #8B4513; }
+        .paso { background-color: #fff8e1; border-left: 5px solid #8B4513; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 60: Retoque Artístico y Filtros Avanzados (Mapas de Desplazamiento)</h1>
+
+    <section>
+        <h2>1. Introducción a los Mapas de Desplazamiento (Displacement Maps)</h2>
+        
+        <p>El **Mapa de Desplazamiento** es un efecto avanzado que utiliza los valores de brillo y contraste de una imagen o vector (el "mapa") para distorsionar otro objeto, simulando texturas o efectos 3D.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear el Mapa</strong>
+            <p>El mapa debe ser una forma vectorial con un **Degradado Lineal** o **Radial** que vaya de blanco a negro (o tonos de gris). El blanco desplaza en una dirección, el negro en la opuesta, y el gris neutraliza.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Conversión a Mapa de Bits</strong>
+            <p>Selecciona la forma del mapa. Ve a <code>Filtros > Mapa de Bits > Rasterizar la Selección</code>. Esto convierte tu vector en un mapa de bits temporal (Blur: 0).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Aplicación del Filtro Desplazamiento</h2>
+        <p>Ahora aplicaremos el filtro que utilizará este mapa de bits para la distorsión.</p>
+        <div class="paso">
+            <strong>Paso 1: Crear la Distorsión</strong>
+            <p>Selecciona el objeto que quieres distorsionar (ej. un texto o un logo). Ve a <code>Filtros > Distorsionar > Desplazamiento de Mapa</code>.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Ajuste de Parámetros</strong>
+            <p>En la ventana de diálogo, ajusta la **Escala X** y la **Escala Y** (determinan la fuerza del desplazamiento). En el campo de la URL del mapa, debes seleccionar tu objeto rasterizado (si lo hiciste justo antes, Inkscape lo identificará).</p>
+        </div>
+        <div class="paso">
+            <strong>Resultado</strong>
+            <p>Tu objeto se distorsionará, dando la ilusión de estar sumergido en agua, arrugado o grabado en relieve, según el patrón de blanco/negro que creaste en el mapa.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Filtros Preestablecidos para Estilo Artístico</h2>
+        <p>Inkscape tiene muchos filtros listos para usar que pueden darle un toque artístico a tu ilustración.</p>
+        <div class="paso">
+            <strong>Efecto Neón</strong>
+            <p>Aplica un trazo al objeto. Ve a <code>Filtros > Destellos > Neón</code>. Ajusta el color del resplandor y la intensidad del desenfoque para simular un letrero de neón.</p>
+        </div>
+        <div class="paso">
+            <strong>Simulación de Tejido</strong>
+            <p>Aplica rellenos a tus objetos y luego ve a <code>Filtros > Texturas > Tejido</code> o **Lienzo**. Esto es útil para dar una sensación de papel o tela a los elementos de tu infografía o ilustración.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Texto con Relieve Húmedo</h3>
+        <p><strong>Objetivo:</strong> Usar Mapas de Desplazamiento para textura.</p>
+        <ol>
+            <li>Escribe un texto o dibuja una forma simple.</li>
+            <li>Crea un rectángulo grande y aplícale un **Degradado Lineal** de blanco a negro con ondas irregulares (modifica los nodos de la línea de degradado con **F2**).</li>
+            <li>**Rasteriza** el rectángulo.</li>
+            <li>Aplica el filtro **Desplazamiento de Mapa** al texto, usando el objeto rasterizado como mapa. Experimenta con las escalas.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion59.html">Anterior</a>
+    <a href="sesion61.html">Siguiente</a>
+</nav>
+</body>
+</html>

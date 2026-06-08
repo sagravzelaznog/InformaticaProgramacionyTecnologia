@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 04: Diseño Avanzado</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 04</h1>
+            <h2>Diseño Avanzado e Infografías</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Poder de la Jerarquía Visual</h3>
+            <p><strong>Objetivo:</strong> Aprender a controlar el ojo del espectador. "El diseño no es solo cómo se ve, es cómo funciona".</p>
+            
+            <div class="interactive-box">
+                <h4>👁️ Test de Escaneo Visual</h4>
+                <p>Mira el siguiente bloque. ¿En qué orden leíste los textos?</p>
+                
+                <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border: 1px solid #ddd; text-align: left;">
+                    <h1 style="color: var(--primary-dark); font-size: 2.5rem; margin: 0; line-height: 1.1;">1. LEÍSTE ESTO PRIMERO</h1>
+                    <p style="color: var(--accent); font-weight: bold; font-size: 1.2rem; margin: 10px 0 0 0;">3. Luego miraste aquí por el color.</p>
+                    <p style="color: #666; font-size: 0.9rem; margin: 5px 0;">2. Probablemente leíste esto segundo por la posición.</p>
+                    <p style="font-size: 0.7rem; color: #999; margin-top: 15px;">4. Y terminaste leyendo esto último porque es pequeño.</p>
+                </div>
+                
+                <p class="highlight-text">"La <strong>Jerarquía Visual</strong> nos permite destacar lo urgente (Seguridad) sobre lo secundario."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Anatomía de una Infografía</h3>
+
+            <div class="focus-box" style="margin-bottom: 20px;">
+                <h4>📊 ¿Qué es una Infografía?</h4>
+                <p>Es la representación visual de información compleja. Transforma datos aburridos en historias visuales.</p>
+                <div class="equation-visual">
+                    <span>Datos (Data)</span> + <span>Diseño (Visual)</span> + <span>Historia (Story)</span> = <strong>INFOGRAFÍA</strong>
+                </div>
+            </div>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🔒 El Tema: Seguridad Digital</h4>
+                    <p>Hoy diseñaremos sobre esto. Datos clave a incluir:</p>
+                    <ul>
+                        <li><strong>Phishing:</strong> El 90% de los ciberataques empiezan con un email.</li>
+                        <li><strong>Contraseñas:</strong> "123456" sigue siendo la más usada.</li>
+                        <li><strong>Consejo:</strong> Usa frases largas (Passphrases) en lugar de palabras.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🎨 La Técnica: Estructura</h4>
+                    <p>Cómo organizar la infografía en Canva:</p>
+                    <ul>
+                        <li><strong>Encabezado:</strong> Grande, impactante ("¿Estás Hackeado?").</li>
+                        <li><strong>Cuerpo:</strong> Iconos grandes + Texto breve. Gráficos simples.</li>
+                        <li><strong>Pie:</strong> Fuentes y Créditos (Tu nombre).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="background: #fff5f5; border-color: var(--accent);">
+                <h4>💡 Tip Genio para Canva</h4>
+                <p>Usa la regla del <strong>60-30-10</strong> para colores:</p>
+                <p><strong>60%</strong> Color Neutro (Fondo) | <strong>30%</strong> Color de Marca (Gráficos) | <strong>10%</strong> Color de Acento (Botones/Alertas)</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Coevaluación (Feedback)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>La Regla del "Sandwich"</h5>
+                    <p>¿Cómo criticar el diseño de un compañero sin herir sentimientos?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Técnica</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Pan (Positivo):</strong> "Me encanta tu elección de colores..."</p>
+                        <p><strong>Carne (Mejora):</strong> "...pero la letra del título es difícil de leer..."</p>
+                        <p><strong>Pan (Positivo):</strong> "...aunque los iconos quedaron perfectos."</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Checklist de Calidad</h5>
+                    <p>Antes de exportar tu PDF, revisa:</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Lista</button>
+                    <div id="ans2" class="answer hidden">
+                        <ul style="list-style: none; padding-left: 0; margin-top: 5px;">
+                            <li>✅ ¿Se lee bien el texto pequeño?</li>
+                            <li>✅ ¿Están alineados los elementos?</li>
+                            <li>✅ ¿Tiene mi nombre y grupo?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🚀 <strong>Misión del Día:</strong> Crea una infografía vertical (1080x1920px) en Canva con <strong>5 Tips de Ciberseguridad</strong> para compartir en Stories de Instagram.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 04 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

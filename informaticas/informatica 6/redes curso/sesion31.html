@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S8 E31: Práctica Integral LAN (Diseño y Diagnóstico)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 8, Sesión 31: Práctica Integral LAN ⚙️</h1>
+        <p class="subtitle">Diseño, Implementación y Diagnóstico de una Red de Oficina SOHO</p>
+    </header>
+
+        <section class="topic-section">
+            <h2>1. Escenario de la Práctica: Oficina de 5 Empleados</h2>
+            <p>Se te pide configurar una red para una pequeña oficina que requiere:</p>
+            
+            <div class="card-grid">
+                <div class="card card-style-light-blue">
+                    <h3>Requisitos de Hardware</h3>
+                    <ul>
+                        <li>1 Router (Gateway 192.168.10.1).</li>
+                        <li>1 Switch de 8 Puertos.</li>
+                        <li>5 PCs de Empleados (clientes).</li>
+                        <li>1 Servidor (Web/Archivos).</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Requisitos de Configuración</h3>
+                    <ul>
+                        <li>Usar la red **192.168.10.0 /24**.</li>
+                        <li>El Servidor debe tener IP Estática: **192.168.10.2**.</li>
+                        <li>Los PCs deben obtener IP Dinámica (DHCP) a partir de **192.168.10.100**.</li>
+                        <li>Configurar las contraseñas del Router.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Pasos de Implementación en Packet Tracer</h2>
+            <p>Esta práctica integra los conocimientos de configuración de IP estática/dinámica, cableado y DHCP:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Implementación</h3>
+                    <ol>
+                        <li>Diseña la topología de **Estrella** (Routers y PCs al Switch).</li>
+                        <li>Configura la IP Estática **192.168.10.1** en el Router (interfaz LAN).</li>
+                        <li>Configura la IP Estática **192.168.10.2** en el Servidor (¡No DHCP!).</li>
+                        <li>Habilita el servicio **DHCP** en el Router con el Pool solicitado.</li>
+                        <li>Configura los 5 PCs como **DHCP** y verifica que reciban IPs correctas.</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Diagnóstico Final</h3>
+                    <p>Una vez implementada, realiza el diagnóstico:</p>
+                    <ul>
+                        <li>Desde un PC, haz **ping** al Servidor (192.168.10.2).</li>
+                        <li>Desde el Servidor, haz **ping** a un PC con DHCP.</li>
+                        <li>Desde cualquier PC, haz **ping** a 8.8.8.8 (simulando conectividad WAN).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Documentación del Escenario</h2>
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <p>Crea una tabla con la configuración lógica final del escenario (IP, Máscara, Gateway, Tipo de Asignación) para cada uno de los 7 dispositivos. Esto es la documentación esencial que entregarías al cliente.</p>
+            <button id="lanProjectCheckBtn">Terminar Proyecto LAN</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S8 E31</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion30.html" class="nav-button">Anterior</a>
+        <a href="sesion32.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

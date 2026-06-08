@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 E5: Modelo OSI de 7 Capas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 2, Sesión 5: El Modelo OSI 🧠</h1>
+        <p class="subtitle">Arquitectura de Red: El Estándar de 7 Capas</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>¿Qué es el Modelo OSI?</h2>
+            <p>El **Modelo de Interconexión de Sistemas Abiertos (OSI)** es un marco de referencia conceptual creado por la ISO. Su propósito es estandarizar cómo los diferentes sistemas de hardware y software se comunican, dividiendo el complejo proceso de comunicación de red en siete capas distintas.</p>
+            <p class="highlight">La principal ventaja es que permite a los fabricantes desarrollar productos que funcionen perfectamente juntos (interoperabilidad), sin importar su marca.</p>
+        </section>
+
+        <section class="topic-section">
+            <h2>Las 7 Capas OSI (De Arriba Abajo) 🔽</h2>
+            <p>El modelo se puede dividir en dos grupos: las Capas Superiores (Software, cercanas al usuario) y las Capas Inferiores (Hardware, cercanas al medio físico).</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Capas de Aplicación (7, 6, 5)</h3>
+                    <p>Manejan los datos y la interacción del usuario.</p>
+                    <ul>
+                        <li><strong>7. Aplicación:</strong> Interfaz con el usuario (navegadores, correo).</li>
+                        <li><strong>6. Presentación:</strong> Formato de datos, cifrado y compresión.</li>
+                        <li><strong>5. Sesión:</strong> Mantiene la conexión activa (diálogo) entre aplicaciones.</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Capa de Transporte (4)</h3>
+                    <p>Gestiona la conexión de extremo a extremo y la confiabilidad.</p>
+                    <ul>
+                        <li><strong>4. Transporte:</strong> Segmentación de datos y control de flujo. Protocolos clave: <strong>TCP</strong> y **UDP**.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Capas de Red y Enlace (3, 2)</h3>
+                    <p>Se ocupan del direccionamiento lógico y físico.</p>
+                    <ul>
+                        <li><strong>3. Red:</strong> Determina la mejor ruta para los paquetes usando **Direcciones IP**. Dispositivo clave: **Router**.</li>
+                        <li><strong>2. Enlace de Datos:</strong> Gestiona el acceso al medio y el direccionamiento físico usando **Direcciones MAC**. Dispositivo clave: **Switch**.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Capa Física (1)</h3>
+                    <p>Maneja la transmisión binaria de datos.</p>
+                    <ul>
+                        <li><strong>1. Física:</strong> Transmite bits (0s y 1s) a través del medio físico (cables o radiofrecuencia). Se ocupa de voltajes y tiempos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-container">
+                
+                <figcaption>Cada capa cumple una función específica, pasando los datos a la capa inferior para su envío.</figcaption>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>La PDU: El Nombre del Dato en Cada Capa</h2>
+            <p>A medida que el dato viaja de una capa a otra, se encapsula y cambia de nombre. Estos nombres se conocen como **Unidades de Datos de Protocolo (PDU):**</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Capas 7, 6, 5 (Aplicación, Presentación, Sesión)</h3>
+                    <p>El dato se llama: **Dato (Data)**.</p>
+                </div>
+                <div>
+                    <h3>Capa 4 (Transporte)</h3>
+                    <p>El dato se llama: **Segmento** (con TCP) o **Datagrama** (con UDP).</p>
+                </div>
+                <div>
+                    <h3>Capa 3 (Red)</h3>
+                    <p>El dato se llama: **Paquete (Packet)**. Aquí se añade la Dirección IP.</p>
+                </div>
+                <div>
+                    <h3>Capa 2 (Enlace de Datos)</h3>
+                    <p>El dato se llama: **Trama (Frame)**. Aquí se añade la Dirección MAC.</p>
+                </div>
+                <div>
+                    <h3>Capa 1 (Física)</h3>
+                    <p>El dato se llama: **Bit** (0s y 1s).</p>
+                </div>
+            </div>
+            
+            <button id="pduQuizBtn">¡PDU Challenge!</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S2 E5</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion04.html" class="nav-button">Anterior</a>
+        <a href="sesion06.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

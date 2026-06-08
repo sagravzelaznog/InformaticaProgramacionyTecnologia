@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Mini-Proyecto 1 - Calculadora Básica</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 8</h1>
+                <h2>Mini-Proyecto: Calculadora Básica</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-25" 
+                     role="progressbar" 
+                     aria-valuenow="25" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">Proyecto en progreso</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#proyecto"><i class="fas fa-project-diagram"></i> Proyecto</a></li>
+                <li><a href="#guia"><i class="fas fa-book-reader"></i> Guía</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo del proyecto -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo del Proyecto</h2>
+            <div class="card">
+                <p>En este mini-proyecto, aplicarás todos los conceptos aprendidos en las primeras 7 sesiones para desarrollar una calculadora interactiva desde cero. Este proyecto te permitirá consolidar tus conocimientos de programación en Python de manera práctica.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al completar este proyecto, habrás:</h4>
+                    <ul>
+                        <li>Implementado entrada/salida de datos con el usuario</li>
+                        <li>Aplicado operadores aritméticos y lógicos</li>
+                        <li>Utilizado estructuras de control condicional</li>
+                        <li>Manejado errores y validado entradas</li>
+                        <li>Creado un programa funcional y útil</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Descripción del proyecto -->
+        <section id="proyecto" class="session-section">
+            <h2><i class="fas fa-project-diagram"></i> Descripción del Proyecto</h2>
+            
+            <div class="project-overview">
+                <div class="project-features">
+                    <h3>📋 Características de la Calculadora</h3>
+                    <ul>
+                        <li>Solicitará al usuario dos números</li>
+                        <li>Mostrará un menú con operaciones disponibles</li>
+                        <li>Realizará la operación seleccionada</li>
+                        <li>Mostrará el resultado formateado</li>
+                        <li>Manejará errores de entrada</li>
+                        <li>Preguntará si se desea realizar otro cálculo</li>
+                    </ul>
+                </div>
+                
+                <div class="project-example">
+                    <h3>📝 Ejemplo de Ejecución</h3>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="title">Calculadora Básica</span>
+                        </div>
+                        <div class="terminal-content">
+                            <p>=== Calculadora Básica ===</p>
+                            <p>Ingrese el primer número: <span class="user-input">10</span></p>
+                            <p>Ingrese el segundo número: <span class="user-input">5</span></p>
+                            <p>Seleccione la operación:</p>
+                            <p>1. Suma</p>
+                            <p>2. Resta</p>
+                            <p>3. Multiplicación</p>
+                            <p>4. División</p>
+                            <p>Opción: <span class="user-input">3</span></p>
+                            <p>El resultado de 10 * 5 = 50.0</p>
+                            <p>¿Desea realizar otro cálculo? (s/n): <span class="user-input">n</span></p>
+                            <p>¡Gracias por usar la calculadora!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guía paso a paso -->
+        <section id="guia" class="session-section">
+            <h2><i class="fas fa-book-reader"></i> Guía de Implementación</h2>
+            
+            <div class="guide-steps">
+                <div class="step">
+                    <h3>Paso 1: Configuración Inicial</h3>
+                    <p>Crea un nuevo archivo llamado <code>calculadora.py</code> y comienza con un mensaje de bienvenida.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">print("=== Calculadora Básica ===")
+print("Bienvenido a la calculadora en Python")
+print("-" * 30)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 2: Obtener Entrada del Usuario</h3>
+                    <p>Solicita dos números al usuario y valida que sean números válidos.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">while True:
+    try:
+        num1 = float(input("\nIngrese el primer número: "))
+        num2 = float(input("Ingrese el segundo número: "))
+        break
+    except ValueError:
+        print("Error: Por favor ingrese números válidos.")
+        continue</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 3: Mostrar Menú de Operaciones</h3>
+                    <p>Muestra un menú con las operaciones disponibles.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">print("\nSeleccione la operación:")
+print("1. Suma (+)")
+print("2. Resta (-)")
+print("3. Multiplicación (*)")
+print("4. División (/)")
+
+while True:
+    try:
+        opcion = int(input("Opción (1-4): "))
+        if 1 <= opcion <= 4:
+            break
+        else:
+            print("Error: Opción inválida. Intente nuevamente.")
+    except ValueError:
+        print("Error: Por favor ingrese un número del 1 al 4.")</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 4: Realizar el Cálculo</h3>
+                    <p>Implementa la lógica para realizar la operación seleccionada.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">resultado = 0
+operacion = ""
+
+if opcion == 1:
+    resultado = num1 + num2
+    operacion = "+"
+elif opcion == 2:
+    resultado = num1 - num2
+    operacion = "-"
+elif opcion == 3:
+    resultado = num1 * num2
+    operacion = "*"
+elif opcion == 4:
+    if num2 != 0:
+        resultado = num1 / num2
+        operacion = "/"
+    else:
+        print("Error: No se puede dividir entre cero.")
+        exit()</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 5: Mostrar el Resultado</h3>
+                    <p>Muestra el resultado formateado de manera clara.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">print(f"\nEl resultado de {num1} {operacion} {num2} = {resultado:.2f}")</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 6: Preguntar por Otro Cálculo</h3>
+                    <p>Pregunta al usuario si desea realizar otro cálculo.</p>
+                    <div class="code-block">
+                        <pre><code class="language-python">continuar = input("\n¿Desea realizar otro cálculo? (s/n): ").lower()
+if continuar != 's':
+    print("\n¡Gracias por usar la calculadora!")
+    break  # Salir del bucle principal si no se desea continuar</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h3>Paso 7: Mejoras Adicionales (Opcional)</h3>
+                    <p>Puedes mejorar tu calculadora con características adicionales:</p>
+                    <ul>
+                        <li>Agregar más operaciones (potencia, raíz cuadrada, porcentaje)</li>
+                        <li>Mantener un historial de operaciones</li>
+                        <li>Permitir operaciones con más de dos números</li>
+                        <li>Agregar una interfaz gráfica con Tkinter</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/inputoutput.html" target="_blank" rel="noopener noreferrer">Documentación oficial - Entrada/Salida</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_operators.asp" target="_blank" rel="noopener noreferrer">W3Schools - Operadores en Python</a></li>
+                        <li><a href="https://realpython.com/python-conditional-statements/" target="_blank" rel="noopener noreferrer">Real Python - Condicionales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" rel="noopener noreferrer">Python para Principiantes - FreeCodeCamp</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=daefaLgNkw0" target="_blank" rel="noopener noreferrer">Proyectos Python para Principiantes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 7 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 3.9 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Evaluación del proyecto -->
+        <section id="evaluacion" class="session-section">
+            <h2><i class="fas fa-clipboard-check"></i> Rúbrica de Evaluación</h2>
+            
+            <div class="rubric">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criterio</th>
+                            <th>Excelente (5)</th>
+                            <th>Bueno (4)</th>
+                            <th>Regular (3)</th>
+                            <th>Necesita Mejora (2)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Funcionalidad</td>
+                            <td>Todas las operaciones funcionan correctamente</td>
+                            <td>La mayoría de las operaciones funcionan</td>
+                            <td>Algunas operaciones funcionan</td>
+                            <td>El programa no funciona correctamente</td>
+                        </tr>
+                        <tr>
+                            <td>Validación de Entrada</td>
+                            <td>Maneja todos los casos de error</td>
+                            <td>Maneja la mayoría de los errores</td>
+                            <td>Maneja algunos errores</td>
+                            <td>No maneja errores</td>
+                        </tr>
+                        <tr>
+                            <td>Interfaz de Usuario</td>
+                            <td>Mensajes claros y fáciles de entender</td>
+                            <td>Mensajes generalmente claros</td>
+                            <td>Algunos mensajes son confusos</td>
+                            <td>Interfaz confusa o difícil de usar</td>
+                        </tr>
+                        <tr>
+                            <td>Estructura del Código</td>
+                            <td>Código bien organizado y comentado</td>
+                            <td>Código organizado con algunos comentarios</td>
+                            <td>Código desorganizado con pocos comentarios</td>
+                            <td>Código desorganizado y sin comentarios</td>
+                        </tr>
+                        <tr>
+                            <td>Características Adicionales</td>
+                            <td>Incluye 3+ características adicionales</td>
+                            <td>Incluye 2 características adicionales</td>
+                            <td>Incluye 1 característica adicional</td>
+                            <td>No incluye características adicionales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s7.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s9.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

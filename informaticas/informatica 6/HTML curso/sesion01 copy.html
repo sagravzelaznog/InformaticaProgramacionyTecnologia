@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenieClass: Sesión 1 - Lenguaje HTML</title>
+    <style>
+        :root {
+            --primary: #00BCD4; /* Turquoise */
+            --secondary: #9C27B0; /* Purple */
+            --background: #FFFFFF;
+            --text: #333333;
+            --light-bg: #F5F5F5;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header .subtitle {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--light-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        section h2 {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .example-card {
+            border: 2px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            background-color: white;
+        }
+        .code-visual {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: var(--secondary);
+        }
+        .chat-container {
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message.ai {
+            background-color: var(--light-bg);
+        }
+        .message.user {
+            background-color: var(--primary);
+            color: white;
+            text-align: right;
+        }
+        #quiz-container button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+        }
+        footer {
+            background-color: var(--text);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            main {
+                padding: 10px;
+            }
+            section {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GenieClass: Sesión 1 - El Génesis</h1>
+        <p class="subtitle">Estructura y Sintaxis Básica de HTML</p>
+    </header>
+    <main>
+        <section id="objective">
+            <h2>Objetivo de la Sesión</h2>
+            <p>Comprender la lógica del DOM y crear tu primer documento HTML funcional.</p>
+        </section>
+        <section id="theory">
+            <h2>Introducción Teórica: ¿Cómo funciona la web?</h2>
+            <p>La web se basa en un modelo <strong>cliente-servidor</strong>:</p>
+            <ul>
+                <li><strong>Cliente</strong> (navegador): Solicita y muestra contenido web</li>
+                <li><strong>Servidor</strong>: Almacena y envía los archivos solicitados</li>
+            </ul>
+            <p>HTML (HyperText Markup Language) es el lenguaje que estructura el contenido web.</p>
+        </section>
+        <section id="visual-examples">
+            <h2>Ejemplos Visuales</h2>
+            <div class="example-card">
+                <h3>Sintaxis Básica</h3>
+                <p>HTML utiliza <strong>etiquetas</strong> para estructurar el contenido:</p>
+                <div class="code-visual">&lt;etiqueta&gt;Contenido&lt;/etiqueta&gt;</div>
+                <p>Las etiquetas pueden tener <strong>atributos</strong> que proporcionan información adicional:</p>
+                <div class="code-visual">&lt;etiqueta atributo="valor"&gt;Contenido&lt;/etiqueta&gt;</div>
+            </div>
+            <div class="example-card">
+                <h3>La Plantilla Maestra</h3>
+                <p>Todo documento HTML debe seguir esta estructura básica:</p>
+                <div class="code-visual">&lt;!DOCTYPE html&gt;<br>&lt;html lang="es"&gt;<br>&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Título de la Página&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Contenido visible de la página --&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</div>
+            </div>
+        </section>
+        <section id="practical-exercise">
+            <h2>Ejercicio Práctico</h2>
+            <p>Crea una página web que incluya:</p>
+            <ul>
+                <li>Un título principal con tu nombre</li>
+                <li>Un párrafo de presentación</li>
+                <li>Una lista de tus tres comidas favoritas</li>
+                <li>Un pie de página con el símbolo de copyright y el año actual</li>
+            </ul>
+            <button id="show-template">Ver Plantilla</button>
+            <div id="template" style="display:none;">
+                <h3>Plantilla de Código</h3>
+                <div class="code-visual">&lt;!DOCTYPE html&gt;<br>&lt;html lang="es"&gt;<br>&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Mi Página&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Tu Nombre&lt;/h1&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Presentación&lt;/p&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Comida 1&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Comida 2&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Comida 3&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;footer&gt;&amp;copy; 2026&lt;/footer&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</div>
+            </div>
+        </section>
+        <section id="evaluation">
+            <h2>Evaluación</h2>
+            <div id="quiz-container"></div>
+        </section>
+        <section id="dola-ai">
+            <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+            <div class="chat-container">
+                <div id="chat-messages">
+                    <div class="message ai">
+                        <p>¡Hola! Soy Dola, tu asistente de aprendizaje. ¿En qué puedo ayudarte hoy sobre HTML?</p>
+                    </div>
+                </div>
+                <div class="chat-input" style="margin-top: 10px;">
+                    <input type="text" id="user-input" placeholder="Escribe tu pregunta..." style="width: 80%; padding: 10px;">
+                    <button id="send-button">Enviar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 01 lenguaje html. Todos los derechos reservados</p>
+    </footer>
+    <script>
+        // Chat functionality
+        const sendButton = document.getElementById('send-button');
+        const userInput = document.getElementById('user-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        sendButton.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage('user', message);
+                userInput.value = '';
+                // Simulate AI response
+                setTimeout(() => {
+                    addMessage('ai', '¡Excelente pregunta! HTML es el lenguaje que estructura el contenido web. ¿Quieres saber más sobre etiquetas?');
+                }, 1000);
+            }
+        });
+
+        function addMessage(type, text) {
+            const div = document.createElement('div');
+            div.className = `message ${type}`;
+            div.innerHTML = `<p>${text}</p>`;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show template
+        document.getElementById('show-template').addEventListener('click', () => {
+            const template = document.getElementById('template');
+            template.style.display = template.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Quiz
+        const questions = [
+            {
+                question: "¿Qué significa HTML?",
+                options: ["HyperText Markup Language", "High Tech Modern Language", "Home Tool Markup Language"],
+                answer: 0
+            },
+            {
+                question: "¿Cuál es la etiqueta para un párrafo en HTML?",
+                options: ["&lt;p&gt;", "&lt;div&gt;", "&lt;span&gt;"],
+                answer: 0
+            },
+            {
+                question: "¿Qué etiqueta se usa para el título principal?",
+                options: ["&lt;h1&gt;", "&lt;title&gt;", "&lt;head&gt;"],
+                answer: 0
+            },
+            {
+                question: "¿Cuál es la estructura básica de un documento HTML?",
+                options: ["DOCTYPE, html, head, body", "html, body, head, title", "body, html, head, DOCTYPE"],
+                answer: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <h3>${q.question}</h3>
+                ${q.options.map((opt, i) => `<button onclick="checkAnswer(${i})">${opt}</button>`).join('')}
+            `;
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            const body = document.body;
+            if (selected === q.answer) {
+                body.style.backgroundColor = '#4CAF50'; // Green
+                setTimeout(() => body.style.backgroundColor = '', 500);
+                alert('¡Correcto! 🎉');
+            } else {
+                body.style.backgroundColor = '#F44336'; // Red
+                setTimeout(() => body.style.backgroundColor = '', 500);
+                alert('Incorrecto 😞');
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').innerHTML = '<h3>¡Quiz completado! Repasa y vuelve a intentarlo.</h3>';
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

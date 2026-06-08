@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 14: Trabajando con Diccionarios - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 14</h1>
+                <h2>Trabajando con Diccionarios</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 2: Estructuras de Datos y Bucles</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-43-75" 
+                     role="progressbar" 
+                     aria-valuenow="43.75" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, profundizarás en el uso avanzado de diccionarios en Python, explorando técnicas y métodos que te permitirán manipular datos de manera más eficiente y efectiva. Aprenderás a trabajar con diccionarios anidados, métodos avanzados y estrategias para resolver problemas complejos.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Utilizar métodos avanzados como <code>.keys()</code>, <code>.values()</code> y <code>.items()</code> para manipular diccionarios</li>
+                        <li>Iterar eficientemente sobre diccionarios utilizando diferentes técnicas</li>
+                        <li>Trabajar con estructuras de datos anidadas que incluyan diccionarios</li>
+                        <li>Aplicar técnicas avanzadas de manipulación de diccionarios en situaciones prácticas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Métodos de diccionario -->
+            <div class="concept-card">
+                <h3>1. Métodos Esenciales de los Diccionarios</h3>
+                <p>Python proporciona varios métodos útiles para trabajar con diccionarios de manera más efectiva.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Crear un diccionario de ejemplo
+estudiante = {
+    "nombre": "Ana García",
+    "edad": 22,
+    "carrera": "Ingeniería",
+    "promedio": 9.2,
+    "materias": ["Cálculo", "Programación", "Física"]
+}
+
+# keys() - devuelve una vista de las claves
+claves = estudiante.keys()
+print("Claves:", list(clves))  # ['nombre', 'edad', 'carrera', 'promedio', 'materias']
+
+# values() - devuelve una vista de los valores
+valores = estudiante.values()
+print("Valores:", list(valores))  # ['Ana García', 22, 'Ingeniería', 9.2, [...]]
+
+# items() - devuelve una vista de pares clave-valor
+pares = estudiante.items()
+print("Pares:", list(pares))  # [('nombre', 'Ana García'), ('edad', 22), ...]
+
+# get() - obtiene el valor de una clave o un valor por defecto
+edad = estudiante.get("edad", "No especificada")  # 22
+email = estudiante.get("email", "No proporcionado")  # "No proporcionado"
+
+# update() - actualiza el diccionario con pares clave-valor de otro diccionario
+estudiante.update({"email": "ana@ejemplo.com", "semestre": 5})
+
+# pop() - elimina y devuelve el valor de la clave especificada
+promedio = estudiante.pop("promedio")  # Elimina 'promedio' y devuelve 9.2
+
+# setdefault() - obtiene el valor de una clave o lo establece si no existe
+ciudad = estudiante.setdefault("ciudad", "Ciudad de México")  # Como 'ciudad' no existe, la crea
+
+# fromkeys() - crea un nuevo diccionario con claves de una secuencia y un valor por defecto
+nuevas_claves = ["matricula", "telefono"]
+nuevo_estudiante = dict.fromkeys(nuevas_claves, None)  # {'matricula': None, 'telefono': None}
+
+# clear() - elimina todos los elementos del diccionario
+estudiante.clear()  # {}</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Vistas de diccionario</h4>
+                    <p>Los métodos <code>keys()</code>, <code>values()</code> e <code>items()</code> devuelven objetos de vista que reflejan los cambios en el diccionario subyacente. Son eficientes en memoria y actualizan automáticamente cuando cambia el diccionario.</p>
+                </div>
+            </div>
+
+            <!-- 2. Iteración sobre diccionarios -->
+            <div class="concept-card">
+                <h3>2. Iteración Eficiente sobre Diccionarios</h3>
+                <p>Python ofrece varias formas de iterar sobre diccionarios, cada una útil en diferentes situaciones.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Diccionario de ejemplo
+inventario = {
+    "manzanas": 30,
+    "plátanos": 45,
+    "naranjas": 25,
+    "peras": 20,
+    "uvas": 15
+}
+
+# 1. Iterar sobre claves (forma implícita)
+for fruta in inventario:
+    print(f"Fruta: {fruta}")
+
+# 2. Iterar sobre claves (forma explícita)
+for fruta in inventario.keys():
+    print(f"Fruta: {fruta}")
+
+# 3. Iterar sobre valores
+for cantidad in inventario.values():
+    print(f"Cantidad: {cantidad}")
+
+# 4. Iterar sobre pares clave-valor
+for fruta, cantidad in inventario.items():
+    print(f"Hay {cantidad} unidades de {fruta}")
+
+# 5. Ordenar claves antes de iterar
+for fruta in sorted(inventario.keys()):
+    print(f"{fruta}: {inventario[fruta]}")
+
+# 6. Ordenar por valor (de menor a mayor)
+for fruta, cantidad in sorted(inventario.items(), key=lambda item: item[1]):
+    print(f"{fruta}: {cantidad}")
+
+# 7. Ordenar por valor (de mayor a menor)
+for fruta, cantidad in sorted(inventario.items(), key=lambda item: item[1], reverse=True):
+    print(f"{fruta}: {cantidad}")
+
+# 8. Usar enumerate() para obtener el índice
+for i, (fruta, cantidad) in enumerate(inventario.items(), 1):
+    print(f"{i}. {fruta}: {cantidad}")
+
+# 9. Filtrar elementos durante la iteración
+for fruta, cantidad in inventario.items():
+    if cantidad > 25:
+        print(f"¡Alerta! Stock alto de {fruta} ({cantidad} unidades)")
+
+# 10. Usar zip() para combinar con otra secuencia
+precios = [15.5, 12.0, 10.8, 18.2, 25.0]
+for (fruta, cantidad), precio in zip(inventario.items(), precios):
+    valor_total = cantidad * precio
+    print(f"{fruta}: {cantidad} x ${precio:.2f} = ${valor_total:.2f}")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Orden en diccionarios</h4>
+                    <p>A partir de Python 3.7, los diccionarios mantienen el orden de inserción. Sin embargo, si necesitas un orden específico al iterar, es buena práctica ordenar explícitamente las claves o valores como se muestra en los ejemplos.</p>
+                </div>
+            </div>
+
+            <!-- 3. Diccionarios anidados -->
+            <div class="concept-card">
+                <h3>3. Trabajando con Diccionarios Anidados</h3>
+                <p>Los diccionarios pueden contener otros diccionarios, lo que permite crear estructuras de datos complejas y jerárquicas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de diccionario anidado
+colegio = {
+    "estudiantes": {
+        "A001": {
+            "nombre": "Ana García",
+            "edad": 15,
+            "grado": 10,
+            "calificaciones": {
+                "Matemáticas": 9.5,
+                "Ciencias": 8.8,
+                "Historia": 9.0
+            }
+        },
+        "A002": {
+            "nombre": "Luis Martínez",
+            "edad": 16,
+            "grado": 11,
+            "calificaciones": {
+                "Matemáticas": 8.5,
+                "Ciencias": 9.2,
+                "Historia": 8.0
+            }
+        }
+    },
+    "profesores": {
+        "P001": {"nombre": "Dra. Pérez", "asignatura": "Matemáticas"},
+        "P002": {"nombre": "Dr. López", "asignatura": "Ciencias"}
+    },
+    "aulas": ["A101", "A102", "B201", "B202"]
+}
+
+# Acceso a elementos anidados
+nombre_estudiante = colegio["estudiantes"]["A001"]["nombre"]  # "Ana García"
+calificacion_mate = colegio["estudiantes"]["A001"]["calificaciones"]["Matemáticas"]  # 9.5
+
+# Añadir un nuevo estudiante
+nuevo_estudiante = {
+    "nombre": "María López",
+    "edad": 14,
+    "grado": 9,
+    "calificaciones": {"Matemáticas": 9.0, "Ciencias": 9.5, "Historia": 8.5}
+}
+colegio["estudiantes"]["A003"] = nuevo_estudiante
+
+# Función para calcular el promedio de un estudiante
+def calcular_promedio(estudiante_id):
+    calificaciones = colegio["estudiantes"][estudiante_id]["calificaciones"].values()
+    return sum(calificaciones) / len(calificaciones)
+
+# Actualizar información
+colegio["estudiantes"]["A001"]["edad"] = 16
+colegio["estudiantes"]["A001"]["calificaciones"]["Matemáticas"] = 9.8
+
+# Eliminar información
+del colegio["estudiantes"]["A002"]["calificaciones"]["Historia"]
+
+# Iterar sobre estudiantes y sus calificaciones
+for estudiante_id, info in colegio["estudiantes"].items():
+    print(f"\nEstudiante: {info['nombre']}")
+    print("Calificaciones:")
+    for asignatura, calificacion in info["calificaciones"].items():
+        print(f"  - {asignatura}: {calificacion}")
+    print(f"Promedio: {calcular_promedio(estudiante_id):.2f}")
+
+# Diccionarios anidados con listas
+cursos = {
+    "Matemáticas": {
+        "profesor": "Dr. Pérez",
+        "estudiantes": ["A001", "A003"],
+        "horario": "Lunes y Miércoles 10:00-11:30"
+    },
+    "Ciencias": {
+        "profesor": "Dr. López",
+        "estudiantes": ["A001", "A002", "A003"],
+        "horario": "Martes y Jueves 14:00-15:30"
+    }
+}
+
+# Añadir un estudiante a un curso
+def inscribir_estudiante(curso, estudiante_id):
+    if estudiante_id not in cursos[curso]["estudiantes"]:
+        cursos[curso]["estudiantes"].append(estudiante_id)
+        return True
+    return False
+
+inscribir_estudiante("Matemáticas", "A002")  # Añade al estudiante A002 a Matemáticas</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Cuidado con las copias de diccionarios anidados</h4>
+                    <p>Al copiar diccionarios anidados con <code>copy()</code> o <code>dict()</code>, solo se crea una copia superficial. Para una copia profunda que incluya todos los objetos anidados, usa el módulo <code>copy</code> con <code>copy.deepcopy()</code>.</p>
+                </div>
+            </div>
+
+            <!-- 4. Técnicas avanzadas -->
+            <div class="concept-card">
+                <h3>4. Técnicas Avanzadas de Manipulación</h3>
+                <p>Exploraremos técnicas avanzadas para trabajar con diccionarios en Python.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># 1. Comprensión de diccionarios
+cuadrados = {x: x**2 for x in range(1, 6)}  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+# 2. Filtrar un diccionario
+precios = {"manzana": 15.5, "banana": 12.0, "naranja": 10.8, "pera": 18.2}
+caros = {k: v for k, v in precios.items() if v > 15}  # {'manzana': 15.5, 'pera': 18.2}
+
+# 3. Invertir claves y valores (si los valores son únicos)
+inventario = {"manzanas": 30, "plátanos": 45, "naranjas": 25}
+inventario_invertido = {v: k for k, v in inventario.items()}
+
+# 4. Combinar dos diccionarios (Python 3.5+)
+dic1 = {"a": 1, "b": 2}
+dic2 = {"c": 3, "d": 4}
+combinado = {**dic1, **dic2}  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+
+# 5. Contar ocurrencias de elementos
+from collections import defaultdict, Counter
+
+# Usando defaultdict
+conteo = defaultdict(int)
+palabras = ["manzana", "banana", "manzana", "cereza", "banana", "manzana"]
+for palabra in palabras:
+    conteo[palabra] += 1
+
+# Usando Counter (más simple)
+conteo = Counter(palabras)  # Counter({'manzana': 3, 'banana': 2, 'cereza': 1})
+
+# 6. Agrupar elementos por una clave
+datos = [
+    {"nombre": "Ana", "edad": 15, "grado": 10},
+    {"nombre": "Luis", "edad": 16, "grado": 11},
+    {"nombre": "Marta", "edad": 15, "grado": 10},
+    {"nombre": "Carlos", "edad": 16, "grado": 11}
+]
+
+# Agrupar por grado
+grados = {}
+for estudiante in datos:
+    grado = estudiante["grado"]
+    if grado not in grados:
+        grados[grado] = []
+    grados[grado].append(estudiante["nombre"])
+
+# Versión más concisa con defaultdict
+grados = defaultdict(list)
+for estudiante in datos:
+    grados[estudiante["grado"]].append(estudiante["nombre"])
+
+# 7. Diccionarios ordenados (aunque desde Python 3.7 los diccionarios mantienen el orden)
+from collections import OrderedDict
+
+# Útil para versiones anteriores a Python 3.7 o para operaciones específicas
+d = OrderedDict()
+d["primero"] = 1
+d["segundo"] = 2
+d.move_to_end("primero")  # Mueve 'primero' al final
+
+# 8. Diccionarios inmutables con MappingProxyType
+from types import MappingProxyType
+
+d = {"a": 1, "b": 2}
+proxy = MappingProxyType(d)  # Vista de solo lectura de d
+# proxy["c"] = 3  # Error: no se puede modificar
+
+# 9. Diccionarios con valores por defecto
+from collections import defaultdict
+
+# Contar letras en palabras
+contador = defaultdict(int)
+palabra = "abracadabra"
+for letra in palabra:
+    contador[letra] += 1
+
+# 10. Fusionar diccionarios (Python 3.9+)
+dic1 = {"a": 1, "b": 2}
+dic2 = {"b": 3, "c": 4}
+combinado = dic1 | dic2  # {'a': 1, 'b': 3, 'c': 4}
+
+# 11. Ordenar diccionario por valor
+precios = {"manzana": 15.5, "banana": 12.0, "naranja": 10.8, "pera": 18.2}
+ordenado_por_valor = dict(sorted(precios.items(), key=lambda item: item[1]))
+
+# 12. Encontrar claves con valores máximos/mínimos
+precio_max = max(precios, key=precios.get)  # 'pera'
+precio_min = min(precios, key=precios.get)  # 'naranja'</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 El operador de morsa (:=) en comprensiones de diccionario</h4>
+                    <p>En Python 3.8+, puedes usar el operador de asignación de expresión (:=) dentro de comprensiones de diccionario para evitar cálculos repetidos:</p>
+                    <pre><code class="language-python"># Sin operador morsa
+resultado = {x: x**2 for x in range(10) if x**2 > 20}
+
+# Con operador morsa (más eficiente)
+resultado = {x: cuadrado for x in range(10) if (cuadrado := x**2) > 20}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Sistema de Inventario con Categorías</h3>
+                <p>Crea un programa que gestione un inventario de productos organizados por categorías, permitiendo agregar, actualizar, eliminar y buscar productos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== SISTEMA DE INVENTARIO ===
+1. Ver categorías
+2. Agregar categoría
+3. Agregar producto
+4. Actualizar stock
+5. Buscar producto
+6. Salir
+
+Selecciona una opción (1-6): 1
+
+=== CATEGORÍAS DISPONIBLES ===
+1. Frutas (3 productos)
+2. Lácteos (2 productos)
+3. Bebidas (4 productos)
+
+Selecciona una categoría (1-3) o 0 para volver: 1
+
+=== FRUTAS ===
+1. Manzana - Stock: 30 - Precio: $15.50
+2. Plátano - Stock: 45 - Precio: $12.00
+3. Naranja - Stock: 25 - Precio: $10.80</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un diccionario anidado donde las claves principales sean las categorías y los valores sean listas de productos. Cada producto puede ser un diccionario con claves como "nombre", "stock", "precio", etc. Implementa funciones para cada operación (agregar, actualizar, buscar) y un menú interactivo para que el usuario pueda interactuar con el sistema.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Análisis de Texto Avanzado</h3>
+                <p>Desarrolla un programa que analice un texto y proporcione estadísticas detalladas como frecuencia de palabras, palabras más comunes, longitud media de las palabras, etc.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== ANALIZADOR DE TEXTO ===
+Ingresa un texto (o 'salir' para terminar):
+El rápido zorro marrón salta sobre el perro perezoso.
+
+=== ESTADÍSTICAS ===
+Total de palabras: 8
+Palabras únicas: 7
+Longitud media de palabras: 4.5
+
+Palabras más comunes:
+el: 2
+rápido: 1
+zorro: 1
+marrón: 1
+salta: 1
+sobre: 1
+perro: 1
+perezoso: 1
+
+Letras más comunes:
+o: 7
+r: 6
+e: 5
+p: 4
+</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa el módulo <code>collections.Counter</code> para contar frecuencias de palabras y letras. Convierte el texto a minúsculas y elimina signos de puntuación antes de procesarlo. Para contar letras, puedes concatenar todas las palabras y usar <code>Counter</code> nuevamente. Implementa funciones separadas para cada estadística y muestra los resultados de manera ordenada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Gestor de Contactos Avanzado</h3>
+                <p>Crea un programa que gestione una agenda de contactos con información detallada y capacidades de búsqueda avanzada.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== GESTOR DE CONTACTOS ===
+1. Ver todos los contactos
+2. Buscar contacto
+3. Agregar contacto
+4. Actualizar contacto
+5. Eliminar contacto
+6. Exportar contactos a CSV
+7. Importar contactos desde CSV
+8. Salir
+
+Selecciona una opción (1-8): 2
+
+=== BUSCAR CONTACTO ===
+1. Por nombre
+2. Por apellido
+3. Por empresa
+4. Por etiqueta
+5. Volver
+
+Selecciona un criterio de búsqueda (1-5): 4
+
+Ingresa la etiqueta: familia
+
+=== RESULTADOS DE BÚSQUEDA ===
+1. Ana García - ana@ejemplo.com - Tel: 555-1234 (Familia, Cumpleaños)
+2. Juan Pérez - juan@ejemplo.com - Tel: 555-5678 (Trabajo, Familia)</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un diccionario donde cada contacto tenga un ID único como clave. Cada contacto puede ser un diccionario con claves como "nombre", "apellido", "email", "telefono", "empresa", "etiquetas" (lista), etc. Implementa funciones para cada operación (agregar, buscar, actualizar, eliminar) y utiliza el módulo <code>csv</code> para importar/exportar contactos. Para la búsqueda avanzada, itera sobre los contactos y filtra según los criterios especificados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Juego de Preguntas y Respuestas</h3>
+                <p>Desarrolla un juego de preguntas y respuestas que cargue las preguntas desde un diccionario y lleve un registro de puntuaciones.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== JUEGO DE PREGUNTAS Y RESPUESTAS ===
+Bienvenido al juego de preguntas. Responde correctamente para sumar puntos.
+
+Pregunta 1/5:
+¿Cuál es la capital de Francia?
+1. Londres
+2. París
+3. Madrid
+4. Roma
+
+Tu respuesta (1-4): 2
+¡Correcto! +10 puntos
+
+Pregunta 2/5:
+¿Cuántos lados tiene un triángulo?
+1. 2
+2. 3
+3. 4
+4. 5
+
+Tu respuesta (1-4): 2
+¡Correcto! +10 puntos
+
+=== FIN DEL JUEGO ===
+Puntuación final: 20/50
+¡Buen intento! Sigue practicando.</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Crea un diccionario donde cada pregunta sea un diccionario con claves como "pregunta", "opciones" (lista), "respuesta_correcta" (índice de la opción correcta) y "dificultad" (para asignar diferentes puntajes). Usa un bucle para mostrar cada pregunta, recoger la respuesta del usuario y llevar la cuenta de la puntuación. Mezcla las preguntas aleatoriamente usando el módulo <code>random</code> para que el juego sea diferente cada vez.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" target="_blank" rel="noopener noreferrer">Documentación oficial - defaultdict</a></li>
+                        <li><a href="https://realpython.com/python-dicts/#dget-default" target="_blank" rel="noopener noreferrer">Real Python - Diccionarios avanzados</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_dictionaries_nested.asp" target="_blank" rel="noopener noreferrer">W3Schools - Diccionarios anidados</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=daefaLgNkw0" target="_blank" rel="noopener noreferrer">Diccionarios avanzados en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=1KLgcSsrh8k" target="_blank" rel="noopener noreferrer">Técnicas avanzadas con diccionarios - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 6 - "Python Crash Course" de Eric Matthes (Sección avanzada de diccionarios)</li>
+                        <li>Sección 5.1 - "Fluent Python" de Luciano Ramalho (Patrones de diccionario)</li>
+                        <li>"Python Tricks: A Buffet of Awesome Python Features" de Dan Bader (Capítulo sobre diccionarios)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s13.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s15.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

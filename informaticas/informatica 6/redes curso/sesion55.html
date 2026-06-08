@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S14 E55: Sesión de Pruebas y Troubleshooting (I)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 14, Sesión 55: Troubleshooting 🔎</h1>
+        <p class="subtitle">Verificación de Conectividad de Extremo a Extremo y Aislamiento de Fallos</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. El Proceso de Verificación (Ping de Extremo a Extremo)</h2>
+            <p>El primer paso en el Troubleshooting es la verificación. Debemos probar que cada componente de la red esté funcionando, desde el más local hasta el más externo.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Pruebas Clave a Realizar</h3>
+                    <ul>
+                        <li>PC Cliente (DHCP) $\leftrightarrow$ Servidor (Estática).</li>
+                        <li>Servidor $\leftrightarrow$ Gateway (Router).</li>
+                        <li>Router $\leftrightarrow$ Nube de Internet (simulado como 8.8.8.8).</li>
+                        <li>PC Cliente $\leftrightarrow$ PC Cliente.</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Herramientas a Usar</h3>
+                    <p>Debes usar **Ping** para la conectividad general e **ipconfig/ifconfig** para verificar que todos los clientes tengan la IP, Máscara y Gateway correctos (repartidos por el DHCP).</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Escenario de Falla 1: El Servidor ha Perdido la Conectividad</h2>
+            <p>Un usuario reporta que no puede acceder al Servidor (192.168.10.2). Aquí tienes el proceso de diagnóstico:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Diagnóstico</h3>
+                    <ol>
+                        <li>Desde el PC, haz **`ping 192.168.10.2`** (falla).</li>
+                        <li>Desde el PC, haz **`ping 192.168.10.1`** (Gateway, funciona).</li>
+                        <li>Desde el Servidor, haz **`ipconfig`** (descubres que su Máscara está mal configurada: 255.255.0.0).</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Resolución</h3>
+                    <p>Corrige la Máscara del Servidor a **255.255.255.0**. El ping al Servidor debe ser exitoso. El problema no era el cable, era un error de Capa 3.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Simulación de Falla del DHCP</h2>
+            <p><strong>Tarea Práctica (Diagnóstico en Packet Tracer):</strong></p>
+            <ol>
+                <li>En Packet Tracer, ve al Router y **deshabilita el servicio DHCP**.</li>
+                <li>Ve a un PC Cliente y haz **`ipconfig /release`** y luego **`ipconfig /renew`** (para forzar la solicitud de IP).</li>
+                <li>El PC recibirá una **APIPA** (169.254.x.x) o ninguna IP.</li>
+                <li>Vuelve al Router y **habilita DHCP** de nuevo. Verifica que el PC reciba una IP correcta.</li>
+            </ol>
+            <button id="troubleshootingCheckBtn">Confirmar Práctica de Diagnóstico</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S14 E55</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion54.html" class="nav-button">Anterior</a>
+        <a href="sesion56.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de AutoCAD - Trazado de Líneas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        body {
+            color: var(--dark-text);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"></path></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        main {
+            padding-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-bg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        h2 i {
+            color: var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.75rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Code & Commands */
+        code, .command {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f5f7fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #c7254e;
+            font-size: 0.9em;
+            border: 1px solid #e1e1e1;
+        }
+        
+        .command {
+            display: inline-block;
+            margin: 0.25rem 0;
+            color: #2c3e50;
+            background: #f0f4f8;
+            border-left: 3px solid var(--secondary-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Activity Sections */
+        .activity {
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .activity h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity h3 i {
+            font-size: 1.2em;
+        }
+        
+        .steps {
+            margin: 1.25rem 0 1.25rem 1.5rem;
+        }
+        
+        .steps li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .steps li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        /* Details/Summary */
+        details {
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        summary {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        summary:hover {
+            background: var(--secondary-color);
+        }
+        
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.2s;
+        }
+        
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .solution {
+            background: white;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            th, td {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: white !important;
+                color: black !important;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #eee;
+                page-break-inside: avoid;
+            }
+            
+            details {
+                page-break-inside: avoid;
+            }
+            
+            details[open] {
+                break-inside: avoid;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--secondary-color);
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9em;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-drafting-compass"></i> Ejercicios de AutoCAD</h1>
+            <p class="subtitle">Trazado de Líneas - Coordenadas Absolutas, Relativas y Polares</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2><i class="fas fa-info-circle"></i> Introducción al Comando LINEA</h2>
+            <p>El comando <code>LINEA</code> (o <code>L</code> en la línea de comandos) es la base de todo dibujo en AutoCAD. Al activarlo, el programa te pedirá que especifiques el primer punto y, posteriormente, el siguiente punto. La manera en que introduces las coordenadas define el método de trazo.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Método de Trazado</th>
+                        <th>Descripción</th>
+                        <th>Formato de Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Absolutas</strong></td>
+                        <td>Se define cada punto con respecto al origen fijo (0,0) del sistema de coordenadas.</td>
+                        <td><code>X,Y</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relativas</strong></td>
+                        <td>Se define el siguiente punto con respecto al último punto introducido.</td>
+                        <td><code>@DX,DY</code> (Delta X, Delta Y)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Polares</strong></td>
+                        <td>Se define el siguiente punto con respecto al último punto introducido, usando una distancia y un ángulo.</td>
+                        <td><code>@Distancia<Ángulo</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-ruler-combined"></i> Ejercicios por Tipo de Coordenada</h2>
+            
+            <h3>A. Coordenadas Absolutas (X, Y)</h3>
+            <p>Define cada punto con relación al origen (0,0).</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Pasos de Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Cuadrado en Origen</strong></td>
+                        <td>Dibuja un cuadrado de 20×20 unidades comenzando en el origen.</td>
+                        <td>
+                            <div class="command">0,0 → 20,0 → 20,20 → 0,20 → 0,0</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Triángulo Flotante</strong></td>
+                        <td>Dibuja un triángulo en el cuadrante positivo lejos del origen.</td>
+                        <td>
+                            <div class="command">50,10 → 65,10 → 55,30 → 50,10</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>B. Coordenadas Relativas (@DX, DY)</h3>
+            <p>Define el siguiente punto con relación al punto anterior.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Pasos de Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Marco de Ventana</strong></td>
+                        <td>Dibuja un marco rectangular de 15×8 unidades.</td>
+                        <td>
+                            <div class="command">Primer Punto (Ej: 10,10)</div>
+                            <div class="command">@15,0 → @0,8 → @-15,0 → @0,-8</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Escalera Simple</strong></td>
+                        <td>Dibuja dos "escalones" de 3×2 unidades.</td>
+                        <td>
+                            <div class="command">Primer Punto (Ej: 30,5)</div>
+                            <div class="command">@3,0 → @0,2 → @-3,0 → @0,2 → @3,0</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>C. Coordenadas Polares (@Distancia<Ángulo)</h3>
+            <p>Define el siguiente punto usando la distancia y el ángulo con relación al punto anterior.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Pasos de Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Flecha Diagonal Simple</strong></td>
+                        <td>Dibuja una línea de 10 unidades a 45° y otra de 10 unidades a 135°.</td>
+                        <td>
+                            <div class="command">Primer Punto (Ej: 50,50)</div>
+                            <div class="command">@10<45 → @10<135</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Forma Hexagonal</strong></td>
+                        <td>Dibuja un hexágono regular de lado 5 (ángulo interno de 60°).</td>
+                        <td>
+                            <div class="command">Primer Punto (Ej: 70,70)</div>
+                            <div class="command">@5<0 → @5<60 → @5<120 → @5<180 → @5<240 → @5<300</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-tasks"></i> Actividades Sugeridas (Nivel Inicial/Intermedio)</h2>
+            <p>Estas actividades combinan diferentes métodos de trazado para crear formas más complejas. Sigue los pasos y luego comprueba la solución para verificar tu trazo.</p>
+            
+            <div class="activity">
+                <h3><i class="fas fa-draw-polygon"></i> Actividad 1: El Lote de Terreno Irregular 🗺️</h3>
+                <p><strong>Objetivo:</strong> Dibujar el contorno de un lote de terreno usando una mezcla de coordenadas.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li>Activa el comando <code>LINEA (L)</code>.</li>
+                    <li><strong>Punto A (Origen):</strong> Inicia en el origen.</li>
+                    <li><strong>Entrada:</strong> <code>0,0</code></li>
+                    <li><strong>Lado 1 (Absoluta):</strong> Mueve 40 unidades hacia el Este.</li>
+                    <li><strong>Entrada:</strong> <code>40,0</code></li>
+                    <li><strong>Lado 2 (Relativa):</strong> Mueve 10 unidades hacia arriba.</li>
+                    <li><strong>Entrada:</strong> <code>@0,10</code></li>
+                    <li><strong>Lado 3 (Polar):</strong> Traza una línea de 25 unidades a un ángulo de 150° (hacia el Noroeste).</li>
+                    <li><strong>Entrada:</strong> <code>@25<150</code></li>
+                    <li><strong>Lado 4 (Cerrar):</strong> Cierra la figura volviendo al origen (0,0).</li>
+                    <li><strong>Entrada:</strong> <code>C</code> (o CERRAR / CLOSE)</li>
+                </ol>
+                
+                <details>
+                    <summary><strong>Ver Solución (Coordenadas Finales)</strong></summary>
+                    <div class="solution">
+                        <p>El resultado final debe ser una forma cerrada con los siguientes puntos finales:</p>
+                        <ul>
+                            <li><strong>Punto A:</strong> (0, 0)</li>
+                            <li><strong>Punto B:</strong> (40, 0)</li>
+                            <li><strong>Punto C:</strong> (40, 10)</li>
+                            <li><strong>Punto D:</strong> (18.3, 22.5) <em>(Aproximadamente, resultado de 40-25*cos(30), 10+25*sin(30))</em></li>
+                            <li><strong>Punto A (Cerrado):</strong> (0, 0)</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="activity">
+                <h3><i class="fas fa-cog"></i> Actividad 2: El Soporte en "Z" ⚙️</h3>
+                <p><strong>Objetivo:</strong> Dibuja un soporte mecánico con un quiebre en ángulo, utilizando la secuencia de comando.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li>Activa el comando <code>LINEA (L)</code>.</li>
+                    <li><strong>Punto Inicial (P1):</strong> Comienza en (10, 50).</li>
+                    <li><strong>Entrada:</strong> <code>10,50</code></li>
+                    <li><strong>Segmento 1 (Relativa):</strong> Mueve 30 unidades a la derecha.</li>
+                    <li><strong>Entrada:</strong> <code>@30,0</code></li>
+                    <li><strong>Segmento 2 (Polar):</strong> Dibuja una línea de 20 unidades con un ángulo de 225°.</li>
+                    <li><strong>Entrada:</strong> <code>@20<225</code></li>
+                    <li><strong>Segmento 3 (Relativa):</strong> Vuelve a mover 30 unidades a la izquierda.</li>
+                    <li><strong>Entrada:</strong> <code>@-30,0</code></li>
+                    <li><strong>Segmento 4 (Cerrar):</strong> Cierra el trazo volviendo al primer punto.</li>
+                    <li><strong>Entrada:</strong> <code>C</code> (o CERRAR / CLOSE)</li>
+                </ol>
+                
+                <details>
+                    <summary><strong>Ver Solución (Coordenadas Finales)</strong></summary>
+                    <div class="solution">
+                        <p>El resultado final debe ser un polígono cerrado con los siguientes puntos:</p>
+                        <ul>
+                            <li><strong>Punto P1:</strong> (10, 50)</li>
+                            <li><strong>Punto P2:</strong> (40, 50)</li>
+                            <li><strong>Punto P3:</strong> (25.86, 35.86) <em>(Aproximadamente, resultado de 40 - 20*cos(45), 50 - 20*sin(45))</em></li>
+                            <li><strong>Punto P4:</strong> (-4.14, 35.86) <em>(25.86 - 30, 35.86)</em></li>
+                            <li><strong>Punto P1 (Cerrado):</strong> (10, 50)</li>
+                        </ul>
+                        <p><strong>Nota:</strong> La forma resultante es un trapezoide inclinado que representa un soporte mecánico en "Z".</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2><i class="fas fa-lightbulb"></i> Consejos Adicionales</h2>
+            <ul class="steps">
+                <li>Usa <kbd>F8</kbd> para activar/desactivar el modo orto (líneas rectas perfectas).</li>
+                <li>Presiona <kbd>F3</kbd> para activar/desactivar el snap a la cuadrícula.</li>
+                <li>Utiliza <kbd>F12</kbd> para activar/desactivar la entrada dinámica (muy útil para coordenadas).</li>
+                <li>Para deshacer el último punto, escribe <code>U</code> y presiona Enter.</n                <li>Usa <code>ZOOM</code> → <code>E</code> para ajustar la vista a los objetos dibujados.</li>
+                <li>Guarda tu trabajo frecuentemente con <kbd>CTRL</kbd> + <kbd>S</kbd>.</li>
+                <li>Para limpiar la pantalla de comandos, escribe <code>REDRAW</code> o <code>RE</code>.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© JMGV-PTEL 2025 - Ejercicios de AutoCAD - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Añadir animación de carga suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de aparición de las tarjetas
+            const cards = document.querySelectorAll('.card, .activity');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.animation = 'fadeIn 0.5s ease-out forwards';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                }, 0);
+            });
+            
+            // Mejorar la experiencia de los detalles/desplegables
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    if (this.open) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+            
+            // Añadir tooltips a los comandos
+            const commands = document.querySelectorAll('code, .command');
+            commands.forEach(cmd => {
+                if (cmd.textContent.includes('→')) {
+                    const tooltip = document.createElement('span');
+                    tooltip.className = 'tooltip';
+                    tooltip.title = 'Secuencia de comandos';
+                    
+                    const tooltipText = document.createElement('span');
+                    tooltipText.className = 'tooltiptext';
+                    tooltipText.textContent = 'Secuencia de comandos';
+                    
+                    tooltip.appendChild(tooltipText);
+                    const textNode = document.createTextNode(cmd.textContent);
+                    cmd.textContent = '';
+                    cmd.appendChild(tooltip);
+                    tooltip.prepend(textNode);
+                }
+            });
+        });
+        
+        // Mejorar la impresión
+        window.onbeforeprint = function() {
+            // Abrir todos los detalles antes de imprimir
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 5 - Hacking Ético Forense">
+    <title>Sesión 5: Bloqueadores de Escritura (Write-Blockers) | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge">Estado: Especialista Forense Activo</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 05: El Muro Infranqueable</h2>
+            <p><strong>Situación:</strong> Tienes la evidencia en tus manos. Sin embargo, los sistemas operativos modernos son "ruidosos". Al conectar un disco, intentan montar el sistema de archivos automáticamente, actualizando metadatos, fechas de último acceso y creando archivos temporales.</p>
+            <p>Tu misión es levantar un muro. Antes de interactuar con cualquier disco de evidencia, debes configurar bloqueadores de escritura por software e implementar un montaje estricto de solo lectura (<em>Read-Only</em>). Hoy validarás que tu barrera sea impenetrable.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Bloqueo de Escritura en Kali Linux</h2>
+            <p>Abre tu máquina virtual. Ejecuta la siguiente escalada de comandos para montar una unidad y comprobar la inmutabilidad de los datos.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Implementar Bloqueadores de Escritura (Software)</h3>
+                    <p>Configura el entorno de Kali Linux para desactivar el auto-montaje y preparar el sistema para manejar evidencia digital de manera segura.</p>
+                    <div class="terminal">
+                        <code># Verificar discos conectados sin montarlos<br>
+                        sudo fdisk -l<br><br>
+                        # Instalar/Verificar utilidades de bloqueo forense (si aplica)<br>
+                        sudo apt-get install disktype -y</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Preparación</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Montar Disco en Modo 'Read-Only'</h3>
+                    <p>Montaremos la partición de evidencia utilizando el flag <code>-o ro</code> (Read-Only) y <code>loop</code> (si es una imagen), asegurando que el kernel bloquee cualquier instrucción de escritura.</p>
+                    <div class="terminal">
+                        <code># Crear punto de montaje estéril<br>
+                        sudo mkdir -p /mnt/evidencia_segura<br><br>
+                        # Montar en estricto Solo Lectura (reemplaza sdX1 por tu partición)<br>
+                        sudo mount -o ro /dev/sdX1 /mnt/evidencia_segura<br><br>
+                        # Verificar los permisos de montaje actuales<br>
+                        mount | grep evidencia_segura</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Montaje</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Test de Intrusión: Intentar Escribir en el Disco</h3>
+                    <p>La confianza es buena, pero el control es mejor. Intenta forzar la escritura de un archivo en el disco montado para verificar que el bloqueo forense funciona.</p>
+                    <div class="terminal">
+                        <code># Intentar crear un archivo de texto en la evidencia<br>
+                        sudo touch /mnt/evidencia_segura/prueba_contaminacion.txt<br><br>
+                        # El sistema DEBE arrojar el error: "Read-only file system"<br>
+                        # Desmontar al finalizar<br>
+                        sudo umount /mnt/evidencia_segura</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Bloqueo</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Barrera Forense Establecida!</h3>
+                <p>Has comprobado empíricamente que tu entorno no alterará la evidencia. El error "Read-only file system" es la confirmación visual de que tu procedimiento cumple con el rigor legal y técnico de la Cadena de Custodia.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 5. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

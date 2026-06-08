@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S7 E28: Mantenimiento y Actualización de Firmware</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 7, Sesión 28: Mantenimiento Preventivo 🛠️</h1>
+        <p class="subtitle">Actualización de Firmware y Respaldo de Configuración</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. La Importancia del Firmware</h2>
+            <p>El **Firmware** es el software residente que controla el hardware de un dispositivo (router, switch, impresora, etc.). Es esencial mantenerlo actualizado por dos razones principales:</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Seguridad</h3>
+                    <p>Las actualizaciones corrigen fallos de seguridad críticos (vulnerabilidades) que los atacantes pueden explotar en versiones antiguas.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Funcionalidad y Estabilidad</h3>
+                    <p>Las actualizaciones suelen mejorar la estabilidad del dispositivo (menos reinicios inesperados) y añaden soporte para nuevas tecnologías (ej. un nuevo estándar Wi-Fi).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Proceso de Actualización de Firmware (Precauciones)</h2>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Pasos Clave</h3>
+                    <ol>
+                        <li>**Revisar Versión:** Entrar a la interfaz del dispositivo y ver la versión actual.</li>
+                        <li>**Descargar:** Ir al sitio web del fabricante y descargar el archivo de firmware específico para el modelo.</li>
+                        <li>**Cableado:** **Siempre** conectar la PC al router por **cable Ethernet** (nunca por Wi-Fi, para evitar caídas).</li>
+                        <li>**Cargar:** Subir el archivo de firmware a la interfaz web y esperar a que el dispositivo se reinicie.</li>
+                    </ol>
+                </div>
+                <div class="image-container">
+                    
+                    <figcaption>Actualizar el firmware requiere el archivo correcto del fabricante y una conexión por cable estable.</figcaption>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Respaldo (Backup) de la Configuración</h2>
+            <p>Antes de cualquier cambio mayor (actualización de firmware, cambio de IP de Gateway), es crucial **respaldar la configuración actual** del router o switch. Esto crea un archivo (generalmente .cfg o .bin) que permite restaurar el dispositivo rápidamente a su estado anterior si algo sale mal.</p>
+            
+            <p><strong>Tarea Práctica (Simulación):</strong></p>
+            <ol>
+                <li>En Packet Tracer (o en tu router real), navega a la sección de "Administración" o "Copia de Seguridad/Restauración".</li>
+                <li>Simula la descarga de la copia de seguridad de la configuración.</li>
+                <li>(Teórico): Si el router fallara después de una actualización, ¿cómo usarías este archivo para restaurarlo?</li>
+            </ol>
+            <button id="firmwareCheckBtn">Verificar Precauciones</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S7 E28</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion27.html" class="nav-button">Anterior</a>
+        <a href="sesion29.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

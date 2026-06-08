@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass 1: El Lienzo Sonoro - BandLab</title>
+    <link rel="stylesheet" href="STYLE copy.CSS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="no-print">
+        <h1>Masterclass 1: El Lienzo Sonoro y Fundamentos del Ritmo</h1>
+        <p class="subtitle">Dominando BandLab desde tu dispositivo móvil</p>
+        <button id="printBtn" class="btn-primary">Imprimir Sesión (PDF)</button>
+    </header>
+
+    <main>
+        <section class="content-section print-section">
+            <div class="print-header only-print">
+                <h2>Masterclass 1: El Lienzo Sonoro y Fundamentos del Ritmo</h2>
+            </div>
+            
+            <h3>Objetivo y Enfoque Andragógico</h3>
+            <p><strong>Objetivo:</strong> Dominar la interfaz del Mix Editor de BandLab y construir la primera base rítmica y armónica utilizando material preexistente.</p>
+            <p><strong>Enfoque Andragógico:</strong> Aprender haciendo. Eliminamos la ansiedad del "lienzo en blanco" mediante el uso de recursos inmediatos, garantizando un resultado sonoro desde los primeros minutos.</p>
+
+            <h3>Temario</h3>
+            <ul>
+                <li><strong>Navegación por el Mix Editor:</strong> Gestión de pistas, controles de transporte y panel de propiedades táctiles.</li>
+                <li><strong>Gestión de Tempo y Métrica:</strong> Ajuste de BPM y uso del metrónomo para mantener el pulso.</li>
+                <li><strong>BandLab Sounds:</strong> Filtrado, importación y manipulación de Loops y One-shots libres de derechos.</li>
+                <li><strong>Edición Básica:</strong> Recortar, dividir (Slice) con gestos, y ajustar a la cuadrícula (Snap to Grid).</li>
+            </ul>
+
+            <h3>Guía Práctica Paso a Paso (Entregable: Beat 30-60 seg)</h3>
+            <div class="step">
+                <h4>Paso 1: Configurar el Proyecto</h4>
+                <p>Abre la app de BandLab, presiona el botón rojo <strong>(+)</strong> y selecciona <em>"Abrir Studio"</em>. Toca el ícono del metrónomo arriba a la derecha <img class="pequeño" src="metrónomo.png" alt="metrónomo" width="3%"> para activarlo y ajusta el BPM (Tempo) a 90 para un ritmo relajado.</p>
+            </div>
+            <div class="step">
+                <h4>Paso 2: Encontrar la Base Rítmica</h4>
+                <p>Regresa a Pista <img src="pista.png" alt="pista" width="3%">Toca el ícono <strong>(+)</strong> para añadir pista, selecciona <em>"BandLab Sounds"</em><img class="grande" src="bandsound.png" alt="bandlab sounds">. En el buscador escribe "Drum Loop" y filtra por tu género favorito. Escucha las previas y presiona <strong>(+)</strong> para importar el que más te guste al Mix Editor.</p>
+            </div>
+            <div class="step">
+                <h4>Paso 3: Añadir Armonía</h4>
+                <p>Repite el proceso anterior, pero ahora busca "Piano Loop" o "Synth Chord". Asegúrate de que BandLab ajuste automáticamente el tono y la velocidad del nuevo loop para que coincida con tu ritmo.</p>
+            </div>
+            <div class="step">
+                <h4>Paso 4: Edición y Estructura (Slice)</h4>
+                <p>Toca dos veces sobre la región de audio para abrir las opciones. Selecciona <em>"Dividir" (Slice)</em> donde quieras crear un silencio o un cambio. Usa el dedo para arrastrar los extremos de la región para recortarla. ¡Crea variaciones copiando y pegando bloques!</p>
+            </div>
+        </section>
+
+        <section class="quiz-section no-print">
+            <h3>Evaluación Interactiva</h3>
+            <div id="quiz-container">
+                <h4 id="question-text">Pregunta...</h4>
+                <div id="options-grid" class="options-grid"></div>
+                <p id="feedback" class="feedback"></p>
+                <button id="nextBtn" class="btn-primary hidden">Siguiente Pregunta</button>
+            </div>
+            <div id="results-container" class="hidden">
+                <h4>¡Cuestionario Completado!</h4>
+                <p>Tu puntuación es: <span id="score">0</span> / 10</p>
+                <button id="restartBtn" class="btn-secondary">Reintentar</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026-JMGV-PTEL Programa de PRODUCCIÓN MUSICAL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="SCRIPT copy.JS"></script>
+</body>
+</html>

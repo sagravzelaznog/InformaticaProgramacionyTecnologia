@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 35: Ordenamiento y Búsqueda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 35</h1>
+            <h2>Orden del Caos: Sorting & Searching</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. ¿Por qué ordenamos?</h3>
+            <p><strong>Objetivo:</strong> Entender que ordenar datos no es por estética, es por velocidad de búsqueda.</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>📚 La Paradoja de la Biblioteca</h4>
+                <p>Imagina buscar el libro de "Harry Potter" en una biblioteca con 1 millón de libros tirados en el piso.</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #e53e3e;">
+                        <span class="stat-number" style="color: #e53e3e; font-size: 1.2rem;">Desordenado</span>
+                        <p style="font-size: 0.8rem;">Tienes que mirar libro por libro (Búsqueda Lineal).</p>
+                        <p style="font-size: 0.7rem;">Tiempo: <strong>1 año</strong>.</p>
+                    </div>
+
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.2rem;">Ordenado (A-Z)</span>
+                        <p style="font-size: 0.8rem;">Vas directo a la letra "H" (Búsqueda Binaria).</p>
+                        <p style="font-size: 0.7rem;">Tiempo: <strong>1 minuto</strong>.</p>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #553c9a;">"El orden es el padre de la velocidad."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Algoritmo Burbuja (Bubble Sort)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #d69e2e; border-bottom: 2px solid #d69e2e;">🫧 La Lógica de la Burbuja</h4>
+                    <p>Compara parejas de números. Si el de la izquierda es más grande, <strong>los intercambia</strong>.</p>
+                    <p>Los números más grandes "suben" (burbujean) a la derecha rápidamente.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">🔍 Búsqueda Binaria</h4>
+                    <p>Solo funciona si está ordenado.</p>
+                    <ul>
+                        <li>Abres el libro a la mitad.</li>
+                        <li>¿Es mayor o menor?</li>
+                        <li>Descartas la mitad que no sirve.</li>
+                        <li>Repites.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🔄 Visualizando el Intercambio (Swap)</h4>
+                <p>Tenemos la lista: <code>[5, 2, 8]</code>. El 5 es mayor que 2, ¡deben cambiar!</p>
+                
+                <div style="display: flex; justify-content: center; align-items: flex-end; height: 150px; margin-top: 20px; gap: 10px; position: relative;">
+                    
+                    <div class="bar" style="height: 100px; background: #e53e3e; width: 40px; text-align: center; color: white; border-radius: 5px 5px 0 0; animation: swapRight 2s infinite ease-in-out;">5</div>
+
+                    <div class="bar" style="height: 40px; background: #38a169; width: 40px; text-align: center; color: white; border-radius: 5px 5px 0 0; animation: swapLeft 2s infinite ease-in-out;">2</div>
+
+                    <div class="bar" style="height: 140px; background: #3182ce; width: 40px; text-align: center; color: white; border-radius: 5px 5px 0 0; opacity: 0.5;">8</div>
+
+                </div>
+
+                <style>
+                    @keyframes swapRight {
+                        0% { transform: translateX(0); background: #e53e3e; }
+                        50% { transform: translateX(50px); background: #e53e3e; } /* Mueve a la derecha */
+                        100% { transform: translateX(50px); background: #38a169; } /* Se vuelve verde (ordenado) */
+                    }
+                    @keyframes swapLeft {
+                        0% { transform: translateX(0); background: #38a169; }
+                        50% { transform: translateX(-50px); background: #38a169; } /* Mueve a la izquierda */
+                        100% { transform: translateX(-50px); background: #e53e3e; } /* Se vuelve rojo (desordenado temp) */
+                    }
+                </style>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 10px;">El algoritmo repite esto millones de veces hasta que todo está verde (ordenado).</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Eficiencia (Big O)</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿Qué tan rápido es?</h5>
+                    <p>Si tienes 100 datos, ¿cuántos pasos hace tu algoritmo?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Comparativa</button>
+                    <div id="ans1" class="answer hidden">
+                        <ul style="font-size: 0.8rem;">
+                            <li><strong>Lineal (Lento):</strong> 100 pasos. (Como buscar calcetines).</li>
+                            <li><strong>Cuadrático (Muy lento):</strong> 10,000 pasos. (Bubble Sort).</li>
+                            <li><strong>Logarítmico (Flash):</strong> 7 pasos. (Búsqueda Binaria).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>El Algoritmo de Google</h5>
+                    <p>¿Google usa Bubble Sort?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>¡Jamás!</strong> Google usa algoritmos ultra-avanzados (como MapReduce o PageRank) que son primos lejanos y superpoderosos de lo que vimos hoy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🔢 <strong>Misión del Día:</strong> Toma 5 cartas de la baraja (o papeles con números). Revuélvelas y ordénalas usando SOLO intercambios de parejas (Bubble Sort). Cuenta cuántos movimientos hiciste.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 35 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

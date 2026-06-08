@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema13">
+                <h2>Tema 13: Power Query: Importación y transformación de datos</h2>
+                <div class="tema-contenido">
+                    <p>Power Query es una poderosa herramienta de Microsoft Excel que permite importar, transformar y cargar datos de diversas fuentes. En este tema, exploraremos cómo utilizar Power Query para limpiar, transformar y preparar datos de manera eficiente, ahorrando tiempo y mejorando la calidad de tus análisis.</p>
+                    
+                    <h3>13.1 Introducción a Power Query</h3>
+                    <p>Power Query es una tecnología de conexión de datos que te permite descubrir, conectar, combinar y refinar orígenes de datos para satisfacer tus necesidades de análisis.</p>
+                    
+                    <div class="concepto">
+                        <h4>¿Qué es Power Query?</h4>
+                        <p>Power Query es una herramienta de extracción, transformación y carga (ETL) integrada en Excel que te permite:</p>
+                        <ul>
+                            <li>Conectar a múltiples fuentes de datos (Excel, CSV, bases de datos, web, etc.)</li>
+                            <li>Limpiar y transformar datos sin necesidad de fórmulas complejas</li>
+                            <li>Automatizar procesos de preparación de datos</li>
+                            <li>Crear flujos de trabajo reproducibles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ejemplo">
+                        <h4>Ejemplo: Importar datos desde la web</h4>
+                        <p>Vamos a importar datos de una tabla en una página web:</p>
+                        <ol>
+                            <li>Ve a la pestaña <strong>Datos</strong> y selecciona <strong>Obtener datos > De otras fuentes > Desde la web</strong></li>
+                            <li>Ingresa la URL que contiene los datos</li>
+                            <li>Selecciona la tabla que deseas importar</li>
+                            <li>Haz clic en <strong>Transformar datos</strong> para limpiar los datos</li>
+                        </ol>
+                    </div>
+                    
+                    <h3>13.2 Transformaciones básicas de datos</h3>
+                    <p>Power Query ofrece una amplia gama de transformaciones que puedes aplicar a tus datos:</p>
+                    
+                    <div class="tabla-funciones">
+                        <h4>Transformaciones comunes</h4>
+                        <table class="tabla-ejemplo">
+                            <tr>
+                                <th>Transformación</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo de uso</th>
+                            </tr>
+                            <tr>
+                                <td>Eliminar filas</td>
+                                <td>Elimina filas según condiciones específicas</td>
+                                <td>Eliminar filas con valores nulos o vacíos</td>
+                            </tr>
+                            <tr>
+                                <td>Dividir columnas</td>
+                                <td>Divide una columna en varias según un delimitador</td>
+                                <td>Separar nombre completo en nombre y apellido</td>
+                            </tr>
+                            <tr>
+                                <td>Cambiar tipo de datos</td>
+                                <td>Convierte el tipo de datos de una columna</td>
+                                <td>Cambiar texto a número o fecha</td>
+                            </tr>
+                            <tr>
+                                <td>Rellenar hacia abajo/arriba</td>
+                                <td>Completa celdas vacías con valores adyacentes</td>
+                                <td>Rellenar categorías en informes jerárquicos</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="actividad-interactiva">
+                        <h4>Actividad: Limpieza de datos con Power Query</h4>
+                        <p>Descarga el archivo de datos de ejemplo y realiza las siguientes transformaciones:</p>
+                        <ol>
+                            <li>Elimina filas con valores nulos</li>
+                            <li>Cambia el formato de fecha a dd/mm/aaaa</li>
+                            <li>Divide la columna "Nombre completo" en "Nombre" y "Apellido"</li>
+                            <li>Filtra solo los registros del año actual</li>
+                            <li>Guarda y carga los datos transformados a una nueva hoja</li>
+                        </ol>
+                        <button class="btn btn-descargar">Descargar archivo de práctica</button>
+                    </div>
+                    
+                    <h3>13.3 Combinación de consultas</h3>
+                    <p>Power Query te permite combinar datos de múltiples fuentes o tablas:</p>
+                    
+                    <div class="ejercicio">
+                        <h4>Ejercicio: Combinar datos de ventas</h4>
+                        <p>Tienes dos archivos: <code>ventas_2023.xlsx</code> y <code>clientes.xlsx</code>. Sigue estos pasos para combinarlos:</p>
+                        <ol>
+                            <li>Importa ambos archivos a Power Query</li>
+                            <li>Identifica la columna común (ID_Cliente)</li>
+                            <li>Usa la opción <strong>Combinar consultas</strong> para realizar un LEFT JOIN</li>
+                            <li>Expande las columnas necesarias de la tabla de clientes</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="consejo">
+                        <h4>Consejo profesional</h4>
+                        <p>Usa <strong>Consultas de solo conexión</strong> para crear tablas de referencia que puedas reutilizar en múltiples combinaciones sin duplicar datos.</p>
+                    </div>
+                    
+                    <h3>13.4 Automatización con Power Query</h3>
+                    <p>Aprende a automatizar tareas recurrentes:</p>
+                    
+                    <div class="ejemplo-codigo">
+                        <h4>Ejemplo: Actualización automática</h4>
+                        <p>Configura la actualización automática de tus consultas:</p>
+                        <ol>
+                            <li>Haz clic derecho en la consulta y selecciona <strong>Propiedades</strong></li>
+                            <li>Marca <strong>Actualizar al abrir el archivo</strong></li>
+                            <li>Configura la actualización programada si es necesario</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="evaluacion">
+                        <h3>Evaluación del tema</h3>
+                        
+                        <div class="pregunta">1. ¿Qué es Power Query en Excel?</div>
+                        <div class="opcion">a) Una función de gráficos avanzados</div>
+                        <div class="opcion">b) Una herramienta de importación y transformación de datos</div>
+                        <div class="opcion">c) Un lenguaje de programación</div>
+                        <div class="opcion">d) Un complemento de análisis estadístico</div>
+                        
+                        <div class="pregunta">2. ¿Cuál de las siguientes NO es una transformación que se pueda realizar en Power Query?</div>
+                        <div class="opcion">a) Dividir columnas por delimitador</div>
+                        <div class="opcion">b) Cambiar tipos de datos</div>
+                        <div class="opcion">c) Aplicar formato condicional a celdas</div>
+                        <div class="opcion">d) Combinar datos de múltiples fuentes</div>
+                        
+                        <div class="pregunta">3. ¿Qué tipo de combinación de consultas es la más común para incluir todos los registros de la primera tabla y solo los coincidentes de la segunda?</div>
+                        <div class="opcion">a) INNER JOIN</div>
+                        <div class="opcion">b) LEFT OUTER JOIN</div>
+                        <div class="opcion">c) RIGHT OUTER JOIN</div>
+                        <div class="opcion">d) FULL OUTER JOIN</div>
+                        
+                        <button id="evaluar-tema13" class="btn btn-evaluar">Ver resultados</button>
+                        <div id="resultado-evaluacion-tema13" class="resultado-evaluacion"></div>
+                    </div>
+                    
+                    <div class="resumen">
+                        <h3>Resumen del tema</h3>
+                        <ul>
+                            <li>Power Query es una herramienta poderosa para la importación y transformación de datos en Excel.</li>
+                            <li>Permite limpiar y transformar datos sin necesidad de fórmulas complejas.</li>
+                            <li>Puedes combinar datos de múltiples fuentes usando diferentes tipos de uniones.</li>
+                            <li>Las consultas se pueden actualizar automáticamente cuando cambian los datos de origen.</li>
+                            <li>Es especialmente útil para automatizar procesos repetitivos de preparación de datos.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="recursos-adicionales">
+                        <h3>Recursos adicionales</h3>
+                        <ul>
+                            <li><a href="https://learn.microsoft.com/es-es/power-query/" target="_blank">Documentación oficial de Power Query</a></li>
+                            <li><a href="https://www.youtube.com/playlist?list=PLrRPvpgDmw0n4WTtM3UAkA7xQptGnnE1V" target="_blank">Tutoriales en video de Power Query</a></li>
+                            <li><a href="https://www.myonlinetraininghub.com/power-query" target="_blank">Ejercicios prácticos de Power Query</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navegacion-temas">
+                    <a href="#tema12" class="btn btn-anterior">Anterior: Tema 12</a>
+                    <a href="#tema14" class="btn btn-siguiente">Siguiente: Tema 14</a>
+                </div>
+            </div>
+
+            <!-- Tema 14: Power Pivot: Modelado de datos -->
+            
+
+    <div class="navegacion-temas">
+        <a href="tema12.html" class="btn btn-anterior">Anterior: Tema 12</a>
+        <a href="tema14.html" class="btn btn-siguiente">Siguiente: Tema 14</a>
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

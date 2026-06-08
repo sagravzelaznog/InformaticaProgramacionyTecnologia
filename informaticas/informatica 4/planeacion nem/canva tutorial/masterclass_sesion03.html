@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 03: Elementos, Imágenes y Capas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+				<link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            /* Paleta: "Exploración Visual" */
+            --primary: #8B3DFF; /* Electric Violet - Imaginación */
+            --secondary: #00C4CC; /* Canva Turquoise - Acción */
+            --surface: #F4F6F8; /* Gris azulado muy claro - Base neutra */
+            --dark: #1A1F2C; /* Casi negro - Contraste */
+            --glass: rgba(255, 255, 255, 0.9);
+            --gradient: linear-gradient(135deg, #00C4CC 0%, #7D2AE8 100%);
+            
+            /* Feedback Quiz */
+            --correct: #2DBD9B;
+            --wrong: #E03E58;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--surface);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER ARQUITECTÓNICO --- */
+        header {
+            background: var(--gradient);
+            padding: 4rem 1rem;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* Corte diagonal moderno */
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* TARJETAS DE CONTENIDO (GLASSMORPHISM LIGERO) */
+        section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--primary);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- SIMULADOR DE CAPAS (INTERACTIVO) --- */
+        /* Esta herramienta enseña visualmente el concepto de z-index/capas */
+        .layer-simulator {
+            background: #eee;
+            height: 300px;
+            border-radius: 15px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            border: 2px dashed #ccc;
+        }
+
+        .layer-obj {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        #obj-circle { background: #FF5353; border-radius: 50%; left: 30%; top: 30%; z-index: 1; }
+        #obj-square { background: #00C4CC; left: 45%; top: 45%; z-index: 2; }
+        #obj-triangle { 
+            background: transparent; 
+            border-left: 60px solid transparent; 
+            border-right: 60px solid transparent; 
+            border-bottom: 120px solid #7D2AE8; 
+            width: 0; height: 0; 
+            border-radius: 0; 
+            box-shadow: none;
+            left: 55%; top: 25%; 
+            z-index: 3; 
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-control {
+            padding: 8px 15px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .btn-control:hover { background: var(--primary); }
+
+        /* --- INSTRUCCIONES PRÁCTICAS --- */
+        .practice-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            background: var(--secondary);
+            color: white;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* --- QUIZ KAHOOT --- */
+        #quiz-area {
+            background: var(--dark);
+            color: white;
+        }
+        #quiz-area h2 { color: white; }
+
+        .quiz-container {
+            display: grid;
+            gap: 15px;
+        }
+
+        .question-card {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .ans-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        
+        /* Kahoot Colors */
+        .c-red { background: #e21b3c; }
+        .c-blue { background: #1368ce; }
+        .c-gold { background: #d89e00; }
+        .c-green { background: #26890c; }
+
+        .ans-btn:active { transform: scale(0.98); }
+        .ans-btn.disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* --- FOOTER OBLIGATORIO --- */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+            font-size: 0.85rem;
+            background: white;
+            border-top: 1px solid #ddd;
+            margin-top: 3rem;
+            font-family: monospace;
+        }
+
+        @media (max-width: 600px) {
+            .answers-grid { grid-template-columns: 1fr; }
+            .layer-simulator { height: 250px; }
+            .layer-obj { width: 80px; height: 80px; }
+            #obj-triangle { border-left-width: 40px; border-right-width: 40px; border-bottom-width: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Imágenes y Composición</h1>
+        <p class="subtitle">Sesión 03: Dominando los elementos gráficos y el arte de las capas.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 Objetivo de la Sesión</h2>
+            <p>Una imagen incorrecta puede arruinar un diseño perfecto. Hoy aprenderás a buscar, subir y gestionar <strong>fotografías y elementos gráficos</strong> (stickers, formas, líneas) y, lo más importante, entenderás cómo organizarlos en el espacio usando las <strong>Capas</strong>.</p>
+        </section>
+
+        <section>
+            <h2>📚 Teoría: El Sistema de Capas</h2>
+            <p>En el diseño digital, los objetos no están "pegados", flotan uno sobre otro. En Canva, esto se controla con el botón <strong>"Posición"</strong>.</p>
+            
+            <div class="simulation-box">
+                <p style="text-align: center; margin-bottom: 10px; font-style: italic; color:#666;">👇 Haz clic en los botones para mover el Cuadrado Azul 👇</p>
+                
+                <div class="layer-simulator">
+                    <div id="obj-circle" class="layer-obj">Fondo</div>
+                    <div id="obj-square" class="layer-obj">Sujeto</div>
+                    <div id="obj-triangle" class="layer-obj"></div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn-control" onclick="moveLayer('back')">Enviar al Fondo</button>
+                    <button class="btn-control" onclick="moveLayer('middle')">Poner en Medio</button>
+                    <button class="btn-control" onclick="moveLayer('front')">Traer al Frente</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🖼️ Práctica: Tu Primer Collage</h2>
+            <p>Vamos a crear una composición usando la pestaña "Elementos".</p>
+            <ol>
+            <li>
+                <div>Abre un diseño en blanco (Formato "Post de Instagram").</div>
+																<img src="img/postinstablanco.png" alt="postinstablanco">
+            </li>
+            <li>
+                <div>Ve a la pestaña <strong>"Elementos"</strong> (barra izquierda) y busca "Marcos" (Frames). Arrastra uno al lienzo.</div>
+																<img src="img/elemarco.png" alt="elemarco">
+            </li>
+            <li>
+                <div>Ve a la pestaña <strong>"Subidos"</strong> (Uploads) > "Subir archivos" y selecciona una foto de tu computadora.</div>
+																<img src="img/subidos.png" alt="subidos">
+            </li>
+            <li>
+                <div><strong>La Magia:</strong> Arrastra tu foto SOBRE el marco. ¡Verás cómo se recorta automáticamente dentro de la forma!</div>
+																<img src="img/arrastrafoto.png" alt="arrastrafoto">
+            </li>
+												</ol>
+        </section>
+
+        <section id="quiz-area">
+            <h2>⚡ Quiz Rápido: ¿Maestro de la Composición?</h2>
+            
+            <div id="quiz-wrapper">
+                <div class="question-card" id="q-text">Cargando pregunta...</div>
+                
+                <div class="answers-grid" id="ans-container">
+                    </div>
+
+                <div id="feedback-display" style="text-align:center; margin-top:20px; font-weight:bold; min-height:30px;"></div>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion02.html">sesion 2</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion04.html">sesion 4</a>
+        </div>
+    </main>
+    
+
+    <footer>
+        copyright &copy;JMGV-PTEL-2026. sesion 03 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados
+    </footer>
+
+    <script>
+        // --- 1. LÓGICA DEL SIMULADOR DE CAPAS ---
+        function moveLayer(action) {
+            const square = document.getElementById('obj-square');
+            const circle = document.getElementById('obj-circle');
+            const triangle = document.getElementById('obj-triangle');
+            
+            // Animación simple de escala para indicar movimiento
+            square.style.transform = "scale(1.1)";
+            setTimeout(() => square.style.transform = "scale(1)", 200);
+
+            if (action === 'back') {
+                square.style.zIndex = "0";
+                circle.style.zIndex = "2";
+                triangle.style.zIndex = "3";
+                square.innerText = "Fondo";
+            } else if (action === 'middle') {
+                square.style.zIndex = "2";
+                circle.style.zIndex = "1";
+                triangle.style.zIndex = "3";
+                square.innerText = "Medio";
+            } else if (action === 'front') {
+                square.style.zIndex = "10";
+                circle.style.zIndex = "1";
+                triangle.style.zIndex = "2";
+                square.innerText = "Frente";
+            }
+        }
+
+        // --- 2. LÓGICA DEL QUIZ (KAHOOT STYLE) ---
+        const quizData = [
+            {
+                q: "¿Qué sucede si arrastras una foto sobre un 'Marco' (Frame)?",
+                a: ["La foto se borra", "La foto toma la forma del marco", "Canva se cierra", "La foto se pone en blanco y negro"],
+                c: 1 // Índice correcto
+            },
+            {
+                q: "¿Dónde encuentras flechas, círculos y pegatinas en Canva?",
+                a: ["Pestaña Elementos", "Pestaña Archivo", "En Google", "En Configuración"],
+                c: 0
+            },
+            {
+                q: "Si un texto quedó detrás de una foto, ¿qué herramienta usas?",
+                a: ["Transparencia", "Filtro", "Posición > Mover adelante", "Recortar"],
+                c: 2
+            },
+            {
+                q: "¿Cuál es la diferencia entre 'Elementos' y 'Subidos'?",
+                a: ["Son lo mismo", "Elementos son recursos de Canva, Subidos son tus propios archivos", "Subidos cuesta dinero", "Elementos solo tiene videos"],
+                c: 1
+            }
+        ];
+
+        let qIndex = 0;
+        let score = 0;
+        const qText = document.getElementById('q-text');
+        const ansContainer = document.getElementById('ans-container');
+        const feedbackDisplay = document.getElementById('feedback-display');
+
+        function loadQuestion() {
+            if (qIndex >= quizData.length) {
+                showFinalScore();
+                return;
+            }
+
+            const current = quizData[qIndex];
+            qText.innerText = current.q;
+            ansContainer.innerHTML = '';
+            feedbackDisplay.innerText = '';
+
+            const colors = ['c-red', 'c-blue', 'c-gold', 'c-green'];
+
+            current.a.forEach((ans, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `ans-btn ${colors[idx]}`;
+                btn.innerText = ans;
+                btn.onclick = () => checkAnswer(idx, current.c);
+                ansContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct) {
+            const buttons = document.querySelectorAll('.ans-btn');
+            buttons.forEach(b => b.classList.add('disabled'));
+            buttons.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                score++;
+                feedbackDisplay.innerText = "¡Correcto! 🎉";
+                feedbackDisplay.style.color = "#2ebd59";
+                buttons[selected].style.boxShadow = "0 0 15px white";
+                buttons[selected].innerText = "✅ " + buttons[selected].innerText;
+            } else {
+                feedbackDisplay.innerText = "Ups... era la otra opción 😅";
+                feedbackDisplay.style.color = "#ff5353";
+                buttons[selected].style.opacity = "0.3";
+                buttons[correct].style.boxShadow = "0 0 15px white";
+                buttons[correct].innerText = "👈 " + buttons[correct].innerText;
+            }
+
+            setTimeout(() => {
+                qIndex++;
+                loadQuestion();
+            }, 2000); // 2 segundos para leer el feedback y pasar
+        }
+
+        function showFinalScore() {
+            qText.innerText = "¡Sesión Completada!";
+            ansContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; font-size: 1.5rem;">
+                    Has acertado ${score} de ${quizData.length} preguntas.
+                    <br><br>
+                    ${score === quizData.length ? "🌟 ¡NIVEL GENIO! 🌟" : "👍 ¡Bien hecho! Sigue practicando."}
+                </div>
+            `;
+            feedbackDisplay.innerHTML = '<button onclick="location.reload()" style="padding:10px 20px; border-radius:5px; border:none; background:white; color:#333; cursor:pointer; font-weight:bold;">Reiniciar Sesión</button>';
+        }
+
+        // Iniciar Quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

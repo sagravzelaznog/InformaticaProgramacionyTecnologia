@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Matemáticas Dinámicas - Curso de JavaScript</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a6fa5, #3a5a8c);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.8rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            font-size: 1.6rem;
+        }
+
+        .card h3 {
+            margin: 1.5rem 0 0.8rem;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #d63384;
+        }
+
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+            box-shadow: var(--box-shadow);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.95em;
+        }
+
+        .demo {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .demo h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            background-color: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #3a5a8c;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: #212529;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .error {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .is-invalid {
+            border-color: var(--danger-color) !important;
+            background-color: #fff8f8;
+        }
+
+        .is-valid {
+            border-color: var(--success-color) !important;
+            background-color: #f8fff9;
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 500;
+        }
+
+        .feedback i {
+            font-size: 1.2rem;
+        }
+
+        .feedback.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .feedback.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .calculator {
+            background: #fff;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            margin: 1.5rem 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .calculator-display {
+            background: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: right;
+            font-size: 1.8rem;
+            font-weight: bold;
+            min-height: 80px;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calculator-buttons button {
+            aspect-ratio: 1/1;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+        }
+
+        .calculator-buttons .span-2 {
+            grid-column: span 2;
+            aspect-ratio: auto;
+        }
+
+        .result-box {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .result-box.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-box.passed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result-box.failed {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .challenge {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 1.8rem;
+            margin: 2.5rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .challenge h3 {
+            color: #d39e00;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .challenge h3 i {
+            font-size: 1.2em;
+        }
+
+        .challenge-requirements {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #eee;
+        }
+
+        .challenge-requirements h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .challenge-requirements ol {
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .challenge-requirements li {
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-requirements li:last-child {
+            margin-bottom: 0;
+        }
+
+        .hint {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1.2rem;
+            display: none;
+            border-left: 4px solid #ffc107;
+        }
+
+        .hint.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-btn {
+            background-color: #ffc107;
+            color: #212529;
+            margin-top: 0.8rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .hint-btn:hover {
+            background-color: #e0a800;
+            color: #212529;
+        }
+
+        .dola-ai {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .dola-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dola-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .dola-btn:hover::before {
+            left: 100%;
+        }
+
+        .dola-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .dola-chat {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .dola-chat.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .dola-header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dola-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dola-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .dola-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dola-messages {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dola-message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: messageIn 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dola-message.user {
+            background: #f1f1f1;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+            color: #333;
+        }
+
+        .dola-message.bot {
+            background: #f0f4ff;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            color: #2c3e50;
+            border: 1px solid #e0e6ff;
+        }
+
+        .dola-input-container {
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        .dola-typing {
+            display: flex;
+            padding: 0 15px 10px;
+            gap: 5px;
+            display: none;
+        }
+
+        .dola-typing span {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dola-typing span:nth-child(1) { animation-delay: -0.32s; }
+        .dola-typing span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .dola-input {
+            display: flex;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .dola-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            background: transparent;
+        }
+
+        .dola-send {
+            background: none;
+            border: none;
+            color: #6c5ce7;
+            padding: 0 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .dola-send:hover {
+            color: #4a3d9c;
+        }
+
+        .dola-send i {
+            font-size: 1.2rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.3s ease forwards;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Iconos */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .dola-chat {
+                width: 90vw;
+                right: 5vw;
+                max-height: 70vh;
+            }
+            
+            .calculator-buttons {
+                gap: 0.3rem;
+            }
+            
+            .calculator-buttons button {
+                font-size: 1rem;
+                padding: 0.3rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Sesión 9: Matemáticas Dinámicas</h1>
+        <p class="subtitle">Aprende a trabajar con números y operaciones matemáticas en JavaScript</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-calculator"></i> 1. Trabajando con Números</h2>
+            <p>En JavaScript, podemos realizar operaciones matemáticas básicas como suma (+), resta (-), multiplicación (*) y división (/).</p>
+            
+            <div class="demo">
+                <h4>Calculadora Básica</h4>
+                <div class="calculator">
+                    <div class="calculator-display" id="calc-display">0</div>
+                    <div class="calculator-buttons">
+                        <button class="btn-secondary" onclick="appendToDisplay('7')">7</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('8')">8</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('9')">9</button>
+                        <button class="btn-danger" onclick="clearDisplay()">C</button>
+                        
+                        <button class="btn-secondary" onclick="appendToDisplay('4')">4</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('5')">5</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('6')">6</button>
+                        <button class="btn-warning" onclick="appendToDisplay('+')">+</button>
+                        
+                        <button class="btn-secondary" onclick="appendToDisplay('1')">1</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('2')">2</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('3')">3</button>
+                        <button class="btn-warning" onclick="appendToDisplay('-')">-</button>
+                        
+                        <button class="btn-secondary" onclick="appendToDisplay('0')">0</button>
+                        <button class="btn-secondary" onclick="appendToDisplay('.')">.</button>
+                        <button class="btn-warning" onclick="appendToDisplay('*')">×</button>
+                        <button class="btn-warning" onclick="appendToDisplay('/')">÷</button>
+                        
+                        <button class="btn-success span-2" onclick="calculate()">=</button>
+                        <button class="btn-warning" onclick="appendToDisplay('%')">%</button>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <button onclick="showCalculatorCode()" class="btn-secondary"><i class="fas fa-code"></i> Ver Código de la Calculadora</button>
+                    <div id="calculator-code" style="display: none; margin-top: 1rem;">
+                        <pre><code>// Variables globales
+let currentInput = '0';
+let previousInput = '';
+let operation = null;
+let resetScreen = false;
+
+// Actualizar la pantalla de la calculadora
+function updateDisplay() {
+    const display = document.getElementById('calc-display');
+    display.textContent = currentInput;
+}
+
+// Agregar dígitos a la pantalla
+function appendToDisplay(value) {
+    if (currentInput === '0' || resetScreen) {
+        currentInput = value;
+        resetScreen = false;
+    } else {
+        currentInput += value;
+    }
+    updateDisplay();
+}
+
+// Establecer la operación
+function setOperation(op) {
+    if (currentInput === '') return;
+    if (previousInput !== '') {
+        calculate();
+    }
+    operation = op;
+    previousInput = currentInput;
+    resetScreen = true;
+}
+
+// Realizar el cálculo
+function calculate() {
+    let result;
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    
+    if (isNaN(prev) || isNaN(current)) return;
+    
+    switch (operation) {
+        case '+':
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            result = prev / current;
+            break;
+        case '%':
+            result = prev % current;
+            break;
+        default:
+            return;
+    }
+    
+    currentInput = result.toString();
+    operation = null;
+    previousInput = '';
+    resetScreen = true;
+    updateDisplay();
+}
+
+// Limpiar la pantalla
+function clearDisplay() {
+    currentInput = '0';
+    previousInput = '';
+    operation = null;
+    updateDisplay();
+}
+
+// Inicializar la calculadora
+updateDisplay();</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Conversión de Tipos</h3>
+            <p>Es importante recordar que los valores de los inputs son cadenas de texto por defecto. Para realizar operaciones matemáticas, necesitamos convertirlos a números:</p>
+            
+            <div class="demo">
+                <h4>Convertir Texto a Número</h4>
+                <div class="form-group">
+                    <label for="numero1">Primer número:</label>
+                    <input type="text" id="numero1" placeholder="Escribe un número">
+                </div>
+                <div class="form-group">
+                    <label for="numero2">Segundo número:</label>
+                    <input type="text" id="numero2" placeholder="Escribe otro número">
+                </div>
+                <button onclick="sumarNumeros()">Sumar</button>
+                <div id="resultado-suma" style="margin-top: 1rem; font-weight: bold;"></div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <button onclick="mostrarMetodosConversion()" class="btn-secondary"><i class="fas fa-info-circle"></i> Ver Métodos de Conversión</button>
+                    <div id="metodos-conversion" style="display: none; margin-top: 1rem;">
+                        <h5>Métodos para convertir texto a número:</h5>
+                        <ul>
+                            <li><code>parseInt()</code> - Convierte una cadena en un número entero</li>
+                            <li><code>parseFloat()</code> - Convierte una cadena en un número decimal</li>
+                            <li>Operador <code>+</code> - Convierte una cadena en número si es posible</li>
+                            <li><code>Number()</code> - Convierte un valor en un número</li>
+                        </ul>
+                        <pre><code>// Ejemplos:
+let texto1 = "10";
+let texto2 = "5.5";
+
+// Usando parseInt() - convierte a entero
+let entero = parseInt(texto1); // 10
+
+// Usando parseFloat() - convierte a decimal
+let decimal = parseFloat(texto2); // 5.5
+
+// Usando el operador +
+let num1 = +texto1; // 10
+let num2 = +texto2; // 5.5
+
+// Usando Number()
+let numero1 = Number(texto1); // 10
+let numero2 = Number(texto2); // 5.5</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-check-circle"></i> 2. Validación de Números</h2>
+            <p>Es importante validar que los valores ingresados sean números válidos antes de realizar operaciones con ellos.</p>
+            
+            <div class="demo">
+                <h4>Validación de Números</h4>
+                <div class="form-group">
+                    <label for="edad">Ingresa tu edad:</label>
+                    <input type="text" id="edad" placeholder="Ej: 25">
+                    <div class="error" id="error-edad">Por favor, ingresa una edad válida (entre 1 y 120)</div>
+                </div>
+                <button onclick="validarEdad()">Validar Edad</button>
+                <div id="mensaje-validacion" style="margin-top: 1rem; font-weight: bold;"></div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h5>Métodos útiles para validar números:</h5>
+                    <ul>
+                        <li><code>isNaN(valor)</code> - Verifica si un valor NO es un número</li>
+                        <li><code>Number.isInteger(valor)</code> - Verifica si un valor es un número entero</li>
+                        <li><code>typeof valor === 'number'</code> - Verifica el tipo de dato</li>
+                    </ul>
+                    
+                    <pre><code>// Función para validar si un valor es un número válido
+function esNumeroValido(valor) {
+    // Verificar si el valor es un número y no es NaN
+    return !isNaN(valor) && 
+           valor !== null && 
+           valor !== '' && 
+           valor !== true && 
+           valor !== false;
+}
+
+// Ejemplo de uso
+let valor1 = "25";
+let valor2 = "abc";
+
+console.log(esNumeroValido(valor1)); // true
+console.log(esNumeroValido(valor2)); // false</code></pre>
+                </div>
+            </div>
+            
+            <h3>Manejo de Errores</h3>
+            <p>Es importante manejar posibles errores al trabajar con operaciones matemáticas, especialmente la división por cero.</p>
+            
+            <div class="demo">
+                <h4>División con Manejo de Errores</h4>
+                <div class="form-group">
+                    <label for="dividendo">Dividendo:</label>
+                    <input type="number" id="dividendo" placeholder="Número a dividir">
+                </div>
+                <div class="form-group">
+                    <label for="divisor">Divisor:</label>
+                    <input type="number" id="divisor" placeholder="Número por el que divides">
+                </div>
+                <button onclick="dividirNumeros()">Dividir</button>
+                <div id="resultado-division" style="margin-top: 1rem; font-weight: bold;"></div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <button onclick="mostrarCodigoDivision()" class="btn-secondary"><i class="fas fa-code"></i> Ver Código de División</button>
+                    <div id="codigo-division" style="display: none; margin-top: 1rem;">
+                        <pre><code>function dividirNumeros() {
+    // Obtener valores de los inputs
+    const dividendo = parseFloat(document.getElementById('dividendo').value);
+    const divisor = parseFloat(document.getElementById('divisor').value);
+    const resultadoElemento = document.getElementById('resultado-division');
+    
+    // Validar que ambos campos tengan valores
+    if (isNaN(dividendo) || isNaN(divisor)) {
+        resultadoElemento.textContent = 'Por favor, ingresa números válidos en ambos campos';
+        resultadoElemento.style.color = 'red';
+        return;
+    }
+    
+    // Verificar división por cero
+    if (divisor === 0) {
+        resultadoElemento.textContent = 'Error: No se puede dividir por cero';
+        resultadoElemento.style.color = 'red';
+        return;
+    }
+    
+    // Realizar la división y mostrar el resultado
+    const resultado = dividendo / divisor;
+    resultadoElemento.textContent = `Resultado: ${resultado.toFixed(2)}`;
+    resultadoElemento.style.color = 'green';
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge">
+        <h3><i class="fas fa-trophy"></i> Reto: Calculadora de Promedio</h3>
+        <p>Crea una calculadora que calcule el promedio de 3 calificaciones y muestre si el estudiante aprobó o reprobó.</p>
+        
+        <div class="challenge-requirements">
+            <h4>Requisitos:</h4>
+            <ol>
+                <li>3 inputs para ingresar las calificaciones (números del 0 al 100).</li>
+                <li>Un botón para calcular el promedio.</li>
+                <li>Mostrar el resultado del promedio con 2 decimales.</li>
+                <li>Si el promedio es mayor o igual a 70, mostrar "Aprobado" en color verde.</li>
+                <li>Si el promedio es menor a 70, mostrar "Reprobado" en color rojo.</li>
+                <li>Validar que los valores ingresados sean números entre 0 y 100.</li>
+            </ol>
+        </div>
+        
+        <button class="hint-btn" onclick="document.querySelector('.hint').classList.toggle('show')">
+            <i class="fas fa-lightbulb"></i> Mostrar Pista
+        </button>
+        
+        <div class="hint">
+            <p><strong>Pista 1:</strong> Usa <code>parseFloat()</code> para convertir los valores de los inputs a números.</p>
+            <p><strong>Pista 2:</strong> Para calcular el promedio, suma los tres números y divide entre 3.</p>
+            <p><strong>Pista 3:</strong> Usa <code>toFixed(2)</code> para mostrar el resultado con 2 decimales.</p>
+            <p><strong>Pista 4:</strong> Usa una condición para determinar si el promedio es mayor o igual a 70.</p>
+            <p><strong>Ejemplo de código para validar:</strong></p>
+            <pre><code>function validarNumero(valor) {
+    const num = parseFloat(valor);
+    return !isNaN(num) && num >= 0 && num <= 100;
+}</code></pre>
+        </div>
+        
+        <div class="demo" style="margin-top: 1.5rem;">
+            <h4>Tu solución:</h4>
+            <div class="form-group">
+                <label for="calif1">Calificación 1:</label>
+                <input type="number" id="calif1" min="0" max="100" placeholder="0-100">
+                <div class="error" id="error-calif1">La calificación debe ser un número entre 0 y 100</div>
+            </div>
+            <div class="form-group">
+                <label for="calif2">Calificación 2:</label>
+                <input type="number" id="calif2" min="0" max="100" placeholder="0-100">
+                <div class="error" id="error-calif2">La calificación debe ser un número entre 0 y 100</div>
+            </div>
+            <div class="form-group">
+                <label for="calif3">Calificación 3:</label>
+                <input type="number" id="calif3" min="0" max="100" placeholder="0-100">
+                <div class="error" id="error-calif3">La calificación debe ser un número entre 0 y 100</div>
+            </div>
+            <button onclick="calcularPromedio()" class="btn-success"><i class="fas fa-calculator"></i> Calcular Promedio</button>
+            
+            <div id="resultado-promedio" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- Dola AI Assistant -->
+    <div class="dola-ai">
+        <div class="dola-chat" id="dola-chat">
+            <div class="dola-header">
+                <h3><i class="fas fa-robot"></i> Dola - Asistente de Matemáticas</h3>
+                <button class="dola-close" onclick="document.getElementById('dola-chat').classList.remove('active')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="dola-messages" id="dola-messages">
+                <div class="dola-message bot">
+                    ¡Hola! Soy Dola, tu asistente de matemáticas. ¿En qué puedo ayudarte hoy con las operaciones matemáticas en JavaScript?
+                </div>
+            </div>
+            <div class="dola-typing" id="dola-typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="dola-input-container">
+                <div class="dola-input">
+                    <input type="text" id="dola-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key === 'Enter') enviarMensaje()">
+                    <button class="dola-send" onclick="enviarMensaje()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="dola-btn" onclick="document.getElementById('dola-chat').classList.toggle('active')">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        // ===========================================
+        // Código de la calculadora
+        // ===========================================
+        let currentInput = '0';
+        let previousInput = '';
+        let operation = null;
+        let resetScreen = false;
+
+        // Actualizar la pantalla de la calculadora
+        function updateDisplay() {
+            const display = document.getElementById('calc-display');
+            display.textContent = currentInput;
+        }
+
+        // Agregar dígitos a la pantalla
+        function appendToDisplay(value) {
+            if (currentInput === '0' || resetScreen) {
+                currentInput = value;
+                resetScreen = false;
+            } else {
+                currentInput += value;
+            }
+            updateDisplay();
+        }
+
+        // Establecer la operación
+        function setOperation(op) {
+            if (currentInput === '') return;
+            if (previousInput !== '') {
+                calculate();
+            }
+            operation = op;
+            previousInput = currentInput;
+            resetScreen = true;
+        }
+
+        // Realizar el cálculo
+        function calculate() {
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            
+            if (isNaN(prev) || isNaN(current)) return;
+            
+            switch (operation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    if (current === 0) {
+                        alert('Error: No se puede dividir por cero');
+                        clearDisplay();
+                        return;
+                    }
+                    result = prev / current;
+                    break;
+                case '%':
+                    result = prev % current;
+                    break;
+                default:
+                    return;
+            }
+            
+            currentInput = result.toString();
+            operation = null;
+            previousInput = '';
+            resetScreen = true;
+            updateDisplay();
+        }
+
+        // Limpiar la pantalla
+        function clearDisplay() {
+            currentInput = '0';
+            previousInput = '';
+            operation = null;
+            updateDisplay();
+        }
+
+        // Inicializar la calculadora
+        updateDisplay();
+
+        // Mostrar/ocultar el código de la calculadora
+        function showCalculatorCode() {
+            const codeDiv = document.getElementById('calculator-code');
+            const button = event.target;
+            
+            if (codeDiv.style.display === 'none' || !codeDiv.style.display) {
+                codeDiv.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-code"></i> Ocultar Código';
+            } else {
+                codeDiv.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-code"></i> Ver Código de la Calculadora';
+            }
+        }
+
+        // ===========================================
+        // Funciones de ejemplo
+        // ===========================================
+        function sumarNumeros() {
+            const num1 = document.getElementById('numero1').value;
+            const num2 = document.getElementById('numero2').value;
+            const resultadoElemento = document.getElementById('resultado-suma');
+            
+            // Validar que ambos campos tengan valores
+            if (num1 === '' || num2 === '') {
+                resultadoElemento.textContent = 'Por favor, ingresa ambos números';
+                resultadoElemento.style.color = 'red';
+                return;
+            }
+            
+            // Convertir a números
+            const numero1 = parseFloat(num1);
+            const numero2 = parseFloat(num2);
+            
+            // Verificar si la conversión fue exitosa
+            if (isNaN(numero1) || isNaN(numero2)) {
+                resultadoElemento.textContent = 'Por favor, ingresa números válidos';
+                resultadoElemento.style.color = 'red';
+                return;
+            }
+            
+            // Realizar la suma y mostrar el resultado
+            const resultado = numero1 + numero2;
+            resultadoElemento.textContent = `Resultado: ${numero1} + ${numero2} = ${resultado}`;
+            resultadoElemento.style.color = 'green';
+        }
+
+        function mostrarMetodosConversion() {
+            const div = document.getElementById('metodos-conversion');
+            const button = event.target;
+            
+            if (div.style.display === 'none' || !div.style.display) {
+                div.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-info-circle"></i> Ocultar Métodos';
+            } else {
+                div.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-info-circle"></i> Ver Métodos de Conversión';
+            }
+        }
+
+        function validarEdad() {
+            const edadInput = document.getElementById('edad');
+            const errorEdad = document.getElementById('error-edad');
+            const mensaje = document.getElementById('mensaje-validacion');
+            
+            const edad = parseInt(edadInput.value);
+            
+            // Validar que sea un número entre 1 y 120
+            if (isNaN(edad) || edad < 1 || edad > 120) {
+                edadInput.classList.add('is-invalid');
+                errorEdad.style.display = 'block';
+                mensaje.textContent = '';
+                return false;
+            }
+            
+            // Si la validación es exitosa
+            edadInput.classList.remove('is-invalid');
+            edadInput.classList.add('is-valid');
+            errorEdad.style.display = 'none';
+            mensaje.textContent = `Edad válida: ${edad} años`;
+            mensaje.style.color = 'green';
+            return true;
+        }
+
+        function dividirNumeros() {
+            // Obtener valores de los inputs
+            const dividendo = parseFloat(document.getElementById('dividendo').value);
+            const divisor = parseFloat(document.getElementById('divisor').value);
+            const resultadoElemento = document.getElementById('resultado-division');
+            
+            // Validar que ambos campos tengan valores
+            if (isNaN(dividendo) || isNaN(divisor)) {
+                resultadoElemento.textContent = 'Por favor, ingresa números válidos en ambos campos';
+                resultadoElemento.style.color = 'red';
+                return;
+            }
+            
+            // Verificar división por cero
+            if (divisor === 0) {
+                resultadoElemento.textContent = 'Error: No se puede dividir por cero';
+                resultadoElemento.style.color = 'red';
+                return;
+            }
+            
+            // Realizar la división y mostrar el resultado
+            const resultado = dividendo / divisor;
+            resultadoElemento.textContent = `Resultado: ${resultado.toFixed(2)}`;
+            resultadoElemento.style.color = 'green';
+        }
+
+        function mostrarCodigoDivision() {
+            const codigoDiv = document.getElementById('codigo-division');
+            const button = event.target;
+            
+            if (codigoDiv.style.display === 'none' || !codigoDiv.style.display) {
+                codigoDiv.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-code"></i> Ocultar Código';
+            } else {
+                codigoDiv.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-code"></i> Ver Código de División';
+            }
+        }
+
+        // ===========================================
+        // Reto: Calculadora de Promedio
+        // ===========================================
+        function validarCalificacion(califId, errorId) {
+            const input = document.getElementById(califId);
+            const errorElement = document.getElementById(errorId);
+            const valor = parseFloat(input.value);
+            
+            // Validar que sea un número entre 0 y 100
+            if (isNaN(valor) || valor < 0 || valor > 100) {
+                input.classList.add('is-invalid');
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            // Si la validación es exitosa
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            errorElement.style.display = 'none';
+            return true;
+        }
+
+        function calcularPromedio() {
+            // Validar todas las calificaciones
+            const calif1Valida = validarCalificacion('calif1', 'error-calif1');
+            const calif2Valida = validarCalificacion('calif2', 'error-calif2');
+            const calif3Valida = validarCalificacion('calif3', 'error-calif3');
+            
+            // Si alguna validación falla, no continuar
+            if (!calif1Valida || !calif2Valida || !calif3Valida) {
+                return;
+            }
+            
+            // Obtener los valores de las calificaciones
+            const calif1 = parseFloat(document.getElementById('calif1').value);
+            const calif2 = parseFloat(document.getElementById('calif2').value);
+            const calif3 = parseFloat(document.getElementById('calif3').value);
+            
+            // Calcular el promedio
+            const promedio = (calif1 + calif2 + calif3) / 3;
+            
+            // Mostrar el resultado
+            const resultadoElemento = document.getElementById('resultado-promedio');
+            resultadoElemento.textContent = `Promedio: ${promedio.toFixed(2)} - `;
+            
+            // Determinar si aprobó o reprobó
+            if (promedio >= 70) {
+                resultadoElemento.textContent += '¡Aprobado!';
+                resultadoElemento.className = 'result-box show passed';
+            } else {
+                resultadoElemento.textContent += 'Reprobado';
+                resultadoElemento.className = 'result-box show failed';
+            }
+            
+            // Hacer scroll hasta el resultado
+            resultadoElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ===========================================
+        // Funcionalidad del chat Dola
+        // ===========================================
+        function enviarMensaje() {
+            const input = document.getElementById('dola-input');
+            const mensaje = input.value.trim();
+            
+            if (mensaje === '') return;
+            
+            // Agregar mensaje del usuario
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeUsuario = document.createElement('div');
+            mensajeUsuario.className = 'dola-message user';
+            mensajeUsuario.textContent = mensaje;
+            mensajes.appendChild(mensajeUsuario);
+            
+            // Limpiar input y hacer scroll al final
+            input.value = '';
+            mensajes.scrollTop = mensajes.scrollHeight;
+            
+            // Mostrar "escribiendo..."
+            const typing = document.getElementById('dola-typing');
+            typing.style.display = 'flex';
+            mensajes.scrollTop = mensajes.scrollHeight;
+            
+            // Simular respuesta después de un retraso
+            setTimeout(responderMensaje, 1000 + Math.random() * 2000);
+        }
+        
+        function responderMensaje() {
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeBot = document.createElement('div');
+            mensajeBot.className = 'dola-message bot';
+            
+            // Ocultar "escribiendo..."
+            document.getElementById('dola-typing').style.display = 'none';
+            
+            // Respuestas posibles
+            const respuestas = [
+                "¡Claro! Para realizar operaciones matemáticas en JavaScript, puedes usar los operadores básicos: +, -, *, /, %.",
+                "¿Neitas ayuda con la calculadora de promedios? Asegúrate de validar que los números estén entre 0 y 100.",
+                "Recuerda que para convertir texto a número puedes usar parseFloat() para decimales o parseInt() para enteros.",
+                "Si tienes problemas con NaN, verifica que todos los valores sean números válidos antes de operar con ellos.",
+                "¡Las matemáticas son divertidas! ¿En qué más puedo ayudarte hoy?",
+                "Para redondear números, puedes usar .toFixed() para decimales o Math.round() para el entero más cercano."
+            ];
+            
+            // Seleccionar una respuesta aleatoria
+            const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
+            
+            // Agregar la respuesta al chat
+            mensajeBot.textContent = respuesta;
+            mensajes.appendChild(mensajeBot);
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('dola-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+
+        // Inicializar tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar animación a las tarjetas al cargar
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('bounce-in');
+                }, 100 * index);
+            });
+            
+            // Inicializar la calculadora
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

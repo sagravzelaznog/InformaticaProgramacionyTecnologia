@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Exploración del Historial y Diferencias (Diff)</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 3: Exploración del Historial y Diferencias</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Navegación del Historial (<code>git log</code>)</button>
+    <div class="panel">
+        <p>El comando <code>git log</code> es tu herramienta principal para revisar qué ha sucedido en el repositorio. Por defecto, lista los commits en orden cronológico inverso, mostrando su hash (SHA-1), autor, fecha y mensaje [1].</p>
+        
+        <h3>Formateos personalizados (<code>--oneline</code> y <code>--graph</code>)</h3>
+        <ul>
+            <li><strong>Formato compacto:</strong> Si el historial es extenso, la bandera <code>--oneline</code> imprime cada commit en una sola línea, lo que facilita visualizar muchos commits a la vez [2].</li>
+            <li><strong>Grafo de ramas:</strong> Para ver cómo las ramas se dividen y fusionan en una estructura gráfica y atractiva, puedes combinar comandos [3]:
+            <br><pre><code>git log --decorate --oneline --graph</code></pre></li>
+        </ul>
+
+        <h3>Búsqueda de cadenas en el historial</h3>
+        <p>Si necesitas encontrar cuándo se hizo un cambio que menciona cierta palabra clave en su mensaje, puedes usar la bandera <code>--grep</code> [4].</p>
+        <pre><code>git log --all --grep "texto a buscar"</code></pre>
+        <p>También puedes buscar cuándo se añadió o eliminó una línea específica en el código fuente usando <code>git log -S"cadena"</code> o expresiones regulares con <code>-G</code> [5].</p>
+    </div>
+
+    <button class="accordion">2. Resumen de Contribuciones (<code>git shortlog</code>)</button>
+    <div class="panel">
+        <p>Para generar métricas o listar qué miembros del equipo han participado en el proyecto, <code>git shortlog</code> agrupa los commits por autor en orden alfabético [6].</p>
+        
+        <h3>Banderas útiles de estadísticas</h3>
+        <ul>
+            <li><strong>Sumario (<code>-s</code> o <code>--summary</code>):</strong> Oculta las descripciones de los commits individuales y muestra simplemente el número total de commits al lado del nombre de cada autor [6].</li>
+            <li><strong>Ordenado por número (<code>-n</code> o <code>--numbered</code>):</strong> Cambia el ordenamiento predeterminado (alfabético) para ordenar la lista descendentemente según la cantidad de contribuciones hechas [7].</li>
+        </ul>
+        <pre><code>git shortlog -sn</code></pre>
+        <p>Esto te entregará rápidamente un listado de los principales colaboradores organizados por la mayor cantidad de trabajo aportado.</p>
+    </div>
+
+    <button class="accordion">3. Diferencias (<code>git diff</code>)</button>
+    <div class="panel">
+        <p>Mientras que el historial muestra cambios ya guardados, <code>git diff</code> te permite comparar diferentes estados de tu proyecto antes o después de crear un commit.</p>
+        
+        <h3>Directorio de trabajo actual</h3>
+        <p>Al ejecutar <code>git diff</code> sin parámetros, Git mostrará las diferencias entre el último commit y los cambios locales que <strong>aún no están preparados</strong> (unstaged) en tu directorio de trabajo [8].</p>
+
+        <h3>Área de Preparación (<code>--staged</code>)</h3>
+        <p>Si ya agregaste los archivos con <code>git add</code>, una ejecución simple de <code>git diff</code> no arrojará resultados. Para ver las diferencias de los archivos que ya están en el área de preparación (y que formarán el próximo commit), debes ejecutar [9, 10]:</p>
+        <pre><code>git diff --staged</code></pre>
+        <p><em>(Nota: <code>git diff --cached</code> funciona exactamente igual como un sinónimo [10]).</em></p>
+
+        <h3>Comparar entre ramas</h3>
+        <p>Si quieres ver en qué difieren dos ramas antes de fusionarlas, puedes especificar sus nombres. Esto mostrará las diferencias desde que la nueva rama divergió de la original [10]:</p>
+        <pre><code>git diff rama_original rama_nueva</code></pre>
+        <p>O de manera equivalente: <code>git diff original..nueva</code>.</p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

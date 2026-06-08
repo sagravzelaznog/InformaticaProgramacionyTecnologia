@@ -1,0 +1,17 @@
+<!-- HEADER COMPONENT - Reutilizable -->
+<header class="header session-header">
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Volver al índice
+        </a>
+        <h1 data-session-title>Sesión {{sessionNumber}}: {{sessionTitle}}</h1>
+        <p data-session-subtitle>{{sessionSubtitle}}</p>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar progress-{{progressPercentage}}"></div>
+            <span class="progress-text">Sesión {{sessionNumber}} de 32 - {{moduleName}}</span>
+        </div>
+    </div>
+</header>
+

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Examen - JavaScript</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --correct: #10b981;
+            --incorrect: #ef4444;
+            --accent: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .quiz-container {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #334155;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        h2#question {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            background-color: #2dd4bf15;
+            border: 2px solid #2dd4bf40;
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #2dd4bf30;
+            border-color: #2dd4bf;
+            transform: translateY(-2px);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .option-btn.correct {
+            background-color: rgba(16, 185, 129, 0.2);
+            border-color: var(--correct);
+        }
+
+        .option-btn.incorrect {
+            background-color: rgba(239, 68, 68, 0.2);
+            border-color: var(--incorrect);
+        }
+
+        #next-btn, #restart-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background-color 0.2s;
+            align-self: flex-end;
+            display: none;
+        }
+
+        #next-btn:hover, #restart-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #results-container {
+            display: none;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0%, #334155 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+        }
+
+        .score-text {
+            position: relative;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .results-message {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 1.5rem;
+                border-radius: 0.5rem;
+            }
+            h2#question {
+                font-size: 1.1rem;
+            }
+            .option-btn {
+                padding: 0.875rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <div id="quiz-content">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+            
+            <div class="quiz-header">
+                <span id="question-number">Pregunta 1 de 40</span>
+                <span id="score-display">Puntos: 0</span>
+            </div>
+
+            <h2 id="question">Cargando pregunta...</h2>
+            
+            <div class="options-container" id="options">
+                <!-- Options injected by JS -->
+            </div>
+
+            <button id="next-btn">Siguiente Pregunta &rarr;</button>
+        </div>
+
+        <div id="results-container">
+            <h2>¡Guía Completada!</h2>
+            <div class="score-circle" id="score-circle">
+                <span class="score-text" id="final-score">0%</span>
+            </div>
+            <p class="results-message" id="results-message">Has terminado tu repaso.</p>
+            <button id="restart-btn">Intentar de nuevo</button>
+        </div>
+    </div>
+
+    <footer>
+        Copyright &copy;jmgv-ptel-2026. Guía de examen u3 info. Todos los derechos reservados
+    </footer>
+
+    <script>
+        // Data derived from Cheat Sheet
+        const quizData = [
+            { question: "¿Qué palabra clave declara una variable y opcionalmente la inicializa a un valor, sin alcance de bloque estricto?", options: ["var", "let", "const", "def"], correct: 0 },
+            { question: "¿Qué palabra clave declara una variable de alcance de bloque y opcionalmente la inicializa?", options: ["const", "let", "var", "int"], correct: 1 },
+            { question: "¿Qué palabra clave declara una variable de solo lectura de alcance de bloque?", options: ["let", "var", "const", "set"], correct: 2 },
+            { question: "¿Qué tipo de dato se utiliza exclusivamente para cadenas de texto?", options: ["Number", "String", "Object", "Boolean"], correct: 1 },
+            { question: "¿Qué tipo de dato se utiliza para valores numéricos, ya sean enteros o de punto flotante?", options: ["String", "Number", "Boolean", "Object"], correct: 1 },
+            { question: "¿Qué tipo de dato se utiliza para representar valores verdaderos o falsos?", options: ["Object", "String", "Boolean", "Number"], correct: 2 },
+            { question: "¿Qué tipo de dato se utiliza para colecciones estructuradas de datos (pares clave-valor)?", options: ["Boolean", "String", "Number", "Object"], correct: 3 },
+            { question: "¿Qué tipo de dato se utiliza para crear listas ordenadas de valores múltiples?", options: ["Array", "String", "Object", "Number"], correct: 0 },
+            { question: "¿Qué tipo de dato representa un bloque de código diseñado para realizar una tarea particular?", options: ["Boolean", "Function", "Object", "String"], correct: 1 },
+            { question: "¿Qué tipo es asignado automáticamente a una variable que ha sido declarada pero no inicializada?", options: ["undefined", "null", "NaN", "0"], correct: 0 },
+            { question: "¿Qué valor especial indica una ausencia intencional de cualquier valor de objeto?", options: ["undefined", "null", "void", "NaN"], correct: 1 },
+            { question: "¿Qué operador matemático se utiliza para la adición de números o concatenación de cadenas?", options: ["-", "*", "/", "+"], correct: 3 },
+            { question: "¿Qué operador matemático se utiliza exclusivamente para la multiplicación?", options: ["+", "-", "*", "/"], correct: 2 },
+            { question: "¿Qué operador matemático se utiliza para obtener el módulo (resto) de una división?", options: ["/", "*", "%", "-"], correct: 2 },
+            { question: "¿Qué operador se utiliza para incrementar el valor de una variable numérica en uno?", options: ["+=", "++", "--", "**"], correct: 1 },
+            { question: "¿Qué operador se utiliza para decrementar el valor de una variable numérica en uno?", options: ["--", "-=", "++", "//"], correct: 0 },
+            { question: "¿Qué operador verifica la igualdad realizando una conversión de tipo implícita si es necesario?", options: ["===", "==", "!=", "!=="], correct: 1 },
+            { question: "¿Qué operador verifica la igualdad estricta (valor y tipo) sin hacer conversión de tipo?", options: ["==", "===", "!=", "!=="], correct: 1 },
+            { question: "¿Qué operador verifica la desigualdad estricta (valor o tipo) sin conversión de tipo?", options: ["!=", "!==", "==", "==="], correct: 1 },
+            { question: "¿Qué operador lógico representa el 'AND' lógico (ambas condiciones deben ser verdaderas)?", options: ["||", "!", "&&", "??"], correct: 2 },
+            { question: "¿Qué operador lógico representa el 'OR' lógico (al menos una condición debe ser verdadera)?", options: ["&&", "!", "||", "??"], correct: 2 },
+            { question: "¿Qué operador lógico representa el 'NOT' lógico (invierte el valor booleano)?", options: ["&&", "||", "!", "??"], correct: 2 },
+            { question: "¿Qué operador es conocido como el operador ternario o condicional (condición ? expr1 : expr2)?", options: ["?:", "??", "!!", "::"], correct: 0 },
+            { question: "¿Qué estructura de control se utiliza para crear una declaración condicional básica?", options: ["switch", "if...else", "while", "for"], correct: 1 },
+            { question: "¿Qué estructura de control es ideal para una declaración de selección múltiple basada en un valor?", options: ["if...else", "while", "switch", "do...while"], correct: 2 },
+            { question: "¿Qué bucle se ejecuta continuamente mientras una condición específica se evalúe como verdadera?", options: ["do...while", "for", "while", "switch"], correct: 2 },
+            { question: "¿Qué bucle garantiza ejecutarse al menos una vez antes de evaluar si la condición es verdadera?", options: ["while", "for", "do...while", "if...else"], correct: 2 },
+            { question: "¿Qué palabra clave se utiliza dentro de una función para devolver un valor específico?", options: ["yield", "return", "break", "continue"], correct: 1 },
+            { question: "¿Qué sintaxis representa una función flecha, útil para mantener el contexto de 'this'?", options: ["function() {}", "() => {}", "func() =>", "() -> {}"], correct: 1 },
+            { question: "¿Qué método estático devuelve un array con las claves (nombres de propiedades) de un objeto?", options: ["Object.values()", "Object.entries()", "Object.keys()", "Object.assign()"], correct: 2 },
+            { question: "¿Qué método estático devuelve un array con los valores de las propiedades de un objeto?", options: ["Object.keys()", "Object.entries()", "Object.values()", "Object.assign()"], correct: 2 },
+            { question: "¿Qué método copia las propiedades de uno o más objetos fuente a un objeto destino?", options: ["Object.assign()", "Object.copy()", "Object.clone()", "Object.merge()"], correct: 0 },
+            { question: "¿Qué propiedad obtiene o establece la cantidad total de elementos presentes en un arreglo?", options: ["array.size", "array.count", "array.length", "array.index"], correct: 2 },
+            { question: "¿Qué método de arreglos elimina y devuelve el último elemento del arreglo?", options: ["array.shift()", "array.pop()", "array.push()", "array.unshift()"], correct: 1 },
+            { question: "¿Qué método de arreglos elimina y devuelve el primer elemento del arreglo?", options: ["array.pop()", "array.unshift()", "array.shift()", "array.push()"], correct: 2 },
+            { question: "¿Qué método se usa para agregar uno o más elementos al inicio de un arreglo?", options: ["array.push()", "array.unshift()", "array.pop()", "array.shift()"], correct: 1 },
+            { question: "¿Qué método de cadena (String) devuelve una nueva cadena convertida totalmente a minúsculas?", options: ["toLowerCase()", "toUpperCase()", "trim()", "slice()"], correct: 0 },
+            { question: "¿Qué método de expresiones regulares prueba si una cadena cumple con un patrón específico?", options: ["regexp.match()", "regexp.test()", "regexp.exec()", "regexp.search()"], correct: 1 },
+            { question: "¿Qué estructura marca un bloque para probar y especifica una respuesta si se produce una excepción?", options: ["try...catch", "if...else", "throw...error", "do...while"], correct: 0 },
+            { question: "¿Qué palabra clave pausa la ejecución de una función asíncrona hasta que una Promise se resuelva?", options: ["async", "yield", "await", "defer"], correct: 2 }
+        ];
+
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const progressEl = document.getElementById('progress');
+        const questionNumberEl = document.getElementById('question-number');
+        const scoreDisplayEl = document.getElementById('score-display');
+        const quizContent = document.getElementById('quiz-content');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const scoreCircle = document.getElementById('score-circle');
+        const resultsMessage = document.getElementById('results-message');
+
+        let currentQuestion = 0;
+        let score = 0;
+        let hasAnswered = false;
+
+        function initQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            quizContent.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            scoreDisplayEl.innerText = `Puntos: ${score}`;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            hasAnswered = false;
+            nextBtn.style.display = 'none';
+            const q = quizData[currentQuestion];
+            
+            // Actualizar progreso
+            const progressPct = ((currentQuestion) / quizData.length) * 100;
+            progressEl.style.width = `${progressPct}%`;
+            questionNumberEl.innerText = `Pregunta ${currentQuestion + 1} de ${quizData.length}`;
+
+            questionEl.innerText = q.question;
+            optionsEl.innerHTML = '';
+
+            q.options.forEach((opt, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option-btn');
+                button.innerText = opt;
+                button.addEventListener('click', () => checkAnswer(index, button));
+                optionsEl.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedIndex, button) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+
+            const q = quizData[currentQuestion];
+            const buttons = optionsEl.querySelectorAll('button');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selectedIndex === q.correct) {
+                button.classList.add('correct');
+                score++;
+                scoreDisplayEl.innerText = `Puntos: ${score}`;
+            } else {
+                button.classList.add('incorrect');
+                buttons[q.correct].classList.add('correct');
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+
+        function showResults() {
+            quizContent.style.display = 'none';
+            resultsContainer.style.display = 'flex';
+            
+            const percentage = Math.round((score / quizData.length) * 100);
+            finalScoreEl.innerText = `${percentage}%`;
+            
+            scoreCircle.style.background = `conic-gradient(var(--accent) ${percentage}%, #334155 ${percentage}%)`;
+
+            if (percentage >= 90) {
+                resultsMessage.innerText = "¡Excelente! Tienes un dominio total del tema.";
+            } else if (percentage >= 70) {
+                resultsMessage.innerText = "¡Muy bien! Estás listo para aplicar estos conceptos.";
+            } else {
+                resultsMessage.innerText = "Sigue practicando, el repaso constante es la clave del éxito.";
+            }
+        }
+
+        restartBtn.addEventListener('click', initQuiz);
+
+        // Iniciar
+        initQuiz();
+    </script>
+</body>
+</html>

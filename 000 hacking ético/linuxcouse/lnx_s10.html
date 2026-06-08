@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion10: Auditoría de Conexiones Abiertas</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 10: Auditoría de Sockets y Puertos</h1>
+            <p class="intro-text">El malware no sirve de nada si el atacante no puede controlarlo o extraer la información robada. Para hacerlo, el troyano debe abrir una "puerta" (puerto) en tu máquina. Hoy aprenderemos a escanear nuestro propio Sandbox para detectar conexiones clandestinas y descubrir qué programa exacto las está abriendo.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Radar Clásico (netstat)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Aunque está siendo reemplazado, <code>netstat</code> sigue presente en el 90% de los servidores del mundo. Sus modificadores son legendarios. Usaremos <strong>-tulpn</strong> (TCP, UDP, Listening, Programs, Numeric) para ver qué está a la escucha.</p>
+                    <div class="warning-box" style="border-left-color: #f59e0b; color: #fde68a; background-color: rgba(245, 158, 11, 0.1);">
+                        <strong style="color: #fbbf24;">Regla de Privilegios:</strong> Si no usas <code>sudo</code>, Linux no te mostrará los PIDs (Process IDs) de los programas que abrieron el puerto. ¡El perito siempre usa sudo aquí!
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> sudo netstat -tulpn</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: La Evolución del Radar (ss)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><code>ss</code> (Socket Statistics) es el estándar moderno. Es mucho más rápido que netstat porque lee la información directamente del kernel de Linux. Los modificadores son casi idénticos.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Mostrar conexiones activas y en escucha con su proceso asociado</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo ss -tulpn
+
+<span class="comment"># Filtrar solo puertos TCP establecidos (Established)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo ss -t state established</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Correlación Forense (Simulador)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Encontraste un puerto extraño abierto. ¿Y ahora qué? Haz clic en las conexiones sospechosas de este simulador para practicar la correlación mental entre <strong>Puerto -> PID -> Binario Malicioso</strong> antes de usar la herramienta definitiva.</p>
+                    
+                    <div class="socket-inspector">
+                        <div class="inspector-header">Radar de Conexiones (Haz clic en una fila)</div>
+                        <div class="socket-table" id="socket-table">
+                            </div>
+                        <div class="lsof-panel hidden" id="lsof-panel">
+                            <div id="lsof-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: El Rayo X Definitivo (lsof)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><code>lsof</code> (List Open Files) es probablemente la herramienta más poderosa en forense digital. En Linux, "todo es un archivo", incluso las conexiones de red. Si sabemos que el puerto 4444 es sospechoso, <code>lsof</code> nos dirá exactamente qué programa lo está usando.</p>
+                    <div class="tip-card" style="border-left-color: #f97316; background-color: rgba(249, 115, 22, 0.08);">
+                        <strong style="color: #fdba74;">Táctica de Interrogatorio:</strong> El flag <code>-i</code> le dice a lsof que interrogue únicamente interfaces de red.
+                    </div>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Ver TODOS los programas usando la red</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo lsof -i
+
+<span class="comment"># Apuntar específicamente a un puerto sospechoso (ej. el clásico puerto de metasploit 4444)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo lsof -i :4444</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #10. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

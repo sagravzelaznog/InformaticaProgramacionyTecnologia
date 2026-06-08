@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 E10: Introducción al Subnetting (Subredes)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 3, Sesión 10: Introducción al Subnetting 🔪</h1>
+        <p class="subtitle">Dividiendo Redes para Mayor Eficiencia y Seguridad</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Qué es el Subnetting (Creación de Subredes)?</h2>
+            <p>El **subnetting** es la práctica de dividir una red IP grande en varias subredes más pequeñas y lógicas. Esto se logra "tomando prestados" bits de la porción de host de la dirección IP y asignándolos a la porción de red, lo que modifica la máscara de subred por defecto.</p>
+            <p class="highlight">**Objetivo:** Optimizar el uso de direcciones IP, mejorar la seguridad y reducir el tráfico de broadcast en la red.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>El subnetting divide una red en segmentos más pequeños y manejables.</figcaption>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Beneficios del Subnetting</h2>
+            <p>¿Por qué los administradores de red se toman la molestia de hacer subnetting? Aquí las razones principales:</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Reducción del Tráfico de Broadcast</h3>
+                    <p>Cada subred tiene su propio dominio de broadcast. Menos dispositivos en un dominio de broadcast significa menos tráfico innecesario y un mejor rendimiento.</p>
+                </div>
+                <div>
+                    <h3>Mejora de la Seguridad</h3>
+                    <p>Permite aislar segmentos de la red. Si un área es comprometida, las otras subredes pueden permanecer seguras. También facilita la implementación de firewalls entre subredes.</p>
+                </div>
+                <div>
+                    <h3>Gestión Eficiente de Direcciones IP</h3>
+                    <p>Evita el desperdicio de direcciones IP al asignar rangos más pequeños a departamentos o ubicaciones que no necesitan una red completa.</p>
+                </div>
+                <div>
+                    <h3>Optimización del Rendimiento</h3>
+                    <p>Segmenta la red de manera lógica, lo que puede reducir la latencia y mejorar la velocidad de procesamiento para los routers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>3. Conceptos Clave en Subnetting</h2>
+            <p>Para entender el subnetting, es crucial dominar la conversión a binario y estos términos:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Número de Redes</h3>
+                    <p>Se calcula con la fórmula **2^n**, donde 'n' es el número de bits que "tomamos prestados" de la porción de host.</p>
+                </div>
+                <div class="card">
+                    <h3>Número de Hosts por Subred</h3>
+                    <p>Se calcula con la fórmula **2^h - 2**, donde 'h' es el número de bits restantes para los hosts en la nueva subred. Restamos 2 por la dirección de Red y la de Broadcast.</p>
+                </div>
+            </div>
+            
+            <p class="small-text highlight"><sub>En la próxima sesión, haremos ejercicios prácticos para aplicar estas fórmulas.</sub></p>
+            
+            <button id="binaryQuizBtn">¡Prueba Binaria Rápida!</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S3 E10</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion09.html" class="nav-button">Anterior</a>
+        <a href="sesion11.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

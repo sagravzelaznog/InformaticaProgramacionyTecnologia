@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S10 E38: Acceso Remoto Seguro (VPN)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 10, Sesión 38: Redes Privadas Virtuales (VPN) 🛡️</h1>
+        <p class="subtitle">Creación de Túneles Cifrados para Acceso a Recursos</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Qué es una VPN?</h2>
+            <p>Una **VPN (Virtual Private Network)** crea un **túnel cifrado** a través de una red pública (como Internet) para conectar de forma segura un usuario o una red a otra red privada (como la red de tu oficina). Es como crear un camino privado y seguro dentro de una carretera pública.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>La VPN cifra los datos del usuario, creando un túnel seguro a través de la red pública.</figcaption>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Casos de Uso del Técnico</h2>
+            <p>Las VPNs no solo sirven para el anonimato. Son herramientas de Trabajo esenciales:</p>
+
+            <div class="card-grid grid-3-col">
+                <div class="card card-style-light-blue">
+                    <h3>Teletrabajo (Acceso Remoto)</h3>
+                    <p>Permite a los empleados acceder a servidores, impresoras y recursos de la oficina desde casa con la misma seguridad que si estuvieran en el sitio.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Conexión Sitio a Sitio (Site-to-Site)</h3>
+                    <p>Conecta dos redes LAN completas (ej. la sucursal de Torreón con la de Monterrey) para que actúen como una sola red corporativa.</p>
+                </div>
+                <div class="card card-style-light-blue">
+                    <h3>Seguridad en Redes Públicas</h3>
+                    <p>Si te conectas desde un café, la VPN protege tus datos de ser interceptados por otros usuarios en la misma red Wi-Fi pública e insegura.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Protocolos Comunes y Software Gratuito</h2>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>OpenVPN</h3>
+                    <p>El estándar de código abierto más popular. Es altamente configurable, robusto y se usa en la mayoría de los firewalls y routers avanzados. Requiere instalar el cliente **OpenVPN Connect**.</p>
+                </div>
+                <div>
+                    <h3>IPsec / L2TP</h3>
+                    <p>Comúnmente usados para configuraciones Site-to-Site. Muchos dispositivos móviles y sistemas operativos tienen soporte nativo para L2TP/IPsec.</p>
+                </div>
+            </div>
+
+            <p><strong>Tarea Práctica (Uso Teórico):</strong></p>
+            <ol>
+                <li>Descarga e instala un cliente OpenVPN (o el software cliente de tu proveedor de VPN favorito).</li>
+                <li>(Teórico): Identifica qué puerto utiliza el protocolo OpenVPN (Generalmente UDP 1194).</li>
+                <li>Conéctate a un servidor VPN y usa `ipconfig`. Observa cómo tu dirección IP pública cambia.</li>
+            </ol>
+            <button id="vpnProtocolQuizBtn">Verificar Uso de VPN</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S10 E38</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion37.html" class="nav-button">Anterior</a>
+        <a href="sesion39.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Trabajo con Objetos - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .area-rotacion {
+            height: 200px;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .objeto-rotado {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            width: 100px;
+            height: 60px;
+            transform: rotate(15deg);
+        }
+        
+        /* Estilos para los objetos de ejemplo */
+        #ejemploTexto {
+            top: 30px;
+            left: 20px;
+            width: 100px;
+            height: 60px;
+        }
+        
+        #ejemploImagen {
+            top: 40px;
+            left: 150px;
+            width: 80px;
+            height: 80px;
+        }
+        
+        #ejemploForma {
+            top: 100px;
+            left: 100px;
+            width: 120px;
+            height: 50px;
+        }
+        .lista-atajos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .lista-atajos li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .lista-atajos kbd {
+            background: #e9ecef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            border: 1px solid #dee2e6;
+            font-family: monospace;
+        }
+        
+        .mejores-practicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .practica {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1971c2;
+        }
+        
+        .practica h4 {
+            margin-top: 0;
+            color: #1971c2;
+        }
+        
+        .problema-solucion {
+            background: #fff3bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .problema-solucion h4 {
+            margin-top: 1.5rem;
+            color: #e67700;
+        }
+        
+        .problema-solucion h4:first-child {
+            margin-top: 0;
+        }
+        
+        .ejercicio-final {
+            background: #e6fcf5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .resumen {
+            background: #f3f0ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .siguientes-pasos {
+            text-align: center;
+            padding: 2rem;
+            background: #e7f5ff;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .siguientes-pasos .btn {
+            margin-top: 1rem;
+            display: inline-block;
+        }
+        .grid-objetos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        
+        .ejemplo-objeto {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ejemplo-objeto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .herramienta-objeto {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .herramienta-objeto:hover {
+            background: #dee2e6;
+            cursor: pointer;
+        }
+        
+        .area-trabajo {
+            width: 100%;
+            height: 200px;
+            background: white;
+            border: 1px solid #dee2e6;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .objeto {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .objeto.seleccionado {
+            border-color: #1971c2;
+            box-shadow: 0 0 0 2px rgba(25, 113, 194, 0.3);
+        }
+        
+        .objeto-texto {
+            background: #e7f5ff;
+            border: 1px solid #4dabf7;
+            color: #1971c2;
+        }
+        
+        .objeto-imagen {
+            background: #fff3bf;
+            border: 1px solid #ffd43b;
+            color: #e67700;
+        }
+        
+        .objeto-forma {
+            background: #e6fcf5;
+            border: 1px solid #38d9a9;
+            color: #087f5b;
+            border-radius: 4px;
+        }
+        
+        .manejador {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #1971c2;
+            border: 1px solid white;
+            z-index: 10;
+        }
+        
+        .manejador.nw { top: -4px; left: -4px; cursor: nwse-resize; }
+        .manejador.ne { top: -4px; right: -4px; cursor: nesw-resize; }
+        .manejador.sw { bottom: -4px; left: -4px; cursor: nesw-resize; }
+        .manejador.se { bottom: -4px; right: -4px; cursor: nwse-resize; }
+        .manejador.n { top: -4px; left: 50%; margin-left: -4px; cursor: ns-resize; }
+        .manejador.s { bottom: -4px; left: 50%; margin-left: -4px; cursor: ns-resize; }
+        .manejador.e { top: 50%; right: -4px; margin-top: -4px; cursor: ew-resize; }
+        .manejador.w { top: 50%; left: -4px; margin-top: -4px; cursor: ew-resize; }
+        
+        .rotador {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #1971c2;
+            border: 2px solid white;
+            border-radius: 50%;
+            top: -25px;
+            left: 50%;
+            margin-left: -6px;
+            cursor: grab;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-objetos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Controles de acceso -->
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <div id="loginRequired" class="login-required">
+            <h2>Acceso Requerido</h2>
+            <p>Para acceder a esta sesión, por favor inicia sesión con tu llave de acceso.</p>
+            <div class="auth-actions">
+                <a href="../iniciar-sesion.html" class="btn">Iniciar Sesión</a>
+                <a href="../registro.html" class="btn btn-outline">Registrarse</a>
+            </div>
+        </div>
+        
+        <main id="mainContent" class="hidden">
+            <header class="encabezado-sesion">
+                <h1>Sesión 7: Trabajo con Objetos</h1>
+                <p class="subtitulo">Aprende a manipular y organizar objetos en Publisher</p>
+                <div class="navegacion">
+                    <a href="sesion6.html" class="btn btn-outline">← Sesión anterior</a>
+                    <a href="../index.html" class="btn btn-outline">Inicio</a>
+                    <a href="sesion8.html" class="btn btn-outline">Siguiente sesión →</a>
+                </div>
+            </header>
+            
+            <section class="contenido-sesion">
+                <div class="objetivos">
+                    <h2>Objetivos de aprendizaje</h2>
+                    <ul>
+                        <li>Seleccionar y manipular objetos</li>
+                        <li>Organizar y alinear elementos</li>
+                        <li>Trabajar con capas y orden de apilamiento</li>
+                        <li>Agrupar y desagrupar objetos</li>
+                    </ul>
+                </div>
+                
+                <h2>1. Fundamentos de los objetos en Publisher</h2>
+                <p>En Publisher, todo elemento que agregues a tu publicación (texto, imágenes, formas, tablas, etc.) es un objeto que puede ser manipulado individualmente. Comprender cómo trabajar con estos objetos es esencial para crear diseños profesionales.</p>
+                
+                <h3>1.1 Tipos de objetos</h3>
+                <p>Publisher maneja varios tipos de objetos:</p>
+                <ul>
+                    <li><strong>Cuadros de texto:</strong> Contienen texto editable</li>
+                    <li><strong>Imágenes:</strong> Fotos, ilustraciones o gráficos</li>
+                    <li><strong>Formas:</strong> Figuras geométricas y líneas</li>
+                    <li><strong>Tablas:</strong> Organizan información en filas y columnas</li>
+                    <li><strong>WordArt:</strong> Texto con efectos especiales</li>
+                </ul>
+                
+                <h3>1.2 Selección de objetos</h3>
+                <p>El primer paso para trabajar con objetos es aprender a seleccionarlos correctamente:</p>
+                
+                <div class="paso-a-paso">
+                    <h4>Métodos de selección:</h4>
+                    <ol>
+                        <li><strong>Selección individual:</strong> Haz clic en un objeto para seleccionarlo</li>
+                        <li><strong>Selección múltiple:</strong> Mantén presionada la tecla <kbd>Shift</kbd> mientras haces clic en varios objetos</li>
+                        <li><strong>Selección por arrastre:</strong> Haz clic y arrastra para dibujar un cuadro de selección alrededor de múltiples objetos</li>
+                        <li><strong>Seleccionar todo:</strong> Usa <kbd>Ctrl+A</kbd> para seleccionar todos los objetos en la página actual</li>
+                        <li><strong>Panel de selección:</strong> Usa el panel de selección para ver y seleccionar objetos cuando están superpuestos</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Consejo profesional:</h4>
+                    <p>Para seleccionar un objeto que está detrás de otro, mantén presionada <kbd>Alt</kbd> mientras haces clic para recorrer los objetos en orden de apilamiento.</p>
+                </div>
+                
+                <div class="area-trabajo" id="areaSeleccion">
+                    <div class="objeto objeto-texto objeto-ejemplo" id="ejemploTexto">
+                        Texto
+                        <div class="manejador nw"></div>
+                        <div class="manejador n"></div>
+                        <div class="manejador ne"></div>
+                        <div class="manejador e"></div>
+                        <div class="manejador se"></div>
+                        <div class="manejador s"></div>
+                        <div class="manejador sw"></div>
+                        <div class="manejador w"></div>
+                        <div class="rotador"></div>
+                    </div>
+                    <div class="objeto objeto-imagen objeto-ejemplo" id="ejemploImagen">
+                        Imagen
+                    </div>
+                    <div class="objeto objeto-forma objeto-ejemplo" id="ejemploForma">
+                        Forma
+                    </div>
+                </div>
+                
+                <h2>2. Manipulación de objetos</h2>
+                <p>Una vez seleccionados, puedes manipular los objetos de varias maneras.</p>
+                
+                <div class="grid-objetos">
+                    <div class="ejemplo-objeto">
+                        <h4>Mover objetos</h4>
+                        <p>Haz clic y arrastra para mover objetos. Usa las teclas de flecha para movimientos precisos.</p>
+                        <div class="herramienta-objeto">Seleccionar</div>
+                        <div class="herramienta-objeto">Mover</div>
+                        <div class="herramienta-objeto">Copiar (Ctrl+C)</div>
+                    </div>
+                    
+                    <div class="ejemplo-objeto">
+                        <h4>Cambiar tamaño</h4>
+                        <p>Arrastra los manejadores de las esquinas o lados. Mantén presionada <kbd>Shift</kbd> para mantener la proporción.</p>
+                        <div class="herramienta-objeto">Redimensionar</div>
+                        <div class="herramienta-objeto">Proporción</div>
+                        <div class="herramienta-objeto">Restablecer</div>
+                    </div>
+                    
+                    <div class="ejemplo-objeto">
+                        <h4>Rotar y voltear</h4>
+                        <p>Usa el manejador de rotación o las herramientas de la pestaña Formato.</p>
+                        <div class="herramienta-objeto">Rotar</div>
+                        <div class="herramienta-objeto">Voltear H</div>
+                        <div class="herramienta-objeto">Voltear V</div>
+                    </div>
+                </div>
+                
+                <h2>3. Organización de objetos</h2>
+                <p>Organiza los objetos en tu diseño para crear composiciones profesionales.</p>
+                
+                <h2>2. Manipulación de objetos</h2>
+                <p>Una vez seleccionados los objetos, puedes manipularlos de diversas formas para crear el diseño deseado.</p>
+                
+                <h3>2.1 Mover y copiar objetos</h3>
+                <p>Para mover un objeto:</p>
+                <ol>
+                    <li>Selecciona el objeto</li>
+                    <li>Haz clic y arrástralo a la nueva ubicación</li>
+                    <li>Para moverlo con mayor precisión, usa las teclas de flecha del teclado</li>
+                </ol>
+                
+                <p>Para copiar un objeto:</p>
+                <ul>
+                    <li>Selecciona el objeto y usa <kbd>Ctrl+C</kbd> para copiar y <kbd>Ctrl+V</kbd> para pegar</li>
+                    <li>O mantén presionada la tecla <kbd>Ctrl</kbd> mientras arrastras el objeto para crear una copia</li>
+                </ul>
+                
+                <h3>2.2 Cambiar el tamaño de los objetos</h3>
+                <p>Para redimensionar un objeto:</p>
+                <ol>
+                    <li>Selecciona el objeto para mostrar sus manijas de tamaño</li>
+                    <li>Arrastra una esquina para cambiar el tamaño proporcionalmente</li>
+                    <li>Arrastra un lado para estirar o encoger el objeto</li>
+                    <li>Mantén presionada <kbd>Shift</kbd> mientras redimensionas para mantener las proporciones</li>
+                </ol>
+                
+                <h3>2.3 Rotar y voltear objetos</h3>
+                <div class="ejemplo-interactivo">
+                    <div class="area-trabajo area-rotacion">
+                        <div class="objeto objeto-forma objeto-rotado">
+                            Girar
+                            <div class="rotador"></div>
+                        </div>
+                    </div>
+                    <p>Arrastra el controlador de rotación (círculo azul) para rotar el objeto.</p>
+                </div>
+                
+                <h2>3. Organización de objetos</h2>
+                <p>Publisher ofrece varias herramientas para organizar objetos de manera efectiva en tu diseño.</p>
+                
+                <h3>3.1 Alineación y distribución</h3>
+                <p>Alinear objetos entre sí o con respecto a la página:</p>
+                
+                <div class="grid-objetos">
+                    <div class="ejemplo-objeto">
+                        <h4>Alineación horizontal</h4>
+                        <p>Alinea los bordes izquierdos, centros o derechos de los objetos seleccionados.</p>
+                        <div class="herramienta-objeto">Alinear a la izquierda</div>
+                        <div class="herramienta-objeto">Centrar horizontalmente</div>
+                        <div class="herramienta-objeto">Alinear a la derecha</div>
+                        <div class="herramienta-objeto">Alinear arriba</div>
+                        <div class="herramienta-objeto">Centrar verticalmente</div>
+                        <div class="herramienta-objeto">Alinear abajo</div>
+                        <div class="herramienta-objeto">Distribuir horizontalmente</div>
+                        <div class="herramienta-objeto">Distribuir verticalmente</div>
+                    </div>
+                    
+                    <div class="ejemplo-objeto">
+                        <h4>Orden de apilamiento</h4>
+                        <p>Controla qué objetos aparecen delante o detrás de otros.</p>
+                        <div class="herramienta-objeto">Traer al frente</div>
+                        <div class="herramienta-objeto">Traer adelante</div>
+                        <div class="herramienta-objeto">Enviar atrás</div>
+                        <div class="herramienta-objeto">Enviar al fondo</div>
+                        <div class="herramienta-objeto">Traer al frente del texto</div>
+                        <div class="herramienta-objeto">Enviar detrás del texto</div>
+                    </div>
+                </div>
+                
+                <h2>4. Agrupación de objetos</h2>
+                <p>Agrupa objetos para moverlos y formatearlos como una sola unidad.</p>
+                
+                <div class="paso-a-paso">
+                    <h3>Para agrupar objetos:</h3>
+                    <ol>
+                        <li>Selecciona los objetos que deseas agrupar (mantén presionada la tecla <kbd>Shift</kbd>)</li>
+                        <li>Ve a la pestaña <strong>Formato</strong></li>
+                        <li>Haz clic en <strong>Agrupar</strong> > <strong>Agrupar</strong></li>
+                        <li>Para desagrupar, selecciona el grupo y haz clic en <strong>Desagrupar</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>💡 Consejo profesional</h4>
+                    <p>Usa <kbd>Ctrl+G</kbd> para agrupar rápidamente objetos seleccionados y <kbd>Ctrl+Shift+G</kbd> para desagrupar.</p>
+                </div>
+                
+                <h2>5. Ejercicio práctico</h2>
+                <div class="actividad-practica">
+                    <h3>Crea un logotipo con formas</h3>
+                    <p>Sigue estos pasos para crear un logotipo simple:</p>
+                    <ol>
+                        <li>Inserta varias formas básicas (círculos, rectángulos, etc.)</li>
+                        <li>Cambia sus colores y bordes</li>
+                        <li>Superpón las formas para crear un diseño interesante</li>
+                        <li>Ajusta el orden de apilamiento según sea necesario</li>
+                        <li>Agrupa todas las formas para crear un solo logotipo</li>
+                        <li>Guarda el logotipo como imagen para usarlo en otros proyectos</li>
+                    </ol>
+                </div>
+                
+                <div class="resumen">
+                    <h2>Resumen</h2>
+                    <p>En esta sesión has aprendido a:</p>
+                    <ul>
+                        <li>Seleccionar y manipular objetos individuales y múltiples</li>
+                        <li>Mover, redimensionar y rotar objetos</li>
+                        <li>Organizar objetos usando herramientas de alineación y distribución</li>
+                        <li>Trabajar con el orden de apilamiento de objetos</li>
+                        <li>Agrupar y desagrupar objetos</li>
+                    </ul>
+                </div>
+                
+                <div class="evaluacion">
+                    <h3>Auto-evaluación</h3>
+                    <p>Responde las siguientes preguntas para verificar tu comprensión:</p>
+                    <ol>
+                        <li>¿Cómo seleccionarías varios objetos que no están juntos en la página?</li>
+                        <li>¿Qué método usarías para asegurarte de que dos objetos estén perfectamente alineados en la parte superior?</li>
+                        <li>¿Por qué es útil agrupar objetos en Publisher?</li>
+                        <li>¿Cómo cambiarías el orden de apilamiento de un objeto para que aparezca detrás de otro?</li>
+                    </ol>
+                </div>
+                
+                <h2>5. Técnicas avanzadas de trabajo con objetos</h2>
+                
+                <h3>5.1 Uso de guías y cuadrículas</h3>
+                <p>Las guías y cuadrículas son herramientas esenciales para un posicionamiento preciso de los objetos:</p>
+                <ul>
+                    <li><strong>Guías horizontales/verticales:</strong> Arrástralas desde las reglas para alinear objetos</li>
+                    <li><strong>Cuadrícula base:</strong> Actívala desde la pestaña <strong>Ver</strong> > <strong>Mostrar</strong> > <strong>Líneas de la cuadrícula</strong></li>
+                    <li><strong>Guías inteligentes:</strong> Aparecen automáticamente para ayudarte a alinear objetos entre sí</li>
+                </ul>
+                
+                <div class="consejo">
+                    <h4>Consejo profesional:</h4>
+                    <p>Mantén presionada la tecla <kbd>Alt</kbd> mientras mueves un objeto para desactivar temporalmente el ajuste a la cuadrícula y lograr un posicionamiento más preciso.</p>
+                </div>
+                
+                <h3>5.2 Herramientas de medición</h3>
+                <p>Utiliza las reglas y las guías para medir distancias entre objetos:</p>
+                <ul>
+                    <li>Las líneas de guía muestran la distancia exacta desde los bordes de la página</li>
+                    <li>Las guías inteligentes indican la distancia entre objetos</li>
+                    <li>Usa la herramienta <strong>Cuadrícula de diseño</strong> para un espaciado uniforme</li>
+                </ul>
+                
+                <h3>5.3 Atajos de teclado útiles</h3>
+                <div class="grid-objetos">
+                    <div class="ejemplo-objeto">
+                        <h4>Selección y movimiento</h4>
+                        <ul class="lista-atajos">
+                            <li><kbd>Ctrl</kbd> + <kbd>A</kbd>: Seleccionar todo</li>
+                            <li><kbd>Ctrl</kbd> + clic: Seleccionar múltiples objetos</li>
+                            <li><kbd>Shift</kbd> + flechas: Mover en incrementos pequeños</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>G</kbd>: Agrupar objetos</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd>: Desagrupar</li>
+                        </ul>
+                    </div>
+                    <div class="ejemplo-objeto">
+                        <h4>Orden y alineación</h4>
+                        <ul class="lista-atajos">
+                            <li><kbd>Ctrl</kbd> + <kbd>]</kbd>: Traer al frente</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>[</kbd>: Enviar al fondo</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>]</kbd>: Traer adelante</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>[</kbd>: Enviar atrás</li>
+                            <li><kbd>Ctrl</kbd> + <kbd>E</kbd>: Centrar horizontalmente</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>5.4 Mejores prácticas</h3>
+                <div class="mejores-practicas">
+                    <div class="practica">
+                        <h4>1. Nombra tus objetos</h4>
+                        <p>Usa nombres descriptivos en el panel de selección para identificar fácilmente los objetos en diseños complejos.</p>
+                    </div>
+                    <div class="practica">
+                        <h4>2. Usa capas lógicas</h4>
+                        <p>Agrupa objetos relacionados y usa el orden de apilamiento para crear capas lógicas en tu diseño.</p>
+                    </div>
+                    <div class="practica">
+                        <h4>3. Mantén la consistencia</h4>
+                        <p>Usa estilos de objeto consistentes y guías para mantener la uniformidad en todo el documento.</p>
+                    </div>
+                    <div class="practica">
+                        <h4>4. Optimiza el rendimiento</h4>
+                        <p>Agrupa objetos estáticos para reducir la cantidad de elementos individuales que Publisher debe procesar.</p>
+                    </div>
+                </div>
+                
+                <h3>5.5 Solución de problemas comunes</h3>
+                <div class="problema-solucion">
+                    <h4>Problema: No puedo seleccionar un objeto</h4>
+                    <p><strong>Solución:</strong> Usa el panel de selección o mantén presionada la tecla <kbd>Alt</kbd> mientras haces clic para seleccionar objetos que están detrás de otros.</p>
+                    
+                    <h4>Problema: Los objetos no se alinean correctamente</h4>
+                    <p><strong>Solución:</strong> Asegúrate de que las guías inteligentes estén activadas y verifica la configuración de ajuste en la pestaña <strong>Ver</strong> > <strong>Mostrar</strong>.</p>
+                    
+                    <h4>Problema: No puedo desagrupar objetos</h4>
+                    <p><strong>Solución:</strong> Asegúrate de que el grupo no esté bloqueado. Si lo está, desbloquéalo desde la pestaña <strong>Formato</strong> > <strong>Grupo</strong> > <strong>Desbloquear</strong>.</p>
+                </div>
+                
+                <div class="ejercicio-final">
+                    <h3>Ejercicio final: Diseño de un folleto</h3>
+                    <p>Ahora que has aprendido a trabajar con objetos en Publisher, crea un folleto de tres paneles que incluya:</p>
+                    <ol>
+                        <li>Un encabezado con texto y formas</li>
+                        <li>Al menos tres imágenes con texto descriptivo</li>
+                        <li>Elementos decorativos como formas y líneas</li>
+                        <li>Información de contacto en el panel final</li>
+                    </ol>
+                    <p><strong>Requisitos:</strong></p>
+                    <ul>
+                        <li>Usa al menos tres grupos de objetos</li>
+                        <li>Aplica diferentes órdenes de apilamiento</li>
+                        <li>Utiliza guías para alinear elementos</li>
+                        <li>Asegúrate de que el diseño sea equilibrado y profesional</li>
+                    </ul>
+                </div>
+                
+                <div class="resumen">
+                    <h3>Resumen de la sesión</h3>
+                    <p>En esta sesión has aprendido a:</p>
+                    <ul>
+                        <li>Seleccionar y manipular diferentes tipos de objetos</li>
+                        <li>Mover, copiar y cambiar el tamaño de objetos</li>
+                        <li>Usar herramientas de alineación y distribución</li>
+                        <li>Trabajar con grupos y capas</li>
+                        <li>Aplicar técnicas avanzadas de diseño</li>
+                    </ul>
+                    <p>Estas habilidades son fundamentales para crear diseños profesionales en Microsoft Publisher. Practica regularmente para mejorar tu fluidez con las herramientas.</p>
+                </div>
+                
+                <div class="siguientes-pasos">
+                    <h3>Próximos pasos</h3>
+                    <p>En la siguiente sesión, exploraremos cómo trabajar con estilos y temas para darle un aspecto profesional y coherente a tus publicaciones.</p>
+                    <a href="sesion8.html" class="btn">Ir a la siguiente sesión →</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Funciones para los ejercicios interactivos
+        function agruparObjetos() {
+            const area = document.getElementById('areaAgrupacion');
+            const seleccionados = area.querySelectorAll('.objeto.seleccionado');
+            if (seleccionados.length > 1) {
+                const grupo = document.createElement('div');
+                grupo.className = 'objeto-grupo';
+                grupo.style.position = 'absolute';
+                
+                // Calcular límites del grupo
+                let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
+                seleccionados.forEach(obj => {
+                    const rect = obj.getBoundingClientRect();
+                    const areaRect = area.getBoundingClientRect();
+                    const x = rect.left - areaRect.left;
+                    const y = rect.top - areaRect.top;
+                    
+                    minX = Math.min(minX, x);
+                    minY = Math.min(minY, y);
+                    maxX = Math.max(maxX, x + rect.width);
+                    maxY = Math.max(maxY, y + rect.height);
+                    
+                    // Mover el objeto al grupo
+                    obj.style.position = 'absolute';
+                    obj.style.left = x - minX + 'px';
+                    obj.style.top = y - minY + 'px';
+                    grupo.appendChild(obj);
+                });
+                
+                // Establecer posición y tamaño del grupo
+                grupo.style.left = minX + 'px';
+                grupo.style.top = minY + 'px';
+                grupo.style.width = (maxX - minX) + 'px';
+                grupo.style.height = (maxY - minY) + 'px';
+                
+                // Agregar manejadores de arrastre al grupo
+                hacerArrastrable(grupo);
+                
+                // Agregar el grupo al área
+                area.appendChild(grupo);
+            }
+        }
+        
+        function desagruparObjetos() {
+            const area = document.getElementById('areaAgrupacion');
+            const grupos = area.querySelectorAll('.objeto-grupo');
+            grupos.forEach(grupo => {
+                const objetos = Array.from(grupo.children);
+                const grupoRect = grupo.getBoundingClientRect();
+                const areaRect = area.getBoundingClientRect();
+                
+                objetos.forEach(obj => {
+                    const objRect = obj.getBoundingClientRect();
+                    obj.style.position = 'absolute';
+                    obj.style.left = (objRect.left - areaRect.left) + 'px';
+                    obj.style.top = (objRect.top - areaRect.top) + 'px';
+                    area.appendChild(obj);
+                    
+                    // Restaurar capacidad de selección
+                    obj.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        this.classList.toggle('seleccionado');
+                    });
+                });
+                
+                grupo.remove();
+            });
+        }
+        
+        function cambiarZIndex(areaId, index, cambio) {
+            const area = document.getElementById(areaId);
+            const objetos = area.querySelectorAll('.objeto');
+            if (objetos[index]) {
+                const currentZ = parseInt(objetos[index].style.zIndex) || 1;
+                objetos[index].style.zIndex = currentZ + cambio;
+            }
+        }
+        
+        function verificarRespuestas() {
+            const respuestas = document.querySelectorAll('.correcta:checked');
+            if (respuestas.length > 0) {
+                alert(`¡Correcto! Has acertado ${respuestas.length} de 3 preguntas.`);
+            } else {
+                alert('Por favor, responde al menos una pregunta.');
+            }
+        }
+        
+        // Hacer elementos arrastrables
+        function hacerArrastrable(elemento) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            
+            elemento.onmousedown = arrastrarMouseAbajo;
+            
+            function arrastrarMouseAbajo(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // Obtener la posición del mouse al inicio del arrastre
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = detenerArrastre;
+                // Llamar a la función cada vez que el cursor se mueve
+                document.onmousemove = arrastrarElemento;
+            }
+            
+            function arrastrarElemento(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // Calcular la nueva posición del cursor
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // Establecer la nueva posición del elemento
+                elemento.style.top = (elemento.offsetTop - pos2) + "px";
+                elemento.style.left = (elemento.offsetLeft - pos1) + "px";
+            }
+            
+            function detenerArrastre() {
+                // Detener el movimiento cuando se suelta el botón del mouse
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+        // Script para simular la selección de objetos
+        document.addEventListener('DOMContentLoaded', function() {
+            const objetos = document.querySelectorAll('.objeto');
+            
+            objetos.forEach(objeto => {
+                objeto.addEventListener('click', function(e) {
+                    // Evitar que el clic se propague al área de trabajo
+                    e.stopPropagation();
+                    
+                    // Si no se está manteniendo presionada la tecla Shift, deseleccionar otros objetos
+                    if (!e.shiftKey) {
+                        objetos.forEach(obj => obj.classList.remove('seleccionado'));
+                    }
+                    
+                    // Alternar la selección del objeto actual
+                    this.classList.toggle('seleccionado');
+                });
+                
+                // Hacer los objetos arrastrables
+                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                objeto.addEventListener('mousedown', dragMouseDown);
+                
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Obtener la posición del mouse al inicio del arrastre
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // Llamar a la función cada vez que el cursor se mueva
+                    document.onmousemove = elementDrag;
+                }
+                
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Calcular la nueva posición del cursor
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // Establecer la nueva posición del elemento
+                    objeto.style.top = (objeto.offsetTop - pos2) + "px";
+                    objeto.style.left = (objeto.offsetLeft - pos1) + "px";
+                }
+                
+                function closeDragElement() {
+                    // Detener el movimiento cuando se suelta el botón del mouse
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            });
+            
+            // Hacer clic en el área de trabajo para deseleccionar todos los objetos
+            document.getElementById('areaSeleccion').addEventListener('click', function() {
+                objetos.forEach(obj => obj.classList.remove('seleccionado'));
+            });
+        });
+    </script>
+</body>
+</html>

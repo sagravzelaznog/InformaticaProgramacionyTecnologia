@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S41: Diseño de Wireframes (Esqueletos Funcionales)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 41: Diseño de Wireframes (Esqueletos Funcionales)</h1>
+
+    <section>
+        <h2>1. Introducción al Wireframe en Vectorial</h2>
+        
+        <p>Un **Wireframe** es el esqueleto funcional de una interfaz (web o móvil). Se centra en la estructura, el contenido y la interacción, **no en el diseño visual** (colores, tipografía fina). Inkscape es excelente para esto por su precisión vectorial.</p>
+        <div class="paso">
+            <strong>Estilo "Low Fidelity"</strong>
+            <p>Trabajaremos en blanco, negro y gris. Usa rectángulos para botones y áreas de contenido. Las líneas onduladas o cruces en una caja representan imágenes. Los trazos representan texto simple.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Configuración del Lienzo y Guías</h2>
+        <p>Necesitas un lienzo con dimensiones estándar para tu Wireframe.</p>
+        <div class="paso">
+            <strong>Paso 1: Definir la Mesa de Trabajo</strong>
+            <p>Ve a <code>Archivo > Propiedades del Documento (Shift + Ctrl + D)</code>. Si es para móvil, usa una medida estándar (ej. 375px x 812px para iPhone X). Si es web, usa un ancho estándar (ej. 1440px).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Maquetación con Guías y Rejillas</strong>
+            <p>Activa la **Rejilla Rectangular** con un espaciado grande (ej. 20px). Utiliza las **Guías** para definir los márgenes exteriores (padding) (ej. 16px a cada lado). Esto asegura que todos los elementos estén alineados con el mismo sistema.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Construcción de Elementos de Interfaz</h2>
+        <p>Usa las herramientas de forma para simular los elementos comunes de la interfaz.</p>
+        <div class="paso">
+            <strong>Botones y Tarjetas (Cards)</strong>
+            <p>Usa la herramienta **Rectángulo (F4)** con un ligero **Radio de Esquina** para crear botones y tarjetas. Rellena los botones de gris oscuro y los fondos de tarjeta de gris claro. Usa la herramienta **Duplicar (Ctrl + D)** y el panel **Alinear y Distribuir** para mantener el espaciado constante.</p>
+        </div>
+        <div class="paso">
+            <strong>Espacio de Texto y Encabezados</strong>
+            <p>Los textos se representan con líneas horizontales simples (una línea más gruesa para el título, líneas más finas para el cuerpo). Dibuja líneas con la herramienta **Pluma (B)** y ajústalas a la rejilla.</p>
+        </div>
+        <div class="paso">
+            <strong>Barra de Navegación</strong>
+            <p>Dibuja un rectángulo que ocupe todo el ancho. Utiliza la herramienta **Círculo (F5)** o **Polígono (Estrella/Polígono)** para dibujar iconos simples (ej. una estrella para "Favoritos") dentro de la barra.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Wireframe de Home de App</h3>
+        <p><strong>Objetivo:</strong> Diseñar la estructura de una pantalla móvil.</p>
+        <ol>
+            <li>Configura un lienzo de 375x812px.</li>
+            <li>Dibuja una barra de navegación superior (encabezado).</li>
+            <li>Crea un área de contenido principal que contenga 3 **tarjetas (cards)** apiladas verticalmente.</li>
+            <li>Añade una barra de navegación inferior (footer) con 4 iconos simples.</li>
+            <li>Asegúrate de que todos los espacios y márgenes sean consistentes (ej. 16px).</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion40.html">Anterior</a>
+    <a href="sesion42.html">Siguiente</a>
+</nav>
+</body>
+</html>

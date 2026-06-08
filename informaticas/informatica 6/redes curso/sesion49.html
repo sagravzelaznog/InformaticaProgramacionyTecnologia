@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S13 E49: Presentación del Proyecto Final (PyME)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 13, Sesión 49: Presentación del Proyecto Final 🏗️</h1>
+        <p class="subtitle">Diseño de una Red Funcional y Segura para una Pequeña Empresa (PyME)</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. El Desafío: diseñar la Red de "TechSolutions S.A."</h2>
+            <p>Tu proyecto final consistirá en diseñar, simular e implementar una red completa para una pequeña empresa de consultoría. Esto integrará todos los conocimientos adquiridos (IP, Subnetting, Routing, DHCP, Seguridad).</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Requisitos de Hardware y Usuarios</h3>
+                    <ul>
+                        <li>**1 Router** (Acceso a Internet).</li>
+                        <li>**1 Switch** (Capa 2 o 3, a elección).</li>
+                        <li>**1 Servidor** (Archivos, IP Estática).</li>
+                        <li>**20 Usuarios** (Laptops, Conexión DHCP).</li>
+                        <li>**1 Impresora** de Red (IP Estática).</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Requisitos de Configuración Clave</h3>
+                    <ul>
+                        <li>Red: **Clase C** (ej. 192.168.X.0 /24).</li>
+                        <li>Segmentación: Separar **Administración** (Servidor/Impresora) de ** Usuarios** con un rango de IP excluido.</li>
+                        <li>Servicio: **DHCP** para clientes, **NAT** para Internet.</li>
+                        <li>Seguridad: Acceso al Router solo por **SSH**.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Fases del Proyecto (Semanas 13-16)</h2>
+            <p>El proyecto se dividirá en tres grandes fases para asegurar una entrega exitosa:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Fase 1: Planificación y Diseño (Semana 13)</h3>
+                    <p>Definición de Topología, Cálculo de Subredes (si aplica) y Esquema de Direccionamiento IP (Documento).</p>
+                </div>
+                <div>
+                    <h3>Fase 2: Implementación y Configuración (Semana 14)</h3>
+                    <p>Construcción de la red en Packet Tracer e implementación de todos los servicios (DHCP, IP Estáticas, SSH).</p>
+                </div>
+                <div>
+                    <h3>Fase 3: Diagnóstico y Presentación (Semanas 15-16)</h3>
+                    <p>Verificación de la conectividad (Troubleshooting) y presentación final del proyecto y su documentación.</p>
+                </div>
+            </div>
+            [Image of a network planning whiteboard diagram]
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Definición de la Topología</h2>
+            <p><strong>Tarea Práctica (Planificación):</strong></p>
+            <ol>
+                <li>Decide la **Topología Física** de tu red (Estrella, Doble Estrella, etc.).</li>
+                <li>Dibuja un boceto del **Diagrama Físico** inicial (Router, Switch, Servidor, Nube de Internet).</li>
+                <li>Si optas por VLANs, define qué puertos irán a qué VLAN (aunque la implementación es posterior).</li>
+            </ol>
+            <button id="projectStartCheckBtn">Confirmar Entendimiento del Proyecto</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S13 E49</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion48.html" class="nav-button">Anterior</a>
+        <a href="sesion50.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

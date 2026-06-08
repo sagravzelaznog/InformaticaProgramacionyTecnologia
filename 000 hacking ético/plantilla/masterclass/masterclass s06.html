@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 6 - Hacking Ético Forense">
+    <title>Sesión 6: Drill de Memoria Muscular | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge blink">ESTADO: DRILL DE RESPUESTA RÁPIDA</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 06: Speed Drill (Memoria Muscular)</h2>
+            <p><strong>Situación:</strong> Acaba de ingresar un ticket de Prioridad Crítica (P0). Un servidor de base de datos está siendo cifrado en este exacto momento. Tienes 3 minutos para levantar tu laboratorio forense estéril antes de que te pasen el disco infectado.</p>
+            <p>En el mundo real, dudar al aislar tu red significa que tu máquina será la siguiente víctima. Este ejercicio es una simulación de velocidad. Repetirás los pasos de la Misión 01, pero esta vez, debes hacerlo sin latencia mental. <strong>Prepara el Caso_002.</strong></p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Despliegue en 60 Segundos</h2>
+            <p>Ejecuta tu máquina virtual. El reloj está corriendo. Valida cada paso en cuanto termines de teclearlo en tu terminal.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Inicialización Inmediata (Updates)</h3>
+                    <p>Las herramientas deben estar actualizadas antes de inyectar el disco de evidencia.</p>
+                    <div class="terminal">
+                        <code>sudo apt update && sudo apt upgrade -y</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Ejecución</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Aislar Entorno (Kill Switch)</h3>
+                    <p>Desconecta tu máquina de la red principal. Pon tu hipervisor en modo 'Host-Only'. Corta el puente con el atacante.</p>
+                    <div class="terminal">
+                        <code># Verifica la desconexión total de redes externas<br>
+                        ip a<br>
+                        ping -c 2 8.8.8.8 # Debe fallar</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Aislamiento</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Preparar Bóveda de Evidencia</h3>
+                    <p>Crea el contenedor inmutable para el nuevo incidente (Caso_002) y restringe los permisos al máximo.</p>
+                    <div class="terminal">
+                        <code>mkdir -p ~/DFIR/Casos/Caso_002/Evidencia<br>
+                        chmod 700 ~/DFIR/Casos/Caso_002/Evidencia</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Bóveda</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Laboratorio P0 Asegurado!</h3>
+                <p>Excelente tiempo de respuesta. Has convertido un proceso técnico en memoria muscular. Tu entorno está aislado y listo para recibir la evidencia comprometida sin riesgo de propagación.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 6. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

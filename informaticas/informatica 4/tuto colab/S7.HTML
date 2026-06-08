@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. Prácticas 12-14 U1: Diccionarios y Funciones</title>
+    <style>
+        /* Prevención de selección y copiado */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* Mensaje al intentar copiar */
+        body::selection {
+            background: transparent;
+        }
+        
+        /* Prevención de captura de pantalla (soporte limitado) */
+        @media print {
+            body { display: none !important; }
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background-color: #0c82f0; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .instructions { border: 2px solid #0c82f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .code-markdown { background-color: #f0f8ff; border-left: 5px solid #0c82f0; padding: 10px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>7. Prácticas 12-14 U1: Diccionarios y Funciones</h1>
+    <p>Organización de datos con clave-valor y reutilización de código.</p>
+</header>
+
+<div class="instructions">
+    <h2>Instrucciones para la Actividad</h2>
+    <p><strong>Paso 1: Celda de Código</strong> | Añade una celda de <strong>Código</strong> para cada práctica.</p>
+    <p><strong>Paso 2: Diccionario</strong> | En la Práctica 12, intenta acceder a una clave que no existe. ¿Qué pasa?</p>
+    <p><strong>Paso 3: Llamar Función</strong> | En la Práctica 14, observa que la función solo se ejecuta cuando se la "llama" por su nombre (ej: `saludar("Carlos")`).</p>
+</div>
+
+<section class="activity-section">
+    <h2>Práctica 12 U1: Diccionarios</h2>
+    <p>Los diccionarios se definen con llaves `{}` y almacenan datos en pares **clave: valor**.</p>
+    <pre class="code">
+# practica09 u2: Diccionarios
+
+persona = {
+    "nombre": "Elena",
+    "edad": 24,
+    "ciudad": "Ciudad de México",
+    "profesion": "Ingeniera"
+}
+
+print(f"Nombre: {persona['nombre']}")
+print(f"Edad: {persona['edad']}")
+
+# Añadir un nuevo par clave-valor
+persona["email"] = "elena@mail.com"
+print(f"Email añadido: {persona['email']}")
+    </pre>
+</section>
+
+<section class="activity-section">
+    <h2>Práctica 13 U1: Recorriendo un Diccionario</h2>
+    <p>Se puede usar el bucle `for` para iterar sobre las claves y/o los valores de un diccionario.</p>
+    <pre class="code">
+# practica10 u2: Iteración en Diccionarios
+
+calificaciones = {
+    "Matemáticas": 9.5,
+    "Física": 8.0,
+    "Programación": 10.0
+}
+
+# Iterar sobre las claves (materias)
+print("Materias disponibles:")
+for materia in calificaciones.keys():
+    print(f"- {materia}")
+
+# Iterar sobre claves y valores
+print("\nCalificaciones:")
+for materia, calificacion in calificaciones.items():
+    print(f"La calificación de {materia} es {calificacion}")
+    </pre>
+</section>
+
+<section class="activity-section">
+    <h2>Práctica 14 U1: Funciones (Sin retorno)</h2>
+    <p>Una función es un bloque de código reusable que se define con la palabra clave `def`.</p>
+    <pre class="code">
+# practica11 u2: Función Simple
+
+# Definición de la función con un parámetro (nombre)
+def saludar(nombre):
+    print(f"¡Hola, {nombre}!")
+    print("Bienvenido a la clase de Python.")
+
+# Llamada a la función
+saludar("Carlos")
+saludar("María")
+    </pre>
+</section>
+
+</body>
+<footer>
+    <div style="text-align: center; margin-top: 20px; padding: 10px; border-top: 1px solid #ccc;">
+        <a href="S6.HTML" style="margin: 0 15px;">&larr; Anterior</a>
+        <a href="index.html" style="margin: 0 15px;">Volver al Índice</a>
+        <a href="S8.HTML" style="margin: 0 15px;">Siguiente &rarr;</a>
+    </div>
+	<p style="text-align: center; font-size: 0.8em; color: #666;">© 2025 JMGV-PTEL TUTORIAL GOOGLE COLAB. Todos los derechos reservados.</p>
+</footer>
+</html>

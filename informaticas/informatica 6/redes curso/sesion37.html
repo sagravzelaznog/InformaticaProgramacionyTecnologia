@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S10 E37: Seguridad Inalámbrica Avanzada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 10, Sesión 37: Seguridad Wi-Fi Avanzada 🔒</h1>
+        <p class="subtitle">Filtrado MAC, Ocultamiento de SSID y WPA3</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Filtrado por Dirección MAC: Un Control de Acceso</h2>
+            <p>El **Filtrado por Dirección MAC** es una característica del Punto de Acceso (AP) que restringe el acceso a la red solo a los dispositivos cuyas **direcciones MAC** hayan sido previamente registradas en una lista blanca.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Ventaja (Control)</h3>
+                    <p>Funciona bien en redes muy pequeñas (ej. una casa o una pequeña oficina con pocos dispositivos) para evitar que invitados o vecinos se conecten fácilmente.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Desventaja (Seguridad Débil)</h3>
+                    <p>La dirección MAC es fácil de falsificar (*spoofing*) por un atacante medianamente experimentado. Por sí solo, **no debe ser la única medida de seguridad**.</p>
+                </div>
+            </div>
+            [Image of a router's MAC filtering configuration screen]
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Ocultamiento de SSID (Nombre de Red)</h2>
+            <p>El **SSID (nombre de la red Wi-Fi)** puede configurarse para que no sea visible públicamente en la lista de redes disponibles. Esto se conoce como ocultamiento o difusión deshabilitada.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Ventaja</h3>
+                    <p>Elimina el ruido visual y disuade a los usuarios casuales. Para conectarse, el usuario debe saber tanto el nombre exacto como la contraseña.</p>
+                </div>
+                <div>
+                    <h3>Desventaja</h3>
+                    <p>Similar al filtrado MAC, esta es una seguridad superficial (*security by obscurity*). Herramientas gratuitas como **Wireshark o Acrylic Wi-Fi Home** pueden capturar el nombre oculto cuando un dispositivo legítimo se conecta.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. WPA3: El Estándar Moderno</h2>
+            <p>El estándar de cifrado es la medida de seguridad más importante. Los técnicos deben abandonar el obsoleto WEP y el vulnerable WPA, y migrar a lo siguiente:</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card">
+                    <h3>WPA2 (Estándar Mínimo)</h3>
+                    <p>Sigue siendo el estándar mínimo para la mayoría de los dispositivos. Ofrece un cifrado robusto, pero es vulnerable a ataques de fuerza bruta en el proceso de autenticación inicial (handshake).</p>
+                </div>
+                <div class="card">
+                    <h3>WPA3 (El Futuro)</h3>
+                    <p>Es la versión más reciente y segura. Es resistente a ataques de fuerza bruta offline y requiere que el tráfico esté cifrado incluso cuando se conecta a redes públicas abiertas (OWE - Opportunistic Wireless Encryption).</p>
+                </div>
+            </div>
+
+            <p><strong>Tarea Práctica (Software Gratuito):</strong></p>
+            <ol>
+                <li>Usa **WirelessNetView** o **Acrylic Wi-Fi Home** para analizar las redes cercanas.</li>
+                <li>Identifica qué redes siguen usando los obsoletos WPA o WEP (deberían ser cero).</li>
+                <li>Verifica si tu red usa WPA2 o (idealmente) WPA3.</li>
+            </ol>
+            <button id="securityQuizBtn">Verificar Conceptos de Seguridad</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S10 E37</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion36.html" class="nav-button">Anterior</a>
+        <a href="sesion38.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

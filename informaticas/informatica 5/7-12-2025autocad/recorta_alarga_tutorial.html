@@ -1,0 +1,659 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos RECORTA y ALARGAR en AutoCAD</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --trim-color: #e74c3c;    /* Rojo para RECORTA */
+            --extend-color: #2ecc71;  /* Verde para ALARGAR */
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--trim-color), var(--extend-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '✂️';
+            position: absolute;
+            font-size: 15rem;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .command-info {
+            background-color: white;
+            border-left: 4px solid var(--trim-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .command-info.extend {
+            border-left-color: var(--extend-color);
+        }
+        
+        .command-info h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .command-info h2::before {
+            font-size: 1.5em;
+        }
+        
+        .trim h2::before {
+            content: '✂️';
+        }
+        
+        .extend h2::before {
+            content: '↔️';
+        }
+        
+        .command-syntax {
+            background-color: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .command-syntax::before {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .trim .command-syntax::before {
+            content: 'Sintaxis RECORTA:';
+            color: var(--trim-color);
+        }
+        
+        .extend .command-syntax::before {
+            content: 'Sintaxis ALARGAR:';
+            color: var(--extend-color);
+        }
+        
+        .method {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+        }
+        
+        .method h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trim .method h3 {
+            color: var(--trim-color);
+        }
+        
+        .extend .method h3 {
+            color: var(--extend-color);
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            border-left: 3px solid var(--trim-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .extend .example {
+            border-left-color: var(--extend-color);
+        }
+        
+        .example h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .example h4::before {
+            font-size: 1.2em;
+        }
+        
+        .trim .example h4::before {
+            content: '✂️';
+        }
+        
+        .extend .example h4::before {
+            content: '↔️';
+        }
+        
+        .steps {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .steps li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .steps li::before {
+            content: '→';
+            position: absolute;
+            left: -1.5rem;
+            color: var(--trim-color);
+        }
+        
+        .extend .steps li::before {
+            color: var(--extend-color);
+        }
+        
+        .activity {
+            background-color: #f0f7ff;
+            border: 1px solid #d0e3ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .activity h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .activity h3::before {
+            content: '🎯';
+        }
+        
+        .challenge {
+            background-color: #fff8e6;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .challenge h3 {
+            color: #d35400;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .challenge h3::before {
+            content: '💡';
+        }
+        
+        .solution {
+            margin-top: 1rem;
+            border-top: 1px dashed #ccc;
+            padding-top: 1rem;
+        }
+        
+        .solution-summary {
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1rem 0;
+        }
+        
+        .solution-summary::before {
+            content: '👁️';
+            font-size: 1.1em;
+        }
+        
+        .solution-content {
+            display: none;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            border: 1px solid #e1e4e8;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+        }
+        
+        .tip::before {
+            content: '💡';
+            margin-right: 0.5rem;
+            font-size: 1.2em;
+        }
+        
+        .command-shortcut {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .coordinate {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #f0f0f0;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        .trim .coordinate {
+            background-color: #ffebee;
+            border-left: 2px solid var(--trim-color);
+        }
+        
+        .extend .coordinate {
+            background-color: #e8f5e9;
+            border-left: 2px solid var(--extend-color);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .command-syntax {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+        }
+        
+        /* Animation for commands */
+        @keyframes trim {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+            50% { clip-path: polygon(10% 0, 90% 0, 90% 100%, 10% 100%); }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+        }
+        
+        @keyframes extend {
+            0% { transform: scaleX(1); }
+            50% { transform: scaleX(1.5); }
+            100% { transform: scaleX(1); }
+        }
+        
+        .trim-animation {
+            display: inline-block;
+            animation: trim 2s ease-in-out infinite;
+        }
+        
+        .extend-animation {
+            display: inline-block;
+            animation: extend 2s ease-in-out infinite;
+        }
+    </style>
+    <style>
+        .back-to-index {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem 0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1a252f;
+        }
+    </style></head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comandos RECORTA y ALARGAR en AutoCAD</h1>
+            <p>Guía completa con ejemplos prácticos para modificar objetos existentes</p>
+        </header>
+        
+        <div class="command-info trim">
+            <h2>Comando RECORTA (TRIM, TR)</h2>
+            <p>Elimina partes de un objeto que se extienden más allá de un límite o punto de intersección.</p>
+            
+            <div class="command-syntax">
+                <strong>Comando:</strong> RECORTA (TR o TRIM)<br>
+                <strong>Menú:</strong> Modificar → Recortar<br>
+                <strong>Barra de herramientas:</strong> Modificar → <span class="trim-animation">✂️</span>
+            </div>
+            
+            <div class="tip">
+                <strong>Consejo:</strong> En versiones recientes de AutoCAD, simplemente activa RECORTA y haz clic en las partes que quieras eliminar. AutoCAD detectará automáticamente los límites de corte.
+            </div>
+        </div>
+        
+        <div class="method trim">
+            <h3>Métodos de Recorte</h3>
+            
+            <div class="example">
+                <h4>Método 1: Recorte Rápido (Límites Implícitos)</h4>
+                <p>AutoCAD usa automáticamente todas las entidades como posibles límites de corte.</p>
+                
+                <div class="example">
+                    <h5>Ejemplo 1.1: Eliminar Cruce Central</h5>
+                    <ol class="steps">
+                        <li>Dibuja <strong>LÍNEA 1</strong>: de <span class="coordinate">(0,5)</span> a <span class="coordinate">(10,5)</span>.</li>
+                        <li>Dibuja <strong>LÍNEA 2</strong>: de <span class="coordinate">(5,0)</span> a <span class="coordinate">(5,10)</span>.</li>
+                        <li>Activa <strong>RECORTA</strong> (TR).</li>
+                        <li>Haz clic en el segmento central de la Línea 1 (entre las dos líneas).</li>
+                        <li>Haz clic en el segmento central de la Línea 2 (entre las dos líneas).</li>
+                    </ol>
+                    <div class="tip">
+                        <strong>Resultado:</strong> Se crea un espacio vacío en la intersección de las líneas.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example">
+                <h4>Método 2: Límites de Corte Explícitos</h4>
+                <p>Selecciona primero los límites de corte y luego las entidades a recortar.</p>
+                
+                <div class="example">
+                    <h5>Ejemplo 1.2: Agujero en Tubería</h5>
+                    <ol class="steps">
+                        <li>Dibuja <strong>CÍRCULO 1</strong> (Radio 5) en <span class="coordinate">(0,0)</span>.</li>
+                        <li>Dibuja <strong>CÍRCULO 2</strong> (Radio 5) en <span class="coordinate">(20,0)</span>.</li>
+                        <li>Dibuja una <strong>LÍNEA</strong> horizontal que pase por el centro de ambos círculos (Ej: <span class="coordinate">-5,0</span> a <span class="coordinate">25,0</span>).</li>
+                        <li>Activa <strong>RECORTA</strong> (TR).</li>
+                        <li>Selecciona los dos círculos como límites y presiona <kbd>Enter</kbd>.</li>
+                        <li>Haz clic en el segmento de la línea que está entre los dos círculos.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <div class="command-info extend">
+            <h2>Comando ALARGAR (EXTEND, EX)</h2>
+            <p>Extiende un objeto hasta que alcanza un límite definido por otro objeto.</p>
+            
+            <div class="command-syntax">
+                <strong>Comando:</strong> ALARGAR (EX o EXTEND)<br>
+                <strong>Menú:</strong> Modificar → Alargar<br>
+                <strong>Barra de herramientas:</strong> Modificar → <span class="extend-animation">↔️</span>
+            </div>
+            
+            <div class="tip">
+                <strong>Consejo:</strong> Al igual que con RECORTA, en versiones recientes puedes activar ALARGAR y hacer clic directamente en los extremos que quieras extender.
+            </div>
+        </div>
+        
+        <div class="method extend">
+            <h3>Métodos de Extensión</h3>
+            
+            <div class="example">
+                <h4>Método 1: Extensión Rápida (Límites Implícitos)</h4>
+                <p>AutoCAD detecta automáticamente la primera entidad que el objeto va a tocar.</p>
+                
+                <div class="example">
+                    <h5>Ejemplo 1.3: Extender al Muro</h5>
+                    <ol class="steps">
+                        <li>Dibuja un <strong>RECTÁNGULO</strong> (REC) de 2x10 en <span class="coordinate">(20,0)</span>.</li>
+                        <li>Dibuja una <strong>LÍNEA</strong> corta de <span class="coordinate">(5,5)</span> a <span class="coordinate">(15,5)</span>.</li>
+                        <li>Activa <strong>ALARGAR</strong> (EX).</li>
+                        <li>Haz clic en el extremo derecho de la línea corta <span class="coordinate">(15,5)</span>.</li>
+                    </ol>
+                    <div class="tip">
+                        <strong>Resultado:</strong> La línea se extiende hasta el borde del rectángulo en <span class="coordinate">X=20</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example">
+                <h4>Método 2: Límites de Extensión Explícitos</h4>
+                <p>Selecciona primero los límites y luego los objetos a extender.</p>
+                
+                <div class="example">
+                    <h5>Ejemplo 2.2: Extender a Múltiples Lados</h5>
+                    <ol class="steps">
+                        <li>Dibuja <strong>LÍNEA A</strong>: de <span class="coordinate">(10,0)</span> a <span class="coordinate">(10,20)</span>.</li>
+                        <li>Dibuja <strong>LÍNEA B</strong>: de <span class="coordinate">(40,0)</span> a <span class="coordinate">(40,20)</span>.</li>
+                        <li>Dibuja una <strong>LÍNEA</strong> horizontal de <span class="coordinate">(20,10)</span> a <span class="coordinate">(30,10)</span>.</li>
+                        <li>Activa <strong>ALARGAR</strong> (EX).</li>
+                        <li>Selecciona Línea A y Línea B como límites. Presiona <kbd>Enter</kbd>.</li>
+                        <li>Haz clic en ambos extremos de la línea horizontal.</li>
+                    </ol>
+                    <div class="tip">
+                        <strong>Resultado:</strong> La línea horizontal ahora va de <span class="coordinate">X=10</span> a <span class="coordinate">X=40</span>.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity">
+            <h3>Actividad 1: El Pasillo con Puerta</h3>
+            <p><strong>Objetivo:</strong> Usar RECORTA y ALARGAR para crear una abertura de puerta en un muro.</p>
+            
+            <ol class="steps">
+                <li>Dibuja el <strong>Muro Principal</strong>: Línea de <span class="coordinate">(0,10)</span> a <span class="coordinate">(30,10)</span>.</li>
+                <li>Dibuja los <strong>Límites de la Puerta</strong>:<br>
+                    - Línea vertical de <span class="coordinate">(10,5)</span> a <span class="coordinate">(10,15)</span><br>
+                    - Línea vertical de <span class="coordinate">(15,5)</span> a <span class="coordinate">(15,15)</span></li>
+                <li><strong>Paso A (Recortar):</strong> Usa RECORTA para eliminar el segmento del muro entre las líneas de la puerta.</li>
+                <li><strong>Paso B (Alargar):</strong> Dibuja una línea de <span class="coordinate">(25,12)</span> a <span class="coordinate">(27,12)</span> y extiéndela hasta el muro final.</li>
+            </ol>
+            
+            <div class="solution">
+                <div class="solution-summary">Ver Solución (Coordenadas Finales)</div>
+                <div class="solution-content">
+                    <p>1. El Muro Principal queda dividido en dos segmentos:</p>
+                    <ul>
+                        <li>De <span class="coordinate">(0,10)</span> a <span class="coordinate">(10,10)</span></li>
+                        <li>De <span class="coordinate">(15,10)</span> a <span class="coordinate">(30,10)</span></li>
+                    </ul>
+                    <p>2. La línea del Paso B se extiende hasta <span class="coordinate">X=30</span>.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity">
+            <h3>Actividad 2: Limpieza de Cruces</h3>
+            <p><strong>Objetivo:</strong> Usar RECORTA para limpiar líneas que cruzan un rectángulo.</p>
+            
+            <ol class="steps">
+                <li>Dibuja un <strong>RECTÁNGULO</strong> (REC) de 20x20 en <span class="coordinate">(0,0)</span>.</li>
+                <li>Dibuja tres <strong>LÍNEAS</strong> diagonales que crucen el rectángulo, por ejemplo:
+                    <ul>
+                        <li>De <span class="coordinate">(-5,-5)</span> a <span class="coordinate">(25,25)</span></li>
+                        <li>De <span class="coordinate">(-5,25)</span> a <span class="coordinate">(25,-5)</span></li>
+                        <li>De <span class="coordinate">(-5,10)</span> a <span class="coordinate">(25,10)</span></li>
+                    </ul>
+                </li>
+                <li>Usa <strong>RECORTA</strong> (TR) para eliminar las partes de las líneas que están fuera del rectángulo.</li>
+            </ol>
+            
+            <div class="solution">
+                <div class="solution-summary">Ver Solución (Resultado Esperado)</div>
+                <div class="solution-content">
+                    <p>1. Las líneas diagonales deben terminar exactamente en los bordes del rectángulo.</p>
+                    <p>2. La línea horizontal debe comenzar en <span class="coordinate">(0,10)</span> y terminar en <span class="coordinate">(20,10)</span>.</p>
+                    <p>3. No debe haber líneas que sobresalgan del rectángulo en ninguna dirección.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <h3>Retos de Comprensión</h3>
+            
+            <div class="example">
+                <h4>Reto 1: El Borrado con Recorta</h4>
+                <p>1. Dibuja una línea corta y una línea larga que no se crucen.</p>
+                <p>2. Activa <strong>RECORTA</strong> (TR).</p>
+                <p>3. Usa la opción <strong>BORRAR</strong> (E) y selecciona la línea larga.</p>
+                <p><strong>Pregunta:</strong> ¿Qué sucedió con la línea larga? ¿Para qué sirve esta función?</p>
+            </div>
+            
+            <div class="example">
+                <h4>Reto 2: Alargar Sin Límites</h4>
+                <p>1. Dibuja una línea de 5 unidades de largo.</p>
+                <p>2. Intenta usar <strong>ALARGAR</strong> (EX) sin dibujar ningún otro objeto.</p>
+                <p><strong>Pregunta:</strong> ¿Por qué no funciona? ¿Qué necesita el comando ALARGAR para funcionar correctamente?</p>
+            </div>
+            
+            <div class="example">
+                <h4>Reto 3: El Alargar Imposible</h4>
+                <p>1. Dibuja un círculo de radio 10 en <span class="coordinate">(20,10)</span>.</p>
+                <p>2. Dibuja una línea de <span class="coordinate">(0,0)</span> a <span class="coordinate">(5,5)</span>.</p>
+                <p>3. Intenta usar <strong>ALARGAR</strong> para extender la línea hasta el círculo.</p>
+                <p><strong>Pregunta:</strong> ¿Se puede extender la línea hasta tocar el círculo? ¿Por qué sí o por qué no?</p>
+            </div>
+        </div>
+        
+        <div class="tip">
+            <h4>Consejos Avanzados</h4>
+            <ul>
+                <li>Usa <kbd>Shift</kbd> para alternar entre RECORTA y ALARGAR sin salir del comando.</li>
+                <li>La opción <strong>Borde</strong> (Edge) controla si AutoCAD considera las proyecciones de los límites.</li>
+                <li>Con <strong>RECORTA</strong>, puedes seleccionar múltiples límites antes de recortar.</li>
+                <li>Para líneas que no se cruzan, usa <strong>ALARGAR</strong> con la opción <strong>Borde</strong> (Edge) activada.</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>© 2025 Tutorial de AutoCAD - Comandos RECORTA y ALARGAR</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Toggle solution visibility
+        document.querySelectorAll('.solution-summary').forEach(summary => {
+            summary.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    this.innerHTML = '👁️ ' + this.textContent.replace('👁️ ', '');
+                } else {
+                    content.style.display = 'block';
+                    this.innerHTML = '🔍 ' + this.textContent.replace('👁️ ', '');
+                }
+            });
+        });
+        
+        // Add animation to command examples on hover
+        document.querySelectorAll('.example').forEach(example => {
+            example.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+            
+            example.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            });
+        });
+        
+        // Highlight command shortcuts
+        document.addEventListener('DOMContentLoaded', function() {
+            const shortcuts = document.querySelectorAll('strong');
+            shortcuts.forEach(el => {
+                if (el.textContent.trim() === 'RECORTA' || 
+                    el.textContent.trim() === 'TRIM' || 
+                    el.textContent.trim() === 'TR' ||
+                    el.textContent.trim() === 'ALARGAR' ||
+                    el.textContent.trim() === 'EXTEND' ||
+                    el.textContent.trim() === 'EX') {
+                    el.classList.add('command-shortcut');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

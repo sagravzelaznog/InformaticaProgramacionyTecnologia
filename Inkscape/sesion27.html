@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S27: Dibujo Isométrico Básico</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 27: Dibujo Isométrico Básico (Grilla)</h1>
+
+    <section>
+        <h2>1. Configuración de la Rejilla Isométrica</h2>
+        
+        <p>El dibujo **Isométrico** es una forma de proyección 3D simple que utiliza ángulos de 30 grados para simular profundidad. Inkscape facilita esto con su rejilla especializada.</p>
+        <div class="paso">
+            <strong>Paso 1: Abrir Propiedades del Documento</strong>
+            <p>Ve a <code>Archivo > Propiedades del Documento... (Shift + Ctrl + D)</code>.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Crear la Rejilla</strong>
+            <p>Ve a la pestaña **Rejillas**. En el menú desplegable, selecciona **Rejilla Isométrica** y haz clic en **Nueva**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Ajustar y Activar</strong>
+            <p>Asegúrate de que la casilla **Activado** esté marcada. Puedes ajustar el **Espaciado en X** (el tamaño de la cuadrícula). Una vez activada, verás la rejilla de rombos en tu lienzo.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Dibujo en la Rejilla (Ajuste y Rotación)</h2>
+        <p>Para que el dibujo isométrico funcione, debes asegurarte de que tus objetos se **ajusten** a los nodos de la rejilla.</p>
+        <div class="paso">
+            <strong>Paso 1: Activar Ajuste</strong>
+            <p>Abre el panel **Ajuste (Snap)** (el icono del imán en la barra lateral superior derecha). Asegúrate de que el **Ajuste a rejilla** esté activado y que el **Ajuste a nodos de rejilla** también lo esté. Esto obligará a tus puntos y líneas a seguir la cuadrícula isométrica.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Dibujar Caras del Cubo</strong>
+            <p>Usa la herramienta **Pluma (B)**. Con el ajuste activado, haz clic en 4 puntos de la rejilla para dibujar un **rombo** (la cara superior o lateral de un cubo). El ajuste garantizará que los ángulos sean perfectos (120/60 grados).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Rotación para las Caras</strong>
+            <p>Para dibujar las otras dos caras laterales, dibuja la misma forma y usa **Objeto > Transformar...** (Shift + Ctrl + M). Aplica una rotación de **120 grados** para obtener la cara lateral derecha, y **-120 grados** (o 240) para la cara lateral izquierda.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Creación de un Cubo Isométrico</h2>
+        <p>El cubo es la base de toda construcción isométrica.</p>
+        <div class="paso">
+            <strong>Paso 1: Tres Rombos</strong>
+            <p>Dibuja las tres caras (rombo superior, rombo lateral derecho, rombo lateral izquierdo) siguiendo los pasos anteriores.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Ensamblaje y Orden Z</strong>
+            <p>Ensambla las tres caras asegurándote de que los vértices coincidan (el ajuste lo hace fácil). Usa las teclas **Re Pág** (Subir) y **Av Pág** (Bajar) para ajustar el orden de apilamiento (Orden Z) para que parezca tridimensional.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Color y Sombra</strong>
+            <p>Asigna un color diferente a cada cara: el color más claro a la cara superior (luz directa), el color medio a una lateral, y el color más oscuro a la otra lateral (sombra). Esto define el volumen.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Columna Modular</h3>
+        <p><strong>Objetivo:</strong> Crear un objeto tridimensional modular.</p>
+        <ol>
+            <li>Crea un cubo isométrico perfecto con sus tres caras.</li>
+            <li>Selecciona el cubo completo (las 3 caras) y **Agrupa**lo (**Ctrl + G**).</li>
+            <li>Duplica el grupo (**Ctrl + D**). Mueve el duplicado directamente hacia arriba, siguiendo la línea vertical de la rejilla, para apilarlo encima del primer cubo.</li>
+            <li>Repite el proceso para crear una columna de 4-5 cubos.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion26.html">Anterior</a>
+    <a href="sesion28.html">Siguiente</a>
+</nav>
+</body>
+</html>

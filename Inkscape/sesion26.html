@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S26: Patrones de Patrón</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 26: Patrones de Patrón (Definición de Patrones)</h1>
+
+    <section>
+        <h2>1. El Concepto de Relleno de Patrón</h2>
+        
+        <p>Además de los colores planos y los degradados, Inkscape permite rellenar cualquier forma con un **Patrón** (un diseño que se repite como un papel tapiz).</p>
+        <div class="paso">
+            <strong>Aplicar un Patrón Predeterminado</strong>
+            <p>Selecciona una forma. Abre el diálogo **Relleno y Borde (Shift + Ctrl + F)**. En la pestaña **Relleno**, selecciona la opción **Patrón**. Inkscape ofrece una galería de patrones predefinidos (rayas, puntos, etc.).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Crear tu Propio Patrón Personalizado</h2>
+        <p>La verdadera potencia reside en convertir cualquier objeto o grupo de objetos en un patrón de relleno reutilizable.</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar el Módulo Base</strong>
+            <p>Dibuja el elemento que quieres que se repita (el **módulo**). Este debe ser un diseño que pueda "encajar" consigo mismo. Un simple círculo en una esquina de un cuadrado vacío es un buen inicio.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Definir como Patrón</strong>
+            <p>Selecciona el módulo base. Ve a <code>Objeto > Patrón > Objetos a Patrón (Alt + I)</code>. El objeto desaparecerá del lienzo y se añadirá a tu biblioteca de patrones.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Usar el Nuevo Patrón</strong>
+            <p>Dibuja una forma grande (ej. un rectángulo). Abre el diálogo **Relleno y Borde** y selecciona la opción **Patrón**. Tu patrón recién creado aparecerá en la lista (generalmente como <code>patternXXXX</code>).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Editar la Repetición del Patrón</h2>
+        <p>Una vez que el patrón está aplicado, puedes controlar su escala, rotación y posición dentro del objeto de relleno.</p>
+        <div class="paso">
+            <strong>Paso 1: Herramienta Selector (F1) y Manejadores</strong>
+            <p>Selecciona el objeto que contiene el relleno de patrón. Verás **tres manejadores** en el lienzo:</p>
+            <ul>
+                <li>**X:** Controla el origen/posición del patrón.</li>
+                <li>**Círculo:** Controla la escala del patrón.</li>
+                <li>**Círculo con Ángulo:** Controla la rotación del patrón.</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Edición Dinámica</strong>
+            <p>Arrastra el manejador **Círculo** para hacerlo más grande o más pequeño. Arrastra el **Círculo con Ángulo** para girar el patrón dentro del relleno. Esto es no destructivo: la forma y el patrón se mantienen independientes.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Patrón de Edición de Nodos</strong>
+            <p>Si quieres editar el diseño del patrón en sí mismo (no solo su repetición), selecciona el objeto y ve a <code>Objeto > Patrón > Patrón a Objetos</code>. Esto devolverá el módulo original al lienzo para que lo edites. Debes volver a convertirlo a patrón para ver los cambios.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Fondo de Diseño Gráfico</h3>
+        <p><strong>Objetivo:</strong> Crear un fondo abstracto usando un patrón personalizado.</p>
+        <ol>
+            <li>Dibuja un **triángulo** simple (polígono de 3 lados).</li>
+            <li>Duplícalo (**Ctrl + D**), haz el duplicado más pequeño y gíralo 180 grados, creando una especie de "reloj de arena" con dos triángulos unidos por las puntas. **Agrupa** ambos.</li>
+            <li>Convierte este grupo a patrón (**Objeto > Patrón > Objetos a Patrón**).</li>
+            <li>Dibuja un rectángulo que ocupe todo el lienzo y rellénalo con el patrón.</li>
+            <li>Usa la herramienta Selector para escalar y rotar el patrón con los manejadores en el lienzo para lograr un fondo dinámico.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion25.html">Anterior</a>
+    <a href="sesion27.html">Siguiente</a>
+</nav>
+</body>
+</html>

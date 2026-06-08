@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 13: Introducción a Redes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 13</h1>
+            <h2>Arquitectura de Redes: ¿Cómo funciona Internet?</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Mito de "La Nube"</h3>
+            <p><strong>Objetivo:</strong> Comprender que Internet no está en el cielo; está bajo el mar y bajo tierra.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>🌊 Internet es Submarino</h4>
+                <p>¿Sabías que el 99% de tus TikToks viajan por cables en el fondo del océano?</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" style="color: #2b6cb0;">1.3M</span>
+                        <span class="stat-label">Kilómetros de cable submarino</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" style="color: #2c5282;">300k</span>
+                        <span class="stat-label">Velocidad de la luz (km/s)</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"La Nube es solo la computadora de otra persona (un Servidor) conectada por un cable muy largo."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Ciclo de la Comunicación Digital</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);">
+                    <h4>📡 Los 4 Elementos</h4>
+                    <ul>
+                        <li><strong>Emisor:</strong> Quien envía (Tu celular).</li>
+                        <li><strong>Receptor:</strong> Quien recibe (El servidor de Instagram).</li>
+                        <li><strong>Mensaje:</strong> Los datos (La foto que subiste).</li>
+                        <li><strong>Canal:</strong> El medio (WiFi, Fibra Óptica, 4G).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);">
+                    <h4>🤝 El Protocolo</h4>
+                    <p>Es el idioma común. Si yo hablo español y tú japonés, no hay comunicación aunque usemos el mismo teléfono.</p>
+                    <p>En internet, el idioma universal se llama <strong>TCP/IP</strong>.</p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>📦 ¿Cómo viaja un mensaje? (Paquetes)</h4>
+                <p>Tu foto no viaja entera. Se rompe en mil pedazos (paquetes) y se arma al llegar.</p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0; position: relative;">
+                    <div style="text-align: center; z-index: 2;">
+                        <div style="font-size: 3rem;">💻</div>
+                        <p style="font-weight: bold;">Tú</p>
+                    </div>
+
+                    <div style="flex-grow: 1; height: 5px; background: #cbd5e1; margin: 0 20px; position: relative;">
+                        <div style="width: 15px; height: 15px; background: #e53e3e; border-radius: 50%; position: absolute; top: -5px; animation: travel 2s infinite linear;"></div>
+                        <div style="width: 15px; height: 15px; background: #38a169; border-radius: 50%; position: absolute; top: -5px; animation: travel 2s infinite linear 0.5s;"></div>
+                        <div style="width: 15px; height: 15px; background: #3182ce; border-radius: 50%; position: absolute; top: -5px; animation: travel 2s infinite linear 1s;"></div>
+                    </div>
+
+                    <div style="text-align: center; z-index: 2;">
+                        <div style="font-size: 3rem;">🖥️</div>
+                        <p style="font-weight: bold;">Servidor</p>
+                    </div>
+                </div>
+                
+                <style>
+                    @keyframes travel {
+                        0% { left: 0; opacity: 1; }
+                        90% { opacity: 1; }
+                        100% { left: 100%; opacity: 0; }
+                    }
+                </style>
+                <p style="font-size: 0.8rem; color: #718096; text-align: center;">*Los paquetes pueden tomar rutas diferentes para llegar al mismo destino.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Mapeando tu Red</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿WiFi o Datos?</h5>
+                    <p>¿Cuál es la diferencia física entre conectar tu celular al WiFi o usar 4G?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Distancia al cable.</strong></p>
+                        <p>WiFi: La señal viaja por aire hasta tu Modem (5 metros) y luego por cable.</p>
+                        <p>Datos: La señal viaja por aire hasta la Antena (Kilómetros) y luego por cable.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>El concepto de "Ping"</h5>
+                    <p>En videojuegos, ¿qué significa tener "Lag" o Ping alto?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Explicación</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Latencia.</strong> Es el tiempo que tarda el paquete en ir y volver. Si tarda mucho (Ping alto), tu personaje se mueve tarde.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🌐 <strong>Misión del Día:</strong> Dibuja en tu cuaderno un mapa mental de cómo llega internet a tu casa (Poste -> Modem -> Dispositivos).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 13 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

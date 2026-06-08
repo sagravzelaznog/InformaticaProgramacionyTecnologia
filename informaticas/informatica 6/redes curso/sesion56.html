@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S14 E56: Sesión de Pruebas y Troubleshooting (II)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 14, Sesión 56: Troubleshooting de Seguridad 🔒</h1>
+        <p class="subtitle">Diagnóstico de Fallos de SSH, Puertos y Acceso Remoto</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Escenario de Falla 2: Falla de Acceso SSH al Router</h2>
+            <p>Un técnico intenta acceder remotamente al Router (192.168.10.1) usando PuTTY (SSH) y la conexión es rechazada. ¿Cuál podría ser la causa?</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Diagnóstico de Puerto</h3>
+                    <p>Primero, haz **`ping 192.168.10.1`** (si funciona, el Router está activo). Luego, usa **Zenmap** para escanear el Router. Si el **Puerto 22 (SSH)** está **CERRADO** o **FILTRADO**, el problem no es de conectividad, sino de servicio.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Resolución Común</h3>
+                    <p>Ve a la CLI del Router (por consola) y verifica si: 1) el servicio SSH fue habilitado; 2) las claves RSA fueron generadas; o 3) el firewall local del Router está bloqueando el Puerto 22.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Escenario de Falla 3: Falla de Acceso a Servidor por NAT</h2>
+            <p>El jefe de la PyME te llama y dice: "Desde mi casa, no puedo ver la página web que está en nuestro Servidor (192.168.10.2)."</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Aislamiento</h3>
+                    <p>La falla está en el **NAT/Port Forwarding**. La conexión llega al Router (IP Pública) pero no sabe a dónde redirigir el tráfico del Puerto 80 (HTTP). Solución: Verifica la regla de Port Forwarding en el Router, asegurando que apunte correctamente a **192.168.10.2:80**.</p>
+                </div>
+                <div>
+                    <h3>Verificación Interna</h3>
+                    <p>Antes de culpar al NAT, verifica que el Servidor (192.168.10.2) esté activo y que el **Puerto 80** esté realmente **abierto** y funcionando (usa Netstat en el Servidor o Zenmap desde el PC Cliente).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Escenario de Cableado Incorrecto</h2>
+            <p><strong>Tarea Práctica (Diagnóstico en Packet Tracer):</strong></p>
+            <ol>
+                <li>En tu proyecto, cambia el cable entre el Router y el Switch de **Cable Directo** a **Cable Cruzado**.</li>
+                <li>Ve a un PC Cliente e intenta hacer **ping** al Router (192.168.10.1).</li>
+                <li>(Resultado): Si los dispositivos no tienen Auto-MDIX, el ping debería fallar.</li>
+                <li>**Corrige la falla:** Vuelve a conectar el cable Directo.</li>
+            </ol>
+            <button id="securityTroubleshootingCheckBtn">Finalizar Diagnóstico de Seguridad</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S14 E56</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion55.html" class="nav-button">Anterior</a>
+        <a href="sesion57.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

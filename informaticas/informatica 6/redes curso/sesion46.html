@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S12 E46: Escaneo Ético de Redes con Zenmap (Nmap)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 12, Sesión 46: Detección de Intrusos (Zenmap) 🔎</h1>
+        <p class="subtitle">El Escaneo de Puertos como Herramienta de Auditoría Ética</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Escaneo de Puertos: Conocer las Puertas Abiertas</h2>
+            <p>El **Escaneo de Puertos** es el proceso de sondear un host para determinar qué puertos TCP/UDP están **abiertos** (aceptando conexiones), **cerrados** (no hay servicio) o **filtrados** (bloqueados por un firewall).</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Propósito Ético (Técnico)</h3>
+                    <p>Un técnico lo usa para auditoría: verificar que los únicos puertos abiertos sean los intencionales (ej. 80 para web, 22 para SSH) y que todos los demás estén cerrados o filtrados.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Propósito Malicioso</h3>
+                    <p>Los atacantes lo usan para encontrar un "punto débil" (un puerto abierto no asegurado) en el host objetivo antes de lanzar un ataque más profundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Nmap / Zenmap: El Estándar de la Industria</h2>
+            <p>**Nmap** (Network Mapper) es el escáner de puertos de código abierto más potente y popular. **Zenmap** es simplemente la interfaz gráfica (GUI) de Nmap, haciéndolo más fácil de usar para principiantes.</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Funcionalidades Clave</h3>
+                    <ul>
+                        <li>**Host Discovery:** Encuentra dispositivos activos en una red.</li>
+                        <li>**Port Scanning:** Identifica puertos abiertos (ej. `-p 1-1000` para los primeros 1000 puertos).</li>
+                        <li>**OS Detection:** Intenta adivinar el sistema operativo del host.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Simulación de Detección de Intrusos</h3>
+                    <p>Al escanear tu propia red con Zenmap, si encuentras un puerto abierto inesperado (ej. Telnet 23), has detectado una vulnerabilidad que debe corregirse de inmediato.</p>
+                </div>
+            </div>
+            [Image of Zenmap graphical interface showing port scan results]
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Escaneo Básico de Puertos con Zenmap</h2>
+            <p><strong>Tarea Práctica (Software Gratuito):</strong></p>
+            <ol>
+                <li>Descarga e instala **Zenmap**.</li>
+                <li>Escanea la dirección de tu Gateway/Router (ej. `192.168.1.1`).</li>
+                <li>Usa un escaneo de tipo **"Intense scan"** (o escribe `-p 1-1000` para enfocarte en los puertos comunes).</li>
+                <li>Documenta los puertos que el router tiene abiertos (típicamente 80, 443 para la interfaz web, o 23/22 si tiene Telnet/SSH habilitado).</li>
+            </ol>
+            <button id="zenmapScanBtn">Verificar Escaneo</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S12 E46</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion45.html" class="nav-button">Anterior</a>
+        <a href="sesion47.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

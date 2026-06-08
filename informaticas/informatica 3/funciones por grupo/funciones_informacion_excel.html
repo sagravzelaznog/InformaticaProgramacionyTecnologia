@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Información en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #3498db;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #2980b9;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2ecc71;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Información en Excel</h1>
+            <p>Herramientas para validar y obtener información sobre celdas y fórmulas</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- FUNCIONES DE VALIDACIÓN (ES) -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('validacion')">
+                <h2>Funciones de Validación (ES)</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="validacion">
+                <p>Funciones que devuelven VERDADERO o FALSO dependiendo del contenido de la celda.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: ESBLANCO y ESTEXTO</h4>
+                    <pre>// Verificar si una celda está vacía
+=ESBLANCO(A1)  // Devuelve VERDADERO si A1 está vacía
+
+// Verificar si el valor es texto
+=ESTEXTO(B1)    // Devuelve VERDADERO si B1 contiene texto</pre>
+                    <div class="result-box">
+                        <strong>Ejemplo práctico:</strong> Validar que un campo de correo electrónico no esté vacío y sea texto.<br>
+                        <code>=Y(NO(ESBLANCO(A1)), ESTEXTO(A1), ESERROR(HALLAR("@", A1))=FALSO)</code>
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: ESNUMERO y ESFORMULA</h4>
+                    <pre>// Verificar si el valor es un número
+=ESNUMERO(A1)  // VERDADERO si A1 contiene un número
+
+// Verificar si la celda contiene una fórmula
+=ESFORMULA(B1)  // VERDADERO si B1 contiene una fórmula</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Validación de datos</h4>
+                    <p>Datos: A1 = "", B1 = 123, C1 = "Texto", D1 contiene =SUMA(1,1)</p>
+                    <p>Crea una fórmula que devuelva "VÁLIDO" si A1 no está vacío, B1 es un número, C1 es texto y D1 contiene una fórmula.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=SI(Y(NO(ESBLANCO(A1)), ESNUMERO(B1), ESTEXTO(C1), ESFORMULA(D1)), "VÁLIDO", "NO VÁLIDO")</pre>
+                        <p>Explicación: La función Y() verifica que todas las condiciones sean VERDADERAS.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Contar celdas con fórmulas</h4>
+                    <p>Datos: Rango A1:A10 con una mezcla de valores y fórmulas</p>
+                    <p>Crea una fórmula que cuente cuántas celdas en A1:A10 contienen fórmulas.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=CONTAR.SI(A1:A10, "=*")  // Forma 1: Busca celdas que comiencen con '='
+=SUMA(--ESFORMULA(A1:A10))  // Forma 2: Usando ESFORMULA con SUMA matricial</pre>
+                        <p>Nota: La segunda forma requiere presionar Ctrl+Mayús+Enter en versiones anteriores a Excel 365.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETECCIÓN DE ERRORES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('errores')">
+                <h2>Detección de Errores</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="errores" style="display: none;">
+                <p>Funciones para manejar y detectar errores en fórmulas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: ESERROR vs ES.ND</h4>
+                    <pre>// Supongamos que A1 contiene #N/A (error de búsqueda)
+=ESERROR(A1)    // VERDADERO (cualquier error)
+=ES.ND(A1)      // VERDADERO (solo error #N/A)
+=ESERR(A1)      // FALSO (ESERR no detecta #N/A)
+
+// Uso común con SI.ERROR
+=SI.ERROR(1/0, "Error en cálculo")  // Devuelve "Error en cálculo"</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Manejo de errores anidados</h4>
+                    <pre>// Fórmula segura para buscar un valor
+=SI.ERROR(BUSCARV("ProductoX", A1:B10, 2, FALSO), "No encontrado")
+
+// Alternativa con SI.ERROR.ND (solo en versiones recientes)
+=SI.ERROR.ND(BUSCARV("ProductoX", A1:B10, 2, FALSO), "No encontrado")</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Promedio sin errores</h4>
+                    <p>Datos: A1:A5 contiene {5, #N/A, 10, #DIV/0!, 15}</p>
+                    <p>Crea una fórmula que calcule el promedio de los valores numéricos ignorando los errores.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=PROMEDIO(SI(ESNUMERO(A1:A5), A1:A5))  // Fórmula matricial (Ctrl+Mayús+Enter)
+
+// En Excel 365 o posterior:
+=PROMEDIO(SI(ESNUMERO(A1:A5), A1:A5, ""))</pre>
+                        <p>Resultado: (5 + 10 + 15) / 3 = 10</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Contar errores</h4>
+                    <p>Datos: Rango B1:B10 con varios valores y errores</p>
+                    <p>Crea una fórmula que cuente cuántas celdas contienen errores.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=SUMA(--ESERROR(B1:B10))  // Fórmula matricial (Ctrl+Mayús+Enter)
+
+// En Excel 365 o posterior:
+=SUMA(--ESERROR(B1:B10))</pre>
+                        <p>Alternativa para versiones antiguas: =CONTAR.SI(B1:B10, "#N/A")+CONTAR.SI(B1:B10, "#¡VALOR!")+...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN DEL SISTEMA Y FORMATO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('sistema')">
+                <h2>Información del Sistema y Formato</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="sistema" style="display: none;">
+                <p>Funciones para obtener información sobre celdas, formato y entorno de Excel.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Función CELDA</h4>
+                    <pre>// Obtener la ruta completa del archivo
+=CELDA("nombrearchivo")  // Devuelve algo como 'C:\Usuarios\Documentos\[Libro1.xlsx]Hoja1'
+
+// Obtener el ancho de la columna A
+=CELDA("ancho", A1)  // Devuelve el ancho en caracteres
+
+// Verificar si la celda está formateada como moneda
+=SI(CELDA("formato", B1)="C2", "Moneda", "Otro formato")</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: TIPO y HOJA</h4>
+                    <pre>// Determinar el tipo de dato
+=TIPO("Texto")     // Devuelve 2 (texto)
+=TIPO(123)         // Devuelve 1 (número)
+=TYPE(VERDADERO)   // Devuelve 4 (lógico)
+
+// Obtener información de la hoja
+=HOJA()           // Número de la hoja actual
+=HOJAS()          // Número total de hojas en el libro</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: ES.PAR y ES.IMPAR</h4>
+                    <pre>// Verificar si un número es par o impar
+=SI(ES.PAR(A1), "Par", "Impar")
+
+// Contar números impares en un rango
+=SUMAPRODUCTO(--ES.IMPAR(A1:A10))  // Cuenta números impares</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Resaltar filas pares</h4>
+                    <p>Datos: Un rango de datos en A1:D20</p>
+                    <p>Crea una regla de formato condicional para resaltar filas pares.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <p>1. Selecciona el rango A1:D20</p>
+                        <p>2. Ve a Inicio > Formato condicional > Nueva regla</p>
+                        <p>3. Selecciona "Usar una fórmula que determine las celdas para aplicar formato"</p>
+                        <p>4. Ingresa la fórmula: <code>=ES.PAR(FILA())</code></p>
+                        <p>5. Establece el formato deseado y haz clic en Aceptar</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Auditoría de fórmulas</h4>
+                    <p>Datos: Varias celdas con fórmulas en la hoja</p>
+                    <p>Crea una columna que muestre "Fórmula" si la celda contiene una fórmula, o "Valor" si no.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>// Suponiendo que A1 es la celda a verificar
+=SI(ESFORMULA(A1), "Fórmula: " & FORMULATEXTO(A1), "Valor: " & TEXTO(A1, "0.00"))</pre>
+                        <p>Esta fórmula mostrará la fórmula si existe, o el valor formateado si es un valor estático.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

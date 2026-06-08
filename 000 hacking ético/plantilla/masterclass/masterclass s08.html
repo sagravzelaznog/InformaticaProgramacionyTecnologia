@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 8 - Hacking Ético Forense">
+    <title>Sesión 8: Drill de Identidad Criptográfica | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge warn">ESTADO: AUDITORÍA LEGAL INMINENTE</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 08: El Contraataque Legal</h2>
+            <p><strong>Situación:</strong> Acabas de clonar el dispositivo crítico. Sin embargo, los abogados de la defensa han presentado una moción de emergencia alegando que alteraste los datos durante la extracción. El juez te ha dado exactamente 5 minutos para presentar las firmas criptográficas originales que demuestren la inmutabilidad de la prueba.</p>
+            <p>Es hora de aplicar tu memoria muscular. Repetirás el proceso de adquisición y hashing de la Sesión 3, pero esta vez con la presión de una auditoría legal respirándote en la nuca. Valida cada paso sin dudar.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Criptografía a Contrarreloj</h2>
+            <p>Inicia tu máquina virtual con Kali Linux. Ejecuta los comandos con precisión absoluta y sella la evidencia.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Adquisición y Log en Tiempo Real (`dc3dd`)</h3>
+                    <p>Extrae la evidencia generando un registro verificable que la defensa no pueda refutar.</p>
+                    <div class="terminal">
+                        <code>sudo dc3dd if=/dev/sdX of=~/DFIR/Casos/Caso_003/Evidencia/imagen_auditada.dd hash=sha256 log=~/DFIR/Casos/Caso_003/Evidencia/auditoria.log</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Adquisición</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Doble Verificación de Hashes</h3>
+                    <p>Genera las firmas MD5 y SHA256 manualmente para crear redundancia en tu peritaje.</p>
+                    <div class="terminal">
+                        <code>md5sum ~/DFIR/Casos/Caso_003/Evidencia/imagen_auditada.dd<br>
+                        sha256sum ~/DFIR/Casos/Caso_003/Evidencia/imagen_auditada.dd</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Hashes</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Sellado en la Cadena de Custodia</h3>
+                    <p>Documenta el hash irreversiblemente en tu manifiesto digital antes de que expire el tiempo.</p>
+                    <div class="terminal">
+                        <code>echo "[AUDITORÍA LEGAL - $(date)]" >> ~/DFIR/Casos/Caso_003/cadena_custodia.txt<br>
+                        sha256sum ~/DFIR/Casos/Caso_003/Evidencia/imagen_auditada.dd >> ~/DFIR/Casos/Caso_003/cadena_custodia.txt<br>
+                        cat ~/DFIR/Casos/Caso_003/cadena_custodia.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Sellar Evidencia</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Moción Denegada! Defensa Derrotada.</h3>
+                <p>Tus firmas criptográficas coinciden perfectamente y han sido registradas a tiempo. La evidencia se mantiene inmutable y el caso sigue vivo gracias a tu precisión y memoria muscular.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 8. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

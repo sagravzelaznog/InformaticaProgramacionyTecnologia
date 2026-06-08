@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S48: Proyecto Final del Bloque III: Kit de Diseño UI</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 48: Proyecto Final del Bloque III: Kit de Diseño UI</h1>
+
+    <section>
+        <h2>1. Concepto y Alcance del Kit de Diseño (UI Kit)</h2>
+        <p>El proyecto final de este bloque es crear un pequeño **Kit de Componentes de Interfaz (UI Kit)**, un conjunto de activos vectoriales que un desarrollador web o móvil puede utilizar. Esto demuestra tu habilidad para diseñar componentes, manejar estados y exportar archivos limpios.</p>
+        <div class="paso">
+            <strong>Elementos Requeridos:</strong>
+            <ul>
+                <li>**Botones:** Primario y Secundario, cada uno con estado *Normal* y *Hover*.</li>
+                <li>**Tarjetas:** Un componente de contenido (Card) con sombra o elevación.</li>
+                <li>**Iconos:** Un set de 4 iconos esenciales.</li>
+                <li>**Estructura:** Uso riguroso de **Capas** e **IDs** para la documentación.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Creación de Componentes Clave</h2>
+        
+        <p>Utiliza la herramienta Rectángulo y el panel Relleno y Borde para diseñar con precisión.</p>
+        <div class="paso">
+            <strong>Botones con Estados (Normal y Hover)</strong>
+            <ol>
+                <li>Dibuja un rectángulo con esquinas redondeadas (**Botón Primario**). Asigna un color vibrante.</li>
+                <li>**Duplica (Ctrl + D)** este botón y modifícalo para simular el estado **Hover** (ej. un 10% más oscuro, o aplicando un ligero **Desenfoque Gaussiano** para simular un resplandor).</li>
+                <li>Repite el proceso para el **Botón Secundario** (ej. color blanco con trazo de color primario).</li>
+                <li>**Agrupa** cada par de botón y texto por separado (4 grupos en total).</li>
+            </ol>
+        </div>
+        <div class="paso">
+            <strong>Tarjeta de Contenido (Card Component)</strong>
+            <p>Dibuja la tarjeta principal. Duplícala, rellena el duplicado de negro, aplícale un **Desenfoque Gaussiano** sutil y envíalo al fondo (**Av Pág**). Esto crea el efecto de elevación (sombra suave), crucial en las interfaces modernas.</p>
+        </div>
+        <div class="paso">
+            <strong>Set de 4 Iconos</strong>
+            <p>Diseña 4 iconos simples (ej. Home, Perfil, Mensaje, Ajustes). Asegúrate de que el **grosor del trazo** sea idéntico en todos, y que estén vectorialmente limpios (**Simplificar - Ctrl + L**).</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Organización Estricta y Nomenclatura</h2>
+        <p>La limpieza del archivo es tan importante como el diseño. Esto se logra con IDs claros y una estructura de capas lógica.</p>
+        <div class="paso">
+            <strong>Paso 1: Estructura de Capas</strong>
+            <p>Crea las siguientes capas en el panel **Capas (Shift + Ctrl + L)**:</p>
+            <ul>
+                <li>**Componentes_Maestros** (Para los botones y la tarjeta).</li>
+                <li>**Iconos_Set** (Para los 4 iconos).</li>
+                <li>**Guías** (Para referencias de espaciado, luego se oculta).</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Asignación de IDs para Desarrollo</strong>
+            <p>Usa el panel **Objetos (Shift + Ctrl + O)** para renombrar los grupos finales. **Esto será el nombre del archivo en la exportación por lotes.**</p>
+            <ul>
+                <li>Botones: `btn-primary-normal`, `btn-primary-hover`, `btn-secondary-normal`, `btn-secondary-hover`.</li>
+                <li>Tarjeta: `card-product-base`.</li>
+                <li>Iconos: `ico-home`, `ico-profile`, `ico-message`, `ico-settings`.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Entrega y Optimización Final</h2>
+        <div class="paso">
+            <strong>Exportación por Lotes de Iconos</strong>
+            <p>Selecciona los 4 iconos. Abre el diálogo de **Exportar (Shift + Ctrl + E)**. Asegúrate de seleccionar **"Selección"** y haz clic en **Exportar lote**. Usa el factor de escala **2.0** o **3.0** para generar las versiones @2x o @3x de todos los iconos con un solo clic.</p>
+        </div>
+        <div class="paso">
+            <strong>Optimización del SVG Fuente</strong>
+            <p>Guarda el archivo principal. Ve a <code>Archivo > Guardar como...</code> y selecciona **SVG Plano de Inkscape**. Esto garantiza que el archivo fuente (`UI-Kit-Final.svg`) sea lo más ligero posible para el desarrollador.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Proyecto a Entregar: UI Kit Básico</h3>
+        <p><strong>Requerimientos:</strong></p>
+        <ol>
+            <li>Diseño de **4 Botones** (Primario/Secundario en estado Normal/Hover), con IDs claros.</li>
+            <li>Diseño de **1 Tarjeta** que use **Desenfoque Gaussiano** para la sombra.</li>
+            <li>Set de **4 Iconos** vectorialmente limpios.</li>
+            <li>Todos los componentes organizados en **Capas** y con **IDs** claros.</li>
+            <li>Exportación de los 4 iconos a **PNG @2x** (Exportación por lote).</li>
+            <li>El archivo fuente debe ser **SVG Plano**.</li>
+        </ol>
+        <p>¡Has completado el Bloque III! Tienes el dominio completo sobre el flujo de trabajo para el diseño de interfaces.</p>
+    </div>
+
+			</body>
+			<nav>
+							<a href="index.html">Inicio</a>
+							<a href="sesion47.html">Anterior</a>
+							<a href="sesion49.html">Siguiente</a>
+			</nav>
+</html>

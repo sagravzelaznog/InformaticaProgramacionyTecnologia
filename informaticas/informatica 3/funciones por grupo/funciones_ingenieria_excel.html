@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones de Ingeniería en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .function-header h2 {
+            margin: 0;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #3498db;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #2980b9;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .result-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2ecc71;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .function-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .formula {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .unit-conversion {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .unit-group {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #e1e4e8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones de Ingeniería en Excel</h1>
+            <p>Herramientas para cálculos técnicos y de ingeniería</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- CONVERSIÓN DE UNIDADES Y SISTEMAS NUMÉRICOS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('conversion')">
+                <h2>Conversión de Unidades y Sistemas Numéricos</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="conversion">
+                <p>Funciones para convertir entre diferentes sistemas de medición y numeración.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: CONVERTIR unidades</h4>
+                    <pre>// Convertir 100 millas a kilómetros
+=CONVERTIR(100, "mi", "km")  // 160.9344 km
+
+// Convertir 25 grados Celsius a Fahrenheit
+=CONVERTIR(25, "C", "F")     // 77°F
+
+// Convertir 1 año luz a kilómetros
+=CONVERTIR(1, "ly", "m")/1000  // 9.46073E+12 km</pre>
+                    
+                    <div class="unit-conversion">
+                        <div class="unit-group">
+                            <strong>Longitud</strong><br>
+                            "m" - metros<br>
+                            "mi" - millas<br>
+                            "ft" - pies<br>
+                            "in" - pulgadas
+                        </div>
+                        <div class="unit-group">
+                            <strong>Peso/Masa</strong><br>
+                            "kg" - kilogramos<br>
+                            "lbm" - libras<br>
+                            "ozm" - onzas<br>
+                            "g" - gramos
+                        </div>
+                        <div class="unit-group">
+                            <strong>Temperatura</strong><br>
+                            "C" - Celsius<br>
+                            "F" - Fahrenheit<br>
+                            "K" - Kelvin
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Conversión de bases numéricas</h4>
+                    <pre>// Binario a decimal
+=BIN.A.DEC("1010")     // 10
+
+// Decimal a hexadecimal
+=DEC.A.HEX(255)         // FF
+
+// Octal a decimal
+=OCT.A.DEC("77")        // 63
+
+// Hexadecimal a binario
+=HEX.A.BIN("A5")        // 10100101</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Conversión de unidades compuestas</h4>
+                    <p>Un automóvil consume 7 litros de gasolina cada 100 km. ¿Cuántas millas por galón (mpg) recorre?</p>
+                    <p>Dato: 1 milla = 1.60934 km, 1 galón = 3.78541 litros</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>// 100 km = 100/1.60934 millas = 62.1371 millas
+// 7 litros = 7/3.78541 galones = 1.8492 galones
+// mpg = 62.1371 / 1.8492 = 33.6 mpg
+
+=CONVERTIR(100, "km", "mi") / CONVERTIR(7, "l", "gal")  // 33.6 mpg</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÚMEROS COMPLEJOS -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('complejos')">
+                <h2>Números Complejos</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="complejos" style="display: none;">
+                <p>Funciones para trabajar con números complejos (en formato "a+bi" o "a+bj").</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Operaciones básicas</h4>
+                    <pre>// Crear números complejos
+=COMPLEJO(3, 4)        // 3+4i
+=COMPLEJO(1, -2, "j")   // 1-2j
+
+// Suma y resta
+=IM.SUMA("3+4i", "1-2i")    // 4+2i
+=IM.RESTA("5+3i", "2+1i")   // 3+2i
+
+// Multiplicación y división
+=IM.PRODUCTO("1+2i", "3+4i")  // -5+10i
+=IM.DIV("1+2i", "3+4i")       // 0.44+0.08i</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Funciones avanzadas</h4>
+                    <pre>// Módulo (magnitud)
+=IM.ABS("3+4i")       // 5
+
+// Argumento (ángulo en radianes)
+=IM.ANGULO("1+1i")    // 0.7854 (π/4 radianes o 45°)
+
+// Conjugado complejo
+=IM.CONJUGADA("2-3i") // 2+3i</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Circuitos eléctricos</h4>
+                    <p>En un circuito de corriente alterna, la impedancia de un inductor es Z = jωL, donde ω=2πf.</p>
+                    <p>Calcula la impedancia de un inductor de 10 mH a una frecuencia de 50 Hz.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>// ω = 2πf = 2*PI()*50 = 314.16 rad/s
+// Z = jωL = j*314.16*0.01 = j3.1416 Ω
+
+=COMPLEJO(0, 2*PI()*50*0.01)  // 0+3.1416i</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNCIONES ESPECIALES -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('especiales')">
+                <h2>Funciones Especiales</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="function-content" id="especiales" style="display: none;">
+                <p>Funciones matemáticas avanzadas para aplicaciones de ingeniería.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Funciones de Bessel</h4>
+                    <pre>// Función de Bessel de primera especie, orden 0
+=BESSELJ(2, 0)  // J₀(2) ≈ 0.2239
+
+// Función de Bessel modificada, orden 1
+=BESSELI(1.5, 1)  // I₁(1.5) ≈ 0.9817</pre>
+                    <p class="note">Nota: Las funciones de Bessel son útiles en problemas de conducción de calor, ondas electromagnéticas y mecánica cuántica.</p>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Funciones de error</h4>
+                    <pre>// Función de error
+=FUN.ERROR(1)  // 0.8427
+
+// Función de error complementaria
+=FUN.ERROR.COMPL(1)  // 0.1573
+
+// Relación: FUN.ERROR(x) + FUN.ERROR.COMPL(x) = 1</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 3: Operaciones a nivel de bits</h4>
+                    <pre>// Operación AND a nivel de bits (5 = 0101, 3 = 0011)
+=BIT.Y(5, 3)  // 1 (0001)
+
+// Desplazamiento a la izquierda (5 << 2)
+=BIT.DESPLIZQDA(5, 2)  // 20 (0101 → 10100)
+
+// Desplazamiento a la derecha (20 >> 2)
+=BIT.DESPLDCHA(20, 2)  // 5 (10100 → 00101)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 3: Probabilidad normal</h4>
+                    <p>Calcula la probabilidad de que una variable normal estándar esté entre -1.96 y 1.96.</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>// P(-1.96 < Z < 1.96) = FUN.ERROR(1.96/√2) - FUN.ERROR(-1.96/√2)
+=2*FUN.ERROR(1.96/RAIZ(2))-1  // 0.95 o 95%</pre>
+                        <p>Esto muestra que aproximadamente el 95% de los datos en una distribución normal está dentro de ±1.96 desviaciones estándar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            const header = element.previousElementSibling;
+            
+            if (element.style.display === "none") {
+                element.style.display = "block";
+                header.classList.remove('collapsed');
+            } else {
+                element.style.display = "none";
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                    // Añadir clase collapsed a todos los headers excepto el primero
+                    const header = content.previousElementSibling;
+                    if (header) {
+                        header.classList.add('collapsed');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

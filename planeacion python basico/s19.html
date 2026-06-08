@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 19: Alcance de las Variables (Scope) - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .scope-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .scope-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #fd79a8;
+        }
+        
+        .scope-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scope-card h4 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+        
+        .scope-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .scope-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #74b9ff;
+        }
+        
+        .scope-diagram {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .scope-level {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .scope-level.global {
+            border-color: #fd79a8;
+            background: rgba(253, 121, 168, 0.1);
+        }
+        
+        .scope-level.local {
+            border-color: #00b894;
+            background: rgba(0, 184, 148, 0.1);
+        }
+        
+        .scope-level h5 {
+            margin-top: 0;
+            color: #fff;
+        }
+        
+        .variable-box {
+            background: #636e72;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .arrow {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+        
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #e17055;
+        }
+        
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #fab1a0;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+        
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+        
+        .practice-exercises {
+            margin: 30px 0;
+        }
+        
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #a29bfe;
+        }
+        
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+        
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+        
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .scope-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+        
+        .scope-description {
+            margin-top: 20px;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .config-program {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+        
+        .config-program h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+        
+        .config-program h3 i {
+            margin-right: 10px;
+        }
+        
+        .config-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .config-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+        
+        .module-example {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+        
+        .module-example h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+        
+        .module-example h3 i {
+            margin-right: 10px;
+        }
+        
+        .module-code {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .module-code h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+        
+        .global-modifier {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+        
+        .global-modifier h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .global-modifier h3 i {
+            margin-right: 10px;
+        }
+        
+        .modifier-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .modifier-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+        
+        .local-global {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+        
+        .local-global h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+        
+        .local-global h3 i {
+            margin-right: 10px;
+        }
+        
+        .lg-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .lg-example h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 19</h1>
+                <h2>Alcance de las Variables (Scope)</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-9-38" 
+                     role="progressbar" 
+                     aria-valuenow="9.38" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">9.38% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, explorarás uno de los conceptos más importantes y a menudo confusos en programación: el alcance de las variables (variable scope). Comprenderás cómo Python determina dónde una variable es visible y cómo puedes controlar su accesibilidad en diferentes partes de tu programa.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Diferenciar entre variables locales y globales</li>
+                        <li>Comprender las reglas de alcance (scope) en Python</li>
+                        <li>Modificar variables globales desde funciones usando <code>global</code></li>
+                        <li>Crear programas con configuración global efectiva</li>
+                        <li>Evitar problemas comunes relacionados con el alcance de variables</li>
+                        <li>Organizar mejor tu código siguiendo buenas prácticas</li>
+                    </ul>
+                </div>
+                
+                <div class="scope-diagram">
+                    <h3>Diagrama de Alcance de Variables</h3>
+                    <div class="scope-diagram-container">
+                        <div class="scope-level global">
+                            <h5>Ámbito Global</h5>
+                            <div class="variable-box">variable_global = 42</div>
+                            <div class="variable-box">def funcion_principal():</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="scope-level local">
+                            <h5>Ámbito Local</h5>
+                            <div class="variable-box">variable_local = 10</div>
+                            <div class="variable-box">return variable_global + variable_local</div>
+                        </div>
+                    </div>
+                    <p class="scope-description">
+                        Las variables locales solo son visibles dentro de su función, mientras que las variables globales pueden ser accedidas desde cualquier parte del programa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Variables locales vs globales -->
+            <div class="concept-card">
+                <h3>1. Variables Locales vs Globales</h3>
+                <p>Las variables en Python tienen diferentes niveles de visibilidad según dónde se definan. Las variables locales solo existen dentro de la función donde se crean, mientras que las variables globales pueden ser accedidas desde cualquier parte del programa.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Variables globales - definidas fuera de cualquier función
+contador_global = 0
+mensaje_global = "Hola desde el ámbito global"
+
+def funcion_con_variables_locales():
+    """Ejemplo de función con variables locales."""
+    # Variables locales - solo existen dentro de esta función
+    contador_local = 10
+    mensaje_local = "Hola desde el ámbito local"
+    resultado = contador_global + contador_local  # Puede acceder a variables globales
+    
+    print(f"Dentro de la función: {resultado}")
+    print(f"Mensaje global: {mensaje_global}")
+    print(f"Mensaje local: {mensaje_local}")
+    
+    return resultado
+
+def otra_funcion():
+    """Otra función que intenta acceder a variables."""
+    # contador_local no existe aquí - daría error
+    # print(contador_local)  # NameError: name 'contador_local' is not defined
+    
+    # Pero puede acceder a variables globales
+    print(f"Mensaje global desde otra función: {mensaje_global}")
+
+# Llamadas a las funciones
+resultado = funcion_con_variables_locales()
+print(f"Resultado devuelto: {resultado}")
+
+otra_funcion()
+
+# Intento de acceder a variable local fuera de su función (error)
+try:
+    print(f"Contador local fuera de función: {contador_local}")
+except NameError as e:
+    print(f"Error esperado: {e}")
+
+# Acceso a variable global fuera de funciones (funciona)
+print(f"Contador global fuera de funciones: {contador_global}")
+
+# Ejemplo con funciones anidadas
+def funcion_externa():
+    """Función externa con variable local."""
+    variable_externa = "Soy de la función externa"
+    
+    def funcion_interna():
+        """Función interna que puede acceder a variables de la externa."""
+        variable_interna = "Soy de la función interna"
+        print(f"Desde interna: {variable_externa}")  # Puede acceder a variable_externa
+        print(f"Desde interna: {variable_interna}")
+    
+    funcion_interna()
+    # variable_interna no existe aquí
+    # print(variable_interna)  # NameError
+    
+    print(f"Desde externa: {variable_externa}")
+
+funcion_externa()</code></pre>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Variables Locales</h5>
+                        <ul>
+                            <li>Se definen dentro de una función</li>
+                            <li>Solo existen mientras la función se ejecuta</li>
+                            <li>No pueden ser accedidas desde fuera de la función</li>
+                            <li>Se crean cada vez que se llama a la función</li>
+                            <li>Tienen prioridad sobre variables globales con el mismo nombre</li>
+                        </ul>
+                        <pre><code class="language-python">def funcion():
+    local = 42  # Variable local
+    print(local)  # Funciona</code></pre>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h5>Variables Globales</h5>
+                        <ul>
+                            <li>Se definen fuera de cualquier función</li>
+                            <li>Existen durante toda la ejecución del programa</li>
+                            <li>Pueden ser accedidas desde cualquier función</li>
+                            <li>Se crean una sola vez al inicio del programa</li>
+                            <li>Pueden ser "sombras" por variables locales</li>
+                        </ul>
+                        <pre><code class="language-python">global = 42  # Variable global
+
+def funcion():
+    print(global)  # Puede acceder</code></pre>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Sombreado de Variables</h4>
+                    <p>Si defines una variable local con el mismo nombre que una variable global, la variable local "sombrea" (oculta) a la variable global dentro de esa función:</p>
+                    <pre><code class="language-python">variable = "global"
+
+def funcion():
+    variable = "local"  # Sombrea la variable global
+    print(variable)     # Imprime "local"
+
+funcion()
+print(variable)  # Imprime "global"</code></pre>
+                </div>
+            </div>
+
+            <!-- 2. Modificar variables globales -->
+            <div class="concept-card">
+                <h3>2. Modificar Variables Globales desde Funciones</h3>
+                <p>Para modificar una variable global desde dentro de una función, debes usar la palabra clave <code>global</code>. Sin ella, Python creará una nueva variable local con ese nombre.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Variable global que queremos modificar
+contador = 0
+lista_global = []
+
+def incrementar_contador():
+    """Intenta incrementar el contador global (sin global)."""
+    contador = contador + 1  # Crea variable local, no modifica la global
+    # contador += 1  # También crea variable local
+
+def incrementar_contador_correcto():
+    """Incrementa correctamente el contador global."""
+    global contador  # Declara que vamos a usar la variable global
+    contador += 1
+
+def agregar_a_lista(elemento):
+    """Agrega elemento a lista global."""
+    global lista_global
+    lista_global.append(elemento)
+
+def crear_contador_personalizado():
+    """Crea un contador personalizado usando variables globales."""
+    global contador_personalizado
+    
+    contador_personalizado = 0
+    
+    def incrementar():
+        global contador_personalizado
+        contador_personalizado += 1
+        return contador_personalizado
+    
+    def decrementar():
+        global contador_personalizado
+        contador_personalizado -= 1
+        return contador_personalizado
+    
+    def obtener_valor():
+        global contador_personalizado
+        return contador_personalizado
+    
+    def resetear():
+        global contador_personalizado
+        contador_personalizado = 0
+    
+    return {
+        "incrementar": incrementar,
+        "decrementar": decrementar,
+        "obtener": obtener_valor,
+        "resetear": resetear
+    }
+
+# Uso de las funciones
+print(f"Contador inicial: {contador}")
+
+incrementar_contador()
+print(f"Después de incrementar (incorrecto): {contador}")  # Sigue siendo 0
+
+incrementar_contador_correcto()
+print(f"Después de incrementar (correcto): {contador}")  # Ahora es 1
+
+incrementar_contador_correcto()
+incrementar_contador_correcto()
+print(f"Después de más incrementos: {contador}")  # Ahora es 3
+
+agregar_a_lista("elemento 1")
+agregar_a_lista("elemento 2")
+print(f"Lista global: {lista_global}")
+
+# Uso del contador personalizado
+contador_personalizado = crear_contador_personalizado()
+
+print(f"\nValor inicial: {contador_personalizado['obtener']()}")
+contador_personalizado['incrementar']()
+contador_personalizado['incrementar']()
+print(f"Después de incrementar: {contador_personalizado['obtener']()}")
+contador_personalizado['decrementar']()
+print(f"Después de decrementar: {contador_personalizado['obtener']()}")
+contador_personalizado['resetear']()
+print(f"Después de resetear: {contador_personalizado['obtener']()}")
+
+# Ejemplo práctico: sistema de configuración global
+configuracion = {
+    "tema": "claro",
+    "idioma": "español",
+    "debug": False
+}
+
+def cambiar_configuracion(clave, valor):
+    """Cambia una configuración global."""
+    global configuracion
+    configuracion[clave] = valor
+
+def obtener_configuracion(clave):
+    """Obtiene una configuración global."""
+    global configuracion
+    return configuracion.get(clave, "Configuración no encontrada")
+
+def mostrar_configuracion_completa():
+    """Muestra toda la configuración global."""
+    global configuracion
+    print("Configuración actual:")
+    for clave, valor in configuracion.items():
+        print(f"  {clave}: {valor}")
+
+# Uso del sistema de configuración
+print("\n=== SISTEMA DE CONFIGURACIÓN ===")
+mostrar_configuracion_completa()
+
+cambiar_configuracion("tema", "oscuro")
+cambiar_configuracion("debug", True)
+
+print("\nDespués de cambios:")
+mostrar_configuracion_completa()
+
+tema_actual = obtener_configuracion("tema")
+print(f"\nTema actual: {tema_actual}")
+
+idioma_actual = obtener_configuracion("idioma")
+print(f"Idioma actual: {idioma_actual}")</code></pre>
+                </div>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Uso Moderado de Variables Globales</h4>
+                    <p>El uso excesivo de variables globales puede hacer que el código sea difícil de mantener y depurar. Algunas recomendaciones:</p>
+                    <ul>
+                        <li>Usa variables globales solo cuando sea realmente necesario</li>
+                        <li>Considera pasar parámetros y devolver valores en lugar de modificar globales</li>
+                        <li>Usa constantes globales (en mayúsculas) para valores que no cambien</li>
+                        <li>Documenta claramente qué variables globales usas y por qué</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Reglas de alcance y problemas comunes -->
+            <div class="concept-card">
+                <h3>3. Reglas de Alcance y Problemas Comunes</h3>
+                <p>Python sigue reglas específicas para determinar el alcance de las variables. Comprender estas reglas te ayudará a evitar errores comunes y escribir código más predecible.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Regla 1: Las funciones buscan variables en orden LEGB (Local, Enclosing, Global, Built-in)
+def funcion_principal():
+    """Función que demuestra el orden de búsqueda LEGB."""
+    variable_global = "global"
+    constante = 42
+    
+    def funcion_anidada():
+        """Función anidada que busca variables."""
+        # 1. Primero busca en ámbito local (no hay)
+        # 2. Luego busca en ámbito enclosing (funcion_principal)
+        print(f"Variable global desde anidada: {variable_global}")
+        print(f"Constante desde anidada: {constante}")
+        
+        # 3. Si no encuentra, busca en ámbito global
+        # 4. Finalmente busca en built-in (funciones como print, len, etc.)
+        print(f"Función print desde anidada: {print}")
+    
+    funcion_anidada()
+
+funcion_principal()
+
+# Regla 2: Las asignaciones crean variables locales
+def problema_asignacion():
+    """Ejemplo de problema común con asignaciones."""
+    # Esta variable existe en el ámbito global
+    contador = 10
+    
+    def modificar_contador():
+        """Intenta modificar el contador."""
+        # ¡PROBLEMA! Esta línea crea una variable local llamada contador
+        contador = contador + 1  # UnboundLocalError: local variable 'contador' referenced before assignment
+        return contador
+    
+    return modificar_contador
+
+# Solución correcta
+def solucion_asignacion():
+    """Solución correcta usando global."""
+    contador = 10
+    
+    def modificar_contador():
+        global contador
+        contador += 1
+        return contador
+    
+    return modificar_contador
+
+# Regla 3: Variables en bucles y condicionales
+def variables_en_bucles():
+    """Variables creadas en bucles y condicionales."""
+    for i in range(3):
+        variable_en_bucle = i * 2
+        print(f"Variable en bucle {i}: {variable_en_bucle}")
+    
+    # variable_en_bucle existe aquí (aunque no es recomendable usarla)
+    print(f"Variable fuera del bucle: {variable_en_bucle}")
+
+# Problema común: variables en listas por comprensión vs bucles
+def listas_vs_bucles():
+    """Diferencia entre listas por comprensión y bucles."""
+    # Lista por comprensión - las variables están en el mismo ámbito
+    numeros = [1, 2, 3, 4, 5]
+    cuadrados = [n**2 for n in numeros]  # n existe aquí
+    
+    # Bucle tradicional - las variables están en el mismo ámbito
+    for n in numeros:
+        cuadrado = n**2
+    
+    print(f"Último cuadrado calculado: {cuadrado}")  # cuadrado existe aquí
+
+# Ejemplo práctico: contador de funciones
+contador_llamadas = 0
+
+def funcion_con_contador():
+    """Función que cuenta cuántas veces ha sido llamada."""
+    global contador_llamadas
+    contador_llamadas += 1
+    print(f"Esta función ha sido llamada {contador_llamadas} veces")
+
+def funcion_con_contador_local():
+    """Función con contador local (mejor práctica)."""
+    contador_llamadas_local = 0
+    
+    def inner():
+        nonlocal contador_llamadas_local
+        contador_llamadas_local += 1
+        print(f"Llamadas locales: {contador_llamadas_local}")
+    
+    return inner
+
+# Uso de las funciones
+print("=== EJEMPLOS DE ALCANCE ===")
+funcion_con_contador()
+funcion_con_contador()
+
+contador_local = funcion_con_contador_local()
+contador_local()
+contador_local()
+
+# Ejemplo avanzado: closure (función que recuerda su entorno)
+def crear_contador_inicial(inicial=0):
+    """Crea un contador que recuerda su valor inicial."""
+    valor_actual = inicial
+    
+    def contador():
+        nonlocal valor_actual
+        valor_actual += 1
+        return valor_actual
+    
+    def obtener_valor():
+        nonlocal valor_actual
+        return valor_actual
+    
+    def resetear(nuevo_valor=0):
+        nonlocal valor_actual
+        valor_actual = nuevo_valor
+    
+    return {
+        "incrementar": contador,
+        "obtener": obtener_valor,
+        "resetear": resetear
+    }
+
+# Uso del contador avanzado
+contador1 = crear_contador_inicial(10)
+contador2 = crear_contador_inicial(100)
+
+print(f"\nContador 1 inicial: {contador1['obtener']()}")
+contador1['incrementar']()
+print(f"Contador 1 después de incrementar: {contador1['obtener']()}")
+
+print(f"Contador 2 inicial: {contador2['obtener']()}")
+contador2['incrementar']()
+print(f"Contador 2 después de incrementar: {contador2['obtener']()}")
+
+# Cada contador mantiene su propio estado independiente
+contador1['incrementar']()
+print(f"Contador 1: {contador1['obtener']()}, Contador 2: {contador2['obtener']()}")</code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Problemas Comunes</h4>
+                    <ul>
+                        <li><strong>UnboundLocalError:</strong> Intentar usar una variable antes de asignarla en una función</li>
+                        <li><strong>Sombreado accidental:</strong> Crear variables locales que ocultan variables globales</li>
+                        <li><strong>Variables en listas por comprensión:</strong> Las variables existen fuera de la comprensión</li>
+                        <li><strong>Modificar listas/diccionarios globales:</strong> Puede causar efectos secundarios inesperados</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Regla LEGB</h4>
+                    <p>Python busca variables en este orden:</p>
+                    <ol>
+                        <li><strong>L</strong>ocal: Variables definidas en la función actual</li>
+                        <li><strong>E</strong>nclosing: Variables en funciones que contienen a la actual</li>
+                        <li><strong>G</strong>lobal: Variables definidas en el módulo principal</li>
+                        <li><strong>B</strong>uilt-in: Funciones y constantes predefinidas de Python</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+            
+            <div class="card">
+                <h3>Ejemplo 1: Variables Locales y Globales en Acción</h3>
+                <p>Exploraremos cómo interactúan las variables locales y globales en diferentes situaciones.</p>
+                
+                <div class="local-global">
+                    <h3><i class="fas fa-exchange-alt"></i> Interacción entre Ámbitos</h3>
+                    
+                    <div class="lg-example">
+                        <h5>Ejemplo Completo de Alcance</h5>
+                        <pre><code class="language-python"># Variables globales
+usuarios_registrados = 0
+productos_disponibles = ["laptop", "mouse", "teclado"]
+configuracion_sistema = {
+    "modo_debug": False,
+    "max_usuarios": 100,
+    "idioma": "español"
+}
+
+def registrar_usuario(nombre_usuario):
+    """Registra un nuevo usuario en el sistema."""
+    global usuarios_registrados
+    
+    # Validar que no excedamos el máximo
+    if usuarios_registrados >= configuracion_sistema["max_usuarios"]:
+        print(f"❌ Error: Se alcanzó el máximo de {configuracion_sistema['max_usuarios']} usuarios")
+        return False
+    
+    # Simular registro
+    usuarios_registrados += 1
+    
+    # Variable local para el proceso de registro
+    codigo_verificacion = generar_codigo_aleatorio()
+    tiempo_registro = obtener_tiempo_actual()
+    
+    print(f"✅ Usuario '{nombre_usuario}' registrado exitosamente")
+    print(f"📧 Código de verificación: {codigo_verificacion}")
+    print(f"🕐 Registrado en: {tiempo_registro}")
+    
+    return True
+
+def generar_codigo_aleatorio():
+    """Genera un código de verificación aleatorio."""
+    import random
+    return random.randint(100000, 999999)
+
+def obtener_tiempo_actual():
+    """Obtiene la fecha y hora actual."""
+    from datetime import datetime
+    return datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+def mostrar_estadisticas():
+    """Muestra estadísticas actuales del sistema."""
+    print("
+=== ESTADÍSTICAS DEL SISTEMA ===")
+    print(f"Usuarios registrados: {usuarios_registrados}")
+    print(f"Productos disponibles: {len(productos_disponibles)}")
+    print(f"Modo debug: {'Activado' if configuracion_sistema['modo_debug'] else 'Desactivado'}")
+    print(f"Idioma: {configuracion_sistema['idioma']}")
+
+def cambiar_configuracion(opcion, valor):
+    """Cambia una configuración del sistema."""
+    global configuracion_sistema
+    
+    if opcion not in configuracion_sistema:
+        print(f"❌ Configuración '{opcion}' no existe")
+        return False
+    
+    valor_anterior = configuracion_sistema[opcion]
+    configuracion_sistema[opcion] = valor
+    
+    print(f"✅ Configuración '{opcion}' cambiada de '{valor_anterior}' a '{valor}'")
+    return True
+
+def agregar_producto(producto):
+    """Agrega un producto a la lista global."""
+    global productos_disponibles
+    
+    if producto.lower() in [p.lower() for p in productos_disponibles]:
+        print(f"⚠️ El producto '{producto}' ya está en la lista")
+        return False
+    
+    productos_disponibles.append(producto)
+    print(f"✅ Producto '{producto}' agregado a la lista")
+    return True
+
+# Simulación de uso del sistema
+print("=== SIMULACIÓN DEL SISTEMA ===")
+mostrar_estadisticas()
+
+print("
+--- REGISTRO DE USUARIOS ---")
+registrar_usuario("usuario1")
+registrar_usuario("usuario2")
+
+mostrar_estadisticas()
+
+print("
+--- GESTIÓN DE PRODUCTOS ---")
+agregar_producto("monitor")
+agregar_producto("laptop")  # Ya existe (ignorando mayúsculas/minúsculas)
+
+mostrar_estadisticas()
+
+print("
+--- CAMBIO DE CONFIGURACIÓN ---")
+cambiar_configuracion("modo_debug", True)
+cambiar_configuracion("idioma", "inglés")
+
+mostrar_estadisticas()</code></pre>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 2: Programa de Configuración Global</h3>
+                <p>Crearemos un programa que gestione configuración global de manera efectiva.</p>
+                
+                <div class="config-program">
+                    <h3><i class="fas fa-cogs"></i> Sistema de Configuración Avanzado</h3>
+                    
+                    <div class="config-example">
+                        <h5>Sistema de Configuración Completo</h5>
+                        <pre><code class="language-python"># Configuración global del sistema
+CONFIGURACION = {
+    "base_datos": {
+        "host": "localhost",
+        "puerto": 5432,
+        "usuario": "admin",
+        "contrasena": "secreta",
+        "base_datos": "sistema_principal"
+    },
+    "servidor_web": {
+        "host": "0.0.0.0",
+        "puerto": 8000,
+        "debug": False,
+        "ssl": False
+    },
+    "aplicacion": {
+        "nombre": "Sistema de Gestión",
+        "version": "2.1.0",
+        "entorno": "desarrollo",
+        "log_level": "INFO"
+    },
+    "seguridad": {
+        "max_intentos_login": 3,
+        "tiempo_bloqueo": 300,  # segundos
+        "requerir_ssl": False
+    }
+}
+
+# Variables globales simples
+usuarios_conectados = 0
+operaciones_realizadas = 0
+ultima_operacion = None
+
+def obtener_configuracion(seccion, clave=None):
+    """
+    Obtiene configuración de una sección específica.
+    
+    Args:
+        seccion (str): Nombre de la sección de configuración
+        clave (str): Clave específica dentro de la sección (opcional)
+        
+    Returns:
+        dict or any: Configuración solicitada
+    """
+    global CONFIGURACION
+    
+    if seccion not in CONFIGURACION:
+        return None
+    
+    if clave is None:
+        return CONFIGURACION[seccion]
+    
+    return CONFIGURACION[seccion].get(clave)
+
+def actualizar_configuracion(seccion, clave, valor):
+    """
+    Actualiza una configuración específica.
+    
+    Args:
+        seccion (str): Sección de configuración
+        clave (str): Clave a actualizar
+        valor: Nuevo valor
+        
+    Returns:
+        bool: True si se actualizó correctamente
+    """
+    global CONFIGURACION
+    
+    if seccion not in CONFIGURACION:
+        print(f"❌ Sección '{seccion}' no existe")
+        return False
+    
+    if clave not in CONFIGURACION[seccion]:
+        print(f"❌ Clave '{clave}' no existe en sección '{seccion}'")
+        return False
+    
+    valor_anterior = CONFIGURACION[seccion][clave]
+    CONFIGURACION[seccion][clave] = valor
+    
+    print(f"✅ Configuración actualizada: {seccion}.{clave} = {valor_anterior} → {valor}")
+    return True
+
+def mostrar_configuracion_completa():
+    """Muestra toda la configuración del sistema."""
+    global CONFIGURACION
+    
+    print("\n=== CONFIGURACIÓN COMPLETA DEL SISTEMA ===")
+    
+    for seccion, datos in CONFIGURACION.items():
+        print(f"\n[{seccion.upper()}]")
+        print("-" * (len(seccion) + 2))
+        for clave, valor in datos.items():
+            print(f"{clave}: {valor}")
+
+def incrementar_estadisticas(operacion):
+    """Incrementa las estadísticas globales."""
+    global usuarios_conectados, operaciones_realizadas, ultima_operacion
+    
+    usuarios_conectados += 1
+    operaciones_realizadas += 1
+    ultima_operacion = operacion
+
+def mostrar_estadisticas():
+    """Muestra estadísticas actuales."""
+    global usuarios_conectados, operaciones_realizadas, ultima_operacion
+    
+    print("\n=== ESTADÍSTICAS DEL SISTEMA ===")
+    print(f"Usuarios conectados: {usuarios_conectados}")
+    print(f"Operaciones realizadas: {operaciones_realizadas}")
+    print(f"Última operación: {ultima_operacion or 'Ninguna'}")
+
+def resetear_estadisticas():
+    """Resetea las estadísticas a cero."""
+    global usuarios_conectados, operaciones_realizadas, ultima_operacion
+    
+    usuarios_conectados = 0
+    operaciones_realizadas = 0
+    ultima_operacion = None
+    
+    print("✅ Estadísticas reseteadas")
+
+# Funciones específicas del negocio
+def conectar_base_datos():
+    """Simula conexión a la base de datos."""
+    config_db = obtener_configuracion("base_datos")
+    
+    print(f"🔌 Conectando a {config_db['host']}:{config_db['puerto']}")
+    print(f"📊 Base de datos: {config_db['base_datos']}")
+    
+    incrementar_estadisticas("conexion_db")
+    return True
+
+def iniciar_servidor_web():
+    """Simula inicio del servidor web."""
+    config_web = obtener_configuracion("servidor_web")
+    
+    debug_status = " (modo debug)" if config_web["debug"] else ""
+    print(f"🌐 Iniciando servidor en {config_web['host']}:{config_web['puerto']}{debug_status}")
+    
+    incrementar_estadisticas("inicio_servidor")
+    return True
+
+def validar_acceso(usuario, contrasena):
+    """Valida el acceso de un usuario."""
+    config_seguridad = obtener_configuracion("seguridad")
+    max_intentos = config_seguridad["max_intentos_login"]
+    
+    # Simulación simple de validación
+    acceso_valido = usuario == "admin" and contrasena == "secreta"
+    
+    if acceso_valido:
+        print(f"✅ Acceso concedido a '{usuario}'")
+        incrementar_estadisticas(f"login_exitoso_{usuario}")
+    else:
+        print(f"❌ Acceso denegado. Intentos máximos: {max_intentos}")
+        incrementar_estadisticas("login_fallido")
+    
+    return acceso_valido
+
+# Uso del sistema de configuración
+print("=== SISTEMA DE CONFIGURACIÓN AVANZADO ===")
+
+# Mostrar configuración inicial
+mostrar_configuracion_completa()
+mostrar_estadisticas()
+
+# Simular operaciones del sistema
+print("\n--- OPERACIONES DEL SISTEMA ---")
+conectar_base_datos()
+iniciar_servidor_web()
+
+# Intentos de login
+validar_acceso("admin", "secreta")  # Éxito
+validar_acceso("usuario", "incorrecta")  # Fallo
+
+mostrar_estadisticas()
+
+# Cambiar configuración
+print("\n--- CAMBIOS DE CONFIGURACIÓN ---")
+actualizar_configuracion("servidor_web", "puerto", 9000)
+actualizar_configuracion("aplicacion", "entorno", "produccion")
+
+mostrar_configuracion_completa()
+mostrar_estadisticas()
+
+# Resetear estadísticas
+print("\n--- MANTENIMIENTO ---")
+resetear_estadisticas()
+mostrar_estadisticas()</code></pre>
+                    </div>
+                </div>
+                
+                <h3>Ejemplo 3: Módulos con Estado Interno</h3>
+                <p>Crearemos módulos que mantengan estado interno usando técnicas avanzadas de alcance.</p>
+                
+                <div class="module-example">
+                    <h3><i class="fas fa-box"></i> Módulo con Estado Interno</h3>
+                    
+                    <div class="module-code">
+                        <h5>Módulo de Gestión de Inventario</h5>
+                        <pre><code class="language-python"># Simulación de un módulo de gestión de inventario
+# Este código podría estar en un archivo separado (inventario.py)
+
+# Estado interno del módulo (variables "globales" del módulo)
+_inventario = {}  # Diccionario privado que almacena el inventario
+_operaciones = []  # Lista privada que registra operaciones
+_contador_productos = 0
+
+def agregar_producto(nombre, cantidad, precio_unitario):
+    """
+    Agrega un producto al inventario.
+    
+    Args:
+        nombre (str): Nombre del producto
+        cantidad (int): Cantidad inicial
+        precio_unitario (float): Precio por unidad
+        
+    Returns:
+        bool: True si se agregó correctamente
+    """
+    global _inventario, _operaciones, _contador_productos
+    
+    if nombre in _inventario:
+        print(f"⚠️ El producto '{nombre}' ya existe. Use actualizar_cantidad() para modificarlo.")
+        return False
+    
+    _inventario[nombre] = {
+        "cantidad": cantidad,
+        "precio_unitario": precio_unitario,
+        "valor_total": cantidad * precio_unitario
+    }
+    
+    _contador_productos += 1
+    _operaciones.append({
+        "tipo": "agregar",
+        "producto": nombre,
+        "cantidad": cantidad,
+        "timestamp": obtener_timestamp()
+    })
+    
+    print(f"✅ Producto '{nombre}' agregado: {cantidad} unidades a ${precio_unitario} cada una")
+    return True
+
+def actualizar_cantidad(nombre, nueva_cantidad):
+    """
+    Actualiza la cantidad de un producto existente.
+    
+    Args:
+        nombre (str): Nombre del producto
+        nueva_cantidad (int): Nueva cantidad
+        
+    Returns:
+        bool: True si se actualizó correctamente
+    """
+    global _inventario, _operaciones
+    
+    if nombre not in _inventario:
+        print(f"❌ El producto '{nombre}' no existe en el inventario")
+        return False
+    
+    cantidad_anterior = _inventario[nombre]["cantidad"]
+    diferencia = nueva_cantidad - cantidad_anterior
+    
+    _inventario[nombre]["cantidad"] = nueva_cantidad
+    _inventario[nombre]["valor_total"] = nueva_cantidad * _inventario[nombre]["precio_unitario"]
+    
+    _operaciones.append({
+        "tipo": "actualizar",
+        "producto": nombre,
+        "cantidad_anterior": cantidad_anterior,
+        "cantidad_nueva": nueva_cantidad,
+        "diferencia": diferencia,
+        "timestamp": obtener_timestamp()
+    })
+    
+    accion = "incrementada" if diferencia > 0 else "reducida"
+    print(f"✅ Cantidad de '{nombre}' {accion} en {abs(diferencia)} unidades")
+    return True
+
+def obtener_producto(nombre):
+    """
+    Obtiene información de un producto específico.
+    
+    Args:
+        nombre (str): Nombre del producto
+        
+    Returns:
+        dict or None: Información del producto o None si no existe
+    """
+    global _inventario
+    return _inventario.get(nombre)
+
+def listar_productos():
+    """Lista todos los productos en el inventario."""
+    global _inventario, _contador_productos
+    
+    if not _inventario:
+        print("📦 El inventario está vacío")
+        return
+    
+    print(f"\n=== INVENTARIO ACTUAL ({_contador_productos} productos) ===")
+    print(f"{'Producto'"<20"} {'Cantidad'"<10"} {'Precio Unit.'" <12" {'Valor Total'"<15"")
+    print("-" * 60)
+    
+    for nombre, datos in _inventario.items():
+        print(f"{nombre"<20"} {datos['cantidad']"<10"} ${datos['precio_unitario']"<12.2f"} ${datos['valor_total']"<15.2f"}")
+
+def calcular_valor_total():
+    """Calcula el valor total del inventario."""
+    global _inventario
+    
+    valor_total = sum(datos["valor_total"] for datos in _inventario.values())
+    print(f"💰 Valor total del inventario: ${valor_total:.2f}")
+    return valor_total
+
+def obtener_estadisticas():
+    """Obtiene estadísticas del módulo."""
+    global _inventario, _operaciones, _contador_productos
+    
+    return {
+        "productos_totales": _contador_productos,
+        "operaciones_realizadas": len(_operaciones),
+        "productos_con_stock": len([p for p in _inventario.values() if p["cantidad"] > 0]),
+        "valor_inventario": sum(datos["valor_total"] for datos in _inventario.values())
+    }
+
+def mostrar_operaciones_recientes(limite=5):
+    """Muestra las operaciones más recientes."""
+    global _operaciones
+    
+    if not _operaciones:
+        print("📋 No hay operaciones registradas")
+        return
+    
+    print(f"\n=== ÚLTIMAS {min(limite, len(_operaciones))} OPERACIONES ===")
+    
+    operaciones_mostrar = _operaciones[-limite:] if limite > 0 else _operaciones
+    
+    for op in reversed(operaciones_mostrar):
+        tipo = op["tipo"].upper()
+        producto = op["producto"]
+        timestamp = op["timestamp"]
+        
+        if op["tipo"] == "agregar":
+            cantidad = op["cantidad"]
+            print(f"{tipo} - {producto}: {cantidad} unidades - {timestamp}")
+        elif op["tipo"] == "actualizar":
+            print(f"{tipo} - {producto}: {op['cantidad_anterior']} → {op['cantidad_nueva']} - {timestamp}")
+
+def resetear_inventario():
+    """Resetea completamente el inventario (cuidado!)."""
+    global _inventario, _operaciones, _contador_productos
+    
+    confirmacion = input("⚠️ ¿Está seguro de que desea resetear el inventario? (si/no): ").lower()
+    
+    if confirmacion == "si":
+        _inventario.clear()
+        _operaciones.clear()
+        _contador_productos = 0
+        print("✅ Inventario reseteado completamente")
+        return True
+    else:
+        print("❌ Operación cancelada")
+        return False
+
+def obtener_timestamp():
+    """Obtiene la marca de tiempo actual."""
+    from datetime import datetime
+    return datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+# Función para crear múltiples módulos independientes
+def crear_modulo_inventario():
+    """
+    Crea un módulo de inventario independiente.
+    Esto demuestra cómo crear múltiples instancias con estado separado.
+    """
+    # Cada llamada crea un nuevo estado independiente
+    inventario = {}
+    operaciones = []
+    contador = 0
+    
+    def agregar_producto_local(nombre, cantidad, precio):
+        nonlocal inventario, operaciones, contador
+        
+        if nombre in inventario:
+            return False
+        
+        inventario[nombre] = {
+            "cantidad": cantidad,
+            "precio_unitario": precio,
+            "valor_total": cantidad * precio
+        }
+        
+        contador += 1
+        operaciones.append({
+            "tipo": "agregar",
+            "producto": nombre,
+            "cantidad": cantidad,
+            "timestamp": obtener_timestamp()
+        })
+        
+        return True
+    
+    def listar_productos_local():
+        nonlocal inventario, contador
+        
+        if not inventario:
+            return "Inventario vacío"
+        
+        resultado = [f"Módulo independiente - {contador} productos:"]
+        for nombre, datos in inventario.items():
+            resultado.append(f"  {nombre}: {datos['cantidad']} unidades (${datos['precio_unitario']:.2f} c/u)")
+        
+        return "\n".join(resultado)
+    
+    return {
+        "agregar_producto": agregar_producto_local,
+        "listar_productos": listar_productos_local
+    }
+
+# Uso del módulo de inventario
+print("=== MÓDULO DE GESTIÓN DE INVENTARIO ===")
+
+# Agregar productos al inventario principal
+agregar_producto("Laptop Gaming", 10, 1200.50)
+agregar_producto("Mouse Inalámbrico", 25, 45.99)
+agregar_producto("Teclado Mecánico", 15, 89.99)
+
+# Actualizar cantidad
+actualizar_cantidad("Laptop Gaming", 8)
+
+# Mostrar información
+listar_productos()
+calcular_valor_total()
+mostrar_operaciones_recientes(3)
+
+# Crear módulos independientes
+inventario_tienda1 = crear_modulo_inventario()
+inventario_tienda2 = crear_modulo_inventario()
+
+inventario_tienda1["agregar_producto"]("Producto A", 5, 10.0)
+inventario_tienda2["agregar_producto"]("Producto B", 3, 15.0)
+
+print(f"\n{inventario_tienda1['listar_productos']()}")
+print(f"\n{inventario_tienda2['listar_productos']()}")
+
+# Estadísticas finales
+estadisticas = obtener_estadisticas()
+print("
+=== ESTADÍSTICAS FINALES ===")
+for clave, valor in estadisticas.items():
+    print(f"{clave.replace('_', ' ').title()}: {valor}")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-globe"></i> Actividad 1: Variables Locales y Globales</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Experimenta con variables locales y globales creando funciones que interactúen con diferentes ámbitos de visibilidad.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Ejercicios a realizar:</h5>
+                        <ul>
+                            <li>Crear funciones que accedan a variables globales</li>
+                            <li>Crear funciones que creen variables locales</li>
+                            <li>Experimentar con funciones anidadas</li>
+                            <li>Observar el comportamiento de las variables en diferentes ámbitos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-edit"></i> Actividad 2: Modificar Variables Globales</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Crea funciones que modifiquen variables globales correctamente usando la palabra clave <code>global</code>.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones a crear:</h5>
+                        <ul>
+                            <li><code>incrementar_contador()</code> - modifica contador global</li>
+                            <li><code>agregar_elemento(elemento)</code> - agrega a lista global</li>
+                            <li><code>actualizar_configuracion(clave, valor)</code> - modifica diccionario global</li>
+                            <li><code>resetear_sistema()</code> - resetea múltiples variables globales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-cogs"></i> Actividad 3: Programa de Configuración Global</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla un programa que gestione configuración global de manera efectiva para una aplicación hipotética.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Sistema de configuración con múltiples secciones</li>
+                            <li>Funciones para obtener y actualizar configuración</li>
+                            <li>Estadísticas de uso del sistema</li>
+                            <li>Registro de operaciones realizadas</li>
+                            <li>Funciones de mantenimiento y reset</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-box"></i> Actividad 4: Módulos con Estado Interno</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Construye módulos que mantengan estado interno usando técnicas avanzadas de alcance de variables.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Proyectos sugeridos:</h5>
+                        <ul>
+                            <li><strong>Módulo de contador inteligente:</strong> Múltiples contadores independientes</li>
+                            <li><strong>Sistema de caché:</strong> Almacenamiento temporal con funciones de limpieza</li>
+                            <li><strong>Generador de IDs únicos:</strong> Mantiene contador interno de IDs</li>
+                            <li><strong>Sistema de logging:</strong> Registra mensajes con diferentes niveles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces" target="_blank" rel="noopener noreferrer">Documentación oficial - Espacios de nombres y alcance</a></li>
+                        <li><a href="https://realpython.com/python-scope-legb-rule/" target="_blank" rel="noopener noreferrer">Real Python - Regla LEGB</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_scope.asp" target="_blank" rel="noopener noreferrer">W3Schools - Alcance de variables</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=QVdf0LgmICw" target="_blank" rel="noopener noreferrer">Variable Scope in Python - Explicación completa</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=Uh2ebFW8OYM" target="_blank" rel="noopener noreferrer">Global vs Local Variables in Python</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 9 - "Python Crash Course" de Eric Matthes (Clases y objetos)</li>
+                        <li>Sección 3.1 - "Fluent Python" de Luciano Ramalho (Espacios de nombres)</li>
+                        <li>"Python Cookbook" de David Beazley y Brian K. Jones (Técnicas avanzadas)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s18.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s20.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

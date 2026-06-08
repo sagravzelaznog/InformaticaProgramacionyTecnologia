@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Posicionamiento y Flujo - CSS3 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .display-demo {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+        }
+
+        .box {
+            background-color: #bbdefb;
+            border: 2px solid #1976d2;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            color: #0d47a1;
+            font-weight: bold;
+        }
+
+        .inline-box {
+            display: inline;
+            background-color: #c8e6c9;
+            border: 2px solid #2e7d32;
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+
+        .inline-block-box {
+            display: inline-block;
+            width: 100px;
+            background-color: #ffecb3;
+            border: 2px solid #ff8f00;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .positioning-demo {
+            position: relative;
+            height: 400px;
+            background-color: #f5f5f5;
+            border: 2px dashed #9e9e9e;
+            margin: 20px 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .position-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .static {
+            position: static;
+            background-color: #2196f3;
+        }
+
+        .relative {
+            position: relative;
+            background-color: #4caf50;
+            top: 20px;
+            left: 30px;
+        }
+
+        .absolute {
+            position: absolute;
+            background-color: #ff9800;
+            bottom: 20px;
+            right: 30px;
+        }
+
+        .fixed {
+            position: fixed;
+            background-color: #f44336;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .sticky {
+            position: sticky;
+            background-color: #9c27b0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .z-index-demo {
+            position: relative;
+            height: 200px;
+            margin: 40px 0;
+        }
+
+        .z-box {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .z1 {
+            background-color: #e91e63;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .z2 {
+            background-color: #3f51b5;
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+        }
+
+        .z3 {
+            background-color: #4caf50;
+            top: 80px;
+            left: 80px;
+            z-index: 3;
+        }
+
+        .float-demo {
+            background-color: #e8f5e9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .float-box {
+            width: 100px;
+            height: 100px;
+            background-color: #4caf50;
+            color: white;
+            margin: 10px;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .nav-menu {
+            background-color: #333;
+            padding: 10px 0;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .nav-menu.sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: #4caf50;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background-color: #f44336;
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 14px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #000;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: Conexión y Estética</a></li>
+                <li><a href="sesion02.html">Sesión 2: Modelo de Caja</a></li>
+                <li class="active"><a href="sesion03.html">Sesión 3: Posicionamiento</a></li>
+                <li><a href="sesion04.html">Sesión 4: Flexbox</a></li>
+                <li><a href="sesion05.html">Sesión 5: Diseño Responsive</a></li>
+                <li><a href="sesion06.html">Sesión 6: Animaciones</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🧭 Sesión 3: Posicionamiento y Flujo</h1>
+                <p class="subtitle">Rompiendo la gravedad del diseño web</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Aprender a controlar la posición de los elementos en la página, rompiendo el flujo normal del
+                    documento cuando sea necesario.</p>
+            </section>
+
+            <section class="display-properties">
+                <h2>1. El Comportamiento Natural: <code>display</code></h2>
+
+                <p>Antes de hablar de posicionamiento, es importante entender cómo los elementos se comportan por
+                    defecto:</p>
+
+                <div class="display-demo">
+                    <h3>1.1. Elementos de Bloque (<code>display: block</code>)</h3>
+                    <p>Ocupan todo el ancho disponible y comienzan en una nueva línea.</p>
+                    <div class="box">Caja de bloque 1</div>
+                    <div class="box">Caja de bloque 2</div>
+                    <div class="box">Caja de bloque 3</div>
+
+                    <div class="code-block">
+                        <pre><code>div {
+    display: block; /* Valor por defecto para div, p, h1-h6, section, etc. */
+    width: 200px;   /* Podemos definir un ancho */
+    height: 50px;   /* Y un alto */
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="display-demo">
+                    <h3>1.2. Elementos en Línea (<code>display: inline</code>)</h3>
+                    <p>Ocupan solo el espacio necesario y fluyen en la misma línea.</p>
+                    <span class="inline-box">En línea 1</span>
+                    <span class="inline-box">En línea 2</span>
+                    <span class="inline-box">En línea 3</span>
+                    <span class="inline-box">No respetan width/height ni márgenes verticales</span>
+
+                    <div class="code-block">
+                        <pre><code>span {
+    display: inline; /* Valor por defecto para span, a, strong, em, etc. */
+    /* width y height no tienen efecto */
+    /* margin-top y margin-bottom no tienen efecto */
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="display-demo">
+                    <h3>1.3. Elementos en Línea-Bloque (<code>display: inline-block</code>)</h3>
+                    <p>Combinan lo mejor de ambos: fluyen en línea pero respetan dimensiones.</p>
+                    <div class="inline-block-box">Caja 1</div>
+                    <div class="inline-block-box">Caja 2</div>
+                    <div class="inline-block-box">Caja 3</div>
+
+                    <div class="code-block">
+                        <pre><code>button, input, select, textarea {
+    display: inline-block; /* Muchos elementos de formulario usan esto por defecto */
+    width: 150px;  /* Ahora sí funciona */
+    height: 40px;  /* También */
+    margin: 10px;  /* Y los márgenes verticales también */
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="positioning">
+                <h2>2. Posicionamiento en CSS</h2>
+
+                <p>La propiedad <code>position</code> nos permite cambiar cómo se posicionan los elementos en la página:
+                </p>
+
+                <div class="positioning-demo">
+                    <div class="position-box static">static</div>
+                    <div class="position-box relative">relative</div>
+                    <div class="position-box absolute">absolute</div>
+                    <div class="position-box fixed">fixed</div>
+                    <div class="position-box sticky">sticky</div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>/* Posicionamiento Relativo */
+.relativo {
+    position: relative;
+    top: 20px;    /* Se mueve 20px desde su posición original */
+    left: 30px;   /* Se mueve 30px desde la izquierda */
+    /* El espacio original que ocupaba se mantiene reservado */
+}
+
+/* Posicionamiento Absoluto */
+.absoluto {
+    position: absolute;
+    top: 50px;    /* 50px desde el borde superior del contenedor posicionado más cercano */
+    right: 20px;  /* 20px desde el borde derecho */
+    /* El espacio original NO se mantiene */
+}
+
+/* Posicionamiento Fijo */
+.fijo {
+    position: fixed;
+    bottom: 20px;  /* 20px desde el borde inferior de la ventana */
+    right: 20px;   /* 20px desde el borde derecho de la ventana */
+    /* Se mantiene en la misma posición aunque se haga scroll */
+}
+
+/* Posicionamiento Pegajoso */
+.pegajoso {
+    position: sticky;
+    top: 0;  /* Se pega al borde superior cuando el scroll lo alcanza */
+    /* Útil para encabezados de tabla o menús de navegación */
+}</code></pre>
+                </div>
+
+                <div class="tip">
+                    <h3>💡 Punto de Referencia</h3>
+                    <p>Para elementos con <code>position: absolute</code>, el punto de referencia (el elemento desde el
+                        que se miden las distancias) es el primer ancestro que tenga una posición definida (que no sea
+                        <code>static</code>). Si no hay ninguno, será el <code>&lt;html&gt;</code>.</p>
+
+                    <div class="code-block">
+                        <pre><code>.contenedor {
+    position: relative; /* Establece el contexto de posicionamiento */
+    width: 300px;
+    height: 200px;
+    border: 2px solid #333;
+}
+
+.hijo-absoluto {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    /* Se posiciona 10px desde la esquina inferior derecha de .contenedor */
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="z-index">
+                <h2>3. El Eje Z: <code>z-index</code></h2>
+
+                <p>Controla el orden de apilamiento de los elementos posicionados. Mayor valor = más cerca del frente.
+                </p>
+
+                <div class="z-index-demo">
+                    <div class="z-box z1">z-index: 1</div>
+                    <div class="z-box z2">z-index: 2</div>
+                    <div class="z-box z3">z-index: 3</div>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>.caja-1 {
+    position: relative;
+    z-index: 1;  /* Por debajo de caja-2 */
+}
+
+.caja-2 {
+    position: relative;
+    z-index: 2;  /* Por encima de caja-1 */
+    margin-top: -50px;  /* Para que se superpongan */
+    margin-left: 50px;
+}
+
+/* z-index solo funciona en elementos posicionados (position: relative, absolute, fixed, sticky) */
+/* Los valores pueden ser positivos, negativos o 0 (valor por defecto) */</code></pre>
+                </div>
+            </section>
+
+            <section class="floating">
+                <h2>4. Flotantes: <code>float</code> y <code>clear</code></h2>
+
+                <p>Aunque no es un método de posicionamiento moderno, <code>float</code> se usaba mucho para diseños de
+                    columnas antes de Flexbox y Grid.</p>
+
+                <div class="float-demo">
+                    <div class="float-box">1</div>
+                    <div class="float-box">2</div>
+                    <div class="float-box">3</div>
+                    <p>Este texto fluye alrededor de las cajas flotantes. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl ultricies nunc, quis
+                        ultricies nisl nunc eget nisl.</p>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>/* Flotar a la izquierda o derecha */
+.flotar-izq {
+    float: left;
+    margin-right: 15px;
+}
+
+.flotar-der {
+    float: right;
+    margin-left: 15px;
+}
+
+/* Limpiar flotados */
+.contenedor-flotante::after {
+    content: "";
+    display: table;
+    clear: both;  /* Limpia ambos lados */
+}
+
+/* O usar overflow: auto en el contenedor */
+.contenedor-flotante {
+    overflow: auto;
+}</code></pre>
+                </div>
+
+                <div class="tip">
+                    <h3>💡 ¿Cuándo usar float hoy en día?</h3>
+                    <ul>
+                        <li>Para hacer que el texto fluya alrededor de una imagen.</li>
+                        <li>Para diseños muy simples de columnas (aunque Flexbox/Grid son mejores opciones).</li>
+                        <li>En combinación con <code>shape-outside</code> para diseños de texto creativos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="practical-examples">
+                <h2>5. Ejemplos Prácticos</h2>
+
+                <div class="example">
+                    <h3>5.1. Menú de Navegación Pegajoso</h3>
+
+                    <div class="nav-menu sticky-nav">
+                        <ul>
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Servicios</a></li>
+                            <li><a href="#">Acerca de</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><code>.nav-menu {
+    background-color: #333;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+    background-color: #4caf50;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h3>5.2. Tarjeta con Etiqueta de Oferta</h3>
+
+                    <div class="card" style="max-width: 300px;">
+                        <div class="sale-badge">¡Oferta!</div>
+                        <h3>Curso de CSS Avanzado</h3>
+                        <p>Aprende a dominar el posicionamiento y más.</p>
+                        <p><strong>Precio: $99</strong> <del>$149</del></p>
+                        <button>Comprar Ahora</button>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><code>.card {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.sale-badge {
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background-color: #f44336;
+    color: white;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    font-weight: bold;
+    width: 100px;
+    text-align: center;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h3>5.3. Tooltip con CSS Puro</h3>
+
+                    <p>Pasa el cursor sobre este <span class="tooltip">término<span class="tooltiptext">Información
+                                adicional sobre este término</span></span> para ver un tooltip.</p>
+
+                    <div class="code-block">
+                        <pre><code>.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="challenge">
+                <h2>🧩 Reto: "Menú Flotante"</h2>
+
+                <p>Crea un menú de navegación que se mantenga fijo en la parte inferior de la pantalla en dispositivos
+                    móviles y que tenga un botón flotante de "volver arriba" en la esquina inferior derecha.</p>
+
+                <div class="activity">
+                    <h3>Instrucciones:</h3>
+                    <ol>
+                        <li>Crea un menú de navegación con al menos 3 enlaces.</li>
+                        <li>Usa <code>position: fixed</code> para fijarlo en la parte inferior de la pantalla.</li>
+                        <li>Añade un botón con <code>position: fixed</code> en la esquina inferior derecha que lleve al
+                            usuario al principio de la página.</li>
+                        <li>Usa <code>z-index</code> para asegurarte de que el menú esté por encima del contenido.</li>
+                        <li>Haz que el menú sea responsivo (puedes usar <code>@media</code> si lo deseas).</li>
+                    </ol>
+
+                    <h3>Consejos:</h3>
+                    <ul>
+                        <li>Usa <code>bottom: 0</code> y <code>left: 0</code> para el menú inferior.</li>
+                        <li>Usa <code>bottom: 20px</code> y <code>right: 20px</code> para el botón flotante.</li>
+                        <li>Puedes usar <code>flexbox</code> para distribuir los elementos del menú.</li>
+                        <li>No olvides agregar un <code>padding-bottom</code> al cuerpo para que el contenido no quede
+                            oculto detrás del menú fijo.</li>
+                    </ul>
+
+                    <h3>Extras (opcional):</h3>
+                    <ul>
+                        <li>Añade una transición suave al botón de volver arriba.</li>
+                        <li>Oculta el botón de volver arriba hasta que el usuario haga scroll.</li>
+                        <li>Agrega un efecto de sombra al menú para darle profundidad.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+
+                <div class="checklist">
+                    <h3>Lo que aprendimos hoy:</h3>
+                    <ul>
+                        <li><strong>Tipos de Display:</strong> <code>block</code>, <code>inline</code>,
+                            <code>inline-block</code> y cómo afectan al flujo del documento.</li>
+                        <li><strong>Posicionamiento:</strong>
+                            <ul>
+                                <li><code>static</code>: Comportamiento normal (valor por defecto).</li>
+                                <li><code>relative</code>: Se mueve respecto a su posición original.</li>
+                                <li><code>absolute</code>: Se posiciona respecto al ancestro posicionado más cercano.
+                                </li>
+                                <li><code>fixed</code>: Se posiciona respecto a la ventana del navegador.</li>
+                                <li><code>sticky</code>: Híbrido entre relative y fixed.</li>
+                            </ul>
+                        </li>
+                        <li><strong>z-index:</strong> Controla el orden de apilamiento de elementos posicionados.</li>
+                        <li><strong>Floats:</strong> Para hacer que el texto fluya alrededor de elementos.</li>
+                        <li><strong>Casos prácticos:</strong> Menús pegajosos, etiquetas de oferta, tooltips, etc.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! Soy Dola, tu asistente de aprendizaje. Puedes preguntarme cualquier duda sobre
+                                posicionamiento en CSS. Por ejemplo:</p>
+                            <ul>
+                                <li>¿Cuál es la diferencia entre position: absolute y position: fixed?</li>
+                                <li>¿Por qué mi elemento con position: absolute no se posiciona donde quiero?</li>
+                                <li>¿Cómo hago que un menú se quede fijo al hacer scroll?</li>
+                                <li>¿Para qué sirve z-index y cómo funciona?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion02.html" class="button">← Sesión Anterior</a>
+                    <a href="index.html" class="button">← Sesión Anterior</a>
+                    <a href="sesion04.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE CSS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Script para el chat de Dola AI
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+
+                    addMessage(message, true);
+                    userInput.value = '';
+
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        let response = '';
+
+                        if (message.toLowerCase().includes('diferencia') &&
+                            (message.includes('absolute') || message.includes('fixed'))) {
+                            response = `La principal diferencia entre <code>position: absolute</code> y <code>position: fixed</code> es el punto de referencia:<br><br>
+                            <strong>position: absolute</strong><br>
+                            - Se posiciona respecto al primer ancestro posicionado (con position: relative, absolute, fixed o sticky).<br>
+                            - Si no hay ancestros posicionados, se usa el elemento &lt;html&gt;.<br>
+                            - Se mueve con el scroll de la página.<br><br>
+                            
+                            <strong>position: fixed</strong><br>
+                            - Siempre se posiciona respecto a la ventana del navegador (viewport).<br>
+                            - No se mueve al hacer scroll, se mantiene fijo en la pantalla.<br>
+                            - Útil para barras de navegación fijas, botones de acción flotantes, etc.`;
+                        }
+                        else if (message.toLowerCase().includes('z-index')) {
+                            response = `La propiedad <code>z-index</code> controla el orden de apilamiento de elementos posicionados (con position: relative, absolute, fixed o sticky).<br><br>
+                            <strong>Características importantes:</strong><br>
+                            - Solo funciona en elementos posicionados.<br>
+                            - Valores más altos se muestran por encima de valores más bajos.<br>
+                            - Puede ser negativo (se mostrará detrás del contenido no posicionado).<br>
+                            - Los elementos hijos no pueden aparecer por debajo de elementos con z-index menor que su padre.<br><br>
+                            
+                            <strong>Ejemplo práctico:</strong><br>
+                            <code>.menu {
+  position: fixed;
+  z-index: 1000;  /* Alto valor para asegurar que esté por encima */
+}
+
+.modal {
+  position: fixed;
+  z-index: 2000;  /* Más alto que el menú */
+}</code>`;
+                        }
+                        else if (message.toLowerCase().includes('sticky') || message.toLowerCase().includes('pegajoso')) {
+                            response = `El posicionamiento <code>sticky</code> (pegajoso) es un híbrido entre <code>relative</code> y <code>fixed</code>:<br><br>
+                            <strong>Comportamiento:</strong><br>
+                            - Se comporta como <code>relative</code> hasta que alcanza un umbral de scroll.<br>
+                            - Luego se comporta como <code>fixed</code>, pero solo dentro de su contenedor padre.<br>
+                            - Muy útil para encabezados de tabla o menús de navegación.<br><br>
+                            
+                            <strong>Ejemplo de uso:</strong><br>
+                            <code>/* Menú que se pega al hacer scroll */
+.menu {
+  position: sticky;
+  top: 0;  /* Se pegará cuando llegue al borde superior */
+  z-index: 100;
+  background: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Para que funcione, el contenedor padre debe tener altura definida */
+.contenedor-padre {
+  height: 100vh;  /* Altura del viewport */
+  overflow-y: auto;  /* Para permitir scroll */
+}</code><br><br>
+                            
+                            <strong>Compatibilidad:</strong> Funciona en todos los navegadores modernos, pero no en Internet Explorer."`;
+                        }
+                        else {
+                            const responses = [
+                                "¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con conceptos de posicionamiento en CSS.",
+                                "¿Has probado a inspeccionar el elemento con las herramientas de desarrollo del navegador? Puedes ver cómo se están aplicando los estilos de posicionamiento en tiempo real.",
+                                "Recuerda que el posicionamiento absoluto se refiere al primer ancestro posicionado. Si no hay ninguno, usará el elemento &lt;html&gt; como referencia.",
+                                "Para problemas de superposición, verifica los valores de z-index. Los elementos con mayor z-index se mostrarán por encima de los que tienen valores menores.",
+                                "¿Neitas un ejemplo práctico de algún tipo específico de posicionamiento? Puedo mostrarte cómo implementar menús flotantes, modales, tooltips y más."
+                            ];
+                            response = responses[Math.floor(Math.random() * responses.length)];
+                        }
+
+                        addMessage(response);
+                    }, 1000);
+                }
+
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+
+            // Ejemplo de botón flotante "volver arriba"
+            const scrollToTopBtn = document.createElement('button');
+            scrollToTopBtn.innerHTML = '↑ Volver arriba';
+            scrollToTopBtn.style.position = 'fixed';
+            scrollToTopBtn.style.bottom = '20px';
+            scrollToTopBtn.style.right = '20px';
+            scrollToTopBtn.style.padding = '10px 15px';
+            scrollToTopBtn.style.backgroundColor = '#4CAF50';
+            scrollToTopBtn.style.color = 'white';
+            scrollToTopBtn.style.border = 'none';
+            scrollToTopBtn.style.borderRadius = '4px';
+            scrollToTopBtn.style.cursor = 'pointer';
+            scrollToTopBtn.style.display = 'none';
+            scrollToTopBtn.style.zIndex = '9999';
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            document.body.appendChild(scrollToTopBtn);
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

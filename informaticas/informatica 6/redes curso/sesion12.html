@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 E12: Subnetting Práctico (Ejercicios)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 3, Sesión 12: Subnetting Práctico 📝</h1>
+        <p class="subtitle">Cálculo de Subredes, Hosts y Máscaras</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Repaso de Fórmulas Clave</h2>
+            <p>El subnetting se basa en dos fórmulas principales que derivan de la cantidad de bits prestados (*n*) y los bits restantes (*h*):</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Subredes a Crear</h3>
+                    <p>$$ 2^n $$</p>
+                    <p>Donde 'n' es la cantidad de bits que activas (cambias a '1') en la Máscara.</p>
+                </div>
+                <div class="card">
+                    <h3>Hosts Utilizables por Subred</h3>
+                    <p>$$ 2^h - 2 $$</p>
+                    <p>Donde 'h' es la cantidad de bits que quedan como '0' en la Máscara para la porción de Host. (Restamos 2 por la dirección de Red y la de Broadcast).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Ejercicio Práctico (Clase C - /24)</h2>
+            <p>Dada la red: **192.168.10.0 /24**. Necesitas crear **4 subredes iguales**.</p>
+            
+            <div class="advantage-list">
+                <div>
+                    <h3>Paso 1: Calcular Bits Prestados (n)</h3>
+                    <p>Necesitas $2^n \geq 4$ subredes. $2^2 = 4$. Por lo tanto, debes prestar **n=2 bits**.</p>
+                </div>
+                <div>
+                    <h3>Paso 2: Calcular la Nueva Máscara</h3>
+                    <p>La máscara original es /24. Al sumar 2 bits prestados, la nueva máscara es **$/26$**.</p>
+                    <p>En binario: 11111111.11111111.11111111. **11**000000</p>
+                    <p>En decimal: 255.255.255. **192** (128 + 64 = 192).</p>
+                </div>
+                <div>
+                    <h3>Paso 3: Calcular Hosts (h)</h3>
+                    <p>Si la máscara es /26, quedan $32 - 26 = 6$ bits para Host. $$ 2^6 - 2 = 64 - 2 = 62 \text{ hosts utilizables por subred.} $$</p>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                
+                <figcaption>La nueva máscara /26 (255.255.255.192) crea 4 subredes.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Cálculo de la Tercera Subred</h2>
+            <p>Usando el ejercicio anterior (Red 192.168.10.0/24, máscara /26), la primera subred es 192.168.10.0, la segunda es 192.168.10.64.</p>
+            <p><strong>Pregunta:</strong> ¿Cuál es la **Dirección de Red** de la **tercera subred** y su **Dirección de Broadcast**?</p>
+            
+            <button id="subnettingQuizBtn">Verificar la Tercera Subred</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S3 E12</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion11.html" class="nav-button">Anterior</a>
+        <a href="sesion13.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

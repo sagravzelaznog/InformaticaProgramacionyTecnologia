@@ -1,0 +1,119 @@
+Módulo 1: Fundamentos del Sistema y Navegación Táctica
+El objetivo aquí es moverse por el sistema sin dejar rastro innecesario y entender la anatomía de los archivos.
+
+sesion01: El entorno shell y la jerarquía de directorios
+
+Diferencias entre bash y zsh (por defecto en Kali moderno).
+
+Comprender el FHS (Filesystem Hierarchy Standard): /var, /etc, /home, /tmp.
+
+Comandos básicos: pwd, cd, ls (uso avanzado de flags como ls -laR para descubrir archivos ocultos).
+
+sesion02: Manipulación segura de archivos
+
+Creación y movimiento: touch, mkdir, cp, mv.
+
+Eliminación y el peligro de sobreescritura: rm, rmdir (y por qué en forense rara vez eliminamos, sino que aislamos).
+
+sesion03: Visualización de datos en crudo
+
+Lectura de archivos sin ejecutarlos: cat, less, more.
+
+Inspección de cabeceras y colas de archivos (vital para logs): head, tail (tail -f para monitoreo en tiempo real).
+
+sesion04: Búsqueda y localización de artefactos
+
+Búsqueda rápida en la base de datos del sistema: locate, which.
+
+Búsqueda granular y profunda (el mejor amigo del investigador): find (búsqueda por tamaño, fecha de modificación, inodos y permisos).
+
+Módulo 2: Administración, Permisos y Procesos
+En forense, necesitas saber quién hizo qué, qué permisos tenía y qué procesos maliciosos podrían estar corriendo en la memoria viva.
+
+sesion05: Gestión de usuarios y escalada básica
+
+Identificación: whoami, id.
+
+Transición de usuarios: su, sudo.
+
+Auditoría de usuarios del sistema: lectura crítica de /etc/passwd y /etc/shadow.
+
+sesion06: Propiedad y Permisos (La clave de la intrusión)
+
+Entender el sistema octal y simbólico.
+
+Modificación de permisos y dueños: chmod, chown.
+
+Permisos especiales peligrosos: SUID, SGID y Sticky Bit (cómo los atacantes mantienen persistencia).
+
+sesion07: Análisis de Procesos (Live Forensics)
+
+Captura del estado del sistema: ps (ps aux para un panorama completo).
+
+Monitoreo dinámico: top, htop.
+
+Interacción y terminación: kill, killall.
+
+sesion08: Gestión de paquetes y repositorios
+
+Uso de apt y dpkg.
+
+Identificación de software instalado de forma anómala (comparación de paquetes legítimos vs. instalados manualmente).
+
+Módulo 3: Redes y Análisis de Conexiones
+Un equipo comprometido siempre se comunica. Este módulo enseña a rastrear esas conexiones desde la terminal.
+
+sesion09: Configuración e identificación de interfaces
+
+Herramientas modernas vs legacy: ip a, ifconfig.
+
+Pruebas de conectividad y latencia: ping, traceroute.
+
+sesion10: Auditoría de conexiones abiertas
+
+Mapeo de puertos locales y conexiones activas: ss, netstat.
+
+El comando maestro para ver qué proceso usa qué archivo/puerto: lsof (List Open Files).
+
+sesion11: Conexión remota y túneles seguros
+
+Administración remota: ssh.
+
+Transferencia de evidencia en crudo de forma cifrada: scp.
+
+sesion12: Peticiones web desde la consola
+
+Interacción con APIs o descarga de scripts/evidencia: curl, wget.
+
+Análisis de cabeceras HTTP desde la terminal para rastrear servidores.
+
+Módulo 4: Arsenal Forense (Discos, Hashes y Logs)
+Este es el puente directo hacia el hacking forense. Aquí se aplican todos los conocimientos previos para preservar y analizar la evidencia digital.
+
+sesion13: Gestión de discos y adquisición de imágenes
+
+Identificación de bloques y particiones: lsblk, fdisk -l.
+
+Montaje de imágenes forenses como solo lectura (mount -o ro).
+
+El clonador universal: dd (Data Duplicator - creación de imágenes bit a bit de discos o memoria RAM).
+
+sesion14: Integridad y Cadena de Custodia
+
+Concepto de funciones Hash (la huella dactilar de los archivos).
+
+Generación y verificación: md5sum, sha1sum, sha256sum.
+
+sesion15: Filtrado avanzado y disección de texto
+
+Extracción de patrones específicos (ej. IPs o correos en un disco crudo): grep y el uso de Expresiones Regulares (Regex).
+
+Manipulación de columnas y formateo de texto: awk, sed.
+
+sesion16: Análisis de Logs y Empaquetado de Evidencia
+
+Auditoría del registro del sistema: journalctl.
+
+Revisión de /var/log/auth.log y /var/log/syslog.
+
+Compresión y empaquetado seguro de la evidencia extraída: tar, gzip.

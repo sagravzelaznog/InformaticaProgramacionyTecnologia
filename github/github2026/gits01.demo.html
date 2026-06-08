@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Demo Interactivo - Git (Simulado)</title>
+    <style>
+        body{font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;background:#0f1724;color:#cbd5e1;padding:20px}
+        .demo{max-width:900px;margin:0 auto;background:#021026;padding:18px;border-radius:8px}
+        .term{background:#011221;color:#d6f9ff;padding:12px;border-radius:6px;height:300px;overflow:auto;font-family:monospace}
+        .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+        .btn{background:#2563eb;border:none;color:white;padding:8px 12px;border-radius:6px;cursor:pointer}
+        .input{width:100%;padding:8px;border-radius:6px;border:1px solid #16325c;background:#021722;color:#e6f0ff;margin-top:8px}
+        .status{margin-top:8px;color:#93c5fd}
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h2>Demo ampliado: Simulador de Git (sin efectos reales)</h2>
+        <div id="term" class="term" aria-live="polite">$ Simulador interactivo de Git iniciado (simulado)</div>
+        <div class="controls">
+            <button class="btn" data-cmd="init">git init</button>
+            <button class="btn" data-cmd="status">git status</button>
+            <button class="btn" data-cmd="add">git add .</button>
+            <button class="btn" data-cmd="commit">git commit -m "x"</button>
+            <button class="btn" data-cmd="log">git log --oneline</button>
+        </div>
+        <input id="cmdline" class="input" placeholder="Escribe un comando aquí y presiona Enter (ej. git init)">
+        <div id="status" class="status">Estado: repositorio no inicializado</div>
+    </div>
+
+<script>
+(function(){
+    const term = document.getElementById('term');
+    const status = document.getElementById('status');
+    const btns = document.querySelectorAll('[data-cmd]');
+    const input = document.getElementById('cmdline');
+    const state = { inited:false, staged:[], commits:[] };
+
+    function write(line){ term.innerHTML += line + '<br/>'; term.scrollTop = term.scrollHeight; }
+    function updateStatus(){ status.textContent = 'Estado: ' + (state.inited ? 'repo inicializado' : 'no inicializado') + ' | staged: ' + state.staged.join(', '); }
+
+    function run(cmd){
+        write('$ ' + cmd);
+        const args = cmd.trim().split(/\s+/);
+        if(cmd === 'git init'){
+            state.inited = true;
+            write('Repositorio inicializado (simulado)');
+        } else if(cmd.startsWith('git add')){
+            if(!state.inited){ write('Error: inicializa el repo con git init primero'); return; }
+            const file = args.slice(2).join(' ') || 'archivo.txt';
+            state.staged.push(file);
+            write(file + ' añadido al staging (simulado)');
+        } else if(cmd.startsWith('git commit')){
+            if(!state.staged.length){ write('Nothing to commit (simulado)'); return; }
+            const sha = Math.random().toString(36).slice(2,9);
+            state.commits.push({sha:sha,msg:'Commit simulado'});
+            state.staged = [];
+            write('['+sha+'] Commit simulado');
+        } else if(cmd === 'git status'){
+            write('On branch main (simulado)');
+            write(state.staged.length ? 'Changes to be committed: ' + state.staged.join(', ') : 'nothing to commit, working tree clean');
+        } else if(cmd === 'git log --oneline'){
+            if(!state.commits.length){ write('No hay commits (simulado)'); return; }
+            state.commits.slice().reverse().forEach(c=> write(c.sha + ' ' + c.msg));
+        } else {
+            write('Comando no reconocido en el simulador: ' + cmd);
+        }
+        updateStatus();
+    }
+
+    btns.forEach(b=> b.addEventListener('click', ()=> run(b.getAttribute('data-cmd'))));
+    input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ run(input.value); input.value=''; } });
+
+})();
+</script>
+</body>
+</html>

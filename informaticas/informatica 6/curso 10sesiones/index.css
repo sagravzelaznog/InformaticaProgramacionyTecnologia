@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.cabecera-index {
+    background-color: #2980b9;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cabecera-index h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.instrucciones {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.instrucciones h2 {
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.cuadricula-sesiones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-sesion {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-top: 4px solid #3498db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta-sesion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    background-color: #f7f9fa;
+}
+
+.numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ecf0f1;
+    color: #2980b9;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.tarjeta-sesion h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.tarjeta-sesion p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.sesion-final {
+    border-top: 4px solid #f1c40f;
+    background-color: #fffdf2;
+}
+
+.sesion-final .numero {
+    background-color: #f1c40f;
+    color: #ffffff;
+}
+
+.pie-index {
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cabecera-index h1 {
+        font-size: 2rem;
+    }
+}

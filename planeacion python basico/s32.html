@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 32: Repaso General y Siguientes Pasos - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .graduation-workshop {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .graduation-workshop h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graduation-workshop h2 i {
+            margin-right: 15px;
+            font-size: 2.5rem;
+        }
+
+        .graduation-workshop p {
+            font-size: 1.2rem;
+            margin: 25px 0;
+            opacity: 0.9;
+        }
+
+        .graduation-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .graduation-phase {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .graduation-phase h4 {
+            margin-top: 0;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+        }
+
+        .graduation-phase h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .graduation-phase p {
+            margin: 15px 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .start-graduation-btn {
+            background: white;
+            color: #00b894;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .start-graduation-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .knowledge-review {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .knowledge-review h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .knowledge-review h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .knowledge-map {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .knowledge-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .knowledge-category {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #74b9ff;
+        }
+
+        .knowledge-category h5 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .knowledge-category h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .knowledge-items {
+            margin: 15px 0 0 0;
+        }
+
+        .knowledge-item {
+            margin: 8px 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .concept-map-builder {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .map-builder-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .map-input-group {
+            margin: 15px 0;
+        }
+
+        .map-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .map-input-group input, .map-input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #636e72;
+            background: #2d3436;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .map-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .map-btn {
+            background: #74b9ff;
+            color: #2d3436;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .map-btn:hover {
+            background: #55a3ff;
+        }
+
+        .map-btn.clear {
+            background: #e17055;
+        }
+
+        .map-btn.clear:hover {
+            background: #d63031;
+        }
+
+        .generated-map {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0 0 0;
+        }
+
+        .generated-map h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+
+        .generated-map h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .concept-connections {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0 0 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-line;
+        }
+
+        .skill-assessment {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .skill-assessment h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-assessment h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .skill-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .skill-area {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #00cec9;
+        }
+
+        .skill-area h5 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-area h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .skill-levels {
+            margin: 15px 0 0 0;
+        }
+
+        .skill-level {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-name {
+            flex: 1;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .skill-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .skill-star {
+            color: #636e72;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .skill-star.active {
+            color: #fdcb6e;
+        }
+
+        .project-planning {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #e17055;
+        }
+
+        .project-planning h3 {
+            margin-top: 0;
+            color: #e17055;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-planning h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-ideas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .project-idea {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #fd79a8;
+        }
+
+        .project-idea h5 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-idea h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .project-description {
+            margin: 10px 0 0 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .project-difficulty {
+            margin: 10px 0 0 0;
+            font-size: 0.8rem;
+            color: #74b9ff;
+        }
+
+        .project-selector {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .project-form-group {
+            margin: 20px 0;
+        }
+
+        .project-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .project-form-group select, .project-form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #636e72;
+            background: #2d3436;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .project-form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-btn {
+            background: #e17055;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-btn:hover {
+            background: #d63031;
+        }
+
+        .project-btn.generate {
+            background: #00b894;
+        }
+
+        .project-btn.generate:hover {
+            background: #00a085;
+        }
+
+        .learning-path {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+        }
+
+        .learning-path h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .learning-path h2 i {
+            margin-right: 15px;
+            font-size: 2.5rem;
+        }
+
+        .learning-path p {
+            font-size: 1.2rem;
+            margin: 25px 0;
+            opacity: 0.9;
+        }
+
+        .learning-stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .learning-stage {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .learning-stage h4 {
+            margin-top: 0;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .learning-stage h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .learning-stage p {
+            margin: 15px 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .career-planning {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .career-planning h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .career-planning h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .career-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .career-path {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border-left: 3px solid #00cec9;
+        }
+
+        .career-path h6 {
+            margin: 0 0 10px 0;
+            color: #00cec9;
+        }
+
+        .career-path p {
+            margin: 0;
+            color: #b2bec3;
+            font-size: 0.8rem;
+        }
+
+        .certification-celebration {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .certification-celebration h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .certification-celebration h2 i {
+            margin-right: 15px;
+            font-size: 2.5rem;
+        }
+
+        .certification-celebration p {
+            font-size: 1.2rem;
+            margin: 25px 0;
+            opacity: 0.9;
+        }
+
+        .celebration-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .celebration-benefit {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .celebration-benefit h4 {
+            margin-top: 0;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+        }
+
+        .celebration-benefit h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .celebration-benefit p {
+            margin: 15px 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .session-duration {
+            display: inline-block;
+            background: #00b894;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .knowledge-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-matrix {
+                grid-template-columns: 1fr;
+            }
+
+            .project-ideas {
+                grid-template-columns: 1fr;
+            }
+
+            .graduation-phases {
+                grid-template-columns: 1fr;
+            }
+
+            .map-actions, .project-form-actions {
+                flex-direction: column;
+            }
+
+            .learning-stages {
+                grid-template-columns: 1fr;
+            }
+
+            .celebration-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 32</h1>
+                <h2>Repaso General y Siguientes Pasos</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-graduation-cap"></i> Sesión Final</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-final"
+                     role="progressbar"
+                     aria-valuenow="100"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del curso">
+                </div>
+                <span class="progress-text">🎉 ¡Curso Completado! 100%</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#review"><i class="fas fa-brain"></i> Repaso de Conocimientos</a></li>
+                <li><a href="#assessment"><i class="fas fa-chart-bar"></i> Autoevaluación</a></li>
+                <li><a href="#projects"><i class="fas fa-lightbulb"></i> Proyectos Personales</a></li>
+                <li><a href="#learning"><i class="fas fa-road"></i> Ruta de Aprendizaje</a></li>
+                <li><a href="#career"><i class="fas fa-briefcase"></i> Oportunidades</a></li>
+                <li><a href="#celebration"><i class="fas fa-trophy"></i> ¡Celebración!</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión final consolidarás todo lo aprendido durante el curso y planificarás tu continuo desarrollo como programador Python. Crearás un mapa mental de tus conocimientos, identificarás áreas de mejora, explorarás proyectos personales para practicar y diseñarás tu ruta de aprendizaje futuro.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>✅ Crear un mapa mental completo de conceptos Python aprendidos</li>
+                        <li>✅ Identificar fortalezas y áreas de mejora personal</li>
+                        <li>✅ Diseñar proyectos personales para continuar practicando</li>
+                        <li>✅ Explorar recursos avanzados según tus intereses específicos</li>
+                        <li>✅ Planificar tu ruta de aprendizaje continuo</li>
+                        <li>✅ Identificar oportunidades profesionales en Python</li>
+                        <li>✅ Establecer metas realistas de desarrollo profesional</li>
+                        <li>✅ Celebrar tus logros y planificar el futuro</li>
+                    </ul>
+                </div>
+
+                <div class="graduation-workshop">
+                    <h2><i class="fas fa-graduation-cap"></i> Laboratorio de Consolidación</h2>
+                    <p>Esta sesión final te ayudará a consolidar tu aprendizaje y planificar tu futuro como desarrollador Python</p>
+
+                    <div class="graduation-phases">
+                        <div class="graduation-phase">
+                            <h4><i class="fas fa-brain"></i> 1. Repaso</h4>
+                            <p>Consolida conceptos fundamentales aprendidos</p>
+                        </div>
+                        <div class="graduation-phase">
+                            <h4><i class="fas fa-chart-bar"></i> 2. Evaluación</h4>
+                            <p>Identifica fortalezas y áreas de mejora</p>
+                        </div>
+                        <div class="graduation-phase">
+                            <h4><i class="fas fa-lightbulb"></i> 3. Planificación</h4>
+                            <p>Diseña proyectos y ruta de aprendizaje</p>
+                        </div>
+                        <div class="graduation-phase">
+                            <h4><i class="fas fa-trophy"></i> 4. Celebración</h4>
+                            <p>Reconoce logros y mira hacia el futuro</p>
+                        </div>
+                    </div>
+
+                    <button class="start-graduation-btn" onclick="mostrarReview()">
+                        <i class="fas fa-play"></i> Iniciar Consolidación
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repaso de conocimientos -->
+        <section id="review" class="session-section">
+            <h2><i class="fas fa-brain"></i> Repaso de Conocimientos</h2>
+
+            <div class="knowledge-review">
+                <h3><i class="fas fa-map"></i> Mapa Mental de Conceptos Aprendidos</h3>
+                <p>Organiza visualmente todos los conceptos fundamentales que has aprendido durante el curso.</p>
+
+                <div class="knowledge-map">
+                    <div class="knowledge-categories">
+                        <div class="knowledge-category">
+                            <h5><i class="fas fa-code"></i> Fundamentos de Programación</h5>
+                            <div class="knowledge-items">
+                                <div class="knowledge-item">• Variables y tipos de datos</div>
+                                <div class="knowledge-item">• Operadores y expresiones</div>
+                                <div class="knowledge-item">• Estructuras de control (if, for, while)</div>
+                                <div class="knowledge-item">• Funciones y parámetros</div>
+                                <div class="knowledge-item">• Manejo de errores (try/except)</div>
+                            </div>
+                        </div>
+
+                        <div class="knowledge-category">
+                            <h5><i class="fas fa-database"></i> Estructuras de Datos</h5>
+                            <div class="knowledge-items">
+                                <div class="knowledge-item">• Listas y operaciones básicas</div>
+                                <div class="knowledge-item">• Tuplas y conjuntos</div>
+                                <div class="knowledge-item">• Diccionarios y acceso por claves</div>
+                                <div class="knowledge-item">• Comprensión de listas</div>
+                                <div class="knowledge-item">• Archivos y operaciones I/O</div>
+                            </div>
+                        </div>
+
+                        <div class="knowledge-category">
+                            <h5><i class="fas fa-cogs"></i> Programación Orientada a Objetos</h5>
+                            <div class="knowledge-items">
+                                <div class="knowledge-item">• Clases y objetos</div>
+                                <div class="knowledge-item">• Atributos y métodos</div>
+                                <div class="knowledge-item">• Herencia y polimorfismo</div>
+                                <div class="knowledge-item">• Encapsulación y abstracción</div>
+                                <div class="knowledge-item">• Módulos y paquetes</div>
+                            </div>
+                        </div>
+
+                        <div class="knowledge-category">
+                            <h5><i class="fas fa-project-diagram"></i> Desarrollo de Proyectos</h5>
+                            <div class="knowledge-items">
+                                <div class="knowledge-item">• Planificación y diseño</div>
+                                <div class="knowledge-item">• Arquitectura de aplicaciones</div>
+                                <div class="knowledge-item">• Testing y debugging</div>
+                                <div class="knowledge-item">• Documentación</div>
+                                <div class="knowledge-item">• Presentación de proyectos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-map-builder">
+                        <h4><i class="fas fa-magic"></i> Generador de Mapa Mental Personalizado</h4>
+                        <p>Crea tu propio mapa mental basado en tus intereses y fortalezas específicas.</p>
+
+                        <div class="map-builder-inputs">
+                            <div class="map-input-group">
+                                <label for="primaryInterest">Área de Mayor Interés:</label>
+                                <select id="primaryInterest">
+                                    <option value="web">Desarrollo Web</option>
+                                    <option value="data">Ciencia de Datos</option>
+                                    <option value="automation">Automatización</option>
+                                    <option value="games">Desarrollo de Juegos</option>
+                                    <option value="mobile">Aplicaciones Móviles</option>
+                                </select>
+                            </div>
+
+                            <div class="map-input-group">
+                                <label for="experienceLevel">Nivel de Experiencia:</label>
+                                <select id="experienceLevel">
+                                    <option value="beginner">Principiante</option>
+                                    <option value="intermediate">Intermedio</option>
+                                    <option value="advanced">Avanzado</option>
+                                </select>
+                            </div>
+
+                            <div class="map-input-group">
+                                <label for="learningGoal">Objetivo de Aprendizaje:</label>
+                                <input type="text" id="learningGoal" placeholder="Ej: Crear aplicaciones web con Flask">
+                            </div>
+                        </div>
+
+                        <div class="map-actions">
+                            <button class="map-btn" onclick="generarMapaPersonal()">Generar Mapa</button>
+                            <button class="map-btn clear" onclick="limpiarMapa()">Limpiar</button>
+                        </div>
+                    </div>
+
+                    <div class="generated-map">
+                        <h5><i class="fas fa-project-diagram"></i> Tu Mapa Mental Personalizado</h5>
+                        <div id="mapOutput" class="concept-connections">Completa los campos anteriores para generar tu mapa mental personalizado.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Autoevaluación de habilidades -->
+        <section id="assessment" class="session-section">
+            <h2><i class="fas fa-chart-bar"></i> Autoevaluación de Habilidades</h2>
+
+            <div class="skill-assessment">
+                <h3><i class="fas fa-star"></i> Evalúa Tu Nivel de Dominio</h3>
+                <p>Califica honestamente tu nivel de confianza en diferentes áreas técnicas para identificar fortalezas y oportunidades de mejora.</p>
+
+                <div class="skill-matrix">
+                    <div class="skill-area">
+                        <h5><i class="fas fa-code"></i> Programación Básica</h5>
+                        <div class="skill-levels">
+                            <div class="skill-level">
+                                <span class="skill-name">Sintaxis Python</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('syntax', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('syntax', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('syntax', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('syntax', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('syntax', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Estructuras de control</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('control', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('control', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('control', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('control', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('control', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Funciones</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('functions', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('functions', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('functions', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('functions', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('functions', 5)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-area">
+                        <h5><i class="fas fa-database"></i> Manejo de Datos</h5>
+                        <div class="skill-levels">
+                            <div class="skill-level">
+                                <span class="skill-name">Listas y tuplas</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('lists', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('lists', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('lists', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('lists', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('lists', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Diccionarios</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('dicts', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('dicts', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('dicts', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('dicts', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('dicts', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Archivos</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('files', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('files', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('files', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('files', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('files', 5)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-area">
+                        <h5><i class="fas fa-cogs"></i> Programación Avanzada</h5>
+                        <div class="skill-levels">
+                            <div class="skill-level">
+                                <span class="skill-name">POO</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('oop', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('oop', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('oop', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('oop', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('oop', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Módulos</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('modules', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('modules', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('modules', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('modules', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('modules', 5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="skill-level">
+                                <span class="skill-name">Testing</span>
+                                <div class="skill-rating">
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('testing', 1)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('testing', 2)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('testing', 3)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('testing', 4)"></i>
+                                    <i class="fas fa-star skill-star" onclick="rateSkill('testing', 5)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planificación de proyectos personales -->
+        <section id="projects" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Planificación de Proyectos Personales</h2>
+
+            <div class="project-planning">
+                <h3><i class="fas fa-rocket"></i> Ideas de Proyectos para Continuar Practicando</h3>
+                <p>Explora proyectos personales que puedes desarrollar para aplicar y expandir tus conocimientos de Python.</p>
+
+                <div class="project-ideas">
+                    <div class="project-idea">
+                        <h5><i class="fas fa-calculator"></i> Calculadora Avanzada</h5>
+                        <div class="project-description">
+                            Crea una calculadora con interfaz gráfica que soporte operaciones científicas,
+                            historial de cálculos y conversión de unidades.
+                        </div>
+                        <div class="project-difficulty">Dificultad: ⭐⭐☆☆☆</div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h5><i class="fas fa-gamepad"></i> Juego Simple</h5>
+                        <div class="project-description">
+                            Desarrolla un juego básico como Tic-Tac-Toe, Snake o un quiz con interfaz gráfica
+                            y sistema de puntuación.
+                        </div>
+                        <div class="project-difficulty">Dificultad: ⭐⭐⭐☆☆</div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h5><i class="fas fa-chart-line"></i> Analizador de Datos</h5>
+                        <div class="project-description">
+                            Crea una aplicación que lea archivos CSV, genere estadísticas básicas y
+                            visualice datos con gráficos simples.
+                        </div>
+                        <div class="project-difficulty">Dificultad: ⭐⭐⭐⭐☆</div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h5><i class="fas fa-robot"></i> Bot de Chat Simple</h5>
+                        <div class="project-description">
+                            Desarrolla un chatbot básico que responda preguntas frecuentes,
+                            proporcione información útil y tenga personalidad.
+                        </div>
+                        <div class="project-difficulty">Dificultad: ⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <div class="project-selector">
+                    <h4><i class="fas fa-magic"></i> Generador de Proyecto Personalizado</h4>
+                    <p>Obtén recomendaciones de proyectos basadas en tus intereses y nivel de experiencia.</p>
+
+                    <div class="project-form-group">
+                        <label for="projectInterest">Área de Interés:</label>
+                        <select id="projectInterest">
+                            <option value="utilidades">Herramientas y Utilidades</option>
+                            <option value="juegos">Juegos y Entretenimiento</option>
+                            <option value="datos">Análisis de Datos</option>
+                            <option value="web">Aplicaciones Web</option>
+                            <option value="automatizacion">Automatización de Tareas</option>
+                        </select>
+                    </div>
+
+                    <div class="project-form-group">
+                        <label for="projectComplexity">Nivel de Complejidad Deseado:</label>
+                        <select id="projectComplexity">
+                            <option value="simple">Proyecto Simple (1-2 semanas)</option>
+                            <option value="medium">Proyecto Intermedio (2-4 semanas)</option>
+                            <option value="complex">Proyecto Complejo (1-2 meses)</option>
+                        </select>
+                    </div>
+
+                    <div class="project-form-group">
+                        <label for="projectTech">Tecnologías a Usar:</label>
+                        <input type="text" id="projectTech" placeholder="Ej: tkinter, flask, pandas">
+                    </div>
+
+                    <div class="project-form-actions">
+                        <button class="project-btn generate" onclick="generarProyecto()">Generar Proyecto</button>
+                        <button class="project-btn" onclick="mostrarTodosProyectos()">Ver Todos</button>
+                    </div>
+                </div>
+
+                <div class="generated-project">
+                    <h5><i class="fas fa-lightbulb"></i> Proyecto Recomendado</h5>
+                    <div id="projectOutput" class="project-output">Completa los campos anteriores para obtener recomendaciones de proyectos.</div>
+                </div>
+            </div>
+
+            <div class="learning-path">
+                <h2><i class="fas fa-road"></i> Tu Ruta de Aprendizaje Personalizada</h2>
+                <p>Diseña tu propio camino de aprendizaje continuo basado en tus intereses y objetivos profesionales.</p>
+
+                <div class="learning-stages">
+                    <div class="learning-stage">
+                        <h4><i class="fas fa-seedling"></i> Consolidación</h4>
+                        <p>Refuerza conceptos básicos con proyectos pequeños</p>
+                    </div>
+
+                    <div class="learning-stage">
+                        <h4><i class="fas fa-tree"></i> Expansión</h4>
+                        <p>Explora nuevas bibliotecas y herramientas</p>
+                    </div>
+
+                    <div class="learning-stage">
+                        <h4><i class="fas fa-mountain"></i> Especialización</h4>
+                        <p>Profundiza en áreas específicas de interés</p>
+                    </div>
+
+                    <div class="learning-stage">
+                        <h4><i class="fas fa-crown"></i> Maestría</h4>
+                        <p>Desarrolla proyectos avanzados y lidera iniciativas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Oportunidades profesionales -->
+        <section id="career" class="session-section">
+            <h2><i class="fas fa-briefcase"></i> Oportunidades Profesionales</h2>
+
+            <div class="career-planning">
+                <h3><i class="fas fa-chart-line"></i> Explorando el Mercado Laboral Python</h3>
+                <p>Descubre las diferentes carreras y oportunidades profesionales disponibles para desarrolladores Python.</p>
+
+                <div class="career-paths">
+                    <div class="career-path">
+                        <h6><i class="fas fa-code"></i> Desarrollador Backend</h6>
+                        <p>APIs, servidores web, bases de datos</p>
+                    </div>
+
+                    <div class="career-path">
+                        <h6><i class="fas fa-chart-bar"></i> Científico de Datos</h6>
+                        <p>Análisis de datos, machine learning, estadísticas</p>
+                    </div>
+
+                    <div class="career-path">
+                        <h6><i class="fas fa-robot"></i> Ingeniero de IA</h6>
+                        <p>Machine learning, deep learning, automatización</p>
+                    </div>
+
+                    <div class="career-path">
+                        <h6><i class="fas fa-flask"></i> Desarrollador Full-Stack</h6>
+                        <p>Frontend y backend, aplicaciones completas</p>
+                    </div>
+
+                    <div class="career-path">
+                        <h6><i class="fas fa-cogs"></i> DevOps Engineer</h6>
+                        <p>Automatización, despliegue, infraestructura</p>
+                    </div>
+
+                    <div class="career-path">
+                        <h6><i class="fas fa-shield-alt"></i> Especialista en Seguridad</h6>
+                        <p>Análisis de vulnerabilidades, ciberseguridad</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Celebración de logros -->
+        <section id="celebration" class="session-section">
+            <h2><i class="fas fa-trophy"></i> ¡Celebración de Logros!</h2>
+
+            <div class="certification-celebration">
+                <h2><i class="fas fa-award"></i> ¡Felicitaciones! Curso Completado</h2>
+                <p>Has completado exitosamente el Curso Básico de Python. Este es solo el comienzo de tu viaje como desarrollador.</p>
+
+                <div class="celebration-benefits">
+                    <div class="celebration-benefit">
+                        <h4><i class="fas fa-certificate"></i> Certificación Digital</h4>
+                        <p>Recibirás un certificado verificable que demuestra tu competencia en Python básico</p>
+                    </div>
+
+                    <div class="celebration-benefit">
+                        <h4><i class="fab fa-linkedin"></i> Badge Profesional</h4>
+                        <p>Obtén un badge verificable para tu perfil de LinkedIn y portafolio profesional</p>
+                    </div>
+
+                    <div class="celebration-benefit">
+                        <h4><i class="fas fa-users"></i> Comunidad Exclusiva</h4>
+                        <p>Acceso a la comunidad de graduados para networking y oportunidades laborales</p>
+                    </div>
+
+                    <div class="celebration-benefit">
+                        <h4><i class="fas fa-rocket"></i> Fundación Sólida</h4>
+                        <p>Base sólida para continuar aprendiendo tecnologías avanzadas y especializaciones</p>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <h3><i class="fas fa-heart"></i> Mensaje Final</h3>
+                    <p>Recuerda que el aprendizaje de programación es un viaje continuo. Mantén la curiosidad, practica regularmente y nunca dejes de explorar nuevas tecnologías y conceptos. ¡El mundo del desarrollo de software está lleno de oportunidades emocionantes esperándote!</p>
+
+                    <div class="next-steps">
+                        <h4>🚀 Próximos Pasos Recomendados:</h4>
+                        <ul>
+                            <li>• Continúa practicando con proyectos personales</li>
+                            <li>• Explora frameworks web como Flask o Django</li>
+                            <li>• Aprende sobre bases de datos y SQL</li>
+                            <li>• Estudia conceptos de algoritmos y estructuras de datos</li>
+                            <li>• Participa en comunidades de desarrolladores</li>
+                            <li>• Considera certificaciones avanzadas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s31.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <div class="completion-message">
+                <i class="fas fa-check-circle"></i>
+                ¡Curso Completado!
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+    <script>
+        function mostrarReview() {
+            document.querySelector('.session-nav a[href="#review"]').click();
+        }
+
+        function generarMapaPersonal() {
+            const interest = document.getElementById('primaryInterest').value;
+            const level = document.getElementById('experienceLevel').value;
+            const goal = document.getElementById('learningGoal').value;
+
+            if (!interest || !level || !goal) {
+                alert('Por favor completa todos los campos para generar tu mapa mental.');
+                return;
+            }
+
+            const maps = {
+                'web': {
+                    focus: 'Desarrollo Web con Python',
+                    concepts: [
+                        '• HTML/CSS/JavaScript básicos',
+                        '• Flask/Django fundamentals',
+                        '• REST APIs y endpoints',
+                        '• Bases de datos SQL/NoSQL',
+                        '• Autenticación y seguridad',
+                        '• Despliegue en la nube'
+                    ]
+                },
+                'data': {
+                    focus: 'Ciencia de Datos con Python',
+                    concepts: [
+                        '• NumPy y Pandas avanzado',
+                        '• Visualización con Matplotlib/Seaborn',
+                        '• Estadística básica',
+                        '• Machine Learning introductorio',
+                        '• Jupyter Notebooks',
+                        '• Limpieza y preparación de datos'
+                    ]
+                },
+                'automation': {
+                    focus: 'Automatización con Python',
+                    concepts: [
+                        '• Scripts de automatización',
+                        '• Web scraping con BeautifulSoup',
+                        '• Procesamiento de archivos',
+                        '• Tareas del sistema',
+                        '• APIs y servicios web',
+                        '• Programación asíncrona'
+                    ]
+                }
+            };
+
+            const map = maps[interest];
+            let output = `🎯 MAPA MENTAL PERSONALIZADO: ${map.focus.toUpperCase()}\n\n`;
+            output += `📊 Nivel de experiencia actual: ${level.charAt(0).toUpperCase() + level.slice(1)}\n`;
+            output += `🎯 Objetivo específico: ${goal}\n\n`;
+            output += `🧠 CONCEPTOS CLAVE A DESARROLLAR:\n`;
+            map.concepts.forEach(concept => {
+                output += `${concept}\n`;
+            });
+
+            output += `\n📈 RUTA DE APRENDIZAJE RECOMENDADA:\n`;
+            output += `1️⃣ Refuerza conceptos básicos del curso\n`;
+            output += `2️⃣ Estudia recursos específicos del área\n`;
+            output += `3️⃣ Crea proyectos prácticos pequeños\n`;
+            output += `4️⃣ Únete a comunidades especializadas\n`;
+            output += `5️⃣ Desarrolla un proyecto portafolio\n`;
+
+            document.getElementById('mapOutput').textContent = output;
+        }
+
+        function limpiarMapa() {
+            document.getElementById('primaryInterest').value = 'web';
+            document.getElementById('experienceLevel').value = 'beginner';
+            document.getElementById('learningGoal').value = '';
+            document.getElementById('mapOutput').textContent = 'Completa los campos anteriores para generar tu mapa mental personalizado.';
+        }
+
+        function rateSkill(skill, rating) {
+            // Remove active class from all stars for this skill
+            const stars = document.querySelectorAll(`[onclick*="rateSkill('${skill}'"]`);
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function generarProyecto() {
+            const interest = document.getElementById('projectInterest').value;
+            const complexity = document.getElementById('projectComplexity').value;
+            const tech = document.getElementById('projectTech').value;
+
+            if (!interest || !complexity || !tech) {
+                alert('Por favor completa todos los campos para generar recomendaciones.');
+                return;
+            }
+
+            const projects = {
+                'utilidades': {
+                    'simple': {
+                        name: 'Gestor de Archivos Personales',
+                        description: 'Aplicación de escritorio para organizar y renombrar archivos automáticamente.',
+                        tech: 'tkinter, os, shutil',
+                        duration: '1-2 semanas',
+                        learning: 'Manejo de archivos, interfaz gráfica básica'
+                    },
+                    'medium': {
+                        name: 'Sistema de Recordatorios',
+                        description: 'Aplicación que envía notificaciones y gestiona tareas pendientes.',
+                        tech: 'tkinter, sqlite3, schedule',
+                        duration: '2-4 semanas',
+                        learning: 'Bases de datos, programación temporal'
+                    }
+                }
+            };
+
+            const project = projects[interest]?.[complexity];
+
+            if (project) {
+                let output = `💡 PROYECTO RECOMENDADO\n\n`;
+                output += `🏗️ Nombre: ${project.name}\n\n`;
+                output += `📝 Descripción:\n${project.description}\n\n`;
+                output += `🛠️ Tecnologías sugeridas: ${project.tech}\n`;
+                output += `⏱️ Duración estimada: ${project.duration}\n`;
+                output += `🎓 Aprendizajes clave: ${project.learning}\n\n`;
+                output += `🚀 PASOS RECOMENDADOS:\n`;
+                output += `1️⃣ Define requisitos específicos\n`;
+                output += `2️⃣ Diseña la arquitectura básica\n`;
+                output += `3️⃣ Implementa funcionalidades principales\n`;
+                output += `4️⃣ Agrega características adicionales\n`;
+                output += `5️⃣ Prueba y documenta el proyecto\n`;
+
+                document.getElementById('projectOutput').innerHTML = `<pre>${output}</pre>`;
+            } else {
+                document.getElementById('projectOutput').textContent = 'No se encontró una recomendación específica. ¡Intenta con otros parámetros!';
+            }
+        }
+
+        function mostrarTodosProyectos() {
+            const allProjects = `
+🎯 PROYECTOS PARA CONTINUAR APRENDIENDO:
+
+📱 APLICACIONES DE ESCRITORIO:
+• Calculadora científica con historial
+• Editor de texto con funciones avanzadas
+• Reproductor de música básico
+• Organizador de fotos automático
+
+🌐 APLICACIONES WEB:
+• Blog personal con Flask
+• API REST para gestión de tareas
+• Sitio web con autenticación
+• Panel de administración básico
+
+📊 ANÁLISIS DE DATOS:
+• Analizador de archivos CSV
+• Generador de gráficos estadísticos
+• Procesador de logs del sistema
+• Comparador de precios automático
+
+🤖 AUTOMATIZACIÓN:
+• Bot de descarga automática
+• Organizador de archivos por extensión
+• Generador de informes automático
+• Monitor de sitios web
+
+🎮 JUEGOS Y ENTRETENIMIENTO:
+• Tic-Tac-Toe con IA simple
+• Snake con mejoras gráficas
+• Quiz de preguntas y respuestas
+• Simulador básico de física
+
+Cada proyecto te ayudará a reforzar conceptos diferentes y construir tu portafolio personal.
+            `;
+
+            document.getElementById('projectOutput').innerHTML = `<pre>${allProjects}</pre>`;
+        }
+
+        // Inicializar estrellas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Aquí puedes agregar inicializaciones adicionales si es necesario
+        });
+    </script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

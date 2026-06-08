@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S32: Práctica de Ilustración Avanzada</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 32: Práctica: Integración de Técnicas Avanzadas</h1>
+
+    <section>
+        <h2>1. Concepto del Proyecto: Fruto Foto-Realista</h2>
+        <p>El objetivo de este proyecto es integrar las técnicas de la Semana 8 (Recortes, Malla, Filtros) para crear una ilustración de un fruto (manzana, limón, fresa) que simule volumen y realismo.</p>
+        <div class="paso">
+            <strong>Preparación</strong>
+            <p>Busca una imagen de referencia del fruto que elijas. Crea un grupo de capas para **Forma Base**, **Malla de Color** y **Brillos/Detalle**. Bloquea la capa de referencia.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Creación del Volumen con Relleno de Malla</h2>
+        
+        <p>Usa la malla para simular la forma tridimensional de tu fruto.</p>
+        <div class="paso">
+            <strong>Paso 1: Forma Base</strong>
+            <p>Dibuja el contorno principal del fruto con la **Pluma (B)**. Conviértelo a trayecto y colócalo en la capa **Forma Base**.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Aplicar y Distribuir la Malla</strong>
+            <p>Aplica la herramienta **Relleno de Malla (U)**. Ajusta el número de nodos (ej. 4x4). Asigna los colores del fruto, incluyendo tonos claros para la luz y oscuros para la sombra.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Perfeccionar la Luz</strong>
+            <p>Mueve los nodos de la malla para concentrar un tono claro en la parte superior izquierda y un tono oscuro en la inferior derecha, simulando una fuente de luz natural. Experimenta con los tiradores Bézier para suavizar las transiciones.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Detalle y Acabado (Recortes y Filtros)</h2>
+        <p>Añade los detalles finales que darán vida al fruto.</p>
+        <div class="paso">
+            <strong>Brillo Especular</strong>
+            <p>Dibuja una forma blanca irregular sobre el área de luz (parte superior izquierda). Reduce su **Opacidad** o aplícale el filtro **Filtros > Desenfoques > Desenfoque Gaussiano** para que simule un reflejo de luz suave.</p>
+        </div>
+        <div class="paso">
+            <strong>Recorte de la Hoja</strong>
+            <p>Si dibujas una hoja, usa un mapa de bits de textura (ej. una foto de una hoja) y recórtala con la forma vectorial de la hoja (Sesión 29). Aplica un ligero **Desenfoque Gaussiano** a la imagen recortada para mezclarla con el estilo vectorial.</p>
+        </div>
+        <div class="paso">
+            <strong>Sombra Proyectada</strong>
+            <p>Dibuja un óvalo bajo el fruto. Rellénalo con un color oscuro, usa un **Degradado Radial** de oscuro a transparente y aplícale un gran **Desenfoque Gaussiano** para simular una sombra suave en el suelo. Envíala al fondo (Orden Z).</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Proyecto a Entregar: Fruto Vectorial Detallado</h3>
+        <p><strong>Requerimientos:</strong></p>
+        <ol>
+            <li>El cuerpo principal del fruto debe estar coloreado usando la herramienta **Relleno de Malla (U)**.</li>
+            <li>Uso de **Desenfoque Gaussiano** en al menos dos elementos (brillo y/o sombra proyectada).</li>
+            <li>Inclusión de un elemento con **Recorte (Clip)** (ej. una hoja o un detalle texturizado).</li>
+            <li>Todas las formas deben ser vectoriales (excepto si usaste una textura de mapa de bits para el recorte).</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion31.html">Anterior</a>
+    <a href="sesion33.html">Siguiente</a>
+</nav>
+</body>
+</html>

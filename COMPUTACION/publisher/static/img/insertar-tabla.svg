@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo de la interfaz -->
+    <rect x="0" y="0" width="500" height="400" fill="#f8f9fa" rx="8"/>
+    
+    <!-- Barra de título -->
+    <rect x="0" y="0" width="500" height="40" fill="#2b579a"/>
+    <text x="10" y="25" font-family="Arial, sans-serif" font-size="14" fill="white">Insertar tabla</text>
+    
+    <!-- Opciones de tabla -->
+    <rect x="50" y="60" width="400" height="50" fill="#e9ecef" rx="4" stroke="#dee2e6" stroke-width="1"/>
+    <text x="70" y="90" font-family="Arial, sans-serif" font-size="12">Selecciona el número de filas y columnas</text>
+    
+    <!-- Cuadrícula de tabla -->
+    <g transform="translate(150, 120)">
+        <rect x="0" y="0" width="200" height="200" fill="white" stroke="#0078d7" stroke-width="2"/>
+        <!-- Líneas verticales -->
+        <line x1="40" y1="0" x2="40" y2="200" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="80" y1="0" x2="80" y2="200" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="120" y1="0" x2="120" y2="200" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="160" y1="0" x2="160" y2="200" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        
+        <!-- Líneas horizontales -->
+        <line x1="0" y1="40" x2="200" y2="40" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="0" y1="80" x2="200" y2="80" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="0" y1="120" x2="200" y2="120" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="0" y1="160" x2="200" y2="160" stroke="#a5a5a5" stroke-width="1" stroke-dasharray="2,2"/>
+        
+        <!-- Resaltar selección -->
+        <rect x="0" y="0" width="80" height="80" fill="#d0e3f7" fill-opacity="0.5" stroke="#0078d7" stroke-width="2"/>
+        
+        <!-- Indicador de tamaño -->
+        <text x="100" y="220" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">5 × 5 Tabla</text>
+    </g>
+    
+    <!-- Botones -->
+    <g transform="translate(300, 350)">
+        <rect x="0" y="0" width="80" height="30" rx="4" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+        <text x="40" y="20" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">Cancelar</text>
+        
+        <rect x="100" y="0" width="80" height="30" rx="4" fill="#0078d7"/>
+        <text x="140" y="20" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">Aceptar</text>
+    </g>
+    
+    <!-- Indicador de inserción -->
+    <g transform="translate(50, 250)">
+        <path d="M10,0 L20,10 L10,20 L0,10 Z" fill="#0078d7"/>
+        <text x="30" y="15" font-family="Arial, sans-serif" font-size="12">Suelta aquí para insertar la tabla</text>
+    </g>
+</svg>

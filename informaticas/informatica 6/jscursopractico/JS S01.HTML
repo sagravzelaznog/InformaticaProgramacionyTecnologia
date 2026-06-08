@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass JS 01: La Terminal Secreta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>⚡ Misión 01: La Terminal Secreta</h1>
+        <p>Hackeando la memoria de la computadora con Variables y Tipos de Datos.</p>
+    </header>
+
+    <main>
+        <section class="lesson-module">
+            <h2>📦 ¿Qué es una Variable?</h2>
+            <p>Imagina que la memoria de tu computadora es un almacén gigante vacío. Para guardar información ahí sin perderla, necesitas meterla en <strong>cajas con etiquetas</strong>. En JavaScript, a esas cajas las llamamos <strong>Variables</strong>.</p>
+            
+            <div class="theory-box">
+                <h3>Tipos de Cajas (Palabras Clave)</h3>
+                <ul>
+                    <li><code>let</code>: Una caja abierta. Puedes cambiar lo que hay adentro cuando quieras (Ej. tus puntos de vida en un juego).</li>
+                    <li><code>const</code>: Una caja fuerte. Una vez que le metes un dato y la cierras, ¡NUNCA más puede cambiar! (Ej. tu fecha de nacimiento).</li>
+                </ul>
+            </div>
+
+            <div class="theory-box">
+                <h3>Lo que metemos en las cajas (Tipos de Datos)</h3>
+                <ul>
+                    <li><strong>String (Texto):</strong> Siempre va entre comillas. Ej. <code>"Hola, soy un hacker"</code></li>
+                    <li><strong>Number (Números):</strong> Sin comillas, listos para hacer matemáticas. Ej. <code>42</code>, <code>3.14</code></li>
+                    <li><strong>Boolean (Verdadero/Falso):</strong> Solo puede ser <code>true</code> (encendido) o <code>false</code> (apagado).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="lesson-module">
+            <h2>🛠️ Ejemplo: Creando tu Perfil Hacker</h2>
+            <p>Vamos a escribir nuestro primer código para guardar tu información y mostrarla en la pantalla secreta de la computadora (la Consola).</p>
+            
+            <div class="example-box">
+                <div class="code-line">
+                    <span class="code">let nombre = "Neo";</span>
+                    <span class="explanation">👉 Creamos una caja llamada <b>nombre</b> y guardamos el texto "Neo".</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">let energia = 100;</span>
+                    <span class="explanation">👉 Creamos una caja llamada <b>energia</b> y le guardamos el número 100.</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">const esHumano = true;</span>
+                    <span class="explanation">👉 Creamos una caja fuerte (const) llamada <b>esHumano</b> y guardamos la verdad (true).</span>
+                </div>
+                <div class="code-line">
+                    <span class="code">console.log(nombre);</span>
+                    <span class="explanation">👉 Le ordenamos a la computadora que imprima en la consola lo que hay dentro de la caja 'nombre'.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <h2>🎮 Arena de Batalla: Demuestra tu Poder</h2>
+            <p>Elige sabiamente. Tienes 10 preguntas para probar que entendiste la matrix.</p>
+            <div id="quiz-container">
+                </div>
+            <div id="score-container" style="display: none;">
+                <h3>Puntuación Final: <span id="final-score">0</span>/10</h3>
+                <button onclick="location.reload()" class="reload-btn">Intentar de Nuevo</button>
+            </div>
+        </section>
+
+        <section class="teacher-zone">
+            <h2>🔐 Área Restringida</h2>
+            <p>Solo para el docente titular.</p>
+            <input type="password" id="teacher-password" placeholder="Ingresa código de acceso...">
+            <button id="unlock-btn">Desbloquear</button>
+            
+            <div id="teacher-tips" style="display: none;">
+                <h3>🕵️‍♂️ Tips Pedagógicos del Genio para esta clase:</h3>
+                <ul>
+                    <li><strong>La regla del "F12":</strong> Enséñales desde el minuto 1 cómo abrir la consola del navegador (Click derecho -> Inspeccionar -> Consola). Es su nuevo patio de juegos.</li>
+                    <li><strong>Error de comillas:</strong> El error más común hoy será que escriban textos sin comillas. Cuando pase, diles: <em>"Si no usas comillas, la compu cree que es una variable que no existe, por eso te da error"</em>.</li>
+                    <li><strong>El poder de equivocarse:</strong> Pídeles a propósito que intenten cambiar el valor de una variable <code>const</code> para que vean el hermoso error rojo en la consola. Aprender a leer errores es vital en programación.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; JMGV-PTEL SESION 01 JS. TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+
+    <script src="script.js"></script>
+				<script>
+
+				</script>
+</body>
+</html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 5: Bloques dinámicos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 5: Bloques dinámicos</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 17 -->
+        <div id="sesion17" class="session">
+            <h2>Sesión 17: Introducción a bloques dinámicos</h2>
+            <div class="content">
+                <p>En esta sesión exploraremos los conceptos fundamentales de los bloques dinámicos y sus ventajas.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Comprender qué son los bloques dinámicos</li>
+                        <li>Identificar cuándo usar bloques dinámicos</li>
+                        <li>Crear un bloque dinámico básico</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Conceptos básicos</strong>
+                        <ul>
+                            <li>¿Qué es un bloque dinámico?
+                                <ul>
+                                    <li>Definición y características</li>
+                                    <li>Ventajas sobre los bloques estáticos</li>
+                                    <li>Casos de uso comunes</li>
+                                </ul>
+                            </li>
+                            <li>Interfaz del Editor de bloques
+                                <ul>
+                                    <li>Panel de parámetros</li>
+                                    <li>Panel de acciones</li>
+                                    <li>Barra de herramientas de edición</li>
+                                </ul>
+                            </li>
+                            <li>Creación de un bloque básico
+                                <ul>
+                                    <li>Dibujar la geometría base</li>
+                                    <li>Convertir a bloque dinámico</li>
+                                    <li>Guardar el bloque</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Parámetros básicos</strong>
+                        <ul>
+                            <li>Tipos de parámetros
+                                <ul>
+                                    <li>Punto</li>
+                                    <li>Lineal</li>
+                                    <li>Polar</li>
+                                    <li>XY</li>
+                                </ul>
+                            </li>
+                            <li>Propiedades de los parámetros
+                                <ul>
+                                    <li>Nombre</li>
+                                    <li>Descripción</li>
+                                    <li>Valores por defecto</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h4>Ejercicio práctico:</h4>
+                    <p>Crea un bloque dinámico básico de una puerta que incluya:</p>
+                    <ul>
+                        <li>Geometría básica (rectángulo y arco)</li>
+                        <li>Parámetro de punto para la ubicación</li>
+                        <li>Parámetro lineal para el ancho</li>
+                        <li>Parámetro de rotación</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">BEDIT</span> para acceder al Editor de bloques y comienza con geometrías simples antes de añadir parámetros complejos.
+                </div>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Creación de un Bloque Dinámico Básico</h3>
+                    <p><strong>Objetivo:</strong> Desarrollar habilidades en la creación y configuración de bloques dinámicos básicos.</p>
+                    
+                    <h4>Parte 1: Configuración Inicial (30 min)</h4>
+                    <ol>
+                        <li><strong>Preparación del entorno</strong>
+                            <ul>
+                                <li>Crea un nuevo dibujo con unidades en centímetros</li>
+                                <li>Configura capas para diferentes elementos del bloque</li>
+                                <li>Establece el estilo de texto y cotas adecuados</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dibujo de la geometría base</strong>
+                            <ol type="a">
+                                <li>Dibuja un rectángulo de 90x210cm (puerta estándar)</li>
+                                <li>Añade un arco para representar el movimiento de apertura</li>
+                                <li>Incluye una línea que represente el marco de la puerta</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Creación del Bloque Dinámico (60 min)</h4>
+                    <ol>
+                        <li><strong>Conversión a bloque dinámico</strong>
+                            <ul>
+                                <li>Selecciona todos los elementos y usa <span class="command">BMAKE</span></li>
+                                <li>Asigna un nombre descriptivo (ej: "PUERTA_DINAMICA")</li>
+                                <li>Selecciona la opción "Abrir en el editor de bloques"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuración de parámetros</strong>
+                            <ol type="a">
+                                <li>Añade un parámetro de Punto Base</li>
+                                <li>Configura un parámetro Lineal para el ancho (de 60 a 120cm)</li>
+                                <li>Añade un parámetro de Rotación</li>
+                                <li>Configura un parámetro de Visibilidad para diferentes tipos de puerta</li>
+                            </ol>
+                        </li>
+                        <li><strong>Pruebas del bloque</strong>
+                            <ul>
+                                <li>Guarda el bloque y cierra el editor</li>
+                                <li>Inserta varias instancias del bloque</li>
+                                <li>Prueba los diferentes parámetros configurados</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Biblioteca de Bloques Dinámicos</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Crear una colección de bloques dinámicos básicos para uso en proyectos de diseño arquitectónico.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Planificación (20 min)</strong>
+                            <ul>
+                                <li>Forma equipos de 2-3 personas</li>
+                                <li>Seleccionen 5 elementos arquitectónicos comunes (ej: ventanas, puertas, muebles, equipos sanitarios)</li>
+                                <li>Definan los parámetros dinámicos necesarios para cada elemento</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (60 min)</strong>
+                            <ol type="a">
+                                <li>Cada equipo desarrolla los 5 bloques dinámicos</li>
+                                <li>Documenta cada bloque con instrucciones de uso</li>
+                                <li>Prueba cada bloque en diferentes escenarios</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (10 min por equipo)</strong>
+                            <ul>
+                                <li>Muestra los bloques creados</li>
+                                <li>Explica los parámetros implementados</li>
+                                <li>Comparte los desafíos encontrados y cómo los resolvieron</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Sistema de Ventanas Dinámicas</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un sistema completo de ventanas dinámicas para un proyecto arquitectónico.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Tipos de Ventanas</strong>
+                            <ul>
+                                <li>Ventana corrediza de dos hojas</li>
+                                <li>Ventana abatible</li>
+                                <li>Ventana fija</li>
+                                <li>Ventana tipo proyectante</li>
+                            </ul>
+                        </li>
+                        <li><strong>Parámetros Obligatorios</strong>
+                            <ul>
+                                <li>Ancho y alto ajustables</li>
+                                <li>Grosor del marco</li>
+                                <li>Número de hojas</li>
+                                <li>Dirección de apertura</li>
+                                <li>Materiales (vidrio, marco, herrajes)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación Requerida</strong>
+                            <ul>
+                                <li>Archivo .dwg con todos los bloques</li>
+                                <li>Manual de usuario con capturas de pantalla</li>
+                                <li>Video tutorial de 3-5 minutos mostrando el uso</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Configuración correcta de parámetros (15pts)</li>
+                        <li>Uso apropiado de acciones (15pts)</li>
+                        <li>Organización de capas y propiedades (10pts)</li>
+                        <li>Eficiencia en el flujo de trabajo (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en las medidas (10pts)</li>
+                        <li>Funcionamiento sin errores (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Documentación clara y completa (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de bloques dinámicos</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica adicional</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 18 -->
+        <div id="sesion18" class="session">
+            <h2>Sesión 18: Parámetros de bloques</h2>
+            <div class="content">
+                <p>Profundizaremos en los diferentes tipos de parámetros y cómo configurarlos para crear bloques dinámicos más potentes.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Dominar los diferentes tipos de parámetros</li>
+                        <li>Configurar propiedades avanzadas de parámetros</li>
+                        <li>Crear conjuntos de parámetros</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Parámetros avanzados</strong>
+                        <ul>
+                            <li>Parámetro de alineación
+                                <ul>
+                                    <li>Configuración de ángulos</li>
+                                    <li>Puntos de inserción</li>
+                                </ul>
+                            </li>
+                            <li>Parámetro de visibilidad
+                                <ul>
+                                    <li>Estados de visibilidad</li>
+                                    <li>Control de objetos visibles</li>
+                                </ul>
+                            </li>
+                            <li>Parámetro de búsqueda
+                                <ul>
+                                    <li>Crear listas de búsqueda</li>
+                                    <li>Asignar valores</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Propiedades de parámetros</strong>
+                        <ul>
+                            <li>Valores fijos vs. variables
+                                <ul>
+                                    <li>Establecer valores mínimos/máximos</li>
+                                    <li>Incrementos</li>
+                                </ul>
+                            </li>
+                            <li>Expresiones y fórmulas
+                                <ul>
+                                    <li>Sintaxis básica</li>
+                                    <li>Variables predefinidas</li>
+                                    <li>Operadores matemáticos</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Configuración Avanzada de Parámetros</h3>
+                    <p><strong>Objetivo:</strong> Dominar la configuración de parámetros avanzados en bloques dinámicos.</p>
+                    
+                    <h4>Parte 1: Parámetros de Alineación (45 min)</h4>
+                    <ol>
+                        <li><strong>Crear un bloque de silla de oficina</strong>
+                            <ul>
+                                <li>Dibuja los componentes básicos (asiento, respaldo, base)</li>
+                                <li>Añade un parámetro de alineación al centro de la base</li>
+                                <li>Configura el ángulo de inclinación del respaldo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pruebas de alineación</strong>
+                            <ol type="a">
+                                <li>Inserta el bloque cerca de una pared</li>
+                                <li>Observa cómo se ajusta automáticamente</li>
+                                <li>Modifica el ángulo de inclinación</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Parámetros de Visibilidad (45 min)</h4>
+                    <ol>
+                        <li><strong>Crear estados de visibilidad</strong>
+                            <ul>
+                                <li>Para un bloque de ventana, crea estados para:
+                                    <ul>
+                                        <li>Vista en planta</li>
+                                        <li>Vista en alzado</li>
+                                        <li>Vista en 3D</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuración avanzada</strong>
+                            <ol type="a">
+                                <li>Asigna objetos a cada estado de visibilidad</li>
+                                <li>Prueba los diferentes estados</li>
+                                <li>Ajusta la configuración según sea necesario</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Sistema de Mobiliario Modular</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un sistema de muebles modulares con parámetros avanzados.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Planificación (20 min)</strong>
+                            <ul>
+                                <li>Forma equipos de 2-3 personas</li>
+                                <li>Seleccionen un tipo de mueble (ej: estantería, escritorio, sistema de almacenamiento)</li>
+                                <li>Definan los parámetros modulares necesarios</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (60 min)</strong>
+                            <ol type="a">
+                                <li>Crea el bloque base con parámetros dinámicos</li>
+                                <li>Implementa parámetros de visibilidad para diferentes configuraciones</li>
+                                <li>Configura parámetros de búsqueda para opciones predefinidas</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (10 min por equipo)</strong>
+                            <ul>
+                                <li>Muestra cómo funciona el sistema modular</li>
+                                <li>Explica los parámetros implementados</li>
+                                <li>Comparte los desafíos encontrados</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Biblioteca de Puertas Paramétricas</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear una biblioteca completa de puertas con parámetros avanzados.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Tipos de Puertas</strong>
+                            <ul>
+                                <li>Puerta de una hoja (izquierda/derecha)</li>
+                                <li>Puerta de dos hojas</li>
+                                <li>Puerta corrediza</li>
+                                <li>Puerta plegable</li>
+                            </ul>
+                        </li>
+                        <li><strong>Parámetros Avanzados</strong>
+                            <ul>
+                                <li>Dimensiones ajustables (ancho, alto, grosor)</li>
+                                <li>Estados de visibilidad (abierta/cerrada)</li>
+                                <li>Opciones de material y acabado</li>
+                                <li>Incluir marcos y herrajes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación Requerida</strong>
+                            <ul>
+                                <li>Archivo .dwg con todos los bloques</li>
+                                <li>Catálogo PDF con especificaciones técnicas</li>
+                                <li>Video demostrativo de 3-5 minutos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Configuración de parámetros avanzados (20pts)</li>
+                        <li>Uso de estados de visibilidad (15pts)</li>
+                        <li>Implementación de parámetros de búsqueda (15pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en las medidas (10pts)</li>
+                        <li>Funcionamiento sin errores (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Documentación clara y completa (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de parámetros avanzados</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica adicional</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <strong>Nota importante:</strong> Los bloques dinámicos son compatibles con AutoCAD 2006 y versiones posteriores. Asegúrate de guardar el archivo en un formato compatible si necesitas compartirlo con otros usuarios.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 19 -->
+        <div id="sesion19" class="session">
+            <h2>Sesión 19: Acciones de bloques</h2>
+            <div class="content">
+                <p>Aprenderemos a añadir acciones a los parámetros para hacer que los bloques dinámicos sean verdaderamente interactivos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Agregar acciones a parámetros</li>
+                        <li>Configurar propiedades de acciones</li>
+                        <li>Crear interacciones complejas</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Tipos de acciones</strong>
+                        <ul>
+                            <li>Estirar
+                                <ul>
+                                    <li>Selección de geometría</li>
+                                    <li>Puntos de estiramiento</li>
+                                    <li>Áreas de estiramiento</li>
+                                </ul>
+                            </li>
+                            <li>Mover
+                                <ul>
+                                    <li>Selección de objetos</li>
+                                    <li>Dirección del movimiento</li>
+                                </ul>
+                            </li>
+                            <li>Escalar
+                                <ul>
+                                    <li>Punto base</li>
+                                    <li>Factor de escala</li>
+                                </ul>
+                            </li>
+                            <li>Rotar
+                                <ul>
+                                    <li>Centro de rotación</li>
+                                    <li>Ángulo de rotación</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Acciones avanzadas</strong>
+                        <ul>
+                            <li>Matriz
+                                <ul>
+                                    <li>Configuración de filas y columnas</li>
+                                    <li>Distancias de separación</li>
+                                </ul>
+                            </li>
+                            <li>Barra
+                                <ul>
+                                    <li>Personalización de la barra</li>
+                                    <li>Asignación de propiedades</li>
+                                </ul>
+                            </li>
+                            <li>Conjunto de acciones
+                                <ul>
+                                    <li>Agrupar acciones</li>
+                                    <li>Secuenciar acciones</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Dominio de Acciones en Bloques Dinámicos</h3>
+                    <p><strong>Objetivo:</strong> Aprender a implementar y configurar acciones avanzadas en bloques dinámicos.</p>
+                    
+                    <h4>Parte 1: Acciones Básicas (60 min)</h4>
+                    <ol>
+                        <li><strong>Acción de Estiramiento</strong>
+                            <ul>
+                                <li>Crea un bloque de ventana corrediza básica</li>
+                                <li>Añade un parámetro lineal para el ancho</li>
+                                <li>Configura la acción de estiramiento para las hojas de la ventana</li>
+                                <li>Prueba el ajuste del ancho manteniendo las proporciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Acción de Matriz</strong>
+                            <ol type="a">
+                                <li>Agrega un parámetro de matriz al bloque de ventana</li>
+                                <li>Configura la acción para duplicar las hojas</li>
+                                <li>Establece la distancia fija entre hojas</li>
+                                <li>Prueba la funcionalidad de matriz</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Acciones Avanzadas (60 min)</h4>
+                    <ol>
+                        <li><strong>Barra de Herramientas Personalizada</strong>
+                            <ul>
+                                <li>Crea una barra de herramientas con opciones comunes</li>
+                                <li>Asigna acciones a cada botón</li>
+                                <li>Personaliza los íconos y descripciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conjunto de Acciones</strong>
+                            <ol type="a">
+                                <li>Agrupa acciones relacionadas</li>
+                                <li>Configura la secuencia de ejecución</li>
+                                <li>Prueba la interacción entre acciones</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Sistema de Ventanas Interactivas</h3>
+                    <p><strong>Duración:</strong> 90 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar un sistema completo de ventanas con acciones dinámicas avanzadas.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Planificación (20 min)</strong>
+                            <ul>
+                                <li>Forma equipos de 2-3 personas</li>
+                                <li>Seleccionen un tipo de ventana (corrediza, abatible, proyectante)</li>
+                                <li>Definan las acciones necesarias para su funcionamiento</li>
+                            </ul>
+                        </li>
+                        <li><strong>Desarrollo (60 min)</strong>
+                            <ol type="a">
+                                <li>Crea el bloque base con parámetros</li>
+                                <li>Implementa las acciones necesarias</li>
+                                <li>Configura la interacción entre acciones</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (10 min por equipo)</strong>
+                            <ul>
+                                <li>Demuestra el funcionamiento del bloque</li>
+                                <li>Explica las acciones implementadas</li>
+                                <li>Comparte los desafíos encontrados</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto: Biblioteca de Muebles con Acciones Avanzadas</h3>
+                    <p><strong>Fecha de entrega:</strong> 1 semana después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear una colección de muebles con acciones interactivas avanzadas.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Tipos de Muebles</strong>
+                            <ul>
+                                <li>Silla de oficina ajustable</li>
+                                <li>Escritorio con cajones extensibles</li>
+                                <li>Estantería modular</li>
+                                <li>Mesa extensible</li>
+                            </ul>
+                        </li>
+                        <li><strong>Acciones Obligatorias</strong>
+                            <ul>
+                                <li>Movimiento de piezas (ej: apertura de cajones)</li>
+                                <li>Ajuste de dimensiones</li>
+                                <li>Cambio de configuración (ej: altura de asiento)</li>
+                                <li>Opciones de personalización</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación Requerida</strong>
+                            <ul>
+                                <li>Archivo .dwg con todos los bloques</li>
+                                <li>Manual de usuario con capturas de pantalla</li>
+                                <li>Video demostrativo de 3-5 minutos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación de la Sesión</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Dominio Técnico (50 puntos)</strong></p>
+                    <ul>
+                        <li>Configuración correcta de acciones (20pts)</li>
+                        <li>Interacción entre parámetros y acciones (15pts)</li>
+                        <li>Uso de acciones avanzadas (15pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Funcionamiento sin errores (10pts)</li>
+                        <li>Interfaz intuitiva (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Aplicación Práctica (20 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Documentación clara y completa (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de acciones avanzadas</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica adicional</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo:</strong> Usa <span class="command">BACTIONSET</span> para seleccionar rápidamente un conjunto de objetos para una acción. Recuerda probar todas las interacciones después de configurar las acciones para asegurar un funcionamiento óptimo.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sesión 20 -->
+        <div id="sesion20" class="session">
+            <h2>Sesión 20: Práctica con bloques dinámicos</h2>
+            <div class="content">
+                <p>En esta sesión aplicaremos todo lo aprendido para crear bloques dinámicos avanzados y resolver problemas comunes.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Crear una biblioteca de bloques dinámicos</li>
+                        <li>Solucionar problemas comunes</li>
+                        <li>Optimizar el rendimiento de los bloques</li>
+                    </ul>
+                </div>
+
+                <h3>Contenido detallado:</h3>
+                <ol>
+                    <li><strong>Proyecto integrador</strong>
+                        <ul>
+                            <li>Bloque de mueble modular
+                                <ul>
+                                    <li>Estantes ajustables</li>
+                                    <li>Cajones deslizantes</li>
+                                    <li>Opciones de puertas</li>
+                                </ul>
+                            </li>
+                            <li>Bloque de escalera
+                                <ul>
+                                    <li>Número de escalones variable</li>
+                                    <li>Altura y ancho ajustables</li>
+                                    <li>Diferentes estilos de barandilla</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Buenas prácticas</strong>
+                        <ul>
+                            <li>Organización de la biblioteca
+                                <ul>
+                                    <li>Estructura de carpetas</li>
+                                    <li>Convenciones de nombres</li>
+                                </ul>
+                            </li>
+                            <li>Optimización
+                                <ul>
+                                    <li>Reducción de geometría innecesaria</li>
+                                    <li>Uso eficiente de parámetros</li>
+                                </ul>
+                            </li>
+                            <li>Documentación
+                                <ul>
+                                    <li>Instrucciones de uso</li>
+                                    <li>Parámetros personalizables</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="exercise">
+                    <h3>Ejercicio Práctico: Proyecto Integrador de Bloques Dinámicos</h3>
+                    <p><strong>Objetivo:</strong> Aplicar todos los conocimientos adquiridos para crear un sistema completo de bloques dinámicos interconectados.</p>
+                    
+                    <h4>Parte 1: Mueble Modular (90 min)</h4>
+                    <ol>
+                        <li><strong>Configuración Inicial</strong>
+                            <ul>
+                                <li>Crea un bloque base de 60x30x80 cm</li>
+                                <li>Añade parámetros para ancho, profundidad y altura</li>
+                                <li>Configura acciones de estiramiento para cada dimensión</li>
+                            </ul>
+                        </li>
+                        <li><strong>Componentes Modulares</strong>
+                            <ol type="a">
+                                <li>Estantes ajustables con espaciado automático</li>
+                                <li>Cajones deslizantes con guías visibles</li>
+                                <li>Opciones de puertas (corredizas, abatibles, sin puerta)</li>
+                                <li>Soportes y herrajes ocultos/mostrables</li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                    <h4>Parte 2: Escalera Paramétrica (90 min)</h4>
+                    <ol>
+                        <li><strong>Parámetros Principales</strong>
+                            <ul>
+                                <li>Altura total (80-300 cm)</li>
+                                <li>Ancho de huella (25-35 cm)</li>
+                                <li>Altura de contrahuella (15-20 cm)</li>
+                                <li>Número de escalones (3-20)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Opciones Avanzadas</strong>
+                            <ol type="a">
+                                <li>Diferentes estilos de barandilla</li>
+                                <li>Materiales y texturas</li>
+                                <li>Opciones de iluminación</li>
+                                <li>Dimensiones automáticas según normativa</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="activity">
+                    <h3>Actividad en Clase: Taller de Resolución de Problemas</h3>
+                    <p><strong>Duración:</strong> 120 minutos</p>
+                    <p><strong>Objetivo:</strong> Desarrollar habilidades para identificar y solucionar problemas comunes en bloques dinámicos.</p>
+                    
+                    <p><strong>Instrucciones:</strong></p>
+                    <ol>
+                        <li><strong>Análisis de Casos (30 min)</strong>
+                            <ul>
+                                <li>Revisa los bloques con problemas proporcionados por el instructor</li>
+                                <li>Identifica los errores y posibles soluciones</li>
+                                <li>Documenta tu análisis</li>
+                            </ul>
+                        </li>
+                        <li><strong>Corrección de Errores (60 min)</strong>
+                            <ol type="a">
+                                <li>Repara los bloques defectuosos</li>
+                                <li>Optimiza su rendimiento</li>
+                                <li>Documenta los cambios realizados</li>
+                            </ol>
+                        </li>
+                        <li><strong>Presentación (30 min)</strong>
+                            <ul>
+                                <li>Explica los problemas encontrados</li>
+                                <li>Muestra cómo los resolviste</li>
+                                <li>Comparte consejos para evitar errores similares</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="homework">
+                    <h3>Proyecto Final: Biblioteca Personal de Bloques Dinámicos</h3>
+                    <p><strong>Fecha de entrega:</strong> 2 semanas después de la sesión</p>
+                    <p><strong>Objetivo:</strong> Crear una biblioteca personalizada de bloques dinámicos para tu portafolio profesional.</p>
+                    
+                    <p><strong>Requisitos:</strong></p>
+                    <ol>
+                        <li><strong>Categorías Mínimas</strong>
+                            <ul>
+                                <li>Mobiliario (mínimo 5 bloques)</li>
+                                <li>Elementos arquitectónicos (puertas, ventanas, escaleras)</li>
+                                <li>Equipamiento técnico (instalaciones, iluminación)</li>
+                                <li>Anotaciones y cotas inteligentes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Características Requeridas</strong>
+                            <ul>
+                                <li>Parámetros intuitivos</li>
+                                <li>Acciones bien definidas</li>
+                                <li>Documentación clara</li>
+                                <li>Compatibilidad entre versiones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Entregables</strong>
+                            <ul>
+                                <li>Archivo .dwg con todos los bloques</li>
+                                <li>Catálogo PDF con especificaciones</li>
+                                <li>Video demostrativo (5-7 minutos)</li>
+                                <li>Manual de usuario</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="evaluation">
+                    <h3>Evaluación Final del Módulo</h3>
+                    <p><strong>Rúbrica de evaluación (100 puntos):</strong></p>
+                    
+                    <p><strong>1. Complejidad Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Uso avanzado de parámetros (15pts)</li>
+                        <li>Implementación de acciones (15pts)</li>
+                        <li>Optimización del rendimiento (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Calidad del Trabajo (30 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión y funcionalidad (10pts)</li>
+                        <li>Interfaz de usuario (10pts)</li>
+                        <li>Presentación profesional (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>3. Documentación (20 puntos)</strong>
+                    <ul>
+                        <li>Manual de usuario (10pts)</li>
+                        <li>Video demostrativo (10pts)</li>
+                    </ul>
+
+                    <p><strong>4. Aplicación Práctica (10 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (5pts)</li>
+                        <li>Potencial de reutilización (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>Escala de calificación:</strong></p>
+                    <ul>
+                        <li>90-100 puntos: Excelente dominio de bloques dinámicos</li>
+                        <li>80-89 puntos: Buen manejo con mínimos errores</li>
+                        <li>70-79 puntos: Nivel aceptable, requiere práctica adicional</li>
+                        <li>60-69 puntos: Necesita refuerzo en conceptos básicos</li>
+                        <li>0-59 puntos: No cumple con los requisitos mínimos</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo final:</strong> Usa <span class="command">TESTBLOCK</span> para probar tus bloques dinámicos en diferentes versiones de AutoCAD y asegura la compatibilidad. Mantén tu biblioteca organizada y documentada para facilitar su uso futuro.
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

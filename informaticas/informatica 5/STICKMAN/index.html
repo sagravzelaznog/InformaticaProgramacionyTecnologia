@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar un Stickman en AutoCAD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .step {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-left: 4px solid #3498db;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .coordinates {
+            background-color: #e8f4f8;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .coordinates-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .coordinates-table th, .coordinates-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .coordinates-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crear un Stickman en AutoCAD</h1>
+        
+        <div class="step">
+            <h2>1. Configuración Inicial</h2>
+            <ol>
+                <li>Abre AutoCAD y crea un nuevo dibujo.</li>
+                <li>Asegúrate de que las unidades estén configuradas correctamente: <span class="command">UNIDADES</span> → Establecer a "Decimal" y precisión de 0.00.</li>
+                <li>Activa el modo <span class="command">ORTO</span> (presiona F8).</li>
+                <li>Activa el modo <span class="command">SNAP</span> (presiona F9).</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2>2. Dibujar la Cabeza (Círculo)</h2>
+            <p>Vamos a dibujar un círculo para la cabeza en las coordenadas (0,0):</p>
+            <div class="coordinates">
+                <p>Comando: <span class="command">CIRCULO</span> → Enter</p>
+                <p>Especificar punto central: <span class="command">0,0</span> → Enter</p>
+                <p>Especificar radio: <span class="command">10</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>3. Dibujar el Cuerpo (Línea Vertical)</h2>
+            <p>Dibujaremos una línea desde el centro de la cabeza hacia abajo:</p>
+            <div class="coordinates">
+                <p>Comando: <span class="command">LINEA</span> → Enter</p>
+                <p>Primer punto: <span class="command">0,-10</span> → Enter</p>
+                <p>Siguiente punto: <span class="command">0,-50</span> → Enter</p>
+                <p>Presiona Enter para terminar</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>4. Dibujar los Brazos (Líneas Diagonales)</h2>
+            <p>Dibujaremos dos líneas desde el centro del cuerpo hacia los lados:</p>
+            <div class="coordinates">
+                <p>Comando: <span class="command">LINEA</span> → Enter</p>
+                <p>Primer punto: <span class="command">0,-25</span> → Enter</p>
+                <p>Siguiente punto: <span class="command">-30,-15</span> → Enter (brazo izquierdo)</p>
+                <p>Presiona Enter</p>
+                <p>Comando: <span class="command">LINEA</span> → Enter</p>
+                <p>Primer punto: <span class="command">0,-25</span> → Enter</p>
+                <p>Siguiente punto: <span class="command">30,-15</span> → Enter (brazo derecho)</p>
+                <p>Presiona Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>5. Dibujar las Piernas (Líneas Diagonales)</h2>
+            <p>Dibujaremos dos líneas desde la parte inferior del cuerpo:</p>
+            <div class="coordinates">
+                <p>Comando: <span class="command">LINEA</span> → Enter</p>
+                <p>Primer punto: <span class="command">0,-50</span> → Enter</p>
+                <p>Siguiente punto: <span class="command">-20,-80</span> → Enter (pierna izquierda)</p>
+                <p>Presiona Enter</p>
+                <p>Comando: <span class="command">LINEA</span> → Enter</p>
+                <p>Primer punto: <span class="command">0,-50</span> → Enter</p>
+                <p>Siguiente punto: <span class="command">20,-80</span> → Enter (pierna derecha)</p>
+                <p>Presiona Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>6. Agregar Detalles a la Cara (Opcional)</h2>
+            <p>Para hacer el stickman más expresivo, podemos agregar ojos y una sonrisa:</p>
+            
+            <h3>Ojo Izquierdo (Círculo Pequeño)</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">CIRCULO</span> → Enter</p>
+                <p>Especificar punto central: <span class="command">-3,3</span> → Enter</p>
+                <p>Especificar radio: <span class="command">1.5</span> → Enter</p>
+            </div>
+
+            <h3>Ojo Derecho (Círculo Pequeño)</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">CIRCULO</span> → Enter</p>
+                <p>Especificar punto central: <span class="command">3,3</span> → Enter</p>
+                <p>Especificar radio: <span class="command">1.5</span> → Enter</p>
+            </div>
+
+            <h3>Sonrisa (Arco)</h3>
+            <div class="coordinates">
+                <p>Comando: <span class="command">ARC</span> → Enter</p>
+                <p>Especificar punto inicial: <span class="command">-5,-5</span> → Enter</p>
+                <p>Segundo punto: <span class="command">0,-8</span> → Enter</p>
+                <p>Punto final: <span class="command">5,-5</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>7. Resumen de Coordenadas</h2>
+            <table class="coordinates-table">
+                <tr>
+                    <th>Elemento</th>
+                    <th>Punto Inicial</th>
+                    <th>Punto Final/Radio</th>
+                </tr>
+                <tr>
+                    <td>Cabeza</td>
+                    <td>0,0</td>
+                    <td>Radio: 10</td>
+                </tr>
+                <tr>
+                    <td>Cuerpo</td>
+                    <td>0,0</td>
+                    <td>0,-50</td>
+                </tr>
+                <tr>
+                    <td>Brazo Izquierdo</td>
+                    <td>0,-25</td>
+                    <td>-30,-15</td>
+                </tr>
+                <tr>
+                    <td>Brazo Derecho</td>
+                    <td>0,-25</td>
+                    <td>30,-15</td>
+                </tr>
+                <tr>
+                    <td>Pierna Izquierda</td>
+                    <td>0,-50</td>
+                    <td>-20,-80</td>
+                </tr>
+                <tr>
+                    <td>Pierna Derecha</td>
+                    <td>0,-50</td>
+                    <td>20,-80</td>
+                </tr>
+                <tr>
+                    <td>Ojo Izquierdo</td>
+                    <td>-3,3</td>
+                    <td>Radio: 1.5</td>
+                </tr>
+                <tr>
+                    <td>Ojo Derecho</td>
+                    <td>3,3</td>
+                    <td>Radio: 1.5</td>
+                </tr>
+                <tr>
+                    <td>Sonrisa</td>
+                    <td>-5,-5 a 0,-8 a 5,-5</td>
+                    <td>Arco</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="note">
+            <h3>Consejos Adicionales:</h3>
+            <ul>
+                <li>Puedes usar <span class="command">ZOOM EXTENTS</span> para ver todo el dibujo.</li>
+                <li>Usa <span class="command">SAVE</span> para guardar tu trabajo.</li>
+                <li>Puedes modificar las coordenadas para cambiar la posición o tamaño del stickman.</li>
+                <li>Experimenta con diferentes grosores de línea usando <span class="command">PEDIT</span>.</li>
+            </ul>
+        </div>
+
+        <a href="../index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; JMGV-PTEL-2025 Plan de Estudios AutoCAD 2D. Todos los derechos reservados.</p>
+</footer>
+</html>

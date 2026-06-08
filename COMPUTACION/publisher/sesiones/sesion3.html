@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Trabajo con texto - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="userInfo" class="user-info hidden">
+            <span>Bienvenido/a, <span id="userName"></span></span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+        
+        <header>
+            <h1 class="titulo-principal">Sesión 3: Trabajo con texto</h1>
+            <p class="fecha">Publicado el 24 de agosto de 2025</p>
+        </header>
+
+        <nav aria-label="Navegación">
+            <a href="../index.html" class="volver-inicio">← Volver al índice</a>
+        </nav>
+
+        <main>
+            <section class="objetivos">
+                <h2>Objetivos de Aprendizaje</h2>
+                <ul>
+                    <li>Agregar y formatear texto en Publisher</li>
+                    <li>Utilizar estilos de texto y párrafo</li>
+                    <li>Trabajar con listas y columnas de texto</li>
+                    <li>Insertar y formatear WordArt</li>
+                </ul>
+            </section>
+
+            <section class="contenido">
+                <h2>Introducción al trabajo con texto</h2>
+                <p>En esta sesión aprenderás a trabajar con texto en Microsoft Publisher, desde la inserción básica hasta el formato avanzado para crear publicaciones profesionales.</p>
+                
+                <div class="imagen-contenedor">
+                    <img src="../static/img/formato-texto-publisher.svg" alt="Ejemplo de formato de texto en Publisher" class="img-fluid">
+                </div>
+
+                <h3>Agregar cuadros de texto</h3>
+                <p>Los cuadros de texto son contenedores que te permiten agregar y organizar texto en tus publicaciones:</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Insertar un cuadro de texto</h4>
+                    <ol class="paso-a-paso">
+                        <li>Haz clic en la pestaña <strong>Insertar</strong></li>
+                        <li>Selecciona <strong>Cuadro de texto</strong></li>
+                        <li>Dibuja el cuadro de texto en el área de trabajo</li>
+                        <li>Escribe tu texto dentro del cuadro</li>
+                    </ol>
+                </div>
+
+                <h3>Formato de texto básico</h3>
+                <p>Puedes aplicar formato al texto seleccionándolo y usando las opciones de la pestaña <strong>Inicio</strong>:</p>
+                
+                <div class="ejemplo-formato">
+                    <div class="ejemplo-item">
+                        <h4>Fuente</h4>
+                        <img src="../static/img/opciones-fuente.svg" alt="Opciones de fuente" class="img-ejemplo">
+                        <ul>
+                            <li>Cambiar tipo de letra</li>
+                            <li>Tamaño de fuente</li>
+                            <li>Negrita, cursiva, subrayado</li>
+                            <li>Color del texto</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ejemplo-item">
+                        <h4>Párrafo</h4>
+                        <img src="../static/img/opciones-parrafo.svg" alt="Opciones de párrafo" class="img-ejemplo">
+                        <ul>
+                            <li>Alineación de texto</li>
+                            <li>Interlineado</li>
+                            <li>Sangría</li>
+                            <li>Viñetas y numeración</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="consejo">
+                    <h4>Consejo profesional</h4>
+                    <p>Usa <strong>Estilos rápidos</strong> para aplicar formatos predefinidos y mantener la consistencia en tu diseño.</p>
+                </div>
+
+                <h3>Trabajo con columnas</h3>
+                <p>Las columnas te permiten organizar el texto de manera más profesional:</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Crear columnas</h4>
+                    <ol class="paso-a-paso">
+                        <li>Selecciona el cuadro de texto</li>
+                        <li>Ve a la pestaña <strong>Herramientas de Cuadro de texto</strong></li>
+                        <li>Haz clic en <strong>Columnas</strong></li>
+                        <li>Selecciona el número de columnas</li>
+                        <li>Ajusta el espacio entre columnas si es necesario</li>
+                    </ol>
+                </div>
+
+                <div class="imagen-contenedor">
+                    <img src="../static/img/ejemplo-columnas.svg" alt="Ejemplo de columnas de texto" class="img-fluid">
+                </div>
+
+                <h3>WordArt y efectos de texto</h3>
+                <p>Agrega estilo a tus títulos con WordArt:</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Insertar WordArt</h4>
+                    <ol class="paso-a-paso">
+                        <li>Haz clic en <strong>Insertar</strong> > <strong>WordArt</strong></li>
+                        <li>Selecciona un estilo de WordArt</li>
+                        <li>Escribe tu texto</li>
+                        <li>Usa las <strong>Herramientas de WordArt</strong> para personalizar</li>
+                    </ol>
+                </div>
+
+                <div class="actividad-practica">
+                    <h3>Actividad Práctica</h3>
+                    <p>Crea un folleto informativo que incluya:</p>
+                    <ul>
+                        <li>Un título principal con WordArt</li>
+                        <li>Subtítulos con formato de negrita</li>
+                        <li>Párrafos de texto justificados</li>
+                        <li>Una sección con dos columnas</li>
+                        <li>Una lista con viñetas</li>
+                    </ul>
+                    <p>Guarda tu trabajo como "Practica3_TuNombre.pub"</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+    <!-- Incluir el script de autenticación -->
+    <script src="../js/auth.js"></script>
+</body>
+</html>

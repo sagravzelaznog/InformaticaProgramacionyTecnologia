@@ -1,0 +1,250 @@
+:root {
+    --color-primario: #0056b3;
+    --color-fondo: #f4f4f9;
+    --color-texto: #333333;
+    --color-correcto: #28a745;
+    --color-incorrecto: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+header nav a, header nav button {
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+header nav button:hover, header nav a:hover {
+    background-color: white;
+    color: var(--color-primario);
+}
+
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.modulo {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.pregunta {
+    margin-bottom: 2rem;
+}
+
+.pregunta p {
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+.opcion {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.opcion:hover {
+    background-color: #d3d9df;
+}
+
+.opcion.correcta {
+    background-color: var(--color-correcto);
+    color: white;
+    border-color: var(--color-correcto);
+}
+
+.opcion.incorrecta {
+    background-color: var(--color-incorrecto);
+    color: white;
+    border-color: var(--color-incorrecto);
+}
+
+.oculto {
+    display: none;
+}
+
+#resultado-quiz {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.lista-respuestas {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+.subtitulo-tablero {
+    color: #555555;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.cuadricula-herramientas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.tarjeta-herramienta {
+    background-color: var(--color-fondo);
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 1.5rem;
+    flex: 1 1 calc(33.333% - 1.5rem);
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-herramienta h3 {
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-herramienta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border-color: var(--color-primario);
+}
+body.tema-oscuro {
+    --color-fondo: #1a1a1a;
+    --color-texto: #e0e0e0;
+    --color-primario: #4dabf7;
+}
+
+body.tema-oscuro .modulo,
+body.tema-oscuro .tarjeta-herramienta {
+    background-color: #2d2d2d;
+    border-color: #444;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+body.tema-oscuro header {
+    background-color: #111111;
+    border-bottom: 1px solid #333;
+}
+
+body.tema-oscuro .opcion {
+    background-color: #333333;
+    color: #e0e0e0;
+    border-color: #555555;
+}
+
+body.tema-oscuro .opcion:hover {
+    background-color: #444444;
+}
+
+body.tema-oscuro .subtitulo-tablero {
+    color: #aaaaaa;
+}
+.formulario-promedio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.formulario-promedio label {
+    font-size: 0.9rem;
+    color: var(--color-texto);
+    font-weight: bold;
+}
+
+.formulario-promedio input {
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333333;
+}
+
+.formulario-promedio button {
+    margin-top: 0.5rem;
+    padding: 0.6rem;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.formulario-promedio button:hover {
+    opacity: 0.9;
+}
+
+#resultado-promedio {
+    margin-top: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.resultado-oculto {
+    display: none;
+}
+
+.aprobado {
+    background-color: var(--color-correcto);
+    color: white;
+}
+
+.reprobado {
+    background-color: var(--color-incorrecto);
+    color: white;
+}
+
+body.tema-oscuro .formulario-promedio input {
+    background-color: #333333;
+    color: #e0e0e0;
+    border-color: #555555;
+}

@@ -1,0 +1,82 @@
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f8f9fa"/>
+    
+    <!-- Título -->
+    <text x="250" y="30" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Trabajando con Columnas de Texto</text>
+    
+    <!-- Área de trabajo de Publisher -->
+    <rect x="20" y="50" width="460" height="330" fill="white" stroke="#dee2e6" stroke-width="1" rx="5"/>
+    
+    <!-- Barra de herramientas -->
+    <rect x="30" y="60" width="440" height="30" fill="#f1f1f1" rx="3"/>
+    
+    <!-- Botón de columnas -->
+    <rect x="40" y="65" width="100" height="20" fill="#e6f2ff" stroke="#4d94ff" rx="2"/>
+    <text x="45" y="80" font-family="Arial" font-size="12">Columnas</text>
+    <polygon points="135,70 145,75 135,80" fill="#666"/>
+    
+    <!-- Líneas guía de columnas -->
+    <line x1="170" y1="100" x2="170" y2="360" stroke="#4d94ff" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="320" y1="100" x2="320" y2="360" stroke="#4d94ff" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Texto en columnas -->
+    <g font-family="Arial" font-size="12" fill="#333">
+        <!-- Columna 1 -->
+        <rect x="40" y="100" width="120" height="260" fill="#f8f9ff" stroke="#dee2e6" rx="2"/>
+        <text x="50" y="120" font-weight="bold">Columna 1</text>
+        <text x="50" y="140">Este es un ejemplo de</text>
+        <text x="50" y="160">texto fluyendo en</text>
+        <text x="50" y="180">múltiples columnas.</text>
+        <text x="50" y="210">El texto se ajusta</text>
+        <text x="50" y="230">automáticamente</text>
+        <text x="50" y="250">de una columna a</text>
+        <text x="50" y="270">la siguiente.</text>
+        
+        <!-- Columna 2 -->
+        <rect x="190" y="100" width="120" height="260" fill="#f8f9ff" stroke="#dee2e6" rx="2"/>
+        <text x="200" y="120" font-weight="bold">Columna 2</text>
+        <text x="200" y="140">Puedes ajustar el</text>
+        <text x="200" y="160">ancho de las</text>
+        <text x="200" y="180">columnas según</text>
+        <text x="200" y="200">tus necesidades</text>
+        <text x="200" y="220">de diseño.</text>
+        
+        <!-- Columna 3 -->
+        <rect x="340" y="100" width="120" height="260" fill="#f8f9ff" stroke="#dee2e6" rx="2"/>
+        <text x="350" y="120" font-weight="bold">Columna 3</text>
+        <text x="350" y="140">También es posible</text>
+        <text x="350" y="160">agregar imágenes</text>
+        <text x="350" y="180">entre las columnas</text>
+        <text x="350" y="200">para hacer el</text>
+        <text x="350" y="220">documento más</text>
+        <text x="350" y="240">atractivo.</text>
+    </g>
+    
+    <!-- Indicador de flujo de texto -->
+    <path d="M160 180 C 200 220, 190 240, 170 250" fill="none" stroke="#28a745" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="175,255 170,250 165,255 170,260" fill="#28a745"/>
+    
+    <!-- Cuadro de diálogo de columnas -->
+    <g transform="translate(300, 250)">
+        <rect x="0" y="0" width="150" height="100" fill="white" stroke="#0078d7" stroke-width="1.5" rx="5"/>
+        <rect x="0" y="0" width="150" height="25" fill="#0078d7" rx="5 5 0 0"/>
+        <text x="75" y="18" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Columnas</text>
+        
+        <text x="15" y="45" font-family="Arial" font-size="11">Número de columnas:</text>
+        <rect x="120" y="35" width="20" height="20" fill="white" stroke="#ccc" rx="2"/>
+        <text x="130" y="50" font-family="Arial" font-size="11" text-anchor="middle">3</text>
+        
+        <text x="15" y="75" font-family="Arial" font-size="11">Ancho: Automático</text>
+        
+        <rect x="60" y="80" width="80" height="15" fill="#f8f9fa" stroke="#ccc" rx="2"/>
+        <text x="100" y="92" font-family="Arial" font-size="11" text-anchor="middle">Aceptar</text>
+    </g>
+    
+    <!-- Indicador -->
+    <g transform="translate(300, 200)">
+        <circle cx="15" cy="15" r="12" fill="#ffeb3b" stroke="#ffc107" stroke-width="2"/>
+        <text x="15" y="20" font-family="Arial" font-size="12" text-anchor="middle">i</text>
+        <text x="35" y="20" font-family="Arial" font-size="10">Configura las columnas desde el menú Formato</text>
+    </g>
+</svg>

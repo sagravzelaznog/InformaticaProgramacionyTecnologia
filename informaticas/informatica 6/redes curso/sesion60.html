@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S15 E60: Presentación Final de Proyectos (II)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 15, Sesión 60: Presentación de Proyectos (II) 🎉</h1>
+        <p class="subtitle">Defensa del Proyecto y Sesión de Preguntas/Respuestas</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Sesión de Defensa y Preguntas</h2>
+            <p>Durante la defensa, el instructor planteará preguntas sobre tu diseño. Prepárate para justificar tus elecciones y demostrar tu conocimiento de los fundamentos.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Preguntas de Troubleshooting</h3>
+                    <p>Ejemplo: "¿Qué pasa si configuras una IP estática en un rango que ya es gestionado por DHCP?" (Respuesta: Conflicto de IP).</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Preguntas de Seguridad</h3>
+                    <p>Ejemplo: "¿Por qué es inseguro usar Telnet en lugar de SSH?" (Respuesta: Telnet envía las credenciales en texto plano, SSH las cifra).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Tarea: Revisión de Escenarios de Falla</h2>
+            <p>Antes de presentar, repasa estos escenarios comunes de fallo y cómo los diagnosticarías:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Falla de Acceso a Servidor (DNS Roto)</h3>
+                    <p>Diagnóstico: Ping al nombre falla, pero ping a la IP del servidor funciona. (Causa: Servidor DNS mal configurado en el cliente).</p>
+                </div>
+                <div>
+                    <h3>Falla de Routing</h3>
+                    <p>Diagnóstico: Ping al Gateway funciona, pero Ping a una red externa falla. (Causa: Falta la Ruta por Defecto en el Router o la interfaz WAN está caída).</p>
+                </div>
+                <div>
+                    <h3>Falla de Seguridad</h3>
+                    <p>Diagnóstico: Al escanear con Zenmap, el Puerto 23 está abierto. (Causa: Telnet habilitado, se debe cerrar y configurar SSH).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Fin de las Presentaciones</h2>
+            <p>¡Felicidades! Has llegado al final de la fase de presentación. En la última semana, solo queda el repaso final y el examen teórico que valida todos tus conocimientos.</p>
+            <button id="projectPresent2CheckBtn">Finalizar Presentaciones</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S15 E60</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion59.html" class="nav-button">Anterior</a>
+        <a href="sesion61.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

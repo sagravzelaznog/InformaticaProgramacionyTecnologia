@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 1: Fundamentos de AutoCAD 2D</title>
+    <style>
+        :root {
+            --primary-color: #0078d4; /* Un azul profesional y moderno */
+            --secondary-color: #2c3e50; /* Un gris oscuro para texto y cabeceras */
+            --accent-color: #ff8c00; /* Naranja para destacar elementos importantes */
+            --light-gray: #f4f4f9;
+            --dark-gray: #333;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 25px;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .session {
+            background-color: var(--white);
+            border-left: 7px solid var(--primary-color);
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .session:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        .session h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 1.8em;
+        }
+        .objectives, .pro-tip {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            background-color: var(--light-gray);
+            border: 1px solid #e1e1e1;
+        }
+        .objectives h3, .pro-tip h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .pro-tip {
+            border-left: 5px solid var(--accent-color);
+        }
+        .pro-tip h3 {
+            color: var(--accent-color);
+        }
+        code {
+            background-color: #e1e1e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #005a9e;
+        }
+        details {
+            margin: 15px 0;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #eef;
+            border-radius: var(--border-radius);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 1: Introducción a AutoCAD</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 1: Conociendo la Interfaz -->
+        <section id="sesion1" class="session">
+            <h2>Sesión 1: Conociendo la Interfaz</h2>
+            <div class="content">
+                <p>En esta sesión nos familiarizaremos con el entorno de trabajo de AutoCAD y configuraremos nuestro espacio de trabajo inicial.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Conocer los elementos principales de la interfaz de AutoCAD.</li>
+                        <li>Identificar las diferentes áreas de trabajo y barras de herramientas.</li>
+                        <li>Configurar las preferencias iniciales del espacio de trabajo.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Presentación del curso:</strong> Requisitos, versiones y recursos.</li>
+                        <li><strong>Área de trabajo:</strong> Barra de menús, cinta de opciones, barra de acceso rápido y ventana de comandos.</li>
+                        <li><strong>Espacio de trabajo:</strong> Modelo vs. Papel, vistas, unidades y límites.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Explorando la Interfaz</summary>
+                    <p><strong>Objetivo:</strong> Familiarizarse con los elementos principales de la interfaz de AutoCAD.</p>
+                    <ol>
+                        <li><strong>Exploración Guiada (15 min):</strong> Localiza la barra de menús, cinta de opciones, barra de acceso rápido, ventana de comandos y barra de estado.</li>
+                        <li><strong>Personalización Básica (10 min):</strong> Activa y posiciona las barras de herramientas "Dibujo" y "Modificar".</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>La ventana de comandos es tu mejor aliada. En lugar de buscar botones, puedes escribir los nombres de los comandos (o sus alias, como <code>L</code> para <code>LINEA</code>). ¡Es mucho más rápido! Personaliza también la "Barra de herramientas de acceso rápido" con los comandos que más utilices.</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Configuración Inicial</summary>
+                    <p><strong>Duración:</strong> 20 minutos</p>
+                    <ol>
+                        <li><strong>Configuración de Unidades (5 min):</strong> Usa <code>UNIDADES</code> para establecerlas en "Decimales" con precisión 0.00 y en "Milímetros".</li>
+                        <li><strong>Establecer Límites del Dibujo (5 min):</strong> Con <code>LIMITS</code>, define el área de trabajo a un tamaño A3 (420,297).</li>
+                        <li><strong>Guardar Plantilla (5 min):</strong> Guarda tu configuración como una plantilla de dibujo <code>.dwt</code> para reutilizarla.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Tarea: Investigación y Práctica</summary>
+                    <p><strong>Fecha de entrega:</strong> Antes de la próxima sesión.</p>
+                    <ol>
+                        <li><strong>Investigación (1 hora):</strong> Resume qué es CAD, sus aplicaciones y las diferencias clave de AutoCAD con otros programas.</li>
+                        <li><strong>Práctica (30 min):</strong> Abre tu plantilla, explora la cinta de opciones y dibuja formas básicas usando la línea de comandos.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Participación en clase (20%)</li>
+                        <li>Ejercicio de configuración (30%)</li>
+                        <li>Tarea de investigación y práctica (50%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 2: Comandos Básicos de Dibujo I -->
+        <section id="sesion2" class="session">
+            <h2>Sesión 2: Comandos Básicos de Dibujo I</h2>
+            <div class="content">
+                <p>Aprenderemos los comandos fundamentales para comenzar a dibujar en AutoCAD.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Utilizar comandos básicos de dibujo: <code>LÍNEA</code>, <code>CÍRCULO</code>, <code>RECTÁNGULO</code>.</li>
+                        <li>Aplicar diferentes métodos de selección de objetos.</li>
+                        <li>Navegar eficientemente por el dibujo con <code>ZOOM</code> y <code>PAN</code>.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Comandos de Dibujo:</strong> <code>LÍNEA</code>, <code>CÍRCULO</code>, <code>RECTÁNGULO</code> y sus opciones.</li>
+                        <li><strong>Métodos de Selección:</strong> Simple, ventana, cruce y filtro.</li>
+                        <li><strong>Comandos de Navegación:</strong> <code>ZOOM</code>, <code>PAN</code>, vistas y rejilla.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Comandos Básicos</summary>
+                    <p><strong>Objetivo:</strong> Practicar el uso de comandos básicos de dibujo.</p>
+                    <ol>
+                        <li><strong>Dibujando con <code>LÍNEA</code> (10 min):</strong> Dibuja un cuadrado de 100x100 usando coordenadas relativas.</li>
+                        <li><strong>Creando <code>CÍRCULOS</code> (10 min):</strong> Prueba los diferentes métodos de creación (Centro/Radio, Centro/Diámetro, 3 Puntos).</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>Domina los métodos de selección. La selección por ventana (de izquierda a derecha, azul) solo selecciona objetos que están completamente dentro. La selección por cruce (de derecha a izquierda, verde) selecciona cualquier objeto que toque. ¡Saber cuándo usar cada una te ahorrará muchísimo tiempo!</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Creación de un Boceto Básico</summary>
+                    <p><strong>Duración:</strong> 25 minutos</p>
+                    <p><strong>Instrucciones:</strong> En tu plantilla, dibuja un rectángulo con un círculo centrado y cuatro círculos en las esquinas. Luego, borra dos de ellos y practica la navegación.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Práctica de Comandos Básicos</summary>
+                     <p><strong>Fecha de entrega:</strong> Antes de la próxima sesión.</p>
+                    <p>Crea un dibujo libre que combine líneas, círculos y rectángulos. Documenta tu proceso y los desafíos que encontraste.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Participación y precisión en clase (40%)</li>
+                        <li>Entrega y calidad de la tarea (60%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 3: Comandos Básicos de Dibujo II -->
+        <section id="sesion3" class="session">
+            <h2>Sesión 3: Comandos Básicos de Dibujo II</h2>
+            <div class="content">
+                <p>Ampliaremos nuestro conocimiento sobre comandos de dibujo y técnicas de construcción para lograr diseños precisos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Dibujar formas geométricas complejas: <code>ARCO</code>, <code>POLÍGONO</code>, <code>ELIPSE</code>, <code>POLILÍNEA</code>.</li>
+                        <li>Utilizar referencias a objetos (OSNAP) para un dibujo de alta precisión.</li>
+                        <li>Aplicar comandos de construcción como <code>DIVIDE</code> y <code>MEASURE</code>.</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Figuras Avanzadas:</strong> Arcos, elipses, polígonos y polilíneas.</li>
+                        <li><strong>Herramientas de Precisión:</strong> Puntos de referencia (OSNAP), rastreo y ayudas al dibujo.</li>
+                        <li><strong>Comandos de Construcción:</strong> <code>DIVIDE</code> (dividir en partes iguales) y <code>MEASURE</code> (medir segmentos).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Figuras Avanzadas</summary>
+                    <p><strong>Objetivo:</strong> Dominar el uso de comandos de dibujo más complejos.</p>
+                    <ol>
+                        <li><strong>Creando <code>POLÍGONOS</code> (15 min):</strong> Dibuja polígonos inscritos y circunscritos en un círculo.</li>
+                        <li><strong>Trabajando con <code>ELIPSES</code> (15 min):</strong> Explora los métodos de creación por ejes y centro.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>Activa las Referencias a Objetos (<code>OSNAP</code> o <code>F3</code>) y configura las más comunes: Punto final, Punto medio, Centro, Intersección y Perpendicular. Trabajar sin <code>OSNAP</code> es como dibujar a mano alzada con los ojos vendados. ¡Es la clave para la precisión profesional!</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Diseño con Formas Avanzadas</summary>
+                    <p><strong>Duración:</strong> 30 minutos</p>
+                    <p><strong>Instrucciones:</strong> Dibuja un pentágono, inscribe un círculo en él y usa <code>DIVIDE</code> para crear una estrella de 5 puntas. Enmarca el diseño con una elipse.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Proyecto de Diseño Geométrico</summary>
+                    <p><strong>Fecha de entrega:</strong> Antes de la próxima sesión.</p>
+                    <p>Crea un diseño geométrico libre utilizando polígonos, elipses y polilíneas. Usa referencias a objetos para asegurar la precisión. Documenta tu proceso.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Precisión en el uso de comandos y OSNAP (50%)</li>
+                        <li>Creatividad y complejidad del diseño de la tarea (50%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Sesión 4: Modificación de Objetos -->
+        <section id="sesion4" class="session">
+            <h2>Sesión 4: Modificación de Objetos</h2>
+            <div class="content">
+                <p>Aprenderemos a modificar objetos existentes para crear dibujos más complejos y precisos de forma eficiente.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de Aprendizaje:</h3>
+                    <ul>
+                        <li>Utilizar comandos de modificación esenciales: <code>MOVER</code>, <code>COPIAR</code>, <code>GIRAR</code>, <code>ESCALA</code>.</li>
+                        <li>Aplicar comandos de edición como <code>RECORTA</code>, <code>ALARGA</code>, <code>EMPALME</code> y <code>CHAFLAN</code>.</li>
+                        <li>Crear patrones y repeticiones con <code>MATRIZ</code> (Array).</li>
+                    </ul>
+                </div>
+
+                <details>
+                    <summary>Contenido Detallado</summary>
+                    <ol>
+                        <li><strong>Modificación Básica:</strong> Mover, copiar, girar y escalar.</li>
+                        <li><strong>Modificación Avanzada:</strong> Recortar, alargar, empalme, chaflán, desfase y matriz.</li>
+                        <li><strong>Edición de Polilíneas:</strong> Unir, curvar y editar vértices.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Ejercicio Práctico: Dominando la Modificación</summary>
+                    <p><strong>Objetivo:</strong> Manipular objetos existentes con precisión.</p>
+                    <ol>
+                        <li><strong>Práctica de Comandos Básicos (20 min):</strong> Usa <code>MOVER</code>, <code>COPIAR</code>, <code>GIRAR</code> y <code>ESCALA</code> en varias formas.</li>
+                        <li><strong>Técnicas de Precisión (15 min):</strong> Combina los comandos con referencias a objetos (OSNAP) para lograr exactitud.</li>
+                    </ol>
+                </details>
+
+                <div class="pro-tip">
+                    <h3>Consejo Profesional:</h3>
+                    <p>Nunca dibujes dos veces lo que puedes copiar, mover o reflejar. Los comandos de modificación son la clave de la productividad en AutoCAD. Acostúmbrate a usar <code>RECORTA</code> (TRIM) y <code>ALARGA</code> (EXTEND) con la opción de selección rápida (presionar Enter dos veces).</p>
+                </div>
+
+                <details>
+                    <summary>Actividad en Clase: Diseño con Modificaciones</summary>
+                    <p><strong>Duración:</strong> 35 minutos</p>
+                    <p><strong>Instrucciones:</strong> Dibuja una forma base (rectángulo y círculo), y luego usa <code>COPIAR</code>, <code>MATRIZ</code>, <code>EMPALME</code> y <code>CHAFLAN</code> para crear un diseño más complejo.</p>
+                </details>
+
+                <details>
+                    <summary>Tarea: Proyecto Final de la Semana</summary>
+                    <p><strong>Fecha de entrega:</strong> Al inicio de la próxima semana.</p>
+                    <p>Crea un diseño técnico simple (ej. una brida, un logo geométrico) utilizando una combinación de todos los comandos de dibujo y modificación vistos en la semana. Documenta tu proceso.</p>
+                </details>
+
+                <details>
+                    <summary>Evaluación de la Sesión</summary>
+                    <ul>
+                        <li>Eficiencia en el uso de comandos de modificación (50%)</li>
+                        <li>Calidad y precisión del proyecto final de la tarea (50%)</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

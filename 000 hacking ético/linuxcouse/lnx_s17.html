@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion17: Automatización y Bash Scripting</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 17: Automatización (Bash Scripting)</h1>
+            <p class="intro-text">El tiempo es evidencia que se evapora. Cuando entras a un servidor comprometido, no tienes 20 minutos para escribir comandos uno por uno. Hoy aprenderemos a encapsular todo lo que aprendiste en los 16 laboratorios anteriores dentro de un solo archivo ejecutable: un <strong>Script de Primer Respondiente</strong>.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: La Anatomía del Script (El Shebang)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Un script de Linux es solo un archivo de texto con comandos apilados. La magia ocurre en la primera línea: el <strong>Shebang (<code>#!/bin/bash</code>)</strong>. Esto le dice al sistema operativo qué intérprete usar para leer el archivo.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Creamos el archivo de nuestro script forense usando nano o touch</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> touch triaje_forense.sh
+<span class="prompt">-(kali㉿kali)-[~]$</span> nano triaje_forense.sh
+
+<span class="comment"># Dentro del editor nano, escribimos:</span>
+<span class="comment">#!/bin/bash</span>
+<span class="comment">echo "Iniciando recolección de evidencia..."</span></code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: El Aliento de Vida (Permisos de Ejecución)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Por defecto, Linux crea archivos de texto sin el permiso de ejecución (medida de seguridad). Para que nuestro script corra, debemos inyectarle la letra <code>x</code> (execute) usando nuestros conocimientos de la sesión 06.</p>
+                    <div class="code-encapsulated kali-theme root-mode">
+                        <pre><code><span class="comment"># Agregamos el permiso de ejecución al dueño del archivo</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> chmod +x triaje_forense.sh
+
+<span class="comment"># Ejecutamos el script usando ./ (que significa "en esta carpeta")</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> sudo ./triaje_forense.sh</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Constructor Táctico (Simulador Bash)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Programar scripts en terminal puede ser abstracto. Utiliza este ensamblador visual para construir tu herramienta de triaje automático. Haz clic en los módulos de inteligencia para añadirlos al archivo, y luego "ejecuta" el script para ver el resultado.</p>
+                    
+                    <div class="script-builder">
+                        <div class="builder-palette">
+                            <h4>Módulos Forenses (Haz clic para añadir)</h4>
+                            <div class="module-btn" data-cmd="echo '--- RED ---'; ss -tulpn">🔌 Escáner de Puertos (ss)</div>
+                            <div class="module-btn" data-cmd="echo '--- RAM ---'; ps aux | head -n 5">🧠 Top Procesos (ps aux)</div>
+                            <div class="module-btn" data-cmd="echo '--- HASH ---'; sha256sum /etc/passwd">⚖️ Firma de Integridad (sha256sum)</div>
+                            <button id="btn-clear-script" class="btn btn-secondary" style="width:100%; margin-top:10px;">Limpiar Script</button>
+                        </div>
+                        <div class="builder-workspace">
+                            <h4>Archivo: triaje.sh</h4>
+                            <div class="editor-pane" id="script-editor">#!/bin/bash
+echo "=== REPORTE INICIAL ==="
+</div>
+                            <button id="btn-run-script" class="btn btn-mint">./Ejecutar Script</button>
+                        </div>
+                    </div>
+                    <div class="script-output hidden" id="script-output"></div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Variables y Redirección Total</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>En el nivel maestro, tu script no solo imprime en pantalla; guarda automáticamente la información en un archivo con la fecha exacta del incidente usando <strong>Variables</strong>.</p>
+                    <div class="tip-card" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.08);">
+                        <strong style="color: #34d399;">El Código Maestro:</strong> Copia este bloque, pégalo en tu `triaje.sh` en Kali Linux, dale permisos y ejecútalo. Felicidades, has creado tu primera herramienta forense.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment">#!/bin/bash</span>
+<span class="comment"># Definimos una variable con la fecha y hora actual</span>
+FECHA=$(date +"%Y-%m-%d_%H-%M")
+REPORTE="evidencia_$FECHA.txt"
+
+echo "Recolectando evidencia en: $REPORTE"
+
+<span class="comment"># Usamos >> para anexar datos sin borrar lo anterior</span>
+echo "=== CONEXIONES DE RED ===" >> $REPORTE
+ss -tulpn >> $REPORTE
+
+echo "=== FIRMA DEL REPORTE ===" >> $REPORTE
+sha256sum $REPORTE >> $REPORTE
+
+echo "¡Triaje finalizado con éxito!"</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #17. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

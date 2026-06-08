@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Sencilla en AutoCAD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dibujar una Casa Sencilla en AutoCAD</h1>
+        
+        <div class="preview">
+            <h3>Vista Previa</h3>
+            <svg class="house-preview" width="400" height="300" viewBox="0 0 300 250">
+                <!-- Base -->
+                <rect x="50" y="100" width="200" height="120" fill="none" stroke="black"/>
+                <!-- Techo -->
+                <polygon points="50,100 150,30 250,100" fill="none" stroke="black"/>
+                <!-- Puerta -->
+                <rect x="120" y="170" width="40" height="50" fill="none" stroke="black"/>
+                <!-- Ventanas -->
+                <rect x="80" y="130" width="30" height="30" fill="none" stroke="black"/>
+                <rect x="190" y="130" width="30" height="30" fill="none" stroke="black"/>
+                <line x1="95" y1="130" x2="95" y2="160" stroke="black"/>
+                <line x1="80" y1="145" x2="110" y2="145" stroke="black"/>
+                <line x1="205" y1="130" x2="205" y2="160" stroke="black"/>
+                <line x1="190" y1="145" x2="220" y2="145" stroke="black"/>
+                <!-- Chimenea -->
+                <rect x="180" y="30" width="20" height="30" fill="none" stroke="black"/>
+                <rect x="175" y="25" width="30" height="10" fill="none" stroke="black"/>
+            </svg>
+        </div>
+
+        <div class="step">
+            <h2>1. Configuración Inicial</h2>
+            <ol>
+                <li>Abre AutoCAD y crea un nuevo dibujo.</li>
+                <li>Configura las unidades: <span class="command">UNIDADES</span> → Decimal, precisión 0.00.</li>
+                <li>Activa <span class="command">ORTO</span> (F8) y <span class="command">SNAP</span> (F9).</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2>2. Base de la Casa</h2>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">50,100</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@200,120</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>3. Techo</h2>
+            <div class="coordinates">
+                <p>Comando: <span class="command">L</span> → Enter</p>
+                <p>Puntos: <span class="command">50,220</span> → <span class="command">150,290</span> → <span class="command">250,220</span></p>
+                <p>Escribe <span class="command">C</span> → Enter para cerrar</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>4. Puerta</h2>
+            <div class="coordinates">
+                <p>Comando: <span class="command">REC</span> → Enter</p>
+                <p>Primera esquina: <span class="command">130,100</span> → Enter</p>
+                <p>Esquina opuesta: <span class="command">@40,50</span> → Enter</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>5. Ventanas</h2>
+            <div class="coordinates">
+                <p>Ventana Izquierda:</p>
+                <p><span class="command">REC</span> → <span class="command">80,160</span> → <span class="command">@30,30</span></p>
+                <p>Líneas divisorias: <span class="command">L</span> → <span class="command">95,160</span> → <span class="command">95,190</span></p>
+                <p><span class="command">L</span> → <span class="command">80,175</span> → <span class="command">110,175</span></p>
+                
+                <p>Ventana Derecha:</p>
+                <p><span class="command">REC</span> → <span class="command">190,160</span> → <span class="command">@30,30</span></p>
+                <p>Líneas divisorias: <span class="command">L</span> → <span class="command">205,160</span> → <span class="command">205,190</span></p>
+                <p><span class="command">L</span> → <span class="command">190,175</span> → <span class="command">220,175</span></p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>6. Chimenea (Opcional)</h2>
+            <div class="coordinates">
+                <p>Base: <span class="command">REC</span> → <span class="command">180,260</span> → <span class="command">@20,30</span></p>
+                <p>Parte superior: <span class="command">REC</span> → <span class="command">175,285</span> → <span class="command">@30,10</span></p>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>7. Guardar el Dibujo</h2>
+            <p>Guarda tu trabajo con <span class="command">CTRL + S</span> o escribe <span class="command">SAVE</span>.</p>
+            <p>Nombre sugerido: <span class="command">#nombre_practica6_unidad1.dwg</span></p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="../index.html" class="back-link">← Volver al Menú Principal</a>
+        </>
+    </div>
+</body>
+<footer>
+	<p>&copy; JMGV-PTEL-2025 Plan de Estudios AutoCAD 2D. Todos los derechos reservados.</p>
+</footer>
+</html>

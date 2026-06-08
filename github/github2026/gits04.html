@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Ignorar y Limpiar Archivos</title>
+    <style>
+        :root {
+            --primary-color: #F14E32;
+            --secondary-color: #333;
+            --bg-color: #f4f4f9;
+            --text-color: #555;
+            --code-bg: #e8e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #fff;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.4s;
+            border-bottom: 1px solid #ddd;
+            border-left: 5px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .accordion:hover, .active {
+            background-color: #eaeaea;
+            border-left: 5px solid var(--primary-color);
+        }
+        .accordion::after {
+            content: '\002B';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .active::after {
+            content: "\2212";
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 5px solid var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+        }
+        .panel h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: var(--secondary-color);
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            vertical-align: super;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sesión 4: Ignorar y Limpiar Archivos</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Volver al Temario Principal</a>
+
+    <button class="accordion">1. Ignorar Archivos: `.gitignore`</button>
+    <div class="panel">
+        <p>En proyectos de software, es común tener recursos temporales (como archivos de caché o código compilado) o archivos con información secreta (contraseñas o credenciales) que no deben ser compartidos. Puedes hacer que Git ignore estos archivos creando uno o varios archivos <code>.gitignore</code> [1].</p>
+        
+        <h3>Reglas para Subdirectorios</h3>
+        <p>Existen dos formas principales de ignorar archivos que se encuentran dentro de subdirectorios [2]:</p>
+        <ul>
+            <li><strong>Desde la raíz:</strong> Puedes colocar una ruta absoluta dentro del <code>.gitignore</code> principal. Por ejemplo: <br><code>src/output.log</code> [3].</li>
+            <li><strong>Múltiples archivos <code>.gitignore</code>:</strong> Puedes crear un archivo <code>.gitignore</code> directamente en el subdirectorio (ej. dentro de <code>src/</code>) y escribir la ruta relativa: <br><code>output.log</code> [3].</li>
+        </ul>
+
+        <h3>El archivo `.gitignore` Global</h3>
+        <p>Si deseas que ciertas reglas se apliquen a todos los repositorios en tu máquina (muy útil para ignorar archivos del sistema operativo como <code>.DS_Store</code> en Mac o <code>Thumbs.db</code> en Windows), puedes configurar un <code>.gitignore</code> global [4, 5]:</p>
+        <pre><code>git config --global core.excludesfile &lt;Ruta_Al_Archivo_Global&gt;</code></pre>
+        <p>Recuerda que si el <code>.gitignore</code> local incluye explícitamente un archivo, este tendrá prioridad sobre el global [6].</p>
+    </div>
+
+    <button class="accordion">2. Ignorar Archivos Rastreables</button>
+    <div class="panel">
+        <p>En ocasiones necesitas mantener un archivo dentro del repositorio de Git pero deseas ignorar cualquier cambio posterior que le hagas localmente. Esto es muy útil para archivos de configuración que proporcionan valores por defecto y requieren sobreescrituras locales [7, 8].</p>
+        
+        <h3>Uso de `assume-unchanged`</h3>
+        <p>Puedes indicarle a Git que "asuma" que un archivo no ha sido modificado y que deje de revisar o reportar sus cambios usando el siguiente comando [8]:</p>
+        <pre><code>git update-index --assume-unchanged mi-archivo.txt</code></pre>
+        <p>Al hacer esto, Git forzará la omisión de cualquier cambio en el archivo. Sin embargo, ten cuidado: si decides hacer un "pull" de este archivo o lo guardas en el "stash", tus cambios locales ignorados se perderán [9].</p>
+
+        <h3>Revertir el estado</h3>
+        <p>Si necesitas que Git vuelva a "prestar atención" a las modificaciones de este archivo, puedes revertir la configuración ejecutando [9]:</p>
+        <pre><code>git update-index --no-assume-unchanged mi-archivo.txt</code></pre>
+    </div>
+
+    <button class="accordion">3. Limpieza del Repositorio (`git clean`)</button>
+    <div class="panel">
+        <p>El comando <code>git clean</code> es útil cuando tienes archivos no rastreados (untracked) en tu directorio de trabajo y deseas deshacerte de ellos de manera rápida.</p>
+        
+        <h3>Previsualización con `--dry-run` (`-n`)</h3>
+        <p>Antes de eliminar algo de forma permanente, es una excelente práctica usar la bandera <code>-n</code> (o <code>--dry-run</code>). Esto no borrará nada, sino que solo mostrará una lista de los archivos que serían eliminados [10]:</p>
+        <pre><code>git clean -n</code></pre>
+
+        <h3>Eliminar archivos y directorios no rastreados (`-f` y `-d`)</h3>
+        <ul>
+            <li><strong>Eliminación forzada:</strong> Para eliminar definitivamente todos los archivos no rastreados en tu directorio, utiliza [11]:<br><code>git clean -f</code></li>
+            <li><strong>Eliminar directorios:</strong> Si también tienes carpetas completas que no están siendo rastreadas y quieres borrarlas junto con su contenido, agrega la bandera <code>-d</code> [12, 13]:<br><code>git clean -fd</code></li>
+        </ul>
+        <p><em>Nota: Por defecto, Git se negará a eliminar archivos o directorios a menos que se le pase la bandera de fuerza <code>-f</code>, <code>-n</code> o interactiva <code>-i</code> [10].</em></p>
+    </div>
+
+</div>
+
+<script>
+    var accordions = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accordions.length; i++) {
+        // Abrir el primer elemento por defecto
+        if (i === 0) {
+            accordions[i].classList.add("active");
+            var firstPanel = accordions[i].nextElementSibling;
+            firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+        }
+
+        accordions[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
+</script>
+
+</body>
+</html>

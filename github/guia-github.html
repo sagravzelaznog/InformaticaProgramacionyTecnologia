@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guía Visual - GitHub</title>
+        <link rel="stylesheet" href="styles-main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="module-container">
+            <div class="module-header">
+                <h1>🚀 Subir Proyecto a GitHub</h1>
+                <p class="module-subtitle">Guía paso a paso para publicar tu Proyecto de Cálculo Integral</p>
+            </div>
+
+        <!-- PASO 1 -->
+        <div class="module-content-section">
+            <div class="module-section-header">
+                <i class="fas fa-code-branch"></i>
+                <h2>Guía Paso a Paso</h2>
+            </div>
+            <div class="emoji">🌐</div>
+            <div class="step-description">
+                Si aún no tienes cuenta en GitHub, este es el primer paso.
+            </div>
+            <div class="info">
+                <div class="info-title">📌 Acción requerida:</div>
+                <div class="info-text">
+                    1. Ir a https://github.com/<br>
+                    2. Click en "Sign up"<br>
+                    3. Completar registro<br>
+                    4. Verificar email
+                </div>
+            </div>
+            <a href="https://github.com/signup" target="_blank" class="btn-primary" rel="noopener">Ir a GitHub →</a>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">Instalar Git en tu Computadora</div>
+            </div>
+            <div class="emoji">💻</div>
+            <div class="step-description">
+                Necesitas tener Git instalado en tu sistema.
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Verificar si Git está instalado
+git --version</code>
+            </div>
+            <div class="info">
+                <div class="info-title">Si no está instalado:</div>
+                <div class="info-text">
+                    Windows: Descargar de https://git-scm.com/download/win
+                </div>
+            </div>
+            <a href="https://git-scm.com/downloads" target="_blank" class="btn-primary" rel="noopener">Descargar Git →</a>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">Configurar Git (Primera vez)</div>
+            </div>
+            <div class="emoji">⚙️</div>
+            <div class="step-description">
+                Configura tu nombre y email en Git. Solo se hace una vez.
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Abrir PowerShell o CMD y ejecutar:
+
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu-email@ejemplo.com"
+
+# Verificar
+git config --list</code>
+            </div>
+        </div>
+
+        <!-- PASO 4 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">Crear Repositorio en GitHub</div>
+            </div>
+            <div class="emoji">📦</div>
+            <div class="step-description">
+                Crea un nuevo repositorio vacío en GitHub.
+            </div>
+            <div class="info">
+                <div class="info-title">Pasos en GitHub:</div>
+                <div class="info-text">
+                    1. Click en el botón "+" (arriba a la derecha)<br>
+                    2. Seleccionar "New repository"<br>
+                    3. Repository name: <strong>calculo-integral</strong><br>
+                    4. Description: "Plataforma educativa de Cálculo Integral"<br>
+                    5. Visibilidad: Public<br>
+                    6. NO marcar "Initialize with README"<br>
+                    7. Click "Create repository"
+                </div>
+            </div>
+            <div class="success">
+                <div class="success-title">✅ Importante:</div>
+                <div class="success-text">
+                    Copia la URL del repositorio que aparece. La necesitarás en el paso 6.
+                </div>
+            </div>
+            <a href="https://github.com/new" target="_blank" class="btn-primary" rel="noopener">Crear Repositorio →</a>
+        </div>
+
+        <!-- PASO 5 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">Inicializar Git Localmente</div>
+            </div>
+            <div class="emoji">🎯</div>
+            <div class="step-description">
+                En tu computadora, navega a la carpeta del proyecto e inicializa Git.
+            </div>
+            <div class="warning">
+                <div class="warning-title">⚠️ Importante:</div>
+                <div class="warning-text">
+                    Cambia la ruta por la ubicación real de tu proyecto.
+                </div>
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Abrir PowerShell y ejecutar:
+
+cd "C:\Users\admin\Documents\000 A PREPA\planeaciones especialidades\calculo\calculo integral"
+
+# Inicializar Git
+git init
+
+# Verificar
+git status</code>
+            </div>
+        </div>
+
+        <!-- PASO 6 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <div class="step-title">Agregar Archivos</div>
+            </div>
+            <div class="emoji">📁</div>
+            <div class="step-description">
+                Agrega todos los archivos de tu proyecto al área de preparación (staging area).
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Ver qué archivos hay
+git status
+
+# Agregar TODOS los archivos
+git add .
+
+# Verificar archivos agregados (aparecen en verde)
+git status</code>
+            </div>
+            <div class="success">
+                <div class="success-title">✅ El archivo .gitignore:</div>
+                <div class="success-text">
+                    Ya creamos un archivo .gitignore que excluye archivos innecesarios automáticamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- PASO 7 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <div class="step-title">Hacer el Primer Commit</div>
+            </div>
+            <div class="emoji">💾</div>
+            <div class="step-description">
+                Crea un "snapshot" de tu proyecto con un mensaje descriptivo.
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Crear commit
+git commit -m "🎉 Primer commit: Plataforma de Cálculo Integral con Firebase"
+
+# Ver historial
+git log --oneline</code>
+            </div>
+        </div>
+
+        <!-- PASO 8 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">8</div>
+                <div class="step-title">Conectar con GitHub</div>
+            </div>
+            <div class="emoji">🔗</div>
+            <div class="step-description">
+                Vincula tu repositorio local con el repositorio de GitHub.
+            </div>
+            <div class="warning">
+                <div class="warning-title">⚠️ Reemplaza TU_USUARIO:</div>
+                <div class="warning-text">
+                    Cambia "TU_USUARIO" por tu nombre de usuario de GitHub.
+                </div>
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Conectar con repositorio remoto (CAMBIA TU_USUARIO)
+git remote add origin https://github.com/TU_USUARIO/calculo-integral.git
+
+# Verificar
+git remote -v
+
+# Cambiar a rama main
+git branch -M main</code>
+            </div>
+        </div>
+
+        <!-- PASO 9 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">9</div>
+                <div class="step-title">Subir a GitHub (Push)</div>
+            </div>
+            <div class="emoji">⬆️</div>
+            <div class="step-description">
+                Sube tu código al repositorio de GitHub.
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># Subir archivos
+git push -u origin main</code>
+            </div>
+            <div class="warning">
+                <div class="warning-title">🔑 Autenticación:</div>
+                <div class="warning-text">
+                    Se te pedirá usuario y contraseña. Usa un Personal Access Token en lugar de tu contraseña.<br>
+                    <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Crear Token →</a>
+                </div>
+            </div>
+            <div class="success">
+                <div class="success-title">✅ ¡Listo!</div>
+                <div class="success-text">
+                    Si todo salió bien, verás un mensaje de éxito y tu código estará en GitHub.
+                </div>
+            </div>
+        </div>
+
+        <!-- PASO 10 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">10</div>
+                <div class="step-title">Verificar en GitHub</div>
+            </div>
+            <div class="emoji">✅</div>
+            <div class="step-description">
+                Abre tu repositorio en GitHub y verifica que todos los archivos estén ahí.
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code>https://github.com/TU_USUARIO/calculo-integral</code>
+            </div>
+            <div class="success">
+                <div class="success-title">✅ Deberías ver:</div>
+                <div class="success-text">
+                    • Todos tus archivos HTML, JS, MD<br>
+                    • El archivo README.md mostrándose en la página principal<br>
+                    • El historial de commits<br>
+                    • La fecha del último commit
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST FINAL -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">✓</div>
+                <div class="step-title">Checklist Final</div>
+            </div>
+            <div class="emoji">📋</div>
+            <ul class="checklist">
+                <li>Cuenta de GitHub creada</li>
+                <li>Git instalado en mi computadora</li>
+                <li>Git configurado (nombre y email)</li>
+                <li>Repositorio creado en GitHub</li>
+                <li>Git inicializado localmente</li>
+                <li>Archivos agregados con git add</li>
+                <li>Primer commit creado</li>
+                <li>Repositorio local conectado con GitHub</li>
+                <li>Código subido con git push</li>
+                <li>Archivos visibles en GitHub</li>
+            </ul>
+        </div>
+
+        <!-- USO DIARIO -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">🔄</div>
+                <div class="step-title">Uso Diario (después del primer push)</div>
+            </div>
+            <div class="emoji">⚡</div>
+            <div class="step-description">
+                Cada vez que hagas cambios y quieras subirlos:
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code># 1. Ver qué cambió
+git status
+
+# 2. Agregar cambios
+git add .
+
+# 3. Commit con mensaje
+git commit -m "Descripción de cambios"
+
+# 4. Subir a GitHub
+git push</code>
+            </div>
+            <div class="info">
+                <div class="info-title">💡 Comando rápido:</div>
+                <div class="info-text">
+                    Puedes combinar los comandos en una sola línea:
+                </div>
+            </div>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <code>git add . && git commit -m "Actualización" && git push</code>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h2>🎉 ¡Felicidades!</h2>
+            <p>Tu proyecto de Cálculo Integral está en GitHub</p>
+            <p>
+                📚 Ver documentación completa: <a href="INSTRUCCIONES_GITHUB.md" target="_blank" rel="noopener">INSTRUCCIONES_GITHUB.md</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiado';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+                button.textContent = '✗ Error';
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

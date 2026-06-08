@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeación: Vite Masterclass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #646cff;
+            --secondary: #ffdf33;
+            --dark: #242424;
+            --light: #ffffff;
+            --gray: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray);
+            color: var(--dark);
+        }
+
+        header {
+            background: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #f0f0ff;
+        }
+
+        .badge {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .methodology {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 1rem;
+        }
+
+        .method-item {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            table, thead, tbody, th, td, tr { display: block; }
+            th { position: absolute; top: -9999px; left: -9999px; }
+            td { border: none; position: relative; padding-left: 50%; }
+            td:before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Vite Master: De Zero a Superhéroe</h1>
+    <p>Planeación Académica - 10 Sesiones de Alto Impacto</p>
+</header>
+
+<div class="container">
+    
+    <div class="section-card">
+        <h2>Fase 1: Fundamentos y Velocidad</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sesión</th>
+                    <th>Tema</th>
+                    <th>Actividad Práctica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Sesión">01</td>
+                    <td><strong>El fin de la era lenta</strong></td>
+                    <td>Instalación de Node.js y `npm create vite@latest`. Exploración de carpetas.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">02</td>
+                    <td><strong>HMR y Activos</strong></td>
+                    <td>Creación de una Galería de Arte Dinámica con carga instantánea.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">03</td>
+                    <td><strong>Configuración y .env</strong></td>
+                    <td>Uso de `vite.config.js` y protección de API Keys.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>Fase 2: Ecosistema y Frameworks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sesión</th>
+                    <th>Tema</th>
+                    <th>Actividad Práctica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Sesión">04</td>
+                    <td><strong>Vite + Tailwind CSS</strong></td>
+                    <td>Diseño de una Landing Page responsiva con PostCSS.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">05</td>
+                    <td><strong>SPA (React/Vue)</strong></td>
+                    <td>Migración de pensamiento de Webpack a la arquitectura de Vite.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">06</td>
+                    <td><strong>Estados y Rutas</strong></td>
+                    <td>Implementación de navegación ultra rápida (Client-side routing).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>Fase 3: Nivel Genio (Optimización)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sesión</th>
+                    <th>Tema</th>
+                    <th>Actividad Práctica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Sesión">07</td>
+                    <td><strong>TypeScript Master</strong></td>
+                    <td>Tipado fuerte en proyectos Vite para evitar errores en producción.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">08</td>
+                    <td><strong>Plugins y PWA</strong></td>
+                    <td>Convertir la web en una App instalable que funciona offline.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>Fase 4: Despliegue Profesional</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sesión</th>
+                    <th>Tema</th>
+                    <th>Actividad Práctica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Sesión">09</td>
+                    <td><strong>Optimización de Build</strong></td>
+                    <td>Code Splitting y análisis de paquetes con Rollup.</td>
+                </tr>
+                <tr>
+                    <td data-label="Sesión">10</td>
+                    <td><strong>Lanzamiento Global</strong></td>
+                    <td>CI/CD con GitHub y despliegue en Vercel/Netlify.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-card">
+        <h2>Estrategias Pedagógicas</h2>
+        <div class="methodology">
+            <div class="method-item">
+                <strong>Codificación Dual</strong><br>
+                <small>Visual + Código</small>
+            </div>
+            <div class="method-item">
+                <strong>Andamiaje</strong><br>
+                <small>Guía progresiva</small>
+            </div>
+            <div class="method-item">
+                <strong>Gamificación</strong><br>
+                <small>Insignias por logro</small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    Diseñado por tu Thought Partner en Desarrollo y Educación &copy; 2025
+</footer>
+
+</body>
+</html>

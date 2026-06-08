@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 01: Cultura Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 01</h1>
+            <h2>Encuadre y Ciudadanía Digital</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Bienvenidos a la Era Digital</h3>
+            <p><strong>Objetivo:</strong> Comprender qué significa vivir en un mundo hiperconectado y establecer las reglas del juego para este semestre.</p>
+            
+            <div class="interactive-box">
+                <h4>🌐 Dinámica: Tu Huella Digital</h4>
+                <p>¿Alguna vez has googleado tu propio nombre? Todo lo que haces en internet deja rastro.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">4.9B</span>
+                        <span class="stat-label">Usuarios de Redes Sociales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6h</span>
+                        <span class="stat-label">Promedio diario en línea</span>
+                    </div>
+                </div>
+                <p class="highlight-text">"No eres solo un estudiante, eres un <strong>Ciudadano Digital</strong> con derechos y obligaciones."</p>
+            </div>
+        </section>
+        
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Conceptos Clave (NEM)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>🆔 Ciudadanía Digital</h4>
+                    <p>Es el conjunto de normas de comportamiento apropiado y responsable con respecto al uso de la tecnología.</p>
+                    <ul>
+                        <li><strong>Acceso:</strong> Brecha digital.</li>
+                        <li><strong>Comercio:</strong> Compras seguras.</li>
+                        <li><strong>Comunicación:</strong> Intercambio de información.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🤝 Netiqueta</h4>
+                    <p>Son los modales en internet. "No hagas en lo virtual lo que no harías en presencial".</p>
+                    <ul>
+                        <li>No escribir todo en MAYÚSCULAS (es gritar).</li>
+                        <li>Respetar la privacidad de otros.</li>
+                        <li>Evitar el <em>Spam</em>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>👤 Tu Identidad Digital</h4>
+                <p>Tu identidad no es solo tu foto de perfil. Es la suma de:</p>
+                <div class="equation-visual">
+                    <span>Tus Publicaciones</span> + <span>Tus Comentarios</span> + <span>Tus "Likes"</span> = <strong>TU REPUTACIÓN</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. El Contrato Digital</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Caso Práctico 1</h5>
+                    <p>Un compañero sube una foto vergonzosa de otro sin permiso. ¿Qué pilar de la ciudadanía digital rompió?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Respuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Respeto y Privacidad.</strong> Un buen ciudadano digital pide consentimiento antes de etiquetar o publicar.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Caso Práctico 2</h5>
+                    <p>Usas una contraseña "123456" para todas tus cuentas. ¿Es seguro?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>NO.</strong> Es una vulnerabilidad de <em>Seguridad Digital</em>. Debes usar contraseñas robustas y 2FA (Doble factor).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>📝 <strong>Tarea:</strong> Cambia la privacidad de una de tus redes sociales a "Solo amigos" hoy mismo.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 01 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S6 E23: Exploración y Mapeo de Red con Advanced IP Scanner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 6, Sesión 23: Mapeo de Red 🗺️</h1>
+        <p class="subtitle">Uso de Advanced IP Scanner para Inventario y Detección de Hosts</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Por qué Necesitamos Mapear la Red?</h2>
+            <p>El **Mapeo de Red** es la práctica de descubrir, identificar y documentar todos los dispositivos conectados a una red en un momento dado. Es una habilidad esencial para el mantenimiento y la seguridad:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Inventario y Auditoría</h3>
+                    <p>Saber cuántos PCs, impresoras y servidores existen, y a quién pertenecen. Esto facilita la gestión de IPs.</p>
+                </div>
+                <div class="card">
+                    <h3>Seguridad</h3>
+                    <p>Detectar dispositivos desconocidos o intrusos conectados a la LAN. Un dispositivo no autorizado es un riesgo de seguridad inmediato.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Advanced IP Scanner: El Explorador Gratuito</h2>
+            <p>**Advanced IP Scanner** es una herramienta gratuita y muy rápida, ideal para técnicos de campo. Escanea un rango de direcciones IP y devuelve información clave sobre los dispositivos que responden.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>Advanced IP Scanner muestra el estado, nombre y MAC de cada dispositivo en el rango escaneado.</figcaption>
+            </div>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Información que Proporciona</h3>
+                    <ul>
+                        <li>**Estado:** Si el host está activo o inactivo.</li>
+                        <li>**Dirección MAC:** Para identificar al fabricante del dispositivo.</li>
+                        <li>**Nombre de Host:** El nombre de la computadora en la red.</li>
+                        <li>**Puertos:** Muestra si puertos comunes (RDP, FTP, HTTP) están abiertos.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Configuración de Rango</h3>
+                    <p>Debes definir el rango de IP a escanear. Si tu red es 192.168.1.0/24, el rango será de **192.168.1.1 a 192.168.1.254**.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Práctica: Escaneo de tu Red Local</h2>
+            <p><strong>Tarea Práctica (Software Gratuito):</strong></p>
+            <ol>
+                <li>Descarga e instala Advanced IP Scanner (o Angry IP Scanner).</li>
+                <li>Identifica el rango de tu red local (ej. 192.168.1.1 a 192.168.1.254).</li>
+                <li>Ejecuta el escaneo completo.</li>
+                <li>Identifica los dispositivos conocidos (tu PC, router, móvil) y busca cualquier dispositivo con un nombre desconocido.</li>
+            </ol>
+            <button id="ipScannerDemoBtn">Iniciar Simulación de Escaneo</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S6 E23</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion22.html" class="nav-button">Anterior</a>
+        <a href="sesion24.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

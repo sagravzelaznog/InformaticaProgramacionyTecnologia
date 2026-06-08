@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 08: Rodaje y Producción</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 08</h1>
+            <h2>Rodaje: Luces, Cámara, ¡Acción!</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Luz es tu Pintura</h3>
+            <p><strong>Objetivo:</strong> Entender que la cámara no captura objetos, captura la luz que rebota en ellos.</p>
+            
+            <div class="interactive-box">
+                <h4>💡 El Pecado Capital del Video</h4>
+                <p>¿Cuál es el error #1 al grabar con celular?</p>
+                <div class="stats-grid">
+                    <div class="stat-item" style="background:#2d3748; color:white; padding:15px; border-radius:8px; width: 45%;">
+                        <span class="stat-label" style="color:#fc8181;">CONTRA LUZ (ERROR)</span>
+                        <div style="font-size: 2rem; margin:10px;">☀️ ➡️ 👤 ➡️ 📱</div>
+                        <p style="font-size: 0.8rem;">La luz está detrás de ti. Tú eres una sombra negra.</p>
+                    </div>
+                    <div class="stat-item" style="background:#2d3748; color:white; padding:15px; border-radius:8px; width: 45%;">
+                        <span class="stat-label" style="color:#68d391;">LUZ FRONTAL (GENIO)</span>
+                        <div style="font-size: 2rem; margin:10px;">☀️ ➡️ 📱 ➡️ 👤</div>
+                        <p style="font-size: 0.8rem;">La luz ilumina tu cara. La cámara está feliz.</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"Busca la ventana más grande y ponla frente a ti. Esa es tu lámpara de mil dólares."</p>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Set de Grabación Casero</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>☀️ Esquema de Iluminación</h4>
+                    <p>Cómo iluminar sin equipo profesional:</p>
+                    <ul>
+                        <li><strong>Luz Principal (Key Light):</strong> Una ventana o lámpara a 45° de tu cara.</li>
+                        <li><strong>Relleno (Fill):</strong> Una pared blanca o una cartulina para rebotar la luz y suavizar sombras.</li>
+                        <li><strong>Contra (Backlight):</strong> Una lamparita atrás para separarte del fondo.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🎤 Audio de Guerrilla</h4>
+                    <p>La gente perdona un video borroso, pero <strong>nunca perdona un mal audio</strong>.</p>
+                    <ul>
+                        <li><strong>El Closet:</strong> Grabar dentro del armario lleno de ropa elimina el eco (reverb).</li>
+                        <li><strong>Modo Avión:</strong> Obligatorio para evitar notificaciones en media toma.</li>
+                        <li><strong>La Claqueta:</strong> Aplaude fuerte antes de empezar para sincronizar audio y video luego.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>📱 Checklist de Configuración (Antes de REC)</h4>
+                <p>Tu celular es una cámara de cine si lo ajustas bien.</p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 15px;">
+                    <div style="background: #f0fdfa; border: 1px solid var(--primary); padding: 10px; border-radius: 5px; width: 140px;">
+                        <span style="font-size: 1.5rem;">🧼</span>
+                        <p style="font-weight: bold; margin-top: 5px;">Limpia el Lente</p>
+                        <p style="font-size: 0.7rem;">Parece obvio, pero la grasa del dedo arruina todo.</p>
+                    </div>
+                    <div style="background: #fff5f5; border: 1px solid var(--accent); padding: 10px; border-radius: 5px; width: 140px;">
+                        <span style="font-size: 1.5rem;">📏</span>
+                        <p style="font-weight: bold; margin-top: 5px;">Activa la Cuadrícula</p>
+                        <p style="font-size: 0.7rem;">Ayuda a mantener el horizonte recto.</p>
+                    </div>
+                    <div style="background: #ebf8ff; border: 1px solid #4299e1; padding: 10px; border-radius: 5px; width: 140px;">
+                        <span style="font-size: 1.5rem;">🔒</span>
+                        <p style="font-weight: bold; margin-top: 5px;">Bloqueo AE/AF</p>
+                        <p style="font-size: 0.7rem;">Deja presionado la pantalla para que la luz no cambie.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. ¡Acción!</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>El Problema del Eco</h5>
+                    <p>Estás grabando en un salón vacío y suena con mucho eco. ¿Qué haces?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Solución</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Rompe las ondas.</strong> Pon chamarras, mochilas o cojines alrededor del celular y de ti. Las superficies suaves absorben el sonido.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Vertical vs Horizontal</h5>
+                    <p>¿Cuándo grabar en vertical y cuándo en horizontal?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Regla</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Vertical (9:16):</strong> TikTok, Reels, Shorts (Consumo rápido en celular).</p>
+                        <p><strong>Horizontal (16:9):</strong> YouTube, Cine, TV (Consumo inmersivo).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🎥 <strong>Reto de Rodaje:</strong> Graba un clip de 15 segundos presentándote usando la técnica de "Luz de Ventana" y con el bloqueo de exposición activado.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 08 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

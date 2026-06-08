@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Entrada del Usuario y Conversión de Tipos - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 5</h1>
+                <h2>Entrada del Usuario y Conversión de Tipos</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-15-625" 
+                     role="progressbar" 
+                     aria-valuenow="15.625" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Aprender a crear programas interactivos que puedan recibir información del usuario, procesarla y mostrar resultados significativos, manejando adecuadamente los diferentes tipos de datos.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Utilizar la función <code>input()</code> para recibir datos del usuario</li>
+                        <li>Convertir entre diferentes tipos de datos en Python</li>
+                        <li>Validar la entrada del usuario para evitar errores</li>
+                        <li>Manejar excepciones básicas en la entrada de datos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Función input() -->
+            <div class="concept-card">
+                <h3>1. La Función <code>input()</code></h3>
+                <p>La función <code>input()</code> permite que el usuario ingrese datos a través del teclado. Por defecto, siempre devuelve los datos como una cadena de texto (<code>str</code>).</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo básico de input()
+nombre = input("¿Cuál es tu nombre? ")
+print(f"¡Hola, {nombre}!")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas prácticas con input()</h4>
+                    <ul>
+                        <li>Siempre incluye un mensaje claro que indique qué tipo de entrada esperas</li>
+                        <li>Considera agregar un espacio al final del mensaje para mejor legibilidad</li>
+                        <li>Recuerda que el valor devuelto siempre es una cadena de texto</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Conversión de tipos -->
+            <div class="concept-card">
+                <h3>2. Conversión de Tipos de Datos</h3>
+                <p>Como <code>input()</code> siempre devuelve una cadena, a menudo necesitarás convertir el valor al tipo de dato adecuado.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Convertir a entero (int)
+edad = int(input("¿Cuántos años tienes? "))
+
+# Convertir a número decimal (float)
+precio = float(input("Ingrese el precio: "))
+
+# Convertir a booleano (bool)
+es_estudiante = input("¿Eres estudiante? (sí/no): ").lower() == 'sí'
+
+# Mostrar los tipos de datos
+print(f"Tipo de edad: {type(edad)}")
+print(f"Tipo de precio: {type(precio)}")
+print(f"Tipo de es_estudiante: {type(es_estudiante)}")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Cuidado con las conversiones</h4>
+                    <p>Si el usuario ingresa un valor que no puede convertirse al tipo solicitado, se producirá un error. Por ejemplo, intentar convertir "abc" a un entero generará un <code>ValueError</code>.</p>
+                </div>
+            </div>
+
+            <!-- Validación de entrada -->
+            <div class="concept-card">
+                <h3>3. Validación de Entrada</h3>
+                <p>Es importante validar la entrada del usuario para evitar errores en tiempo de ejecución.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Validar entrada numérica
+def obtener_numero(mensaje):
+    while True:
+        entrada = input(mensaje)
+        if entrada.isdigit():
+            return int(entrada)
+        print("Error: Por favor ingrese un número válido.")
+
+# Uso
+edad = obtener_numero("¿Cuántos años tienes? ")
+print(f"Tienes {edad} años.")</code></pre>
+                </div>
+                
+                <div class="code-block">
+                    <h4>Métodos útiles para validación:</h4>
+                    <pre><code class="language-python"># Verificar si una cadena es un número entero
+"123".isdigit()  # True
+"12.3".isdigit()  # False
+"abc".isdigit()   # False
+
+# Verificar si una cadena es un número (incluyendo decimales)
+def es_numero(valor):
+    try:
+        float(valor)
+        return True
+    except ValueError:
+        return False
+
+# Verificar si una cadena está vacía o solo contiene espacios
+"".strip() == ""  # True
+"   ".strip() == ""  # True
+"hola".strip() == ""  # False</code></pre>
+                </div>
+            </div>
+
+            <!-- Manejo de excepciones -->
+            <div class="concept-card">
+                <h3>4. Manejo de Excepciones con <code>try-except</code></h3>
+                <p>El manejo de excepciones nos permite controlar errores que pueden ocurrir durante la ejecución del programa.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Manejo básico de excepciones
+try:
+    numero = int(input("Ingrese un número: "))
+    print(f"El doble es: {numero * 2}")
+except ValueError:
+    print("Error: Debe ingresar un número entero válido.")
+</code></pre>
+                </div>
+                
+                <div class="code-block">
+                    <h4>Manejo de múltiples excepciones:</h4>
+                    <pre><code class="language-python">try:
+    # Código que podría generar errores
+    numerador = int(input("Ingrese el numerador: "))
+    denominador = int(input("Ingrese el denominador: "))
+    resultado = numerador / denominador
+    print(f"El resultado es: {resultado}")
+    
+except ValueError:
+    print("Error: Debe ingresar números enteros.")
+except ZeroDivisionError:
+    print("Error: No se puede dividir entre cero.")
+except Exception as e:
+    print(f"Ocurrió un error inesperado: {e}")
+else:
+    print("Operación completada exitosamente.")
+finally:
+    print("Fin del programa.")</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas prácticas con excepciones</h4>
+                    <ul>
+                        <li>Sé específico con los tipos de excepciones que capturas</li>
+                        <li>Evita usar <code>except</code> sin especificar el tipo de excepción</li>
+                        <li>Proporciona mensajes de error claros y útiles</li>
+                        <li>Usa <code>else</code> para código que debe ejecutarse solo si no hay excepciones</li>
+                        <li>Usa <code>finally</code> para código de limpieza que debe ejecutarse siempre</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Saludo Personalizado</h3>
+                <p>Crea un programa que pida al usuario su nombre, edad y ciudad de residencia, y muestre un mensaje personalizado que incluya esta información.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">Bienvenido al sistema, Ana.
+Veo que tienes 28 años y vives en la ciudad de Madrid.
+¡Esperamos que tengas un excelente día!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Recuerda que la función <code>input()</code> siempre devuelve una cadena. Si necesitas la edad como número, debes convertirla a entero con <code>int()</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Calculadora Interactiva</h3>
+                <p>Crea una calculadora que permita al usuario realizar operaciones básicas (suma, resta, multiplicación, división) con dos números.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Calculadora Básica ===
+Ingrese el primer número: 10
+Ingrese la operación (+, -, *, /): *
+Ingrese el segundo número: 5
+El resultado de 10 * 5 es: 50.0</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa una estructura condicional (if-elif-else) para determinar qué operación realizar según lo que ingrese el usuario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Conversor de Monedas</h3>
+                <p>Crea un programa que convierta entre diferentes monedas. El usuario debe poder elegir la moneda de origen, la moneda de destino y el monto a convertir.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de menú:</h4>
+                    <pre><code class="language-text">=== Conversor de Monedas ===
+Monedas disponibles:
+1. Dólares (USD)
+2. Euros (EUR)
+3. Pesos Mexicanos (MXN)
+4. Yenes (JPY)
+
+Seleccione la moneda de origen (1-4): 1
+Seleccione la moneda de destino (1-4): 3
+Ingrese el monto a convertir: 100
+100.00 USD = 1,700.00 MXN (tasa de cambio: 17.00)</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Puedes usar un diccionario para almacenar las tasas de cambio con respecto a una moneda base, por ejemplo, el dólar.</p>
+                        <pre><code class="language-python">tasas = {
+    'USD': 1.0,
+    'EUR': 0.85,
+    'MXN': 17.0,
+    'JPY': 110.0
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Cuestionario Interactivo</h3>
+                <p>Crea un cuestionario de 5 preguntas con opciones múltiples. El programa debe llevar la cuenta de las respuestas correctas y mostrar el puntaje final.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Cuestionario de Cultura General ===
+
+1. ¿Cuál es la capital de Francia?
+   a) Londres
+   b) París
+   c) Madrid
+   d) Roma
+
+Tu respuesta: b
+¡Correcto!
+
+[Preguntas restantes...]
+
+=== Resultados ===
+Respondiste 4 de 5 preguntas correctamente.
+Puntaje: 80%</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Puedes usar una lista de diccionarios para almacenar las preguntas, opciones y respuestas correctas:</p>
+                        <pre><code class="language-python">preguntas = [
+    {
+        'pregunta': '¿Cuál es la capital de Francia?',
+        'opciones': ['Londres', 'París', 'Madrid', 'Roma'],
+        'respuesta': 'b'
+    },
+    # Más preguntas...
+]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting" target="_blank" rel="noopener noreferrer">Documentación oficial - Entrada/Salida</a></li>
+                        <li><a href="https://www.w3schools.com/python/ref_func_input.asp" target="_blank" rel="noopener noreferrer">W3Schools - Función input()</a></li>
+                        <li><a href="https://realpython.com/convert-python-string-to-int/" target="_blank" rel="noopener noreferrer">Real Python - Conversión de tipos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=JqGjkNzzU4s" target="_blank" rel="noopener noreferrer">Entrada de usuario en Python - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=H4IMtaAVO5w" target="_blank" rel="noopener noreferrer">Manejo de excepciones en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 7 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 3.5-3.7 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s6.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

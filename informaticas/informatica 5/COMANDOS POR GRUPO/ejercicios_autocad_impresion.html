@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCAD Avanzado: Presentación e Impresión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e67e22;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        body {
+            color: var(--dark-text);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"></path></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        main {
+            padding-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-bg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        h2 i {
+            color: var(--accent-color);
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            margin: 1.75rem 0 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h4 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Code & Commands */
+        code, .command {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f5f7fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #c7254e;
+            font-size: 0.9em;
+            border: 1px solid #e1e1e1;
+            white-space: nowrap;
+        }
+        
+        .command {
+            display: inline-block;
+            margin: 0.25rem 0;
+            color: var(--dark-text);
+            background: #f0f4f8;
+            border-left: 3px solid var(--accent-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+            white-space: pre-wrap;
+            width: 100%;
+        }
+        
+        .command-block {
+            margin: 0.5rem 0;
+        }
+        
+        /* Activity Sections */
+        .activity {
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .activity h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity h3 i {
+            font-size: 1.2em;
+        }
+        
+        .steps {
+            margin: 1.25rem 0 1.25rem 1.5rem;
+        }
+        
+        .steps li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .steps li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Details/Summary */
+        details {
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        summary {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        summary:hover {
+            background: var(--accent-color);
+        }
+        
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+        
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .solution {
+            background: white;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Command Badges */
+        .command-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.5rem 0.25rem 0.5rem 0;
+            font-weight: 600;
+        }
+        
+        .command-badge i {
+            margin-right: 0.5rem;
+            font-size: 0.9em;
+        }
+        
+        .viewport-badge {
+            background: #e67e22;
+        }
+        
+        .layout-badge {
+            background: #d35400;
+        }
+        
+        .print-badge {
+            background: #e74c3c;
+        }
+        
+        .tip {
+            background: #e8f4fc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Formula Box */
+        .formula {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .formula-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .formula-content {
+            font-size: 1.1em;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        
+        .formula-example {
+            font-size: 0.9em;
+            color: var(--light-text);
+            margin-top: 0.5rem;
+            border-top: 1px dashed #ddd;
+            padding-top: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            th, td {
+                min-width: 150px;
+            }
+            
+            .command {
+                white-space: pre-wrap;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: white !important;
+                color: black !important;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #eee;
+                page-break-inside: avoid;
+            }
+            
+            details {
+                page-break-inside: avoid;
+            }
+            
+            details[open] {
+                break-inside: avoid;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--light-text);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+        
+        .tab.active {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Diagram Section */
+        .diagram {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .diagram-content {
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .diagram-note {
+            font-size: 0.85em;
+            color: var(--light-text);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-print"></i> Presentación e Impresión en AutoCAD</h1>
+            <p class="subtitle">Domina los Layouts, Viewports y Configuración de Impresión para Planos Profesionales</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+            <p>El <strong>Espacio Modelo</strong> es donde dibujas tus objetos a escala 1:1. El <strong>Espacio Papel (Layout)</strong> es donde configuras el tamaño de la hoja de papel, el membrete y presentas tu dibujo a la escala correcta mediante Viewports.</p>
+            
+            <div class="diagram">
+                <div class="diagram-title"><i class="fas fa-project-diagram"></i> Flujo de Trabajo Básico</div>
+                <div class="diagram-content">
+                    <div style="text-align: center;">
+                        <div style="display: inline-block; text-align: left; line-height: 2;">
+                            <div><i class="fas fa-cube" style="color: #3498db;"></i> <strong>Espacio Modelo</strong> (Dibujo a escala 1:1)</div>
+                            <div style="text-align: center;">↓</div>
+                            <div><i class="fas fa-window-maximize" style="color: #e67e22;"></i> <strong>Viewports</strong> (Ventanas al modelo)</div>
+                            <div style="text-align: center;">↓</div>
+                            <div><i class="fas fa-file-alt" style="color: #2ecc71;"></i> <strong>Layout</strong> (Presentación para impresión)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diagram-note">Figura 1: Relación entre Espacio Modelo, Viewports y Layout</div>
+            </div>
+        </section>
+
+        <!-- Sección de Conceptos Clave -->
+        <section class="card" id="conceptos">
+            <h2><i class="fas fa-key"></i> I. Conceptos Clave</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Descripción</th>
+                        <th>Comando/Ubicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Espacio Modelo</strong></td>
+                        <td>Ambiente de dibujo infinito. Se dibuja siempre a escala real (1:1).</td>
+                        <td>Pestaña <code>Model</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Espacio Papel (Layout)</strong></td>
+                        <td>Ambiente de impresión. Define el tamaño de la hoja y el marco de presentación.</td>
+                        <td>Pestañas <code>Layout1</code>, <code>Layout2</code>, etc.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Viewport</strong></td>
+                        <td>Ventana flotante dentro del Espacio Papel que muestra una vista del Espacio Modelo.</td>
+                        <td>Comando <code>VISTAS</code> (<code>MV</code> o <code>MVIEW</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Escala de Viewport</strong></td>
+                        <td>La relación entre la unidad de papel y la unidad de dibujo (Ej: 1 unidad de papel = 50 unidades de dibujo).</td>
+                        <td>Propiedades de Viewport (Ventana)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip">
+                <div class="tip-title"><i class="fas fa-lightbulb"></i> Consejo Profesional</div>
+                <p>Mantén siempre tu dibujo a <strong>escala 1:1 en el Espacio Modelo</strong> y usa los Viewports en el Layout para establecer las escalas de presentación. Esto facilita las modificaciones posteriores y evita errores de escala.</p>
+            </div>
+        </section>
+
+        <!-- Sección de Viewports -->
+        <section class="card" id="viewports">
+            <h2><i class="fas fa-window-maximize"></i> II. Comando VISTAS (MVIEW) y Viewports</h2>
+            <p>El comando <code>VISTAS</code> crea o manipula las ventanas que "miran" el Espacio Modelo desde el Espacio Papel.</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="creacion-viewport">Creación Básica</div>
+                <div class="tab" data-tab="zoom-viewport">Zoom en Viewport</div>
+            </div>
+            
+            <div class="tab-content active" id="creacion-viewport">
+                <h3><i class="fas fa-plus-circle"></i> 1. Creación Básica</h3>
+                <p><strong>Descripción:</strong> Configura una Viewport para ver el dibujo del Espacio Modelo.</p>
+                
+                <div class="command-block">
+                    <div class="command-badge viewport-badge"><i class="fas fa-window-maximize"></i> Comando: VISTAS (MV)</div>
+                    <div class="command">1. Ve a la pestaña Layout1.
+2. Borra el viewport existente (si lo hay).
+3. Activa el comando VISTAS (MV).
+4. Dibuja un rectángulo que defina el área de la Viewport (Ej: 10,10 hasta 20,15).</div>
+                </div>
+                
+                <div class="diagram">
+                    <div class="diagram-title"><i class="fas fa-window-restore"></i> Vista de un Viewport</div>
+                    <div class="diagram-content" style="min-height: 200px;">
+                        <div style="border: 2px solid #e67e22; width: 80%; height: 150px; margin: 0 auto; position: relative; background: #f9f9f9; display: flex; align-items: center; justify-content: center; color: #7f8c8d;">
+                            <div style="position: absolute; top: 5px; left: 5px; font-size: 0.8em; color: #e67e22;">Viewport</div>
+                            <div style="border: 1px dashed #ccc; padding: 1rem; background: white;">Vista del Espacio Modelo</div>
+                        </div>
+                    </div>
+                    <div class="diagram-note">Figura 2: Representación de un Viewport mostrando contenido del Espacio Modelo</div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="zoom-viewport">
+                <h3><i class="fas fa-search-plus"></i> 2. Zoom en Viewport</h3>
+                <p><strong>Descripción:</strong> Mueve y hace zoom dentro de la Viewport sin afectar la escala del papel.</p>
+                
+                <div class="command-block">
+                    <div class="command-badge viewport-badge"><i class="fas fa-mouse-pointer"></i> Interacción con Viewport</div>
+                    <div class="command">1. Haz doble clic dentro del Viewport creado. El borde se resaltará.
+2. Usa la rueda del ratón para hacer zoom o el comando ZOOM.
+3. Haz clic y arrastra con la rueda del ratón para moverte por el dibujo.
+4. Haz doble clic fuera del Viewport para volver al Espacio Papel.</div>
+                </div>
+                
+                <div class="tip">
+                    <div class="tip-title"><i class="fas fa-exclamation-triangle"></i> Precaución</div>
+                    <p>Evita usar el comando <code>ZOOM</code> desde la barra de comandos dentro de un Viewport, ya que esto puede alterar la escala. En su lugar, usa la rueda del ratón o la paleta de navegación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Escalas -->
+        <section class="card" id="escalas">
+            <h2><i class="fas fa-ruler-combined"></i> III. Escalas de Viewport</h2>
+            <p>Asegurar que el dibujo se imprima a la escala correcta es el paso más importante en la preparación.</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="escala-100">Escala 1:100</div>
+                <div class="tab" data-tab="escala-25">Escala 1:25</div>
+                <div class="tab" data-tab="formula-escala">Fórmula de Escala</div>
+            </div>
+            
+            <div class="tab-content active" id="escala-100">
+                <h3><i class="fas fa-ruler"></i> 1. Escala Arquitectónica 1:100</h3>
+                <p><strong>Descripción:</strong> Configura el Viewport para que el dibujo se imprima a escala 1:100.</p>
+                
+                <div class="command-block">
+                    <div class="command-badge viewport-badge"><i class="fas fa-sliders-h"></i> Configuración de Escala</div>
+                    <div class="command">1. Selecciona el borde del Viewport (no hagas doble clic dentro).
+2. Abre la ventana Propiedades (PR).
+3. Busca la sección "Varios".
+4. En la propiedad "Escala estándar", selecciona 1:100 de la lista desplegable.
+5. Bloquea el Viewport (candado en la barra de estado) para evitar cambios accidentales.</div>
+                </div>
+                
+                <div class="diagram">
+                    <div class="diagram-title"><i class="fas fa-info-circle"></i> Escala 1:100</div>
+                    <div class="diagram-content" style="display: flex; justify-content: space-around; align-items: flex-end; height: 120px;">
+                        <div style="text-align: center;">
+                            <div style="width: 40px; height: 60px; background: #e74c3c; margin: 0 auto 10px;"></div>
+                            <div>1 unidad en papel</div>
+                        </div>
+                        <div style="font-size: 2em; color: #7f8c8d; align-self: center;">=</div>
+                        <div style="text-align: center;">
+                            <div style="width: 4000px; height: 6000px; background: #3498db; margin: 0 auto 10px; transform: scale(0.01); transform-origin: top left;"></div>
+                            <div>100 unidades en modelo</div>
+                        </div>
+                    </div>
+                    <div class="diagram-note">Figura 3: Representación de la escala 1:100</div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="escala-25">
+                <h3><i class="fas fa-search-plus"></i> 2. Escala Detalle 1:25</h3>
+                <p><strong>Descripción:</strong> Configura un segundo Viewport para un detalle a escala 1:25.</p>
+                
+                <div class="command-block">
+                    <div class="command-badge viewport-badge"><i class="fas fa-sliders-h"></i> Configuración de Escala para Detalle</div>
+                    <div class="command">1. Crea un segundo Viewport pequeño (MV).
+2. Haz doble clic dentro del Viewport para activarlo.
+3. Usa ZOOM para enfocar el área de detalle.
+4. Haz doble clic fuera para salir.
+5. Selecciona el borde del Viewport.
+6. En Propiedades, en "Escala estándar", selecciona 1:25.
+7. Bloquea el Viewport.</div>
+                </div>
+                
+                <div class="tip">
+                    <div class="tip-title"><i class="fas fa-lightbulb"></i> Buenas Prácticas</div>
+                    <p>Usa diferentes escalas en el mismo Layout para mostrar tanto la vista general como los detalles. Asegúrate de que las escalas sean estándar (1:10, 1:20, 1:50, 1:100, etc.) y evita escalas personalizadas que puedan causar confusión.</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="formula-escala">
+                <h3><i class="fas fa-calculator"></i> Fórmula de Escala</h3>
+                <p>La relación entre las unidades de papel y las unidades de dibujo se calcula con:</p>
+                
+                <div class="formula">
+                    <div class="formula-title"><i class="fas fa-ruler"></i> Fórmula General</div>
+                    <div class="formula-content">Unidades de Papel = Unidades de Dibujo / Factor de Escala</div>
+                    <div class="formula-example">
+                        <p><strong>Ejemplos:</strong></p>
+                        <p>Para escala 1:50 → 1/50 = 0.02</p>
+                        <p>Para escala 1:20 → 1/20 = 0.05</p>
+                    </div>
+                </div>
+                
+                <div class="command-block">
+                    <div class="command-badge viewport-badge"><i class="fas fa-tools"></i> Configuración Manual de Escala</div>
+                    <div class="command">1. Selecciona el Viewport.
+2. Abre Propiedades (PR).
+3. Busca "Escala personalizada".
+4. Ingresa el factor de escala (ej: 0.02 para 1:50).
+5. Presiona Enter para aplicar.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades Prácticas -->
+        <section class="card" id="actividades">
+            <h2><i class="fas fa-tasks"></i> IV. Actividades Sugeridas (Preparación Final de Planos)</h2>
+            <p>Estas actividades te ayudarán a dominar la creación de planos profesionales con múltiples escalas y estilos de trazado.</p>
+            
+            <div class="activity">
+                <h3><i class="fas fa-image"></i> Actividad 1: El Plano con Detalles 🖼️</h3>
+                <p><strong>Objetivo:</strong> Crear un layout con dos viewports, uno para el plano general (escala 1:50) y otro para un detalle ampliado (escala 1:10).</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Dibuja un Muro y un Bloque (Espacio Modelo):</strong>
+                        <ul class="steps">
+                            <li>Dibuja un muro de 20×10 unidades.</li>
+                            <li>Crea un Bloque llamado <code>Puerta_1</code> e insértalo en el muro.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Configura el Layout:</strong>
+                        <ul class="steps">
+                            <li>Ve a <code>Layout1</code> y configura el tamaño de la hoja (Ej: ISO A3).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Crea Viewport General:</strong>
+                        <ul class="steps">
+                            <li>Crea un Viewport 1 (MV) que ocupe la mayor parte de la hoja.</li>
+                            <li>Asigna la escala 1:50 a este Viewport (Propiedades).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Crea Viewport Detalle:</strong>
+                        <ul class="steps">
+                            <li>Crea un Viewport 2 más pequeño al lado del primero.</li>
+                            <li>Asigna la escala 1:10 a este Viewport (Propiedades).</li>
+                            <li>Haz doble clic dentro del Viewport 2 y centra la vista en la <code>Puerta_1</code>.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <p><strong>Resultado:</strong> Debes tener un plano a escala 1:50 y un detalle legible de la puerta a escala 1:10.</p>
+                
+                <details>
+                    <summary><strong>Ver Solución (Verificación de Escala)</strong></summary>
+                    <div class="solution">
+                        <p>Si la Viewport General está a 1:50 y la Puerta mide 1 unidad, al medir en el papel esa unidad se representará con 1/50 de la unidad de papel.</p>
+                        <p>Si la Viewport Detalle está a 1:10 y la Puerta mide 1 unidad, al medir en el papel esa unidad se representará con 1/10 de la unidad de papel, siendo cinco veces más grande que la vista general, demostrando la correcta aplicación de escalas.</p>
+                        
+                        <div class="diagram">
+                            <div class="diagram-title"><i class="fas fa-ruler-combined"></i> Comparación de Escalas</div>
+                            <div class="diagram-content" style="display: flex; justify-content: space-around; align-items: flex-end; height: 120px;">
+                                <div style="text-align: center;">
+                                    <div style="width: 20px; height: 40px; background: #e74c3c; margin: 0 auto 10px;"></div>
+                                    <div>1:50</div>
+                                    <div style="font-size: 0.8em;">(Vista General)</div>
+                                </div>
+                                <div style="text-align: center; align-self: center;">
+                                    <div style="font-size: 2em; color: #7f8c8d;">vs</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="width: 100px; height: 200px; background: #3498db; margin: 0 auto 10px;"></div>
+                                    <div>1:10</div>
+                                    <div style="font-size: 0.8em;">(Detalle 5x mayor)</div>
+                                </div>
+                            </div>
+                            <div class="diagram-note">Figura 4: Comparación visual de las escalas 1:50 y 1:10</div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="activity">
+                <h3><i class="fas fa-print"></i> Actividad 2: El Ploteo Final (CTB) 📝</h3>
+                <p><strong>Objetivo:</strong> Configurar un estilo de ploteo para que las capas se impriman con diferentes grosores, incluso si tienen el mismo color en pantalla.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Crea Capas con Grosores:</strong>
+                        <ul class="steps">
+                            <li>En el Espacio Modelo, dibuja una línea en la capa <code>_Muro_Grueso</code> (Grosor 0.50 mm, Color Rojo).</li>
+                            <li>Dibuja otra línea en la capa <code>_Muro_Ligero</code> (Grosor 0.09 mm, Color Rojo).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Activa el Cuadro de Ploteo:</strong>
+                        <ul class="steps">
+                            <li>Ve a <code>Layout1</code>.</li>
+                            <li>Activa el comando <code>PLOT</code> (IMPRIMIR / PLOT).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Crea una CTB (Tabla de Estilos de Trazado):</strong>
+                        <ul class="steps">
+                            <li>En el cuadro de Plot, en la opción "Tabla de estilos de trazado" (pen assignments), selecciona "Nuevo..." para crear una nueva tabla (Ej: <code>MiEstilo.ctb</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Asigna Propiedades por Color:</strong>
+                        <ul class="steps">
+                            <li>Edita la CTB recién creada.</li>
+                            <li>Busca el Color Rojo (Color 1).</li>
+                            <li>Configura la propiedad "Grosor de línea" (Lineweight) a 0.80 mm.</li>
+                            <li>Guarda y cierra el editor de la CTB.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Configura la Impresión:</strong>
+                        <ul class="steps">
+                            <li>Selecciona la impresora o PDF.</li>
+                            <li>Establece el tamaño de papel (Ej: ISO A3).</li>
+                            <li>Selecciona la CTB recién creada en "Estilo de trazado" o "Plot style table".</li>
+                            <li>Haz clic en "Vista previa" para verificar.</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <p><strong>Nota:</strong> Aunque las capas tenían grosores preestablecidos, la CTB sobrescribe la configuración por color.</p>
+                
+                <p><strong>Resultado:</strong> Ambas líneas (gruesa y ligera) se imprimirán con el mismo grosor de 0.80 mm, porque la CTB establece que todo objeto de color rojo se trace a 0.80 mm.</p>
+                
+                <details>
+                    <summary><strong>Ver Solución (Concepto de CTB)</strong></summary>
+                    <div class="solution">
+                        <p>El comando <code>PLOT</code> usa la tabla <code>.CTB</code> (Color-Dependent Plot Style) para definir cómo se verá el resultado final. En la mayoría de los estudios de diseño, la configuración de la CTB es crítica para que los diferentes colores usados en pantalla (rojo, amarillo, etc.) se traduzcan en diferentes grosores de línea (0.80, 0.40, 0.20 mm) en la impresión, asegurando la jerarquía visual del dibujo.</p>
+                        
+                        <div class="diagram">
+                            <div class="diagram-title"><i class="fas fa-palette"></i> Mapeo de Colores a Grosores</div>
+                            <div class="diagram-content" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding: 1rem 0;">
+                                <div style="text-align: center; margin: 0.5rem; width: 100px;">
+                                    <div style="width: 80px; height: 80px; background: #ff0000; margin: 0 auto 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Rojo</div>
+                                    <div style="height: 8px; background: #333; width: 80%; margin: 5px auto; border-radius: 4px;"></div>
+                                    <div>0.80 mm</div>
+                                </div>
+                                <div style="text-align: center; margin: 0.5rem; width: 100px;">
+                                    <div style="width: 80px; height: 80px; background: #00ff00; margin: 0 auto 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold;">Verde</div>
+                                    <div style="height: 6px; background: #333; width: 60%; margin: 5px auto; border-radius: 4px;"></div>
+                                    <div>0.50 mm</div>
+                                </div>
+                                <div style="text-align: center; margin: 0.5rem; width: 100px;">
+                                    <div style="width: 80px; height: 80px; background: #0000ff; margin: 0 auto 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">Azul</div>
+                                    <div style="height: 4px; background: #333; width: 40%; margin: 5px auto; border-radius: 4px;"></div>
+                                    <div>0.35 mm</div>
+                                </div>
+                                <div style="text-align: center; margin: 0.5rem; width: 100px;">
+                                    <div style="width: 80px; height: 80px; background: #ffff00; margin: 0 auto 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold;">Amarillo</div>
+                                    <div style="height: 2px; background: #333; width: 20%; margin: 5px auto; border-radius: 4px;"></div>
+                                    <div>0.18 mm</div>
+                                </div>
+                            </div>
+                            <div class="diagram-note">Figura 5: Ejemplo de mapeo de colores a grosores en una tabla CTB</div>
+                        </div>
+                        
+                        <div class="tip">
+                            <div class="tip-title"><i class="fas fa-cog"></i> Configuración Avanzada de CTB</div>
+                            <p>Además del grosor, las CTB te permiten configurar:</p>
+                            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                <li>Escala de grises (útil para impresiones en blanco y negro)</li>
+                                <li>Tipo de línea (continuo, punteado, etc.)</li>
+                                <li>Transparencia</li>
+                                <li>Relleno (para áreas sombreadas)</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem;">Guarda tus CTB personalizadas en una ubicación segura para usarlas en otros proyectos.</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2><i class="fas fa-lightbulb"></i> Consejos Adicionales</h2>
+            <ul class="steps">
+                <li>Usa <code>PSPACE</code> y <code>MSPACE</code> para alternar rápidamente entre Espacio Papel y Espacio Modelo dentro de un Viewport.</li>
+                <li>La variable de sistema <code>PSLTSCALE</code> controla si los tipos de línea se escalan según el Viewport o según el Espacio Papel.</li>
+                <li>Usa <code>LAYERSTATE</code> para guardar y restaurar configuraciones de capas específicas para diferentes presentaciones.</li>
+                <li>Configura un <code>Page Setup</code> por defecto para cada Layout para ahorrar tiempo en configuraciones repetitivas.</li>
+                <li>Usa <code>PUBLISH</code> para imprimir múltiples layouts a la vez o guardarlos como archivos PDF.</li>
+                <li>Recuerda que los textos deben tener un tamaño de impresión legible (2.5-3.5mm de altura) independientemente de la escala del Viewport.</li>
+            </ul>
+            
+            <div class="tip">
+                <div class="tip-title"><i class="fas fa-file-pdf"></i> Exportar a PDF</div>
+                <p>Para exportar tus planos a PDF con la mejor calidad:</p>
+                <ol style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Selecciona la impresora "DWG To PDF.pc3" (o similar).</li>
+                    <li>Configura la resolución a un mínimo de 300 DPI para planos técnicos.</li>
+                    <li>Marca la opción "Publicar con estilos de trazado" para incluir tu CTB.</li>
+                    <li>Usa la opción "Ventana" para seleccionar exactamente qué área del Layout quieres exportar.</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© JMGV-PTEL 2025 - Ejercicios de AutoCAD - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Añadir animación de carga suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de aparición de las tarjetas
+            const cards = document.querySelectorAll('.card, .activity');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.animation = 'fadeIn 0.5s ease-out forwards';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                }, 0);
+            });
+            
+            // Funcionalidad de pestañas
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover clase active de todas las pestañas y contenidos del mismo grupo
+                    const tabGroup = this.closest('.tabs');
+                    const tabContents = tabGroup.nextElementSibling.parentElement.querySelectorAll('.tab-content');
+                    
+                    tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Agregar clase active a la pestaña y contenido seleccionados
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Mejorar la experiencia de los detalles/desplegables
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    if (this.open) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+        });
+        
+        // Mejorar la impresión
+        window.onbeforeprint = function() {
+            // Abrir todos los detalles antes de imprimir
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+            
+            // Activar todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'block';
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Acceso a Sesiones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #1a252f;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 1rem;
+            display: none;
+        }
+        .register-link {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="titulo-principal">Iniciar Sesión</h1>
+            <p>Ingresa tu llave de acceso para continuar</p>
+        </header>
+
+        <main>
+            <div class="login-container">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="accessKey">Llave de acceso:</label>
+                        <input type="text" id="accessKey" class="form-control access-key-input" required 
+                               placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}">
+                        <small class="form-text">Formato: XXXX-XXXX-XXXX-XXXX (solo letras mayúsculas y números)</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-block">Acceder a las Sesiones</button>
+                    
+                    <div id="errorMessage" class="error-message">
+                        Llave de acceso no válida o expirada. Por favor, verifica e intenta nuevamente.
+                    </div>
+                </form>
+                
+                <div class="register-link">
+                    <p>¿No tienes una llave de acceso? <a href="registro.html">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="pie-pagina">
+            <p> JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const accessKeyInput = document.getElementById('accessKey');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Verificar si hay un mensaje de cierre de sesión
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('logout') === 'true') {
+                const message = document.createElement('div');
+                message.className = 'alert alert-success';
+                message.textContent = 'Has cerrado sesión correctamente.';
+                loginForm.parentNode.insertBefore(message, loginForm);
+                
+                // Eliminar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    message.remove();
+                }, 5000);
+            }
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const accessKey = accessKeyInput.value.trim().toUpperCase();
+                
+                // Verificar si la llave existe en localStorage
+                const userData = JSON.parse(localStorage.getItem('user_' + accessKey));
+                
+                if (userData && userData.key === accessKey) {
+                    // Guardar la sesión
+                    sessionStorage.setItem('currentUser', JSON.stringify({
+                        nombre: userData.nombre,
+                        email: userData.email,
+                        key: accessKey,
+                        timestamp: new Date().getTime()
+                    }));
+                    
+                    // Redirigir al índice o a la página solicitada
+                    const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+                    sessionStorage.removeItem('redirectAfterLogin');
+                    window.location.href = redirectUrl;
+                } else {
+                    // Mostrar mensaje de error
+                    errorMessage.style.display = 'block';
+                    accessKeyInput.focus();
+                    
+                    // Agregar clase de error al input
+                    accessKeyInput.classList.add('is-invalid');
+                    
+                    // Eliminar la clase después de la animación
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                        accessKeyInput.classList.remove('is-invalid');
+                    }, 5000);
+                }
+            });
+            
+            // Formatear automáticamente la llave de acceso
+            accessKeyInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/[^A-Z0-9]/g, '');
+                let formatted = '';
+                
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formatted += '-';
+                    }
+                    if (i < 16) { // Limitar a 16 caracteres
+                        formatted += value[i];
+                    }
+                }
+                
+                e.target.value = formatted.toUpperCase();
+            });
+            
+            // Enfocar el campo de entrada al cargar la página
+            accessKeyInput.focus();
+        });
+    </script>
+</body>
+</html>

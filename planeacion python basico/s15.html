@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 15: Tuplas y Conjuntos - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 15</h1>
+                <h2>Tuplas y Conjuntos</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 2: Estructuras de Datos y Bucles</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-46-88" 
+                     role="progressbar" 
+                     aria-valuenow="46.88" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, explorarás dos estructuras de datos fundamentales en Python: las tuplas y los conjuntos. Aprenderás sus características únicas, cuándo utilizarlas y cómo aprovechar sus ventajas en diferentes escenarios de programación.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Comprender las características y usos de las tuplas en Python</li>
+                        <li>Manipular conjuntos para manejar colecciones de elementos únicos</li>
+                        <li>Identificar cuándo es más apropiado usar tuplas o conjuntos en lugar de listas o diccionarios</li>
+                        <li>Realizar operaciones de conjuntos como unión, intersección y diferencia</li>
+                        <li>Convertir entre diferentes estructuras de datos según sea necesario</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Tuplas en Python -->
+            <div class="concept-card">
+                <h3>1. Tuplas: Datos Inmutables</h3>
+                <p>Las tuplas son estructuras de datos inmutables en Python, ideales para agrupar datos relacionados que no deben modificarse.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Creación de tuplas
+coordenadas = (40.7128, -74.0060)  # Latitud y longitud de Nueva York
+colores_rgb = (255, 128, 0)        # Color naranja en formato RGB
+usuario = ('Juan', 'Pérez', 28)    # Datos de un usuario
+
+# Las tuplas pueden contener diferentes tipos de datos
+tupla_mixta = ('texto', 42, 3.14, True)
+
+# Tupla vacía
+tupla_vacia = ()
+
+# Tupla con un solo elemento (¡necesita una coma!)
+tupla_un_elemento = (42,)
+
+# Acceso a elementos
+print(coordenadas[0])  # 40.7128
+print(usuario[1])      # 'Pérez'
+
+# Desempaquetado de tuplas
+nombre, apellido, edad = usuario
+print(f"{nombre} {apellido} tiene {edad} años")  # Juan Pérez tiene 28 años
+
+# Las tuplas son inmutables
+# coordenadas[0] = 42.3601  # Error: 'tuple' object does not support item assignment
+
+# Métodos de tuplas
+numeros = (5, 2, 8, 2, 9, 2, 5)
+print(numeros.count(2))  # 3 (cuenta ocurrencias del valor 2)
+print(numeros.index(8))  # 2 (índice de la primera ocurrencia de 8)
+
+# Comparación de tuplas
+print((1, 2, 3) < (1, 2, 4))  # True
+print((1, 2, 3) == (1, 3, 2))  # False
+
+# Uso común: retornar múltiples valores desde una función
+def dividir_y_sobrante(dividendo, divisor):
+    cociente = dividendo // divisor
+    resto = dividendo % divisor
+    return cociente, resto  # Esto es una tupla
+
+resultado = dividir_y_sobrante(17, 5)  # (3, 2)
+coc, res = dividir_y_sobrante(17, 5)   # Desempaquetado: coc=3, res=2</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 ¿Cuándo usar tuplas?</h4>
+                    <p>Usa tuplas cuando:</p>
+                    <ul>
+                        <li>Los datos no deben cambiar después de su creación</li>
+                        <li>Necesitas usar la colección como clave en un diccionario (las listas no son hasheables)</li>
+                        <li>Quieres asegurar que los datos permanezcan constantes</li>
+                        <li>Necesitas retornar múltiples valores desde una función</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Conjuntos en Python -->
+            <div class="concept-card">
+                <h3>2. Conjuntos: Elementos Únicos</h3>
+                <p>Los conjuntos son colecciones desordenadas de elementos únicos, ideales para operaciones de pertenencia y eliminación de duplicados.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Creación de conjuntos
+frutas = {'manzana', 'banana', 'cereza', 'manzana'}  # Los duplicados se eliminan
+print(frutas)  # {'banana', 'manzana', 'cereza'}
+
+# Crear un conjunto a partir de una lista
+numeros = set([1, 2, 3, 4, 4, 3, 2, 1])
+print(numeros)  # {1, 2, 3, 4}
+
+# Conjunto vacío (¡usar set(), no {} que es un diccionario!)
+conjunto_vacio = set()
+
+# Operaciones básicas
+frutas.add('naranja')     # Añadir un elemento
+frutas.add('banana')      # No hace nada, ya existe
+frutas.remove('manzana')  # Eliminar un elemento (lanza error si no existe)
+frutas.discard('kiwi')    # Elimina si existe, no hace nada si no
+
+# Operaciones de conjuntos
+A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+
+# Unión: elementos en A o en B
+print(A | B)   # {1, 2, 3, 4, 5, 6, 7, 8}
+print(A.union(B))  # Equivalente
+
+# Intersección: elementos en A y en B
+print(A & B)   # {4, 5}
+print(A.intersection(B))  # Equivalente
+
+# Diferencia: elementos en A pero no en B
+print(A - B)   # {1, 2, 3}
+print(A.difference(B))  # Equivalente
+
+# Diferencia simétrica: elementos en A o en B pero no en ambos
+print(A ^ B)   # {1, 2, 3, 6, 7, 8}
+print(A.symmetric_difference(B))  # Equivalente
+
+# Subconjunto y superconjunto
+C = {2, 3}
+print(C.issubset(A))     # True
+print(A.issuperset(C))   # True
+print(A.isdisjoint(B))   # False (hay intersección)
+
+# Métodos útiles
+print(len(frutas))       # Número de elementos
+print('banana' in frutas) # Verificar pertenencia
+
+# Eliminar y devolver un elemento aleatorio
+fruta = frutas.pop()
+print(f"Fruta eliminada: {fruta}")
+
+# Limpiar el conjunto
+frutas.clear()
+print(frutas)  # set()</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 ¿Cuándo usar conjuntos?</h4>
+                    <p>Usa conjuntos cuando:</p>
+                    <ul>
+                        <li>Necesitas eliminar duplicados de una secuencia</li>
+                        <li>Quieres realizar operaciones de conjuntos (unión, intersección, diferencia)</li>
+                        <li>Necesitas verificar rápidamente la pertenencia de un elemento</li>
+                        <li>El orden de los elementos no es importante</li>
+                        <li>Necesitas colecciones de elementos únicos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Comparación y conversión entre estructuras -->
+            <div class="concept-card">
+                <h3>3. Comparación y Conversión entre Estructuras</h3>
+                <p>Python permite convertir fácilmente entre listas, tuplas y conjuntos según las necesidades del programa.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Conversiones entre estructuras de datos
+
+# De lista a conjunto (elimina duplicados)
+numeros_con_duplicados = [1, 2, 2, 3, 4, 4, 5]
+numeros_unicos = set(numeros_con_duplicados)  # {1, 2, 3, 4, 5}
+
+# De conjunto a lista (sin duplicados)
+lista_sin_duplicados = list(numeros_unicos)  # [1, 2, 3, 4, 5]
+
+# De tupla a conjunto
+puntos = ((1, 2), (3, 4), (1, 2))
+puntos_unicos = set(puntos)  # {(1, 2), (3, 4)}
+
+# De cadena a conjunto (caracteres únicos)
+letras = set("programación")  # {'a', 'c', 'd', 'g', 'i', 'm', 'n', 'o', 'p', 'r', 'ó'}
+
+# De diccionario a conjunto (solo claves)
+diccionario = {'a': 1, 'b': 2, 'c': 3}
+claves = set(diccionario)  # {'a', 'b', 'c'}
+
+# Ordenar un conjunto (convertir a lista ordenada)
+numeros = {5, 2, 8, 1, 9}
+numeros_ordenados = sorted(numeros)  # [1, 2, 5, 8, 9]
+
+# Conjuntos inmutables (frozenset)
+numeros_inmutables = frozenset([1, 2, 3, 4])
+# numeros_inmutables.add(5)  # Error: 'frozenset' object has no attribute 'add'
+
+# Uso de frozenset como clave de diccionario
+puntajes = {frozenset([1, 2]): "Par bajo", frozenset([5, 6]): "Par alto"}
+print(puntajes[frozenset([1, 2])])  # "Par bajo"
+
+# Comparación de rendimiento: listas vs conjuntos (búsqueda)
+import time
+
+def tiempo_busqueda(estructura, elemento, repeticiones=1000000):
+    inicio = time.time()
+    for _ in range(repeticiones):
+        elemento in estructura
+    return time.time() - inicio
+
+# Lista grande
+lista_grande = list(range(1000000))
+conjunto_grande = set(lista_grande)
+
+# Búsqueda del último elemento
+tiempo_lista = tiempo_busqueda(lista_grande, 999999)
+tiempo_conjunto = tiempo_busqueda(conjunto_grande, 999999)
+
+print(f"Tiempo de búsqueda en lista: {tiempo_lista:.6f} segundos")
+print(f"Tiempo de búsqueda en conjunto: {tiempo_conjunto:.6f} segundos")
+# Ejemplo de salida (puede variar según el sistema):
+# Tiempo de búsqueda en lista: 0.045234 segundos
+# Tiempo de búsqueda en conjunto: 0.000035 segundos</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚡ Consejos de rendimiento</h4>
+                    <ul>
+                        <li>Usa conjuntos para verificar pertenencia en grandes colecciones (O(1) vs O(n) en listas)</li>
+                        <li>Las tuplas son más ligeras en memoria que las listas para datos inmutables</li>
+                        <li>Los conjuntos consumen más memoria que las listas debido a su implementación de tabla hash</li>
+                        <li>Usa <code>frozenset</code> cuando necesites un conjunto inmutable (por ejemplo, como clave de diccionario)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Sistema de Coordenadas Geográficas</h3>
+                <p>Crea un programa que permita almacenar y manipular coordenadas geográficas (latitud, longitud) utilizando tuplas. El programa debe permitir calcular distancias entre puntos y encontrar puntos dentro de un área determinada.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== SISTEMA DE COORDENADAS ===
+1. Agregar ubicación
+2. Mostrar todas las ubicaciones
+3. Calcular distancia entre dos puntos
+4. Buscar ubicaciones en un área
+5. Salir
+
+Selecciona una opción (1-5): 1
+
+Nombre de la ubicación: Torre Eiffel
+Latitud: 48.8584
+Longitud: 2.2945
+¡Ubicación agregada correctamente!
+
+Selecciona una opción (1-5): 3
+
+Ubicaciones disponibles:
+1. Torre Eiffel (48.8584, 2.2945)
+2. Estatua de la Libertad (40.6892, -74.0445)
+3. Machu Picchu (-13.1631, -72.5450)
+
+Selecciona el primer punto (1-3): 1
+Selecciona el segundo punto (1-3): 2
+
+Distancia entre Torre Eiffel y Estatua de la Libertad: 5,839.24 km</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para calcular la distancia entre dos puntos en la Tierra (fórmula del haversine):</p>
+                        <pre><code class="language-python">from math import radians, sin, cos, sqrt, atan2
+
+def calcular_distancia(punto1, punto2):
+    # Radio de la Tierra en kilómetros
+    R = 6371.0
+    
+    # Convertir grados a radianes
+    lat1, lon1 = map(radians, punto1)
+    lat2, lon2 = map(radians, punto2)
+    
+    # Diferencia de coordenadas
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    
+    # Fórmula del haversine
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distancia = R * c
+    
+    return distancia</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Eliminador de Duplicados Avanzado</h3>
+                <p>Crea un programa que lea un archivo de texto, identifique y elimine líneas duplicadas, pero manteniendo el orden original de las líneas únicas. El programa debe ser eficiente incluso con archivos grandes.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de archivo de entrada (datos.txt):</h4>
+                    <pre><code class="language-text">Manzana
+Banana
+Manzana
+Cereza
+Banana
+Dátil
+Cereza</code></pre>
+                    
+                    <h4>Salida del programa:</h4>
+                    <pre><code class="language-text">=== ELIMINADOR DE LÍNEAS DUPLICADAS ===
+Archivo de entrada: datos.txt
+Líneas leídas: 7
+Líneas únicas: 4
+
+Líneas únicas (en orden original):
+Manzana
+Banana
+Cereza
+Dátil
+
+¿Desea guardar el resultado en un archivo? (s/n): s
+Archivo 'datos_sin_duplicados.txt' guardado correctamente.</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para mantener el orden de inserción al eliminar duplicados, puedes usar un conjunto para rastrear las líneas ya vistas:</p>
+                        <pre><code class="language-python">def eliminar_duplicados(archivo_entrada, archivo_salida=None):
+    lineas_vistas = set()
+    lineas_unicas = []
+    
+    with open(archivo_entrada, 'r', encoding='utf-8') as f:
+        for linea in f:
+            linea = linea.strip()
+            if linea not in lineas_vistas:
+                lineas_vistas.add(linea)
+                lineas_unicas.append(linea)
+    
+    if archivo_salida:
+        with open(archivo_salida, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lineas_unicas))
+    
+    return lineas_unicas</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Sistema de Etiquetas para Archivos</h3>
+                <p>Desarrolla un programa que permita etiquetar archivos con múltiples etiquetas y luego buscar archivos por una o más etiquetas.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== GESTOR DE ETIQUETAS ===
+1. Agregar archivo con etiquetas
+2. Buscar archivos por etiqueta
+3. Mostrar todos los archivos y etiquetas
+4. Salir
+
+Selecciona una opción (1-4): 1
+
+Ruta del archivo: C:/fotos/vacaciones.jpg
+Ingresa las etiquetas (separadas por comas): vacaciones, playa, verano2023
+Archivo agregado correctamente con 3 etiquetas.
+
+Selecciona una opción (1-4): 2
+
+Ingresa las etiquetas a buscar (separadas por comas): playa, sol
+
+Archivos encontrados:
+- C:/fotos/vacaciones.jpg (3 etiquetas)
+- C:/fotos/playa_sol.jpg (4 etiquetas)
+
+Selecciona una opción (1-4): 4
+¡Hasta luego!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa un diccionario donde las claves sean las rutas de los archivos y los valores sean conjuntos de etiquetas. Para la búsqueda, puedes usar operaciones de conjuntos:</p>
+                        <pre><code class="language-python">class GestorEtiquetas:
+    def __init__(self):
+        self.archivos = {}  # {ruta: set(etiquetas)}
+        self.etiquetas = {}  # {etiqueta: set(rutas)}
+    
+    def agregar_archivo(self, ruta, etiquetas):
+        # Limpiar etiquetas (minúsculas, sin espacios)
+        etiquetas = {e.strip().lower() for e in etiquetas.split(',') if e.strip()}
+        
+        # Si el archivo ya existe, actualizar etiquetas
+        if ruta in self.archivos:
+            etiquetas_antiguas = self.archivos[ruta]
+            # Eliminar referencias a etiquetas que ya no están
+            for etiqueta in etiquetas_antiguas - etiquetas:
+                self.etiquetas[etiqueta].discard(ruta)
+        
+        # Actualizar el archivo con las nuevas etiquetas
+        self.archivos[ruta] = etiquetas
+        
+        # Actualizar el índice de etiquetas
+        for etiqueta in etiquetas:
+            if etiqueta not in self.etiquetas:
+                self.etiquetas[etiqueta] = set()
+            self.etiquetas[etiqueta].add(ruta)
+    
+    def buscar_por_etiquetas(self, etiquetas_busqueda, operador='AND'):
+        etiquetas_busqueda = {e.strip().lower() for e in etiquetas_busqueda.split(',') if e.strip()}
+        
+        if not etiquetas_busqueda:
+            return set()
+        
+        if operador.upper() == 'AND':
+            # Intersección de conjuntos
+            rutas_encontradas = None
+            for etiqueta in etiquetas_busqueda:
+                if etiqueta in self.etiquetas:
+                    if rutas_encontradas is None:
+                        rutas_encontradas = set(self.etiquetas[etiqueta])
+                    else:
+                        rutas_encontradas.intersection_update(self.etiquetas[etiqueta])
+                else:
+                    return set()
+            return rutas_encontradas or set()
+        else:
+            # Unión de conjuntos
+            rutas_encontradas = set()
+            for etiqueta in etiquetas_busqueda:
+                if etiqueta in self.etiquetas:
+                    rutas_encontradas.update(self.etiquetas[etiqueta])
+            return rutas_encontradas</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Analizador de Texto con Conjuntos</h3>
+                <p>Crea un programa que compare dos textos y muestre estadísticas como palabras únicas, palabras en común y palabras exclusivas de cada texto.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== ANALIZADOR DE TEXTO ===
+Ingresa el primer texto (o 'cargar archivo.txt' para cargar desde archivo):
+El rápido zorro marrón salta sobre el perro perezoso.
+
+Ingresa el segundo texto (o 'cargar archivo.txt' para cargar desde archivo):
+El perro perezoso duerme bajo el sol del verano.
+
+=== RESULTADOS ===
+Total de palabras únicas en el texto 1: 7
+Total de palabras únicas en el texto 2: 7
+
+Palabras en común (5):
+- el
+- perro
+- perezoso
+- sobre
+- zorro
+
+Palabras exclusivas del texto 1 (2):
+- marrón
+- rápido
+
+Palabras exclusivas del texto 2 (2):
+- bajo
+- duerme
+- sol
+- verano</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para procesar el texto y extraer palabras únicas, puedes usar expresiones regulares y conjuntos:</p>
+                        <pre><code class="language-python">import re
+
+def procesar_texto(texto):
+    # Convertir a minúsculas y extraer palabras
+    palabras = re.findall(r'\b\w+\b', texto.lower())
+    return set(palabras)
+
+def comparar_textos(texto1, texto2):
+    palabras1 = procesar_texto(texto1)
+    palabras2 = procesar_texto(texto2)
+    
+    # Calcular estadísticas
+    total_unicas1 = len(palabras1)
+    total_unicas2 = len(palabras2)
+    palabras_comunes = palabras1 & palabras2
+    exclusivas1 = palabras1 - palabras2
+    exclusivas2 = palabras2 - palabras1
+    
+    return {
+        'total_unicas1': total_unicas1,
+        'total_unicas2': total_unicas2,
+        'palabras_comunes': sorted(palabras_comunes),
+        'exclusivas1': sorted(exclusivas1),
+        'exclusivas2': sorted(exclusivas2)
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences" target="_blank" rel="noopener noreferrer">Documentación oficial - Tuplas</a></li>
+                        <li><a href="https://docs.python.org/3/tutorial/datastructures.html#sets" target="_blank" rel="noopener noreferrer">Documentación oficial - Conjuntos</a></li>
+                        <li><a href="https://realpython.com/python-sets/" target="_blank" rel="noopener noreferrer">Guía de conjuntos en Real Python</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=W8KRzm-HUcc" target="_blank" rel="noopener noreferrer">Python Tutorial: Sets - Set Methods and Operations</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=NIWwJbo-9_8" target="_blank" rel="noopener noreferrer">Python Tuples - Mutable vs Immutable</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 3 - "Python Crash Course" de Eric Matthes (Sección sobre tuplas)</li>
+                        <li>Sección 2.9 - "Fluent Python" de Luciano Ramalho (Diccionarios y conjuntos)</li>
+                        <li>"Python Cookbook" de David Beazley y Brian K. Jones (Recetas con colecciones)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s14.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s16.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

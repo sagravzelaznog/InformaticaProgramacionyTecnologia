@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Web</title>
+    <link rel="stylesheet" href="Masterclass_07.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mi Portafolio Profesional</h1>
+        <button id="btn-tema">Cambiar a Modo Oscuro</button>
+        <nav>
+            <ul>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sobre-mi" class="seccion-animada">
+            <h2>¡Hola, mundo!</h2>
+            <p>Soy un estudiante de preparatoria apasionado por la tecnología. Estoy aprendiendo a desarrollar sitios web desde cero.</p>
+        </section>
+
+        <section id="habilidades" class="seccion-animada">
+            <h2>Mis Habilidades (Stats)</h2>
+            <div id="contenedor-habilidades">
+                </div>
+        </section>
+
+        <section id="proyectos" class="seccion-animada">
+            <h2>Mis Proyectos</h2>
+            <div class="contenedor-filtros">
+                <button class="btn-filtro activo" data-filtro="todos">Todos</button>
+                <button class="btn-filtro" data-filtro="web">Web</button>
+                <button class="btn-filtro" data-filtro="diseno">Diseño</button>
+            </div>
+            <div class="grid-proyectos">
+                <article class="proyecto-card" data-categoria="web">
+                    <h3>Página Tributo</h3>
+                    <p>Un sitio web dedicado a mi banda favorita usando HTML y CSS.</p>
+                </article>
+                <article class="proyecto-card" data-categoria="diseno">
+                    <h3>Logo Minimalista</h3>
+                    <p>Diseño vectorial creado para un proyecto escolar.</p>
+                </article>
+                <article class="proyecto-card" data-categoria="web">
+                    <h3>Calculadora JS</h3>
+                    <p>Una calculadora funcional programada con JavaScript puro.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="seccion-animada">
+            <h2>Contáctame</h2>
+            <p>¿Tienes un proyecto en mente? Escríbeme.</p>
+            
+            <form id="formulario-contacto">
+                <div class="grupo-input">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+                </div>
+                
+                <div class="grupo-input">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="text" id="correo" placeholder="Ej. juan@correo.com">
+                </div>
+                
+                <div class="grupo-input">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                
+                <button type="submit" id="btn-enviar">Enviar Mensaje</button>
+                
+                <p id="mensaje-alerta" class="oculto"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Desarrollado en la Masterclass de Web. 2026.</p>
+    </footer>
+
+    <script src="Masterclass_07.js"></script>
+</body>
+</html>

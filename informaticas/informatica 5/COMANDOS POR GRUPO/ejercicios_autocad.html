@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de AutoCAD - Líneas, Círculos y Cuadrados</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .example, .activity {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .activity {
+            border-left-color: var(--accent-color);
+        }
+        
+        ol, ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background-color: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+        
+        .details {
+            margin: 1.5rem 0;
+        }
+        
+        .summary {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .summary:hover {
+            background: var(--secondary-color);
+        }
+        
+        .summary::before {
+            content: '▶';
+            margin-right: 10px;
+            font-size: 0.8em;
+            transition: transform 0.2s;
+        }
+        
+        details[open] > .summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .content {
+            padding: 1.2rem;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .tip {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .keyboard {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 0.1rem 0.4rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 1.2rem;
+            }
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ejercicios de AutoCAD</h1>
+            <p class="subtitle">Aprende a dibujar líneas, círculos y cuadrados como un profesional</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="lineas">
+            <h2><span class="emoji">📏</span> Líneas</h2>
+            
+            <div class="example">
+                <h3>Ejemplo 1: Línea por coordenadas absolutas</h3>
+                <ol>
+                    <li>Escribe <code>LINE</code> y presiona Enter</li>
+                    <li>Ingresa <code>0,0</code> y presiona Enter (punto inicial)</li>
+                    <li>Ingresa <code>100,0</code> y presiona Enter (punto final)</li>
+                    <li>Presiona Enter para finalizar</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h3>Ejemplo 2: Línea con referencia polar</h3>
+                <ol>
+                    <li>Escribe <code>LINE</code> y presiona Enter</li>
+                    <li>Haz clic en cualquier punto de la pantalla</li>
+                    <li>Mueve el cursor en la dirección deseada</li>
+                    <li>Escribe <code>100<45</code> y presiona Enter (100 unidades a 45°)</li>
+                    <li>Presiona Enter para finalizar</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="circulos">
+            <h2><span class="emoji">⭕</span> Círculos</h2>
+            
+            <div class="example">
+                <h3>Ejemplo 1: Círculo con centro y radio</h3>
+                <ol>
+                    <li>Escribe <code>CIRCLE</code> y presiona Enter</li>
+                    <li>Haz clic en un punto para el centro</li>
+                    <li>Escribe <code>50</code> y presiona Enter (radio de 50 unidades)</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h3>Ejemplo 2: Círculo con diámetro</h3>
+                <ol>
+                    <li>Escribe <code>CIRCLE</code> y presiona Enter</li>
+                    <li>Escribe <code>D</code> y presiona Enter (opción diámetro)</li>
+                    <li>Haz clic en el centro</li>
+                    <li>Escribe <code>100</code> y presiona Enter (diámetro de 100 unidades)</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="cuadrados">
+            <h2><span class="emoji">⬜</span> Cuadrados</h2>
+            
+            <div class="example">
+                <h3>Ejemplo 1: Cuadrado con POLYGON</h3>
+                <ol>
+                    <li>Escribe <code>POLYGON</code> y presiona Enter</li>
+                    <li>Escribe <code>4</code> y presiona Enter (4 lados)</li>
+                    <li>Haz clic en el centro del cuadrado</li>
+                    <li>Escribe <code>C</code> y presiona Enter (circunscrito)</li>
+                    <li>Escribe <code>50</code> y presiona Enter (distancia al vértice)</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h3>Ejemplo 2: Cuadrado con RECTANG</h3>
+                <ol>
+                    <li>Escribe <code>RECTANG</code> y presiona Enter</li>
+                    <li>Haz clic en la primera esquina</li>
+                    <li>Escribe <code>D</code> y presiona Enter (opción dimensiones)</li>
+                    <li>Escribe <code>100</code> y presiona Enter (ancho)</li>
+                    <li>Escribe <code>100</code> y presiona Enter (alto)</li>
+                    <li>Haz clic para ubicar el rectángulo</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="actividades">
+            <h2><span class="emoji">🎯</span> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Casa Básica</h3>
+                <ol>
+                    <li>Dibuja un cuadrado de 100x100 unidades (paredes)</li>
+                    <li>Agrega un triángulo equilátero encima (techo)</li>
+                    <li>Dibuja una puerta de 20x40 unidades</li>
+                    <li>Agrega dos ventanas de 20x20 unidades</li>
+                </ol>
+                
+                <details class="details">
+                    <summary class="summary">🔍 Ver solución (haz clic para expandir)</summary>
+                    <div class="content">
+                        <h4>Base de la casa:</h4>
+                        <p><code>RECTANG</code> → Primera esquina en 0,0 → <code>D</code> → 100,100</p>
+                        
+                        <h4>Techo:</h4>
+                        <p><code>POLYGON</code> → 3 lados → Centro en 50,100 → <code>C</code> → 70.71 (radio)</p>
+                        
+                        <h4>Puerta:</h4>
+                        <p><code>RECTANG</code> → Primera esquina en 40,0 → <code>D</code> → 20,40</p>
+                        
+                        <h4>Ventanas:</h4>
+                        <p><code>RECTANG</code> → Primera esquina en 15,50 → <code>D</code> → 20,20</p>
+                        <p><code>RECTANG</code> → Primera esquina en 65,50 → <code>D</code> → 20,20</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="activity">
+                <h3>Actividad 2: Patrón Geométrico</h3>
+                <ol>
+                    <li>Dibuja un círculo de 50 unidades de radio</li>
+                    <li>Dibuja un cuadrado circunscrito al círculo</li>
+                    <li>Dibuja un círculo inscrito en el cuadrado</li>
+                    <li>Repite el patrón creando un efecto de espiral</li>
+                </ol>
+                
+                <details class="details">
+                    <summary class="summary">🔍 Ver solución (haz clic para expandir)</summary>
+                    <div class="content">
+                        <h4>Primer círculo:</h4>
+                        <p><code>CIRCLE</code> → Centro en 0,0 → Radio 50</p>
+                        
+                        <h4>Cuadrado circunscrito:</h4>
+                        <p><code>POLYGON</code> → 4 lados → Centro en 0,0 → <code>C</code> → 50 (distancia al vértice)</p>
+                        
+                        <h4>Círculo inscrito:</h4>
+                        <p><code>CIRCLE</code> → Centro en 0,0 → Radio 35.36 (50/√2)</p>
+                        
+                        <h4>Patrón de espiral:</h4>
+                        <p>1. Repite los pasos 1-3 con centros en (100,0), (200,0), etc.</p>
+                        <p>2. Usa <code>ARRAY</code> para crear múltiples copias</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <section id="consejos">
+            <h2><span class="emoji">💡</span> Consejos Adicionales</h2>
+            
+            <div class="tip">
+                <div class="tip-title">Atajos de teclado útiles:</div>
+                <ul>
+                    <li>Usa <span class="keyboard">F8</span> para activar/desactivar el modo orto (líneas rectas)</li>
+                    <li>Presiona <span class="keyboard">F3</span> para activar/desactivar el snap a la cuadrícula</li>
+                    <li>Usa <code>ZOOM</code> → <code>E</code> para ajustar la vista a los objetos dibujados</li>
+                    <li>Guarda tu trabajo frecuentemente con <span class="keyboard">CTRL + S</span></li>
+                </ul>
+            </div>
+            
+            <p>¡Practica estos ejercicios regularmente para mejorar tu dominio de AutoCAD! 🚀</p>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Ejercicios de AutoCAD - Creado con ❤️ para el aprendizaje TODOS los derechos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Agregar funcionalidad para mantener los detalles abiertos/cerrados
+        document.addEventListener('DOMContentLoaded', function() {
+            const details = document.querySelectorAll('details');
+            
+            details.forEach(detail => {
+                // Cerrar todos los detalles al cargar la página
+                detail.open = false;
+                
+                // Agregar animación suave al abrir/cerrar
+                detail.addEventListener('toggle', function() {
+                    if (this.open) {
+                        this.style.maxHeight = this.scrollHeight + 'px';
+                    } else {
+                        this.style.maxHeight = this.offsetHeight + 'px';
+                        setTimeout(() => {
+                            this.style.maxHeight = null;
+                        }, 10);
+                    }
+                });
+            });
+            
+            // Añadir suavizado al hacer clic en enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

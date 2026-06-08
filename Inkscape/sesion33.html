@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S33: Gestión Avanzada de Capas</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 33: Gestión Avanzada de Capas</h1>
+
+    <section>
+        <h2>1. El Panel de Capas (Shift + Ctrl + L)</h2>
+        
+        <p>El diálogo **Capas (Shift + Ctrl + L)** es tu centro de control para organizar composiciones complejas. Una buena gestión de capas es vital en proyectos grandes.</p>
+        <div class="paso">
+            <strong>Creación y Renombrado</strong>
+            <p>Usa el botón **+** para añadir una nueva capa. Haz doble clic en el nombre para renombrarla. Asigna nombres descriptivos (ej. "Fondo", "Ilustración Principal", "Texto").</p>
+        </div>
+        <div class="paso">
+            <strong>Visibilidad y Bloqueo</strong>
+            <p>El icono del **Ojo** oculta la capa, y el icono del **Candado** la bloquea. Bloquear es crucial para no seleccionar o modificar accidentalmente objetos en esa capa mientras trabajas en otra.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Opacidad y Modo de Fusión de Capas</h2>
+        <p>A diferencia de la Opacidad de Objeto, la Opacidad de Capa afecta a todos los objetos que contiene. Los Modos de Fusión ofrecen efectos de color avanzados.</p>
+        <div class="paso">
+            <strong>Opacidad de Capa</strong>
+            <p>Selecciona una capa en el panel y usa la barra deslizadora de **Opacidad**. Toda la capa se vuelve semi-transparente, ideal para superponer elementos o crear un fondo sutil.</p>
+        </div>
+        <div class="paso">
+            <strong>Modos de Fusión (Blend Modes)</strong>
+            <p>Junto al deslizador de opacidad, selecciona un **Modo de Fusión** (ej. Multiplicar, Pantalla, Superponer). Estos modos cambian cómo los colores de la capa interactúan con las capas inferiores. El modo **Multiplicar** es excelente para crear sombras vectoriales, mientras que **Pantalla** es bueno para efectos de luz.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Mover Objetos entre Capas</h2>
+        <p>Debes poder reorganizar tus objetos rápidamente para mantener el orden.</p>
+        <div class="paso">
+            <strong>Método del Menú</strong>
+            <p>Selecciona el objeto(s). Ve a <code>Capa > Mover la selección a la capa superior/inferior</code> o utiliza la opción <code>Mover la selección a la capa...</code>, donde puedes elegir la capa de destino por nombre.</p>
+        </div>
+        <div class="paso">
+            <strong>Método del Atajo de Teclado</strong>
+            <p>Selecciona el objeto. Usa **Shift + Re Pág** (Mover a la capa superior) o **Shift + Av Pág** (Mover a la capa inferior). Esto permite mover objetos sin usar el ratón.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Sombras No Destructivas</h3>
+        <p><strong>Objetivo:</strong> Usar modos de fusión para crear sombras.</p>
+        <ol>
+            <li>Dibuja un objeto principal (ej. un círculo de color brillante) y colócalo en una capa llamada **"Base"**.</li>
+            <li>Crea una nueva capa llamada **"Sombras"** por encima de **"Base"**. Asigna a esta capa el modo de fusión **Multiplicar**.</li>
+            <li>Dibuja una forma simple sobre el círculo principal (en la capa **"Sombras"**). Rellénala con un gris medio.</li>
+            <li>Ajusta la Opacidad de la capa **"Sombras"** a un 50%. Observa cómo el gris interactúa con el color de la base, creando una sombra realista y sutil.</li>
+        </ol>
+    </div>
+
+			</body>
+			<nav>
+							<a href="index.html">Inicio</a>
+							<a href="sesion32.html">Anterior</a>
+							<a href="sesion34.html">Siguiente</a>
+			</nav>
+</html>

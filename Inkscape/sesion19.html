@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S19: Caligrafía y Pinceles</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 19: Herramienta Caligrafía y Pinceles</h1>
+
+    <section>
+        <h2>1. Herramienta Caligrafía y Brocha de Tinta (C)</h2>
+        
+        <p>La herramienta **Caligrafía (C)** te permite crear trazos que varían en grosor según la dirección del pincel y la velocidad del trazo, imitando un pincel o una pluma real. El resultado es un trayecto relleno.</p>
+        <div class="paso">
+            <strong>Paso 1: Propiedades del Pincel</strong>
+            <p>Selecciona la herramienta **Caligrafía**. En la Barra de Controles, ajusta:</p>
+            <ul>
+                <li>**Ángulo (Angle):** Define la orientación de la punta (ej. 45° para un pincel oblicuo).</li>
+                <li>**Fijeza (Fixity):** Controla qué tan fijo está el ángulo. Un valor alto mantiene el ángulo fijo; bajo permite que el grosor varíe con el movimiento.</li>
+                <li>**Finura (Thinness):** El ratio entre la parte más gruesa y la más delgada del trazo.</li>
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Dibujar y Refinar</strong>
+            <p>Arrastra para dibujar. El trazo grueso resultante se comporta como un objeto relleno (no como un trazo con grosor). Puedes cambiar su color de relleno y su opacidad como cualquier otra forma.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Crear Trazo de Grosor Variable con la Pluma</h2>
+        <p>A veces necesitas un control más preciso que el que ofrece la herramienta Caligrafía, creando un perfil de grosor variable a mano.</p>
+        <div class="paso">
+            <strong>Paso 1: Dibujar la Línea Base</strong>
+            <p>Dibuja tu línea con la herramienta **Pluma (B)**. Dale un trazo grueso y color. **Asegúrate de que sea un trazo abierto.**</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Convertir a Trayecto Relleno</strong>
+            <p>Selecciona el trazo. Ve a <code>Trayecto > Trazo a Trayecto (Ctrl + Alt + C)</code>. La línea ahora se convierte en una forma rellena con el contorno exacto de su antiguo grosor. Ya no es una simple línea.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Edición de Grosor Variable</strong>
+            <p>Usa la herramienta **Nodo (F2)**. Puedes manipular los nodos de este nuevo trayecto para darle un grosor variable (ej. estrechar la punta y engrosar el centro), logrando un efecto de pincel manual muy preciso.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Uso de Patrones de Trazo</h2>
+        <p>Inkscape también ofrece formas de aplicar 'pinceles' usando la pestaña **Estilo de Trazo**.</p>
+        <div class="paso">
+            <strong>Marcadores (Markers)</strong>
+            <p>En la pestaña **Estilo de Trazo** del diálogo Relleno y Borde, puedes añadir **Marcadores** al inicio, medio y final de un trazo. Estos son pequeños objetos vectoriales (ej. flechas, círculos) que se repiten o se colocan en los extremos. Esto es útil para diagramas de flujo y mapas.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Firma Manuscrita Estilizada</h3>
+        <p><strong>Objetivo:</strong> Usar Caligrafía y convertir trazo a trayecto.</p>
+        <ol>
+            <li>Con la herramienta **Caligrafía (C)**, intenta dibujar tu firma o unas letras con estilo.</li>
+            <li>Dibuja un segundo trazo con la herramienta **Pluma (B)** (una curva suave).</li>
+            <li>Asigna un grosor notable a este trazo y conviértelo a trayecto (**Ctrl + Alt + C**).</li>
+            <li>Usa la herramienta **Nodo (F2)** para seleccionar los nodos en los extremos y múevelos para crear una punta fina, imitando el grosor variable de un pincel artístico.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion18.html">Anterior</a>
+    <a href="sesion20.html">Siguiente</a>
+</nav>
+</body>
+</html>

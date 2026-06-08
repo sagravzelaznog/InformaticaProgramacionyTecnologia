@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: El Editor de VBA - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 3: El Editor de VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Familiarizarse con el entorno de desarrollo de VBA (Visual Basic for Applications).</p>
+            </header>
+            
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>El Editor de VBA es el entorno donde podrás crear, modificar y depurar tus macros. Es como el "taller" donde darás vida a tus automatizaciones.</p>
+                    <p>El Editor de VBA es el lugar donde podrás crear, modificar y depurar tus macros. Es como el "taller" donde darás vida a tus automatizaciones.</p>
+                    
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>Dato curioso:</strong> VBA significa Visual Basic for Applications, y es el lenguaje de programación que usa Excel para crear macros.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-door-open"></i> Cómo abrir el Editor VBA</h2>
+                    
+                    <div class="steps-container">
+                        <div class="step">
+                            <h3>Método 1: Usando el teclado</h3>
+                            <p>Presiona <kbd>Alt</kbd> + <kbd>F11</kbd> en tu teclado.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <h3>Método 2: Desde la cinta de opciones</h3>
+                            <ol class="steps">
+                                <li>Ve a la pestaña <strong>Programador</strong></li>
+                                <li>Haz clic en <strong>Visual Basic</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="screenshot">
+                        <img src="images/editor-vba.png" alt="Ventana del Editor de VBA" class="screenshot-img">
+                        <p class="caption">Vista general del Editor de VBA</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-puzzle-piece"></i> Partes principales del Editor VBA</h2>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h3>1. Barra de menús</h3>
+                            <p>Contiene todos los comandos para trabajar con VBA, organizados en menús como Archivo, Editar, Ver, etc.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>2. Barra de herramientas</h3>
+                            <p>Acceso rápido a funciones comunes como guardar, ejecutar código y depurar.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>3. Explorador de proyectos</h3>
+                            <p>Muestra todos los libros y hojas de cálculo abiertos, así como sus módulos, formularios y referencias.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>4. Ventana de propiedades</h3>
+                            <p>Muestra y permite editar las propiedades del objeto seleccionado.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>5. Ventana de código</h3>
+                            <p>Área donde escribes y editas tu código VBA.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>6. Ventana inmediato</h3>
+                            <p>Útil para probar líneas de código rápidamente y ver resultados al instante.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-code"></i> Creando tu primer procedimiento</h2>
+                    
+                    <p>Vamos a crear un procedimiento simple que muestre un mensaje en Excel:</p>
+                    
+                    <ol class="steps">
+                        <li>Abre el Editor VBA (<kbd>Alt</kbd> + <kbd>F11</kbd>)</li>
+                        <li>En el Explorador de proyectos, haz clic derecho en tu libro</li>
+                        <li>Selecciona <strong>Insertar > Módulo</strong></li>
+                        <li>En la ventana de código, escribe lo siguiente:
+                            <pre><code>Sub MiPrimerProcedimiento()
+    MsgBox "¡Hola Mundo! Esta es mi primera macro con VBA."
+End Sub</code></pre>
+                        </li>
+                        <li>Presiona <kbd>F5</kbd> o haz clic en el botón <strong>Ejecutar</strong> (▶️) para probar tu código</li>
+                    </ol>
+                    
+                    <div class="exercise">
+                        <h3>🛠️ Actividad Práctica 1</h3>
+                        <p><strong>Crea un procedimiento que:</strong></p>
+                        <ol>
+                            <li>Se llame <code>SaludoPersonalizado</code></li>
+                            <li>Pida al usuario su nombre utilizando <code>InputBox</code></li>
+                            <li>Muestre un mensaje de bienvenida personalizado</li>
+                        </ol>
+                        <div class="hint">
+                            <i class="fas fa-info-circle"></i>
+                            <p><strong>Pista:</strong> Usa <code>InputBox("¿Cuál es tu nombre?")</code> para pedir datos al usuario.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-bug"></i> Depuración básica</h2>
+                    <p>La depuración es esencial para encontrar y corregir errores en tu código. Aquí tienes algunas herramientas útiles:</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h3>1. Puntos de interrupción</h3>
+                            <p>Haz clic en el margen izquierdo junto a una línea de código para pausar la ejecución en ese punto.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>2. Ejecución paso a paso</h3>
+                            <p>Usa <kbd>F8</kbd> para ejecutar una línea a la vez y ver cómo se comporta tu código.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>3. Ventana Inmediato</h3>
+                            <p>Escribe <code>?nombreVariable</code> para ver su valor actual durante la depuración.</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <h3>4. Inspección de variables</h3>
+                            <p>Selecciona una variable y presiona <kbd>Mayús</kbd> + <kbd>F9</kbd> para ver su valor.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h3>🛠️ Actividad Práctica 2</h3>
+                        <p><strong>Depura este código:</strong></p>
+                        <pre><code>Sub SumaErronea()
+    Dim numero1 As Integer
+    Dim numero2 As Integer
+    Dim resultado As Integer
+    
+    numero1 = InputBox("Ingresa el primer número")
+    numero2 = InputBox("Ingresa el segundo número")
+    
+    resultado = numero1 + numero2
+    
+    MsgBox "La suma es: " & resultado
+End Sub</code></pre>
+                        <p>¿Puedes encontrar el error? Usa las herramientas de depuración para encontrarlo.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-check-circle"></i> Buenas prácticas al trabajar con el Editor VBA</h2>
+                    
+                    <div class="benefit-card">
+                        <h3>1. Organiza tu código</h3>
+                        <p>Usa módulos para agrupar procedimientos relacionados. Por ejemplo, crea un módulo para funciones de formato, otro para cálculos, etc.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h3>2. Comenta tu código</h3>
+                        <p>Usa el apóstrofe (') para agregar comentarios que expliquen qué hace cada sección de tu código.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h3>3. Usa nombres descriptivos</h3>
+                        <p>Nombra tus procedimientos y variables de manera que sea claro su propósito.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h3>4. Guarda frecuentemente</h3>
+                        <p>El Editor VBA no tiene guardado automático. Usa <kbd>Ctrl</kbd> + <kbd>S</kbd> con frecuencia.</p>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>El Editor VBA es el entorno donde se crean y modifican las macros</li>
+                        <li>Puedes abrirlo con <kbd>Alt</kbd> + <kbd>F11</kbd> o desde la pestaña Programador</li>
+                        <li>Las partes principales son: barra de menús, barra de herramientas, explorador de proyectos, ventana de propiedades, ventana de código y ventana inmediato</li>
+                        <li>La depuración es esencial para encontrar y corregir errores en tu código</li>
+                        <li>Seguir buenas prácticas te ayudará a mantener tu código organizado y comprensible</li>
+                    </ul>
+                </section>
+
+                <div class="nav-buttons">
+                    <a href="sesion2.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion4.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

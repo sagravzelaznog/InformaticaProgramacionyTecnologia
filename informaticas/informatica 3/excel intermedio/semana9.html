@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 9: Funciones Avanzadas I en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .tabla-ejemplo th, .tabla-ejemplo td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-ejemplo th {
+            background-color: #f2f2f2;
+        }
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .nota {
+            background-color: #e3f2fd;
+            border-left: 3px solid #2196f3;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 9: Funciones Avanzadas I en Excel</h1>
+    
+    <div id="sesion9.1" class="sesion">
+        <h2>Sesión 9.1: Funciones BUSCARV y BUSCARH</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender el funcionamiento de BUSCARV y BUSCARH</li>
+                <li>Aplicar estas funciones en diferentes escenarios</li>
+                <li>Resolver problemas comunes al usar estas funciones</li>
+            </ul>
+            
+            <h3>1. Función BUSCARV</h3>
+            <div class="formula">=BUSCARV(valor_buscado, matriz_buscar_en, indicador_columnas, [ordenado])</div>
+            
+            <h4>Parámetros:</h4>
+            <ul>
+                <li><strong>valor_buscado:</strong> El valor que deseas encontrar en la primera columna de la matriz</li>
+                <li><strong>matriz_buscar_en:</strong> El rango de celdas que contiene los datos</li>
+                <li><strong>indicador_columnas:</strong> El número de columna en la matriz que contiene el valor de retorno</li>
+                <li><strong>ordenado:</strong> Opcional. VERDADERO (o 1) para búsqueda aproximada, FALSO (o 0) para búsqueda exacta</li>
+            </ul>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Dada la siguiente tabla de productos:</p>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                    </tr>
+                    <tr>
+                        <td>P001</td>
+                        <td>Lápiz</td>
+                        <td>$5.00</td>
+                        <td>150</td>
+                    </tr>
+                    <tr>
+                        <td>P002</td>
+                        <td>Cuaderno</td>
+                        <td>$45.00</td>
+                        <td>80</td>
+                    </tr>
+                </table>
+                
+                <p>Para buscar el precio del producto con ID "P002":</p>
+                <div class="formula">=BUSCARV("P002", A2:D3, 3, FALSO)</div>
+                <p>Resultado: $45.00</p>
+            </div>
+            
+            <h3>2. Función BUSCARH</h3>
+            <div class="formula">=BUSCARH(valor_buscado, matriz_buscar_en, indicador_filas, [ordenado])</div>
+            
+            <p>Funciona igual que BUSCARV pero busca en la primera fila en lugar de la primera columna.</p>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Dada la siguiente tabla horizontal:</p>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>Dato</th>
+                        <th>Ene</th>
+                        <th>Feb</th>
+                        <th>Mar</th>
+                    </tr>
+                    <tr>
+                        <td>Ventas</td>
+                        <td>$12,500</td>
+                        <td>$15,300</td>
+                        <td>$18,750</td>
+                    </tr>
+                </table>
+                
+                <p>Para buscar las ventas de febrero:</p>
+                <div class="formula">=BUSCARH("Feb", A1:D2, 2, FALSO)</div>
+                <p>Resultado: $15,300</p>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea una hoja de cálculo con dos pestañas:</p>
+                <ol>
+                    <li>En la primera pestaña, crea una base de datos de empleados con las columnas: ID, Nombre, Departamento, Salario, Fecha de Ingreso.</li>
+                    <li>En la segunda pestaña, crea un formulario de búsqueda donde puedas ingresar un ID y automáticamente se muestren todos los datos del empleado.</li>
+                    <li>Agrega validación para mostrar un mensaje si el empleado no se encuentra.</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para BUSCARV y BUSCARH:</h4>
+                <ul>
+                    <li>Usa referencias absolutas ($A$1:$D$100) para la matriz de búsqueda</li>
+                    <li>Considera usar BUSCARV con FALSO para búsquedas exactas</li>
+                    <li>Para evitar errores, usa SI.ERROR con BUSCARV: <span class="formula">=SI.ERROR(BUSCARV(...), "No encontrado")</span></li>
+                    <li>Ordena los datos si usas búsqueda aproximada (VERDADERO)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion9.2" class="sesion">
+        <h2>Sesión 9.2: Funciones INDICE y COINCIDIR</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender las funciones INDICE y COINCIDIR</li>
+                <li>Aprender a combinarlas para búsquedas más flexibles</li>
+                <li>Comparar con BUSCARV y entender cuándo usar cada una</li>
+            </ul>
+            
+            <h3>1. Función INDICE</h3>
+            <div class="formula">=INDICE(matriz, núm_fila, [núm_columna])</div>
+            
+            <h4>Parámetros:</h4>
+            <ul>
+                <li><strong>matriz:</strong> Rango de celdas o constante de matriz</li>
+                <li><strong>núm_fila:</strong> Número de fila en la matriz desde la que devolver un valor</li>
+                <li><strong>núm_columna:</strong> Opcional. Número de columna en la matriz desde la que devolver un valor</li>
+            </ul>
+            
+            <h3>2. Función COINCIDIR</h3>
+            <div class="formula">=COINCIDIR(valor_buscado, matriz_buscar_en, [tipo_coincidencia])</div>
+            
+            <h4>Parámetros:</h4>
+            <ul>
+                <li><strong>valor_buscado:</strong> El valor que deseas encontrar</li>
+                <li><strong>matriz_buscar_en:</strong> Rango de celdas en el que buscar</li>
+                <li><strong>tipo_coincidencia:</strong> 1 (menor que), 0 (exacto), -1 (mayor que)</li>
+            </ul>
+            
+            <h3>3. Combinando INDICE y COINCIDIR</h3>
+            <p>La combinación de estas funciones permite búsquedas más flexibles que BUSCARV.</p>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Dada la siguiente tabla de productos:</p>
+                <table class="tabla-ejemplo">
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                    </tr>
+                    <tr>
+                        <td>P001</td>
+                        <td>Lápiz</td>
+                        <td>$5.00</td>
+                        <td>Escolar</td>
+                    </tr>
+                </table>
+                
+                <p>Para buscar el precio de un producto por su nombre:</p>
+                <div class="formula">=INDICE(C2:C100, COINCIDIR("Lápiz", B2:B100, 0))</div>
+                <p>Resultado: $5.00</p>
+                
+                <p>Ventajas sobre BUSCARV:</p>
+                <ul>
+                    <li>Puedes buscar en cualquier columna, no solo en la primera</li>
+                    <li>Puedes buscar hacia la izquierda</li>
+                    <li>Mayor flexibilidad en la estructura de datos</li>
+                </ul>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea una hoja de cálculo con los siguientes datos:</p>
+                <ol>
+                    <li>Una tabla con información de empleados (ID, Nombre, Departamento, Salario, Fecha de Ingreso)</li>
+                    <li>Crea un panel de búsqueda que permita buscar por cualquier campo (nombre, departamento, etc.)</li>
+                    <li>Muestra todos los datos del empleado encontrado</li>
+                    <li>Agrega validación para manejar casos donde no se encuentre el empleado</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Cuándo usar INDICE/COINCIDIR vs BUSCARV:</h4>
+                <ul>
+                    <li><strong>Usa BUSCARV cuando:</strong>
+                        <ul>
+                            <li>La columna de búsqueda está a la izquierda de la columna de resultado</li>
+                            <li>Necesitas una solución más simple y legible</li>
+                            <li>El rendimiento es crítico (ligeramente más rápido que INDICE/COINCIDIR)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Usa INDICE/COINCIDIR cuando:</strong>
+                        <ul>
+                            <li>Necesitas buscar en columnas a la izquierda</li>
+                            <li>Tu tabla de búsqueda no está ordenada</li>
+                            <li>Necesitas más flexibilidad en tus búsquedas</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion9.3" class="sesion">
+        <h2>Sesión 9.3: Funciones INDIRECTO y DESREF</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Dominar las funciones INDIRECTO y DESREF</li>
+                <li>Crear referencias dinámicas en fórmulas</li>
+                <li>Construir informes y paneles de control flexibles</li>
+            </ul>
+            
+            <h3>1. Función INDIRECTO</h3>
+            <div class="formula">=INDIRECTO(ref_text, [a1])</div>
+            
+            <h4>Parámetros:</h4>
+            <ul>
+                <li><strong>ref_text:</strong> Texto que representa una referencia de celda</li>
+                <li><strong>a1:</strong> Opcional. Valor lógico que especifica el tipo de referencia (VERDADERO para referencia A1, FALSO para R1C1)</li>
+            </ul>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 1: Referencia simple</h4>
+                <p>Si la celda A1 contiene el texto "B2" y la celda B2 contiene "Hola":</p>
+                <div class="formula">=INDIRECTO(A1)</div>
+                <p>Resultado: Hola</p>
+                
+                <h4>Ejemplo 2: Referencia a otra hoja</h4>
+                <div class="formula">=INDIRECTO("'"&A1&"'!B2")</div>
+                <p>Donde A1 contiene el nombre de la hoja</p>
+            </div>
+            
+            <h3>2. Función DESREF</h3>
+            <div class="formula">=DESREF(referencia, filas, columnas, [alto], [ancho])</div>
+            
+            <h4>Parámetros:</h4>
+            <ul>
+                <li><strong>referencia:</strong> Punto de partida</li>
+                <li><strong>filas:</strong> Número de filas a desplazarse (positivo abajo, negativo arriba)</li>
+                <li><strong>columnas:</strong> Número de columnas a desplazarse (positivo a la derecha, negativo a la izquierda)</li>
+                <li><strong>alto:</strong> Opcional. Alto del rango a devolver</li>
+                <li><strong>ancho:</strong> Opcional. Ancho del rango a devolver</li>
+            </ul>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo 1: Referencia a una celda</h4>
+                <div class="formula">=DESREF(A1, 2, 3)</div>
+                <p>Devuelve el valor de la celda que está 2 filas abajo y 3 columnas a la derecha de A1 (es decir, D3)</p>
+                
+                <h4>Ejemplo 2: Referencia a un rango</h4>
+                <div class="formula">=SUMA(DESREF(A1,1,1,3,2))</div>
+                <p>Suma un rango de 3 filas y 2 columnas que comienza una fila abajo y una columna a la derecha de A1 (B2:C4)</p>
+            </div>
+            
+            <h3>3. Usos avanzados</h3>
+            
+            <div class="ejemplo">
+                <h4>Tabla dinámica de resumen</h4>
+                <p>Crea un resumen que cambia según la selección del usuario:</p>
+                <ol>
+                    <li>Crea una lista desplegable con los meses del año</li>
+                    <li>Usa INDICE/COINCIDIR para encontrar la fila y columna correctas</li>
+                    <li>Usa DESREF para crear un rango dinámico alrededor de la celda encontrada</li>
+                </ol>
+                
+                <h4>Dashboard con múltiples hojas</h4>
+                <p>Crea un panel de control que consolide datos de múltiples hojas:</p>
+                <div class="formula">=INDIRECTO(A1&"!B2")</div>
+                <p>Donde A1 contiene el nombre de la hoja</p>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea un libro de Excel con:</p>
+                <ol>
+                    <li>Una hoja por cada región (Norte, Sur, Este, Oeste) con ventas mensuales</li>
+                    <li>Una hoja de resumen que permita seleccionar una región y muestre un gráfico con las ventas de esa región</li>
+                    <li>Usa INDIRECTO para referenciar dinámicamente la hoja seleccionada</li>
+                    <li>Usa DESREF para crear rangos dinámicos que se ajusten automáticamente si se agregan más meses</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para INDIRECTO y DESREF:</h4>
+                <ul>
+                    <li>INDIRECTO es volátil (se recalcula con cada cambio en el libro), úsalo con moderación</li>
+                    <li>DESREF también es volátil, pero es más eficiente que INDIRECTO para rangos grandes</li>
+                    <li>Usa nombres de rango con INDIRECTO para hacer tus fórmulas más legibles</li>
+                    <li>Considera usar tablas de Excel con INDIRECTO para referencias más robustas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion9.4" class="sesion">
+        <h2>Sesión 9.4: Práctica guiada - Sistema de inventario</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar las funciones avanzadas aprendidas</li>
+                <li>Crear un sistema de inventario funcional</li>
+                <li>Implementar búsquedas y cálculos complejos</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <p>Crearás un sistema de control de inventario para una tienda minorista que permita:</p>
+            
+            <h4>1. Hoja "Productos"</h4>
+            <p>Base de datos de todos los productos con las siguientes columnas:</p>
+            <ul>
+                <li>ID de Producto (formato: P-0001)</li>
+                <li>Nombre del Producto</li>
+                <li>Categoría</li>
+                <li>Precio de Compra</li>
+                <li>Precio de Venta</li>
+                <li>Stock Mínimo</li>
+                <li>Stock Actual</li>
+                <li>Proveedor</li>
+                <li>Ubicación en Almacén</li>
+            </ul>
+            
+            <h4>2. Hoja "Movimientos"</h4>
+            <p>Registro de todos los movimientos de inventario:</p>
+            <ul>
+                <li>Fecha y Hora</li>
+                <li>Tipo de Movimiento (Entrada/Salida)</li>
+                <li>ID de Producto (validado con lista desplegable)</li>
+                <li>Cantidad</li>
+                <li>Motivo (Compra, Venta, Ajuste, Devolución, etc.)</li>
+                <li>Número de Documento</li>
+                <li>Responsable</li>
+            </ul>
+            
+            <h4>3. Hoja "Informes"</h4>
+            <p>Panel de control con:</p>
+            <ol>
+                <li><strong>Búsqueda de Productos:</strong>
+                    <ul>
+                        <li>Campo de búsqueda por ID o nombre</li>
+                        <li>Muestra todos los detalles del producto</li>
+                        <li>Gráfico de historial de movimientos</li>
+                    </ul>
+                </li>
+                <li><strong>Análisis de Inventario:</strong>
+                    <ul>
+                        <li>Productos por debajo del stock mínimo</li>
+                        <li>Productos más vendidos</li>
+                        <li>Valor total del inventario</li>
+                    </ul>
+                </li>
+                <li><strong>Informe de Movimientos:</strong>
+                    <ul>
+                        <li>Filtro por fecha</li>
+                        <li>Filtro por tipo de movimiento</li>
+                        <li>Resumen por categoría</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h4>Requisitos técnicos:</h4>
+            <ol>
+                <li>Usa BUSCARV o INDICE/COINCIDIR para las búsquedas de productos</li>
+                <li>Implementa validación de datos en todas las entradas</li>
+                <li>Usa formato condicional para resaltar productos con stock bajo</li>
+                <li>Crea tablas dinámicas para los informes</li>
+                <li>Usa INDIRECTO para referencias dinámicas entre hojas</li>
+                <li>Implementa DESREF para rangos dinámicos en los informes</li>
+            </ol>
+            
+            <h4>Características avanzadas (opcional):</h4>
+            <ul>
+                <li>Generador automático de códigos de barras</li>
+                <li>Alerta por correo electrónico para productos con stock bajo</li>
+                <li>Histórico de precios</li>
+                <li>Cálculo automático de punto de reorden</li>
+            </ul>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio de implementación:</h4>
+                <p>Sigue estos pasos para construir el sistema:</p>
+                <ol>
+                    <li>Crea la estructura básica de las tres hojas</li>
+                    <li>Ingresa al menos 20 productos de ejemplo</li>
+                    <li>Registra al menos 50 movimientos de inventario</li>
+                    <li>Configura las fórmulas de búsqueda en la hoja de informes</li>
+                    <li>Crea los gráficos de análisis</li>
+                    <li>Prueba el sistema con diferentes escenarios</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para el proyecto:</h4>
+                <ul>
+                    <li>Usa nombres de rango para hacer las fórmulas más legibles</li>
+                    <li>Documenta tus fórmulas complejas con comentarios</li>
+                    <li>Protege las celdas con fórmulas para evitar modificaciones accidentales</li>
+                    <li>Considera usar tablas de Excel para rangos dinámicos</li>
+                    <li>Guarda versiones de respaldo de tu trabajo</li>
+                </ul>
+            </div>
+            
+            <h3>Entrega:</h3>
+            <p>Guarda el archivo como "Sistema_Inventario_TuNombre.xlsx" y asegúrate de que:</p>
+            <ul>
+                <li>Todas las funciones trabajen correctamente</li>
+                <li>Los cálculos sean precisos</li>
+                <li>La interfaz sea intuitiva</li>
+                <li>Incluyas al menos tres ejemplos de búsquedas complejas</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

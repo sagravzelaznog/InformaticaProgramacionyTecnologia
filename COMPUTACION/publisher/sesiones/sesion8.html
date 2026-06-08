@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Estilos y Temas - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .ejercicio {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1971c2;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .ejercicio h4 {
+            margin-top: 0;
+            color: #1971c2;
+        }
+        
+        .demo-estilos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .estilo-muestra {
+            border: 1px solid #dee2e6;
+            padding: 1rem;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        .selector-temas {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .tema-opcion {
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tema-opcion:hover {
+            background-color: #f1f3f5;
+        }
+        
+        .tema-opcion.activo {
+            background-color: #1971c2;
+            color: white;
+            border-color: #1971c2;
+        }
+        
+        .paleta-colores {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .color-muestra {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .color-azul {
+            background-color: #2b579a;
+        }
+        
+        .color-dorado {
+            background-color: #e9b96e;
+        }
+        
+        .color-azul-claro {
+            background-color: #c6d9f0;
+        }
+        
+        .color-salmón {
+            background-color: #f7caac;
+        }
+        
+        .color-verde {
+            background-color: #9bbb59;
+            border: 1px solid #dee2e6;
+            cursor: pointer;
+        }
+        
+        .preview-tema {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .ejercicio-practico {
+            background-color: #e6fcf5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .ejercicio-practico h4 {
+            margin-top: 0;
+            color: #087f5b;
+        }
+        
+        .paso {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #12b886;
+        }
+        
+        .consejo {
+            background-color: #fff3bf;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        
+        .consejo h4 {
+            margin-top: 0;
+            color: #e67700;
+        }
+        
+        .evaluacion {
+            background-color: #f3f0ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .evaluacion h3 {
+            margin-top: 0;
+            color: #5f3dc4;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>Sesión 8: Estilos y Temas</h1>
+            <nav aria-label="Navegación">
+                <a href="../index.html" class="btn">Inicio</a>
+                <a href="sesion7.html" class="btn">Sesión Anterior</a>
+                <a href="sesion9.html" class="btn">Siguiente Sesión</a>
+            </nav>
+        </header>
+
+        <main>
+            <section>
+                <h2>Introducción</h2>
+                <p>En esta sesión aprenderás a utilizar estilos y temas en Microsoft Publisher para dar un aspecto profesional y consistente a tus publicaciones. Los estilos y temas te permiten ahorrar tiempo y mantener la coherencia visual en todos tus documentos.</p>
+                
+                <div class="objetivos">
+                    <h3>Lo que aprenderás:</h3>
+                    <ul>
+                        <li>Aplicar estilos de texto para formatear rápidamente tu contenido</li>
+                        <li>Utilizar temas de diseño para dar un aspecto profesional a tus publicaciones</li>
+                        <li>Personalizar esquemas de color para adaptarlos a tu marca o preferencias</li>
+                        <li>Crear y modificar estilos personalizados</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="estilos-texto">
+                <h2>1. Aplicar Estilos de Texto</h2>
+                <p>Los estilos de texto te permiten aplicar formatos consistentes a tu texto con un solo clic. Publisher incluye una variedad de estilos predefinidos que puedes aplicar a títulos, subtítulos, párrafos y más.</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Aplicar un estilo de texto</h4>
+                    <ol class="pasos">
+                        <li>Selecciona el texto al que deseas aplicar un estilo</li>
+                        <li>En la pestaña <strong>Inicio</strong>, busca el grupo <strong>Estilos</strong></li>
+                        <li>Haz clic en el estilo que deseas aplicar (por ejemplo, Título 1, Título 2, etc.)</li>
+                        <li>Observa cómo cambia la apariencia del texto seleccionado</li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Consejo profesional:</h4>
+                    <p>Usa los atajos de teclado para aplicar estilos rápidamente: <kbd>Ctrl + Alt + 1</kbd> para Título 1, <kbd>Ctrl + Alt + 2</kbd> para Título 2, etc.</p>
+                </div>
+                
+                <h3>Crear un estilo personalizado</h3>
+                <p>Si los estilos predefinidos no se ajustan a tus necesidades, puedes crear tus propios estilos personalizados.</p>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Crear un estilo personalizado</h4>
+                    <ol class="pasos">
+                        <li>Selecciona un texto con el formato que deseas guardar como estilo</li>
+                        <li>En la pestaña <strong>Inicio</strong>, haz clic en el botón de expandir en el grupo <strong>Estilos</strong></li>
+                        <li>Haz clic en <strong>Nuevo estilo</strong></li>
+                        <li>Asigna un nombre descriptivo a tu estilo</li>
+                        <li>Haz clic en <strong>Aceptar</strong> para guardar el estilo</li>
+                        <li>¡Ahora podrás encontrar y aplicar tu estilo personalizado desde la galería de estilos!</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="temas-diseno">
+                <h2>2. Usar Temas de Diseño</h2>
+                <p>Los temas de diseño son conjuntos de estilos coordinados que incluyen combinaciones de colores, fuentes y efectos. Aplicar un tema cambia automáticamente la apariencia de toda tu publicación.</p>
+                
+                <div class="selector-temas" id="selectorTemas">
+                    <div class="tema-opcion activo" data-tema="oficina">Oficina</div>
+                    <div class="tema-opcion" data-tema="flujo">Flujo</div>
+                    <div class="tema-opcion" data-tema="integral">Integral</div>
+                    <div class="tema-opcion" data-tema="mediana">Mediana Empresa</div>
+                </div>
+                
+                <div class="preview-tema" id="previewTema">
+                    <h3>Vista previa del tema</h3>
+                    <p>Este es un párrafo de ejemplo con texto de relleno para mostrar cómo se vería con diferentes temas aplicados. Observa cómo cambian los colores, fuentes y efectos cuando seleccionas un tema diferente.</p>
+                    <button class="btn">Botón de ejemplo</button>
+                </div>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Aplicar un tema de diseño</h4>
+                    <ol class="pasos">
+                        <li>Ve a la pestaña <strong>Diseño de página</strong></li>
+                        <li>En el grupo <strong>Temas</strong>, haz clic en <strong>Temas</strong></li>
+                        <li>Desplázate por las opciones para ver una vista previa en tiempo real</li>
+                        <li>Haz clic en el tema que deseas aplicar</li>
+                        <li>Observa cómo cambia la apariencia de toda tu publicación</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="esquemas-color">
+                <h2>3. Personalizar Esquemas de Color</h2>
+                <p>Los esquemas de color son conjuntos de colores coordinados que puedes aplicar a tu publicación. Cada tema incluye un esquema de color predeterminado, pero puedes personalizarlo según tus necesidades.</p>
+                
+                <div class="paleta-colores" id="paletaColores">
+                    <div class="color-muestra color-azul" data-color="#2b579a"></div>
+                    <div class="color-muestra color-dorado" data-color="#e9b96e"></div>
+                    <div class="color-muestra color-azul-claro" data-color="#c6d9f0"></div>
+                    <div class="color-muestra color-salmón" data-color="#f7caac"></div>
+                    <div class="color-muestra color-verde" data-color="#9bbb59"></div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h4>Ejercicio: Personalizar un esquema de color</h4>
+                    <ol class="pasos">
+                        <li>Ve a la pestaña <strong>Diseño de página</strong></li>
+                        <li>En el grupo <strong>Temas</strong>, haz clic en <strong>Colores</strong></li>
+                        <li>Selecciona <strong>Personalizar colores</strong> al final del menú</li>
+                        <li>En el cuadro de diálogo, haz clic en el botón junto al elemento de color que deseas cambiar</li>
+                        <li>Selecciona un nuevo color de la paleta o haz clic en <strong>Más colores</strong> para opciones adicionales</li>
+                        <li>Repite para los demás elementos de color según sea necesario</li>
+                        <li>Asigna un nombre a tu esquema de color personalizado y haz clic en <strong>Guardar</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="consejo">
+                    <h4>Consejo de diseño:</h4>
+                    <p>Para un aspecto profesional, limita tu esquema de color a 3-5 colores principales. Usa tonos más oscuros para el texto y más claros para fondos y acentos.</p>
+                </div>
+            </section>
+
+            <section id="ejercicio-practico">
+                <h2>Ejercicio Práctico</h2>
+                <p>Ahora que has aprendido sobre estilos y temas, es hora de poner en práctica tus conocimientos con un ejercicio completo.</p>
+                
+                <div class="ejercicio-practico">
+                    <h4>Crear una publicación con estilos personalizados</h4>
+                    <p>Sigue estos pasos para crear un boletín informativo con estilos y temas personalizados:</p>
+                    
+                    <div class="paso">
+                        <h5>Paso 1: Configurar el documento</h5>
+                        <ol>
+                            <li>Abre Microsoft Publisher y selecciona <strong>Boletín informativo</strong> de las plantillas</li>
+                            <li>Elige un diseño que incluya varios elementos como títulos, subtítulos y párrafos</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 2: Aplicar un tema base</h5>
+                        <ol>
+                            <li>Ve a <strong>Diseño de página</strong> > <strong>Temas</strong></li>
+                            <li>Selecciona un tema que se ajuste al estilo que deseas para tu boletín</li>
+                            <li>Observa cómo cambian automáticamente los estilos de texto y los colores</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 3: Personalizar los estilos de texto</h5>
+                        <ol>
+                            <li>Selecciona un título principal y aplica el estilo <strong>Título 1</strong></li>
+                            <li>Selecciona los subtítulos y aplica el estilo <strong>Título 2</strong></li>
+                            <li>Selecciona un párrafo y crea un nuevo estilo personalizado con tu fuente y tamaño preferidos</li>
+                            <li>Aplica tu nuevo estilo personalizado a los demás párrafos</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 4: Personalizar los colores</h5>
+                        <ol>
+                            <li>Ve a <strong>Diseño de página</strong> > <strong>Colores</strong> > <strong>Personalizar colores</strong></li>
+                            <li>Cambia los colores principales para que coincidan con tu marca o preferencias</li>
+                            <li>Guarda tu esquema de color personalizado con un nombre descriptivo</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="paso">
+                        <h5>Paso 5: Guardar tu tema personalizado</h5>
+                        <ol>
+                            <li>Ve a <strong>Diseño de página</strong> > <strong>Temas</strong> > <strong>Guardar tema actual</strong></li>
+                            <li>Asigna un nombre descriptivo a tu tema</li>
+                            <li>Haz clic en <strong>Guardar</strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="evaluacion">
+                <div class="evaluacion">
+                    <h3>Auto-evaluación</h3>
+                    <p>Responde las siguientes preguntas para verificar tu comprensión:</p>
+                    <ol>
+                        <li>¿Cuál es la diferencia entre un estilo de texto y un tema de diseño?</li>
+                        <li>¿Cómo puedes aplicar rápidamente el mismo formato a múltiples elementos de texto en tu documento?</li>
+                        <li>¿Qué elementos incluye un tema de diseño en Publisher?</li>
+                        <li>¿Cómo puedes asegurarte de que todos tus documentos tengan una apariencia consistente?</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="resumen">
+                <h2>Resumen de la Sesión</h2>
+                <p>En esta sesión has aprendido a:</p>
+                <ul>
+                    <li>Aplicar y crear estilos de texto para un formato consistente</li>
+                    <li>Utilizar temas de diseño para dar un aspecto profesional a tus publicaciones</li>
+                    <li>Personalizar esquemas de color para adaptarlos a tus necesidades</li>
+                    <li>Guardar temas personalizados para uso futuro</li>
+                </ul>
+                
+                <div class="consejo">
+                    <h4>Próximos pasos:</h4>
+                    <p>Practica creando diferentes publicaciones y aplicando diferentes temas y estilos. Cuanto más practiques, más cómodo te sentirás trabajando con estas herramientas.</p>
+                </div>
+            </section>
+        </main>
+
+   
+    </div>
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Script para el selector de temas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controlador para el selector de temas
+            const temas = document.querySelectorAll('.tema-opcion');
+            const preview = document.getElementById('previewTema');
+            
+            // Configuración de temas
+            const configTemas = {
+                'oficina': {
+                    background: '#ffffff',
+                    color: '#2b579a',
+                    text: '#333333',
+                    buttonBg: '#2b579a',
+                    buttonText: '#ffffff'
+                },
+                'flujo': {
+                    background: '#f8f9fa',
+                    color: '#d83b01',
+                    text: '#201f1e',
+                    buttonBg: '#d83b01',
+                    buttonText: '#ffffff'
+                },
+                'integral': {
+                    background: '#f3f2f1',
+                    color: '#0078d4',
+                    text: '#323130',
+                    buttonBg: '#0078d4',
+                    buttonText: '#ffffff'
+                },
+                'mediana': {
+                    background: '#faf9f8',
+                    color: '#b4009e',
+                    text: '#323130',
+                    buttonBg: '#b4009e',
+                    buttonText: '#ffffff'
+                }
+            };
+            
+            // Aplicar tema seleccionado
+            function aplicarTema(tema) {
+                const config = configTemas[tema];
+                preview.style.backgroundColor = config.background;
+                preview.style.color = config.text;
+                preview.querySelector('h3').style.color = config.color;
+                const boton = preview.querySelector('.btn');
+                boton.style.backgroundColor = config.buttonBg;
+                boton.style.color = config.buttonText;
+                boton.style.borderColor = config.buttonBg;
+                
+                // Actualizar clases activas
+                temas.forEach(t => t.classList.remove('activo'));
+                document.querySelector(`.tema-opcion[data-tema="${tema}"]`).classList.add('activo');
+            }
+            
+            // Event listeners para los botones de tema
+            temas.forEach(tema => {
+                tema.addEventListener('click', function() {
+                    const nombreTema = this.getAttribute('data-tema');
+                    aplicarTema(nombreTema);
+                });
+            });
+            
+            // Inicializar con el tema por defecto
+            aplicarTema('oficina');
+            
+            // Controlador para la paleta de colores
+            const colores = document.querySelectorAll('.color-muestra');
+            colores.forEach(color => {
+                color.addEventListener('click', function() {
+                    const colorSeleccionado = this.style.backgroundColor;
+                    this.style.border = '2px solid #000';
+                    colores.forEach(c => {
+                        if (c !== this) c.style.border = '1px solid #dee2e6';
+                    });
+                    // Aquí podrías agregar lógica para aplicar el color seleccionado a un elemento
+                });
+            });
+            
+            // Botón para volver arriba
+            document.getElementById('volverArriba').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

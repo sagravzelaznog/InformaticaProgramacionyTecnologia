@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 11: Tablas Dinámicas en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .ejercicio {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .tabla-ejemplo {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .tabla-ejemplo th, .tabla-ejemplo td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-ejemplo th {
+            background-color: #f2f2f2;
+        }
+        .paso {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+        }
+        .nota {
+            background-color: #e3f2fd;
+            border-left: 3px solid #2196f3;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .importante {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 11: Tablas Dinámicas en Excel</h1>
+    
+    <div id="sesion11.1" class="sesion">
+        <h2>Sesión 11.1: Introducción a tablas dinámicas</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender el concepto y utilidad de las tablas dinámicas</li>
+                <li>Crear una tabla dinámica básica</li>
+                <li>Identificar los componentes principales de una tabla dinámica</li>
+            </ul>
+            
+            <h3>1. ¿Qué son las tablas dinámicas?</h3>
+            <p>Las tablas dinámicas son una de las herramientas más poderosas de Excel que permiten resumir, analizar, explorar y presentar datos de manera interactiva.</p>
+            
+            <div class="ejemplo">
+                <h4>Ventajas de usar tablas dinámicas:</h4>
+                <ul>
+                    <li>Análisis rápido de grandes conjuntos de datos</li>
+                    <li>Resumen de datos sin fórmulas complejas</li>
+                    <li>Facilidad para cambiar la perspectiva de los datos</li>
+                    <li>Actualización automática al modificar los datos fuente</li>
+                </ul>
+            </div>
+            
+            <h3>2. Creación de una tabla dinámica básica</h3>
+            
+            <div class="paso">
+                <h4>Paso 1: Preparar los datos</h4>
+                <ul>
+                    <li>Asegúrate de que tus datos estén organizados en formato de tabla</li>
+                    <li>Cada columna debe tener un encabezado único</li>
+                    <li>No debe haber filas o columnas vacías</li>
+                    <li>Los datos deben ser consistentes en cada columna</li>
+                </ul>
+            </div>
+            
+            <div class="paso">
+                <h4>Paso 2: Insertar tabla dinámica</h4>
+                <ol>
+                    <li>Selecciona cualquier celda dentro de tus datos</li>
+                    <li>Ve a la pestaña <strong>Insertar</strong></li>
+                    <li>Haz clic en <strong>Tabla dinámica</strong></li>
+                    <li>Verifica el rango de datos</li>
+                    <li>Elige si quieres la tabla en una hoja nueva o existente</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <ol>
+                    <li>Crea una tabla con datos de ventas que incluya: Fecha, Vendedor, Región, Producto, Cantidad y Monto</li>
+                    <li>Inserta una tabla dinámica con estos datos</li>
+                    <li>Explora las diferentes áreas de la tabla dinámica</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para principiantes:</h4>
+                <ul>
+                    <li>Usa <strong>Tablas de Excel</strong> (Ctrl+T) como fuente para tus tablas dinámicas para que se actualicen automáticamente</li>
+                    <li>Nombra tus tablas dinámicas para una mejor organización</li>
+                    <li>Guarda tu archivo antes de hacer cambios importantes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion11.2" class="sesion">
+        <h2>Sesión 11.2: Configuración de campos y valores</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Personalizar la estructura de la tabla dinámica</li>
+                <li>Configurar campos de valor</li>
+                <li>Aplicar diferentes tipos de cálculos</li>
+            </ul>
+            
+            <h3>1. Áreas de la tabla dinámica</h3>
+            <ul>
+                <li><strong>Filtros:</strong> Filtran toda la tabla</li>
+                <li><strong>Columnas:</strong> Encabezados de columna</li>
+                <li><strong>Filas:</strong> Encabezados de fila</li>
+                <li><strong>Valores:</strong> Datos a resumir</li>
+            </ul>
+            
+            <h3>2. Configuración de campos de valor</h3>
+            
+            <div class="paso">
+                <h4>Cambiar el tipo de cálculo:</h4>
+                <ol>
+                    <li>Haz clic derecho en cualquier valor de la tabla dinámica</li>
+                    <li>Selecciona <strong>Configuración de campo de valor</strong></li>
+                    <li>Elige el tipo de resumen deseado (Suma, Contar, Promedio, etc.)</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo de configuración:</h4>
+                <p>Para ver el total de ventas por vendedor:</p>
+                <ol>
+                    <li>Arrastra "Vendedor" al área de Filas</li>
+                    <li>Arrastra "Monto" al área de Valores</li>
+                    <li>Asegúrate de que el campo de valor esté configurado como Suma</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Con los datos de ventas del ejercicio anterior:</p>
+                <ol>
+                    <li>Crea una tabla dinámica que muestre las ventas totales por región</li>
+                    <li>Agrega un segundo cálculo que muestre el promedio de ventas por transacción</li>
+                    <li>Cambia el formato de los números para incluir separadores de miles y dos decimales</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion11.3" class="sesion">
+        <h2>Sesión 11.3: Filtros y segmentación de datos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Aplicar filtros a tablas dinámicas</li>
+                <li>Utilizar segmentación de datos</li>
+                <li>Crear informes interactivos</li>
+            </ul>
+            
+            <h3>1. Filtros en tablas dinámicas</h3>
+            
+            <div class="paso">
+                <h4>Filtrar datos:</h4>
+                <ol>
+                    <li>Haz clic en la flecha desplegable del campo que deseas filtrar</li>
+                    <li>Selecciona o deselecciona los elementos que deseas incluir</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+            
+            <h3>2. Segmentación de datos</h3>
+            
+            <div class="paso">
+                <h4>Insertar segmentación:</h4>
+                <ol>
+                    <li>Selecciona cualquier celda de la tabla dinámica</li>
+                    <li>Ve a la pestaña <strong>Analizar</strong> (o <strong>Opciones</strong> en versiones anteriores)</li>
+                    <li>Haz clic en <strong>Insertar segmentación de datos</strong></li>
+                    <li>Selecciona los campos por los que deseas filtrar</li>
+                    <li>Haz clic en <strong>Aceptar</strong></li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio práctico:</h4>
+                <p>Crea un panel de control interactivo:</p>
+                <ol>
+                    <li>Inserta segmentaciones para Región, Vendedor y Producto</li>
+                    <li>Configura las segmentaciones para que afecten a múltiples tablas dinámicas</li>
+                    <li>Cambia el estilo de las segmentaciones para que coincidan con tu diseño</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sesion11.4" class="sesion">
+        <h2>Sesión 11.4: Práctica guiada - Análisis de ventas con tablas dinámicas</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar todos los conceptos aprendidos</li>
+                <li>Crear un informe de ventas completo</li>
+                <li>Automatizar el análisis de datos</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            
+            <div class="paso">
+                <h4>1. Preparación de datos</h4>
+                <ol>
+                    <li>Descarga el conjunto de datos de ventas proporcionado</li>
+                    <li>Convierte los datos en una tabla de Excel (Ctrl+T)</li>
+                    <li>Verifica que no haya errores en los datos</li>
+                </ol>
+            </div>
+            
+            <div class="paso">
+                <h4>2. Creación del informe</h4>
+                <p>Crea las siguientes tablas dinámicas en hojas separadas:</p>
+                <ul>
+                    <li>Resumen de ventas por región y producto</li>
+                    <li>Análisis de rendimiento por vendedor</li>
+                    <li>Tendencias de ventas mensuales</li>
+                    <li>Análisis de productos más vendidos</li>
+                </ul>
+            </div>
+            
+            <div class="paso">
+                <h4>3. Panel de control interactivo</h4>
+                <ol>
+                    <li>Crea una nueva hoja llamada "Panel de Control"</li>
+                    <li>Inserta segmentaciones para los filtros principales</li>
+                    <li>Agrega gráficos dinámicos que se actualicen con los filtros</li>
+                    <li>Incluye KPI (Indicadores Clave de Rendimiento) importantes</li>
+                </ol>
+            </div>
+            
+            <div class="ejercicio">
+                <h4>Ejercicio final:</h4>
+                <p>Prepara una presentación ejecutiva que incluya:</p>
+                <ol>
+                    <li>Un resumen ejecutivo con hallazgos clave</li>
+                    <li>Gráficos profesionales que destaquen las tendencias</li>
+                    <li>Recomendaciones basadas en los datos</li>
+                </ol>
+            </div>
+            
+            <div class="consejo">
+                <h4>Consejos para presentaciones ejecutivas:</h4>
+                <ul>
+                    <li>Usa gráficos limpios y profesionales</li>
+                    <li>Destaca los puntos clave con colores estratégicos</li>
+                    <li>Prepara respuestas para posibles preguntas</li>
+                    <li>Practica tu presentación con anticipación</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <h4>Entrega del proyecto:</h4>
+                <p>Guarda tu archivo como "Analisis_Ventas_TuNombre.xlsx" y asegúrate de que:</p>
+                <ul>
+                    <li>Todas las tablas dinámicas funcionen correctamente</li>
+                    <li>Los filtros afecten a todos los elementos del panel</li>
+                    <li>Los cálculos sean precisos</li>
+                    <li>El diseño sea profesional y consistente</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

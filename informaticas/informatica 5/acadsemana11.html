@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 11: Herramientas avanzadas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 11: Herramientas avanzadas</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 41 -->
+        <div id="sesion41" class="session">
+            <h2>Sesión 41: Herramientas de consulta y medición avanzada</h2>
+            <div class="content">
+                <p>En esta sesión dominaremos las herramientas de consulta para extraer información precisa de nuestros dibujos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Utilizar herramientas de medición avanzada</li>
+                        <li>Calcular áreas y propiedades de masa</li>
+                        <li>Extraer información detallada de objetos</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Análisis de Planos con Herramientas de Consulta (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Dominar las herramientas de medición y consulta para extraer información precisa de planos técnicos.</p>
+                    
+                    <h5>Parte 1: Técnicas de Medición (40 min)</h5>
+                    <ol>
+                        <li><strong>Medidas Básicas</strong>
+                            <ul>
+                                <li>Uso de <span class="command">DIST</span> con referencias a objetos</li>
+                                <li>Medición de ángulos con precisión decimal</li>
+                                <li>Uso de <span class="command">MEASUREGEOM</span> para múltiples mediciones</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cálculo de Áreas</strong>
+                            <ul>
+                                <li>Áreas simples con <span class="command">AREA</span></li>
+                                <li>Áreas restadas (huecos)</li>
+                                <li>Uso de <span class="command">BOUNDARY</span> para crear regiones</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Parte 2: Consultas Avanzadas (50 min)</h5>
+                    <ol start="3">
+                        <li><strong>Análisis de Propiedades</strong>
+                            <ul>
+                                <li><span class="command">MASSPROP</span> para inercias y centros de gravedad</li>
+                                <li>Uso de <span class="command">LIST</span> con filtros de selección</li>
+                                <li>Extracción de datos con <span class="command">DATAEXTRACTION</span></li>
+                            </ul>
+                        </li>
+                        <li><strong>Automatización de Consultas</strong>
+                            <ul>
+                                <li>Macros para consultas frecuentes</li>
+                                <li>Uso de campos dinámicos</li>
+                                <li>Exportación de datos a hojas de cálculo</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="exercise">
+                    <h4>Proyecto: Análisis de Vivienda Unifamiliar</h4>
+                    <p><strong>Objetivo:</strong> Realizar un análisis completo de un plano de vivienda utilizando herramientas de consulta avanzadas.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Parámetros a Medir:</h5>
+                            <ul>
+                                <li>Área útil total</li>
+                                <li>Dimensiones de vanos (puertas/ventanas)</li>
+                                <li>Distancias entre elementos estructurales</li>
+                                <li>Porcentaje de superficie acristalada</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Consultas a Realizar:</h5>
+                            <ul>
+                                <li>Listado de todos los bloques utilizados</li>
+                                <li>Propiedades de capas y estilos</li>
+                                <li>Verificación de cotas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Informe Técnico</strong> con:
+                                <ul>
+                                    <li>Tabla de áreas por ambiente</li>
+                                    <li>Listado de elementos constructivos</li>
+                                    <li>Verificación de normativas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Archivo DWG</strong> con:
+                                <ul>
+                                    <li>Capas de análisis</li>
+                                    <li>Tablas de datos</li>
+                                    <li>Notas de verificación</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Precisión en Mediciones (35 puntos)</strong></p>
+                    <ul>
+                        <li>Exactitud de las medidas (15pts)</li>
+                        <li>Uso apropiado de unidades (10pts)</li>
+                        <li>Redondeo y formato (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Análisis de Datos (35 puntos)</strong>
+                    <ul>
+                        <li>Profundidad del análisis (15pts)</li>
+                        <li>Organización de la información (10pts)</li>
+                        <li>Extracción de conclusiones (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Claridad del informe (10pts)</li>
+                        <li>Presentación de datos (10pts)</li>
+                        <li>Organización del DWG (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea una plantilla con estilos de tabla predefinidos para informes de análisis. Usa <span class="command">FIELDS</span> para datos dinámicos que se actualicen automáticamente cuando el dibujo cambie. Mantén un registro de todas las consultas frecuentes en un archivo de texto para referencia futura.
+            </div>
+        </div>
+
+        <!-- Sesión 42 -->
+        <div id="sesion42" class="session">
+            <h2>Sesión 42: Personalización de tipos de línea y sombreados</h2>
+            <div class="content">
+                <p>Aprenderemos a crear nuestros propios tipos de línea y patrones de sombreado para cumplir con estándares específicos o añadir un toque personalizado a nuestros dibujos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Comprender la estructura de los archivos de definición (.lin y .pat)</li>
+                        <li>Crear tipos de línea personalizados con texto y formas</li>
+                        <li>Crear patrones de sombreado personalizados</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Creación de Elementos Gráficos Personalizados (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Dominar la creación de tipos de línea y patrones de sombreado personalizados para mejorar la calidad gráfica de los planos técnicos.</p>
+                    
+                    <h5>Parte 1: Tipos de Línea Avanzados (50 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 1: Línea de Servicios</h6>
+                        <ol>
+                            <li>Crea un nuevo archivo de texto con extensión <span class="command">.lin</span></li>
+                            <li>Define un tipo de línea que muestre el texto "AGUA POTABLE" cada 50 unidades</li>
+                            <li>Incluye símbolos de gota de agua antes y después del texto</li>
+                            <li>Prueba el tipo de línea en diferentes escalas</li>
+                        </ol>
+                        
+                        <div class="code-block">
+<pre>
+; Ejemplo de definición de tipo de línea
+*AGUA_POTABLE,Agua potable ---AGUA POTABLE---
+A,12.7,-5,["💧",STANDARD,S=2.5,R=0.0,X=-1.0,Y=-1.0],-2.5,["AGUA POTABLE",STANDARD,S=2.5,R=0.0,X=-15.0,Y=-1.0],-2.5,["💧",STANDARD,S=2.5,R=0.0,X=-1.0,Y=-1.0],-5
+</pre>
+                        </div>
+                    </div>
+
+                    <h5>Parte 2: Patrones de Sombreado (50 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 2: Patrón de Piso Flotante</h6>
+                        <ol>
+                            <li>Crea un archivo <span class="command">.pat</span> con un patrón de tablones de madera</li>
+                            <li>Incluye variaciones de ancho para simular tablones naturales</li>
+                            <li>Agrega nudos y vetas sutiles</li>
+                            <li>Configura el patrón para que mantenga su escala en diferentes viewports</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h4>Proyecto: Biblioteca de Elementos Gráficos</h4>
+                    <p><strong>Objetivo:</strong> Crear una biblioteca personalizada de tipos de línea y patrones para un estudio de arquitectura.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Tipos de Línea a Crear:</h5>
+                            <ul>
+                                <li>Línea de eje estructural con símbolo de columna</li>
+                                <li>Línea de corte con doble flecha</li>
+                                <li>Línea de nivel con cota dinámica</li>
+                                <li>Línea de servicio eléctrico con símbolos de toma</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Patrones a Desarrollar:</h5>
+                            <ul>
+                                <li>Ladrillo visto a soga</li>
+                                <li>Loseta cerámica 60x60cm</li>
+                                <li>Pasto con variación de textura</li>
+                                <li>Concreto estampado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Entregables:</h5>
+                    <div class="deliverable">
+                        <ol>
+                            <li><strong>Archivos de Definición</strong>:
+                                <ul>
+                                    <li>Archivo <span class="command">.lin</span> con tipos de línea personalizados</li>
+                                    <li>Archivo <span class="command">.pat</span> con patrones de sombreado</li>
+                                    <li>Archivo <span class="command">.dwg</span> de demostración</li>
+                                </ul>
+                            </li>
+                            <li><strong>Documentación Técnica</strong>:
+                                <ul>
+                                    <li>Guía de instalación</li>
+                                    <li>Catálogo visual</li>
+                                    <li>Instrucciones de uso</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad Técnica (40 puntos)</strong></p>
+                    <ul>
+                        <li>Sintaxis correcta (10pts)</li>
+                        <li>Escalado apropiado (10pts)</li>
+                        <li>Consistencia visual (10pts)</li>
+                        <li>Optimización (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Creatividad (30 puntos)</strong>
+                    <ul>
+                        <li>Originalidad de los diseños (10pts)</li>
+                        <li>Complejidad técnica (10pts)</li>
+                        <li>Aplicación práctica (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Documentación (30 puntos)</strong>
+                    <ul>
+                        <li>Completitud (10pts)</li>
+                        <li>Claridad (10pts)</li>
+                        <li>Organización (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea una carpeta dedicada en la ruta de soporte de AutoCAD para tus archivos personalizados. Usa nombres descriptivos y sigue una convención de nomenclatura consistente. Documenta cada patrón con comentarios en el archivo para futuras referencias. Considera crear una paleta de herramientas personalizada para acceder rápidamente a tus patrones más usados.
+            </div>
+        </div>
+
+        <!-- Sesión 43 -->
+        <div id="sesion43" class="session">
+            <h2>Sesión 43: Introducción a AutoLISP</h2>
+            <div class="content">
+                <p>Daremos nuestros primeros pasos en la automatización de AutoCAD mediante AutoLISP, el lenguaje de programación integrado.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Entender qué es AutoLISP y para qué sirve</li>
+                        <li>Aprender la sintaxis básica y funciones comunes</li>
+                        <li>Cargar y ejecutar rutinas LISP</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Automatización con AutoLISP (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Desarrollar habilidades básicas de programación en AutoLISP para automatizar tareas comunes en AutoCAD.</p>
+                    
+                    <h5>Parte 1: Fundamentos de AutoLISP (40 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 1: Entorno de Desarrollo</h6>
+                        <ol>
+                            <li>Crea una carpeta para tus archivos LISP</li>
+                            <li>Configura la ruta de soporte de archivos en AutoCAD</li>
+                            <li>Instala un editor de código (VS Code con extensión LISP)</li>
+                        </ol>
+                        
+                        <div class="code-block">
+<pre>
+; Estructura básica de una función AutoLISP
+(defun c:MI_COMANDO ()
+  ; Código de la función
+  (princ) ; Retorno limpio
+)
+</pre>
+                        </div>
+                    </div>
+
+                    <h5>Parte 2: Comandos Básicos (40 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 2: Dibujo Automatizado</h6>
+                        <ol>
+                            <li>Crea un comando para dibujar una ventana estándar</li>
+                            <li>Implementa entrada de usuario para dimensiones</li>
+                            <li>Agrega validación de datos</li>
+                        </ol>
+                        
+                        <div class="code-block">
+<pre>
+; Ejemplo: Comando para dibujar una ventana
+(defun c:VENTANA ()
+  (setq pt1 (getpoint "\nSeleccione esquina inferior izquierda: "))
+  (setq ancho (getdist pt1 "\nAncho de la ventana: "))
+  (setq alto (getdist pt1 "\nAlto de la ventana: "))
+  
+  (command "_rectang" "_non" pt1 
+           "_non" (list (+ (car pt1) ancho) (+ (cadr pt1) alto)))
+  (princ)
+)
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h4>Proyecto: Herramienta de Anotación Automática</h4>
+                    <p><strong>Objetivo:</strong> Crear un comando LISP que automatice el etiquetado de áreas en planos arquitectónicos.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Funcionalidades Requeridas:</h5>
+                            <ul>
+                                <li>Seleccionar un espacio cerrado</li>
+                                <li>Calcular automáticamente el área</li>
+                                <li>Insertar una etiqueta con el área</li>
+                                <li>Formatear el texto según estándares</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Parámetros Configurables:</h5>
+                            <ul>
+                                <li>Precisión decimal</li>
+                                <li>Prefijo/sufijo de texto</li>
+                                <li>Estilo de texto</li>
+                                <li>Color y capa</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <div class="code-block">
+<pre>
+; Estructura básica del comando ETIQUETAR_AREA
+(defun c:ETIQUETAR_AREA (/ ss pt area_texto)
+  (setq ss (ssget "_+.:E:S" '((0 . "LWPOLYLINE,REGION,ELLIPSE,CIRCLE"))))
+  (if ss
+    (progn
+      (setq pt (getpoint "\nPunto de inserción de la etiqueta: "))
+      (setq area_texto (rtos (vla-get-area (vlax-ename->vla-object (ssname ss 0))) 2 2))
+      (command "_text" pt "" "" (strcat area_texto " m²"))
+    )
+    (alert "No se seleccionó un objeto válido")
+  )
+  (princ)
+)
+</pre>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Funcionalidad (40 puntos)</strong></p>
+                    <ul>
+                        <li>Ejecución sin errores (15pts)</li>
+                        <li>Manejo de entradas inválidas (10pts)</li>
+                        <li>Precisión de resultados (10pts)</li>
+                        <li>Eficiencia del código (5pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Código (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura y formato (10pts)</li>
+                        <li>Comentarios documentación (10pts)</li>
+                        <li>Buenas prácticas (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Aplicación Práctica (30 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Facilidad de uso (10pts)</li>
+                        <li>Personalización (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Comienza con rutinas pequeñas y específicas. Documenta cada función con comentarios que expliquen su propósito, parámetros y valores de retorno. Crea una biblioteca personal de funciones reutilizables. Prueba exhaustivamente tus rutinas con diferentes tipos de entradas para asegurar su robustez.
+            </div>
+        </div>
+
+        <!-- Sesión 44 -->
+        <div id="sesion44" class="session">
+            <h2>Sesión 44: Gestión de estándares de CAD</h2>
+            <div class="content">
+                <p>Aprenderemos a crear y aplicar estándares de CAD para asegurar la consistencia y calidad en los proyectos, especialmente en entornos colaborativos.</p>
+                
+                <div class="objectives">
+                    <h3>Objetivos de aprendizaje:</h3>
+                    <ul>
+                        <li>Comprender la importancia de los estándares de CAD</li>
+                        <li>Crear y configurar un archivo de estándares (.dws)</li>
+                        <li>Auditar dibujos para verificar el cumplimiento de los estándares</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h4>Taller Práctico: Implementación de Estándares CAD (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Desarrollar e implementar un sistema de estándares CAD completo para garantizar la consistencia en proyectos de dibujo técnico.</p>
+                    
+                    <h5>Parte 1: Creación de Estándares (40 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 1: Estructura de Capas</h6>
+                        <ol>
+                            <li>Crea un nuevo archivo de plantilla (.dwt)</li>
+                            <li>Establece las capas estándar según la siguiente nomenclatura:
+                                <ul>
+                                    <li>A-ANNO-DIMS (anotaciones y cotas)</li>
+                                    <li>A-WALL (muros)</li>
+                                    <li>A-DOOR (puertas)</li>
+                                    <li>A-FURN (mobiliario)</li>
+                                    <li>A-TEXT (textos)</li>
+                                </ul>
+                            </li>
+                            <li>Asigna colores, tipos de línea y grosores apropiados</li>
+                        </ol>
+                    </div>
+
+                    <h5>Parte 2: Configuración de Estilos (40 min)</h5>
+                    <div class="exercise">
+                        <h6>Ejercicio 2: Estándares de Texto y Cotas</h6>
+                        <ol>
+                            <li>Crea estilos de texto:
+                                <ul>
+                                    <li>Estándar: Arial, Altura 2.5mm</li>
+                                    <li>Títulos: Arial Black, Altura 5.0mm</li>
+                                </ul>
+                            </li>
+                            <li>Configura estilos de cota:
+                                <ul>
+                                    <li>Arquitectónicas: Flecha arquitectónica</li>
+                                    <li>Mecánicas: Flecha cerrada</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h4>Proyecto: Manual de Estándares CAD</h4>
+                    <p><strong>Objetivo:</strong> Crear un manual completo de estándares CAD para un estudio de arquitectura.</p>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Contenido Requerido:</h5>
+                            <ul>
+                                <li>Estructura de capas y nomenclatura</li>
+                                <li>Estilos de texto y cotas</li>
+                                <li>Configuración de trazado</li>
+                                <li>Bloques estándar</li>
+                                <li>Plantillas de presentación</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Archivos a Entregar:</h5>
+                            <ul>
+                                <li>Plantilla .dwt con estándares</li>
+                                <li>Archivo .dws para auditoría</li>
+                                <li>Documento PDF del manual</li>
+                                <li>Biblioteca de bloques estándar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <div class="steps">
+                        <ol>
+                            <li><strong>Configuración Inicial</strong>
+                                <ul>
+                                    <li>Crear estructura de carpetas del proyecto</li>
+                                    <li>Configurar rutas de soporte en AutoCAD</li>
+                                    <li>Establecer unidades y precisión</li>
+                                </ul>
+                            </li>
+                            <li><strong>Desarrollo de Estándares</strong>
+                                <ul>
+                                    <li>Definir convenciones de nomenclatura</li>
+                                    <li>Crear paleta de colores estándar</li>
+                                    <li>Configurar estilos de trazado</li>
+                                </ul>
+                            </li>
+                            <li><strong>Automatización</strong>
+                                <ul>
+                                    <li>Crear scripts de inicio</li>
+                                    <li>Configurar plantillas de hoja</li>
+                                    <li>Automatizar la carga de estándares</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Estándares Técnicos (40 puntos)</strong></p>
+                    <ul>
+                        <li>Completitud de la estructura de capas (10pts)</li>
+                        <li>Consistencia en estilos (10pts)</li>
+                        <li>Documentación clara (10pts)</li>
+                        <li>Facilidad de implementación (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Organización (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura lógica (10pts)</li>
+                        <li>Nomenclatura consistente (10pts)</li>
+                        <li>Facilidad de mantenimiento (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Aplicación Práctica (30 puntos)</strong>
+                    <ul>
+                        <li>Utilidad en proyectos reales (10pts)</li>
+                        <li>Escalabilidad (10pts)</li>
+                        <li>Compatibilidad con flujos de trabajo existentes (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Implementa un sistema de control de versiones para tus estándares. Crea un comité de estándares en tu oficina para revisar y actualizar periódicamente las normas. Desarrolla herramientas personalizadas para auditar y corregir automáticamente dibujos que no cumplan con los estándares.
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende sobre la consola de JavaScript y el uso de variables en esta sesión del curso de programación.">
+    <title>Sesión 1: La Consola y la Memoria - Curso de JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../../assets/css/session.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .console {
+            background-color: #1e1e1e;
+            color: #00ff9d;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            min-height: 100px;
+            overflow-y: auto;
+        }
+
+        .code {
+            background-color: #f0f8ff;
+            border-left: 4px solid #00a86b;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .activity {
+            background-color: #e6f3ff;
+            border: 1px solid #0066cc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .dola-ai {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="course-sidebar">
+            <h2>Contenido del Curso</h2>
+            <ul class="course-menu">
+                <li class="active"><a href="sesion01.html">Sesión 1: La Consola y la Memoria</a></li>
+                <li><a href="#">Sesión 2: Tomando Decisiones</a></li>
+                <li><a href="#">Sesión 3: Las Máquinas (Funciones)</a></li>
+                <li><a href="#">Sesión 4: Listas y Bucles</a></li>
+                <li><a href="#">Sesión 5: Tocando el HTML</a></li>
+                <li><a href="#">Sesión 6: Escuchando al Usuario</a></li>
+                <li><a href="#">Sesión 7: Lógica Visual</a></li>
+                <li><a href="#">Sesión 8: Capturando Datos</a></li>
+                <li><a href="#">Sesión 9: Matemáticas Dinámicas</a></li>
+                <li><a href="#">Sesión 10: Proyecto Final</a></li>
+            </ul>
+            <button type="button" class="btn btn-primary" aria-label="Ir al principio del menú">
+                <i class="fas fa-arrow-left"></i> Ir al principio
+            </button>
+            <button type="button" class="btn btn-primary" aria-label="Ir al final del menú">
+                <i class="fas fa-arrow-right"></i> Ir al final
+            </button>
+        </nav>
+
+        <main class="course-content" id="main-content">
+            <header class="session-header">
+                <h1 class="session-title">Sesión 1: La Consola y la Memoria</h1>
+                <p class="session-subtitle">Aprende a usar la consola y variables en JavaScript</p>
+            </header>
+
+            <section class="session-section introduction">
+                <h2>📱 La Consola del Navegador</h2>
+                <p>La consola es como el "cuaderno de notas" de los programadores web. Es donde podemos ver mensajes,
+                    errores y resultados de nuestro código.</p>
+
+                <div class="tip">
+                    <strong>💡 Cómo abrir la consola:</strong>
+                    <ul>
+                        <li>Windows/Linux: Presiona <kbd>F12</kbd> o <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
+                        </li>
+                        <li>Mac: Presiona <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd></li>
+                    </ul>
+                </div>
+
+                <p>Una vez abierta, ve a la pestaña "Console". Aquí es donde verás los resultados de tu código.</p>
+
+                <h3>Tu primer comando en la consola</h3>
+                <p>Escribe lo siguiente en la consola y presiona Enter:</p>
+
+                <div class="code">
+                    console.log("¡Hola, mundo!");
+                </div>
+
+                <p>¡Felicidades! Acabas de ejecutar tu primera línea de JavaScript. Deberías ver el mensaje "¡Hola,
+                    mundo!" en la consola.</p>
+            </section>
+
+            <section class="session-section variables">
+                <h2>💾 Variables: Las cajas de la memoria</h2>
+                <p>Imagina que las variables son como cajas donde puedes guardar cosas. En JavaScript, usamos palabras
+                    clave para crear variables:</p>
+
+                <div class="code">
+                    // Crear una variable que puede cambiar (caja abierta)
+                    let nombre = "Ana";
+
+                    // Crear una variable que NO puede cambiar (caja fuerte)
+                    const PI = 3.1416;
+                </div>
+
+                <h3>Tipos de datos básicos</h3>
+
+                <div class="code">
+                    // 1. String (texto) - van entre comillas
+                    let saludo = "Hola";
+
+                    // 2. Number (números) - sin comillas
+                    let edad = 15;
+
+                    // 3. Boolean (verdadero/falso) - sin comillas
+                    let esEstudiante = true;
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Regla de oro:</strong> Usa <code>const</code> por defecto, y solo usa <code>let</code> si
+                    sabes que el valor va a cambiar.
+                </div>
+
+                <h3>Operadores básicos</h3>
+                <p>Podemos hacer operaciones matemáticas y con texto:</p>
+
+                <div class="code">
+                    // Suma de números
+                    let suma = 5 + 3; // Resultado: 8
+
+                    // Concatenación de textos
+                    let nombreCompleto = "Ana" + " " + "Pérez"; // Resultado: "Ana Pérez"
+
+                    // Suma de número y texto (¡cuidado!)
+                    let resultado = "5" + 3; // Resultado: "53" (¡es un texto!)
+                </div>
+
+                <div class="activity">
+                    <h3>🧩 Actividad Práctica</h3>
+                    <p>Intenta lo siguiente en la consola:</p>
+                    <ol>
+                        <li>Crea una variable llamada <code>materia</code> con el valor "Matemáticas"</li>
+                        <li>Crea una variable llamada <code>calificacion</code> con el valor 9.5</li>
+                        <li>Crea una constante llamada <code>ESCUELA</code> con el nombre de tu escuela</li>
+                        <li>Usa <code>console.log()</code> para mostrar: "En [ESCUELA], mi calificación en [MATERIA] es
+                            [CALIFICACION]"</li>
+                    </ol>
+
+                    <button type="button" class="btn" onclick="mostrarSolucion()" aria-expanded="false" aria-controls="solucion">
+                        <i class="fas fa-eye"></i> Ver solución
+                    </button>
+                    <div id="solucion" style="display: none; margin-top: 10px;">
+                        <div class="code">
+                            const ESCUELA = "Mi Escuela";
+                            let materia = "Matemáticas";
+                            let calificacion = 9.5;
+                            console.log("En " + ESCUELA + ", mi calificación en " + materia + " es " + calificacion);
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="session-section dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <p>¿Tienes dudas sobre variables o la consola? Pregúntame lo que necesites. Por ejemplo:</p>
+                <ul>
+                    <li>¿Cuál es la diferencia entre <code>let</code> y <code>const</code>?</li>
+                    <li>¿Por qué mi código no funciona en la consola?</li>
+                    <li>¿Cómo puedo ver el valor de una variable en la consola?</li>
+                </ul>
+                <div class="chat-input">
+                    <div class="input-group">
+                        <input type="text" id="pregunta" placeholder="Escribe tu pregunta..." aria-label="Escribe tu pregunta">
+                        <button type="button" class="btn btn-primary" onclick="responderPregunta()" aria-label="Enviar pregunta">
+                            <i class="fas fa-paper-plane"></i> Preguntar
+                        </button>
+                    </div>
+                </div>
+                <div id="respuesta"
+                    style="margin-top: 10px; padding: 10px; background: white; border-radius: 4px; min-height: 50px;">
+                </div>
+            </section>
+
+            <section class="session-section summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                <ul>
+                    <li>La consola del navegador es una herramienta esencial para programar en JavaScript.</li>
+                    <li>Las variables son como cajas donde guardamos información.</li>
+                    <li>Usamos <code>let</code> para variables que pueden cambiar y <code>const</code> para constantes.
+                    </li>
+                    <li>Los tipos de datos básicos son: texto (String), números (Number) y booleanos (true/false).</li>
+                    <li>Podemos hacer operaciones con números y concatenar textos con el operador <code>+</code>.</li>
+                </ul>
+
+                <h3>Práctica para la próxima sesión</h3>
+                <p>Crea un programa que guarde en variables tu nombre, edad y escuela, y muestre un mensaje como: "Hola,
+                    me llamo [nombre], tengo [edad] años y estudio en [escuela]".</p>
+            </section>
+
+            <footer class="session-footer">
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-outline" style="visibility: hidden;" aria-hidden="true" tabindex="-1">
+                        <i class="fas fa-arrow-left"></i> Sesión Anterior
+                    </a>
+                    <a href="sesion02.html" class="btn btn-primary">
+                        Siguiente Sesión <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE JS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script type="module">
+        // Esperar a que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            // Agregar clase de JavaScript activo
+            document.documentElement.classList.remove('no-js');
+            document.documentElement.classList.add('js');
+            
+            // Enfocar el contenido principal para lectores de pantalla
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.setAttribute('tabindex', '-1');
+                mainContent.focus();
+            }
+        });
+
+        // Función para mostrar/ocultar solución
+        // Mostrar/ocultar solución
+        function mostrarSolucion() {
+            const solucion = document.getElementById('solucion');
+            if (solucion.style.display === 'none') {
+                solucion.style.display = 'block';
+            } else {
+                solucion.style.display = 'none';
+            }
+        }
+
+        // Funcionalidad básica de Dola AI
+        function responderPregunta() {
+            const pregunta = document.getElementById('pregunta').value.toLowerCase();
+            const respuesta = document.getElementById('respuesta');
+
+            if (pregunta.includes('let') && pregunta.includes('const')) {
+                respuesta.innerHTML = `<strong>Diferencia entre let y const:</strong><br>
+                <code>let</code> se usa para variables que pueden cambiar de valor, mientras que <code>const</code> se usa para constantes que no deben cambiar después de su declaración. Por ejemplo:<br><br>
+                <code>let edad = 15;  // Puedo cambiar este valor después<br>
+                edad = 16;  // ¡Válido!<br><br>
+                const PI = 3.1416;<br>
+                PI = 3.14;  // ¡Error! No puedo cambiar una constante</code>`;
+            }
+            else if (pregunta.includes('consola') || pregunta.includes('console')) {
+                respuesta.innerHTML = `<strong>Usando la consola:</strong><br>
+                Para ver el valor de una variable en la consola, usa <code>console.log()</code>:<br><br>
+                <code>let nombre = "Ana";<br>
+                console.log(nombre);  // Muestra "Ana" en la consola</code><br><br>
+                También puedes ver el valor simplemente escribiendo el nombre de la variable en la consola y presionando Enter.`;
+            }
+            else if (pregunta.includes('error') || pregunta.includes('no funciona')) {
+                respuesta.innerHTML = `<strong>Depurando errores:</strong><br>
+                Si tu código no funciona, revisa estos puntos comunes:<br>
+                1. ¿Usaste punto y coma al final? (aunque a veces no es obligatorio, es buena práctica)<br>
+                2. ¿Las comillas son rectas (" ") y no curvas ("")?<br>
+                3. ¿Las variables están escritas exactamente igual en todos lados? (JavaScript distingue entre mayúsculas y minúsculas)<br>
+                4. ¿Los paréntesis y llaves están balanceados?`;
+            }
+            else {
+                const respuestas = [
+                    "¿Podrías reformular tu pregunta? Estoy aquí para ayudarte con JavaScript.",
+                    "¿Has probado a ver la consola del navegador (F12) para ver si hay mensajes de error?",
+                    "¿Te gustaría ver un ejemplo práctico de cómo usar variables en JavaScript?",
+                    "Recuerda que puedes usar console.log() para ver el valor de tus variables mientras programas.",
+                    "¿Has revisado que todos los paréntesis y llaves estén correctamente cerrados?"
+                ];
+                respuesta.textContent = respuestas[Math.floor(Math.random() * respuestas.length)];
+            }
+
+            // Limpiar el campo de pregunta
+            document.getElementById('pregunta').value = '';
+        }
+
+        // Configuración de eventos después de cargar el DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Manejar envío de pregunta con Enter
+            const preguntaInput = document.getElementById('pregunta');
+            if (preguntaInput) {
+                preguntaInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        responderPregunta();
+                    }
+                });
+            }
+            
+            // Mejorar accesibilidad del menú
+            const menuItems = document.querySelectorAll('.course-menu a');
+            menuItems.forEach((item, index) => {
+                item.setAttribute('role', 'menuitem');
+                item.setAttribute('tabindex', '0');
+                
+                // Navegación con teclado
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        item.click();
+                    } else if (e.key === 'ArrowDown' && index < menuItems.length - 1) {
+                        e.preventDefault();
+                        menuItems[index + 1].focus();
+                    } else if (e.key === 'ArrowUp' && index > 0) {
+                        e.preventDefault();
+                        menuItems[index - 1].focus();
+                    } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        menuItems[0].focus();
+                    } else if (e.key === 'End') {
+                        e.preventDefault();
+                        menuItems[menuItems.length - 1].focus();
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Scripts adicionales -->
+    <script src="../../../assets/js/main.js" type="module"></script>
+    <script src="../../../assets/js/session.js" type="module" defer></script>
+</body>
+</html>

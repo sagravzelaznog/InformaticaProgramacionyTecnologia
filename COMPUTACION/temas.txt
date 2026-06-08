@@ -1,0 +1,133 @@
+PROGRAMA DE ESPECIALIDAD EN COMPUTACIÓN
+
+ Primer Semestre: Bases de Computación y Terminal de Comandos de Windows 
+ 1 Introducción a la computación: conceptos básicos
+ 2 Componentes del hardware de una computadora 
+ 3 Sistemas operativos: funciones y tipos 
+ 1 Introducción a la computación: conceptos básicos 
+ 4 Introducción a la terminal de Windows 
+ 5 Comandos básicos de navegación 
+ 6 Manejo de archivos y directorios 
+ 7 Comandos de red básicos 
+ 8 Variables de entorno y rutas 
+ 9 Scripts básicos en CMD 
+ 10 Permisos y seguridad en archivos 
+ 11 Administración de procesos 
+ 12 Redes básicas en Windows 
+ 13 Herramientas de diagnóstico 
+ 14 Automatización de tareas 
+ 15 Comandos avanzados de red 
+ 16 Proyecto final: Creación de scripts útiles 
+ 
+ 
+
+ 
+ Segundo Semestre: Excel de Office (Básico, Intermedio y Avanzado) 
+ 
+ 1 Introducción a Excel: interfaz y conceptos básicos 
+ 2 Formato de celdas y hojas de cálculo 
+ 3 Fórmulas y funciones básicas 
+ 4 Funciones lógicas y de búsqueda 
+ 5 Gráficos y representación de datos 
+ 6 Tablas dinámicas 
+ 7 Análisis de datos con tablas dinámicas 
+ 8 Funciones estadísticas 
+ 9 Validación de datos 
+ 10 Macros básicas 
+ 11 Funciones avanzadas de texto 
+ 12 Análisis de hipótesis 
+ 13 Power Query: Importación y transformación de datos 
+ 14 Power Pivot: Modelado de datos 
+ 15 Dashboard interactivos 
+ 16 Proyecto final: Aplicación de lo aprendido 
+ 
+ 
+
+ 
+ Tercer Semestre: Publisher de Office 
+ 
+ 1 Introducción a Publisher: interfaz y herramientas 
+ 2 Creación de un nuevo documento 
+ 3 Configuración de página y plantillas 
+ 4 Trabajo con texto: cuadros de texto y formatos 
+ 5 Inserción y manipulación de imágenes 
+ 6 Formas y objetos gráficos 
+ 7 Tablas en Publisher 
+ 8 Estilos y formatos de párrafo 
+ 9 Trabajo con capas y agrupación de objetos 
+ 10 Diseño de folletos y trípticos 
+ 11 Creación de boletines informativos 
+ 12 Diseño de tarjetas de presentación 
+ 13 Preparación para impresión 
+ 14 Exportación a diferentes formatos 
+ 15 Integración con otros programas de Office 
+ 16 Proyecto final: Diseño de material publicitario 
+ 
+ 
+
+ 
+ Cuarto Semestre: Ventana de Comandos de Windows (Avanzado) 
+ 
+ 1 Repaso de comandos básicos de CMD 
+ 2 Variables de entorno avanzadas 
+ 3 Scripting avanzado con archivos batch 
+ 4 Estructuras de control en batch 
+ 5 Funciones en archivos batch 
+ 6 Manejo de errores 
+ 7 Automatización de tareas con Task Scheduler 
+ 8 Comandos de red avanzados 
+ 9 PowerShell: Introducción y conceptos básicos 
+ 10 Cmdlets básicos de PowerShell 
+ 11 Scripting en PowerShell 
+ 12 Administración de procesos y servicios 
+ 13 Administración de usuarios y permisos 
+ 14 Automatización de tareas con PowerShell 
+ 15 Seguridad en scripts 
+ 16 Proyecto final: Automatización de tareas administrativas 
+ 
+ 
+
+ 
+ Quinto Semestre: Photoshop 
+ 
+ 1 Introducción a Photoshop: interfaz y herramientas básicas 
+ 2 Configuración de documentos y espacios de trabajo 
+ 3 Herramientas de selección 
+ 4 Capas: concepto y manejo básico 
+ 5 Herramientas de pintura y edición 
+ 6 Ajustes de color y tono 
+ 7 Máscaras y canales 
+ 8 Filtros y efectos 
+ 9 Texto y tipografía 
+ 10 Técnicas de retoque fotográfico 
+ 11 Composición de imágenes 
+ 12 Automatización de tareas con acciones 
+ 13 Trabajo con objetos 3D 
+ 14 Exportación y formatos de archivo 
+ 15 Técnicas avanzadas de diseño 
+ 16 Proyecto final: Diseño de un proyecto completo 
+ 
+ 
+
+ 
+ Sexto Semestre: Lenguaje Python 
+ 
+ 1 Introducción a Python: instalación y configuración 
+ 2 Variables, tipos de datos y operadores 
+ 3 Estructuras de control: condicionales 
+ 4 Estructuras de control: bucles 
+ 5 Funciones y módulos 
+ 6 Estructuras de datos: listas y tuplas 
+ 7 Estructuras de datos: diccionarios y conjuntos 
+ 8 Manejo de archivos 
+ 9 Programación orientada a objetos: clases y objetos 
+ 10 Herencia y polimorfismo 
+ 11 Manejo de excepciones 
+ 12 Módulos y paquetes estándar 
+ 13 Programación de interfaces gráficas con Tkinter 
+ 14 Conexión a bases de datos 
+ 15 Desarrollo de aplicaciones web con Flask 
+ 16 Proyecto final: Desarrollo de una aplicación completa 
+ 
+ 
+ 

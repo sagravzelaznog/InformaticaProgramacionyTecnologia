@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 05: Diseño de Material Didáctico y Alineación</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta "Lógica y Claridad" - Ideal para material exacto/matemático */
+            --primary: #1E3A8A; /* Azul profundo - Foco, Inteligencia, Lógica */
+            --secondary: #00C4CC; /* Turquesa Canva - Creatividad técnica */
+            --accent: #F59E0B; /* Ámbar - Llamar la atención a un resultado */
+            --bg-body: #F8FAFC;
+            --text-dark: #334155;
+            --card-bg: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #3B82F6 100%);
+            color: white;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+        .session-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--primary);
+        }
+
+        h2 { color: var(--primary); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+
+        /* --- HERRAMIENTA INTERACTIVA DE ALINEACIÓN --- */
+        .alignment-simulator {
+            background: #E2E8F0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .canvas-area {
+            background: white;
+            height: 150px;
+            position: relative;
+            border: 2px dashed #CBD5E1;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        /* Elementos que simulan partes de una ecuación */
+        .math-part {
+            position: absolute;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #part1 { top: 20px; left: 10%; }
+        #part2 { top: 80px; left: 40%; }
+        #part3 { top: 40px; left: 70%; }
+
+        .align-controls button {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .align-controls button:hover { background: #00A3A8; color: white; }
+
+        /* --- EJERCICIO PRÁCTICO --- */
+        .math-box {
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .step-list { margin-left: 1.5rem; margin-bottom: 1rem; }
+        .step-list li { margin-bottom: 0.8rem; }
+
+        /* --- QUIZ KAHOOT STYLE --- */
+        #quiz-section {
+            background: var(--primary);
+            color: white;
+            border-left: none;
+            text-align: center;
+        }
+        #quiz-section h2 { color: white; justify-content: center; }
+
+        .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+
+        .quiz-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            transition: all 0.1s;
+        }
+        .quiz-btn:active { transform: translateY(5px); box-shadow: none; }
+
+        .opt-1 { background-color: #E21B3C; }
+        .opt-2 { background-color: #1368CE; }
+        .opt-3 { background-color: #D89E00; }
+        .opt-4 { background-color: #26890C; }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        /* --- FOOTER OBLIGATORIO --- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: #64748B;
+            font-size: 0.85rem;
+            background: #F1F5F9;
+            border-top: 1px solid #E2E8F0;
+            margin-top: 3rem;
+            font-family: monospace;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-grid { grid-template-columns: 1fr; }
+            .align-controls button { margin-bottom: 10px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="session-badge">Sesión 05</span>
+        <h1>Alineación, Agrupación y Material Didáctico</h1>
+        <p>Estructurando visualmente el conocimiento complejo para facilitar el aprendizaje.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 Objetivo de la Sesión</h2>
+            <p>La mente humana (y los principios andragógicos) exigen orden para evitar la sobrecarga cognitiva. Hoy dejaremos de colocar elementos al azar y dominaremos las herramientas de <strong>Alineación y Agrupación</strong> de Canva. Aprenderemos a construir estructuras exactas, ideales para diseñar infografías educativas o fórmulas matemáticas paso a paso.</p>
+        </section>
+
+        <section>
+            <h2>📏 El Caos vs. El Orden (Simulador)</h2>
+            <p>Imagina que estás armando una ecuación visual. Si las partes están desalineadas, el alumno se confunde. Usa los botones para usar el "Orden Automático" que simula la función <em>Posición > Ordenar</em> de Canva.</p>
+            
+            <div class="alignment-simulator">
+                <div class="canvas-area">
+                    <div id="part1" class="math-part">3/4 x</div>
+                    <div id="part2" class="math-part">+ 2/3 y</div>
+                    <div id="part3" class="math-part">= 20/5</div>
+                </div>
+                <div class="align-controls">
+                    <button onclick="alignElements('desorden')">Desordenar</button>
+                    <button onclick="alignElements('centro')">Alinear al Centro (Vertical)</button>
+                    <button onclick="alignElements('distribuir')">Distribuir Horizontalmente</button>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 10px; color: #64748B;">*En Canva, esto se logra seleccionando los elementos y yendo a <strong>Posición > Alinear elementos</strong>.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: Diseñando un Sistema de Ecuaciones</h2>
+            <p>Canva no tiene un editor de ecuaciones (LaTeX) nativo completo para gráficos complejos, por lo que los genios matemáticos debemos construir las fórmulas visualmente combinando textos y líneas.</p>
+            
+            <p><strong>El Reto:</strong> Diseña una diapositiva en Canva que muestre el siguiente sistema de ecuaciones  y su resultado final de 'x'[cite: 7]:</p>
+            
+            <div class="math-box">
+                (1) 3/4 x + 2/3 y = 20/5 <br>
+                (2) 5x - 3y = 13 <br>
+                -------------------------<br>
+                Resultado: x = 248/67
+            </div>
+
+            <ol class="step-list">
+                <li>Abre una <strong>Presentación Educativa (16:9)</strong> en Canva.</li>
+                <li>Presiona la tecla <strong>T</strong> para crear una caja de texto y escribe "3". Crea otra para el "4".</li>
+                <li>Presiona la tecla <strong>L</strong> para crear una línea. Acórtala y ponla entre el 3 y el 4 para crear la fracción visualmente.</li>
+                <li><strong>LA CLAVE:</strong> Selecciona el 3, la línea y el 4. Haz clic derecho y selecciona <strong>Agrupar</strong> (o presiona Ctrl+G / Cmd+G). Ahora tu fracción se mueve como un solo bloque sólido.</li>
+                <li>Repite el proceso para armar la ecuación alineada. Usa el panel <strong>Posición</strong> para asegurar que todos los signos "=" estén en una línea vertical perfecta.</li>
+            </ol>
+        </section>
+
+        <section id="quiz-section">
+            <h2>🧠 Quiz de Precisión</h2>
+            <div id="quiz-container">
+                <p id="question-text" style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600;">Cargando...</p>
+                <div class="quiz-grid" id="options-container">
+                    </div>
+                <div id="feedback-msg" class="feedback"></div>
+                <button id="next-btn" style="display:none; margin: 20px auto 0; padding: 10px 25px; border-radius: 5px; border: none; font-weight: bold; background: white; color: var(--primary); cursor: pointer;">Siguiente Pregunta ➡</button>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion04.html">sesion 4</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion06.html">sesion 6</a>
+        </div>
+    </main>
+
+    <footer>copyright &copy;JMGV-PTEL-2026. sesion 05 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados</footer>
+
+    <script>
+        // --- 1. SIMULADOR DE ALINEACIÓN ---
+        function alignElements(action) {
+            const p1 = document.getElementById('part1');
+            const p2 = document.getElementById('part2');
+            const p3 = document.getElementById('part3');
+
+            if (action === 'desorden') {
+                p1.style.top = '20px'; p1.style.left = '10%';
+                p2.style.top = '80px'; p2.style.left = '40%';
+                p3.style.top = '40px'; p3.style.left = '70%';
+            } else if (action === 'centro') {
+                // Alineación vertical al medio
+                p1.style.top = '55px';
+                p2.style.top = '55px';
+                p3.style.top = '55px';
+            } else if (action === 'distribuir') {
+                // Distribución horizontal uniforme y alineación vertical
+                p1.style.top = '55px'; p1.style.left = '15%';
+                p2.style.top = '55px'; p2.style.left = '45%';
+                p3.style.top = '55px'; p3.style.left = '75%';
+            }
+        }
+
+        // --- 2. LÓGICA DEL QUIZ ---
+        const questions = [
+            {
+                q: "¿Cuál es el atajo de teclado rápido para 'Agrupar' varios elementos seleccionados en Canva?",
+                options: ["Alt + F4", "Ctrl + G (o Cmd + G)", "Shift + A", "Ctrl + Z"],
+                correct: 1
+            },
+            {
+                q: "Si presiono la tecla 'L' en el teclado mientras uso Canva, ¿qué aparece en el lienzo?",
+                options: ["Una Letra", "Un León", "Una Línea", "Una Lista"],
+                correct: 2
+            },
+            {
+                q: "Pedagógicamente, ¿por qué es vital usar la herramienta 'Alinear' al mostrar fórmulas o pasos complejos?",
+                options: ["Para que Canva no cobre extra", "Para reducir la carga cognitiva del alumno", "Para que los colores brillen más", "Solo por estética irrelevante"],
+                correct: 1
+            }
+        ];
+
+        let currentIndex = 0;
+        let score = 0;
+
+        const qText = document.getElementById('question-text');
+        const optsContainer = document.getElementById('options-container');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const nextBtn = document.getElementById('next-btn');
+
+        function renderQuestion() {
+            if (currentIndex >= questions.length) {
+                showFinal();
+                return;
+            }
+
+            const current = questions[currentIndex];
+            qText.innerText = current.q;
+            optsContainer.innerHTML = '';
+            feedbackMsg.innerText = '';
+            nextBtn.style.display = 'none';
+
+            const classes = ['opt-1', 'opt-2', 'opt-3', 'opt-4'];
+
+            current.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `quiz-btn ${classes[idx]}`;
+                btn.innerText = opt;
+                btn.onclick = () => evaluateAnswer(idx, current.correct);
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function evaluateAnswer(selectedIdx, correctIdx) {
+            const buttons = document.querySelectorAll('.quiz-btn');
+            buttons.forEach(btn => btn.disabled = true); // Lock answers
+
+            if (selectedIdx === correctIdx) {
+                score++;
+                feedbackMsg.innerText = "¡Excelente deducción! ✅";
+                feedbackMsg.style.color = "#4ade80"; // Verde brillante
+                buttons[selectedIdx].style.border = "3px solid white";
+            } else {
+                feedbackMsg.innerText = "Respuesta incorrecta. ❌";
+                feedbackMsg.style.color = "#f87171"; // Rojo suave
+                buttons[selectedIdx].style.opacity = "0.4";
+                buttons[correctIdx].style.border = "3px solid white"; // Resalta la correcta
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.onclick = () => {
+            currentIndex++;
+            renderQuestion();
+        };
+
+        function showFinal() {
+            qText.innerText = "¡Módulo de Alineación Completado!";
+            optsContainer.innerHTML = '';
+            nextBtn.style.display = 'none';
+            
+            let message = "";
+            if (score === questions.length) message = "¡Una estructura mental y visual perfecta!";
+            else message = "Buen trabajo, la práctica hace al maestro.";
+
+            feedbackMsg.innerHTML = `Acertaste ${score} de ${questions.length} preguntas.<br><br>${message}<br><button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; cursor:pointer; font-weight:bold; border-radius:5px; border:none;">Reiniciar Ejercicio</button>`;
+            feedbackMsg.style.color = "white";
+        }
+
+        // Init
+        renderQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S43: Diseño de Mockups de Alta Fidelidad</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 43: Diseño de Mockups de Alta Fidelidad (Visualización)</h1>
+
+    <section>
+        <h2>1. Transición de Wireframe a Mockup</h2>
+        
+        <p>Un **Mockup** es la representación visual de la interfaz. Pasamos de las formas grises a aplicar color, tipografía real, imágenes y efectos de sombra/luz. Aquí aplicaremos todos los conocimientos del Bloque II.</p>
+        <div class="paso">
+            <strong>Paso 1: Definir la Paleta y Tipografía</strong>
+            <p>Elige una paleta de 3-4 colores. Usa la herramienta **Texto (F8)** para aplicar fuentes reales (instaladas en tu sistema) a los títulos y textos de cuerpo. Usa **Degradados** para los fondos y botones.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Sombras y Elevación</strong>
+            <p>Para simular el efecto de elevación (**Shadows** o **Z-Depth**), selecciona un objeto (ej. una tarjeta o un botón). Duplícalo, rellénalo de negro, envíalo detrás, ajústale la opacidad y aplícale un **Desenfoque Gaussiano** (Filtros > Desenfoques). Esto simula una sombra que da profundidad a la interfaz.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Uso de Imágenes y Texturas</h2>
+        <p>Las imágenes añaden realismo al Mockup. Usaremos la técnica de **Recorte** (Clipping) para asegurarnos de que encajen perfectamente en los contenedores.</p>
+        <div class="paso">
+            <strong>Paso 1: Importar Imagen</strong>
+            <p>Importa una imagen (Ctrl + I). **Incrústala** en el archivo.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Recorte al Contenedor</strong>
+            <p>Dibuja el rectángulo o la forma (contenedor) que contendrá la imagen. Colócalo sobre la imagen. Selecciona **ambos** objetos y aplica **Objeto > Recorte > Aplicar Recorte**. Esto hace que la imagen se vea solo dentro del marco del contenedor.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 3: Máscara de Degradado</strong>
+            <p>Para que la imagen se desvanezca sutilmente, crea una segunda forma, dale un **Degradado Lineal** de blanco (opacidad 100%) a negro (opacidad 0%), y aplícala como **Máscara (Set Mask)** en lugar de Recorte. Esto crea un desvanecimiento suave.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Optimización de Botones y Estados</h2>
+        <p>Los botones deben comunicar su estado (normal, hover, clic).</p>
+        <div class="paso">
+            <strong>Diseño de Botón Primario</strong>
+            <p>Diseña el botón primario con un color sólido y texto. Agrupa el resultado. Renombra el grupo (ej. **"Boton_Principal_Normal"**).</p>
+        </div>
+        <div class="paso">
+            <strong>Diseño de Estado Hover</strong>
+            <p>Duplica el grupo (Ctrl + D). Modifica el color del duplicado (ej. hazlo un 10% más claro o más oscuro) y renombra el duplicado a **"Boton_Principal_Hover"**. Ambos botones coexistirán en el lienzo, pero se usan para mostrar los diferentes estados a la hora de codificar.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Tarjeta de Producto con Sombras</h3>
+        <p><strong>Objetivo:</strong> Crear un elemento de interfaz con profundidad.</p>
+        <ol>
+            <li>Dibuja un rectángulo con esquinas redondeadas para la tarjeta.</li>
+            <li>Añade una sombra suave (Desenfoque Gaussiano) debajo para darle elevación.</li>
+            <li>Dibuja un cuadrado en la parte superior para la foto y recórtale una imagen de producto.</li>
+            <li>Añade texto real y un botón en la parte inferior de la tarjeta.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion42.html">Anterior</a>
+    <a href="sesion44.html">Siguiente</a>
+</nav>
+</body>
+</html>

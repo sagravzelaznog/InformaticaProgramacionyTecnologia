@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. Práctica 02 U2: Operaciones Aritméticas</title>
+    <style>
+       /* Prevención de selección y copiado */
+       body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* Mensaje al intentar copiar */
+        body::selection {
+            background: transparent;
+        }
+        
+        /* Prevención de captura de pantalla (soporte limitado) */
+        @media print {
+            body { display: none !important; }
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background-color: #0c82f0; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .instructions { border: 2px solid #0c82f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .code-markdown { background-color: #f0f8ff; border-left: 5px solid #0c82f0; padding: 10px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>4. Práctica 05 U1: Operaciones Aritméticas</h1>
+    <p>Realización de suma, resta, multiplicación, división, módulo y potencia.</p>
+</header>
+
+<div class="instructions">
+    <h2>Instrucciones para la Actividad</h2>
+    <p><strong>Paso 1: Celda de Código</strong> | Añade una celda de <strong>Código</strong>.</p>
+    <p><strong>Paso 2: Copiar y Ejecutar</strong> | Copia el código y ejecútalo.</p>
+    <p><strong>Paso 3: Análisis</strong> | Observa la diferencia entre la división normal (`/`) y la división entera (`//`).</p>
+</div>
+
+<section>
+    <h2>Operaciones Básicas en Python</h2>
+    <p>Se utilizan dos variables enteras para realizar las operaciones básicas y mostrar los resultados.</p>
+    <pre class="code">
+# practica02 u2: Operaciones Aritméticas
+
+a = 15
+b = 4
+
+# Suma
+suma = a + b
+print(f"Suma de {a} + {b} = {suma}")
+
+# Resta
+resta = a - b
+print(f"Resta de {a} - {b} = {resta}")
+
+# Multiplicación
+multiplicacion = a * b
+print(f"Multiplicación de {a} * {b} = {multiplicacion}")
+
+# División (Flotante)
+division = a / b
+print(f"División de {a} / {b} = {division}")
+
+# Módulo (Residuo de la división)
+modulo = a % b
+print(f"Módulo de {a} % {b} = {modulo}")
+
+# Potencia
+potencia = a ** 2
+print(f"Potencia de {a} ** 2 = {potencia}")
+    </pre>
+</section>
+
+</body>
+<footer>
+    <div style="text-align: center; margin-top: 20px; padding: 10px; border-top: 1px solid #ccc;">
+        <a href="S3.HTML" style="margin: 0 15px;">&larr; Anterior</a>
+        <a href="index.html" style="margin: 0 15px;">Volver al Índice</a>
+        <a href="S5.HTML" style="margin: 0 15px;">Siguiente &rarr;</a>
+    </div>
+	<p style="text-align: center; font-size: 0.8em; color: #666;">© 2025 JMGV-PTEL TUTORIAL GOOGLE COLAB. Todos los derechos reservados.</p>
+</footer>
+</html>

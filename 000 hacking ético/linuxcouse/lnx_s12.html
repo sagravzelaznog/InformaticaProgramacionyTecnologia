@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion12: Peticiones Web desde Consola</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 12: Radiografía Web y Extracción Ciega</h1>
+            <p class="intro-text">Encontraste una URL sospechosa en el historial del servidor comprometido. Si la abres en un navegador, podrías ejecutar JavaScript malicioso o alertar al atacante. Hoy aprenderemos a interactuar con la web a ciegas, descargando evidencia de forma segura y leyendo los metadatos ocultos (cabeceras HTTP) que los navegadores te ocultan.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Descargador Silencioso (wget)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><code>wget</code> (Web Get) es la herramienta estándar para descargar archivos desde la terminal. Es robusta y puede reanudar descargas interrumpidas. Descargaremos un archivo de texto de prueba para analizarlo localmente en nuestro Sandbox.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Descargar un archivo directamente al directorio actual</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> wget http://example.com/index.html
+
+<span class="comment"># Leer el archivo descargado para ver el código fuente real</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> cat index.html</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: El Cuchillo Suizo de la Web (curl)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Mientras que <code>wget</code> está pensado para descargar archivos, <code>curl</code> (Client URL) está diseñado para <em>interactuar</em>. Por defecto, no guarda un archivo, sino que imprime el código fuente directamente en tu pantalla, ideal para análisis rápido sin dejar rastros en el disco.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Imprimir el HTML crudo en la terminal (puedes usar pipes como | grep)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> curl http://example.com
+
+<span class="comment"># Guardar la salida en un archivo (similar a wget) usando -o</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> curl -o evidencia_web.html http://example.com</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Radiografía de Cabeceras (Simulador HTTP)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Aquí es donde el perito brilla. Usando <code>curl -I</code> (solo cabeceras), interrogamos al servidor sin descargar el contenido. Esto revela qué software usa (ej. Apache, Nginx), la fecha exacta y si hay redirecciones (Código 301/302). Juega con el interceptor antes de ejecutarlo.</p>
+                    
+                    <div class="http-inspector">
+                        <div class="inspector-controls">
+                            <input type="text" id="target-url" value="http://servidor-sospechoso.com/api" readonly>
+                            <button id="btn-curl-head" class="btn btn-teal">Ejecutar curl -I</button>
+                        </div>
+                        <div class="http-flow">
+                            <div class="http-panel request-panel">
+                                <h4>Petición (Tú)</h4>
+                                <pre id="req-headers">GET /api HTTP/1.1
+Host: servidor-sospechoso.com
+User-Agent: curl/7.88.1
+Accept: */*</pre>
+                            </div>
+                            <div class="http-panel response-panel">
+                                <h4>Respuesta (Servidor)</h4>
+                                <pre id="res-headers" class="hidden"></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1rem;">Ahora, audita un servidor real desde tu terminal para ver sus metadatos expuestos.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Obtener solo las cabeceras HTTP (Header) de un sitio</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> curl -I https://www.google.com</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Evasión Forense (Suplantación de User-Agent)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Los servidores maliciosos a menudo bloquean herramientas de línea de comandos como <code>curl</code> para evitar ser analizados. Podemos engañar al servidor modificando nuestra cabecera <strong>User-Agent</strong> para hacernos pasar por un navegador normal (como Firefox en Windows).</p>
+                    <div class="tip-card" style="border-left-color: #14b8a6; background-color: rgba(20, 184, 166, 0.08);">
+                        <strong style="color: #2dd4bf;">Arte del Camuflaje:</strong> Modificar el User-Agent es una técnica básica de "OPSEC" (Seguridad de las Operaciones) para que tu investigación no alerte a los monitores del atacante.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Disfrazar nuestra petición curl como si fuera un navegador Firefox</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Firefox/115.0" http://example.com</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #12. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S16 E63: Examen Final Práctico (Troubleshooting)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 16, Sesión 63: Examen Final Práctico ⚙️</h1>
+        <p class="subtitle">Diagnóstico y Solución de Fallas en un Escenario Complejo de Red</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Escenario de Examen: La Red del Campus Rota</h2>
+            <p>Se te entregará un archivo de **Packet Tracer (. pkt)** que simula una red con 2 routers, 2 switches, VLANs y varios PCs y servidores. Esta red está intencionalmente rota en 3-4 puntos (fallos ocultos).</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Tu Misión</h3>
+                    <p>Identificar la causa raíz de las fallas, corregir las configuraciones erróneas y restaurar la conectividad de extremo a extremo.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Herramientas Permitidas</h3>
+                    <p>Solo se permite el uso de comandos de la CLI del Router/Switch (**`show run`, `show ip route`**) y comandos de la PC (ping, ipconfig, traceroute).</p>
+                </div>
+            </div>
+            [Image of Cisco Packet Tracer network topology]
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Posibles Fallos a Encontrar y Corregir</h2>
+            <p>El examen simulará los problemas más comunes y avanzados que has aprendido a diagnosticar:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Fallas Comunes (Capa 2/3)</h3>
+                    <ul>
+                        <li>**Direccionamiento:** Máscara de subred incorrecta o IP duplicada.</li>
+                        <li>**Routing:** Falta la Ruta Estática o la Ruta por Defecto.</li>
+                        <li>**Servicios:** DHCP inactivo o mal configurado (Pool incorrecto).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Fallas Avanzadas (Módulo 3)</h3>
+                    <ul>
+                        <li>**VLANs:** Puerto de acceso asignado a la VLAN incorrecta.</li>
+                        <li>**Seguridad:** Telnet activo cuando se requiere SSH.</li>
+                        <li>**Cableado:** Cable incorrecto (cruzado en lugar de directo o viceversa).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Inicio de la Evaluación Práctica</h2>
+            <p>Demuestra tu habilidad para aplicar la metodología de Troubleshooting. La velocidad es importante, pero la precisión es clave.</p>
+            <button id="startFinalPracticalExamBtn">Comenzar Examen Práctico</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S16 E63</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion62.html" class="nav-button">Anterior</a>
+        <a href="sesion64.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

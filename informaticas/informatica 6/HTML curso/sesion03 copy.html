@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenieClass: Sesión 3 - Lenguaje HTML</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>GenieClass: Sesión 3 - La Telaraña</h1>
+        <p class="subtitle">Enlaces y Navegación en HTML</p>
+    </header>
+    <main>
+        <section id="objective">
+            <h2>Objetivo de la Sesión</h2>
+            <p>Aprender a crear enlaces entre documentos HTML y entender la gestión de rutas para una navegación efectiva.</p>
+        </section>
+        <section id="theory">
+            <h2>Introducción Teórica: La Etiqueta de Anclaje</h2>
+            <p>El elemento más importante para la navegación web es la etiqueta <code>&lt;a&gt;</code> (ancla).</p>
+            <div class="example-box">
+                <h3>Sintaxis Básica:</h3>
+                <div class="code-visual">&lt;a href="destino.html"&gt;Texto del enlace&lt;/a&gt;</div>
+                <h4>Atributos importantes:</h4>
+                <ul>
+                    <li><code>href</code>: Especifica la URL del enlace</li>
+                    <li><code>target</code>: Especifica dónde abrir el enlace</li>
+                    <li><code>title</code>: Información adicional</li>
+                    <li><code>rel</code>: Relación entre documentos</li>
+                </ul>
+            </div>
+        </section>
+        <section id="visual-examples">
+            <h2>Ejemplos Visuales</h2>
+            <div class="example-card">
+                <h3>Tipos de Rutas</h3>
+                <div class="path-example">
+                    <h4>1. Rutas Relativas</h4>
+                    <p>Referencias desde la ubicación actual:</p>
+                    <div class="code-visual">./carpeta/archivo.html - Mismo nivel<br>../carpeta/archivo.html - Un nivel arriba</div>
+                </div>
+                <div class="path-example">
+                    <h4>2. Rutas Absolutas</h4>
+                    <p>Referencias completas:</p>
+                    <div class="code-visual">/carpeta/archivo.html<br>https://www.ejemplo.com/ruta/archivo.html</div>
+                </div>
+                <div class="path-example">
+                    <h4>3. Rutas de Protocolo</h4>
+                    <p>Para correos o teléfonos:</p>
+                    <div class="code-visual">&lt;a href="mailto:correo@ejemplo.com"&gt;Enviar correo&lt;/a&gt;</div>
+                </div>
+            </div>
+            <div class="example-card">
+                <h3>Navegación Interna</h3>
+                <p>Puedes enlazar a secciones específicas usando IDs:</p>
+                <div class="code-visual">&lt;h2 id="seccion1"&gt;Primera Sección&lt;/h2&gt;<br>&lt;a href="#seccion1"&gt;Ir a la primera sección&lt;/a&gt;</div>
+            </div>
+        </section>
+        <section id="practical-exercise">
+            <h2>Ejercicio Práctico</h2>
+            <p>Crea un pequeño sitio web de 3 páginas sobre un tema de tu elección que incluya:</p>
+            <ul>
+                <li>Página principal con introducción y menú de navegación</li>
+                <li>Dos páginas adicionales con contenido relacionado</li>
+                <li>Enlaces entre todas las páginas</li>
+                <li>Al menos un enlace a una sección específica</li>
+                <li>Un enlace externo y de correo</li>
+            </ul>
+            <button id="show-template">Ver Estructura de Ejemplo</button>
+            <div id="template" style="display:none;">
+                <h3>Estructura de Carpetas</h3>
+                <div class="code-visual">proyecto/<br>├── index.html<br>├── pagina1/<br>│   └── pagina1.html<br>└── pagina2/<br>    └── pagina2.html</div>
+            </div>
+        </section>
+        <section id="evaluation">
+            <h2>Evaluación</h2>
+            <div id="quiz-container"></div>
+        </section>
+        <section id="dola-ai">
+            <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+            <div class="chat-container">
+                <div id="chat-messages">
+                    <div class="message ai">
+                        <p>¡Hola! ¿Tienes preguntas sobre enlaces y navegación en HTML? Pregúntame lo que necesites.</p>
+                    </div>
+                </div>
+                <div class="chat-input" style="margin-top: 10px;">
+                    <input type="text" id="user-input" placeholder="Escribe tu pregunta..." style="width: 80%; padding: 10px;">
+                    <button id="send-button">Enviar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 03 curso html. Todos los derechos reservados</p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

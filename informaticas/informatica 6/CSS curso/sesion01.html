@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: Conexión y Estética Básica - CSS3 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Estilos específicos para esta sesión */
+        .code-block {
+            background-color: #f0f7ff;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+        }
+        
+        .example-box {
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .activity {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        
+        .color-preview {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+        
+        .code-block pre {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .code-block code:hover {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .chat-container {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        
+        .message.user {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .message.ai {
+            background-color: #f5f5f5;
+            border-left: 4px solid #90caf9;
+        }
+        
+        .message.ai p {
+            font-style: italic;
+        }
+        
+        .message.ai ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        
+        .message.ai li {
+            margin-left: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #2196f3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #1976d2;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li class="active"><a href="sesion01.html">Sesión 1: Conexión y Estética</a></li>
+                <li><a href="sesion02.html">Sesión 2: Modelo de Caja</a></li>
+                <li><a href="sesion03.html">Sesión 3: Posicionamiento</a></li>
+                <li><a href="sesion04.html">Sesión 4: Flexbox</a></li>
+                <li><a href="sesion05.html">Sesión 5: Diseño Responsive</a></li>
+                <li><a href="sesion06.html">Sesión 6: Animaciones</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🎨 Sesión 1: Conexión y Estética Básica</h1>
+                <p class="subtitle">Dando el primer golpe de estilo a tu página web</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Aprender a conectar CSS con HTML, entender la sintaxis básica de CSS, y aplicar estilos de texto y color para dar vida a tus páginas web.</p>
+            </section>
+
+            <section class="connection-methods">
+                <h2>1. ¿Cómo conectar HTML y CSS?</h2>
+                
+                <p>Existen tres formas de conectar CSS con HTML, pero solo una es la recomendada:</p>
+                
+                <div class="example-box">
+                    <h3>1.1. Estilo en línea (NO recomendado)</h3>
+                    <p>El estilo se aplica directamente en el elemento HTML con el atributo <code>style</code>.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;p style="color: blue; font-size: 16px;"&gt;Este es un párrafo con estilo en línea.&lt;/p&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>💡 No recomendado:</strong> Dificulta el mantenimiento y la reutilización de estilos.
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h3>1.2. Estilo interno (Poco recomendado)</h3>
+                    <p>El estilo se coloca dentro de la etiqueta <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code> del documento HTML.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+            font-size: 16px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Este es un párrafo con estilo interno.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>💡 Poco recomendado:</strong> Mejor que el estilo en línea, pero aún así mezcla estructura con presentación.
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h3>1.3. Estilo externo (RECOMENDADO)</h3>
+                    <p>El estilo se escribe en un archivo separado con extensión <code>.css</code> que se enlaza al HTML.</p>
+                    
+                    <div class="code-block">
+                        <p><strong>archivo.html</strong></p>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Este es un párrafo con estilo externo.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        
+                        <p><strong>estilos.css</strong></p>
+                        <pre><code>p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>✅ Recomendado:</strong> Separa claramente la estructura (HTML) de la presentación (CSS), permitiendo reutilizar estilos en múltiples páginas.
+                    </div>
+                </div>
+            </section>
+
+            <section class="selectors">
+                <h2>2. Selectores CSS: La Trinidad</h2>
+                
+                <p>Los selectores son patrones que nos permiten seleccionar elementos HTML para aplicarles estilos.</p>
+                
+                <div class="example-box">
+                    <h3>2.1. Selector de Etiqueta</h3>
+                    <p>Selecciona todos los elementos de un tipo específico.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/* Selecciona TODOS los párrafos */
+p {
+    color: blue;
+}</code></pre>
+                    </div>
+                    
+                    <p>Afectará a todos los elementos <code>&lt;p&gt;</code> de la página.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h3>2.2. Selector de Clase (.)</h3>
+                    <p>Selecciona elementos con un atributo <code>class</code> específico.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!-- HTML --&gt;
+&lt;p class="destacado"&gt;Este párrafo es importante.&lt;/p&gt;
+&lt;p&gt;Este párrafo es normal.&lt;/p&gt;
+
+/* CSS */
+.destacado {
+    font-weight: bold;
+    color: #2e7d32; /* Verde esmeralda */
+}</code></pre>
+                    </div>
+                    
+                    <p>Solo el párrafo con <code>class="destacado"</code> tendrá el estilo aplicado.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h3>2.3. Selector de ID (#)</h3>
+                    <p>Selecciona un elemento con un atributo <code>id</code> específico.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!-- HTML --&gt;
+&lt;p id="principal"&gt;Este es el párrafo principal.&lt;/p&gt;
+
+/* CSS */
+#principal {
+    font-size: 20px;
+    color: #1565c0; /* Azul */
+}</code></pre>
+                    </div>
+                    
+                    <p>Recuerda que los IDs deben ser únicos en una página.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h3>2.4. Especificidad: ¿Quién gana la pelea?</h3>
+                    <p>Cuando varios estilos compiten por un mismo elemento, gana el más específico:</p>
+                    
+                    <ol>
+                        <li><strong>!important</strong> (Evítalo si puedes)</li>
+                        <li>Estilo en línea (style="...")</li>
+                        <li>Selectores de ID (#mi-id)</li>
+                        <li>Selectores de clase (.mi-clase) y pseudo-clases (:hover)</li>
+                        <li>Selectores de etiqueta (div, p, etc.)</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;div id="contenedor" class="caja"&gt;¡Hola!&lt;/div&gt;
+
+/* CSS */
+div { color: black; }          /* Menos específico */
+.caja { color: blue; }         /* Más específico */
+#contenedor { color: red; }    /* El más específico */
+/* El texto se verá en rojo */</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="typography-colors">
+                <h2>3. Tipografía y Color</h2>
+                
+                <div class="example-box">
+                    <h3>3.1. Propiedades de Texto</h3>
+                    
+                    <div class="code-block">
+                        <pre><code>p {
+    /* Familia tipográfica */
+    font-family: 'Arial', sans-serif;
+    
+    /* Tamaño de fuente */
+    font-size: 16px; /* o 1em, 100%, 1rem */
+    
+    /* Grosor de la fuente */
+    font-weight: normal; /* o bold, 100-900 */
+    
+    /* Estilo de la fuente */
+    font-style: normal; /* o italic, oblique */
+    
+    /* Transformación de texto */
+    text-transform: none; /* o uppercase, lowercase, capitalize */
+    
+    /* Decoración de texto */
+    text-decoration: none; /* o underline, line-through, overline */
+    
+    /* Alineación de texto */
+    text-align: left; /* o center, right, justify */
+    
+    /* Altura de línea */
+    line-height: 1.5;
+    
+    /* Espaciado entre letras */
+    letter-spacing: 1px;
+    
+    /* Espaciado entre palabras */
+    word-spacing: 2px;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h3>3.2. Colores en CSS</h3>
+                    
+                    <p>Existen varias formas de definir colores en CSS:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/* Palabras clave */
+color: blue;
+
+/* Código hexadecimal (6 dígitos) */
+color: #4a90e2; /* Azul claro */
+
+/* Código hexadecimal (3 dígitos) */
+color: #4ae; /* Equivale a #44aaee */
+
+/* RGB (Red, Green, Blue) */
+color: rgb(74, 144, 226);
+
+/* RGBA (con transparencia) */
+color: rgba(74, 144, 226, 0.7); /* 0.7 es la opacidad (70%) */
+
+/* HSL (Hue, Saturation, Lightness) */
+color: hsl(210, 75%, 59%);
+
+/* HSLA (con transparencia) */
+color: hsla(210, 75%, 59%, 0.7);
+
+/* Color de fondo */
+background-color: #f0f7ff; /* Azul muy claro */
+
+/* Color de borde */
+border: 1px solid #2e7d32; /* Verde esmeralda */</code></pre>
+                    </div>
+                    
+                    <div class="color-preview" style="background-color: #4a90e2;"></div> #4a90e2 (Azul principal)
+                    <div class="color-preview" style="background-color: #2e7d32;"></div> #2e7d32 (Verde esmeralda)
+                    <div class="color-preview" style="background-color: #f0f7ff;"></div> #f0f7ff (Fondo claro)
+                </div>
+                
+                <div class="example-box">
+                    <h3>3.3. Ejemplo Práctico</h3>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="estilos.css"&gt;
+    &lt;style&gt;
+        /* Estilos para el ejemplo */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        
+        h1 {
+            color: #1565c0;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+        }
+        
+        .destacado {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .codigo {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Mi Primera Página con Estilo&lt;/h1&gt;
+    
+    &lt;p&gt;Este es un párrafo normal con texto de ejemplo para mostrar cómo se aplican los estilos CSS a los elementos HTML.&lt;/p&gt;
+    
+    &lt;p class="destacado"&gt;¡Este párrafo está destacado gracias a una clase CSS! Observa cómo el fondo es verde claro y tiene un borde lateral.&lt;/p&gt;
+    
+    &lt;p&gt;Podemos usar la etiqueta &lt;code class="codigo"&gt;&amp;lt;code&amp;gt;&lt;/code&gt; para mostrar código en línea, como &lt;code class="codigo"&gt;color: blue;&lt;/code&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="challenge">
+                <h2>🧩 Reto: "El Camaleón"</h2>
+                
+                <p>Crea un documento HTML con 3 párrafos y aplica estilos diferentes a cada uno usando clases CSS:</p>
+                
+                <div class="activity">
+                    <h3>Instrucciones:</h3>
+                    <ol>
+                        <li>Crea un archivo HTML básico con 3 párrafos.</li>
+                        <li>Agrega una clase única a cada párrafo (ej: <code>parrafo1</code>, <code>parrafo2</code>, <code>parrafo3</code>).</li>
+                        <li>En una hoja de estilos CSS externa, define estilos diferentes para cada clase:</li>
+                        <ul>
+                            <li>Primer párrafo: Texto en azul, fuente Arial, tamaño 18px</li>
+                            <li>Segundo párrafo: Fondo amarillo claro, texto en rojo, cursiva</li>
+                            <li>Tercer párrafo: Borde verde, relleno de 10px, fuente Georgia</li>
+                        </ul>
+                        <li>Enlaza la hoja de estilos a tu documento HTML.</li>
+                        <li>¡Abre el archivo en tu navegador para ver los resultados!</li>
+                    </ol>
+                    
+                    <h3>Consejos:</h3>
+                    <ul>
+                        <li>Usa selectores de clase (.) para apuntar a cada párrafo.</li>
+                        <li>Experimenta con diferentes propiedades CSS como <code>color</code>, <code>background-color</code>, <code>font-family</code>, <code>font-size</code>, <code>border</code>, <code>padding</code>, etc.</li>
+                        <li>Recuerda que los colores pueden ser palabras clave (blue, red) o códigos hexadecimales (#0000ff, #ff0000).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>📝 Resumen de la Sesión</h2>
+                
+                <div class="checklist">
+                    <h3>Lo que aprendimos hoy:</h3>
+                    <ul>
+                        <li><strong>Conexión de CSS con HTML:</strong> La mejor práctica es usar archivos CSS externos con la etiqueta <code>&lt;link&gt;</code> en el <code>&lt;head&gt;</code>.</li>
+                        <li><strong>Selectores CSS:</strong>
+                            <ul>
+                                <li>Etiqueta: <code>p { }</code> (selecciona todos los párrafos)</li>
+                                <li>Clase: <code>.destacado { }</code> (selecciona elementos con class="destacado")</li>
+                                <li>ID: <code>#principal { }</code> (selecciona el elemento con id="principal")</li>
+                            </ul>
+                        </li>
+                        <li><strong>Especificidad:</strong> Los estilos más específicos tienen prioridad (ID > Clase > Etiqueta).</li>
+                        <li><strong>Propiedades de texto:</strong> <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>text-align</code>, etc.</li>
+                        <li><strong>Colores:</strong> Palabras clave, hexadecimal, RGB, RGBA, HSL, HSLA.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="example-box">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! Soy Dola, tu asistente de aprendizaje. Puedes preguntarme cualquier duda sobre CSS. Por ejemplo:</p>
+                            <ul>
+                                <li>¿Cómo cambio el color de un texto?</li>
+                                <li>¿Qué es la especificidad en CSS?</li>
+                                <li>¿Cuál es la diferencia entre clase e ID?</li>
+                                <li>¿Cómo hago que mi página sea más accesible?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="index.html" class="button">← Sesión Anterior</a>
+                    <a href="index.html" class="button">Volver al inicio</a>
+                    <a href="sesion02.html" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE CSS. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Script para el chat de Dola AI
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+                    
+                    addMessage(message, true);
+                    userInput.value = '';
+                    
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        const responses = [
+                            "Los colores en CSS se pueden definir de varias formas: con palabras clave (blue, red), códigos hexadecimales (#0000ff), RGB (rgb(0, 0, 255)) o HSL (hsl(240, 100%, 50%)). ¿Qué tipo de color te gustaría usar?",
+                            "La especificidad en CSS determina qué regla de estilo se aplica cuando hay conflictos. El orden de prioridad es: !important > estilos en línea > #id > .clase > etiqueta. ¿Neitas un ejemplo práctico?",
+                            "¡Buena pregunta! La principal diferencia es que un ID debe ser único en una página, mientras que una clase puede usarse en múltiples elementos. Además, los selectores de ID (#) tienen mayor especificidad que las clases (.). ¿Quieres ver un ejemplo de código?",
+                            "Para mejorar la accesibilidad, asegúrate de usar suficiente contraste de colores, etiquetas descriptivas para formularios, texto alternativo en imágenes, y estructura semántica correcta (etiquetas como header, nav, main, etc.). ¿Te gustaría profundizar en algún aspecto específico de accesibilidad?",
+                            "¿Has probado a usar las herramientas de desarrollo de tu navegador? Presiona F12 y selecciona el elemento para ver y modificar sus estilos en tiempo real. ¡Es una excelente manera de aprender!"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000);
+                }
+                
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 22: Búsqueda Avanzada</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #2b6cb0 0%, #1a202c 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 22</h1>
+            <h2>Búsqueda Avanzada: Google Hacking Ético</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Arte de Preguntar</h3>
+            <p><strong>Objetivo:</strong> Entender que Google es un robot literal. Si le preguntas mal, te responde mal.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #ebf8ff;">
+                <h4>🔍 Calidad vs Cantidad</h4>
+                <p>¿Qué prefieres al hacer una tarea?</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; opacity: 0.6;">
+                        <span class="stat-number" style="color: #a0aec0; font-size: 1.5rem;">1,500,000</span>
+                        <p style="font-size: 0.8rem;">Resultados para "Historia de México"</p>
+                        <p style="font-size: 0.7rem; color: #e53e3e;">(Imposible de leer)</p>
+                    </div>
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border: 2px solid #2b6cb0;">
+                        <span class="stat-number" style="color: #2b6cb0; font-size: 1.5rem;">12</span>
+                        <p style="font-size: 0.8rem;">Resultados para "Revolución filetype:pdf site:unam.mx"</p>
+                        <p style="font-size: 0.7rem; color: #38a169;">(Perfecto y académico)</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"Saber buscar es la habilidad #1 del siglo XXI. No es magia, es sintaxis."</p>
+            </div>
+        </section>
+
+        
+
+[Image of boolean search operators venn diagram]
+
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Los Comandos Secretos (Operadores)</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #2b6cb0; border-bottom: 2px solid #2b6cb0;">Exactitud: " "</h4>
+                    <p>Busca la frase exacta, en ese orden.</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; border-radius: 4px; font-size: 0.8rem;">"ser o no ser"</div>
+                    <p style="font-size: 0.8rem; margin-top:5px;">Úsalo para encontrar plagios o citas textuales.</p>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #805ad5; border-bottom: 2px solid #805ad5;">Formato: filetype:</h4>
+                    <p>Busca solo tipos de archivo específicos.</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; border-radius: 4px; font-size: 0.8rem;">álgebra de baldor filetype:pdf</div>
+                    <p style="font-size: 0.8rem; margin-top:5px;">Ideal para encontrar libros (pdf) o presentaciones (ppt).</p>
+                </div>
+                
+                 <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #e53e3e; border-bottom: 2px solid #e53e3e;">Limpieza: - (Menos)</h4>
+                    <p>Elimina palabras que no quieres.</p>
+                    <div style="font-family: 'Fira Code', monospace; background: #eee; padding: 5px; border-radius: 4px; font-size: 0.8rem;">velocidad jaguar -auto</div>
+                    <p style="font-size: 0.8rem; margin-top:5px;">Te mostrará al animal, no al coche.</p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🕵️‍♂️ Test de Veracidad (Método CRAAP)</h4>
+                <p>Antes de compartir una noticia, pásala por este filtro:</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                    <div style="display: flex; align-items: center; background: #f0fff4; padding: 8px; border-radius: 5px;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">📅</span>
+                        <div>
+                            <p style="font-weight: bold; font-size: 0.9rem; color: #22543d;">Actualidad (Currency)</p>
+                            <p style="font-size: 0.8rem;">¿Es de hoy o de hace 5 años? Muchas noticias viejas se reciclan para asustar.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; background: #ebf8ff; padding: 8px; border-radius: 5px;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">🎯</span>
+                        <div>
+                            <p style="font-weight: bold; font-size: 0.9rem; color: #2a4365;">Fuente (Authority)</p>
+                            <p style="font-size: 0.8rem;">¿Lo dice "El Rincón del Vago" o la "NASA"? Revisa la URL (.gov, .edu).</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; background: #fff5f5; padding: 8px; border-radius: 5px;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">😡</span>
+                        <div>
+                            <p style="font-weight: bold; font-size: 0.9rem; color: #742a2a;">Propósito (Purpose)</p>
+                            <p style="font-size: 0.8rem;">¿Quiere informarte o quiere hacerte enojar/venderte algo? (Clickbait).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. El Reto del Investigador</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Desafío 1: El Libro Perdido</h5>
+                    <p>Necesitas "Don Quijote" en PDF pero solo te salen resúmenes y tiendas.</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Comando</button>
+                    <div id="ans1" class="answer hidden">
+                        <p style="font-family: 'Fira Code', monospace;">don quijote filetype:pdf -resumen</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Desafío 2: La Fuente Oficial</h5>
+                    <p>Quieres becas pero solo de sitios del gobierno de México.</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Comando</button>
+                    <div id="ans2" class="answer hidden">
+                        <p style="font-family: 'Fira Code', monospace;">becas preparatoria site:gob.mx</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🔍 <strong>Misión del Día:</strong> Busca tu propio nombre entre comillas <code>"Tu Nombre Completo"</code> en Google. ¿Qué aparece? Eso es lo que el mundo ve de ti.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 22 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

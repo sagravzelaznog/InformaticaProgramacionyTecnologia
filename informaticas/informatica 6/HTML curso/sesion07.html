@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Interacción Humano-Computadora - HTML5 Puro</title>
+    <link rel="stylesheet" href="../CSS curso/style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="search"],
+        input[type="color"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            margin: 5px 0;
+        }
+        
+        .radio-option input,
+        .checkbox-option input {
+            margin-right: 10px;
+        }
+        
+        button,
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"] {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover,
+        input[type="submit"]:hover,
+        input[type="reset"]:hover,
+        input[type="button"]:hover {
+            background-color: #357abd;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .input-hint {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        .form-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #4a90e2;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .input-with-icon input,
+        .input-with-icon select {
+            padding-left: 35px;
+        }
+        
+        /* Estilos para la validación */
+        input:invalid {
+            border-color: #e74c3c;
+        }
+        
+        input:valid {
+            border-color: #2ecc71;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input:invalid + .error-message {
+            display: block;
+        }
+        
+        /* Estilos para el ejemplo de formulario de torneo */
+        .tournament-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tournament-form h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        /* Estilos para el ejemplo de validación */
+        .validation-demo {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Estilos para el ejemplo de formulario de contacto */
+        .contact-form {
+            background-color: #f5f9f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Estilos para la sección de tipos de input */
+        .input-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .input-type-example {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .input-type-example h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .input-type-example code {
+            display: block;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+        
+        /* Estilos para la sección de accesibilidad */
+        .accessibility-tip {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .accessibility-tip h4 {
+            margin-top: 0;
+            color: #ff8f00;
+        }
+        
+        /* Estilos para la sección de consejos de UX */
+        .ux-tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .ux-tip h4 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: El Génesis</a></li>
+                <li><a href="sesion02.html">Sesión 2: Jerarquía y Orden</a></li>
+                <li><a href="sesion03.html">Sesión 3: La Telaraña</a></li>
+                <li><a href="sesion04.html">Sesión 4: Multimedia</a></li>
+                <li><a href="sesion05.html">Sesión 5: Semántica</a></li>
+                <li><a href="sesion06.html">Sesión 6: Tablas</a></li>
+                <li class="active"><a href="sesion07.html">Sesión 7: Formularios</a></li>
+                <li><a href="sesion08.html">Sesión 8: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>📋 Sesión 7: Interacción Humano-Computadora</h1>
+                <p class="subtitle">Formularios en HTML: Recopilando Datos de Usuario</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Aprender a crear formularios interactivos que permitan a los usuarios enviar información de manera estructurada y accesible.</p>
+            </section>
+
+            <section class="form-basics">
+                <h2>Conceptos Básicos de Formularios</h2>
+                
+                <p>Los formularios son la principal forma de recopilar información de los usuarios en la web. Permiten desde búsquedas simples hasta el envío de datos complejos.</p>
+                
+                <div class="example-box">
+                    <h3>Estructura Básica de un Formulario</h3>
+                    <pre><code>&lt;form action="/procesar" method="POST"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+        &lt;input type="text" id="nombre" name="nombre" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;Correo electrónico:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                
+                <div class="accessibility-tip">
+                    <h4>📌 Importancia de la Accesibilidad en Formularios</h4>
+                    <ul>
+                        <li>Usa siempre etiquetas <code>&lt;label&gt;</code> asociadas a sus controles con el atributo <code>for</code></li>
+                        <li>Agrupa controles relacionados con <code>&lt;fieldset&gt;</code> y usa <code>&lt;legend&gt;</code> para el título del grupo</li>
+                        <li>Proporciona instrucciones claras y mensajes de error descriptivos</li>
+                        <li>Asegúrate de que los formularios sean navegables con teclado</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="form-elements">
+                <h2>Elementos de Formulario</h2>
+                
+                <div class="input-types">
+                    <div class="input-type-example">
+                        <h4>Texto Simple</h4>
+                        <input type="text" placeholder="Escribe tu nombre" class="demo-input">
+                        <code>&lt;input type="text" placeholder="Escribe tu nombre"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Correo Electrónico</h4>
+                        <input type="email" placeholder="usuario@ejemplo.com" class="demo-input">
+                        <code>&lt;input type="email"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Contraseña</h4>
+                        <input type="password" placeholder="••••••••" class="demo-input">
+                        <code>&lt;input type="password"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Número</h4>
+                        <input type="number" min="1" max="100" class="demo-input">
+                        <code>&lt;input type="number" min="1" max="100"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Fecha</h4>
+                        <input type="date" class="demo-input">
+                        <code>&lt;input type="date"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Hora</h4>
+                        <input type="time" class="demo-input">
+                        <code>&lt;input type="time"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Selector de Color</h4>
+                        <input type="color" value="#4a90e2" class="demo-input">
+                        <code>&lt;input type="color"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Rango</h4>
+                        <input type="range" min="0" max="100" class="demo-input">
+                        <code>&lt;input type="range" min="0" max="100"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Archivo</h4>
+                        <input type="file" class="demo-input">
+                        <code>&lt;input type="file"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Búsqueda</h4>
+                        <input type="search" placeholder="Buscar..." class="demo-input">
+                        <code>&lt;input type="search"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>URL</h4>
+                        <input type="url" placeholder="https://ejemplo.com" class="demo-input">
+                        <code>&lt;input type="url"&gt;</code>
+                    </div>
+                    
+                    <div class="input-type-example">
+                        <h4>Teléfono</h4>
+                        <input type="tel" placeholder="+52 123 456 7890" class="demo-input">
+                        <code>&lt;input type="tel"&gt;</code>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Área de Texto</h3>
+                    <div class="form-group">
+                        <label for="comentario">Deja un comentario:</label>
+                        <textarea id="comentario" name="comentario" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
+                    </div>
+                    <pre><code>&lt;textarea id="comentario" name="comentario" rows="4"&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Lista Desplegable</h3>
+                    <div class="form-group">
+                        <label for="pais">País:</label>
+                        <select id="pais" name="pais">
+                            <option value="">Selecciona un país</option>
+                            <option value="mx">México</option>
+                            <option value="es">España</option>
+                            <option value="co">Colombia</option>
+                            <option value="ar">Argentina</option>
+                        </select>
+                    </div>
+                    <pre><code>&lt;select id="pais" name="pais"&gt;
+    &lt;option value=""&gt;Selecciona un país&lt;/option&gt;
+    &lt;option value="mx"&gt;México&lt;/option&gt;
+    &lt;option value="es"&gt;España&lt;/option&gt;
+    &lt;option value="co"&gt;Colombia&lt;/option&gt;
+    &lt;option value="ar"&gt;Argentina&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Grupo de Opciones (Radio Buttons)</h3>
+                    <div class="form-group">
+                        <label>Género:</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="masculino" name="genero" value="masculino">
+                                <label for="masculino">Masculino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="femenino" name="genero" value="femenino">
+                                <label for="femenino">Femenino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="otro" name="genero" value="otro">
+                                <label for="otro">Otro</label>
+                            </div>
+                        </div>
+                    </div>
+                    <pre><code>&lt;div class="form-group"&gt;
+    &lt;label&gt;Género:&lt;/label&gt;
+    &lt;div class="radio-option"&gt;
+        &lt;input type="radio" id="masculino" name="genero" value="masculino"&gt;
+        &lt;label for="masculino"&gt;Masculino&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;!-- Más opciones --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Casillas de Verificación (Checkboxes)</h3>
+                    <div class="form-group">
+                        <label>Intereses:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="deportes" name="intereses" value="deportes">
+                                <label for="deportes">Deportes</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="musica" name="intereses" value="musica">
+                                <label for="musica">Música</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="tecnologia" name="intereses" value="tecnologia">
+                                <label for="tecnologia">Tecnología</label>
+                            </div>
+                        </div>
+                    </div>
+                    <pre><code>&lt;div class="form-group"&gt;
+    &lt;label&gt;Intereses:&lt;/label&gt;
+    &lt;div class="checkbox-option"&gt;
+        &lt;input type="checkbox" id="deportes" name="intereses" value="deportes"&gt;
+        &lt;label for="deportes"&gt;Deportes&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;!-- Más opciones --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="form-validation">
+                <h2>Validación de Formularios</h2>
+                
+                <p>HTML5 introdujo atributos de validación integrados que funcionan sin JavaScript:</p>
+                
+                <div class="validation-demo">
+                    <h3>Atributos de Validación</h3>
+                    
+                    <div class="form-group">
+                        <label for="usuario">Nombre de usuario (requerido, min 3 caracteres):</label>
+                        <input type="text" id="usuario" name="usuario" required minlength="3" class="demo-input">
+                        <div class="error-message">El nombre de usuario es requerido y debe tener al menos 3 caracteres.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico (requerido, formato válido):</label>
+                        <input type="email" id="correo" name="correo" required class="demo-input">
+                        <div class="error-message">Por favor, introduce un correo electrónico válido.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad (entre 13 y 120):</label>
+                        <input type="number" id="edad" name="edad" min="13" max="120" class="demo-input">
+                        <div class="error-message">La edad debe estar entre 13 y 120 años.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sitio">Sitio web (opcional, debe ser una URL válida):</label>
+                        <input type="url" id="sitio" name="sitio" class="demo-input" placeholder="https://ejemplo.com">
+                        <div class="error-message">Por favor, introduce una URL válida.</div>
+                    </div>
+                    
+                    <pre><code>&lt;!-- Ejemplo de validación HTML5 --&gt;
+&lt;input type="text" required minlength="3"&gt;  &lt;!-- Requerido, mínimo 3 caracteres --&gt;
+&lt;input type="email" required&gt;             &lt;!-- Requerido, formato de email --&gt;
+&lt;input type="number" min="13" max="120"&gt;  &lt;!-- Valor entre 13 y 120 --&gt;
+&lt;input type="url"&gt;                       &lt;!-- Formato de URL válida --&gt;
+&lt;input pattern="[A-Za-z]{3}"&gt;           &lt;!-- Patrón personalizado --&gt;</code></pre>
+                </div>
+                
+                <div class="ux-tip">
+                    <h4>💡 Consejos de UX para Formularios</h4>
+                    <ul>
+                        <li>Agrupa campos relacionados lógicamente</li>
+                        <li>Usa etiquetas claras y descriptivas</li>
+                        <li>Marca claramente los campos obligatorios</li>
+                        <li>Proporciona ejemplos de formato esperado</li>
+                        <li>Muestra mensajes de error claros y específicos</li>
+                        <li>Usa el atributo <code>autocomplete</code> para ayudar a los usuarios</li>
+                        <li>Considera el uso de campos de entrada con máscaras para formatos específicos</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="form-example">
+                <h2>Ejemplo Completo: Formulario de Inscripción a Torneo</h2>
+                
+                <div class="tournament-form">
+                    <h3>📝 Formulario de Inscripción al Torneo de Videojuegos 2024</h3>
+                    
+                    <form id="formulario-torneo" novalidate>
+                        <div class="form-section">
+                            <h4>Información Personal</h4>
+                            
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre completo <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i>👤</i>
+                                            <input type="text" id="nombre" name="nombre" required>
+                                        </div>
+                                        <div class="error-message">Por favor, ingresa tu nombre completo.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="alias">Alias de jugador <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i>🎮</i>
+                                            <input type="text" id="alias" name="alias" required minlength="3" maxlength="20">
+                                        </div>
+                                        <div class="error-message">El alias es requerido (3-20 caracteres).</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i>✉️</i>
+                                            <input type="email" id="email" name="email" required>
+                                        </div>
+                                        <div class="error-message">Por favor, ingresa un correo electrónico válido.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i>📱</i>
+                                            <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}">
+                                        </div>
+                                        <div class="error-message">Por favor, ingresa un número de teléfono válido (10 dígitos).</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha-nacimiento">Fecha de nacimiento <span class="required">*</span></label>
+                                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required max="2008-12-31">
+                                <div class="error-message">Debes tener al menos 15 años para participar.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Información del Equipo</h4>
+                            
+                            <div class="form-group">
+                                <label for="nombre-equipo">Nombre del equipo <span class="required">*</span></label>
+                                <input type="text" id="nombre-equipo" name="nombre-equipo" required>
+                                <div class="error-message">Por favor, ingresa el nombre de tu equipo.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Juego <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="juego1" name="juego" value="valorant" required>
+                                        <label for="juego1">Valorant</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="juego2" name="juego" value="lol">
+                                        <label for="juego2">League of Legends</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="juego3" name="juego" value="fortnite">
+                                        <label for="juego3">Fortnite</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="juego4" name="juego" value="cod">
+                                        <label for="juego4">Call of Duty</label>
+                                    </div>
+                                </div>
+                                <div class="error-message">Por favor, selecciona un juego.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nivel">Nivel de habilidad</label>
+                                <select id="nivel" name="nivel">
+                                    <option value="">Selecciona tu nivel</option>
+                                    <option value="principiante">Principiante</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="avanzado">Avanzado</option>
+                                    <option value="profesional">Profesional</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Plataforma <span class="required">*</span></label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-option">
+                                        <input type="checkbox" id="pc" name="plataforma" value="pc" required>
+                                        <label for="pc">PC</label>
+                                    </div>
+                                    <div class="checkbox-option">
+                                        <input type="checkbox" id="xbox" name="plataforma" value="xbox">
+                                        <label for="xbox">Xbox</label>
+                                    </div>
+                                    <div class="checkbox-option">
+                                        <input type="checkbox" id="playstation" name="plataforma" value="playstation">
+                                        <label for="playstation">PlayStation</label>
+                                    </div>
+                                    <div class="checkbox-option">
+                                        <input type="checkbox" id="nintendo" name="plataforma" value="nintendo">
+                                        <label for="nintendo">Nintendo Switch</label>
+                                    </div>
+                                </div>
+                                <div class="error-message">Selecciona al menos una plataforma.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horario">Horario preferido</label>
+                                <select id="horario" name="horario" multiple size="3">
+                                    <option value="manana">Mañana (9:00 - 12:00)</option>
+                                    <option value="tarde">Tarde (14:00 - 18:00)</option>
+                                    <option value="noche">Noche (19:00 - 22:00)</option>
+                                    <option value="fds">Fin de semana</option>
+                                </select>
+                                <div class="input-hint">Mantén presionada la tecla Ctrl (Windows) o Cmd (Mac) para seleccionar múltiples opciones.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Información Adicional</h4>
+                            
+                            <div class="form-group">
+                                <label for="comentarios">Comentarios o necesidades especiales</label>
+                                <textarea id="comentarios" name="comentarios" rows="3" placeholder="¿Algo más que debamos saber?"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="file" id="foto" name="foto" accept="image/*">
+                                <label for="foto">Sube una foto de tu equipo (opcional)</label>
+                                <div class="input-hint">Formatos aceptados: JPG, PNG. Tamaño máximo: 5MB</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="color-equipo">Color del equipo</label>
+                                <input type="color" id="color-equipo" name="color-equipo" value="#4a90e2">
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="terminos" name="terminos" required>
+                                    <label for="terminos">Acepto los <a href="#" target="_blank">términos y condiciones</a> del torneo <span class="required">*</span></label>
+                                </div>
+                                <div class="error-message">Debes aceptar los términos y condiciones.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="notificaciones" name="notificaciones" checked>
+                                    <label for="notificaciones">Deseo recibir notificaciones sobre el torneo</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="reset" class="button">Limpiar formulario</button>
+                            <button type="submit" class="button primary">Enviar inscripción</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="activity">
+                <h2>Actividad Práctica</h2>
+                <p>Crea un formulario de registro de usuario con las siguientes características:</p>
+                
+                <div class="checklist">
+                    <h4>Requisitos:</h4>
+                    <ol>
+                        <li>Sección de Información Personal:
+                            <ul>
+                                <li>Nombre completo (obligatorio)</li>
+                                <li>Correo electrónico (obligatorio, formato válido)</li>
+                                <li>Fecha de nacimiento (obligatorio, mayor de 13 años)</li>
+                                <li>Género (opcional, radio buttons)</li>
+                            </ul>
+                        </li>
+                        <li>Sección de Cuenta:
+                            <ul>
+                                <li>Nombre de usuario (obligatorio, mínimo 4 caracteres)</li>
+                                <li>Contraseña (obligatorio, mínimo 8 caracteres)</li>
+                                <li>Confirmar contraseña (debe coincidir con la contraseña)</li>
+                            </ul>
+                        </li>
+                        <li>Preferencias (opcional):
+                            <ul>
+                                <li>Intereses (checkboxes: Deportes, Música, Tecnología, Viajes, etc.)</li>
+                                <li>Notificaciones por correo (toggle sí/no)</li>
+                                <li>Biografía (área de texto, máximo 500 caracteres)</li>
+                            </ul>
+                        </li>
+                        <li>Validación:
+                            <ul>
+                                <li>Todos los campos obligatorios deben estar marcados</li>
+                                <li>Validación en tiempo real de formato de correo</li>
+                                <li>Confirmación de contraseña</li>
+                                <li>Mensajes de error claros y específicos</li>
+                            </ul>
+                        </li>
+                        <li>Diseño:
+                            <ul>
+                                <li>Organizado en secciones lógicas</li>
+                                <li>Diseño responsive</li>
+                                <li>Estilos CSS para mejorar la experiencia de usuario</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="hint">
+                    <h4>💡 Consejos:</h4>
+                    <ul>
+                        <li>Usa el atributo <code>required</code> para los campos obligatorios</li>
+                        <li>Usa <code>type="email"</code> y <code>type="password"</code> para una mejor experiencia en móviles</li>
+                        <li>Agrega el atributo <code>autocomplete</code> para ayudar a los usuarios</li>
+                        <li>Considera usar <code>fieldset</code> y <code>legend</code> para agrupar elementos relacionados</li>
+                        <li>No olvides el botón de envío y el botón para restablecer el formulario</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>Resumen de la Sesión</h2>
+                <ul>
+                    <li>Los formularios son la principal forma de recopilar información de los usuarios en la web</li>
+                    <li>Elementos principales: <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code></li>
+                    <li>Tipos de entrada: texto, correo, contraseña, número, fecha, radio, checkbox, etc.</li>
+                    <li>Validación HTML5: atributos como <code>required</code>, <code>min</code>, <code>max</code>, <code>pattern</code></li>
+                    <li>Agrupación de controles: <code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code></li>
+                    <li>La accesibilidad es crucial: etiquetas asociadas, agrupación lógica, navegación por teclado</li>
+                </ul>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! ¿Tienes preguntas sobre formularios en HTML? Pregúntame lo que necesites.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion06.html" class="button">← Sesión Anterior</a>
+                    <a href="#" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE HTML5. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        // Script para manejar la validación personalizada
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('formulario-torneo');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    
+                    // Validar que al menos una plataforma esté seleccionada
+                    const plataformas = form.querySelectorAll('input[name="plataforma"]');
+                    let plataformaSeleccionada = false;
+                    
+                    plataformas.forEach(plataforma => {
+                        if (plataforma.checked) {
+                            plataformaSeleccionada = true;
+                        }
+                    });
+                    
+                    if (!plataformaSeleccionada) {
+                        alert('Por favor, selecciona al menos una plataforma.');
+                        isValid = false;
+                    }
+                    
+                    // Validar que se haya seleccionado un juego
+                    const juegoSeleccionado = form.querySelector('input[name="juego"]:checked');
+                    if (!juegoSeleccionado) {
+                        alert('Por favor, selecciona un juego.');
+                        isValid = false;
+                    }
+                    
+                    // Validar términos y condiciones
+                    const terminos = document.getElementById('terminos');
+                    if (!terminos.checked) {
+                        alert('Debes aceptar los términos y condiciones para continuar.');
+                        isValid = false;
+                    }
+                    
+                    if (!isValid) {
+                        e.preventDefault();
+                    } else {
+                        // Simular envío exitoso
+                        alert('¡Inscripción enviada con éxito! Te contactaremos pronto.');
+                        // form.submit(); // Descomentar en un entorno real
+                    }
+                });
+                
+                // Validación en tiempo real para el campo de teléfono
+                const telefono = document.getElementById('telefono');
+                if (telefono) {
+                    telefono.addEventListener('input', function() {
+                        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+                    });
+                }
+            }
+            
+            // Manejar el chat de Dola AI
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            
+            if (chatMessages && userInput && sendButton) {
+                function addMessage(message, isUser = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                    messageDiv.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                
+                function handleUserInput() {
+                    const message = userInput.value.trim();
+                    if (message === '') return;
+                    
+                    addMessage(message, true);
+                    userInput.value = '';
+                    
+                    // Simular respuesta de Dola AI
+                    setTimeout(() => {
+                        const responses = [
+                            "¡Hola! ¿En qué puedo ayudarte sobre formularios en HTML?",
+                            "Puedes usar el atributo 'required' para hacer que un campo sea obligatorio.",
+                            "¿Neitas ayuda con algún tipo específico de campo de formulario?",
+                            "Recuerda que para agrupar elementos relacionados puedes usar &lt;fieldset&gt; y &lt;legend&gt;.",
+                            "¿Has probado a usar el atributo 'pattern' para validaciones personalizadas?"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000);
+                }
+                
+                sendButton.addEventListener('click', handleUserInput);
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleUserInput();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Efecto Marco Glaseado en Photoshop</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .step { background: #fff; padding: 15px; margin: 20px 0; border-left: 4px solid #3498db; }
+        .step-number { color: #2980b9; font-weight: bold; }
+        .shortcut { background: #e8f4fc; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        .menu-path { font-family: monospace; background: #f0f0f0; padding: 2px 5px; }
+        .tip { background: #e8f8f5; border-left: 3px solid #1abc9c; padding: 10px; margin: 10px 0; }
+        .image-container { text-align: center; margin: 15px 0; }
+        .image-container img { max-width: 100%; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Efecto Marco Glaseado en Photoshop</h1>
+    
+    <div class="step">
+        <div class="step-number">Paso 1: Abrir y Preparar</div>
+        <ol>
+            <li>Abre tu imagen en Photoshop <span class="shortcut">(Ctrl + O)</span></li>
+            <li>Duplica la capa: <span class="shortcut">Ctrl + J</span></li>
+        </ol>
+        <div class="image-container">
+            <img src="imagenes/duplicar_capa.jpg" alt="Duplicar capa">
+            <p>Figura 1: Duplicar la capa de fondo</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">Paso 2: Seleccionar el Marco</div>
+        <ol>
+            <li>Selecciona la herramienta Marco Rectangular <span class="shortcut">(M)</span></li>
+            <li>Dibuja un rectángulo dejando un borde alrededor de la imagen</li>
+            <li>Invierte la selección: <span class="shortcut">Ctrl + Shift + I</span></li>
+        </ol>
+        <div class="image-container">
+            <img src="imagenes/seleccion_marco.jpg" alt="Seleccionar marco">
+            <p>Figura 2: Crear selección del marco</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">Paso 3: Aplicar Desenfoque</div>
+        <ol>
+            <li>Ve a <span class="menu-path">Filtro > Desenfocar > Desenfoque gaussiano</span></li>
+            <li>Ajusta el radio (entre 5-15 píxeles)</li>
+            <li>Presiona <span class="shortcut">Ctrl + D</span> para quitar la selección</li>
+        </ol>
+        <div class="tip">
+            <strong>Consejo:</strong> Ajusta el nivel de desenfoque según el tamaño de tu imagen.
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">Paso 4: Añadir Brillo</div>
+        <ol>
+            <li>Crea una capa de ajuste de Brillo/Contraste<span class="menu-path">Capa > Nueva capa de ajuste > Brillo/Contraste</span></li>
+            <li>Aumenta ligeramente el brillo y el contraste</li>
+            <li>Reduce la opacidad si es necesario (alrededor del 70-80%)</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <div class="step-number">Paso 5: Efecto Final</div>
+        <p>Tu imagen debería tener ahora un bonito efecto de marco glaseado. Puedes ajustar:</p>
+        <ul>
+            <li>Opacidad de la capa</li>
+            <li>Nivel de desenfoque</li>
+            <li>Brillo y contraste</li>
+        </ul>
+        <div class="image-container">
+            <img src="imagenes/resultado_final.jpg" alt="Resultado final">
+            <p>Figura 3: Efecto de marco glaseado terminado</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>Nota:</strong> Guarda tu trabajo como archivo PSD para conservar las capas y poder hacer ajustes posteriores.
+    </div>
+</body>
+</html>

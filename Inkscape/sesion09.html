@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S9: Operaciones Booleanas (Parte I)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 9: Trayectos y Operaciones Booleanas (Parte I)</h1>
+
+    <section>
+        <h2>1. ¿Qué son las Operaciones Booleanas?</h2>
+        
+        <p>Las **Operaciones Booleanas** (ubicadas en el menú **Trayecto**) permiten combinar dos o más objetos para crear una nueva forma compleja. Son el método principal para construir geometrías complejas a partir de formas simples.</p>
+        <p><strong>Recordatorio:</strong> Estas operaciones solo funcionan con **Trayectos**. Si estás usando formas básicas (Rectángulo, Círculo), primero conviértelas a trayecto con <code>Trayecto > Objeto a Trayecto (Shift + Ctrl + C)</code>.</p>
+    </section>
+
+    <section>
+        <h2>2. Unión (Union) - Combinar</h2>
+        <p>La **Unión (Ctrl + +)** combina todos los objetos seleccionados en un único trayecto. El nuevo trayecto adopta el estilo (relleno y borde) del objeto que estaba más abajo en el orden Z (el más viejo o el que fue enviado al fondo).</p>
+        <div class="paso">
+            <strong>Ejemplo de Uso: Una Pera Simple</strong>
+            <p>Dibuja dos círculos superpuestos, uno más grande (cuerpo) y uno más pequeño (parte superior). Selecciona ambos y aplica **Unión**. La forma resultante es un solo objeto continuo.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Diferencia (Difference) - Restar</h2>
+        <p>La **Diferencia (Ctrl + -)** utiliza el objeto superior para "cortar" o "restar" al objeto que se encuentra debajo. El objeto superior desaparece, dejando un agujero en el objeto inferior.</p>
+        <div class="paso">
+            <strong>Ejemplo de Uso: Un Agujero o Media Luna</strong>
+            <p>Dibuja un círculo (fondo). Dibuja un segundo círculo más pequeño o movido (corte) por encima del primero. Selecciona ambos y aplica **Diferencia**. Esto crea un agujero o la forma de una media luna.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Intersección (Intersection) - Encontrar el Común</h2>
+        <p>La **Intersección (Ctrl + *)** mantiene solo el área donde todos los objetos seleccionados se superponen. Todo lo que esté fuera de esa área se elimina. El resultado adopta el estilo del objeto superior.</p>
+        <div class="paso">
+            <strong>Ejemplo de Uso: Una Gotita o Pestaña</strong>
+            <p>Dibuja dos óvalos superpuestos de forma cruzada. Selecciona ambos y aplica **Intersección**. La forma resultante es la intersección entre los dos, perfecta para crear formas de gota o de ojo estilizado.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Nube y el Sol</h3>
+        <p><strong>Objetivo:</strong> Usar Unión y Diferencia.</p>
+        <ol>
+            <li>**Nube:** Dibuja varios círculos de diferente tamaño superpuestos. Selecciona todos y aplica **Unión**.</li>
+            <li>**Sol Creciente:** Dibuja un círculo grande (Sol). Dibuja un círculo idéntico y muévelo ligeramente para crear la forma de creciente sobre el sol. Selecciona ambos y aplica **Diferencia** para cortar el sol y dejar solo la media luna.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion08.html">Anterior</a>
+    <a href="sesion10.html">Siguiente</a>
+</nav>
+</body>
+</html>

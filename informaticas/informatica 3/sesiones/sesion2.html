@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Grabación de Macros Básicas - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 2: Grabación de Macros Básicas</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a grabar macros para tareas comunes en Excel.</p>
+            </header>
+            
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión nos enfocaremos en grabar macros para tareas comunes que realizas frecuentemente en Excel. Aprenderás técnicas prácticas que te ahorrarán tiempo en tu trabajo diario.</p>
+                    <p>En esta sesión nos enfocaremos en grabar macros para tareas comunes que realizas frecuentemente en Excel. Aprenderás técnicas prácticas que te ahorrarán tiempo en tu trabajo diario.</p>
+                    
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>Consejo:</strong> Las macros grabadas son una excelente manera de aprender VBA, ya que puedes grabar una acción y luego revisar el código generado.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-tasks"></i> Tipos de tareas automatizables</h2>
+                    <p>Antes de empezar, es importante saber qué tipo de tareas son ideales para automatizar con macros:</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h3>📊 Formateo de tablas</h3>
+                            <p>Aplicar estilos, colores y formatos consistentes.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h3>🔢 Cálculos repetitivos</h3>
+                            <p>Fórmulas que usas una y otra vez.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h3>📈 Generación de informes</h3>
+                            <p>Crear reportes con un solo clic.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-graduation-cap"></i> Tutorial: Grabando tu Primera Macro Útil</h2>
+                    
+                    <h3>1. Macro para formatear una tabla de datos</h3>
+                    <p>Vamos a crear una macro que formatee automáticamente una tabla de ventas:</p>
+                    
+                    <ol class="steps">
+                        <li>Abre Excel y crea una tabla con estos encabezados: <strong>Producto, Cantidad, Precio, Total</strong></li>
+                        <li>Ve a la pestaña <strong>Programador</strong> y haz clic en <strong>Grabar macro</strong></li>
+                        <li>Nómbrala "FormatoTablaVentas"</li>
+                        <li>Realiza estas acciones:
+                            <ul>
+                                <li>Selecciona la tabla completa</li>
+                                <li>Aplica un formato de tabla (Inicio > Formato como tabla)</li>
+                                <li>Selecciona los encabezados y aplícales negrita</li>
+                                <li>Ajusta el ancho de las columnas</li>
+                                <li>Añade bordes a toda la tabla</li>
+                            </ul>
+                        </li>
+                        <li>Haz clic en <strong>Detener grabación</strong></li>
+                    </ol>
+
+                    <div class="exercise">
+                        <h3>🛠️ Actividad Práctica 1</h3>
+                        <p><strong>Crea una macro que:</strong></p>
+                        <ol>
+                            <li>Seleccione la columna de Total</li>
+                            <li>Aplique formato de moneda (con el símbolo $)</li>
+                            <li>Resalte en amarillo los totales mayores a $1,000</li>
+                        </ol>
+                    </div>
+
+                    <h3>2. Macro para ordenar datos</h3>
+                    <p>Ahora crearemos una macro que ordene los datos por la columna de Total de mayor a menor:</p>
+                    
+                    <ol class="steps">
+                        <li>Selecciona cualquier celda dentro de tu tabla</li>
+                        <li>Inicia la grabación de una nueva macro llamada "OrdenarPorTotal"</li>
+                        <li>Ve a la pestaña <strong>Datos</strong> y haz clic en <strong>Ordenar</strong></li>
+                        <li>Ordena por la columna <strong>Total</strong> de <strong>Mayor a menor</strong></li>
+                        <li>Detén la grabación</li>
+                    </ol>
+
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>Consejo:</strong> Siempre prueba tus macros después de grabarlas para asegurarte de que funcionan como esperas.</p>
+                    </div>
+
+                    <h3>3. Macro para aplicar filtros</h3>
+                    <p>Vamos a crear una macro que aplique un filtro para mostrar solo los productos con ventas superiores a $500:</p>
+                    
+                    <ol class="steps">
+                        <li>Selecciona cualquier celda de tu tabla</li>
+                        <li>Inicia la grabación de una nueva macro llamada "FiltrarVentasAltas"</li>
+                        <li>Haz clic en <strong>Datos > Filtro</strong> (si no hay filtros aplicados)</li>
+                        <li>Haz clic en la flecha de filtro de la columna <strong>Total</strong></li>
+                        <li>Selecciona <strong>Filtros de número > Mayor que</strong> e ingresa 500</li>
+                        <li>Haz clic en <strong>Aceptar</strong> y detén la grabación</li>
+                    </ol>
+
+                    <div class="warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p><strong>Importante:</strong> Los filtros en macros pueden ser sensibles a la estructura de tus datos. Asegúrate de que los datos estén en el mismo formato cada vez que ejecutes la macro.</p>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-check-circle"></i> Buenas prácticas al grabar macros</h2>
+                    
+                    <div class="benefit-card">
+                        <h3>Nombres descriptivos</h3>
+                        <p>Usa nombres que describan claramente lo que hace la macro, como "FormatoInformeMensual" en lugar de "Macro1".</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>Grabar en pasos lógicos</h3>
+                        <p>Divide tareas complejas en macros más pequeñas y específicas.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>Probar en copias</h3>
+                        <p>Siempre prueba tus macros en una copia de tus datos importantes.</p>
+                    </div>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <h2>Proyecto Práctico</h2>
+                    </div>
+                    <p><strong>Crea un informe de ventas automatizado:</strong></p>
+                    <ol>
+                        <li>Prepara una tabla con al menos 10 productos, cantidades y precios</li>
+                        <li>Crea una macro que:
+                            <ul>
+                                <li>Formatee la tabla con colores y estilos</li>
+                                <li>Calcule los totales (Cantidad * Precio)</li>
+                                <li>Ordene los productos por total de ventas</li>
+                                <li>Resalte las 3 ventas más altas</li>
+                            </ul>
+                        </li>
+                        <li>Guarda el archivo como "InformeVentas.xlsm"</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>Pista:</strong> Puedes grabar cada acción por separado y luego combinarlas en una sola macro.</p>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>Las macros grabadas son poderosas para automatizar tareas repetitivas</li>
+                        <li>Puedes grabar acciones de formateo, ordenamiento y filtrado</li>
+                        <li>Es importante nombrar claramente las macros y probarlas a fondo</li>
+                        <li>Las macros complejas pueden dividirse en macros más pequeñas</li>
+                    </ul>
+                </section>
+
+                <div class="nav-buttons">
+                    <a href="sesion1.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion3.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

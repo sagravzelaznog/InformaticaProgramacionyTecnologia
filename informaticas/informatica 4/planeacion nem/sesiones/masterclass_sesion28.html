@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 28: Lenguajes de Programación</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #553c9a 0%, #2d3748 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 28</h1>
+            <h2>Del Diagrama al Código: Python y Bloques</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Torre de Babel Digital</h3>
+            <p><strong>Objetivo:</strong> Entender que la computadora no habla español, habla "Binario". Necesitamos un traductor (Lenguaje de Programación).</p>
+            
+            <div class="interactive-box" style="border-color: #6b46c1; background-color: #f3e8ff;">
+                <h4>🗣️ ¿Cómo le hablo a la máquina?</h4>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 30%; background: white; padding: 10px; border-radius: 8px;">
+                        <span class="stat-number" style="color: #4a5568; font-size: 1.5rem;">Humano</span>
+                        <p style="font-size: 0.7rem;">"Escribe Hola"</p>
+                        <p style="font-size: 0.6rem; color: #e53e3e;">(Ambiguo)</p>
+                    </div>
+                    <div class="stat-item" style="width: 10%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">➡️</div>
+                    <div class="stat-item" style="width: 30%; background: #2d3748; padding: 10px; border-radius: 8px; color: #48bb78;">
+                        <span class="stat-number" style="color: #48bb78; font-size: 1.5rem;">Python</span>
+                        <p style="font-size: 0.7rem; font-family: 'Fira Code';">print("Hola")</p>
+                        <p style="font-size: 0.6rem;">(Preciso)</p>
+                    </div>
+                    <div class="stat-item" style="width: 10%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">➡️</div>
+                    <div class="stat-item" style="width: 30%; background: black; padding: 10px; border-radius: 8px; color: white;">
+                        <span class="stat-number" style="color: white; font-size: 1.5rem;">Máquina</span>
+                        <p style="font-size: 0.7rem; font-family: 'Fira Code';">01001000</p>
+                        <p style="font-size: 0.6rem;">(Binario)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #44337a;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Bloques vs Texto</h3>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #ed8936; border-bottom: 2px solid #ed8936;">🧩 Blockly / Scratch</h4>
+                    <p>Programación visual. Arrastras piezas como un rompecabezas.</p>
+                    <ul>
+                        <li><strong>Ventaja:</strong> Imposible cometer errores de escritura.</li>
+                        <li><strong>Uso:</strong> Aprender lógica rápido.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3182ce; border-bottom: 2px solid #3182ce;">🐍 Python</h4>
+                    <p>Programación real. Escribes comandos en inglés.</p>
+                    <ul>
+                        <li><strong>Ventaja:</strong> Potente. Se usa en IA, Netflix, NASA.</li>
+                        <li><strong>Reto:</strong> La Sintaxis (Gramática) es estricta.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🆚 Batalla Visual: "Hola Mundo"</h4>
+                <p>Mira cómo se ve la misma instrucción:</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    
+                    <div style="width: 45%;">
+                        <p style="text-align: center; font-weight: bold; color: #ed8936;">Modo Bloques</p>
+                        <div style="background: #f7fafc; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div style="background: #9f7aea; color: white; padding: 10px 15px; border-radius: 4px; font-family: sans-serif; box-shadow: 2px 2px 0px #6b46c1; display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">imprimir</span>
+                                <div style="background: white; color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.9rem;">"Hola Mundo"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="width: 45%;">
+                        <p style="text-align: center; font-weight: bold; color: #3182ce;">Modo Python</p>
+                        <div style="background: #1a202c; padding: 20px; border-radius: 8px; height: 100px; display: flex; align-items: center; justify-content: center; font-family: 'Fira Code', monospace;">
+                            <div>
+                                <span style="color: #f6ad55;">print</span><span style="color: #a0aec0;">(</span><span style="color: #68d391;">"Hola Mundo"</span><span style="color: #a0aec0;">)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 10px;">Python es limpio, elegante y poderoso.</p>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #44337a;">
+            <div class="time-badge" style="background-color: #6b46c1;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Tu Primera Línea de Código</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Sintaxis: El error #1</h5>
+                    <p>¿Qué pasa si escribes <code>Print("Hola")</code> con P mayúscula en Python?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #6b46c1;">Ver Error</button>
+                    <div id="ans1" class="answer hidden">
+                        <p style="color: #e53e3e;"><strong>NameError: name 'Print' is not defined.</strong></p>
+                        <p>Python distingue mayúsculas de minúsculas (Case Sensitive). La orden correcta es <code>print</code> (todo minúscula).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Por qué Python?</h5>
+                    <p>¿Por qué enseñamos Python y no C++ o Java?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #6b46c1;">Ver Razón</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Legibilidad.</strong> Python se lee casi como inglés. Menos llaves <code>{}</code> y puntos y comas <code>;</code>, más enfoque en resolver problemas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f3e8ff; border-left-color: #6b46c1;">
+                <p>🐍 <strong>Misión del Día:</strong> Entra a un editor online (como Replit) y haz que la computadora diga tu nombre. ¡Bienvenido al club de programadores!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #6b46c1;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 28 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

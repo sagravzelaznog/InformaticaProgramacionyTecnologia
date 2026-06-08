@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: La Telaraña - HTML5 Puro</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .path-example {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        .path-example code {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .example-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Sesiones</h3>
+            <ul>
+                <li><a href="sesion01.html">Sesión 1: El Génesis</a></li>
+                <li><a href="sesion02.html">Sesión 2: Jerarquía y Orden</a></li>
+                <li class="active"><a href="sesion03.html">Sesión 3: La Telaraña</a></li>
+                <li><a href="sesion04.html">Sesión 4: Multimedia</a></li>
+                <li><a href="sesion05.html">Sesión 5: Semántica</a></li>
+                <li><a href="sesion06.html">Sesión 6: Tablas</a></li>
+                <li><a href="sesion07.html">Sesión 7: Formularios</a></li>
+                <li><a href="sesion08.html">Sesión 8: Proyecto Final</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>🕸️ Sesión 3: La Telaraña</h1>
+                <p class="subtitle">Enlaces y Navegación en HTML</p>
+            </header>
+
+            <section class="objective">
+                <h2>Objetivo de la Sesión</h2>
+                <p>Aprender a crear enlaces entre documentos HTML y entender la gestión de rutas para una navegación efectiva.</p>
+            </section>
+
+            <section class="anchor-tag">
+                <h2>La Etiqueta de Anclaje <code>&lt;a&gt;</code></h2>
+                <p>El elemento más importante para la navegación web es la etiqueta <code>&lt;a&gt;</code> (ancla).</p>
+                
+                <div class="example-box">
+                    <h3>Sintaxis Básica:</h3>
+                    <pre><code>&lt;a href="destino.html"&gt;Texto del enlace&lt;/a&gt;</code></pre>
+                    
+                    <h4>Atributos importantes:</h4>
+                    <ul>
+                        <li><code>href</code>: Especifica la URL del enlace (puede ser absoluta o relativa)</li>
+                        <li><code>target</code>: Especifica dónde abrir el enlace (ej: <code>_blank</code> para nueva pestaña)</li>
+                        <li><code>title</code>: Proporciona información adicional (se muestra al pasar el cursor)</li>
+                        <li><code>rel</code>: Especifica la relación entre el documento actual y el enlace</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="paths">
+                <h2>Tipos de Rutas</h2>
+                
+                <div class="path-example">
+                    <h3>1. Rutas Relativas</h3>
+                    <p>Referencias desde la ubicación actual del archivo:</p>
+                    <code>./carpeta/archivo.html</code> - Mismo nivel
+                    <code>../carpeta/archivo.html</code> - Un nivel arriba
+                    <code>recursos/imagen.jpg</code> - Dentro de una carpeta
+                </div>
+                
+                <div class="path-example">
+                    <h3>2. Rutas Absolutas</h3>
+                    <p>Referencias completas desde la raíz del sitio:</p>
+                    <code>/carpeta/archivo.html</code>
+                    <p>O direcciones web completas:</p>
+                    <code>https://www.ejemplo.com/ruta/archivo.html</code>
+                </div>
+                
+                <div class="path-example">
+                    <h3>3. Rutas de Protocolo</h3>
+                    <p>Para enlaces a correos o teléfonos:</p>
+                    <code>&lt;a href="mailto:correo@ejemplo.com"&gt;Enviar correo&lt;/a&gt;</code>
+                    <code>&lt;a href="tel:+525551234567"&gt;Llamar al 555-123-4567&lt;/a&gt;</code>
+                </div>
+            </section>
+
+            <section class="navigation">
+                <h2>Navegación Interna</h2>
+                
+                <p>Puedes crear enlaces a secciones específicas dentro de la misma página usando IDs:</p>
+                
+                <div class="example-box">
+                    <h3>Paso 1: Asigna un ID al elemento destino</h3>
+                    <pre><code>&lt;h2 id="seccion1"&gt;Primera Sección&lt;/h2&gt;</code></pre>
+                    
+                    <h3>Paso 2: Crea un enlace al ID</h3>
+                    <pre><code>&lt;a href="#seccion1"&gt;Ir a la primera sección&lt;/a&gt;</code></pre>
+                    
+                    <h3>También puedes enlazar a secciones en otras páginas:</h3>
+                    <pre><code>&lt;a href="otrapagina.html#seccion-especifica"&gt;Ver más detalles&lt;/a&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="best-practices">
+                <h2>Buenas Prácticas de Navegación</h2>
+                
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h3>📌 Menú de Navegación</h3>
+                        <p>Crea una barra de navegación consistente en todas las páginas:</p>
+                        <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="acerca.html"&gt;Acerca de&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>🔗 Enlaces Accesibles</h3>
+                        <ul>
+                            <li>Usa texto descriptivo en los enlaces</li>
+                            <li>Incluye el atributo <code>title</code> cuando sea necesario</li>
+                            <li>Mantén la consistencia en la navegación</li>
+                            <li>Prueba todos los enlaces antes de publicar</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="example">
+                <h2>Ejemplo Práctico: El Laberinto</h2>
+                
+                <p>Vamos a crear 3 páginas HTML que se enlacen entre sí:</p>
+                
+                <div class="example-box">
+                    <h3>Estructura de Carpetas:</h3>
+                    <pre><code>proyecto/
+├── index.html
+├── habitacion1/
+│   └── habitacion1.html
+└── habitacion2/
+    └── habitacion2.html</code></pre>
+                    
+                    <h3>Instrucciones:</h3>
+                    <ol>
+                        <li>Crea la estructura de carpetas mostrada arriba</li>
+                        <li>En cada archivo HTML, incluye un título y descripción de la habitación</li>
+                        <li>Crea enlaces entre las páginas para navegar entre ellas</li>
+                        <li>Incluye un enlace de "volver al inicio" en cada página</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="activity">
+                <h2>Actividad Práctica</h2>
+                <p>Crea un pequeño sitio web de 3 páginas sobre un tema de tu elección (por ejemplo, tu banda favorita, un lugar que te gustaría visitar, etc.) que incluya:</p>
+                
+                <div class="checklist">
+                    <h3>Requisitos:</h3>
+                    <ul>
+                        <li>Página principal (index.html) con introducción y menú de navegación</li>
+                        <li>Dos páginas adicionales con contenido relacionado</li>
+                        <li>Enlaces entre todas las páginas</li>
+                        <li>Al menos un enlace a una sección específica dentro de una página</li>
+                        <li>Un enlace externo a un recurso relacionado</li>
+                        <li>Un enlace de correo electrónico</li>
+                    </ul>
+                </div>
+                
+                <div class="hint">
+                    <h4>💡 Consejo:</h4>
+                    <p>Organiza tus archivos en carpetas lógicas y usa rutas relativas para los enlaces.</p>
+                </div>
+            </section>
+
+            <section class="summary">
+                <h2>Resumen de la Sesión</h2>
+                <ul>
+                    <li>La etiqueta <code>&lt;a&gt;</code> con el atributo <code>href</code> crea enlaces</li>
+                    <li>Las rutas pueden ser relativas (desde la ubicación actual) o absolutas (desde la raíz o URL completa)</li>
+                    <li>Usa <code>id</code> para crear anclas dentro de una página</li>
+                    <li>Los enlaces pueden apuntar a páginas web, secciones específicas, correos o números de teléfono</li>
+                    <li>La navegación debe ser consistente y accesible en todo el sitio</li>
+                </ul>
+            </section>
+
+            <section class="dola-ai">
+                <h2>🤖 Dola AI - Tu Asistente de Aprendizaje</h2>
+                <div class="chat-container">
+                    <div id="chat-messages">
+                        <div class="message ai">
+                            <p>¡Hola! ¿Tienes preguntas sobre enlaces y navegación en HTML? Pregúntame lo que necesites.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="nav-buttons">
+                    <a href="sesion02.html" class="button">← Sesión Anterior</a>
+                    <a href="#" class="button">Siguiente Sesión →</a>
+                </div>
+                <p>&copy; JMGV-PTEL-2026, CURSO DE HTML5. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

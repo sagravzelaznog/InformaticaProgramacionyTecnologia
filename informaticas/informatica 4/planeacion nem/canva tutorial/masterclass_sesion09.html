@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 09: Presentaciones y Estudio Mágico (IA)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta "Inteligencia y Creatividad" - Canva Magic Studio Vibe */
+            --primary: #8B3DFF; /* Morado Mágico - Imaginación y Futuro */
+            --secondary: #00C4CC; /* Turquesa - Claridad y Flujo */
+            --magic-gradient: linear-gradient(135deg, #8B3DFF 0%, #FF5E99 50%, #FFC933 100%);
+            --surface-bg: #F4F5F7;
+            --card-bg: #FFFFFF;
+            --text-dark: #0E1318;
+            --text-muted: #5E6D7E;
+            
+            /* Colores Kahoot */
+            --k-red: #E21B3C;
+            --k-blue: #1368CE;
+            --k-gold: #D89E00;
+            --k-green: #26890C;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--surface-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+
+        /* --- HEADER MÁGICO --- */
+        header {
+            background: var(--magic-gradient);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 10px 30px rgba(139, 61, 255, 0.3);
+            position: relative;
+        }
+
+        .session-badge {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .subtitle { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        section:hover { transform: translateY(-3px); border-left-color: #FF5E99; }
+
+        h2 { color: var(--primary); margin-bottom: 1.2rem; font-size: 1.7rem; display: flex; align-items: center; gap: 10px; }
+
+        /* --- SIMULADOR INTERACTIVO DE IA --- */
+        .ai-simulator {
+            background: #111827; /* Fondo oscuro para contraste */
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-simulator::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(139,61,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0; pointer-events: none;
+        }
+
+        .canvas-mockup {
+            background: white;
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Estado "Antes" (Aburrido) */
+        .slide-content-raw {
+            text-align: left; padding: 20px; width: 100%; transition: opacity 0.5s;
+        }
+        .slide-content-raw h3 { font-family: Arial, sans-serif; font-size: 1.2rem; margin-bottom: 10px; }
+        .slide-content-raw ul { font-family: Arial, sans-serif; font-size: 0.9rem; margin-left: 20px; }
+
+        /* Estado "Después" (Generado por IA) */
+        .slide-content-magic {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--magic-gradient);
+            color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transform: scale(1.1); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide-content-magic h3 { font-size: 1.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .magic-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .m-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+        .btn-magic {
+            background: var(--magic-gradient); color: white; border: none; padding: 12px 30px;
+            border-radius: 50px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem; cursor: pointer; position: relative; z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 94, 153, 0.4); transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-magic:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 94, 153, 0.6); }
+
+        /* --- EJERCICIO PRÁCTICO --- */
+        .practice-container {
+            background: #F8FAFC; border: 1px solid #E2E8F0; padding: 25px; border-radius: 12px;
+        }
+        .step { display: flex; margin-bottom: 15px; }
+        .step-num {
+            background: var(--primary); color: white; width: 32px; height: 32px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; margin-right: 15px; flex-shrink: 0; font-family: 'Space Grotesk', sans-serif;
+        }
+        .step-text { padding-top: 4px; }
+        .highlight { background: linear-gradient(120deg, #FFC933 0%, #FFC933 100%); background-repeat: no-repeat; background-size: 100% 30%; background-position: 0 80%; font-weight: 600; }
+
+        /* --- QUIZ KAHOOT --- */
+        #kahoot-arena { background: #46178F; color: white; text-align: center; border-left: none; }
+        #kahoot-arena h2 { color: white; justify-content: center; }
+
+        .q-display { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 2rem; font-weight: 700; }
+        .grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .k-btn {
+            padding: 22px; border: none; border-radius: 8px; font-family: 'Lexend', sans-serif;
+            font-size: 1.05rem; font-weight: 600; color: white; cursor: pointer;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.2); transition: all 0.1s;
+        }
+        .k-btn:active { transform: translateY(6px); box-shadow: none; }
+
+        .k-feedback { margin-top: 25px; font-size: 1.25rem; font-weight: 700; min-height: 40px; }
+
+        /* --- FOOTER OBLIGATORIO --- */
+        footer {
+            text-align: center; padding: 2.5rem 1rem; color: #9CA3AF;
+            font-size: 0.85rem; background: #FFFFFF; border-top: 1px solid #E5E7EB;
+            margin-top: 3rem; font-family: monospace; letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-options { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .btn-magic { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="session-badge">Sesión 09</span>
+        <h1>Presentaciones y Estudio Mágico</h1>
+        <p class="subtitle">Integrando la Inteligencia Artificial como tu asistente de diseño personal.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🧠 La Psicología de la Diapositiva</h2>
+            <p>Una presentación no es un documento de texto proyectado en la pared. Si el público lee tu diapositiva, deja de escucharte. El diseño debe ser un <strong>apoyo visual</strong>.</p>
+            <p>Hoy introduciremos el <strong>Estudio Mágico (Magic Studio)</strong> de Canva. La Inteligencia Artificial no te roba el trabajo; elimina el "síndrome de la página en blanco" para que puedas centrarte en la narrativa y la didáctica.</p>
+        </section>
+
+        <section>
+            <h2>✨ Simulador: Diseño Mágico</h2>
+            <p>Mira cómo la herramienta "Diseño Mágico" transforma un texto crudo en una composición visual equilibrada en segundos. Haz clic en el botón para ejecutar la simulación.</p>
+            
+            <div class="ai-simulator">
+                <div class="canvas-mockup" id="mockup-screen">
+                    <div class="slide-content-raw" id="raw-content">
+                        <h3>El Sistema Solar</h3>
+                        <ul>
+                            <li>Mercurio es el más cercano.</li>
+                            <li>Venus es el más caliente.</li>
+                            <li>La Tierra tiene vida.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="slide-content-magic" id="magic-content">
+                        <h3>El Sistema Solar</h3>
+                        <div class="magic-icons">
+                            <div class="m-icon">🌑</div>
+                            <div class="m-icon">⭐</div>
+                            <div class="m-icon">🌍</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn-magic" id="btn-transform" onclick="applyMagic()">🪄 Generar Diseño Mágico</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: Tu Asistente de IA</h2>
+            <p>Vamos a generar una base de presentación utilizando prompts (instrucciones) de texto para que la IA de Canva haga el trabajo pesado inicial.</p>
+            
+            <div class="practice-container">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Abre Canva y selecciona <strong>"Presentación (16:9)"</strong> para crear un diseño en blanco.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">En la barra lateral izquierda, asegúrate de estar en la pestaña <strong>"Diseño"</strong>.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Haz clic en la barra de búsqueda que dice <span class="highlight">"Describe lo que quieres diseñar..."</span> (Tiene un ícono de estrellitas mágicas).</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-text">Escribe tu <em>prompt</em>: <strong>"Presentación de 5 diapositivas sobre la historia de la computación con estilo tecnológico"</strong> y presiona Enter.</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-text"><strong>Magia:</strong> Canva generará varias opciones completas (imágenes y texto). Selecciona una y aplícala. ¡Ahora usa tu conocimiento de las sesiones 1 al 8 para perfeccionarla!</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kahoot-arena">
+            <h2>⚡ Evaluación de Estudio Mágico</h2>
+            <div id="quiz-container">
+                <div id="q-text" class="q-display">Cargando desafío...</div>
+                <div id="ans-grid" class="grid-options">
+                    </div>
+                <div id="feedback-msg" class="k-feedback"></div>
+                <button id="next-btn" style="display:none; margin: 15px auto 0; padding: 12px 35px; border-radius: 5px; border: none; font-weight: 800; font-family: 'Space Grotesk', sans-serif; background: white; color: var(--primary); cursor: pointer;">Siguiente ➡</button>
+            </div>
+        </section>
+        <div class="navegador">
+            <a href="masterclass_sesion08.html">sesion 8</a>
+            <a href="index.html">inicio</a>
+            <a href="masterclass_sesion10.html">sesion 10</a>
+        </div>
+
+    </main>
+
+    <footer>copyright &copy;JMGV-PTEL-2026. sesion 09 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados</footer>
+
+    <script>
+        // --- 1. SIMULADOR DE DISEÑO MÁGICO ---
+        function applyMagic() {
+            const rawContent = document.getElementById('raw-content');
+            const magicContent = document.getElementById('magic-content');
+            const btn = document.getElementById('btn-transform');
+            
+            // Animación
+            rawContent.style.opacity = '0';
+            btn.innerHTML = "✨ ¡Magia Aplicada!";
+            btn.style.pointerEvents = "none"; // Deshabilitar temporalmente
+            
+            setTimeout(() => {
+                magicContent.style.opacity = '1';
+                magicContent.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Reset tras 5 segundos
+            setTimeout(() => {
+                magicContent.style.opacity = '0';
+                magicContent.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    rawContent.style.opacity = '1';
+                    btn.innerHTML = "🪄 Generar Diseño Mágico";
+                    btn.style.pointerEvents = "auto";
+                }, 800);
+            }, 5000);
+        }
+
+        // --- 2. MOTOR DEL QUIZ TIPO KAHOOT ---
+        const quizData = [
+            {
+                q: "Andragógicamente, ¿por qué NO deberías llenar una diapositiva con párrafos largos de texto?",
+                a: ["Porque la IA no puede leerlos", "Porque divide la atención del público (no pueden leer y escucharte a la vez)", "Porque gasta más tinta al imprimir", "Porque Canva tiene un límite de palabras"],
+                c: 1
+            },
+            {
+                q: "¿Qué función cumple la herramienta 'Diseño Mágico' (Magic Design) en Canva?",
+                a: ["Crea una presentación completa con texto, imágenes y layout a partir de una breve descripción", "Traduce el texto a otros idiomas", "Borra automáticamente las fotos feas", "Convierte videos a formato MP3"],
+                c: 0
+            },
+            {
+                q: "Si la IA de Canva genera un diseño para ti, ¿cuál es el siguiente paso correcto como diseñador?",
+                a: ["Entregarlo así sin revisarlo", "Criticar a la IA y empezar de cero", "Usarlo como punto de partida y editarlo (colores, fuentes, alineación) para darle toque humano", "Imprimirlo inmediatamente"],
+                c: 2
+            }
+        ];
+
+        let qIndex = 0;
+        let score = 0;
+
+        const qText = document.getElementById('q-text');
+        const ansGrid = document.getElementById('ans-grid');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const nextBtn = document.getElementById('next-btn');
+
+        function loadQuestion() {
+            if (qIndex >= quizData.length) {
+                showFinalResults();
+                return;
+            }
+
+            const current = quizData[qIndex];
+            qText.innerText = current.q;
+            ansGrid.innerHTML = '';
+            feedbackMsg.innerText = '';
+            nextBtn.style.display = 'none';
+
+            // Colores Kahoot asignados a botones
+            const colors = ['var(--k-red)', 'var(--k-blue)', 'var(--k-gold)', 'var(--k-green)'];
+
+            current.a.forEach((ans, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `k-btn`;
+                btn.style.backgroundColor = colors[idx];
+                btn.innerText = ans;
+                btn.onclick = () => checkAnswer(idx, current.c);
+                ansGrid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIdx, correctIdx) {
+            const buttons = document.querySelectorAll('.k-btn');
+            buttons.forEach(btn => btn.disabled = true); // Bloquear opciones
+
+            if (selectedIdx === correctIdx) {
+                score++;
+                feedbackMsg.innerText = "¡Respuesta Brillante! ✨";
+                feedbackMsg.style.color = "#4ade80"; // Verde
+                buttons[selectedIdx].style.border = "4px solid white";
+            } else {
+                feedbackMsg.innerText = "Incorrecto. La IA te aconseja repasar. 🤖❌";
+                feedbackMsg.style.color = "#f87171"; // Rojo
+                buttons[selectedIdx].style.opacity = "0.3";
+                buttons[correctIdx].style.border = "4px solid white"; // Resaltar correcta
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.onclick = () => {
+            qIndex++;
+            loadQuestion();
+        };
+
+        function showFinalResults() {
+            qText.innerText = "¡Módulo de IA y Presentaciones Completado!";
+            ansGrid.innerHTML = '';
+            nextBtn.style.display = 'none';
+            
+            feedbackMsg.innerHTML = `
+                Sincronización Cognitiva: ${score} de ${quizData.length} aciertos.<br><br>
+                <button onclick="location.reload()" style="margin-top:20px; padding:12px 25px; cursor:pointer; font-weight:700; border-radius:5px; border:none; font-family: 'Space Grotesk', sans-serif; background: #FFC933; color: #0E1318;">Reiniciar Test Mágico</button>
+            `;
+            feedbackMsg.style.color = "white";
+        }
+
+        // Inicializar
+        loadQuestion();
+    </script>
+</body>
+</html>

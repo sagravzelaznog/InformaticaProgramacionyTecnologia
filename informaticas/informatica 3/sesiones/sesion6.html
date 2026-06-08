@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Funciones y Procedimientos - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    < class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 6: Funciones y Procedimientos en VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a crear y utilizar funciones y procedimientos personalizados en VBA para organizar y reutilizar código.</p>
+            </header>
+
+            <section class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión, aprenderás a crear tus propias funciones y procedimientos en VBA para organizar mejor tu código y hacerlo más reutilizable. Las funciones y procedimientos son bloques de código que realizan tareas específicas y pueden ser llamados desde cualquier parte de tu programa.</p>
+                    
+                    <div class="tip">
+                        <h3>💡 ¿Por qué usar funciones y procedimientos?</h3>
+                        <ul>
+                            <li>Reutilizar código sin duplicarlo</li>
+                            <li>Hacer el código más legible y mantenible</li>
+                            <li>Facilitar la depuración</li>
+                            <li>Dividir problemas complejos en partes más pequeñas</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-code"></i> 1. Procedimientos Sub</h3>
+                    <p>Los procedimientos Sub (o subrutinas) son bloques de código que realizan acciones pero no devuelven un valor.</p>
+                    
+                    <div class="code-example">
+                        <h4>Sintaxis básica de un Sub</h4>
+                        <pre><code>Sub NombreProcedimiento(param1 As Tipo, param2 As Tipo)
+    ' Código del procedimiento
+    MsgBox "¡Hola, " & param1 & "!"
+End Sub</code></pre>
+                    </div>
+
+                    <div class="example">
+                        <h4>Ejemplo: Procedimiento simple</h4>
+                        <pre><code>Sub SaludarUsuario()
+    Dim nombre As String
+    nombre = InputBox("¿Cuál es tu nombre?")
+    MsgBox "¡Bienvenido/a " & nombre & "!"
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-function"></i> 2. Funciones</h3>
+                    <p>Las funciones son similares a los procedimientos, pero devuelven un valor.</p>
+                    
+                    <div class="code-block">
+                        <h4>Sintaxis básica de una Función</h4>
+                        <pre><code>Function NombreFuncion(param1 As Tipo, param2 As Tipo) As TipoRetorno
+    ' Código de la función
+    NombreFuncion = resultado
+End Function</code></pre>
+                    </div>
+
+                    <div class="example">
+                        <h4>Ejemplo: Función para calcular el IVA</h4>
+                        <pre><code>Function CalcularIVA(monto As Currency, ivaPorcentaje As Single) As Currency
+    ' Calcula el IVA de un monto dado
+    CalcularIVA = monto * (ivaPorcentaje / 100)
+End Function</code></pre>
+                        
+                        <h4>Uso de la función:</h4>
+                        <pre><code>Sub UsarFuncionIVA()
+    Dim total As Currency
+    total = 1000
+    MsgBox "El IVA de $" & total & " es: $" & CalcularIVA(total, 16)
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <p>Vamos a crear una función que convierta grados Celsius a Fahrenheit y viceversa.</p>
+                    
+                    <div class="exercise">
+                        <h4>Paso 1: Crear la función de conversión</h4>
+                        <pre><code>Function ConvertirTemperatura(grados As Double, deUnidad As String) As Double
+    If UCase(deUnidad) = "C" Then
+        ' Convertir de Celsius a Fahrenheit
+        ConvertirTemperatura = (grados * 9/5) + 32
+    ElseIf UCase(deUnidad) = "F" Then
+        ' Convertir de Fahrenheit a Celsius
+        ConvertirTemperatura = (grados - 32) * 5/9
+    Else
+        ' Si la unidad no es válida, devolver un valor que indique error
+        ConvertirTemperatura = -9999
+    End If
+End Function</code></pre>
+
+                        <h4>Paso 2: Crear un procedimiento para probar la función</h4>
+                        <pre><code>Sub ProbarConversion()
+    Dim temp As Double
+    Dim unidad As String
+    
+    temp = CDbl(InputBox("Ingrese la temperatura:"))
+    unidad = InputBox("Ingrese la unidad (C para Celsius, F para Fahrenheit):")
+    
+    Dim resultado As Double
+    resultado = ConvertirTemperatura(temp, unidad)
+    
+    If resultado = -9999 Then
+        MsgBox "Unidad de temperatura no válida. Use 'C' o 'F'."
+    Else
+        If UCase(unidad) = "C" Then
+            MsgBox temp & "°C son " & resultado & "°F"
+        Else
+            MsgBox temp & "°F son " & resultado & "°C"
+        End If
+    End If
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul class="tips">
+                        <li>Usa nombres descriptivos para funciones y procedimientos</li>
+                        <li>Documenta el propósito de cada función y sus parámetros</li>
+                        <li>Mantén las funciones cortas y con un solo propósito</li>
+                        <li>Usa parámetros en lugar de variables globales cuando sea posible</li>
+                        <li>Considera el manejo de errores en funciones críticas</li>
+                    </ul>
+                </section>
+
+                <section class="activity">
+                    <div class="activity-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>Actividad de la Sesión</h2>
+                    </div>
+                    <p>Crea las siguientes funciones en VBA:</p>
+                    <ol>
+                        <li>Una función que calcule el área de un círculo dado su radio</li>
+                        <li>Una función que determine si un número es primo</li>
+                        <li>Un procedimiento que use las dos funciones anteriores para mostrar en un mensaje el área de un círculo y si el radio es un número primo</li>
+                    </ol>
+                    
+                    <div class="hint">
+                        <h4><i class="fas fa-question-circle"></i> Pista</h4>
+                        <p>Recuerda que el área de un círculo se calcula como π × radio². En VBA, puedes usar la constante <code>WorksheetFunction.Pi()</code> para obtener el valor de π.</p>
+                    </div>
+               
+                    <h3><i class="fas fa-book"></i> Conceptos Clave</h3>
+                     <ul class="summary">
+                        <li>Los procedimientos <code>Sub</code> realizan acciones pero no devuelven valores</li>
+                        <li>Las funciones <code>Function</code> realizan cálculos y devuelven un valor</li>
+                        <li>Ambos pueden recibir parámetros para personalizar su comportamiento</li>
+                        <li>Las funciones y procedimientos mejoran la organización y reutilización del código</li>
+                        <li>Es importante seguir buenas prácticas de nomenclatura y documentación</li>
+                     </ul>
+                </section>
+            </section>
+
+                <div class="nav-buttons">
+                    <a href="sesion5.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="sesion7.html" class="nav-button">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <footer>
+        <p>&copy; JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

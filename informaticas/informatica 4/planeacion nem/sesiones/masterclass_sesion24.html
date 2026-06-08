@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 24: Evaluación Módulo II</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #1a202c 0%, #2b6cb0 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 24</h1>
+            <h2>Evaluación Parcial: Diagnóstico de Red</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. Verificación de Sistemas</h3>
+            <p><strong>Objetivo:</strong> Recapitular todo el viaje del Módulo II: Desde el cable físico hasta la seguridad lógica.</p>
+            
+            <div class="interactive-box" style="border-color: #2b6cb0; background-color: #1a202c; color: white;">
+                <h4>🖥️ System Status: ONLINE</h4>
+                <p>Cargando módulos de conocimiento...</p>
+                
+                <div style="font-family: 'Fira Code', monospace; margin-top: 15px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <span style="width: 100px; font-size: 0.8rem; color: #63b3ed;">[HARDWARE]</span>
+                        <div style="flex-grow: 1; height: 10px; background: #2d3748; margin: 0 10px;">
+                            <div style="width: 100%; height: 100%; background: #48bb78;"></div>
+                        </div>
+                        <span style="color: #48bb78;">OK</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <span style="width: 100px; font-size: 0.8rem; color: #63b3ed;">[IP/DNS]</span>
+                        <div style="flex-grow: 1; height: 10px; background: #2d3748; margin: 0 10px;">
+                            <div style="width: 100%; height: 100%; background: #48bb78;"></div>
+                        </div>
+                        <span style="color: #48bb78;">OK</span>
+                    </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <span style="width: 100px; font-size: 0.8rem; color: #63b3ed;">[SECURITY]</span>
+                        <div style="flex-grow: 1; height: 10px; background: #2d3748; margin: 0 10px;">
+                            <div style="width: 100%; height: 100%; background: #48bb78;"></div>
+                        </div>
+                        <span style="color: #48bb78;">OK</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #2a4365;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Reto Final: "Arquitecto de Redes"</h3>
+
+            <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333; border-top: 5px solid #2b6cb0;">
+                <h4 style="color: #2c5282;">🏢 El Caso: "La Nueva Escuela"</h4>
+                <p>El director te contrata para diseñar la red de una nueva escuela de 2 pisos.</p>
+                <p><strong>Requerimientos:</strong></p>
+                <ul class="check-list">
+                    <li>30 Computadoras en el laboratorio.</li>
+                    <li>WiFi para maestros en ambos pisos.</li>
+                    <li>Seguridad para que los alumnos no entren a sitios peligrosos.</li>
+                </ul>
+            </div>
+
+            <div class="focus-box">
+                <h4>🛠️ Tu Solución Técnica</h4>
+                <p>Completa el esquema mental:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    
+                    <div style="background: #ebf8ff; padding: 10px; border-radius: 5px; border: 1px dashed #2b6cb0;">
+                        <p style="font-weight: bold; color: #2b6cb0;">1. Topología</p>
+                        <p style="font-size: 0.8rem;">¿Estrella o Bus?</p>
+                        <div class="reveal-content hidden-answer" id="sol1">
+                            <strong>★ Estrella.</strong> (Un Switch central). Si falla una PC, la clase sigue.
+                        </div>
+                        <button onclick="toggleCard('sol1')" style="font-size: 0.7rem; margin-top: 5px; cursor: pointer;">Revelar Elección</button>
+                    </div>
+
+                    <div style="background: #ebf8ff; padding: 10px; border-radius: 5px; border: 1px dashed #2b6cb0;">
+                        <p style="font-weight: bold; color: #2b6cb0;">2. Medio Guiado</p>
+                        <p style="font-size: 0.8rem;">¿Fibra o UTP?</p>
+                        <div class="reveal-content hidden-answer" id="sol2">
+                            <strong>UTP Cat6.</strong> Barato y suficiente para distancias cortas dentro del salón.
+                        </div>
+                        <button onclick="toggleCard('sol2')" style="font-size: 0.7rem; margin-top: 5px; cursor: pointer;">Revelar Elección</button>
+                    </div>
+
+                    <div style="background: #fff5f5; padding: 10px; border-radius: 5px; border: 1px dashed #e53e3e;">
+                        <p style="font-weight: bold; color: #e53e3e;">3. Seguridad</p>
+                        <p style="font-size: 0.8rem;">¿Cómo proteges?</p>
+                        <div class="reveal-content hidden-answer" id="sol3">
+                            <strong>Firewall + Usuarios.</strong> Bloquear IPs malas y que cada alumno tenga su contraseña.
+                        </div>
+                        <button onclick="toggleCard('sol3')" style="font-size: 0.7rem; margin-top: 5px; cursor: pointer;">Revelar Elección</button>
+                    </div>
+
+                </div>
+            </div>
+            
+            
+            
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #2a4365;">
+            <div class="time-badge" style="background-color: #2b6cb0;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Feedback y Siguiente Nivel</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Reflexión del Módulo</h5>
+                    <p>¿Qué fue lo más difícil de entender?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #2b6cb0;">Ver Encuesta</button>
+                    <div id="ans1" class="answer hidden">
+                        <p>Comúnmente: <strong>Direccionamiento IP y DNS.</strong> (Son conceptos abstractos, ¡es normal!).</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Qué sigue?</h5>
+                    <p>Adelanto del Módulo III:</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #2b6cb0;">Ver Spoiler</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Algoritmos y Programación.</strong> Ya sabemos cómo viajan los datos. Ahora vamos a decirle a la computadora <em>qué hacer</em> con ellos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #ebf8ff; border-left-color: #2b6cb0;">
+                <p>🎓 <strong>Certificado de Competencia:</strong> Has completado el Módulo de "Arquitectura de Redes". Tu cerebro ahora entiende el idioma invisible de Internet.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #2b6cb0;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 24 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <style>
+        .hidden-answer { display: none; margin-top: 10px; color: #2d3748; background: white; padding: 5px; border-radius: 3px; }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+
+        function toggleCard(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+            } else {
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            }
+        }
+    </script>
+</body>
+</html>

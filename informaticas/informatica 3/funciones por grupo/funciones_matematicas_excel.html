@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Matemáticas en Excel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #27ae60;
+            --text-color: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .function-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .function-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .function-content {
+            padding: 1.5rem;
+        }
+
+        .example, .exercise {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .example h4, .exercise h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example pre, .exercise pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .exercise {
+            border-left-color: #e74c3c;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+
+        .show-solution {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .show-solution:hover {
+            background-color: #c0392b;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .function-content {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Funciones Matemáticas en Excel</h1>
+            <p>Aprende a utilizar las funciones matemáticas más útiles en Excel</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Operadores Básicos -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('operadores')">
+                <h2>Operadores Básicos</h2>
+            </div>
+            <div class="function-content" id="operadores">
+                <p>Los operadores básicos son fundamentales para realizar cálculos aritméticos en Excel.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Operaciones básicas</h4>
+                    <pre>=5 + 3   // Suma: 8
+=10 - 4  // Resta: 6
+=6 * 7   // Multiplicación: 42
+=20 / 5  // División: 4
+=2 ^ 3   // Potencia: 8 (2 elevado a la 3)</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Combinación de operadores</h4>
+                    <pre>=(5 + 3) * 2   // Resultado: 16 (usando paréntesis)
+=10 / (2 + 3)  // Resultado: 2
+=2 + 3 * 4     // Resultado: 14 (la multiplicación tiene precedencia)
+=(2 + 3) * 4   // Resultado: 20 (los paréntesis cambian el orden)</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Cálculo de área</h4>
+                    <p>Calcula el área de un rectángulo con base 8 y altura 5</p>
+                    <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+                    <div class="solution" id="sol1">
+                        <pre>=8 * 5  // Resultado: 40</pre>
+                        <p>Explicación: El área de un rectángulo se calcula multiplicando la base por la altura.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Conversión de temperatura</h4>
+                    <p>Convierte 25°C a Fahrenheit usando la fórmula: F = (C × 9/5) + 32</p>
+                    <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+                    <div class="solution" id="sol2">
+                        <pre>=(25 * 9/5) + 32  // Resultado: 77°F</pre>
+                        <p>Explicación: Primero se multiplica por 9/5 y luego se suma 32 al resultado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMA -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('suma')">
+                <h2>SUMA</h2>
+            </div>
+            <div class="function-content" id="suma" style="display: none;">
+                <p>Suma todos los números en un rango de celdas.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Suma de un rango</h4>
+                    <p>Si en las celdas A1:A5 tienes los números 10, 20, 30, 40, 50:</p>
+                    <pre>=SUMA(A1:A5)  // Resultado: 150</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Suma de múltiples rangos</h4>
+                    <p>Si en A1:A3 tienes 10, 20, 30 y en B1:B3 tienes 5, 10, 15:</p>
+                    <pre>=SUMA(A1:A3, B1:B3)  // Resultado: 90</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Total de ventas</h4>
+                    <p>Datos: B2:B6 contiene los montos de venta diarios: 1500, 2300, 1800, 2100, 1950</p>
+                    <p>Calcula el total de ventas de la semana</p>
+                    <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+                    <div class="solution" id="sol3">
+                        <pre>=SUMA(B2:B6)  // Resultado: 9650</pre>
+                        <p>Explicación: La función SUMA suma todos los valores en el rango B2:B6.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Suma con condiciones</h4>
+                    <p>Datos: A1:A5 = "Ventas", "Gastos", "Ventas", "Gastos", "Ventas"</p>
+                    <p>B1:B5 = 1000, 500, 1500, 300, 2000</p>
+                    <p>Calcula la suma de solo las ventas (no los gastos)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+                    <div class="solution" id="sol4">
+                        <pre>=SUMAR.SI(A1:A5, "Ventas", B1:B5)  // Resultado: 4500</pre>
+                        <p>Explicación: La función SUMAR.SI suma los valores en B1:B5 donde la celda correspondiente en A1:A5 es "Ventas".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROMEDIO -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('promedio')">
+                <h2>PROMEDIO</h2>
+            </div>
+            <div class="function-content" id="promedio" style="display: none;">
+                <p>Calcula la media aritmética de los argumentos.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Promedio simple</h4>
+                    <p>Si en A1:A5 tienes las calificaciones 85, 90, 78, 92, 88:</p>
+                    <pre>=PROMEDIO(A1:A5)  // Resultado: 86.6</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Promedio con múltiples rangos</h4>
+                    <p>Si en A1:A3 tienes 10, 20, 30 y en B1:B3 tienes 5, 10, 15:</p>
+                    <pre>=PROMEDIO(A1:A3, B1:B3)  // Resultado: 15</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Promedio de temperatura</h4>
+                    <p>Datos: B2:B8 contiene las temperaturas máximas de la semana: 28, 30, 29, 31, 32, 27, 26</p>
+                    <p>Calcula la temperatura promedio de la semana</p>
+                    <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+                    <div class="solution" id="sol5">
+                        <pre>=PROMEDIO(B2:B8)  // Resultado: 28.71</pre>
+                        <p>Explicación: La función PROMEDIO calcula la media de los valores en el rango B2:B8.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Promedio ponderado</h4>
+                    <p>Datos: A1:A3 = 10, 20, 30 (valores) y B1:B3 = 2, 3, 5 (pesos)</p>
+                    <p>Calcula el promedio ponderado (suma de (valor*peso)) / (suma de pesos)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+                    <div class="solution" id="sol6">
+                        <pre>=SUMAPRODUCTO(A1:A3, B1:B3)/SUMA(B1:B3)  // Resultado: 23</pre>
+                        <p>Explicación: SUMAPRODUCTO multiplica cada valor por su peso y suma los resultados, luego se divide por la suma de los pesos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REDONDEAR -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('redondear')">
+                <h2>REDONDEAR</h2>
+            </div>
+            <div class="function-content" id="redondear" style="display: none;">
+                <p>Redondea un número al número de decimales especificado.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Redondear a 2 decimales</h4>
+                    <pre>=REDONDEAR(3.14159, 2)  // Resultado: 3.14</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Redondear a la centena más cercana</h4>
+                    <pre>=REDONDEAR(1234.56, -2)  // Resultado: 1200</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Redondear calificación</h4>
+                    <p>Datos: A1 = 87.6 (calificación)</p>
+                    <p>Redondea la calificación al entero más cercano</p>
+                    <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+                    <div class="solution" id="sol7">
+                        <pre>=REDONDEAR(A1, 0)  // Resultado: 88</pre>
+                        <p>Explicación: Al redondear 87.6 al entero más cercano, obtenemos 88.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Redondear a múltiplo de 50</h4>
+                    <p>Datos: A1 = 123 (monto en pesos)</p>
+                    <p>Redondea el monto al múltiplo de 50 más cercano</p>
+                    <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+                    <div class="solution" id="sol8">
+                        <pre>=REDONDEAR(A1/50, 0)*50  // Resultado: 100</pre>
+                        <p>Explicación: Dividimos por 50, redondeamos al entero más cercano y volvemos a multiplicar por 50.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMAR.SI -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('sumar_si')">
+                <h2>SUMAR.SI</h2>
+            </div>
+            <div class="function-content" id="sumar_si" style="display: none;">
+                <p>Suma las celdas que cumplen un determinado criterio o condición.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Suma condicional simple</h4>
+                    <p>Si en A1:A5 tienes "Manzana", "Naranja", "Manzana", "Pera", "Manzana"</p>
+                    <p>y en B1:B5 tienes 10, 15, 20, 25, 30:</p>
+                    <pre>=SUMAR.SI(A1:A5, "Manzana", B1:B5)  // Resultado: 60</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Uso de comodines</h4>
+                    <p>Si en A1:A5 tienes "Manzana", "Mango", "Manzana Roja", "Pera", "Manzana Verde"</p>
+                    <p>y en B1:B5 tienes 10, 15, 20, 25, 30:</p>
+                    <pre>=SUMAR.SI(A1:A5, "Manzana*", B1:B5)  // Resultado: 60</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Ventas por región</h4>
+                    <p>Datos: A1:A10 contiene regiones (Norte, Sur, Norte, Este, Oeste, Sur, Norte, Este, Norte, Sur)</p>
+                    <p>B1:B10 contiene los montos de venta: 1000, 1500, 1200, 900, 1100, 1300, 1400, 950, 1250, 1600</p>
+                    <p>Calcula el total de ventas de la región Norte</p>
+                    <button class="show-solution" onclick="toggleSolution('sol9')">Mostrar Solución</button>
+                    <div class="solution" id="sol9">
+                        <pre>=SUMAR.SI(A1:A10, "Norte", B1:B10)  // Resultado: 4850</pre>
+                        <p>Explicación: La función suma los valores en B1:B10 donde la región correspondiente es "Norte".</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Ventas mayores a cierto valor</h4>
+                    <p>Datos: A1:A10 contiene códigos de producto y B1:B10 contiene las ventas: 250, 300, 150, 400, 200, 350, 100, 450, 500, 180</p>
+                    <p>Calcula el total de ventas mayores a 300</p>
+                    <button class="show-solution" onclick="toggleSolution('sol10')">Mostrar Solución</button>
+                    <div class="solution" id="sol10">
+                        <pre>=SUMAR.SI(B1:B10, ">300")  // Resultado: 1600</pre>
+                        <p>Explicación: La función suma los valores mayores a 300 en el rango B1:B10.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTAR.SI -->
+        <div class="function-card">
+            <div class="function-header" onclick="toggleFunction('contar_si')">
+                <h2>CONTAR.SI</h2>
+            </div>
+            <div class="function-content" id="contar_si" style="display: none;">
+                <p>Cuenta las celdas en el rango que coinciden con la condición dada.</p>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Contar ocurrencias</h4>
+                    <p>Si en A1:A10 tienes "Aprobado", "Reprobado", "Aprobado", "Aprobado", "Reprobado", "Aprobado", "Aprobado", "Reprobado", "Aprobado", "Aprobado":</p>
+                    <pre>=CONTAR.SI(A1:A10, "Aprobado")  // Resultado: 7</pre>
+                </div>
+                
+                <div class="example">
+                    <h4>Ejemplo 2: Contar con operadores</h4>
+                    <p>Si en A1:A10 tienes edades: 15, 18, 22, 17, 20, 16, 25, 19, 21, 17:</p>
+                    <pre>=CONTAR.SI(A1:A10, ">=18")  // Resultado: 6</pre>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 1: Contar productos agotados</h4>
+                    <p>Datos: B2:B20 contiene el inventario de productos (valores numéricos)</p>
+                    <p>Cuenta cuántos productos tienen existencia menor o igual a 5</p>
+                    <button class="show-solution" onclick="toggleSolution('sol11')">Mostrar Solución</button>
+                    <div class="solution" id="sol11">
+                        <pre>=CONTAR.SI(B2:B20, "<=5")</pre>
+                        <p>Explicación: La función cuenta cuántos valores en el rango B2:B20 son menores o iguales a 5.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>Ejercicio 2: Contar celdas que contienen texto</h4>
+                    <p>Datos: A1:A10 contiene: "Manzana", "Naranja", 100, "Pera", 200, "Uva", 150, "Mango", 300, "Fresa"</p>
+                    <p>Cuenta cuántas celdas contienen texto (no números)</p>
+                    <button class="show-solution" onclick="toggleSolution('sol12')">Mostrar Solución</button>
+                    <div class="solution" id="sol12">
+                        <pre>=CONTAR.SI(A1:A10, "*"&"")  // Resultado: 5</pre>
+                        <p>Explicación: El patrón "*"&"" coincide con cualquier cadena de texto. Alternativamente, podrías usar =CONTARA(A1:A10)-CONTAR(A1:A10)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para mostrar/ocultar contenido de funciones
+        function toggleFunction(funcId) {
+            const element = document.getElementById(funcId);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === "block") {
+                solution.style.display = "none";
+                button.textContent = "Mostrar Solución";
+            } else {
+                solution.style.display = "block";
+                button.textContent = "Ocultar Solución";
+            }
+        }
+
+        // Mostrar solo la primera función al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const functionContents = document.querySelectorAll('.function-content');
+            functionContents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

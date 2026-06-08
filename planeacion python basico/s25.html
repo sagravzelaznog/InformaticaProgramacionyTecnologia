@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 25: Introducción al Proyecto Final - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .project-planning {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .planning-card {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #00b894;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .planning-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .planning-card h4 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .planning-card h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .project-selector {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .project-selector h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-selector h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .project-category {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #74b9ff;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .project-category:hover {
+            transform: translateX(10px);
+            background: #253238;
+        }
+
+        .project-category h5 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-category h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .project-category p {
+            margin: 10px 0 0 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .project-category.selected {
+            background: #74b9ff;
+            border-left-color: #0984e3;
+        }
+
+        .project-category.selected h5,
+        .project-category.selected p {
+            color: #2d3436;
+        }
+
+        .project-requirements {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .project-requirements h4 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-requirements h4 i {
+            margin-right: 10px;
+        }
+        .project-requirements ul {
+            margin: 15px 0;
+        }
+
+        .project-requirements li {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-fill-initial {
+            width: 0%;
+        }
+
+        .planning-tools {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .planning-tools h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .planning-tools h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tool-card {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border-left: 3px solid #fdcb6e;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-card h5 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .tool-card p {
+            margin: 10px 0 0 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .planning-canvas {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px dashed #74b9ff;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .planning-canvas h4 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .planning-canvas h4 i {
+            margin-right: 10px;
+        }
+
+        .canvas-placeholder {
+            text-align: center;
+            color: #636e72;
+            padding: 40px 20px;
+        }
+
+        .canvas-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .planning-form {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 3px solid #00cec9;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #74b9ff;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #636e72;
+            background: #1e272e;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .add-task-btn {
+            background: #00cec9;
+            color: #2d3436;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-task-btn:hover {
+            background: #00b3a6;
+        }
+
+        .task-list {
+            margin: 15px 0;
+        }
+
+        .task-item {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid #fd79a8;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task-title {
+            color: #74b9ff;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .task-description {
+            color: #b2bec3;
+            margin: 5px 0 0 0;
+            font-size: 0.8rem;
+        }
+
+        .task-priority {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .priority-high { background: #d63031; color: white; }
+        .priority-medium { background: #fdcb6e; color: #2d3436; }
+        .priority-low { background: #00b894; color: white; }
+
+        .remove-task {
+            background: none;
+            border: none;
+            color: #d63031;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        .project-roadmap {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .project-roadmap h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-roadmap h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #00b894;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 80px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #00b894;
+            border-radius: 50%;
+            border: 3px solid #2d3436;
+        }
+
+        .timeline-content {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 3px solid #00b894;
+        }
+
+        .timeline-content h5 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .timeline-content p {
+            margin: 8px 0 0 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            background: #00b894;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .success-criteria {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .success-criteria h3 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+
+        .success-criteria h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .criteria-card {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #fd79a8;
+        }
+
+        .criteria-card h5 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .criteria-card h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .criteria-card ul {
+            margin: 15px 0 0 0;
+        }
+
+        .criteria-card li {
+            margin: 8px 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .project-templates {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .project-templates h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-templates h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .template-card {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #74b9ff;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            background: #253238;
+        }
+
+        .template-card h5 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .template-card h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .template-card .complexity {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin: 10px 0;
+        }
+
+        .template-features {
+            margin: 15px 0 0 0;
+        }
+
+        .template-features li {
+            margin: 5px 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .planning-workshop {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .planning-workshop h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .planning-workshop h2 i {
+            margin-right: 15px;
+            font-size: 2.5rem;
+        }
+
+        .planning-workshop p {
+            font-size: 1.2rem;
+            margin: 25px 0;
+            opacity: 0.9;
+        }
+
+        .workshop-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .workshop-step {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .workshop-step h4 {
+            margin-top: 0;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+        }
+
+        .workshop-step h4 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .workshop-step p {
+            margin: 15px 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .start-planning-btn {
+            background: white;
+            color: #6c5ce7;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .start-planning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-examples {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .project-examples h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-examples h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .example-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .example-card {
+            background: #1e272e;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 3px solid #fd79a8;
+        }
+
+        .example-card h5 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .example-card h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .example-features {
+            margin: 15px 0 0 0;
+        }
+
+        .example-features li {
+            margin: 8px 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .example-complexity {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .complexity-easy { background: #00b894; color: white; }
+        .complexity-medium { background: #fdcb6e; color: #2d3436; }
+        .complexity-hard { background: #d63031; color: white; }
+
+        .planning-checklist {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .planning-checklist h3 {
+            margin-top: 0;
+            color: #fdcb6e;
+            display: flex;
+            align-items: center;
+        }
+
+        .planning-checklist h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .checklist-section {
+            margin: 25px 0;
+        }
+
+        .checklist-section h5 {
+            color: #74b9ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-section h5 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 0;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .checklist-item label {
+            color: #b2bec3;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .checklist-item.completed label {
+            text-decoration: line-through;
+            color: #00b894;
+        }
+
+        .progress-indicator {
+            background: #1e272e;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .progress-indicator .progress-text {
+            color: #74b9ff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .progress-indicator .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #636e72;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-indicator .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #00cec9);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .final-project {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #e17055;
+        }
+
+        .final-project h3 {
+            margin-top: 0;
+            color: #e17055;
+            display: flex;
+            align-items: center;
+        }
+
+        .final-project h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-vision {
+            background: rgba(225, 112, 85, 0.1);
+            border-left: 4px solid #e17055;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .project-vision h4 {
+            margin-top: 0;
+            color: #e17055;
+        }
+
+        .project-vision p {
+            margin: 10px 0 0 0;
+            color: #b2bec3;
+        }
+
+        .next-steps {
+            background: #2d3436;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .next-steps h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .next-steps h3 i {
+            margin-right: 15px;
+            font-size: 1.4rem;
+        }
+
+        .steps-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .steps-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #00b894;
+        }
+
+        .step-item {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 80px;
+        }
+
+        .step-marker {
+            position: absolute;
+            left: 50px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #00b894;
+            border-radius: 50%;
+            border: 3px solid #2d3436;
+        }
+
+        .step-content {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 3px solid #00b894;
+        }
+
+        .step-content h5 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .step-content p {
+            margin: 8px 0 0 0;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .session-duration {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .project-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workshop-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 25</h1>
+                <h2>Introducción al Proyecto Final</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 4: Proyecto Final</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-25-32"
+                     role="progressbar"
+                     aria-valuenow="25"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">25% del Módulo 4 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#seleccion"><i class="fas fa-search"></i> Selección de Proyecto</a></li>
+                <li><a href="#planificacion"><i class="fas fa-tasks"></i> Planificación</a></li>
+                <li><a href="#herramientas"><i class="fas fa-tools"></i> Herramientas</a></li>
+                <li><a href="#criterios"><i class="fas fa-check-circle"></i> Criterios de Éxito</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión iniciarás el viaje hacia tu proyecto final. Aprenderás a planificar estratégicamente, analizar requisitos, desglosar problemas complejos y definir entregables claros. Esta planificación será la base sólida para desarrollar un proyecto exitoso.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>✅ Elegir un proyecto adecuado según tus intereses y habilidades</li>
+                        <li>✅ Realizar análisis de requisitos efectivo</li>
+                        <li>✅ Desglosar problemas complejos en tareas manejables</li>
+                        <li>✅ Crear planes de proyecto estructurados por fases</li>
+                        <li>✅ Definir criterios claros de éxito y entregables</li>
+                        <li>✅ Utilizar herramientas de planificación y seguimiento</li>
+                        <li>✅ Establecer timelines realistas para el desarrollo</li>
+                        <li>✅ Identificar riesgos potenciales y estrategias de mitigación</li>
+                    </ul>
+                </div>
+
+                <div class="planning-workshop">
+                    <h2><i class="fas fa-drafting-compass"></i> Taller de Planificación Estratégica</h2>
+                    <p>Esta sesión es tu taller personal para diseñar el proyecto que demostrará todo lo aprendido</p>
+
+                    <div class="workshop-steps">
+                        <div class="workshop-step">
+                            <h4><i class="fas fa-search"></i> 1. Análisis</h4>
+                            <p>Explora proyectos potenciales y elige uno que te apasione</p>
+                        </div>
+                        <div class="workshop-step">
+                            <h4><i class="fas fa-sitemap"></i> 2. Desglose</h4>
+                            <p>Divide el proyecto en componentes manejables</p>
+                        </div>
+                        <div class="workshop-step">
+                            <h4><i class="fas fa-calendar-alt"></i> 3. Planificación</h4>
+                            <p>Crea un roadmap realista con timelines definidos</p>
+                        </div>
+                        <div class="workshop-step">
+                            <h4><i class="fas fa-flag-checkered"></i> 4. Definición</h4>
+                            <p>Establece criterios claros de éxito y entregables</p>
+                        </div>
+                    </div>
+
+                    <button class="start-planning-btn" onclick="mostrarPlanificacion()">
+                        <i class="fas fa-rocket"></i> Comenzar Planificación
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selección de proyecto -->
+        <section id="seleccion" class="session-section">
+            <h2><i class="fas fa-search"></i> Selección de Proyecto</h2>
+
+            <div class="project-selector">
+                <h3><i class="fas fa-lightbulb"></i> Elige tu Proyecto según tus Intereses</h3>
+                <p>Selecciona un proyecto que te motive y que aproveche las habilidades que has desarrollado. Cada categoría ofrece diferentes desafíos y oportunidades de aprendizaje.</p>
+
+                <div class="project-categories">
+                    <div class="project-category" onclick="seleccionarProyecto('utilidades')">
+                        <h5><i class="fas fa-tools"></i> Herramientas y Utilidades</h5>
+                        <p>Aplicaciones prácticas para automatización de tareas diarias</p>
+                    </div>
+
+                    <div class="project-category" onclick="seleccionarProyecto('juegos')">
+                        <h5><i class="fas fa-gamepad"></i> Juegos y Entretenimiento</h5>
+                        <p>Proyectos interactivos que combinan lógica y diversión</p>
+                    </div>
+
+                    <div class="project-category" onclick="seleccionarProyecto('datos')">
+                        <h5><i class="fas fa-chart-bar"></i> Análisis de Datos</h5>
+                        <p>Herramientas para procesar y visualizar información</p>
+                    </div>
+
+                    <div class="project-category" onclick="seleccionarProyecto('web')">
+                        <h5><i class="fas fa-globe"></i> Aplicaciones Web</h5>
+                        <p>Interfaces web dinámicas con Python como backend</p>
+                    </div>
+
+                    <div class="project-category" onclick="seleccionarProyecto('educativo')">
+                        <h5><i class="fas fa-graduation-cap"></i> Herramientas Educativas</h5>
+                        <p>Aplicaciones para apoyar el aprendizaje y enseñanza</p>
+                    </div>
+
+                    <div class="project-category" onclick="seleccionarProyecto('personal')">
+                        <h5><i class="fas fa-user"></i> Proyecto Personalizado</h5>
+                        <p>Desarrolla algo único basado en tus intereses específicos</p>
+                    </div>
+                </div>
+
+                <div id="projectDetails" class="project-details-hidden">
+                    <div class="project-requirements">
+                        <h4><i class="fas fa-list-check"></i> Características del Proyecto Seleccionado</h4>
+                        <ul id="projectRequirements"></ul>
+                    </div>
+                </>
+            </div>
+
+            <div class="project-examples">
+                <h3><i class="fas fa-star"></i> Ejemplos de Proyectos Exitosos</h3>
+                <p>Estos son ejemplos reales de proyectos desarrollados por estudiantes anteriores. Te servirán de inspiración y referencia.</p>
+
+                <div class="example-showcase">
+                    <div class="example-card">
+                        <h5><i class="fas fa-calculator"></i> Calculadora Científica Avanzada</h5>
+                        <div class="example-complexity complexity-medium">Dificultad: Media</div>
+                        <ul class="example-features">
+                            <li>Operaciones matemáticas complejas</li>
+                            <li>Funciones trigonométricas y logaritmos</li>
+                            <li>Historial de cálculos</li>
+                            <li>Modo científico con constantes</li>
+                            <li>Exportación de resultados</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-card">
+                        <h5><i class="fas fa-robot"></i> Simulador de Juego de Ajedrez</h5>
+                        <div class="example-complexity complexity-hard">Dificultad: Alta</div>
+                        <ul class="example-features">
+                            <li>Tablero interactivo 8x8</li>
+                            <li>Reglas completas de ajedrez</li>
+                            <li>Modos de juego (vs CPU, 2 jugadores)</li>
+                            <li>Detección de jaque mate y tablas</li>
+                            <li>Historial de movimientos</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-card">
+                        <h5><i class="fas fa-chart-line"></i> Analizador de Datos Financieros</h5>
+                        <div class="example-complexity complexity-medium">Dificultad: Media</div>
+                        <ul class="example-features">
+                            <li>Importación de archivos CSV/Excel</li>
+                            <li>Cálculos estadísticos automáticos</li>
+                            <li>Gráficos de tendencias</li>
+                            <li>Reportes de rendimiento</li>
+                            <li>Alertas de umbrales</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-card">
+                        <h5><i class="fas fa-book"></i> Generador de Exámenes Automático</h5>
+                        <div class="example-complexity complexity-easy">Dificultad: Baja</div>
+                        <ul class="example-features">
+                            <li>Banco de preguntas categorizadas</li>
+                            <li>Generación aleatoria de exámenes</li>
+                            <li>Diferentes niveles de dificultad</li>
+                            <li>Exportación a PDF</li>
+                            <li>Seguimiento de rendimiento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Herramientas de planificación -->
+        <section id="planificacion" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Planificación Estratégica</h2>
+
+            <div class="planning-tools">
+                <h3><i class="fas fa-tools"></i> Herramientas de Planificación</h3>
+                <p>Utiliza estas herramientas para desglosar tu proyecto en tareas manejables y crear un plan de desarrollo efectivo.</p>
+
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h5><i class="fas fa-sitemap"></i> Desglose Funcional</h5>
+                        <p>Divide tu proyecto en módulos y funcionalidades específicas</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <h5><i class="fas fa-calendar-alt"></i> Timeline</h5>
+                        <p>Crea un calendario realista de desarrollo y entregas</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <h5><i class="fas fa-list-check"></i> Lista de Tareas</h5>
+                        <p>Define tareas específicas con prioridades y dependencias</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Gestión de Riesgos</h5>
+                        <p>Identifica posibles obstáculos y planes de contingencia</p>
+                    </div>
+                </div>
+
+                <div class="planning-canvas">
+                    <h4><i class="fas fa-drafting-compass"></i> Área de Planificación</h4>
+                    <div class="canvas-placeholder" id="planningPlaceholder">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Selecciona una herramienta para comenzar tu planificación</p>
+                    </div>
+
+                    <div id="taskManager" class="task-manager-hidden">
+                        <div class="planning-form">
+                            <h4><i class="fas fa-plus"></i> Agregar Nueva Tarea</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Título de la Tarea:</label>
+                                    <input type="text" id="taskTitle" placeholder="Ej: Implementar interfaz de usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="taskPriority">Prioridad:</label>
+                                    <select id="taskPriority" title="Seleccionar prioridad de la tarea">
+                                        <option value="high">Alta</option>
+                                        <option value="medium">Media</option>
+                                        <option value="low">Baja</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción:</label>
+                                <textarea id="taskDescription" placeholder="Describe detalladamente qué implica esta tarea..."></textarea>
+                            </div>
+                            <button class="add-task-btn" onclick="agregarTarea()">
+                                <i class="fas fa-plus"></i> Agregar Tarea
+                            </button>
+                        </div>
+
+                        <div class="task-list" id="taskList"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Herramientas de planificación avanzada -->
+        <section id="herramientas" class="session-section">
+            <h2><i class="fas fa-tools"></i> Herramientas Avanzadas de Planificación</h2>
+
+            <div class="project-roadmap">
+                <h3><i class="fas fa-route"></i> Roadmap de Desarrollo</h3>
+                <p>Una vez que hayas definido las tareas básicas, organiza tu proyecto en fases de desarrollo con objetivos claros.</p>
+
+                <div class="roadmap-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="phase-badge">FASE 1: PLANIFICACIÓN</div>
+                            <h5>Semanas 1-2</h5>
+                            <p>Análisis de requisitos, diseño de arquitectura, definición de funcionalidades básicas</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="phase-badge">FASE 2: DESARROLLO BÁSICO</div>
+                            <h5>Semanas 3-4</h5>
+                            <p>Implementación de funcionalidades principales, estructura básica del código</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="phase-badge">FASE 3: FUNCIONALIDADES AVANZADAS</div>
+                            <h5>Semanas 5-6</h5>
+                            <p>Características adicionales, optimización, manejo de errores avanzado</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="phase-badge">FASE 4: PRUEBAS Y PULIDO</div>
+                            <h5>Semanas 7-8</h5>
+                            <p>Testing exhaustivo, documentación, presentación final</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-templates">
+                <h3><i class="fas fa-clone"></i> Plantillas de Proyecto</h3>
+                <p>Utiliza estas plantillas como punto de partida para estructurar tu proyecto de manera profesional.</p>
+
+                <div class="template-grid">
+                    <div class="template-card" onclick="usarPlantilla('aplicacion_consola')">
+                        <h5><i class="fas fa-terminal"></i> Aplicación de Consola</h5>
+                        <div class="complexity">Básica</div>
+                        <ul class="template-features">
+                            <li>Estructura modular con funciones</li>
+                            <li>Menús interactivos</li>
+                            <li>Manejo de archivos de configuración</li>
+                            <li>Sistema de logging básico</li>
+                        </ul>
+                    </div>
+
+                    <div class="template-card" onclick="usarPlantilla('herramienta_utilidades')">
+                        <h5><i class="fas fa-wrench"></i> Herramienta de Utilidades</h5>
+                        <div class="complexity">Intermedia</div>
+                        <ul class="template-features">
+                            <li>Procesamiento de archivos múltiples</li>
+                            <li>Configuración avanzada</li>
+                            <li>Reportes y estadísticas</li>
+                            <li>Interfaz gráfica básica</li>
+                        </ul>
+                    </div>
+
+                    <div class="template-card" onclick="usarPlantilla('aplicacion_completa')">
+                        <h5><i class="fas fa-cube"></i> Aplicación Completa</h5>
+                        <div class="complexity">Avanzada</div>
+                        <ul class="template-features">
+                            <li>Arquitectura modular avanzada</li>
+                            <li>Base de datos o persistencia</li>
+                            <li>Interfaz gráfica completa</li>
+                            <li>Sistema de testing integrado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Criterios de éxito -->
+        <section id="criterios" class="session-section">
+            <h2><i class="fas fa-check-circle"></i> Criterios de Éxito</h2>
+
+            <div class="success-criteria">
+                <h3><i class="fas fa-trophy"></i> ¿Qué Hace un Proyecto Exitoso?</h3>
+                <p>Define claramente qué debe lograr tu proyecto para considerarse completo y exitoso. Estos criterios te guiarán durante todo el desarrollo.</p>
+
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <h5><i class="fas fa-bullseye"></i> Funcionalidad</h5>
+                        <ul>
+                            <li>Resuelve el problema principal identificado</li>
+                            <li>Todas las funcionalidades básicas funcionan correctamente</li>
+                            <li>Maneja casos extremos y errores apropiadamente</li>
+                            <li>Proporciona retroalimentación clara al usuario</li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h5><i class="fas fa-code"></i> Calidad del Código</h5>
+                        <ul>
+                            <li>Código bien estructurado y modular</li>
+                            <li>Nombres de variables y funciones descriptivos</li>
+                            <li>Comentarios explicativos donde es necesario</li>
+                            <li>Sigue las mejores prácticas de Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h5><i class="fas fa-desktop"></i> Experiencia de Usuario</h5>
+                        <ul>
+                            <li>Interfaz intuitiva y fácil de usar</li>
+                            <li>Mensajes de error claros y útiles</li>
+                            <li>Navegación lógica entre funcionalidades</li>
+                            <li>Documentación básica para el usuario</li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <h5><i class="fas fa-shield-alt"></i> Robustez</h5>
+                        <ul>
+                            <li>Maneja errores sin colapsar</li>
+                            <li>Valida entrada de usuario apropiadamente</li>
+                            <li>Proporciona mecanismos de recuperación</li>
+                            <li>Funciona en diferentes entornos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="planning-checklist">
+                    <h3><i class="fas fa-clipboard-check"></i> Lista de Verificación de Proyecto</h3>
+                    <p>Usa esta lista para asegurar que tu proyecto cumple con todos los requisitos básicos.</p>
+
+                    <div class="checklist-section">
+                        <h5><i class="fas fa-search"></i> Análisis y Planificación</h5>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check1">
+                            <label for="check1">Problema claramente definido</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check2">
+                            <label for="check2">Requisitos funcionales identificados</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check3">
+                            <label for="check3">Arquitectura básica diseñada</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check4">
+                            <label for="check4">Timeline de desarrollo establecido</label>
+                        </div>
+                    </div>
+
+                    <div class="checklist-section">
+                        <h5><i class="fas fa-code"></i> Implementación</h5>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check5">
+                            <label for="check5">Funcionalidades básicas implementadas</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check6">
+                            <label for="check6">Manejo de errores implementado</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check7">
+                            <label for="check7">Código modular y reutilizable</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check8">
+                            <label for="check8">Comentarios y documentación básica</label>
+                        </div>
+                    </div>
+
+                    <div class="checklist-section">
+                        <h5><i class="fas fa-check-circle"></i> Testing y Calidad</h5>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check9">
+                            <label for="check9">Casos de prueba básicos ejecutados</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check10">
+                            <label for="check10">Funcionalidad validada manualmente</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check11">
+                            <label for="check11">Rendimiento evaluado</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check12">
+                            <label for="check12">Proyecto presentado y documentado</label>
+                        </div>
+                    </div>
+
+                    <div class="progress-indicator">
+                        <div class="progress-text">Progreso del Checklist: <span id="progressText">0/12 completados</span></div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-fill-initial" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-project">
+                <h3><i class="fas fa-rocket"></i> Tu Proyecto Final Te Espera</h3>
+                <p>Este proyecto será la culminación de tu aprendizaje en Python. Será algo que podrás mostrar con orgullo y que demostrará tu capacidad para crear soluciones reales con código.</p>
+
+                <div class="project-vision">
+                    <h4><i class="fas fa-eye"></i> Visión del Proyecto</h4>
+                    <p>Imagina tener una aplicación completamente funcional que hayas creado desde cero. Algo que resuelve un problema real, ya sea para ti, tu familia, amigos o incluso para uso profesional. Ese será tu proyecto final.</p>
+                </div>
+
+                <div class="next-steps">
+                    <h3><i class="fas fa-forward"></i> Próximos Pasos</h3>
+                    <p>Una vez completada esta sesión de planificación, estarás listo para comenzar el desarrollo sistemático de tu proyecto.</p>
+
+                    <div class="steps-timeline">
+                        <div class="step-item">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h5>Sesión 26: Estructura Básica</h5>
+                                <p>Crear la organización inicial de archivos y funciones principales</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h5>Sesión 27: Lógica Principal</h5>
+                                <p>Implementar los algoritmos centrales del proyecto</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h5>Sesión 28: Interfaz de Usuario</h5>
+                                <p>Crear la experiencia de usuario y manejo de entrada</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h5>Sesión 29: Testing y Optimización</h5>
+                                <p>Probar exhaustivamente y optimizar el rendimiento</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h5>Sesión 30: Presentación Final</h5>
+                                <p>Compartir tu proyecto y recibir retroalimentación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.atlassian.com/agile/project-management" target="_blank" rel="noopener noreferrer">Atlassian - Guía de Gestión de Proyectos Ágil</a></li>
+                        <li><a href="https://www.projectmanagement.com/" target="_blank" rel="noopener noreferrer">Project Management Institute - Recursos</a></li>
+                        <li><a href="https://trello.com/" target="_blank" rel="noopener noreferrer">Trello - Herramienta de gestión visual</a></li>
+                        <li><a href="https://www.draw.io/" target="_blank" rel="noopener noreferrer">Draw.io - Diagramas y flujos</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=Z9HMyzpgGLg" target="_blank" rel="noopener noreferrer">Cómo planificar un proyecto de software</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=3L4YYBfAOOw" target="_blank" rel="noopener noreferrer">Metodologías ágiles para desarrolladores</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=SWYqp7iY_Tc" target="_blank" rel="noopener noreferrer">De cero a producción: guía completa</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>"The Pragmatic Programmer" de Hunt y Thomas</li>
+                        <li>"Clean Code" de Robert C. Martin</li>
+                        <li>"Project Management for Developers" guías prácticas</li>
+                        <li>Documentación oficial de Python sobre proyectos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s24.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s26.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+    <script>
+        // Datos de proyectos
+        const proyectos = {
+            utilidades: {
+                titulo: "Herramientas y Utilidades",
+                descripcion: "Aplicaciones prácticas para automatización de tareas diarias",
+                requisitos: [
+                    "Procesamiento de archivos múltiples (CSV, TXT, JSON)",
+                    "Automatización de tareas repetitivas",
+                    "Generación de reportes automáticos",
+                    "Configuración personalizable por usuario",
+                    "Sistema de logging para seguimiento de operaciones"
+                ]
+            },
+            juegos: {
+                titulo: "Juegos y Entretenimiento",
+                descripcion: "Proyectos interactivos que combinan lógica y diversión",
+                requisitos: [
+                    "Interfaz de juego intuitiva y atractiva",
+                    "Sistema de puntuación y niveles",
+                    "Múltiples modos de juego",
+                    "Guardar progreso del jugador",
+                    "Efectos visuales y sonoros básicos"
+                ]
+            },
+            datos: {
+                titulo: "Análisis de Datos",
+                descripcion: "Herramientas para procesar y visualizar información",
+                requisitos: [
+                    "Importación de datos desde múltiples fuentes",
+                    "Cálculos estadísticos automáticos",
+                    "Generación de gráficos y visualizaciones",
+                    "Filtros y búsquedas avanzadas",
+                    "Exportación de resultados en diferentes formatos"
+                ]
+            },
+            web: {
+                titulo: "Aplicaciones Web",
+                descripcion: "Interfaces web dinámicas con Python como backend",
+                requisitos: [
+                    "Servidor web básico con Flask o similar",
+                    "Interfaz responsiva con HTML/CSS/JavaScript",
+                    "Procesamiento de formularios y datos",
+                    "Sistema de rutas y navegación",
+                    "Manejo de sesiones de usuario"
+                ]
+            },
+            educativo: {
+                titulo: "Herramientas Educativas",
+                descripcion: "Aplicaciones para apoyar el aprendizaje y enseñanza",
+                requisitos: [
+                    "Sistema de preguntas y respuestas",
+                    "Seguimiento de progreso del estudiante",
+                    "Diferentes niveles de dificultad",
+                    "Reportes de rendimiento",
+                    "Interfaz adaptativa según el usuario"
+                ]
+            },
+            personal: {
+                titulo: "Proyecto Personalizado",
+                descripcion: "Desarrolla algo único basado en tus intereses específicos",
+                requisitos: [
+                    "Definir claramente el problema a resolver",
+                    "Investigar soluciones existentes",
+                    "Diseñar funcionalidades únicas",
+                    "Implementar características diferenciadoras",
+                    "Documentar el proceso de desarrollo"
+                ]
+            }
+        };
+
+        function seleccionarProyecto(tipo) {
+            const proyecto = proyectos[tipo];
+
+            // Remover selección previa
+            document.querySelectorAll('.project-category').forEach(cat => {
+                cat.classList.remove('selected');
+            });
+
+            // Seleccionar categoría actual
+            event.target.closest('.project-category').classList.add('selected');
+
+            // Mostrar detalles del proyecto
+            const detalles = document.getElementById('projectDetails');
+            const requisitos = document.getElementById('projectRequirements');
+
+            detalles.style.display = 'block';
+            requisitos.innerHTML = proyecto.requisitos.map(req =>
+                `<li><i class="fas fa-check"></i> ${req}</li>`
+            ).join('');
+
+            // Actualizar placeholder de planificación
+            mostrarHerramienta('tasks');
+        }
+
+        function mostrarPlanificacion() {
+            document.querySelector('.session-nav a[href="#planificacion"]').click();
+        }
+
+        function mostrarHerramienta(tipo) {
+            const placeholder = document.getElementById('planningPlaceholder');
+            const taskManager = document.getElementById('taskManager');
+
+            if (tipo === 'tasks') {
+                placeholder.style.display = 'none';
+                taskManager.style.display = 'block';
+            }
+        }
+
+        function agregarTarea() {
+            const titulo = document.getElementById('taskTitle').value;
+            const descripcion = document.getElementById('taskDescription').value;
+            const prioridad = document.getElementById('taskPriority').value;
+
+            if (!titulo.trim()) {
+                alert('Por favor ingresa un título para la tarea');
+                return;
+            }
+
+            const taskList = document.getElementById('taskList');
+
+            const tarea = document.createElement('div');
+            tarea.className = 'task-item';
+            tarea.innerHTML = `
+                <div class="task-content">
+                    <div class="task-title">${titulo}</div>
+                    <div class="task-description">${descripcion || 'Sin descripción'}</div>
+                </div>
+                <div class="task-priority priority-${prioridad}">${prioridad.toUpperCase()}</div>
+                <button class="remove-task" onclick="eliminarTarea(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            taskList.appendChild(tarea);
+
+            // Limpiar formulario
+            document.getElementById('taskTitle').value = '';
+            document.getElementById('taskDescription').value = '';
+
+            actualizarProgreso();
+        }
+
+        function eliminarTarea(btn) {
+            btn.closest('.task-item').remove();
+            actualizarProgreso();
+        }
+
+        function actualizarProgreso() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const completados = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+
+            const progreso = (completados / checkboxes.length) * 100;
+
+            document.getElementById('progressText').textContent = `${completados}/${checkboxes.length} completados`;
+            document.getElementById('progressFill').style.width = progreso + '%';
+        }
+
+        // Actualizar progreso cuando cambien los checkboxes
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+                actualizarProgreso();
+            }
+        });
+
+        // Funciones para plantillas
+        function usarPlantilla(tipo) {
+            alert(`Plantilla "${tipo}" seleccionada. Esta funcionalidad se implementará en la siguiente sesión.`);
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarProgreso();
+        });
+    </script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

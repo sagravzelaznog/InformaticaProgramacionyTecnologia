@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comando ESTIRAR (STRETCH) en AutoCAD</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .method, .activity, .challenge {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .method:hover, .activity:hover, .challenge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .steps {
+            counter-reset: step;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .steps li {
+            position: relative;
+            margin-bottom: 0.75rem;
+            list-style-type: none;
+            padding-left: 2rem;
+        }
+        
+        .steps li:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--secondary);
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+        
+        .command {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: 'Consolas', 'Monaco', monospace;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+        
+        .coordinates {
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .osnap {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .warning {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        details {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        summary {
+            padding: 1rem;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        summary:hover {
+            background-color: #d0d0d0;
+        }
+        
+        details[open] summary {
+            background-color: #d0d0d0;
+        }
+        
+        details > div {
+            padding: 1rem;
+        }
+        
+        .activity, .challenge {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .challenge {
+            border-left-color: var(--success);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .method, .activity, .challenge {
+                padding: 1rem;
+            }
+        }
+        
+        .key {
+            display: inline-block;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 0.2rem 0.5rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            margin: 0.2rem;
+        }
+
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .selection-window {
+            background-color: #fff8e1;
+            border: 2px dashed #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .selection-type {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0.2rem 0;
+        }
+    </style>
+    <style>
+        .back-to-index {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem 0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1a252f;
+        }
+    </style></head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comando ESTIRAR (STRETCH) en AutoCAD</h1>
+            <p>Guía completa con ejemplos prácticos y ejercicios</p>
+        </header>
+        
+        <section>
+            <p>El comando <span class="command">ESTIRAR</span> (S o STRETCH) se utiliza para alargar o acortar objetos que cruzan o están dentro de un área de selección. La clave del éxito es la <strong>ventana de captura</strong> (Crossing Window o Crossing Polygon).</p>
+            
+            <div class="note">
+                <h3>Regla esencial del comando ESTIRAR:</h3>
+                <ul>
+                    <li>Los <strong>vértices</strong> de los objetos que están <strong>dentro</strong> de la ventana de captura se <strong>mueven</strong>.</li>
+                    <li>Las <strong>partes</strong> del objeto que <strong>cruzan</strong> el límite de la ventana se <strong>estiran</strong> (solo se mueven los puntos finales capturados).</li>
+                    <li>Los objetos que están <strong>completamente fuera</strong> de la ventana de captura <strong>no se modifican</strong>.</li>
+                </ul>
+            </div>
+            
+            <div class="selection-window">
+                <h4>Tipos de Ventana de Selección:</h4>
+                <p><span class="selection-type">Ventana (W)</span>: De izquierda a derecha - Solo selecciona objetos completamente dentro del área.</p>
+                <p><span class="selection-type">Ventana de Captura (C)</span>: De derecha a izquierda - Selecciona objetos que tocan o están dentro del área.</p>
+                <p><strong>Para ESTIRAR:</strong> Usa <strong>Ventana de Captura (C)</strong> para seleccionar los vértices que deseas mover.</p>
+            </div>
+        </section>
+        
+        <h2>I. MÉTODOS DE ESTIRAMIENTO</h2>
+        
+        <div class="method">
+            <h3>Método 1: Estiramiento por Coordenadas Relativas (Vector de Desplazamiento)</h3>
+            <p>Se utiliza un vector (una distancia y dirección precisas) para mover los vértices capturados.</p>
+            
+            <div class="example">
+                <h4>Ejemplo 1.1: Alargar un Muro Rectangular</h4>
+                <p><strong>Instrucciones:</strong> Alarga un rectángulo de 10x5 en 5 unidades hacia la derecha.</p>
+                <ol class="steps">
+                    <li>Dibuja un <span class="command">RECTANGULO</span> (REC) de 10x5 en <span class="coordinates">(0,0)</span>.</li>
+                    <li>Activa el comando <span class="command">ESTIRAR</span> (S).</li>
+                    <li><strong>Selección:</strong> Dibuja una <strong>Ventana de Captura</strong> (de derecha a izquierda) que <strong>cruce</strong> solo el lado derecho del rectángulo. Presiona <span class="key">Enter</span>.</li>
+                    <li>Punto Base (puede ser cualquier punto, Ej: <span class="coordinates">0,0</span>).</li>
+                    <li>Punto de Desplazamiento (Vector): <span class="coordinates">@5,0</span> (Estirar 5 unidades en X).</li>
+                    <li>La longitud final del rectángulo debe ser 15, y la altura se mantiene en 5.</li>
+                </ol>
+                <div class="tip">
+                    <strong>💡 Consejo:</strong> Observa que solo el lado derecho del rectángulo se movió, mientras que el lado izquierdo permaneció en su lugar. Esto es porque solo los vértices dentro de la ventana de selección se mueven.
+                </div>
+            </div>
+            
+            <div class="example">
+                <h4>Ejemplo 1.2: Acortar un Perfil en Ángulo</h4>
+                <p><strong>Instrucciones:</strong> Acorta la parte superior de un perfil en "L" en 2 unidades hacia abajo.</p>
+                <ol class="steps">
+                    <li>Dibuja una <span class="command">POLILINEA</span> (PL) de <span class="coordinates">(0,10)</span> a <span class="coordinates">(10,10)</span> a <span class="coordinates">(10,0)</span> a <span class="coordinates">(0,0)</span>.</li>
+                    <li>Activa <span class="command">ESTIRAR</span> (S).</li>
+                    <li><strong>Selección:</strong> Dibuja una Ventana de Captura que cruce solo el segmento superior horizontal (<span class="coordinates">10,10</span> a <span class="coordinates">0,10</span>). Presiona <span class="key">Enter</span>.</li>
+                    <li>Punto Base (Ej: <span class="coordinates">0,10</span>).</li>
+                    <li>Punto de Desplazamiento (Vector): <span class="coordinates">@0,-2</span></li>
+                    <li>El segmento superior ahora se encuentra en Y=8.</li>
+                </ol>
+                <div class="note">
+                    <strong>Nota:</strong> Solo la línea horizontal superior se movió hacia abajo, mientras que las líneas verticales se estiraron para mantener la conexión con los puntos finales.
+                </div>
+            </div>
+        </div>
+        
+        <div class="method">
+            <h3>Método 2: Estiramiento por Referencia a Objeto (Osnap)</h3>
+            <p>Se utiliza un punto geométrico de referencia (Punto Medio, Cuadrante, etc.) para definir la nueva ubicación de los vértices capturados.</p>
+            
+            <div class="example">
+                <h4>Ejemplo 2.1: Estirar para Alinear al Centro</h4>
+                <p><strong>Instrucciones:</strong> Estira un rectángulo para que su lado derecho quede perfectamente alineado con el centro de un círculo.</p>
+                <ol class="steps">
+                    <li>Dibuja un <span class="command">RECTANGULO</span> (REC) de 10x10 en <span class="coordinates">(0,0)</span>.</li>
+                    <li>Dibuja un <span class="command">CÍRCULO</span> (C) en <span class="coordinates">(25,5)</span> con radio 3.</li>
+                    <li>Activa <span class="command">ESTIRAR</span> (S).</li>
+                    <li><strong>Selección:</strong> Dibuja una Ventana de Captura que <strong>cruce</strong> solo el lado derecho del rectángulo. Presiona <span class="key">Enter</span>.</li>
+                    <li>Punto Base: Utiliza Osnap <span class="osnap">Punto Final</span> para seleccionar la esquina superior derecha del rectángulo <span class="coordinates">(10,10)</span>.</li>
+                    <li>Punto de Desplazamiento: Utiliza Osnap <span class="osnap">Centro</span> para seleccionar el centro del círculo <span class="coordinates">(25,5)</span>.</li>
+                    <li>La esquina superior derecha del rectángulo ahora estará en <span class="coordinates">(25,5)</span>. El rectángulo ahora tiene una longitud de 25 y una altura de 5 (se estiró y se movió).</li>
+                </ol>
+                <div class="warning">
+                    <strong>¡Atención!</strong> Observa que el rectángulo no solo se estiró horizontalmente, sino que también cambió su altura. Esto se debe a que el punto de destino tenía una coordenada Y diferente. Para mantener la altura original, podrías haber usado <span class="coordinates">@15,0</span> como desplazamiento.
+                </div>
+            </div>
+            
+            <div class="example">
+                <h4>Ejemplo 2.2: Estirar para Unir (Alineación con Punto Final)</h4>
+                <p><strong>Instrucciones:</strong> Estira el punto final de una línea para que toque el punto final de otra línea.</p>
+                <ol class="steps">
+                    <li>Dibuja <span class="command">LINEA 1</span>: de <span class="coordinates">10,10</span> a <span class="coordinates">20,10</span>.</li>
+                    <li>Dibuja <span class="command">LINEA 2</span>: de <span class="coordinates">30,20</span> a <span class="coordinates">40,20</span>.</li>
+                    <li>Activa <span class="command">ESTIRAR</span> (S).</li>
+                    <li><strong>Selección:</strong> Dibuja una Ventana de Captura que solo capture el punto final derecho de la Línea 1 (<span class="coordinates">20,10</span>). Presiona <span class="key">Enter</span>.</li>
+                    <li>Punto Base: Usa Osnap <span class="osnap">Punto Final</span> (End) para seleccionar el punto capturado (<span class="coordinates">20,10</span>).</li>
+                    <li>Punto de Desplazamiento: Usa Osnap <span class="osnap">Punto Final</span> (End) para seleccionar el punto final izquierdo de la Línea 2 (<span class="coordinates">30,20</span>).</li>
+                    <li>La Línea 1 ahora se extiende de <span class="coordinates">(10,10)</span> a <span class="coordinates">(30,20)</span>, uniéndose a la Línea 2.</li>
+                </ol>
+                <div class="tip">
+                    <strong>💡 Consejo:</strong> Este método es muy útil para conectar líneas o ajustar esquinas sin tener que borrar y volver a dibujar.
+                </div>
+            </div>
+        </div>
+        
+        <h2>II. ACTIVIDADES SUGERIDAS</h2>
+        
+        <div class="activity">
+            <h3>ACTIVIDAD 1: El Ajuste del Marco (Estirar y Coordenadas)</h3>
+            <p><strong>Objetivo:</strong> Ajustar las dimensiones de un marco sin mover su esquina inferior izquierda.</p>
+            <p><strong>Instrucciones:</strong></p>
+            <ol class="steps">
+                <li>Dibuja un <span class="command">RECTANGULO</span> (Marco) de 10x15 comenzando en <span class="coordinates">(0,0)</span>.</li>
+                <li><strong>Paso 1 (Alargar en X):</strong> Estira el lado derecho 5 unidades horizontalmente.</li>
+                <li><strong>Paso 2 (Acortar en Y):</strong> Estira el lado superior 3 unidades verticalmente hacia abajo.</li>
+            </ol>
+            
+            <details>
+                <summary>Ver Solución (Coordenadas de la Esquina Superior Derecha Final)</summary>
+                <div>
+                    <ol>
+                        <li>Original: <span class="coordinates">(10, 15)</span>.</li>
+                        <li>Después del Paso 1 (<span class="coordinates">@5,0</span> en el lado derecho): <span class="coordinates">(15, 15)</span>.</li>
+                        <li>Después del Paso 2 (<span class="coordinates">@0,-3</span> en el lado superior): <span class="coordinates">(15, 12)</span>.</li>
+                        <li>La esquina inferior izquierda <span class="coordinates">(0,0)</span> se mantuvo fija.</li>
+                    </ol>
+                    <div class="note">
+                        <strong>Explicación:</strong> Al estirar el lado derecho con <span class="coordinates">@5,0</span>, solo los vértices del lado derecho se mueven 5 unidades a la derecha. Luego, al estirar el lado superior con <span class="coordinates">@0,-3</span>, solo los vértices superiores se mueven 3 unidades hacia abajo.
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="activity">
+            <h3>ACTIVIDAD 2: Movimiento de Ventana (Captura Parcial)</h3>
+            <p><strong>Objetivo:</strong> Mover una ventana dibujada en un muro, manteniendo la integridad de las líneas del muro.</p>
+            <p><strong>Instrucciones:</strong></p>
+            <ol class="steps">
+                <li>Dibuja el <strong>MURO</strong>: Una línea de <span class="coordinates">(0,10)</span> a <span class="coordinates">(20,10)</span>.</li>
+                <li>Dibuja la <strong>VENTANA</strong> (representada por una línea): de <span class="coordinates">(5,10)</span> a <span class="coordinates">(10,10)</span>. (La ventana está <em>sobre</em> el muro).</li>
+                <li>Dibuja un marco vertical (Línea) para la ventana en <span class="coordinates">(5,12)</span> a <span class="coordinates">(5,8)</span> y <span class="coordinates">(10,12)</span> a <span class="coordinates">(10,8)</span>.</li>
+                <li><strong>Mover Ventana:</strong> Utiliza <span class="command">ESTIRAR</span> (S) para mover la ventana (las dos líneas verticales y el segmento de la línea horizontal de la ventana) <strong>3 unidades a la derecha</strong>.</li>
+                <li><strong>Selección Clave:</strong> La Ventana de Captura debe encerrar los puntos finales de la ventana, pero dejar <strong>fuera</strong> los puntos finales del muro (<span class="coordinates">0,10</span> y <span class="coordinates">20,10</span>).</li>
+            </ol>
+            
+            <details>
+                <summary>Ver Solución (Coordenadas de la Ventana Desplazada)</summary>
+                <div>
+                    <p>Si la Ventana de Captura seleccionó los cuatro puntos finales internos de la ventana (<span class="coordinates">5, 8</span>; <span class="coordinates">5, 12</span>; <span class="coordinates">10, 8</span>; <span class="coordinates">10, 12</span>) y la línea horizontal de la ventana, al aplicar <span class="coordinates">@3,0</span>, la ventana se moverá sin estirar los límites del muro.</p>
+                    <p>Las líneas verticales de la ventana se moverán de X=5 a X=8 y de X=10 a X=13. El muro permanecerá en [0, 20].</p>
+                    
+                    <div class="warning">
+                        <strong>¡Importante!</strong> Si accidentalmente incluyes los puntos finales del muro en la selección, todo el muro se moverá en lugar de solo la ventana. Asegúrate de que la ventana de selección solo capture los puntos que deseas mover.
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <h2>III. RETOS DE COMPRENSIÓN</h2>
+        
+        <div class="challenge">
+            <h3>RETO 1: Estirar sin Vector</h3>
+            <p>Dibuja un rectángulo de 10x10. Ejecuta <span class="command">ESTIRAR</span> (S). Captura el lado derecho. Punto Base: La esquina superior derecha (<span class="coordinates">10,10</span>). Punto de Desplazamiento: <strong>Presiona <span class="key">ENTER</span></strong>.</p>
+            <p><strong>Verifica:</strong> ¿Qué sucede? ¿Por qué la acción no se completa?</p>
+            
+            <details>
+                <summary>Ver Solución</summary>
+                <div>
+                    <p>Al presionar <span class="key">ENTER</span> sin especificar un punto de desplazamiento, AutoCAD cancela el comando sin realizar ningún cambio.</p>
+                    <p><strong>Razón:</strong> El comando <span class="command">ESTIRAR</span> requiere un vector de desplazamiento para saber cuánto y en qué dirección mover los puntos seleccionados. Al no proporcionar esta información, AutoCAD no puede completar la operación.</p>
+                    <p>Esto es diferente a otros comandos como <span class="command">MOVER</span> o <span class="command">COPIAR</span>, donde presionar <span class="key">ENTER</span> puede usar el origen como punto base.</p>
+                </div>
+            </details>
+        </div>
+        
+        <div class="challenge">
+            <h3>RETO 2: Estirar Objeto Completo</h3>
+            <p>Dibuja un círculo. Ejecuta <span class="command">ESTIRAR</span> (S). Intenta dibujar la <strong>Ventana de Captura</strong> para estirar el círculo.</p>
+            <p><strong>Verifica:</strong> ¿Se puede estirar un círculo? ¿Qué hace el comando <span class="command">ESTIRAR</span> si un objeto cerrado (como un círculo) es <strong>completamente</strong> capturado? (Pista: Intenta capturar un rectángulo por completo).</p>
+            
+            <details>
+                <summary>Ver Solución</summary>
+                <div>
+                    <p>No se puede estirar un círculo de la misma manera que una línea o un rectángulo. Esto se debe a que un círculo en AutoCAD es un objeto cerrado definido por un centro y un radio, no por vértices individuales que puedan moverse independientemente.</p>
+                    
+                    <p>Cuando un objeto cerrado (como un círculo o un rectángulo completo) es <strong>completamente</strong> encerrado en la ventana de selección del comando <span class="command">ESTIRAR</span>, AutoCAD lo trata como un objeto único y lo mueve en su totalidad, similar al comando <span class="command">MOVER</span>.</p>
+                    
+                    <p><strong>Diferencia clave:</strong></p>
+                    <ul>
+                        <li>Si solo partes del objeto están dentro de la ventana de selección (como un lado de un rectángulo), esos puntos se mueven y el objeto se estira.</li>
+                        <li>Si todo el objeto está dentro de la ventana de selección, el objeto completo se mueve sin cambiar de forma.</li>
+                    </ul>
+                    
+                    <div class="tip">
+                        <strong>💡 Consejo:</strong> Para modificar un círculo, es mejor usar comandos como <span class="command">ESCALA</span> (SCALE) para cambiar su tamaño o <span class="command">MOVER</span> (MOVE) para cambiar su posición.
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="challenge">
+            <h3>RETO 3: Estirar y Alinear Diagonalmente</h3>
+            <p>Dibuja un rectángulo de 10x5 en <span class="coordinates">(0,0)</span>. Dibuja una línea diagonal de <span class="coordinates">(15,10)</span> a <span class="coordinates">(25,0)</span>.</p>
+            <p>Ejecuta <span class="command">ESTIRAR</span> (S). Captura el lado derecho del rectángulo.</p>
+            <p>Punto Base: La esquina superior derecha del rectángulo (<span class="coordinates">10,5</span>).</p>
+            <p>Punto de Desplazamiento: El punto final superior de la línea diagonal (<span class="coordinates">25,10</span>).</p>
+            <p><strong>Verifica:</strong> ¿Cuál es el nuevo tamaño del rectángulo? ¿El estiramiento fue puramente horizontal o también tuvo un componente vertical?</p>
+            
+            <details>
+                <summary>Ver Solución</summary>
+                <div>
+                    <p>El estiramiento tendrá tanto un componente horizontal como vertical.</p>
+                    
+                    <p><strong>Cálculo del desplazamiento:</strong></p>
+                    <ul>
+                        <li>Punto Base: <span class="coordinates">(10,5)</span></li>
+                        <li>Punto de Desplazamiento: <span class="coordinates">(25,10)</span></li>
+                        <li>Vector de Desplazamiento: <span class="coordinates">(25-10, 10-5) = (15,5)</span></li>
+                    </ul>
+                    
+                    <p><strong>Resultado:</strong></p>
+                    <ul>
+                        <li>El lado derecho del rectángulo se moverá 15 unidades a la derecha y 5 unidades hacia arriba.</li>
+                        <li>El nuevo tamaño del rectángulo será de 25x10 (ancho x alto).</li>
+                        <li>Las coordenadas finales serán: <span class="coordinates">(0,0)</span>, <span class="coordinates">(25,0)</span>, <span class="coordinates">(25,10)</span>, <span class="coordinates">(0,10)</span>.</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Nota:</strong> Aunque el rectángulo original tenía una altura de 5 unidades, al mover la esquina superior derecha a Y=10 (que está 5 unidades por encima de su posición original), la altura total del rectángulo se duplica a 10 unidades.
+                    </div>
+                    
+                    <p>Este ejemplo muestra cómo el comando <span class="command">ESTIRAR</span> puede modificar tanto la posición como la forma de los objetos de manera simultánea, dependiendo de los puntos seleccionados y el vector de desplazamiento.</p>
+                </div>
+            </details>
+        </div>
+        
+        <div class="tip">
+            <h3>Consejos Adicionales para el Comando ESTIRAR</h3>
+            <ul>
+                <li>Usa la tecla <span class="key">F8</span> (Ortho) para restringir el estiramiento a direcciones horizontales o verticales.</li>
+                <li>Puedes usar el modo <strong>Referencia</strong> (ingresando <span class="command">R</span> después de seleccionar los objetos) para especificar una distancia de referencia y luego una nueva distancia.</li>
+                <li>Para estirar múltiples objetos al mismo tiempo, selecciónalos todos con una sola ventana de captura.</li>
+                <li>Recuerda que los objetos como círculos, elipses y bloques no se pueden estirar; se moverán como un todo si están completamente dentro de la ventana de selección.</li>
+                <li>Usa <span class="key">Ctrl</span>+<span class="key">Z</span> para deshacer si el resultado no es el esperado.</li>
+            </ul>
+        </div>
+        
+        <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; color: #666; border-top: 1px solid #eee;">
+            <p>© 2025 Tutorial de AutoCAD - Comando ESTIRAR (STRETCH)</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Agregar funcionalidad para expandir/contraer todos los detalles
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación suave al hacer clic en los detalles
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.addEventListener('click', function(e) {
+                    // Evitar que el evento se propague para que no interfiera con la funcionalidad por defecto
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                });
+                
+                // Mejorar accesibilidad
+                const summary = detail.querySelector('summary');
+                if (summary) {
+                    summary.setAttribute('role', 'button');
+                    summary.setAttribute('aria-expanded', 'false');
+                    
+                    summary.addEventListener('click', function(e) {
+                        // Prevenir el comportamiento por defecto para manejarlo manualmente
+                        e.preventDefault();
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                        this.setAttribute('aria-expanded', !isExpanded);
+                        detail.open = !isExpanded;
+                    });
+                    
+                    // Permitir activar con teclado
+                    summary.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+                }
+            });
+            
+            // Resaltar comandos al pasar el mouse
+            const commands = document.querySelectorAll('.command');
+            commands.forEach(cmd => {
+                cmd.addEventListener('mouseover', function() {
+                    this.style.backgroundColor = '#1a5276';
+                    this.style.transition = 'background-color 0.3s';
+                });
+                cmd.addEventListener('mouseout', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

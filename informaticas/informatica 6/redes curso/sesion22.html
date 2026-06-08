@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S6 E22: Configuración de Redes Inalámbricas (Wi-Fi)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+        <h1>Semana 6, Sesión 22: Redes Inalámbricas 📶</h1>
+        <p class="subtitle">SSID, Contraseñas, Bandas (2.4GHz y 5GHz) y Canales</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. Elementos de un Punto de Acceso (AP)</h2>
+            <p>El **Punto de Acceso (Access Point o AP)** es el dispositivo que permite a los hosts inalámbricos conectarse a la red cableada. Todo router Wi-Fi incluye la funcionalidad de AP.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>SSID (Service Set Identifier)</h3>
+                    <p>Es el **nombre** de la red Wi-Fi (ej. "Mi_Red_Taller"). Se puede ocultar para una seguridad básica (aunque no es realmente seguro).</p>
+                </div>
+                <div class="card">
+                    <h3>Cifrado y Contraseña</h3>
+                    <p>Define la seguridad. Siempre se debe usar **WPA2** o **WPA3**. El antiguo WEP es inseguro y debe evitarse. Una contraseña fuerte es la primera línea de defensa.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Bandas de Frecuencia: 2.4 GHz vs. 5 GHz</h2>
+            <p>El Wi-Fi moderno utiliza dos bandas de radiofrecuencia con características muy distintas:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Banda de 2.4 GHz (Alcance)</h3>
+                    <p>Tiene **mayor alcance** y penetra mejor los obstáculos (paredes), pero ofrece **menor velocidad** y sufre mucha **interferencia** (microondas, Bluetooth, otras redes), ya que solo tiene 3 canales no superpuestos (1, 6, 11).</p>
+                </div>
+                <div>
+                    <h3>Banda de 5 GHz (Velocidad)</h3>
+                    <p>Ofrece **mayor velocidad** y más canales disponibles, pero tiene **menor alcance** y le cuesta mucho penetrar paredes. Es ideal para conexiones cercanas y transmisión de video de alta definición.</p>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                [Image comparing 2.4GHz range vs 5GHz speed]
+                <figcaption>2.4 GHz tiene mayor penetración, 5 GHz ofrece mayor ancho de banda.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Software Gratuito: WirelessNetView</h2>
+            <p>**WirelessNetView** es una herramienta gratuita que te ayuda a diagnosticar tu entorno Wi-Fi. Muestra todas las redes inalámbricas cercanas, incluyendo su SSID, calidad de señal, canal, frecuencia y velocidad máxima.</p>
+            
+            <p><strong>Tarea Práctica (Windows):</strong></p>
+            <ol>
+                <li>Descarga y ejecuta WirelessNetView (no requiere instalación).</li>
+                <li>Identifica tu red y el canal que utiliza (ej. Canal 6).</li>
+                <li>Busca otras redes que estén usando el mismo canal que tú (esto causa interferencia y lentitud).</li>
+                <li>Identifica si tu router está transmitiendo en ambas bandas (2.4 GHz y 5 GHz).</li>
+            </ol>
+            <button id="wirelessNetViewCheckBtn">Revisar Canales Wi-Fi</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S6 E22</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion21.html" class="nav-button">Anterior</a>
+        <a href="sesion23.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

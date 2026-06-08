@@ -1,0 +1,44 @@
+<!-- SESSION TEMPLATE - Plantilla base para sesiones -->
+<section id="objetivo" class="session-section">
+    <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+    <div class="objective-card">
+        <p>{{sessionObjective}}</p>
+    </div>
+</section>
+
+<section id="conceptos" class="session-section">
+    <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+    <div class="concept-grid">
+        {{conceptCards}}
+    </div>
+</section>
+
+<section id="actividades" class="session-section">
+    <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+    <div class="activities-container">
+        {{activities}}
+    </div>
+</section>
+
+<section id="ejercicios" class="session-section">
+    <h2><i class="fas fa-code"></i> Ejercicios</h2>
+    <div class="exercises-container">
+        {{exercises}}
+    </div>
+</section>
+
+<section id="recursos" class="session-section">
+    <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+    <div class="resources-container">
+        {{resources}}
+    </div>
+</section>
+
+<!-- Next Session Button -->
+<div class="next-session">
+    <a href="{{nextSessionUrl}}" class="btn next-btn">
+        <i class="fas fa-arrow-right"></i>
+        {{nextSessionText}}
+    </a>
+</div>
+

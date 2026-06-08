@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 10: Derechos de Autor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 10</h1>
+            <h2>Derechos de Autor y Licencias Creativas</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. El Mito de "Si está en Google, es gratis"</h3>
+            <p><strong>Objetivo:</strong> Comprender que todo contenido digital tiene un dueño, aunque no veas el símbolo ©.</p>
+            
+            <div class="interactive-box">
+                <h4>🏴‍☠️ ¿Eres un Pirata Digital?</h4>
+                <p>Responde rápido:</p>
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="background:#fff5f5; border: 1px solid #fc8181; padding:15px; border-radius:8px; width: 45%;">
+                        <span class="stat-number" style="font-size: 1.5rem;">🛑 ERROR</span>
+                        <p style="font-size: 0.9rem; margin-top:5px;">"Bajé la foto de Google Images para mi tarea."</p>
+                        <p style="font-size: 0.7rem; color: #e53e3e;">(Infracción de Copyright)</p>
+                    </div>
+                    <div class="stat-item" style="background:#f0fdfa; border: 1px solid #4fd1c5; padding:15px; border-radius:8px; width: 45%;">
+                        <span class="stat-number" style="font-size: 1.5rem;">✅ ACIERTO</span>
+                        <p style="font-size: 0.9rem; margin-top:5px;">"Usé una foto de Pexels o Pixabay."</p>
+                        <p style="font-size: 0.7rem; color: #38a169;">(Dominio Público / CC0)</p>
+                    </div>
+                </div>
+                <p class="highlight-text">"Robar una foto es igual que robar una cartera: tomas el trabajo de alguien sin permiso."</p>
+            </div>
+        </section>
+
+        
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Semáforo Legal de Internet</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card" style="background: linear-gradient(135deg, #2d3748 0%, #000000 100%);">
+                    <h4>⛔ Copyright (©)</h4>
+                    <p><strong>"Todos los derechos reservados"</strong></p>
+                    <ul>
+                        <li>No puedes copiar.</li>
+                        <li>No puedes modificar.</li>
+                        <li>No puedes distribuir sin permiso escrito y pagado.</li>
+                        <li><em>Ejemplo: Películas de Disney, Música de Spotify.</em></li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>🟢 Creative Commons (CC)</h4>
+                    <p><strong>"Algunos derechos reservados"</strong></p>
+                    <p>El autor te da permiso de usar su obra, pero con condiciones (las famosas "Licencias").</p>
+                    <p><em>Ejemplo: Wikipedia, Música de Jamendo.</em></p>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>🔣 Decodificando los Jeroglíficos (Iconos CC)</h4>
+                <p>Aprende a leer las condiciones:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <span style="font-size: 2rem;">👤</span>
+                        <p style="font-weight: bold; color: var(--primary-dark);">BY (Atribución)</p>
+                        <p style="font-size: 0.8rem;">Debes mencionar al autor obligatoriamente.</p>
+                    </div>
+                    <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <span style="font-size: 2rem;">💲🚫</span>
+                        <p style="font-weight: bold; color: var(--primary-dark);">NC (No Comercial)</p>
+                        <p style="font-size: 0.8rem;">No puedes ganar dinero con esto (ni monetizar en YouTube).</p>
+                    </div>
+                    <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <span style="font-size: 2rem;">✂️🚫</span>
+                        <p style="font-weight: bold; color: var(--primary-dark);">ND (Sin Derivadas)</p>
+                        <p style="font-size: 0.8rem;">No puedes editar, remixar o cambiar la obra. Úsala tal cual.</p>
+                    </div>
+                    <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;">
+                        <span style="font-size: 2rem;">🔄</span>
+                        <p style="font-weight: bold; color: var(--primary-dark);">SA (Share Alike)</p>
+                        <p style="font-size: 0.8rem;">Si creas algo nuevo con esto, debes compartirlo con la misma licencia libre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Bancos de Recursos Legales</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>¿Dónde buscar IMÁGENES?</h5>
+                    <p>Sitios seguros para tus tareas:</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Lista</button>
+                    <div id="ans1" class="answer hidden">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>📸 <strong>Pexels.com</strong></li>
+                            <li>📸 <strong>Pixabay.com</strong></li>
+                            <li>📸 <strong>Unsplash.com</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿Dónde buscar AUDIO/MÚSICA?</h5>
+                    <p>Para tus podcasts y videos:</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Lista</button>
+                    <div id="ans2" class="answer hidden">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>🎵 <strong>YouTube Audio Library</strong> (Gratis con cuenta).</li>
+                            <li>🎵 <strong>Jamendo</strong> (Sección Free).</li>
+                            <li>🎵 <strong>Freesound.org</strong> (Efectos de sonido).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>⚖️ <strong>Reto Ético:</strong> Busca una imagen en <em>Unsplash</em> que represente "Libertad" y descárgala. Luego, escribe en tu cuaderno cómo le darías crédito al fotógrafo correctamente.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 10 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

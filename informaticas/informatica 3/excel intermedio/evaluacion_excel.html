@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Fórmulas de Excel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <h1>Evaluación de Fórmulas de Excel</h1>
+    
+    <div class="instructions">
+        <h3>Instrucciones:</h3>
+        <p>Para cada descripción de resultado, identifica cuál de las fórmulas listadas lo produce. Escribe en la columna "Respuesta" el número correspondiente a la fórmula que genera dicho resultado.</p>
+        <div class="student-name-input">
+            <label for="studentName">Nombre del alumno: </label>
+            <input type="text" id="studentName">
+        </div>
+    </div>
+
+    <table>
+        <thead>
+									<tr>
+										<th>#</th>
+										<th>lista de fórmulas</th>
+										<th>Descripción de resultado</th>
+										<th>Respuesta</th>
+            </tr>
+        </thead>
+        <tbody>
+									<tr>
+										<td>1</td>
+										<td class="formula">=SI(HORA(AHORA())<12;"Buenos días";"Buenas tardes")</td>
+										<td>Mostrar la fecha actual en formato dd/mm/aaaa</td>
+										<td>
+											<label for="answer1" class="sr-only">Respuesta pregunta 1</label>
+											<input type="number" id="answer1" name="answer1" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 1">
+										</td>
+									</tr>
+            <tr>
+                <td>2</td>
+                <td class="formula">=TEXTO(HOY();"mmmm")</td>
+                <td>Mostrar solo el día de la fecha actual</td>
+                <td>
+                    <label for="answer2" class="sr-only">Respuesta pregunta 2</label>
+                    <input type="number" id="answer2" name="answer2" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 2">
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td class="formula">=FALSO()</td>
+                <td>Mostrar el mes actual en formato de texto</td>
+                <td>
+                    <label for="answer3" class="sr-only">Respuesta pregunta 3</label>
+                    <input type="number" id="answer3" name="answer3" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 3">
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td class="formula">=EXTRAE("Informática";3;5)</td>
+                <td>Crear un ID único con primeras 3 letras, día actual y número aleatorio</td>
+                <td>
+                    <label for="answer4" class="sr-only">Respuesta pregunta 4</label>
+                    <input type="number" id="answer4" name="answer4" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 4">
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td class="formula">=AÑO(HOY())</td>
+                <td>Extraer la extensión de "documento.pdf"</td>
+                <td>
+                    <label for="answer5" class="sr-only">Respuesta pregunta 5</label>
+                    <input type="number" id="answer5" name="answer5" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 5">
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+																<td>Extraer la extensión de "documento.pdf"</td>
+<td>
+    <label for="answer6" class="sr-only">Respuesta pregunta 6</label>
+    <input type="number" id="answer6" name="answer6" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 6">
+</td></tr>
+															</tr>
+															<tr>
+																<td>6</td>
+                <td class="formula">=O("Aprobado"="Aprobado";"Aprobado"="Reprobado")</td>
+																<td>Verificar si un correo electrónico contiene "@" y "."</td>
+<td>
+    <label for="answer7" class="sr-only">Respuesta pregunta 7</label>
+    <input type="number" id="answer7" name="answer7" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 7">
+</td></tr>
+															</tr>
+															<tr>
+																<td>7</td>
+                <td class="formula">=ALEATORIO.ENTRE(1;100)</td>
+																<td>Formatear 1234.567 como moneda con 2 decimales</td>
+<td>
+    <label for="answer8" class="sr-only">Respuesta pregunta 8</label>
+    <input type="number" id="answer8" name="answer8" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 8">
+</td></tr>
+															</tr>
+															<tr>
+																<td>8</td>
+                <td class="formula">=DERECHA("documento.pdf";LARGO("documento.pdf")-ENCONTRAR(".";"documento.pdf"))</td>
+																<td>Extraer el primer nombre de "Juan Pérez"</td>
+<td>
+    <label for="answer9" class="sr-only">Respuesta pregunta 9</label>
+    <input type="number" id="answer9" name="answer9" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 9">
+</td></tr>
+															</tr>
+															<tr>
+																<td>9</td>
+                <td class="formula">=DIA(HOY())</td>
+																<td>Mostrar "Buenos días" si la hora es menor a 12, de lo contrario "Buenas tardes"</td>
+<td>
+    <label for="answer10" class="sr-only">Respuesta pregunta 10</label>
+    <input type="number" id="answer10" name="answer10" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 10">
+</td></tr>
+															</tr>
+															<tr>
+																<td>10</td>
+                <td class="formula">=Y(5>3;5<10)</td>
+																<td>Negar el valor FALSO</td>
+<td>
+    <label for="answer11" class="sr-only">Respuesta pregunta 11</label>
+    <input type="number" id="answer11" name="answer11" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 11">
+</td></tr>
+															</tr>
+															<tr>
+																<td>11</td>
+                <td class="formula">=DERECHA("Aprobado";4)</td>
+																<td>Verificar si "Aprobado" es igual a "Aprobado" O "Reprobado"</td>
+<td>
+    <label for="answer12" class="sr-only">Respuesta pregunta 12</label>
+    <input type="number" id="answer12" name="answer12" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 12">
+</td></tr>
+															</tr>
+															<tr>
+																<td>12</td>
+                <td class="formula">=VERDADERO()</td>
+																<td>Verificar si 5 es mayor que 3 Y menor que 10</td>
+<td>
+    <label for="answer13" class="sr-only">Respuesta pregunta 13</label>
+    <input type="number" id="answer13" name="answer13" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 13">
+</td></tr>
+															</tr>
+															<tr>
+																<td>13</td>
+                <td class="formula">=Y(NO(ESERROR(ENCONTRAR("@";A1)));NO(ESERROR(ENCONTRAR(".";A1))))</td>
+																<td>Devolver el valor VERDADERO</td>
+<td>
+    <label for="answer14" class="sr-only">Respuesta pregunta 14</label>
+    <input type="number" id="answer14" name="answer14" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 14">
+</td></tr>
+															</tr>
+															<tr>
+																<td>14</td>
+                <td class="formula">=IZQUIERDA("Excelente";3)</td>
+																<td>Devolver el valor FALSO</td>
+<td>
+    <label for="answer15" class="sr-only">Respuesta pregunta 15</label>
+    <input type="number" id="answer15" name="answer15" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 15">
+</td></tr>
+															</tr>
+															<tr>
+																<td>15</td>
+                <td class="formula">=NO(FALSO())</td>
+																<td>Extraer 5 caracteres de "Informática" empezando en la posición 3</td>
+<td>
+    <label for="answer16" class="sr-only">Respuesta pregunta 16</label>
+    <input type="number" id="answer16" name="answer16" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 16">
+</td></tr>
+															</tr>
+															<tr>
+																<td>16</td>
+                <td class="formula">=CONCATENAR("Hola ";"Mundo")</td>
+																<td>Extraer los 4 últimos caracteres de "Aprobado"</td>
+<td>
+    <label for="answer17" class="sr-only">Respuesta pregunta 17</label>
+    <input type="number" id="answer17" name="answer17" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 17">
+</td></tr>
+															</tr>
+															<tr>
+																<td>17</td>
+                <td class="formula">=TEXTO(1234.567;"$#.##0,00")</td>
+																<td>Extraer los 3 primeros caracteres de "Excelente"</td>
+<td>
+    <label for="answer18" class="sr-only">Respuesta pregunta 18</label>
+    <input type="number" id="answer18" name="answer18" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 18">
+</td></tr>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td class="formula">=TEXTO(HOY();"dd/mm/aaaa")</td>
+																<td>Generar un número aleatorio entre 1 y 100</td>
+<td>
+    <label for="answer19" class="sr-only">Respuesta pregunta 19</label>
+    <input type="number" id="answer19" name="answer19" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 19">
+</td></tr>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td class="formula">=IZQUIERDA("Juan Pérez";ENCONTRAR(" ";"Juan Pérez")-1)</td>
+																<td>Unir "Hola " y "Mundo"</td>
+<td>
+    <label for="answer20" class="sr-only">Respuesta pregunta 20</label>
+    <input type="number" id="answer20" name="answer20" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 20">
+</td></tr>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td class="formula">=CONCATENAR(IZQUIERDA("Ejemplo";3);DIA(HOY());ALEATORIO.ENTRE(1;100))</td>
+																<td>Mostrar el año actual</td>
+<td>
+    <label for="respuesta20" class="sr-only">Respuesta pregunta 20</label>
+    <input type="number" id="respuesta20" name="respuesta20" min="1" max="20" class="answer-input" aria-label="Ingrese el número de la respuesta correcta para la pregunta 20">
+</td></tr>
+            </tr>
+        </tbody>
+								<tr>
+					</tr>
+
+    </table>
+
+    <div class="button-container">
+        <button id="downloadPdf" class="btn btn-download">
+            Descargar PDF
+        </button>
+        <button id="sendEmail" class="btn btn-email">
+            Enviar por correo
+        </button>
+    </div>
+
+    <script>
+        // Function to generate and download PDF
+        function downloadPDF() {
+            try {
+                const studentName = document.getElementById('studentName').value.trim() || 'Estudiante';
+                const fileName = `${studentName} examen unidad 1.pdf`;
+                
+                // Get the element to print (just the form, not the entire page)
+                const element = document.querySelector('table');
+                if (!element) {
+                    throw new Error('No se pudo encontrar el formulario de evaluación');
+                }
+                
+                // Show loading message
+                const loadingMsg = document.createElement('div');
+                loadingMsg.textContent = 'Generando PDF...';
+                loadingMsg.style.position = 'fixed';
+                loadingMsg.style.top = '10px';
+                loadingMsg.style.left = '50%';
+                loadingMsg.style.transform = 'translateX(-50%)';
+                loadingMsg.style.padding = '10px 20px';
+                loadingMsg.style.background = '#4CAF50';
+                loadingMsg.style.color = 'white';
+                loadingMsg.style.borderRadius = '4px';
+                loadingMsg.style.zIndex = '1000';
+                document.body.appendChild(loadingMsg);
+                
+                // Set PDF options for letter size in landscape
+                const opt = {
+                    margin: [10, 15, 10, 15], // [top, right, bottom, left] margins in mm
+                    filename: fileName,
+                    image: { 
+                        type: 'jpeg', 
+                        quality:1 
+                    },
+                    html2canvas: { 
+                        scale: 1, // Slightly reduced scale to fit more content
+                        useCORS: true,
+                        logging: true,
+                        scrollY: 0,
+                        scrollX: 0,
+                        windowWidth: document.documentElement.scrollWidth,
+                        windowHeight: document.documentElement.scrollHeight
+                    },
+                    jsPDF: { 
+                        unit: 'mm',
+                        format: 'letter', // Using letter format instead of A4
+                        orientation: 'landscape', // Changed to landscape
+                        hotfixes: ['px_scaling']
+                    },
+                    pagebreak: { 
+                        mode: ['avoid-all', 'css', 'legacy'],
+                        before: '.page-break-before',
+                        after: '.page-break-after',
+                        avoid: 'tr, td, th, div'
+                    }
+                };
+                
+                // Generate PDF
+                html2pdf()
+                    .set(opt)
+                    .from(element)
+                    .save()
+                    .then(() => {
+                        loadingMsg.textContent = '¡PDF generado con éxito!';
+                        setTimeout(() => {
+                            document.body.removeChild(loadingMsg);
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        console.error('Error al generar PDF:', error);
+                        alert('Error al generar el PDF. Por favor intente de nuevo.');
+                        if (document.body.contains(loadingMsg)) {
+                            document.body.removeChild(loadingMsg);
+                        }
+                    });
+                    
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Ocurrió un error inesperado. Por favor intente de nuevo.');
+            }
+        }
+
+        // Add event listeners when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up download button
+            const downloadBtn = document.getElementById('downloadPdf');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', downloadPDF);
+            }
+            
+            // Set up email button
+            const emailBtn = document.getElementById('sendEmail');
+            if (emailBtn) {
+                emailBtn.addEventListener('click', function() {
+                    const studentName = document.getElementById('studentName').value.trim() || 'Estudiante';
+                    if (!studentName) {
+                        alert('Por favor ingresa tu nombre antes de enviar el examen.');
+                        return;
+                    }
+                    
+                    // First generate the PDF
+                    downloadPDF();
+                    
+                    // Then open email client
+                    const email = 'mc.manuel.gonzalez.ptel@gmail.com';
+                    const subject = 'Evaluación de Excel completada';
+                    const body = `Adjunto se encuentra el examen de ${studentName}`;
+                    
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                });
+            }
+                
+        });
+    </script>
+</body>
+</html>

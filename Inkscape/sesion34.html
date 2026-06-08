@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S34: El Panel Objetos y Búsqueda Avanzada</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 34: El Panel Objetos y Búsqueda Avanzada</h1>
+
+    <section>
+        <h2>1. El Panel Objetos (Shift + Ctrl + O)</h2>
+        [Image of the Objects panel in Inkscape, displaying the hierarchy of groups and individual objects]
+        <p>El diálogo **Objetos (Shift + Ctrl + O)** muestra una lista jerárquica de todos los elementos de tu dibujo, lo que te permite seleccionar, renombrar y reordenar cualquier cosa, sin importar cuán oculta esté.</p>
+        <div class="paso">
+            <strong>Jerarquía de Objetos</strong>
+            <p>El panel muestra las capas en la parte superior. Dentro de cada capa, puedes ver los **Grupos (G)** y los objetos individuales. El triángulo junto a un grupo o capa te permite expandir o colapsar su contenido.</p>
+        </div>
+        <div class="paso">
+            <strong>Selección y Reordenamiento Rápido</strong>
+            <p>Haz clic en el nombre de un objeto en el panel para seleccionarlo inmediatamente en el lienzo. Puedes arrastrar un objeto o grupo hacia arriba o hacia abajo en la lista para cambiar su **Orden Z** (apilamiento), incluso moviéndolo entre capas sin usar atajos.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Identificación y Renombrado de Objetos</h2>
+        <p>Nombrar los objetos clave te ahorra horas de búsqueda en composiciones complejas.</p>
+        <div class="paso">
+            <strong>Renombrar en el Panel</strong>
+            <p>Haz doble clic en el nombre de un objeto en el panel **Objetos** (ej. <code>path1234</code>) y asígnale un nombre descriptivo (ej. **"Ventana Principal"**). Esto es fundamental si planeas usar programación o animación SVG.</p>
+        </div>
+        <div class="paso">
+            <strong>Visibilidad y Bloqueo Individual</strong>
+            <p>Al igual que con las capas, cada objeto individual o grupo tiene un icono de **Ojo** y un **Candado** en el panel Objetos. Puedes ocultar o bloquear elementos específicos dentro de una capa sin afectar al resto.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Selección Avanzada (Find/Select)</h2>
+        <p>Cuando tienes cientos de objetos, necesitas una forma inteligente de seleccionarlos.</p>
+        <div class="paso">
+            <strong>Buscar por Propiedad</strong>
+            <p>Ve a <code>Editar > Buscar... (Ctrl + F)</code>. Puedes buscar objetos por:</p>
+            <ul>
+                <li>**Nombre del Objeto (ID):** Busca los objetos que renombraste previamente.</li>
+                <li>**Tipo de Objeto:** Busca solo círculos, solo grupos, solo trayectos, etc.</li>
+                <li>**Color de Relleno o Trazo:** Busca todos los objetos que tengan un color específico.</li>
+            </ul>
+            <p>Esto te permite, por ejemplo, seleccionar todos los objetos rojos del dibujo para cambiarles el color de una sola vez.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Limpieza y Nomenclatura</h3>
+        <p><strong>Objetivo:</strong> Practicar el uso del panel Objetos y la búsqueda.</p>
+        <ol>
+            <li>Duplica una de tus ilustraciones anteriores. Ábrela y abre el panel **Objetos**.</li>
+            <li>Identifica y renombra los 3 objetos más importantes (ej. "Cuerpo Principal", "Sombra", "Texto de Logo").</li>
+            <li>Agrupa todos los elementos que forman el mismo color (ej. todos los tonos de un verde específico) y renombra el grupo (ej. "Grupo Verde Base").</li>
+            <li>Usa <code>Ctrl + F</code> para buscar todos los rectángulos de la ilustración (si los hay) y bloquéalos para evitar modificarlos.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion33.html">Anterior</a>
+    <a href="sesion35.html">Siguiente</a>
+</nav>
+</body>
+</html>

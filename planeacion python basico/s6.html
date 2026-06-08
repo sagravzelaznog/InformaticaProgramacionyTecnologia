@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Booleanos y Operadores de Comparación - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 6</h1>
+                <h2>Booleanos y Operadores de Comparación</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 1-2 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 1: Fundamentos de Python</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-18-75" 
+                     role="progressbar" 
+                     aria-valuenow="18.75" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">0 de 4 actividades completadas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>Comprender los conceptos fundamentales de la lógica booleana y cómo se aplican en la programación a través de operadores de comparación y expresiones lógicas.</p>
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Entender los valores booleanos <code>True</code> y <code>False</code></li>
+                        <li>Utilizar operadores de comparación para crear expresiones booleanas</li>
+                        <li>Combinar expresiones booleanas con operadores lógicos</li>
+                        <li>Aplicar la lógica booleana en situaciones prácticas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- Valores booleanos -->
+            <div class="concept-card">
+                <h3>1. Valores Booleanos: <code>True</code> y <code>False</code></h3>
+                <p>En Python, los valores booleanos son un tipo de dato que solo puede ser <code>True</code> (Verdadero) o <code>False</code> (Falso). Son fundamentales para el control de flujo en los programas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Valores booleanos básicos
+verdadero = True
+falso = False
+
+# Los valores booleanos son sensibles a mayúsculas/minúsculas
+print(type(True))    # <class 'bool'>
+print(type(False))   # <class 'bool'>
+print(type(true))    # Error: NameError: name 'true' is not defined</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Dato curioso</h4>
+                    <p>En Python, los valores booleanos son en realidad una subclase de enteros, donde <code>True</code> es igual a <code>1</code> y <code>False</code> es igual a <code>0</code>.</p>
+                </div>
+            </div>
+
+            <!-- Operadores de comparación -->
+            <div class="concept-card">
+                <h3>2. Operadores de Comparación</h3>
+                <p>Los operadores de comparación se utilizan para comparar dos valores y devuelven un valor booleano como resultado.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Igualdad (==)
+print(5 == 5)    # True
+print(5 == 3)    # False
+
+# Desigualdad (!=)
+print(5 != 3)    # True
+print(5 != 5)    # False
+
+# Mayor que (>)
+print(5 > 3)     # True
+print(3 > 5)     # False
+
+# Menor que (<)
+print(3 < 5)     # True
+print(5 < 3)     # False
+
+# Mayor o igual que (>=)
+print(5 >= 5)    # True
+print(4 >= 5)    # False
+
+# Menor o igual que (<=)
+print(5 <= 5)    # True
+print(6 <= 5)    # False</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>⚠️ Presta atención</h4>
+                    <p>No confundas el operador de asignación <code>=</code> con el operador de igualdad <code>==</code>. El primero asigna un valor a una variable, mientras que el segundo compara dos valores.</p>
+                </div>
+            </div>
+
+            <!-- Expresiones lógicas -->
+            <div class="concept-card">
+                <h3>3. Operadores Lógicos</h3>
+                <p>Los operadores lógicos te permiten combinar múltiples condiciones en una sola expresión.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># AND (y lógico) - Todas las condiciones deben ser verdaderas
+print(True and True)     # True
+print(True and False)    # False
+
+# OR (o lógico) - Al menos una condición debe ser verdadera
+print(True or False)     # True
+print(False or False)    # False
+
+# NOT (negación) - Invierte el valor booleano
+print(not True)          # False
+print(not False)         # True
+
+# Combinando operadores
+edad = 20
+tiene_licencia = True
+print(edad >= 18 and tiene_licencia)  # True
+
+# Precedencia de operadores: not > and > or
+print(True or False and False)  # True (el and se evalúa primero)
+print((True or False) and False)  # False (los paréntesis cambian el orden)</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Regla mnemotécnica</h4>
+                    <p>Recuerda que <code>and</code> es como la multiplicación (todos deben ser 1/True) y <code>or</code> es como la suma (basta con que uno sea 1/True).</p>
+                </div>
+            </div>
+
+            <!-- Valores que se evalúan como False -->
+            <div class="concept-card">
+                <h3>4. Valores que se evalúan como <code>False</code></h3>
+                <p>En Python, ciertos valores se consideran "falsos" en un contexto booleano. Todos los demás valores se consideran verdaderos.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Valores que se evalúan como False
+valores_falsos = [False, None, 0, 0.0, "", [], (), {}, set()]
+
+# Verificación
+for valor in valores_falsos:
+    if not valor:
+        print(f"{repr(valor)} se evalúa como False")
+
+# Ejemplo práctico
+nombre = ""
+if nombre:
+    print(f"Hola, {nombre}")
+else:
+    print("No se proporcionó ningún nombre")  # Se ejecuta esta línea</code></pre>
+                </div>
+                
+                <div class="tip">
+                    <h4>💡 Buenas prácticas</h4>
+                    <p>Puedes aprovechar esta característica para escribir código más conciso. Por ejemplo, en lugar de <code>if len(lista) > 0:</code> puedes simplemente escribir <code>if lista:</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Verificador de Edad</h3>
+                <p>Crea un programa que pida la edad del usuario y determine si puede realizar ciertas actividades.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de salida:</h4>
+                    <pre><code class="language-text">=== Verificador de Edad ===
+Ingrese su edad: 16
+
+Puedes:
+- Conducir un auto: No (requiere 18 años)
+- Votar: No (requiere 18 años)
+- Tomar bebidas alcohólicas: No (requiere 21 años)
+- Entrar a la montaña rusa: Sí (requiere 12 años)</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa múltiples declaraciones condicionales <code>if</code> para verificar cada condición. Recuerda que puedes anidar condiciones cuando sea necesario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 2: Comparador de Números</h3>
+                <p>Desarrolla un programa que pida dos números al usuario y muestre la relación entre ellos.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Comparador de Números ===
+Ingrese el primer número: 10
+Ingrese el segundo número: 20
+
+Resultados:
+10 es menor que 20
+10 no es igual a 20
+10 es menor o igual que 20</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Usa los operadores de comparación (<code>></code>, <code><</code>, <code>==</code>, <code>>=</code>, <code><=</code>, <code>!=</code>) para comparar los dos números. Recuerda convertir las entradas a números con <code>int()</code> o <code>float()</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 3: Validador de Contraseñas</h3>
+                <p>Crea un programa que valide si una contraseña cumple con ciertos requisitos de seguridad.</p>
+                
+                <div class="expected-output">
+                    <h4>Requisitos:</h4>
+                    <ul>
+                        <li>Al menos 8 caracteres de longitud</li>
+                        <li>Al menos una letra mayúscula</li>
+                        <li>Al menos una letra minúscula</li>
+                        <li>Al menos un número</li>
+                    </ul>
+                    <h4>Ejemplo:</h4>
+                    <pre><code class="language-text">=== Validador de Contraseñas ===
+Ingrese su contraseña: Segura123
+
+Análisis de seguridad:
+- Longitud suficiente: ✓
+- Tiene mayúsculas: ✓
+- Tiene minúsculas: ✓
+- Tiene números: ✓
+
+¡Contraseña válida!</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Puedes usar los métodos de cadenas <code>isupper()</code>, <code>islower()</code> e <code>isdigit()</code> para verificar los caracteres. También puedes usar una variable booleana para cada requisito y combinarlas con operadores lógicos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <h3>Actividad 4: Clasificador de Números</h3>
+                <p>Desarrolla un programa que pida al usuario un número y lo clasifique según diferentes criterios.</p>
+                
+                <div class="expected-output">
+                    <h4>Ejemplo de ejecución:</h4>
+                    <pre><code class="language-text">=== Clasificador de Números ===
+Ingrese un número: 42
+
+Análisis del número 42:
+- Es par: Sí
+- Es positivo: Sí
+- Es múltiplo de 3: Sí
+- Es mayor que 100: No
+- Está entre 1 y 100: Sí</code></pre>
+                </div>
+                
+                <div class="hint">
+                    <button class="hint-button">Mostrar pista</button>
+                    <div class="hint-content">
+                        <p>Para verificar si un número es par, usa el operador módulo <code>%</code> (el residuo de la división entre 2 debe ser 0). Para verificar si es múltiplo de 3, verifica si el residuo de la división entre 3 es 0.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/library/stdtypes.html#truth-value-testing" target="_blank" rel="noopener noreferrer">Documentación oficial - Pruebas de verdad</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_booleans.asp" target="_blank" rel="noopener noreferrer">W3Schools - Booleanos en Python</a></li>
+                        <li><a href="https://realpython.com/python-boolean/" target="_blank" rel="noopener noreferrer">Real Python - Booleanos y Operadores Lógicos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=1y_kfWUCFh8" target="_blank" rel="noopener noreferrer">Operadores de comparación y booleanos - HolaMundo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=H2SQrZKZwNc" target="_blank" rel="noopener noreferrer">Lógica booleana en Python - Píldoras Informáticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 5 - "Python Crash Course" de Eric Matthes</li>
+                        <li>Sección 4.1-4.3 - "Automate the Boring Stuff with Python" de Al Sweigart</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s5.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s7.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

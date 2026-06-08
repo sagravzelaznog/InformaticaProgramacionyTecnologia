@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 01: Introducción al Ecosistema Canva</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary: #7D2AE8; /* Canva Purple */
+            --secondary: #00C4CC; /* Canva Turquoise */
+            --accent: #FF5353; /* Red for errors */
+            --success: #2ebd59; /* Green for success */
+            --dark: #0E1318;
+            --light: #F4F6F8;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* HEADER - ARQUITECTURA DE INFORMACIÓN */
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        h1 { font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; }
+
+        /* CONTENEDOR PRINCIPAL */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* SECCIONES EDUCATIVAS (ANDRAGOGÍA) */
+        section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover { transform: translateY(-3px); }
+
+        h2 { color: var(--primary); margin-bottom: 1rem; border-left: 5px solid var(--secondary); padding-left: 10px; }
+
+        .concept-card {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* INTERACTIVIDAD VISUAL (UI MOCKUP) */
+        .interface-mockup {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 10px;
+            background: #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            height: 200px;
+        }
+        .mock-sidebar { background: var(--dark); border-radius: 5px; opacity: 0.8; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;}
+        .mock-canvas { background: white; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #888; border: 2px dashed #ccc;}
+
+        /* QUIZ ESTILO KAHOOT (GAMIFICACIÓN) */
+        #quiz-container {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        #quiz-container h2 { color: white; border-color: white; }
+
+        .question-box {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .quiz-btn {
+            padding: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .quiz-btn:active { transform: translateY(4px); box-shadow: none; }
+
+        /* Colores estilo Kahoot */
+        .btn-1 { background-color: #e21b3c; } /* Rojo */
+        .btn-2 { background-color: #1368ce; } /* Azul */
+        .btn-3 { background-color: #d89e00; } /* Amarillo */
+        .btn-4 { background-color: #26890c; } /* Verde */
+
+        .correct { background-color: var(--success) !important; transform: scale(1.05); }
+        .wrong { background-color: #555 !important; opacity: 0.5; }
+
+        #score-display {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* FOOTER REQUERIDO */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+            background: var(--light);
+            border-top: 1px solid #ddd;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+            .interface-mockup { grid-template-columns: 1fr; }
+            .mock-sidebar { height: 50px; }
+        }
+        img {
+            max-width:100%;
+            height: auto;
+        }
+        .reto {
+            display: none;
+          
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        a {
+            text-decoration: none;
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            color: rgba(103, 3, 110, 0.495);
+        }
+        .navegador {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Taller de Cultura Digital</h1>
+        <p class="subtitle">4º Semestre | Módulo: Diseño Gráfico Digital</p>
+    </header>
+
+    <main>
+        <section id="intro">
+            <h2>Sesión 01: El Universo Canva</h2>
+            <p>Bienvenidos. Hoy dejaremos de ver el diseño como algo exclusivo de "artistas" para convertirlo en una herramienta de comunicación poderosa. Canva no es solo una web, es un <strong>entorno de diseño democrático</strong>.</p>
+            
+            <div class="concept-card">
+                <strong>💡 Concepto Clave:</strong> Canva utiliza un sistema de "Arrastrar y Soltar" (Drag & Drop) que elimina la barrera técnica del software tradicional, permitiendo que la creatividad fluya sin obstáculos.
+            </div>
+        </section>
+
+        <section id="interface">
+            <h2>Arquitectura de la Interfaz</h2>
+            <p>Antes de diseñar, debemos entender nuestro espacio de trabajo. La interfaz se divide en dos áreas psicológicas: <strong>Herramientas (Izquierda)</strong> y <strong>Lienzo (Centro)</strong>.</p>
+            
+            <div class="interface-mockup">
+                <div class="mock-sidebar">PANEL DE CONTROL<br>(Plantillas, Fotos, Texto)</div>
+                <div class="mock-canvas">TU LIENZO DE TRABAJO<br>(Área Creativa)</div>
+            </div>
+        </section>
+
+        <section id="activity">
+            <h2>🎯 Ejercicio Práctico #1</h2>
+            <ol style="margin-left: 20px;">
+                <li>Ingresa a <strong><a href="https://www.canva.com/es_es/">Canva.com</a></strong>.</li>
+                <li>Crea tu cuenta gratuita, registrate usando tu correo que usas para tareas escolares. <img src="img/canva.png" alt="boton de crear cuenta"></li>
+                <li>En la barra de búsqueda escribe: <em>"portada de prácticas"</em>. <img src="img/busqueda.png" alt="cuadro de busqueda"> presiona enter</li>
+                <li>Selecciona la plantilla que te guste. luego presiona en "personalizar esta plantilla" <img src="img/personalizar.png" alt="boton de personalizar"></li>
+                <li>agrega tus datos personales, arrastrando cuadros de texto como los mostrados en la pantalla
+                    <div>
+                        <img src="img/herrtexto.png" alt="herramientas de texto">
+                    </div>
+                </li>
+                <li><strong><a href="#reto" id="retob" style="margin-left: 20px;">Reto:</a></strong> Cambia el color del fondo a tu color favorito.</li>
+                <li><strong>Nota:</strong> Solamente puedes hacer uso de herramientas gratuitas <em>(las que no tienen coronita)</em> a menos que quieras pagar por ellas.</li>
+            </ol>
+        </section>
+
+        <section id="quiz-container">
+            <h2>🧠 Quiz Rápido: Reafirmando Conocimientos</h2>
+            <div id="quiz-box">
+                <p id="question-text" class="question-box">Cargando pregunta...</p>
+                <div class="options-grid" id="options-container">
+                    </div>
+            </div>
+            
+            <div id="score-display"></div>
+            <button id="next-btn" style="display:none; margin-top:20px; padding:10px 20px; background:white; color:var(--primary); border:none; border-radius:5px; cursor:pointer;">Siguiente Pregunta ➡</button>
+        </section>
+        <section id="reto">
+            <h2>🎯 cambia el color del fondo a tu color favorito</h2>
+            <ol style="margin-left: 20px;">
+                <li>has click en el fondo de color que se muestra en la pantalla <div><img src="img/seleccfondo.png" alt="seleccionar color"></div></li>
+                <li>de la barra de herramientas que aparece selecciona el color que te gusta<img src="img/color.png" alt="seleccionar color"></li>
+                
+                <li><h2><strong>¡Reto logrado!</strong></h2></li>
+            </ol>
+            <div class="navegador"  >
+                <a href="index.html">inicio</a>
+                <a href="masterclass_sesion02.html">sesion 2</a>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <footer>
+        copyright &copy;JMGV-PTEL-2026. sesion 01 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados
+    </footer>
+
+    <script>
+        // BASE DE DATOS DE PREGUNTAS (Pedagogía: Preguntas de refuerzo inmediato)
+        const questions = [
+            {
+                question: "¿Cuál es la función principal del panel izquierdo en Canva?",
+                answers: ["Ver videos de gatitos", "Elegir herramientas y elementos", "Guardar el archivo", "Cerrar sesión"],
+                correct: 1 // Índice de la respuesta correcta (0, 1, 2, 3)
+            },
+            {
+                question: "¿Qué significa que Canva sea una herramienta 'Drag & Drop'?",
+                answers: ["Que es muy lenta", "Que necesitas saber programar", "Arrastrar y Soltar", "Copiar y Pegar"],
+                correct: 2
+            },
+            {
+                question: "¿Es necesario instalar un programa en la PC para usar Canva?",
+                answers: ["Sí, es obligatorio", "No, funciona en el navegador web", "Solo en Windows 98", "Necesitas un CD-ROM"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+        const scoreDisplay = document.getElementById("score-display");
+        const nextBtn = document.getElementById("next-btn");
+
+        // FUNCIÓN: CARGAR PREGUNTA
+        function loadQuestion() {
+            // Reiniciar estado visual
+            nextBtn.style.display = "none";
+            optionsContainer.innerHTML = "";
+            
+            if (currentQuestion >= questions.length) {
+                showFinalScore();
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            questionText.innerText = q.question;
+
+            q.answers.forEach((ans, index) => {
+                const btn = document.createElement("button");
+                btn.innerText = ans;
+                btn.classList.add("quiz-btn", `btn-${index + 1}`);
+                btn.onclick = () => checkAnswer(index, q.correct);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        // FUNCIÓN: VERIFICAR RESPUESTA (Feedback Psicológico Inmediato)
+        function checkAnswer(selected, correct) {
+            const buttons = optionsContainer.querySelectorAll("button");
+            
+            buttons.forEach((btn, index) => {
+                btn.disabled = true; // Bloquear botones
+                if (index === correct) {
+                    btn.classList.add("correct");
+                    btn.innerText += " ✅";
+                } else {
+                    btn.classList.add("wrong");
+                }
+            });
+
+            if (selected === correct) {
+                score++;
+                // Efecto de sonido opcional o mensaje motivador podría ir aquí
+            } else {
+                buttons[selected].innerText += " ❌";
+            }
+
+            nextBtn.style.display = "inline-block";
+        }
+
+        // FUNCIÓN: MOSTRAR RESULTADO FINAL
+        function showFinalScore() {
+            questionText.innerText = "¡Sesión Completada!";
+            optionsContainer.innerHTML = "";
+            scoreDisplay.style.display = "block";
+            
+            let feedback = "";
+            if(score === questions.length) feedback = "¡Eres un Genio del Diseño! 🏆";
+            else if(score > 0) feedback = "¡Buen trabajo! A seguir practicando. 🎨";
+            else feedback = "Repasa la teoría y vuelve a intentarlo. 💪";
+
+            scoreDisplay.innerHTML = `Puntuación: ${score} de ${questions.length}<br><br>${feedback}`;
+            nextBtn.style.display = "none";
+        }
+
+        // BOTÓN SIGUIENTE
+        nextBtn.onclick = () => {
+            currentQuestion++;
+            loadQuestion();
+        };
+
+        // INICIAR QUIZ
+        loadQuestion();
+
+    </script>
+</body>
+</html>

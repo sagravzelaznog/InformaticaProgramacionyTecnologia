@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S11 E42: Servicios de Red en Linux (I)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 11, Sesión 42: Linux y la Red (I) ⚙️</h1>
+        <p class="subtitle">Comandos de Diagnóstico: ifconfig, ping y traceroute</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. Configuración de la Interfaz de Red</h2>
+            <p>En Linux, la configuración de la red se hace a través de la terminal. El equivalente al comando `ipconfig` de Windows es el comando **`ip`** (el estándar moderno) o, en sistemas más antiguos, **`ifconfig`**.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Comando `ifconfig` (Legacy)</h3>
+                    <p>Muestra la configuración de la interfaz: IP, máscara (`netmask`), MAC (`ether`), y estado (UP/DOWN).</p>
+                    <p class="highlight">Ejecución: `ifconfig` o `ifconfig eth0`.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Comando `ip a` (Moderno)</h3>
+                    <p>Muestra información similar a `ifconfig`, pero con sintaxis más flexible para configuraciones avanzadas. Recomendado para sistemas operativos recientes.</p>
+                    <p class="highlight">Ejecución: `ip a` (o `ip address`).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Diagnóstico de Redes en Linux</h2>
+            <p>Los comandos de diagnóstico que conocemos en Windows tienen sus equivalentes en Linux, y su función es idéntica: probar la conectividad y la ruta:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Ping y Traceroute</h3>
+                    <p>Los comandos son idénticos en función. En Linux, `ping` es continuo por defecto (se detiene con `Ctrl + C`), y el `traceroute` se comporta de forma similar a `tracert` en Windows.</p>
+                    <p>Comandos: **`ping 8.8.8.8`** y **`traceroute google.com`**.</p>
+                </div>
+                <div>
+                    <h3>Netstat y ss</h3>
+                    <p>Para ver conexiones activas y puertos de escucha, el comando tradicional es `netstat`, pero el estándar moderno y más rápido es **`ss`** (Socket Statistics).</p>
+                    <p>Comando: **`ss -tulpn`** (muestra conexiones TCP, UDP, listening y programas).</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Configuración y Prueba</h2>
+            <p><strong>Tarea Práctica (Consola Linux):</strong></p>
+            <ol>
+                <li>En tu consola Linux (WSL o VM), ejecuta **`ip a`** y anota la IP que te asignó tu router.</li>
+                <li>Haz **`ping [Tu Gateway]`** para verificar la conexión local.</li>
+                <li>Haz **`ping google.com`** para verificar la conectividad a Internet y la resolución DNS.</li>
+                <li>Ejecuta **`traceroute 8.8.8.8`** y cuenta el número de saltos.</li>
+            </ol>
+            <button id="linuxNetworkCheckBtn">Verificar Comandos de Red</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S11 E42</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion41.html" class="nav-button">Anterior</a>
+        <a href="sesion43.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

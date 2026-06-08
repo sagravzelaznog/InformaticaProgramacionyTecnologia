@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Excel de Office</title>
+    <link rel="stylesheet" href="estilos-modulos.css">
+</head>
+<body>
+    <nav class="nav-principal">
+        <a href="index.html" class="nav-titulo">Computación</a>
+        <div>
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="modulo1.html" class="nav-link">Módulo 1</a>
+            <a href="modulo2.html" class="nav-link activo">Módulo 2</a>
+            <a href="modulo3.html" class="nav-link">Módulo 3</a>
+            <a href="modulo4.html" class="nav-link">Módulo 4</a>
+            <a href="modulo5.html" class="nav-link">Módulo 5</a>
+            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Contenido</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#tema1">Tema 1: Introducción a Excel</a></li>
+                <li><a href="#tema2">Tema 2: Formato de celdas y hojas</a></li>
+                <li><a href="#tema3">Tema 3: Fórmulas y funciones básicas</a></li>
+                <li><a href="#tema4">Tema 4: Funciones lógicas y de búsqueda</a></li>
+                <li><a href="#tema5">Tema 5: Gráficos y Tablas</a></li>
+                <li><a href="#tema6">Tema 6: Tablas dinámicas</a></li>
+                <li><a href="#tema7">Tema 7: Análisis de datos con tablas dinámicas</a></li>
+                <li><a href="#tema8">Tema 8: Funciones estadísticas</a></li>
+                <li><a href="#tema9">Tema 9: Validación de datos</a></li>
+                <li><a href="#tema10">Tema 10: Macros básicas</a></li>
+                <li><a href="#tema11">Tema 11: Funciones avanzadas de texto</a></li>
+                <li><a href="#tema12">Tema 12: Análisis de hipótesis</a></li>
+                <li><a href="#tema13">Tema 13: Power Query: Importación y transformación de datos</a></li>
+                <li><a href="#tema14">Tema 14: Power Pivot: Modelado de datos</a></li>
+                <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                <li><a href="#tema16">Tema 16: Proyecto Final: Aplicación de lo Aprendido</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-modulo">
+            <h1>Módulo 2: Excel de Office</h1>
+            
+            <!-- Tema 1: Introducción a Excel -->
+            <div class="tema" id="tema16">
+                <h2>Tema 16: Proyecto Final: Aplicación de lo Aprendido</h2>
+                <div class="tema-contenido">
+                    <div class="introduccion">
+                        <p>¡Felicidades por llegar al proyecto final! En este tema, tendrás la oportunidad de aplicar todos los conocimientos adquiridos a lo largo del curso en un proyecto integral que demuestre tus habilidades en el análisis de datos con Excel.</p>
+                        
+                        <div class="objetivos">
+                            <h3>Objetivos del Proyecto</h3>
+                            <ul>
+                                <li>Integrar los conceptos aprendidos en un proyecto práctico</li>
+                                <li>Demostrar competencia en el manejo de herramientas avanzadas de Excel</li>
+                                <li>Desarrollar habilidades de análisis y presentación de datos</li>
+                                <li>Recibir retroalimentación sobre tu trabajo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-detallado">
+                        <h3>Descripción del Proyecto</h3>
+                        <p>Crearás un sistema de análisis de datos completo para una empresa ficticia, utilizando todas las herramientas avanzadas de Excel que hemos aprendido en el curso.</p>
+                        
+                        <h4>Fase 1: Preparación de Datos</h4>
+                        <div class="actividad">
+                            <h5>Actividad 1.1: Importación y Limpieza de Datos</h5>
+                            <p>Utiliza Power Query para importar y limpiar los siguientes conjuntos de datos:</p>
+                            <ul>
+                                <li>Datos de ventas históricas (archivo CSV)</li>
+                                <li>Información de productos (desde una base de datos)</li>
+                                <li>Datos de clientes (desde una hoja de cálculo web)</li>
+                            </ul>
+                            <button class="btn btn-descargar">Descargar Datos del Proyecto</button>
+                        </div>
+                        
+                        <div class="actividad">
+                            <h5>Actividad 1.2: Transformación de Datos</h5>
+                            <p>Realiza las siguientes transformaciones:</p>
+                            <ol>
+                                <li>Estandariza formatos de fechas y monedas</li>
+                                <li>Maneja valores faltantes y duplicados</li>
+                                <li>Crea columnas calculadas necesarias</li>
+                                <li>Combina tablas relacionadas</li>
+                            </ol>
+                        </div>
+                        
+                        <h4>Fase 2: Modelado y Análisis</h4>
+                        <div class="actividad">
+                            <h5>Actividad 2.1: Creación del Modelo de Datos</h5>
+                            <p>Usa Power Pivot para:</p>
+                            <ul>
+                                <li>Crear relaciones entre tablas</li>
+                                <li>Definir jerarquías (por ejemplo: Año > Trimestre > Mes)</li>
+                                <li>Establecer categorías de datos apropiadas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="actividad">
+                            <h5>Actividad 2.2: Cálculos con DAX</h5>
+                            <p>Crea las siguientes medidas con DAX:</p>
+                            <pre><code class="language-dax">// Ejemplo de medidas a crear
+Ventas Totales = SUM(Ventas[Monto])
+Crecimiento Interanual = 
+    VAR VentasActuales = [Ventas Totales]
+    VAR VentasAnoAnterior = 
+        CALCULATE(
+            [Ventas Totales],
+            SAMEPERIODLASTYEAR(Calendario[Fecha])
+        )
+    RETURN
+        DIVIDE(
+            (VentasActuales - VentasAnoAnterior),
+            VentasAnoAnterior,
+            0
+        )
+Margen de Beneficio = DIVIDE([Beneficio], [Ventas Totales], 0)</code></pre>
+                        </div>
+                        
+                        <h4>Fase 3: Creación del Dashboard</h4>
+                        <div class="actividad">
+                            <h5>Actividad 3.1: Diseño del Dashboard</h5>
+                            <p>Crea un dashboard interactivo que incluya:</p>
+                            <div class="dashboard-layout">
+                                <div class="dashboard-section">
+                                    <h6>Sección de KPIs Principales</h6>
+                                    <ul>
+                                        <li>Tarjeta de Ventas Totales</li>
+                                        <li>Porcentaje de Crecimiento</li>
+                                        <li>Margen de Beneficio</li>
+                                        <li>Número de Clientes Activos</li>
+                                    </ul>
+                                </div>
+                                <div class="dashboard-section">
+                                    <h6>Visualizaciones Principales</h6>
+                                    <ul>
+                                        <li>Gráfico de líneas: Tendencia de ventas</li>
+                                        <li>Gráfico de barras: Ventas por categoría</li>
+                                        <li>Gráfico de mapa: Desempeño por región</li>
+                                        <li>Tabla dinámica: Detalle de ventas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="actividad">
+                            <h5>Actividad 3.2: Interactividad</h5>
+                            <p>Agrega los siguientes elementos interactivos:</p>
+                            <ol>
+                                <li>Segmentaciones de datos para filtrar por período, región y categoría</li>
+                                <li>Gráficos interactivos que respondan a los filtros</li>
+                                <li>Botones de reinicio de filtros</li>
+                                <li>Hipervínculos entre hojas de análisis</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="evaluacion-proyecto">
+                        <h3>Rúbrica de Evaluación</h3>
+                        <p>Tu proyecto será evaluado según los siguientes criterios:</p>
+                        
+                        <table class="tabla-evaluacion">
+                            <tr>
+                                <th>Criterio</th>
+                                <th>Puntuación Máxima</th>
+                                <th>Tu Puntuación</th>
+                            </tr>
+                            <tr>
+                                <td>Calidad de la preparación de datos</td>
+                                <td>20 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Estructura del modelo de datos</td>
+                                <td>20 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Complejidad y precisión de las medidas DAX</td>
+                                <td>20 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Diseño y usabilidad del dashboard</td>
+                                <td>15 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Interactividad y navegación</td>
+                                <td>15 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Presentación visual y formato</td>
+                                <td>10 puntos</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+                                <th>100 puntos</th>
+                                <th></th>
+                            </tr>
+                        </table>
+                        
+                        <div class="escala-calificacion">
+                            <h4>Escala de Calificación:</h4>
+                            <ul>
+                                <li>90-100 puntos: Excelente (A)</li>
+                                <li>80-89 puntos: Muy Bueno (B)</li>
+                                <li>70-79 puntos: Bueno (C)</li>
+                                <li>60-69 puntos: Aprobado (D)</li>
+                                <li>0-59 puntos: Necesita Mejorar (F)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="entregables">
+                        <h3>Entregables Requeridos</h3>
+                        <p>Para completar el proyecto, deberás entregar los siguientes elementos:</p>
+                        <ol>
+                            <li>Archivo de Excel con el proyecto completo (.xlsx o .xlsb)</li>
+                            <li>Documento con la descripción de tu análisis (máx. 2 páginas)</li>
+                            <li>Presentación de 5-7 diapositivas resumiendo tus hallazgos</li>
+                            <li>Archivo de video corto (3-5 min) explicando tu dashboard</li>
+                        </ol>
+                        
+                        <div class="fechas-importantes">
+                            <h4>Fechas Importantes:</h4>
+                            <ul>
+                                <li><strong>Inicio del proyecto:</strong> [Fecha de inicio]</li>
+                                <li><strong>Revisión de avance:</strong> [Fecha de revisión]</li>
+                                <li><strong>Entrega final:</strong> [Fecha de entrega]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="recursos-ayuda">
+                        <h3>Recursos de Ayuda</h3>
+                        <p>Puedes utilizar los siguientes recursos para completar tu proyecto:</p>
+                        <ul>
+                            <li><a href="#tema13">Tema 13: Power Query</a></li>
+                            <li><a href="#tema14">Tema 14: Power Pivot</a></li>
+                            <li><a href="#tema15">Tema 15: Dashboards Interactivos</a></li>
+                            <li><a href="https://support.microsoft.com/es-es/excel" target="_blank">Centro de ayuda de Excel</a></li>
+                            <li><a href="https://learn.microsoft.com/es-es/power-query/" target="_blank">Documentación de Power Query</a></li>
+                            <li><a href="https://dax.guide/" target="_blank">Guía de referencia de DAX</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="consejos-finales">
+                        <h3>Consejos para el Éxito</h3>
+                        <div class="consejo">
+                            <h4>Antes de comenzar:</h4>
+                            <ul>
+                                <li>Revisa todos los temas del curso</li>
+                                <li>Descarga y revisa los datos del proyecto con anticipación</li>
+                                <li>Planifica tu tiempo para cada fase del proyecto</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="consejo">
+                            <h4>Durante el desarrollo:</h4>
+                            <ul>
+                                <li>Guarda versiones de respaldo de tu trabajo</li>
+                                <li>Documenta tus procesos y decisiones</li>
+                                <li>Prueba cada componente a medida que lo desarrollas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="consejo">
+                            <h4>Al finalizar:</h4>
+                            <ul>
+                                <li>Revisa que todos los elementos funcionen correctamente</li>
+                                <li>Verifica que los cálculos sean precisos</li>
+                                <li>Pide a un compañero que revise tu trabajo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="evaluacion-final">
+                        <h3>Autoevaluación Final</h3>
+                        <p>Antes de entregar tu proyecto, completa la siguiente autoevaluación:</p>
+                        
+                        <div class="pregunta">1. ¿He aplicado correctamente las técnicas de limpieza de datos aprendidas?</div>
+                        <div class="opcion"><input type="radio" name="p1" value="a"> Sí, completamente</div>
+                        <div class="opcion"><input type="radio" name="p1" value="b"> Parcialmente</div>
+                        <div class="opcion"><input type="radio" name="p1" value="c"> No estoy seguro/a</div>
+                        
+                        <div class="pregunta">2. ¿El modelo de datos incluye todas las relaciones necesarias?</div>
+                        <div class="opcion"><input type="radio" name="p2" value="a"> Sí, todas las relaciones están correctamente definidas</div>
+                        <div class="opcion"><input type="radio" name="p2" value="b"> Algunas relaciones podrían mejorarse</div>
+                        <div class="opcion"><input type="radio" name="p2" value="c"> No estoy seguro/a</div>
+                        
+                        <div class="pregunta">3. ¿Las visualizaciones del dashboard son claras y efectivas?</div>
+                        <div class="opcion"><input type="radio" name="p3" value="a"> Sí, transmiten la información de manera clara</div>
+                        <div class="opcion"><input type="radio" name="p3" value="b"> Algunas podrían mejorarse</div>
+                        <div class="opcion"><input type="radio" name="p3" value="c"> No estoy seguro/a</div>
+                        
+                        <button id="evaluar-proyecto" class="btn btn-evaluar">Ver Resultado de la Autoevaluación</button>
+                        <div id="resultado-autoevaluacion" class="resultado-evaluacion"></div>
+                    </div>
+                </div>
+                
+                <div class="navegacion-temas">
+                    <a href="#tema15" class="btn btn-anterior">Anterior: Tema 15</a>
+                    <a href="#tema1" class="btn btn-siguiente">Volver al Inicio</a>
+                </div>
+            </div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>
+
+    <div class="navegacion-temas">
+        <a href="tema15.html" class="btn btn-anterior">Anterior: Tema 15</a>
+        
+    </div></div>
+</main>
+</div>
+
+
+    
+    <footer>
+        <p>© 2025 Especialidad en Computación - Módulo 2: Excel de Office</p>
+    </footer>
+    
+    <!-- Referencia al archivo JavaScript externo -->
+    <script src="modulo2.js"></script>
+</body>
+</html>
+
+<!-- Cierre de función faltante -->
+<script>
+    // Cerrar cualquier función abierta
+    });
+</script>

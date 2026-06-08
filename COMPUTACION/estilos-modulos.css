@@ -1,0 +1,1938 @@
+/* ===== VARIABLES ===== */
+:root {
+    /* Colores base */
+    --color-primario: #2c3e50;
+    --color-secundario: #3498db;
+    --color-fondo: #f5f7fa;
+    --color-texto: #333;
+    --color-borde: #ddd;
+    
+    /* Colores de secciones */
+    --color-actividad: #e3f2fd;
+    --color-ejercicio: #e8f5e9;
+    --color-evaluacion: #fce4ec;
+    
+    /* Efectos */
+    --sombra: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transicion: all 0.3s ease;
+}
+
+/* ===== RESET Y ESTILOS BASE ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    padding-bottom: 2rem;
+}
+
+/* ===== TIPOGRAFÍA ===== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    margin: 2rem 0;
+    border-bottom: 2px solid var(--color-secundario);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-secundario), transparent);
+    border-radius: 3px;
+}
+
+h3 { font-size: 1.5rem; margin-top: 2rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.main-container {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.main-modulo {
+    flex: 1;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 2rem 4rem;
+    width: calc(100% - 280px);
+}
+
+/* ===== BARRA DE NAVEGACIÓN SUPERIOR ===== */
+.nav-principal {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+}
+
+.nav-titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-right: 2rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin: 0.5rem 0.8rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: var(--transicion);
+}
+
+.nav-link:hover, .nav-link.activo {
+    color: white;
+}
+
+.nav-link.activo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-secundario);
+    border-radius: 3px 3px 0 0;
+}
+
+/* ===== BARRA LATERAL ===== */
+.sidebar-nav {
+    width: 280px;
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1.5rem 0;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    padding: 0 1.5rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    transition: var(--transicion);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding-left: 2rem;
+}
+
+.nav-links a:active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== ESTILOS PARA EXCEL ===== */
+.excel-interface {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.excel-interface img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.excel-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 1px;
+    background: #e0e0e0;
+    margin: 20px 0;
+}
+
+.cell {
+    background: white;
+    height: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cell.header {
+    background: #f2f2f2;
+    font-weight: bold;
+}
+
+.cell.active {
+    border: 2px solid #1a73e8;
+    background: #e8f0fe;
+}
+
+.formula-bar {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.formula-bar input {
+    flex-grow: 1;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.highlight {
+    background-color: #fff3cd;
+    padding: 15px;
+    border-left: 4px solid #ffc107;
+    margin: 15px 0;
+}
+
+/* Estilos para la actividad de arrastrar y soltar */
+.draggable-activity {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    background: #f9f9f9;
+}
+
+.draggable-activity p {
+    margin: 0 0 10px 0;
+}
+
+.draggable-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.draggable {
+    background: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: move;
+    user-select: none;
+}
+
+.drop-zone {
+    border: 1px dashed #999;
+    height: 200px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.drop-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Estilos para el botón de verificación */
+.verify-btn {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.verify-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para la evaluación */
+.evaluation-btn {
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.evaluation-btn:hover {
+    background-color: #45a049;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .sidebar-nav {
+        width: 100%;
+        height: auto;
+        max-height: fit-content;
+        position: fixed;
+    }
+    
+    .main-modulo {
+        width: 100%;
+        padding: 1rem;
+        position: fixed;
+    }
+    
+    .nav-principal {
+        padding: 1rem;
+        text-align: center;
+        position: fixed;
+    }
+    
+    .nav-titulo {
+        margin: 0 0 1rem;
+        width: 100%;
+        position: fixed;
+    }
+}
+
+h3 {
+    color: #2c3e50;
+    margin: 2rem 0 1.2rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+h4 {
+    color: #34495e;
+    margin: 1.8rem 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+h5 {
+    color: #2c3e50;
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Temas */
+.tema {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.tema:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tema-contenido {
+    line-height: 1.7;
+}
+
+.tema-contenido p {
+    margin-bottom: 1.2rem;
+    text-align: justify;
+}
+
+.topic-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-secundario);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Actividades, ejercicios y evaluaciones */
+.actividad, .ejercicio, .evaluacion {
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.actividad {
+    background-color: var(--color-actividad);
+    border-left: 5px solid #2196f3;
+}
+
+.ejercicio {
+    background-color: var(--color-ejercicio);
+    border-left: 5px solid #4caf50;
+}
+
+.evaluacion {
+    background-color: var(--color-evaluacion);
+    border-left: 5px solid #e91e63;
+}
+
+.actividad h4, .ejercicio h4, .evaluacion h3 {
+    color: var(--color-primario);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.actividad h4::before, .ejercicio h4::before, .evaluacion h4::before {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+}
+
+/* Listas */
+ul, ol {
+    margin: 1.2rem 0 1.2rem 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Código */
+pre {
+    background-color: #f5f7fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #263238;
+    border: 1px solid #e0e4e8;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: #f0f2f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #d63384;
+    word-break: break-word;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+th, td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: var(--color-primario);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f5fe;
+}
+
+/* Preguntas y respuestas */
+.pregunta {
+    font-weight: 600;
+    margin: 1.8rem 0 1rem;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.opcion {
+    margin: 0.8rem 0 0.8rem 2rem;
+    position: relative;
+    padding-left: 1.8rem;
+}
+
+.opcion::before {
+    content: '○';
+    position: absolute;
+    left: 0;
+    color: var(--color-secundario);
+    font-weight: bold;
+}
+
+.mostrar-respuesta {
+    display: inline-block;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0.5rem 0 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.mostrar-respuesta:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.mostrar-respuesta:active {
+    transform: translateY(0);
+}
+
+.respuesta {
+    background-color: #f8f9fa;
+    border-left: 4px solid #4caf50;
+    padding: 1.2rem;
+    margin: 1rem 0 1.5rem;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.respuesta strong {
+    color: #2e7d32;
+}
+
+/* Navegación entre temas */
+.nav-temas {
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-borde);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--color-secundario);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-anterior {
+    background-color: #7f8c8d;
+}
+
+.btn-anterior:hover {
+    background-color: #6c7a7d;
+}
+
+.btn-siguiente {
+    margin-left: auto;
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    margin-top: 4rem;
+    background-color: var(--color-primario);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-principal {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .nav-titulo {
+        margin: 0 0 1rem 0;
+        width: 100%;
+    }
+    
+    .nav-link {
+        margin: 0.3rem 0.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .main-modulo {
+        padding: 0 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        margin: 2rem 0 1.2rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+        margin: 1.8rem 0 1.2rem;
+    }
+    
+    .tema {
+        padding: 1.5rem;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-temas {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 3rem 0 1.5rem;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 0.9rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tema {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Mejoras de accesibilidad */
+:focus {
+    outline: 3px solid rgba(52, 152, 219, 0.5);
+    outline-offset: 2px;
+}
+
+/* Estilos para imágenes responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejoras para listas de definición */
+dl {
+    margin: 1.5rem 0;
+}
+
+dt {
+    font-weight: 600;
+    color: var(--color-primario);
+    margin-top: 1rem;
+}
+
+dd {
+    margin: 0.3rem 0 1rem 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-secundario);
+}
+
+/* Estilos para bloques de cita */
+/* Estilos para preguntas, opciones y respuestas */
+.pregunta {
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.opcion {
+    margin: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.opcion::before {
+    content: '•';
+    color: var(--color-secundario);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.respuesta {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+    border-left: 3px solid var(--color-secundario);
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mostrar-respuesta {
+    background-color: #e6f7ff;
+    color: #1890ff;
+    border: 1px solid #91d5ff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.mostrar-respuesta:hover {
+    background-color: #bae7ff;
+    border-color: #69c0ff;
+}
+
+.mostrar-respuesta::after {
+    content: '↓';
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.mostrar-respuesta.activo::after {
+    transform: rotate(180deg);
+}
+
+/* Estilos para ejemplos */
+.ejemplo {
+    background-color: #f9f9f9;
+    border-left: 3px solid #888;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.ejemplo h4 {
+    color: #555;
+    margin-top: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+}
+
+/* Contenedor flexible para hardware/software */
+.hardware-software {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.hardware-software > div {
+    flex: 1;
+    min-width: 250px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.hardware-software h5 {
+    color: var(--color-primario);
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos para elementos de terminal/comandos */
+code, kbd, pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5f5f5;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+}
+
+pre {
+    padding: 1em;
+    overflow-x: auto;
+    line-height: 1.5;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 5px;
+    margin: 1em 0;
+    tab-size: 4;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+kbd {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #666;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    padding: 0.1em 0.6em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.comandos-tabla {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.comandos-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.comandos-tabla th,
+.comandos-tabla td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.comandos-tabla th {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.comandos-tabla tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.comandos-tabla code {
+    background-color: #f0f0f0;
+    color: #d63384;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Estilos para imágenes de referencia */
+.imagen-referencia {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.imagen-referencia img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.imagen-referencia small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Estilos para la línea de tiempo */
+.timeline {
+    position: relative;
+    max-width: 100%;
+    margin: 2rem 0;
+    padding: 0 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--color-secundario);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: white;
+    border: 4px solid var(--color-secundario);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+
+.timeline-year {
+    padding: 5px 15px;
+    background-color: var(--color-secundario);
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Estilos para hardware-software con margen superior */
+.hardware-software.margin-top {
+    margin-top: 20px;
+}
+
+blockquote {
+    border-left: 4px solid var(--color-secundario);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    color: #555;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Estilos para teclas del teclado */
+kbd {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    color: #333;
+    display: inline-block;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.85em;
+    line-height: 1;
+    padding: 0.2em 0.4em;
+    white-space: nowrap;
+}
+
+/* Mejoras para tablas en móviles */
+@media (max-width: 480px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    th, td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.9em;
+    }
+}
+
+/* Estilos para el pie de página */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    border-top: 1px solid #ecf0f1;
+}
+
+/* ===== ESTILOS PARA TEMA 4: FUNCIONES LÓGICAS Y BÚSQUEDA ===== */
+
+/* Estilos para la interfaz de Excel */
+.excel-interface {
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    box-shadow: var(--sombra);
+}
+
+.excel-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.excel-row {
+    display: flex;
+    width: 100%;
+}
+
+.excel-row.header {
+    background-color: var(--color-primario);
+    color: white;
+    font-weight: bold;
+}
+
+.excel-cell {
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    min-width: 100px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.excel-cell.header {
+    background-color: var(--color-primario);
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.formula-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-top: 1px solid var(--color-borde);
+}
+
+.formula-bar span {
+    margin-right: 0.5rem;
+    font-weight: 500;
+    color: var(--color-primario);
+}
+
+.formula-bar input[type="text"] {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* Estilos para las tablas de ejemplos */
+.tabla-funciones {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.tabla-funciones table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.tabla-funciones th {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.tabla-funciones td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-borde);
+    vertical-align: top;
+}
+
+.tabla-funciones tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-funciones tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para los ejercicios */
+.ejercicio-practico {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid var(--color-secundario);
+}
+
+.problema {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.mini-tabla {
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.mini-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.mini-tabla th, 
+.mini-tabla td {
+    padding: 0.5rem;
+    border: 1px solid var(--color-borde);
+    text-align: left;
+}
+
+.mini-tabla th {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.mini-tabla tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para los botones de verificación */
+.verify-btn {
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    transition: var(--transicion);
+}
+
+.verify-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+/* Estilos para los resultados */
+.resultado {
+    margin-left: 1rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.resultado.correcto {
+    color: #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+.resultado.incorrecto {
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Estilos para la evaluación */
+.evaluacion {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #e74c3c;
+}
+
+.pregunta {
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--color-primario);
+}
+
+.opcion {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.opcion:hover {
+    background-color: #f1f1f1;
+}
+
+.opcion.seleccionada {
+    border-color: var(--color-secundario);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.opcion.correcto {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-color: #2ecc71;
+    color: #27ae60;
+}
+
+.opcion.incorrecto {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-color: #e74c3c;
+    color: #c0392b;
+}
+
+.evaluation-btn {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 2rem;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.evaluation-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilos para el resumen */
+.resumen {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #f39c12;
+}
+
+.resumen h3 {
+    color: #f39c12;
+    margin-top: 0;
+}
+
+.resumen ul {
+    padding-left: 1.5rem;
+}
+
+.resumen li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* Estilos para el siguiente paso */
+.siguiente-paso {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #e8f4f8;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+}
+
+.siguiente-paso h3 {
+    color: #2980b9;
+    margin-top: 0;
+}
+
+/* Estilos para bloques de código */
+pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+    tab-size: 4;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #e74c3c;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 1em;
+}
+
+/* ===== ESTILOS PARA TEMA 5: GRÁFICOS Y REPRESENTACIÓN DE DATOS ===== */
+
+/* Estilos para tablas de gráficos */
+.mini-tabla {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.mini-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.mini-tabla th, 
+.mini-tabla td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-borde);
+    text-align: left;
+}
+
+.mini-tabla th {
+    background-color: var(--color-primario);
+    color: white;
+    font-weight: 500;
+}
+
+.mini-tabla tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.mini-tabla tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para opciones de personalización */
+.personalizacion-grafico {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--color-secundario);
+}
+
+.opcion-personalizacion {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: var(--transicion);
+}
+
+.opcion-personalizacion:hover {
+    border-color: var(--color-secundario);
+    background-color: #f0f7ff;
+}
+
+.opcion-personalizacion input[type="checkbox"] {
+    margin-right: 0.75rem;
+    width: 1.1em;
+    height: 1.1em;
+}
+
+/* Estilos para feedback de ejercicios */
+.feedback {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    display: none;
+}
+
+.feedback.correcto {
+    display: block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+}
+
+.feedback.incorrecto {
+    display: block;
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #f44336;
+}
+
+/* Estilos para ejercicios avanzados */
+.ejercicio-avanzado {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f5f9ff;
+    border-radius: 6px;
+    border-left: 4px solid #2196f3;
+}
+
+.ejercicio-avanzado h4 {
+    color: #1976d2;
+    margin-top: 0;
+}
+
+/* Estilos para instrucciones */
+.instrucciones {
+    background-color: #fffde7;
+    padding: 1.25rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #ffd600;
+}
+
+.instrucciones p {
+    margin-top: 0;
+    font-weight: 500;
+    color: #5d4037;
+}
+
+/* ===== ESTILOS PARA TABLAS DINÁMICAS (TEMA 6) ===== */
+.tabla-dinamica-container {
+    margin: 2rem 0;
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tabla-dinamica {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-dinamica th,
+.tabla-dinamica td {
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.tabla-dinamica th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: var(--color-primario);
+}
+
+.tabla-dinamica tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-dinamica tr:hover {
+    background-color: #f0f7ff;
+}
+
+/* Áreas de la tabla dinámica */
+.areas-tabla-dinamica {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.area-tabla {
+    flex: 1;
+    min-width: 200px;
+    background: #f8f9fa;
+    border: 1px dashed #ced4da;
+    border-radius: 6px;
+    padding: 1rem;
+    min-height: 100px;
+}
+
+.area-tabla h5 {
+    margin-top: 0;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ===== ESTILOS PARA DASHBOARD (TEMA 7) ===== */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.metrica-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metrica-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.metrica-titulo {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.metrica-valor {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primario);
+    margin: 0.5rem 0;
+}
+
+.metrica-variacion {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.variacion-positiva {
+    color: #28a745;
+}
+
+.variacion-negativa {
+    color: #dc3545;
+}
+
+/* Filtros del dashboard */
+.filtros-dashboard {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.filtro-grupo label {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    color: #495057;
+    font-weight: 500;
+}
+
+.filtro-grupo select,
+.filtro-grupo input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Gráficos del dashboard */
+.grafico-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 1.5rem 0;
+}
+
+.grafico-container h4 {
+    margin-top: 0;
+    color: var(--color-primario);
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== ESTILOS PARA EJERCICIOS INTERACTIVOS ===== */
+.ejercicio-practico {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #e9ecef;
+}
+
+.ejercicio-practico h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* ===== ESTILOS PARA BOTONES ===== */
+.btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    -webkit-user-select: none;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: 4px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: white;
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* ===== RESPONSIVIDAD ===== */
+@media (max-width: 992px) {
+    .dashboard-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .areas-tabla-dinamica {
+        flex-direction: column;
+    }
+    
+    .filtros-dashboard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filtro-grupo {
+        width: 100%;
+    }
+}
+
+.instrucciones ol,
+.instrucciones ul {
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+}
+
+.instrucciones li {
+    margin: 0.5rem 0;
+    color: #5d4037;
+}
+
+/* Estilos para la sección de evaluación */
+.evaluacion {
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #fff3e0;
+    border-radius: 8px;
+    border-left: 5px solid #ff9800;
+}
+
+.evaluacion h3 {
+    color: #e65100;
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ffe0b2;
+}
+
+/* Estilos para opciones de preguntas */
+.opcion {
+    position: relative;
+    padding-left: 2rem;
+    margin: 0.75rem 0;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.opcion input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.opcion:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #9e9e9e;
+    border-radius: 50%;
+    background-color: white;
+    transition: var(--transicion);
+}
+
+.opcion:hover:before {
+    border-color: var(--color-secundario);
+}
+
+.opcion input[type="radio"]:checked ~ :before {
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+    box-shadow: inset 0 0 0 3px white;
+}
+
+/* Estilos para respuestas correctas/incorrectas */
+.opcion.correcto {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding-left: calc(2rem - 4px);
+}
+
+.opcion.incorrecto {
+    background-color: #ffebee;
+    border-left: 4px solid #f44336;
+    padding-left: calc(2rem - 4px);
+}
+
+/* Estilos para el botón de evaluación */
+.evaluation-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+    margin-top: 1.5rem;
+}
+
+.evaluation-btn:hover {
+    background-color: #f57c00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.evaluation-btn:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Estilos para el resultado de la evaluación */
+#resultadoEvaluacion5 {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#resultadoEvaluacion5.correcto {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+#resultadoEvaluacion5.incorrecto {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .mini-tabla {
+        font-size: 0.9rem;
+    }
+    
+    .opcion-personalizacion {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+    }
+    
+    .evaluacion {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Añadir prefijo webkit para user-select */
+.user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

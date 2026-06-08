@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S30: Herramienta Malla (Mesh Tool)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 30: Herramienta Malla (Mesh Tool)</h1>
+
+    <section>
+        <h2>1. Introducción al Relleno de Malla (Mesh Gradient)</h2>
+        
+        <p>La herramienta **Relleno de Malla (U)** permite crear degradados complejos y realistas en 2D que simulan volumen, reflexión o refracción. Un degradado de malla es una cuadrícula de color dentro de una forma vectorial.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar Malla</strong>
+            <p>Dibuja una forma simple (ej. un cuadrado). Con la forma seleccionada, activa la herramienta **Relleno de Malla (U)**. Haz clic sobre la forma. Inkscape aplicará una cuadrícula de malla predeterminada (ej. 2x2).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Edición Inicial</strong>
+            <p>El color inicial de los nodos de la malla es el color de relleno original. Haz clic en cualquier nodo de la malla y usa la paleta de colores para asignarle un nuevo color. La malla interpolará los colores entre los nodos, creando un degradado.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Manipulación de la Malla y sus Nodos</h2>
+        <p>La precisión de la malla reside en manipular su estructura y sus puntos de color.</p>
+        <div class="paso">
+            <strong>Añadir Nodos y Líneas</strong>
+            <p>Con la herramienta **Relleno de Malla (U)** activa, haz **doble clic** en cualquier línea de la malla para añadir una nueva fila o columna de nodos. Esto aumenta la complejidad y el control de la forma del color.</p>
+        </div>
+        <div class="paso">
+            <strong>Mover Nodos de la Malla</strong>
+            <p>Haz clic y arrastra cualquier nodo de la cuadrícula. Mover los nodos distorsiona la forma de la malla, lo que permite que el degradado siga contornos orgánicos (crucial para dibujar pliegues o superficies esféricas).</p>
+        </div>
+        <div class="paso">
+            <strong>Tiradores Bézier</strong>
+            <p>Al igual que con los nodos de trayectoria, cada nodo de la malla tiene tiradores Bézier. Puedes arrastrarlos para curvar las líneas de la malla, refinando aún más la transición del color.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Uso de la Malla para Sombras Realistas</h2>
+        <p>La malla es la forma más avanzada de simular luces y sombras en Inkscape.</p>
+        <div class="paso">
+            <strong>Crear Volumen Esférico</strong>
+            <p>Dibuja un círculo. Aplica una malla 2x2. Asigna un color claro (luz) al nodo superior izquierdo y un color oscuro (sombra) al nodo inferior derecho. Mueve el nodo central ligeramente para concentrar la luz, simulando una esfera.</p>
+        </div>
+        <div class="paso">
+            <strong>Control de Opacidad</strong>
+            <p>Al seleccionar un nodo de la malla, no solo puedes cambiar su color, sino también su **Opacidad (Canal Alfa)**. Asignar opacidad 0% a los nodos en un borde permite que el degradado se desvanezca en la transparencia, creando un efecto de brillo o reflejo.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: La Manzana con Volumen</h3>
+        <p><strong>Objetivo:</strong> Usar la malla para simular volumen orgánico.</p>
+        <ol>
+            <li>Dibuja el contorno de una manzana o una pera (forma orgánica).</li>
+            <li>Aplica la herramienta **Relleno de Malla (U)**. Crea una malla de 3x3.</li>
+            <li>Asigna un color verde brillante a los nodos de la izquierda (luz) y un color verde oscuro a los de la derecha (sombra).</li>
+            <li>Añade un nodo rojo en el centro (simulando un rubor).</li>
+            <li>Mueve los nodos de la malla para que el degradado siga las curvas del fruto.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion29.html">Anterior</a>
+    <a href="sesion31.html">Siguiente</a>
+</nav>
+</body>
+</html>

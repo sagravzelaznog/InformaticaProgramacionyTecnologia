@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Prácticas 03-05 U2: Condicionales y Bucle While</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background-color: #fd7e14; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .instructions { border: 2px solid #fd7e14; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .code { background-color: #282c34; color: #61afef; padding: 15px; border-radius: 5px; margin: 10px 0; font-family: 'Consolas', monospace; overflow-x: auto; }
+        .activity-section { margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>5. Prácticas 03-05 U2: Condicionales y Bucle While</h1>
+    <p>Aprende a controlar el flujo de ejecución del programa.</p>
+</header>
+
+<div class="instructions">
+    <h2>Instrucciones para la Actividad</h2>
+    <p><strong>Paso 1: Celda de Código</strong> | Añade una celda de <strong>Código</strong> para cada práctica.</p>
+    <p><strong>Paso 2: Entrada de Datos</strong> | En la Práctica 04, al ejecutar la celda, aparecerá una casilla para que introduzcas el número.</p>
+    <p><strong>Paso 3: Bucle</strong> | Observa en la Práctica 05 cómo el bucle `while` imprime los números de forma repetitiva hasta que la condición se vuelve falsa.</p>
+</div>
+
+<section class="activity-section">
+    <h2>Práctica 03 U2: Estructura Condicional `if/elif/else`</h2>
+    <p>El código evalúa si un número es positivo, negativo o cero.</p>
+    <pre class="code">
+# practica03 u2: Condicionales
+
+numero = 10
+
+if numero > 0:
+    print("El número es positivo.")
+elif numero < 0:
+    print("El número es negativo.")
+else:
+    print("El número es cero.")
+    </pre>
+</section>
+
+<section class="activity-section">
+    <h2>Práctica 04 U2: Entrada de Datos (`input`)</h2>
+    <p>El programa solicita un dato al usuario y luego determina si es mayor o menor a 50.</p>
+    <pre class="code">
+# practica04 u2: Entrada de Usuario
+# Nota: La función input() lee un texto, por eso se usa int() para convertirlo a número.
+
+try:
+    dato = input("Introduce un número entero: ")
+    numero_ingresado = int(dato)
+    
+    if numero_ingresado > 50:
+        print(f"El número {numero_ingresado} es mayor que 50.")
+    elif numero_ingresado < 50:
+        print(f"El número {numero_ingresado} es menor que 50.")
+    else:
+        print("El número ingresado es exactamente 50.")
+except ValueError:
+    print("Error: Por favor, introduce un número entero válido.")
+    </pre>
+</section>
+
+<section class="activity-section">
+    <h2>Práctica 05 U2: Bucle `while`</h2>
+    <p>Usa el bucle `while` para repetir un bloque de código mientras se cumpla una condición.</p>
+    <pre class="code">
+# practica05 u2: Bucle While
+
+contador = 1
+limite = 5
+
+while contador <= limite:
+    print(f"Contando... {contador}")
+    contador = contador + 1 # Incrementa el contador
+    
+print("Bucle finalizado.")
+    </pre>
+</section>
+
+</body>
+<footer>
+	<p>© 2025 JMGV-PTEL TUTORIAL GOOGLE COLAB. Todos los derechos reservados.</p>
+</footer>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S47: Exportación Múltiple y Optimización</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #0088AA; }
+        .paso { background-color: #f0f8ff; border-left: 5px solid #0088AA; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 47: Exportación Múltiple y Optimización de Archivos</h1>
+
+    <section>
+        <h2>1. Exportación por Lotes de Múltiples Elementos</h2>
+        
+        <p>A menudo necesitamos exportar 10 o 20 iconos a la vez. Inkscape permite exportar múltiples selecciones con un solo clic.</p>
+        <div class="paso">
+            <strong>Paso 1: Nombres y Agrupación</strong>
+            <p>Nombra cada objeto/grupo que quieras exportar con un ID descriptivo en el panel **Objetos** (ej. **"Icono-Ajustes"**, **"Icono-Perfil"**).</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Selección Múltiple y Nombres de Archivo</strong>
+            <p>Abre el diálogo de **Exportación (Shift + Ctrl + E)**. Selecciona **"Selección"**. Selecciona los múltiples objetos que quieres exportar (Shift + clic). El nombre de archivo propuesto en el diálogo será el ID que asignaste en el panel Objetos. Haz clic en **Exportar lote** para exportar todos a la vez.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Optimización de Vectores (Limpieza de Trayectos)</h2>
+        <p>Los trayectos generados automáticamente o muy editados pueden tener puntos innecesarios que aumentan el tamaño del archivo y dificultan la animación.</p>
+        <div class="paso">
+            <strong>Simplificación de Trayectos (Ctrl + L)</strong>
+            <p>Selecciona un trayecto. Ve a <code>Trayecto > Simplificar (Ctrl + L)</code>. Esto reduce el número de nodos, manteniendo la forma visual. Es muy útil para formas orgánicas dibujadas a mano alzada.</p>
+        </div>
+        <div class="paso">
+            <strong>Eliminar Elementos Ocultos</strong>
+            <p>A veces, hay objetos invisibles en tu lienzo. Ve a <code>Editar > Seleccionar todo en todas las capas</code>. Si hay objetos invisibles, puedes eliminarlos. También puedes ir a <code>Archivo > Limpiar metadatos</code> para reducir el tamaño del SVG.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Uso de la Extensión SVG Optimizer (Scour)</h2>
+        <p>Inkscape incluye una herramienta para reducir el código SVG al mínimo, ideal para iconos y activos web críticos.</p>
+        <div class="paso">
+            <strong>Paso 1: Aplicar el Optimizador</strong>
+            <p>Guarda tu archivo como SVG Plano. Ve a <code>Extensiones > Exportar > SVG Optimizer (Scour)</code>.</p>
+        </div>
+        <div class="paso">
+            <strong>Paso 2: Opciones de Optimización</strong>
+            <p>Activa opciones como **Eliminar etiquetas de edición de Inkscape**, **Abreviar valores de color** y **Redondear valores numéricos** (a 1 o 2 decimales). Esto puede reducir el tamaño del archivo SVG hasta en un 50% sin afectar la calidad.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Exportación de Set de Iconos</h3>
+        <p><strong>Objetivo:</strong> Optimizar y exportar un conjunto de iconos.</p>
+        <ol>
+            <li>Crea 4 iconos diferentes (ej. Lupa, Corazón, Casa, Sobre).</li>
+            <li>Asígnales IDs claros (**Icono_Lupa**, etc.) en el panel **Objetos**.</li>
+            <li>Selecciona los 4 iconos y aplica **Simplificar (Ctrl + L)** para limpiarlos.</li>
+            <li>Abre el diálogo de **Exportación** y usa la opción **Exportar lote** para generar los 4 PNG a 2x de resolución con un solo clic.</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion46.html">Anterior</a>
+    <a href="sesion48.html">Siguiente</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 16: Revisión y Evaluación - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la sesión 16 */
+        .review-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #6f42c1;
+        }
+        
+        .evaluation-section {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .progress-tracker {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 100px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: #6f42c1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #dee2e6;
+            z-index: 0;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #6f42c1;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        
+        .quiz-question {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-option {
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .certificate {
+            background: white;
+            border: 15px solid #6f42c1;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .certificate h2 {
+            color: #6f42c1;
+            margin-bottom: 30px;
+        }
+        
+        .certificate-seal {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #6f42c1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #6f42c1;
+        }
+        
+        @media (max-width: 768px) {
+            .progress-step {
+                width: 60px;
+                font-size: 12px;
+            }
+            
+            .certificate {
+                padding: 20px;
+            }
+            
+            .certificate-seal {
+                width: 70px;
+                height: 70px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+        
+        .review-svg {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sesión 16: Revisión y Evaluación Final</h1>
+            <p class="subtitulo">Consolida tus conocimientos y demuestra lo aprendido</p>
+        </header>
+        
+        <nav aria-label="Navegación">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sesión 16: Revisión y Evaluación</li>
+            </ul>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="d-none d-md-block">
+                    <div class="list-group">
+                        <a href="#bienvenida" class="list-group-item list-group-item-action">Bienvenida</a>
+                        <a href="#repaso" class="list-group-item list-group-item-action">Repaso General</a>
+                        <a href="#autoevaluacion" class="list-group-item list-group-item-action">Autoevaluación</a>
+                        <a href="#evaluacion" class="list-group-item list-group-item-action">Evaluación Final</a>
+                        <a href="#certificado" class="list-group-item list-group-item-action">Certificación</a>
+                        <a href="#siguientes-pasos" class="list-group-item list-group-item-action">Siguientes Pasos</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <section id="bienvenida" class="seccion">
+                    <h2>¡Felicidades por llegar hasta aquí!</h2>
+                    <p>Has completado exitosamente el curso de Microsoft Publisher. En esta sesión final, tendrás la oportunidad de:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Repasar Conceptos Clave</h5>
+                                    <ul>
+                                        <li>Revisar los temas más importantes</li>
+                                        <li>Aclarar dudas pendientes</li>
+                                        <li>Consolidar tu aprendizaje</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Demostrar tus Habilidades</h5>
+                                    <ul>
+                                        <li>Completar ejercicios de práctica</li>
+                                        <li>Realizar la evaluación final</li>
+                                        <li>Obtener tu certificado de finalización</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-tracker">
+                        <div class="progress-line">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">1</div>
+                            <div>Repaso</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">2</div>
+                            <div>Práctica</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">3</div>
+                            <div>Evaluación</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">4</div>
+                            <div>Certificado</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="repaso" class="seccion">
+                    <h2>Repaso General del Curso</h2>
+                    <p>Vamos a repasar los conceptos más importantes que hemos cubierto en este curso:</p>
+                    
+                    <div class="review-card">
+                        <h4>Fundamentos de Publisher</h4>
+                        <ul>
+                            <li>Interfaz y herramientas básicas</li>
+                            <li>Creación y gestión de publicaciones</li>
+                            <li>Configuración de páginas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="review-card">
+                        <h4>Diseño y Maquetación</h4>
+                        <ul>
+                            <li>Uso de plantillas y estilos</li>
+                            <li>Diseño de páginas maestras</li>
+                            <li>Organización de elementos gráficos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="review-card">
+                        <h4>Elementos Multimedia</h4>
+                        <ul>
+                            <li>Inserción y edición de imágenes</li>
+                            <li>Trabajo con formas y gráficos</li>
+                            <li>Uso de tablas y gráficos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="review-card">
+                        <h4>Publicación y Distribución</h4>
+                        <ul>
+                            <li>Preparación para impresión</li>
+                            <li>Publicación en la web</li>
+                            <li>Combinación de correspondencia</li>
+                        </ul>
+                    </div>
+                    
+                    <svg class="review-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="50" width="400" height="100" rx="10" fill="#f8f9fa" stroke="#6c757d" stroke-width="2"/>
+                        <path d="M70,80 L430,80" stroke="#6f42c1" stroke-width="2" stroke-dasharray="5,5"/>
+                        <circle cx="100" cy="80" r="5" fill="#6f42c1"/>
+                        <circle cx="200" cy="80" r="5" fill="#6f42c1"/>
+                        <circle cx="300" cy="80" r="5" fill="#6f42c1"/>
+                        <circle cx="400" cy="80" r="5" fill="#6f42c1"/>
+                        <text x="100" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#343a40">Fundamentos</text>
+                        <text x="200" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#343a40">Diseño</text>
+                        <text x="300" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#343a40">Multimedia</text>
+                        <text x="400" y="120" font-family="Arial" font-size="12" text-anchor="middle" fill="#343a40">Publicación</text>
+                    </svg>
+                </section>
+                
+                <section id="autoevaluacion" class="seccion">
+                    <h2>Autoevaluación de Conceptos Clave</h2>
+                    <p>Responde las siguientes preguntas para evaluar tu comprensión de los conceptos principales del curso.</p>
+                    
+                    <div class="quiz-question">
+                        <h5>1. ¿Cuál es la función principal de las páginas maestras en Publisher?</h5>
+                        <div class="quiz-option" data-correct="true">Aplicar un diseño consistente a múltiples páginas</div>
+                        <div class="quiz-option" data-correct="false">Crear animaciones en la publicación</div>
+                        <div class="quiz-option" data-correct="false">Exportar el documento a PDF</div>
+                        <div class="quiz-option" data-correct="false">Insertar imágenes prediseñadas</div>
+                        <div class="feedback">¡Correcto! Las páginas maestras permiten aplicar un diseño consistente a múltiples páginas de tu publicación.</div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h5>2. ¿Qué herramienta usarías para combinar una lista de direcciones con un documento?</h5>
+                        <div class="quiz-option" data-correct="false">Diseño de página</div>
+                        <div class="quiz-option" data-correct="true">Combinar correspondencia</div>
+                        <div class="quiz-option" data-correct="false">Formato de imagen</div>
+                        <div class="quiz-option" data-correct="false">Panel de navegación</div>
+                        <div class="feedback">¡Correcto! La combinación de correspondencia te permite fusionar una lista de contactos con un documento para crear publicaciones personalizadas.</div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h5>3. ¿Qué formato de archivo es mejor para compartir una publicación que mantendrá su diseño exacto?</h5>
+                        <div class="quiz-option" data-correct="false">.docx</div>
+                        <div class="quiz-option" data-correct="true">.pdf</div>
+                        <div class="quiz-option" data-correct="false">.txt</div>
+                        <div class="quiz-option" data-correct="false">.html</div>
+                        <div class="feedback">¡Correcto! El formato PDF mantiene el diseño exacto de tu publicación en cualquier dispositivo.</div>
+                    </div>
+                    
+                    <div class="consejo">
+                        <strong>Consejo:</strong> Si tuviste dificultades con alguna pregunta, considera revisar las sesiones correspondientes antes de continuar con la evaluación final.
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="seccion">
+                    <h2>Evaluación Final</h2>
+                    <p>Ahora es el momento de demostrar todo lo que has aprendido. La evaluación final consta de dos partes:</p>
+                    
+                    <div class="evaluation-section">
+                        <h4>Parte 1: Prueba Teórica (40%)</h4>
+                        <p>Responde 20 preguntas de opción múltiple que cubren todos los temas del curso. Tienes 30 minutos para completar esta sección.</p>
+                        <button class="btn btn-primary" id="startQuiz">Comenzar Prueba Teórica</button>
+                    </div>
+                    
+                    <div class="evaluation-section">
+                        <h4>Parte 2: Proyecto Práctico (60%)</h4>
+                        <p>Crea una publicación que demuestre tus habilidades en Publisher. Debe incluir:</p>
+                        <ul>
+                            <li>Al menos 4 páginas con diseño consistente</li>
+                            <li>Elementos de texto con formato profesional</li>
+                            <li>Imágenes y elementos gráficos</li>
+                            <li>Encabezados y pies de página</li>
+                            <li>Elementos interactivos (hipervínculos, botones, etc.)</li>
+                        </ul>
+                        <p><strong>Tiempo estimado:</strong> 90 minutos</p>
+                        <button class="btn btn-primary">Descargar Instrucciones Detalladas</button>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h5>Consejos para el Éxito:</h5>
+                        <ul>
+                            <li>Administra bien tu tiempo durante la evaluación</li>
+                            <li>Revisa tus respuestas antes de enviar</li>
+                            <li>Asegúrate de guardar tu trabajo frecuentemente</li>
+                            <li>Si tienes dudas, consulta tus apuntes o las sesiones del curso</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="certificado" class="seccion">
+                    <h2>Certificado de Finalización</h2>
+                    <p>¡Felicidades por completar el curso de Microsoft Publisher! Una vez que hayas terminado la evaluación, podrás descargar tu certificado de finalización.</p>
+                    
+                    <div class="certificate">
+                        <h2>CERTIFICADO DE FINALIZACIÓN</h2>
+                        <p>Se otorga el presente certificado a:</p>
+                        <h3 id="studentName">[Nombre del Estudiante]</h3>
+                        <p>Por haber completado exitosamente el curso de</p>
+                        <h4>Microsoft Publisher Avanzado</h4>
+                        <p>Con una duración de 40 horas académicas</p>
+                        <div class="certificate-seal">
+                            <div>SELLO OFICIAL<br>JMGV-PTEL-2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success" id="downloadCert">Descargar Certificado</button>
+                        <p class="small text-muted mt-2">* Disponible después de completar la evaluación</p>
+                    </div>
+                </section>
+                
+                <section id="siguientes-pasos" class="seccion">
+                    <h2>Siguientes Pasos</h2>
+                    <p>Ahora que has completado este curso, aquí tienes algunas sugerencias para continuar tu aprendizaje:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Recursos Adicionales</h5>
+                                    <ul>
+                                        <li><a href="https://support.microsoft.com/publisher" target="_blank" rel="noopener">Centro de ayuda de Microsoft Publisher</a></li>
+                                        <li><a href="https://www.lynda.com/Publisher-tutorials/" target="_blank" rel="noopener">Cursos avanzados en LinkedIn Learning</a></li>
+                                        <li><a href="https://www.publishersweekly.com/" target="_blank" rel="noopener">Revista Publishers Weekly</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Habilidades Relacionadas</h5>
+                                    <ul>
+                                        <li>Diseño gráfico con Adobe InDesign</li>
+                                        <li>Edición de imágenes con Photoshop</li>
+                                        <li>Diseño web con WordPress</li>
+                                        <li>Marketing digital y redes sociales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-card mt-4">
+                        <h4>¡Comparte tu Proyecto!</h4>
+                        <p>Estamos orgullosos de tu logro. Comparte tu proyecto final en nuestras redes sociales usando el hashtag <strong>#PublisherPro2025</strong> para que otros puedan inspirarse en tu trabajo.</p>
+                        <div class="text-center">
+                            <button class="btn btn-outline-primary me-2"><i class="bi bi-facebook"></i> Compartir</button>
+                            <button class="btn btn-outline-info me-2"><i class="bi bi-twitter"></i> Tuitear</button>
+                            <button class="btn btn-outline-success"><i class="bi bi-linkedin"></i> Publicar</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navegacion">
+                    <a href="sesion15.html" class="btn-anterior">← Sesión Anterior: Proyecto Práctico</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticación
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const mainContent = document.querySelector('.container');
+            
+            if (!currentUser || !currentUser.key) {
+                window.location.href = '../iniciar-sesion.html';
+            } else {
+                mainContent.classList.remove('hidden');
+                if (document.getElementById('userName')) {
+                    document.getElementById('userName').textContent = currentUser.nombre || 'Usuario';
+                }
+                if (document.getElementById('studentName')) {
+                    document.getElementById('studentName').textContent = currentUser.nombre || '[Nombre del Estudiante]';
+                }
+            }
+            
+            // Configurar botón de cierre de sesión
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    sessionStorage.removeItem('currentUser');
+                    window.location.href = '../iniciar-sesion.html';
+                });
+            }
+            
+            // Configurar cuestionario interactivo
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+                    const feedback = this.nextElementSibling;
+                    
+                    // Reset all options
+                    quizOptions.forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.nextElementSibling.style.display = 'none';
+                    });
+                    
+                    // Highlight selected option
+                    this.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    
+                    // Show feedback
+                    if (feedback) {
+                        feedback.style.display = 'block';
+                        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                    }
+                });
+            });
+            
+            // Simular progreso
+            let progress = 0;
+            const progressFill = document.getElementById('progressFill');
+            const updateProgress = () => {
+                progress += 25;
+                if (progress > 100) progress = 100;
+                progressFill.style.width = progress + '%';
+                
+                if (progress < 100) {
+                    setTimeout(updateProgress, 500);
+                }
+            };
+            
+            // Iniciar animación de progreso
+            setTimeout(updateProgress, 1000);
+            
+            // Configurar botón de descarga de certificado
+            const downloadBtn = document.getElementById('downloadCert');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    alert('¡Felicidades! Tu certificado se está descargando.');
+                    // Aquí iría la lógica para generar y descargar el certificado
+                });
+            }
+            
+            // Configurar botón de inicio de prueba
+            const startQuizBtn = document.getElementById('startQuiz');
+            if (startQuizBtn) {
+                startQuizBtn.addEventListener('click', function() {
+                    alert('La prueba teórica comenzará ahora. ¡Buena suerte!');
+                    // Aquí iría la lógica para iniciar la prueba
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 15: Proyecto Práctico - Curso de Microsoft Publisher</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Estilos específicos para la sesión 15 */
+        .proyecto-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .proyecto-card h4 {
+            color: #17a2b8;
+            margin-top: 0;
+        }
+        
+        .criterio-evaluacion {
+            margin: 20px 0;
+        }
+        
+        .criterio-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .criterio-item:last-child {
+            border-bottom: none;
+        }
+        
+        .puntos {
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .progreso-proyecto {
+            margin: 20px 0;
+        }
+        
+        .paso-proyecto {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .numero-paso {
+            background-color: #17a2b8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contenido-paso {
+            flex-grow: 1;
+        }
+        
+        .ejemplo-proyecto {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .consejo {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .proyecto-card {
+                padding: 15px;
+            }
+        }
+        
+        .proyecto-svg {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sesión 15: Proyecto Práctico Final</h1>
+            <p class="subtitulo">Aplica todo lo aprendido en un proyecto integral de diseño editorial</p>
+        </header>
+        
+        <nav aria-label="Navegación">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sesión 15: Proyecto Práctico</li>
+            </ul>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="d-none d-md-block">
+                    <div class="list-group">
+                        <a href="#introduccion" class="list-group-item list-group-item-action">Introducción</a>
+                        <a href="#objetivos" class="list-group-item list-group-item-action">Objetivos del Proyecto</a>
+                        <a href="#opciones" class="list-group-item list-group-item-action">Opciones de Proyecto</a>
+                        <a href="#evaluacion" class="list-group-item list-group-item-action">Criterios de Evaluación</a>
+                        <a href="#pasos" class="list-group-item list-group-item-action">Pasos a Seguir</a>
+                        <a href="#entrega" class="list-group-item list-group-item-action">Requisitos de Entrega</a>
+                        <a href="#recursos" class="list-group-item list-group-item-action">Recursos Adicionales</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <section id="introduccion" class="seccion">
+                    <h2>Introducción al Proyecto Final</h2>
+                    <p>¡Felicidades por llegar al final del curso! En esta sesión pondrás en práctica todo lo aprendido para crear un proyecto editorial completo utilizando Microsoft Publisher. Este proyecto te permitirá demostrar tu dominio de las herramientas y técnicas cubiertas durante el curso.</p>
+                    
+                    <div class="proyecto-card">
+                        <h4>¿Qué esperar de este proyecto?</h4>
+                        <p>Este proyecto está diseñado para que apliques de manera integral los conocimientos adquiridos en las sesiones anteriores. Trabajarás en un proyecto realista que podría ser solicitado en un entorno profesional.</p>
+                        
+                        <svg class="proyecto-svg" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="50" width="400" height="200" rx="10" fill="#e9ecef" stroke="#6c757d" stroke-width="2"/>
+                            <rect x="70" y="80" width="100" height="30" rx="5" fill="#17a2b8"/>
+                            <rect x="180" y="80" width="100" height="30" rx="5" fill="#6f42c1"/>
+                            <rect x="290" y="80" width="100" height="30" rx="5" fill="#28a745"/>
+                            <rect x="70" y="130" width="150" height="100" rx="5" fill="#ffc107" opacity="0.7"/>
+                            <rect x="240" y="130" width="150" height="100" rx="5" fill="#fd7e14" opacity="0.7"/>
+                            <text x="120" y="100" font-family="Arial" font-size="12" text-anchor="middle" fill="white">Diseño</text>
+                            <text x="230" y="100" font-family="Arial" font-size="12" text-anchor="middle" fill="white">Contenido</text>
+                            <text x="340" y="100" font-family="Arial" font-size="12" text-anchor="middle" fill="white">Técnica</text>
+                            <text x="250" y="50" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#343a40">Proyecto Integral</text>
+                        </svg>
+                        
+                        <div class="consejo">
+                            <strong>Consejo:</strong> Organiza tu tiempo y revisa los criterios de evaluación antes de comenzar para asegurarte de cubrir todos los aspectos necesarios.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="objetivos" class="seccion">
+                    <h2>Objetivos del Proyecto</h2>
+                    <p>Al completar este proyecto, demostrarás tu capacidad para:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Habilidades Técnicas</h5>
+                                    <ul>
+                                        <li>Diseñar publicaciones profesionales</li>
+                                        <li>Utilizar herramientas avanzadas de Publisher</li>
+                                        <li>Gestionar elementos gráficos y de texto</li>
+                                        <li>Preparar archivos para impresión o publicación digital</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Habilidades Profesionales</h5>
+                                    <ul>
+                                        <li>Gestión de proyectos</li>
+                                        <li>Atención al detalle</li>
+                                        <li>Cumplimiento de requisitos</li>
+                                        <li>Presentación profesional del trabajo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="opciones" class="seccion">
+                    <h2>Opciones de Proyecto</h2>
+                    <p>Selecciona una de las siguientes opciones para tu proyecto final. Cada opción ha sido diseñada para que apliques diferentes habilidades aprendidas durante el curso.</p>
+                    
+                    <div class="proyecto-card">
+                        <h4>Opción 1: Revista Digital</h4>
+                        <p><strong>Descripción:</strong> Crea una revista digital de 8-12 páginas sobre un tema de tu elección.</p>
+                        <p><strong>Elementos requeridos:</strong></p>
+                        <ul>
+                            <li>Portada atractiva con título y gráficos</li>
+                            <li>Índice con hipervínculos</li>
+                            <li>Al menos 3 artículos con imágenes</li>
+                            <li>Publicidad integrada</li>
+                            <li>Elementos interactivos (hipervínculos, botones)</li>
+                        </ul>
+                        <div class="consejo">
+                            <strong>Recomendado para:</strong> Estudiantes interesados en diseño editorial y publicación digital.
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-card">
+                        <h4>Opción 2: Kit de Marketing Corporativo</h4>
+                        <p><strong>Descripción:</strong> Desarrolla un paquete completo de materiales de marketing para una empresa ficticia o real.</p>
+                        <p><strong>Elementos requeridos:</strong></p>
+                        <ul>
+                            <li>Tarjeta de presentación</li>
+                            <li>Hoja membretada</li>
+                            <li>Sobres personalizados</li>
+                            <li>Folleto promocional (díptico o tríptico)</li>
+                            <li>Presentación corporativa (mínimo 5 diapositivas)</li>
+                        </ul>
+                        <div class="consejo">
+                            <strong>Recomendado para:</strong> Estudiantes interesados en identidad corporativa y diseño de materiales de marketing.
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-card">
+                        <h4>Opción 3: Proyecto Libre</h4>
+                        <p><strong>Descripción:</strong> Propón tu propio proyecto que demuestre tus habilidades en Publisher.</p>
+                        <p><strong>Requisitos:</strong></p>
+                        <ul>
+                            <li>Debe ser aprobado previamente por el instructor</li>
+                            <li>Debe incluir al menos 5 técnicas diferentes aprendidas en el curso</li>
+                            <li>Debe ser de complejidad similar a las otras opciones</li>
+                        </ul>
+                        <div class="consejo">
+                            <strong>Recomendado para:</strong> Estudiantes con un proyecto específico en mente que deseen mayor flexibilidad.
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="seccion">
+                    <h2>Criterios de Evaluación</h2>
+                    <p>Tu proyecto será evaluado según los siguientes criterios. Asegúrate de revisar cada uno antes de entregar tu trabajo.</p>
+                    
+                    <div class="criterio-evaluacion">
+                        <h5>1. Diseño y Maquetación (30 puntos)</h5>
+                        <div class="criterio-item">
+                            <span>Uso efectivo del espacio y jerarquía visual</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Consistencia en el diseño</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Creatividad y originalidad</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        
+                        <h5 class="mt-4">2. Contenido (30 puntos)</h5>
+                        <div class="criterio-item">
+                            <span>Calidad y relevancia del contenido</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Ortografía y gramática</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Organización de la información</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        
+                        <h5 class="mt-4">3. Técnica (30 puntos)</h5>
+                        <div class="criterio-item">
+                            <span>Uso adecuado de las herramientas de Publisher</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Integración de elementos multimedia</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Optimización para el formato final</span>
+                            <span class="puntos">10 pts</span>
+                        </div>
+                        
+                        <h5 class="mt-4">4. Presentación (10 puntos)</h5>
+                        <div class="criterio-item">
+                            <span>Calidad de la presentación oral (si aplica)</span>
+                            <span class="puntos">5 pts</span>
+                        </div>
+                        <div class="criterio-item">
+                            <span>Documentación adjunta</span>
+                            <span class="puntos">5 pts</span>
+                        </div>
+                        
+                        <div class="text-right mt-4">
+                            <h5>Puntuación Total: <span class="text-primary">100 puntos</span></h5>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="pasos" class="seccion">
+                    <h2>Pasos para Desarrollar tu Proyecto</h2>
+                    <p>Sigue estos pasos para completar exitosamente tu proyecto final:</p>
+                    
+                    <div class="progreso-proyecto">
+                        <div class="paso-proyecto">
+                            <div class="numero-paso">1</div>
+                            <div class="contenido-paso">
+                                <h5>Planificación</h5>
+                                <p>Define los objetivos, público objetivo y contenido de tu proyecto. Crea un boceto en papel o digital de cómo se verá tu diseño final.</p>
+                                <div class="ejemplo-proyecto">
+                                    <strong>Ejemplo:</strong> Para una revista, identifica las secciones principales, artículos y elementos visuales que incluirás.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="paso-proyecto">
+                            <div class="numero-paso">2</div>
+                            <div class="contenido-paso">
+                                <h5>Configuración del Documento</h5>
+                                <p>Crea un nuevo documento en Publisher con las dimensiones y configuración adecuadas para tu proyecto.</p>
+                                <ul>
+                                    <li>Establece los márgenes y guías</li>
+                                    <li>Configura las páginas maestras</li>
+                                    <li>Define la paleta de colores y fuentes corporativas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="paso-proyecto">
+                            <div class="numero-paso">3</div>
+                            <div class="contenido-paso">
+                                <h5>Desarrollo del Contenido</h5>
+                                <p>Comienza a agregar el contenido a tu publicación, siguiendo la estructura que planeaste.</p>
+                                <div class="consejo">
+                                    <strong>Consejo:</strong> Trabaja en capas y agrupa elementos relacionados para facilitar las modificaciones.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="paso-proyecto">
+                            <div class="numero-paso">4</div>
+                            <div class="contenido-paso">
+                                <h5>Revisión y Ajustes</h5>
+                                <p>Revisa tu proyecto para asegurarte de que cumple con todos los requisitos y realiza los ajustes necesarios.</p>
+                                <ul>
+                                    <li>Verifica la ortografía y gramática</li>
+                                    <li>Asegúrate de que las imágenes tengan la resolución adecuada</li>
+                                    <li>Comprueba que los enlaces funcionen correctamente</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="paso-proyecto">
+                            <div class="numero-paso">5</div>
+                            <div class="contenido-paso">
+                                <h5>Preparación para Entrega</h5>
+                                <p>Prepara tu proyecto para su presentación o envío final.</p>
+                                <div class="ejemplo-proyecto">
+                                    <strong>Para entrega digital:</strong> Guarda una copia en PDF y verifica que se vea correctamente.<br>
+                                    <strong>Para impresión:</strong> Asegúrate de incluir marcas de corte y sangrado si es necesario.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="entrega" class="seccion">
+                    <h2>Requisitos de Entrega</h2>
+                    <p>Para completar tu proyecto, asegúrate de incluir los siguientes elementos:</p>
+                    
+                    <div class="proyecto-card">
+                        <h4>Elementos Obligatorios</h4>
+                        <ul>
+                            <li>Archivo fuente de Publisher (.pub)</li>
+                            <li>Versión final en PDF</li>
+                            <li>Documento con una breve memoria descriptiva que incluya:
+                                <ul>
+                                    <li>Objetivos del proyecto</li>
+                                    <li>Público objetivo</li>
+                                    <li>Descripción del proceso creativo</li>
+                                    <li>Desafíos encontrados y cómo los resolviste</li>
+                                </ul>
+                            </li>
+                            <li>Lista de recursos utilizados (imágenes, fuentes, etc.)</li>
+                        </ul>
+                        
+                        <h5 class="mt-4">Formato de Nombrado de Archivos</h5>
+                        <p>Por favor, nombra tus archivos de la siguiente manera:</p>
+                        <p><code>Apellido_Nombre_ProyectoFinal.pub</code><br>
+                        <code>Apellido_Nombre_ProyectoFinal.pdf</code><br>
+                        <code>Apellido_Nombre_Memoria.docx</code></p>
+                    </div>
+                </section>
+                
+                <section id="recursos" class="seccion">
+                    <h2>Recursos Adicionales</h2>
+                    <p>Los siguientes recursos pueden serte útiles para completar tu proyecto:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Plantillas de Referencia</h5>
+                                    <ul>
+                                        <li><a href="#" class="card-link">Plantilla de revista</a></li>
+                                        <li><a href="#" class="card-link">Kit de identidad corporativa</a></li>
+                                        <li><a href="#" class="card-link">Diseño de folleto</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Recursos Gratuitos</h5>
+                                    <ul>
+                                        <li><a href="https://unsplash.com/" class="card-link" target="_blank" rel="noopener">Unsplash (imágenes libres)</a></li>
+                                        <li><a href="https://fonts.google.com/" class="card-link" target="_blank" rel="noopener">Google Fonts (fuentes gratuitas)</a></li>
+                                        <li><a href="https://www.canva.com/" class="card-link" target="_blank" rel="noopener">Canva (inspiración de diseño)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="proyecto-card">
+                        <h4>Ejemplos de Proyectos Anteriores</h4>
+                        <p>Revisa estos ejemplos de proyectos realizados por estudiantes en cursos anteriores para inspirarte:</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMjAwIDE1MCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2U5ZWNlZiIgc3Ryb2tlPSIjNmM3NTgwIi8+CiAgPHRleHQgeD0iMTAwIiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSI+RWplbXBsbyBkZSBSZXZpc3RhPC90ZXh0Pgo8L3N2Zz4=" class="card-img-top" alt="Ejemplo de Revista">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Revista Digital</h6>
+                                        <p class="card-text small">Revista de tecnología con artículos sobre inteligencia artificial.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMjAwIDE1MCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2ZmZjNkZCIgc3Ryb2tlPSIjZmZjMTA3Ii8+CiAgPHRleHQgeD0iMTAwIiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSI+S2l0IENvcnBvcmF0aXZvPC90ZXh0Pgo8L3N2Zz4=" class="card-img-top" alt="Ejemplo de Kit Corporativo">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Kit Corporativo</h6>
+                                        <p class="card-text small">Identidad visual completa para una empresa de diseño.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMjAwIDE1MCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2QxZTdmYSIgc3Ryb2tlPSIjM2U4OWZkIi8+CiAgPHRleHQgeD0iMTAwIiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSI+Rm9saGV0byBQcm9tb2Npb25hbDwvdGV4dD4KPC9zdmc+" class="card-img-top" alt="Ejemplo de Folleto">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Folleto Promocional</h6>
+                                        <p class="card-text small">Díptico para promoción de servicios turísticos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="navegacion">
+                    <a href="sesion14.html" class="btn-anterior">← Sesión Anterior: Automatización</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="pie-pagina">
+        <p>© JMGV-PTEL-2025 Especialidad en Computación PUBLISHER - Todos los derechos reservados</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticación
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const mainContent = document.querySelector('.container');
+            
+            if (!currentUser || !currentUser.key) {
+                window.location.href = '../iniciar-sesion.html';
+            } else {
+                mainContent.classList.remove('hidden');
+                if (document.getElementById('userName')) {
+                    document.getElementById('userName').textContent = currentUser.nombre || 'Usuario';
+                }
+            }
+            
+            // Configurar botón de cierre de sesión
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    sessionStorage.removeItem('currentUser');
+                    window.location.href = '../iniciar-sesion.html';
+                });
+            }
+            
+            // Animación de progreso
+            const pasos = document.querySelectorAll('.paso-proyecto');
+            pasos.forEach((paso, index) => {
+                setTimeout(() => {
+                    paso.style.opacity = '1';
+                    paso.style.transform = 'translateX(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>

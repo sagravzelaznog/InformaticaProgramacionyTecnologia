@@ -1,0 +1,82 @@
+/* Main container styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+.container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.step {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-left: 4px solid #3498db;
+}
+
+.command {
+    font-family: 'Courier New', monospace;
+    background: #f0f0f0;
+    padding: 2px 5px;
+}
+
+.coordinates {
+    background: #e8f4f8;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+.preview {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ddd;
+}
+
+/* SVG styles */
+svg {
+    border: 1px solid #ccc;
+    background: white;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Back link styles */
+.back-link-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.back-link:hover {
+    background-color: #2980b9;
+}

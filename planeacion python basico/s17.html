@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 17: Creando tus Propias Funciones - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .function-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .function-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #6c5ce7;
+        }
+        
+        .function-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .function-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+        
+        .function-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .function-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fd79a8;
+        }
+        
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #00b894;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+        
+        .best-practices {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .best-practices h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+        
+        .practice-exercises {
+            margin: 30px 0;
+        }
+        
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #e17055;
+        }
+        
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #fab1a0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+        
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .exercise-card .expected-output {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .utility-library {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #a29bfe;
+        }
+        
+        .utility-library h3 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+        
+        .utility-library h3 i {
+            margin-right: 10px;
+        }
+        
+        .utility-function {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .utility-function h5 {
+            margin-top: 0;
+            color: #74b9ff;
+        }
+        
+        .function-signature {
+            background: #636e72;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 17</h1>
+                <h2>Creando tus Propias Funciones</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-0-00" 
+                     role="progressbar" 
+                     aria-valuenow="0.00" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">Inicio del Módulo 3</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, aprenderás a crear tus propias funciones en Python, que son bloques de código reutilizables que te permiten organizar y estructurar mejor tu programa. Las funciones son uno de los conceptos más importantes en programación porque permiten dividir problemas complejos en partes más manejables.</p>
+                
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Definir funciones con la sintaxis correcta de Python</li>
+                        <li>Comprender la diferencia entre parámetros y argumentos</li>
+                        <li>Usar la sentencia <code>return</code> para devolver valores desde funciones</li>
+                        <li>Crear funciones que realicen tareas específicas y reutilizables</li>
+                        <li>Entender la diferencia entre funciones y procedimientos</li>
+                        <li>Crear bibliotecas de funciones útiles para reutilizar en futuros proyectos</li>
+                    </ul>
+                </div>
+                
+                <div class="function-examples">
+                    <div class="function-card">
+                        <h4><i class="fas fa-cogs"></i> Funciones como Bloques Reutilizables</h4>
+                        <p>Las funciones son como máquinas que reciben <strong>entradas</strong> (parámetros), realizan <strong>procesos</strong> internos y producen <strong>salidas</strong> (valores de retorno).</p>
+                        <pre><code class="language-python">def calcular_promedio(notas):
+    suma = sum(notas)
+    promedio = suma / len(notas)
+    return promedio</code></pre>
+                    </div>
+                    
+                    <div class="function-card">
+                        <h4><i class="fas fa-recycle"></i> Reutilización de Código</h4>
+                        <p>Una vez definida, puedes usar la misma función múltiples veces en tu programa sin repetir código.</p>
+                        <pre><code class="language-python">promedio_matematicas = calcular_promedio([8, 9, 7, 10])
+promedio_historia = calcular_promedio([9, 8, 9, 8])
+promedio_ciencias = calcular_promedio([10, 9, 8, 9])</code></pre>
+                    </div>
+                    
+                    <div class="function-card">
+                        <h4><i class="fas fa-layer-group"></i> Organización Modular</h4>
+                        <p>Las funciones permiten dividir programas grandes en módulos más pequeños y manejables.</p>
+                        <pre><code class="language-python">def validar_entrada():
+    # Lógica de validación
+    
+def procesar_datos():
+    # Lógica de procesamiento
+    
+def mostrar_resultados():
+    # Lógica de presentación</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+            
+            <!-- 1. Sintaxis básica de funciones -->
+            <div class="concept-card">
+                <h3>1. Sintaxis Básica de Definición de Funciones</h3>
+                <p>La sintaxis básica para definir una función en Python utiliza la palabra clave <code>def</code>, seguida del nombre de la función y paréntesis que contienen los parámetros.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Sintaxis básica de una función
+def nombre_de_la_funcion(parametro1, parametro2, parametro3):
+    """
+    Esta es la docstring de la función.
+    Aquí se explica qué hace la función, qué parámetros recibe
+    y qué valor devuelve.
+    """
+    # Cuerpo de la función
+    resultado = parametro1 + parametro2 + parametro3
+    return resultado
+
+# Ejemplo de uso
+suma = nombre_de_la_funcion(5, 3, 7)
+print(suma)  # Imprime: 15
+
+# Función sin parámetros
+def saludar():
+    """Función que muestra un saludo."""
+    print("¡Hola, mundo!")
+
+saludar()  # Imprime: ¡Hola, mundo!
+
+# Función sin valor de retorno (procedimiento)
+def mostrar_mensaje(mensaje):
+    """Procedimiento que muestra un mensaje."""
+    print(f"Mensaje: {mensaje}")
+    # No hay return, por lo que devuelve None implícitamente
+
+resultado = mostrar_mensaje("Hola")  # Imprime: Mensaje: Hola
+print(resultado)  # Imprime: None</code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Importante: Docstrings</h4>
+                    <p>Es una buena práctica incluir una <strong>docstring</strong> (cadena de documentación) al inicio de cada función. Esta cadena entre triple comillas explica qué hace la función, qué parámetros recibe y qué devuelve. Puedes acceder a ella usando <code>help(nombre_de_la_funcion)</code>.</p>
+                </div>
+                
+                <div class="best-practices">
+                    <h4><i class="fas fa-check-circle"></i> Buenas Prácticas para Nombrar Funciones</h4>
+                    <ul>
+                        <li>Usa nombres descriptivos que indiquen claramente qué hace la función</li>
+                        <li>Usa snake_case (minúsculas con guiones bajos): <code>calcular_promedio</code>, <code>validar_entrada</code></li>
+                        <li>Los nombres deben ser verbos o frases verbales: <code>calcular</code>, <code>obtener</code>, <code>mostrar</code></li>
+                        <li>Evita nombres genéricos como <code>funcion1</code>, <code>hacer_algo</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Parámetros y argumentos -->
+            <div class="concept-card">
+                <h3>2. Parámetros y Argumentos</h3>
+                <p>Los <strong>parámetros</strong> son las variables que se definen en la declaración de la función, mientras que los <strong>argumentos</strong> son los valores reales que se pasan cuando se llama a la función.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Parámetros en la definición de la función
+def calcular_area_rectangulo(ancho, largo):
+    """
+    Calcula el área de un rectángulo.
+    
+    Args:
+        ancho (float): Ancho del rectángulo
+        largo (float): Largo del rectángulo
+        
+    Returns:
+        float: Área del rectángulo
+    """
+    area = ancho * largo
+    return area
+
+# Argumentos al llamar a la función
+area_habitacion = calcular_area_rectangulo(5.5, 4.2)  # 5.5 y 4.2 son argumentos
+area_jardin = calcular_area_rectangulo(10, 8)        # 10 y 8 son argumentos
+
+print(f"El área de la habitación es: {area_habitacion} m²")
+print(f"El área del jardín es: {area_jardin} m²")
+
+# Función con múltiples tipos de parámetros
+def crear_perfil_usuario(nombre, edad, ciudad="Ciudad no especificada", activo=True):
+    """
+    Crea un perfil de usuario con información básica.
+    
+    Args:
+        nombre (str): Nombre del usuario
+        edad (int): Edad del usuario
+        ciudad (str): Ciudad del usuario (opcional)
+        activo (bool): Estado activo del usuario (opcional)
+        
+    Returns:
+        dict: Diccionario con la información del usuario
+    """
+    perfil = {
+        "nombre": nombre,
+        "edad": edad,
+        "ciudad": ciudad,
+        "activo": activo
+    }
+    return perfil
+
+# Llamadas con diferentes números de argumentos
+usuario1 = crear_perfil_usuario("Ana", 25)                    # Usa valores por defecto
+usuario2 = crear_perfil_usuario("Luis", 30, "Madrid")         # Especifica ciudad
+usuario3 = crear_perfil_usuario("María", 28, "Barcelona", True)  # Especifica todos
+
+print(usuario1)  # {'nombre': 'Ana', 'edad': 25, 'ciudad': 'Ciudad no especificada', 'activo': True}
+print(usuario2)  # {'nombre': 'Luis', 'edad': 30, 'ciudad': 'Madrid', 'activo': True}
+print(usuario3)  # {'nombre': 'María', 'edad': 28, 'ciudad': 'Barcelona', 'activo': True}</code></pre>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Parámetros</h5>
+                        <p>Son las <strong>variables</strong> que se definen en la declaración de la función. Actúan como <em>marcadores de posición</em> para los valores que recibirá la función.</p>
+                        <pre><code class="language-python">def funcion(param1, param2):
+    # param1 y param2 son parámetros</code></pre>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h5>Argumentos</h5>
+                        <p>Son los <strong>valores reales</strong> que se pasan a la función cuando se llama. Estos valores se asignan a los parámetros correspondientes.</p>
+                        <pre><code class="language-python">funcion(valor1, valor2)
+# valor1 y valor2 son argumentos</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Valor de retorno -->
+            <div class="concept-card">
+                <h3>3. Valor de Retorno con <code>return</code></h3>
+                <p>La sentencia <code>return</code> permite que una función devuelva un valor al código que la llamó. Una función puede devolver cualquier tipo de dato o incluso múltiples valores usando tuplas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python"># Función que devuelve un valor simple
+def calcular_cuadrado(numero):
+    """Calcula el cuadrado de un número."""
+    resultado = numero ** 2
+    return resultado
+
+# Función que devuelve múltiples valores
+def calcular_estadisticas(numeros):
+    """
+    Calcula estadísticas básicas de una lista de números.
+    
+    Args:
+        numeros (list): Lista de números
+        
+    Returns:
+        tuple: Tupla con (suma, promedio, maximo, minimo)
+    """
+    if not numeros:
+        return 0, 0, None, None
+        
+    suma = sum(numeros)
+    promedio = suma / len(numeros)
+    maximo = max(numeros)
+    minimo = min(numeros)
+    
+    return suma, promedio, maximo, minimo
+
+# Función que no devuelve nada explícitamente (devuelve None)
+def mostrar_informacion(datos):
+    """Muestra información en pantalla (procedimiento)."""
+    for clave, valor in datos.items():
+        print(f"{clave}: {valor}")
+    # No hay return, devuelve None implícitamente
+
+# Función que devuelve diferentes tipos según condiciones
+def procesar_texto(texto):
+    """
+    Procesa un texto y devuelve diferentes resultados según su contenido.
+    
+    Args:
+        texto (str): Texto a procesar
+        
+    Returns:
+        str or int or None: Resultado del procesamiento
+    """
+    if not texto:
+        return None  # Texto vacío
+        
+    if texto.isdigit():
+        return int(texto)  # Es un número
+        
+    if texto.isalpha():
+        return texto.upper()  # Es texto, devolver en mayúsculas
+        
+    return texto  # Texto mixto, devolver como está
+
+# Uso de las funciones
+cuadrado = calcular_cuadrado(5)
+print(f"El cuadrado de 5 es: {cuadrado}")  # Imprime: 25
+
+suma, promedio, maximo, minimo = calcular_estadisticas([1, 5, 3, 8, 2])
+print(f"Suma: {suma}, Promedio: {promedio}, Máximo: {maximo}, Mínimo: {minimo}")
+# Imprime: Suma: 19, Promedio: 3.8, Máximo: 8, Mínimo: 1
+
+resultado = mostrar_informacion({"nombre": "Ana", "edad": 25})
+print(f"El procedimiento devolvió: {resultado}")  # Imprime: None
+
+print(procesar_texto("hola"))    # Imprime: HOLA
+print(procesar_texto("123"))     # Imprime: 123
+print(procesar_texto(""))        # Imprime: None
+print(procesar_texto("abc123"))  # Imprime: abc123</code></pre>
+                </div>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-lightbulb"></i> Funciones vs Procedimientos</h4>
+                    <p><strong>Función:</strong> Bloque de código que devuelve un valor usando <code>return</code>.</p>
+                    <p><strong>Procedimiento:</strong> Bloque de código que realiza acciones pero no devuelve un valor (o devuelve <code>None</code> implícitamente).</p>
+                    <p>En Python, técnicamente todas las funciones pueden ser procedimientos si no usan <code>return</code>, pero es buena práctica usar <code>return</code> cuando corresponda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+            
+            <div class="card">
+                <h3>Ejemplo 1: Funciones Matemáticas Básicas</h3>
+                <p>Crearemos un conjunto de funciones matemáticas que podemos reutilizar en diferentes programas.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">import math
+
+def calcular_area_circulo(radio):
+    """Calcula el área de un círculo dado su radio."""
+    return math.pi * radio ** 2
+
+def calcular_volumen_esfera(radio):
+    """Calcula el volumen de una esfera dado su radio."""
+    return (4/3) * math.pi * radio ** 3
+
+def convertir_temperatura(celsius, escala="fahrenheit"):
+    """
+    Convierte temperatura de Celsius a otra escala.
+    
+    Args:
+        celsius (float): Temperatura en grados Celsius
+        escala (str): Escala de destino ("fahrenheit", "kelvin")
+        
+    Returns:
+        float: Temperatura convertida
+    """
+    if escala.lower() == "fahrenheit":
+        return (celsius * 9/5) + 32
+    elif escala.lower() == "kelvin":
+        return celsius + 273.15
+    else:
+        raise ValueError("Escala no soportada. Use 'fahrenheit' o 'kelvin'")
+
+def calcular_promedio_ponderado(notas, pesos):
+    """
+    Calcula el promedio ponderado de una lista de notas.
+    
+    Args:
+        notas (list): Lista de calificaciones
+        pesos (list): Lista de pesos correspondientes
+        
+    Returns:
+        float: Promedio ponderado
+    """
+    if len(notas) != len(pesos):
+        raise ValueError("Las listas de notas y pesos deben tener la misma longitud")
+    
+    suma_ponderada = sum(nota * peso for nota, peso in zip(notas, pesos))
+    suma_pesos = sum(pesos)
+    
+    return suma_ponderada / suma_pesos
+
+# Uso de las funciones matemáticas
+radio = 5
+area_circulo = calcular_area_circulo(radio)
+volumen_esfera = calcular_volumen_esfera(radio)
+
+print(f"Área del círculo: {area_circulo:.2f}")
+print(f"Volumen de la esfera: {volumen_esfera:.2f}")
+
+temperatura_celsius = 25
+temp_fahrenheit = convertir_temperatura(temperatura_celsius, "fahrenheit")
+temp_kelvin = convertir_temperatura(temperatura_celsius, "kelvin")
+
+print(f"{temperatura_celsius}°C = {temp_fahrenheit}°F = {temp_kelvin}K")
+
+# Promedio ponderado
+notas = [8.5, 9.2, 7.8, 9.5]
+pesos = [0.2, 0.3, 0.2, 0.3]  # Pesos en proporción
+promedio_final = calcular_promedio_ponderado(notas, pesos)
+print(f"Promedio ponderado: {promedio_final:.2f}")</code></pre>
+                </div>
+                
+                <h3>Ejemplo 2: Funciones de Validación de Datos</h3>
+                <p>Crearemos funciones que validen diferentes tipos de datos de entrada.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">def validar_email(email):
+    """
+    Valida si una cadena tiene formato de email básico.
+    
+    Args:
+        email (str): Dirección de email a validar
+        
+    Returns:
+        bool: True si es válido, False en caso contrario
+    """
+    if not isinstance(email, str):
+        return False
+        
+    if '@' not in email or '.' not in email:
+        return False
+        
+    partes = email.split('@')
+    if len(partes) != 2:
+        return False
+        
+    usuario, dominio = partes
+    if not usuario or not dominio:
+        return False
+        
+    return True
+
+def validar_contrasena(contrasena, longitud_minima=8):
+    """
+    Valida si una contraseña cumple con requisitos básicos de seguridad.
+    
+    Args:
+        contrasena (str): Contraseña a validar
+        longitud_minima (int): Longitud mínima requerida
+        
+    Returns:
+        tuple: (bool, str) - (válido, mensaje de error)
+    """
+    if not isinstance(contrasena, str):
+        return False, "La contraseña debe ser una cadena de texto"
+        
+    if len(contrasena) < longitud_minima:
+        return False, f"La contraseña debe tener al menos {longitud_minima} caracteres"
+        
+    tiene_mayuscula = any(c.isupper() for c in contrasena)
+    tiene_minuscula = any(c.islower() for c in contrasena)
+    tiene_numero = any(c.isdigit() for c in contrasena)
+    
+    if not (tiene_mayuscula and tiene_minuscula and tiene_numero):
+        return False, "La contraseña debe contener al menos una mayúscula, una minúscula y un número"
+        
+    return True, "Contraseña válida"
+
+def validar_rango(numero, minimo, maximo):
+    """
+    Valida si un número está dentro de un rango específico.
+    
+    Args:
+        numero: Número a validar
+        minimo: Límite inferior (inclusive)
+        maximo: Límite superior (inclusive)
+        
+    Returns:
+        bool: True si está en rango, False en caso contrario
+    """
+    try:
+        numero = float(numero)
+        return minimo <= numero <= maximo
+    except (ValueError, TypeError):
+        return False
+
+def validar_fecha(fecha_str, formato="%d/%m/%Y"):
+    """
+    Valida si una cadena representa una fecha válida.
+    
+    Args:
+        fecha_str (str): Fecha en formato string
+        formato (str): Formato esperado de la fecha
+        
+    Returns:
+        bool: True si es válida, False en caso contrario
+    """
+    try:
+        from datetime import datetime
+        datetime.strptime(fecha_str, formato)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+# Uso de las funciones de validación
+emails = ["usuario@ejemplo.com", "email.invalido", "otro@dominio", "test@test"]
+for email in emails:
+    es_valido = validar_email(email)
+    print(f"{email}: {'Válido' if es_valido else 'Inválido'}")
+
+contrasenas = ["Abc123", "contrasena", "12345678", "MiPassword123"]
+for contrasena in contrasenas:
+    valida, mensaje = validar_contrasena(contrasena)
+    print(f"{contrasena}: {'Válida' if valida else mensaje}")
+
+numeros = [5, 15, 25, "texto", 35]
+for numero in numeros:
+    en_rango = validar_rango(numero, 10, 30)
+    print(f"{numero}: {'En rango' if en_rango else 'Fuera de rango'}")
+
+fechas = ["25/12/2023", "31/02/2023", "2023-12-25", "15/13/2023"]
+for fecha in fechas:
+    valida = validar_fecha(fecha)
+    print(f"{fecha}: {'Válida' if valida else 'Inválida'}")</code></pre>
+                </div>
+                
+                <h3>Ejemplo 3: Funciones de Formateo de Texto</h3>
+                <p>Crearemos funciones que ayuden a formatear y manipular texto de diferentes maneras.</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">def formatear_titulo(texto):
+    """Convierte texto en formato de título."""
+    return texto.title()
+
+def formatear_moneda(numero, simbolo="$", decimales=2):
+    """
+    Formatea un número como moneda.
+    
+    Args:
+        numero (float): Número a formatear
+        simbolo (str): Símbolo de moneda
+        decimales (int): Número de decimales
+        
+    Returns:
+        str: Número formateado como moneda
+    """
+    return f"{simbolo}{numero:.{decimales}f}"
+
+def formatear_porcentaje(numero, decimales=1):
+    """
+    Formatea un número como porcentaje.
+    
+    Args:
+        numero (float): Número a formatear (ej: 0.85 para 85%)
+        decimales (int): Número de decimales
+        
+    Returns:
+        str: Número formateado como porcentaje
+    """
+    return f"{numero * 100:.{decimales}f}%"
+
+def formatear_telefono(telefono, formato="internacional"):
+    """
+    Formatea un número de teléfono según diferentes formatos.
+    
+    Args:
+        telefono (str): Número de teléfono sin formatear
+        formato (str): Formato deseado
+        
+    Returns:
+        str: Número formateado
+    """
+    # Limpiar el número de caracteres no numéricos
+    digitos = ''.join(filter(str.isdigit, telefono))
+    
+    if formato == "internacional":
+        if len(digitos) == 10:  # Número nacional
+            return f"+52 {digitos[:3]} {digitos[3:6]} {digitos[6:]}"
+        elif len(digitos) == 12 and digitos.startswith("52"):  # Ya tiene código de país
+            return f"+{digitos[:2]} {digitos[2:5]} {digitos[5:8]} {digitos[8:]}"
+    elif formato == "nacional":
+        if len(digitos) == 10:
+            return f"({digitos[:3]}) {digitos[3:6]}-{digitos[6:]}"
+    
+    return telefono  # Devolver original si no se puede formatear
+
+def generar_acronimo(frase):
+    """
+    Genera un acrónimo a partir de una frase.
+    
+    Args:
+        frase (str): Frase para generar acrónimo
+        
+    Returns:
+        str: Acrónimo en mayúsculas
+    """
+    palabras = frase.split()
+    acronimo = ''.join(palabra[0].upper() for palabra in palabras if palabra[0].isalpha())
+    return acronimo
+
+def formatear_tabla(datos, encabezados=None, alineacion="left"):
+    """
+    Formatea una lista de diccionarios como tabla de texto.
+    
+    Args:
+        datos (list): Lista de diccionarios con los datos
+        encabezados (list): Lista opcional de encabezados
+        alineacion (str): Alineación de columnas
+        
+    Returns:
+        str: Tabla formateada
+    """
+    if not datos:
+        return "No hay datos para mostrar"
+    
+    # Obtener todas las claves únicas
+    todas_claves = set()
+    for fila in datos:
+        todas_claves.update(fila.keys())
+    
+    claves_ordenadas = sorted(todas_claves)
+    
+    # Crear encabezados si no se proporcionan
+    if encabezados is None:
+        encabezados = {clave: formatear_titulo(clave.replace('_', ' ')) for clave in claves_ordenadas}
+    else:
+        encabezados = dict(zip(claves_ordenadas, encabezados))
+    
+    # Calcular anchos de columnas
+    anchos = {}
+    for clave in claves_ordenadas:
+        ancho_encabezado = len(str(encabezados[clave]))
+        ancho_datos = max(len(str(fila.get(clave, ''))) for fila in datos)
+        anchos[clave] = max(ancho_encabezado, ancho_datos, len(clave))
+    
+    # Crear línea separadora
+    separador = "+" + "+".join("-" * (anchos[clave] + 2) for clave in claves_ordenadas) + "+"
+    
+    # Crear líneas de la tabla
+    lineas = [separador]
+    
+    # Línea de encabezados
+    linea_encabezado = "|"
+    for clave in claves_ordenadas:
+        valor = str(encabezados[clave])
+        if alineacion == "right":
+            linea_encabezado += f" {valor:>{anchos[clave]}} |"
+        else:
+            linea_encabezado += f" {valor:<{anchos[clave]}} |"
+    lineas.append(linea_encabezado)
+    lineas.append(separador)
+    
+    # Líneas de datos
+    for fila in datos:
+        linea_datos = "|"
+        for clave in claves_ordenadas:
+            valor = str(fila.get(clave, ''))
+            if alineacion == "right":
+                linea_datos += f" {valor:>{anchos[clave]}} |"
+            else:
+                linea_datos += f" {valor:<{anchos[clave]}} |"
+        lineas.append(linea_datos)
+    
+    lineas.append(separador)
+    
+    return "\n".join(lineas)
+
+# Uso de las funciones de formateo
+titulo = formatear_titulo("curso de programación en python")
+print(f"Título formateado: {titulo}")
+
+precio = 1599.99
+precio_formateado = formatear_moneda(precio)
+print(f"Precio formateado: {precio_formateado}")
+
+porcentaje = 0.856
+porcentaje_formateado = formatear_porcentaje(porcentaje)
+print(f"Porcentaje formateado: {porcentaje_formateado}")
+
+telefono = "5551234567"
+telefono_formateado = formatear_telefono(telefono)
+print(f"Teléfono formateado: {telefono_formateado}")
+
+acrónimo = generar_acronimo("Instituto Tecnológico Superior")
+print(f"Acrónimo: {acrónimo}")
+
+datos_tabla = [
+    {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"},
+    {"nombre": "Luis", "edad": 30, "ciudad": "Barcelona"},
+    {"nombre": "María", "edad": 28, "ciudad": "Valencia"}
+]
+
+tabla = formatear_tabla(datos_tabla, alineacion="left")
+print("\nTabla formateada:")
+print(tabla)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-session">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+            
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-calculator"></i> Actividad 1: Funciones Matemáticas Básicas</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Crea un conjunto de funciones matemáticas básicas que puedan ser utilizadas en diferentes programas.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones a crear:</h5>
+                        <ul>
+                            <li><code>calcular_area_triangulo(base, altura)</code></li>
+                            <li><code>calcular_perimetro_rectangulo(ancho, largo)</code></li>
+                            <li><code>calcular_hipotenusa(cateto1, cateto2)</code></li>
+                            <li><code>convertir_unidades(valor, unidad_origen, unidad_destino)</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-shield-alt"></i> Actividad 2: Funciones de Validación de Datos</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla funciones que validen diferentes tipos de datos de entrada para prevenir errores en el programa.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones a crear:</h5>
+                        <ul>
+                            <li><code>validar_edad(edad)</code> - debe estar entre 0 y 120</li>
+                            <li><code>validar_codigo_postal(cp, pais="MX")</code> - formato según país</li>
+                            <li><code>validar_url(url)</code> - formato básico de URL</li>
+                            <li><code>validar_tarjeta_credito(numero)</code> - algoritmo de Luhn</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-font"></i> Actividad 3: Funciones de Formateo de Texto</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Construye funciones que ayuden a formatear y manipular texto de diferentes maneras útiles.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones a crear:</h5>
+                        <ul>
+                            <li><code>formatear_nombre_completo(nombre, apellido, formato="titulo")</code></li>
+                            <li><code>formatear_fecha(fecha, formato="dd/mm/yyyy")</code></li>
+                            <li><code>formatear_lista_numerada(elementos)</code></li>
+                            <li><code>generar_slug(titulo)</code> - para URLs amigables</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-toolbox"></i> Actividad 4: Conjunto de Utilidades Personales</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Crea una biblioteca de funciones útiles que puedas reutilizar en futuros proyectos personales.</p>
+                    
+                    <div class="expected-output">
+                        <h5>Funciones sugeridas:</h5>
+                        <ul>
+                            <li><code>generar_id_unico(prefijo="ID")</code></li>
+                            <li><code>calcular_tiempo_transcurrido(fecha_inicio, fecha_fin)</code></li>
+                            <li><code>validar_formato_archivo(ruta_archivo, extensiones_permitidas)</code></li>
+                            <li><code>comprimir_texto(texto, nivel_compresion="medio")</code></li>
+                            <li><code>generar_codigo_verificacion(longitud=6)</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="utility-library">
+                <h3><i class="fas fa-toolbox"></i> Biblioteca de Utilidades Personales</h3>
+                <p>A continuación, te presentamos una biblioteca completa de funciones útiles que puedes crear y reutilizar en tus proyectos.</p>
+                
+                <div class="utility-function">
+                    <h5>Función: generar_id_unico</h5>
+                    <div class="function-signature">generar_id_unico(prefijo="ID", longitud=8) -> str</div>
+                    <p>Genera un identificador único compuesto por el prefijo seguido de números y letras aleatorias.</p>
+                </div>
+                
+                <div class="utility-function">
+                    <h5>Función: calcular_tiempo_transcurrido</h5>
+                    <div class="function-signature">calcular_tiempo_transcurrido(fecha_inicio, fecha_fin) -> dict</div>
+                    <p>Calcula el tiempo transcurrido entre dos fechas y devuelve un diccionario con días, horas, minutos y segundos.</p>
+                </div>
+                
+                <div class="utility-function">
+                    <h5>Función: validar_formato_archivo</h5>
+                    <div class="function-signature">validar_formato_archivo(ruta_archivo, extensiones_permitidas) -> bool</div>
+                    <p>Valida si un archivo tiene una extensión permitida de una lista proporcionada.</p>
+                </div>
+                
+                <div class="utility-function">
+                    <h5>Función: comprimir_texto</h5>
+                    <div class="function-signature">comprimir_texto(texto, nivel="medio") -> str</div>
+                    <p>Comprime texto eliminando espacios múltiples, saltos de línea innecesarios y caracteres especiales según el nivel de compresión.</p>
+                </div>
+                
+                <div class="utility-function">
+                    <h5>Función: generar_codigo_verificacion</h5>
+                    <div class="function-signature">generar_codigo_verificacion(longitud=6, incluir_letras=True) -> str</div>
+                    <p>Genera un código de verificación numérico o alfanumérico de longitud especificada.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions" target="_blank" rel="noopener noreferrer">Documentación oficial - Definición de funciones</a></li>
+                        <li><a href="https://realpython.com/defining-your-own-python-function/" target="_blank" rel="noopener noreferrer">Real Python - Creando funciones propias</a></li>
+                        <li><a href="https://www.w3schools.com/python/python_functions.asp" target="_blank" rel="noopener noreferrer">W3Schools - Funciones en Python</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=9Os0o3wzS_I" target="_blank" rel="noopener noreferrer">Funciones en Python - Curso Python desde cero</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=BVfCWuca9nw" target="_blank" rel="noopener noreferrer">Cómo crear funciones en Python - Tutorial completo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 8 - "Python Crash Course" de Eric Matthes (Funciones)</li>
+                        <li>Sección 4.6 - "Fluent Python" de Luciano Ramalho (Funciones de primera clase)</li>
+                        <li>"Python Cookbook" de David Beazley y Brian K. Jones (Capítulo sobre funciones)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s16.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s18.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 37: IA y Futuro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar" style="background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 37</h1>
+            <h2>El Horizonte: IA, Big Data y lo que viene</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Sistemas</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge" style="background-color: #00d2ff; color: #000;">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. No es Magia, es Matemática</h3>
+            <p><strong>Objetivo:</strong> Desmitificar la Inteligencia Artificial. Entender que no "piensa", solo "predice".</p>
+            
+            <div class="interactive-box" style="border-color: #00d2ff; background-color: #f0f9ff;">
+                <h4>🤖 Programación Clásica vs. IA</h4>
+                <p>¿Cuál es la diferencia entre lo que aprendimos y ChatGPT?</p>
+                
+                <div class="stats-grid" style="gap: 15px;">
+                    <div class="stat-item" style="width: 45%; background: white; padding: 15px; border-radius: 8px; border-left: 5px solid #3a7bd5;">
+                        <span class="stat-number" style="color: #3a7bd5; font-size: 1.2rem;">Tradicional</span>
+                        <p style="font-size: 0.8rem;">Tú escribes las reglas.</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.6rem; background: #eee; padding: 5px; margin-top: 5px;">
+                            SI es_gato:<br>&nbsp;&nbsp;decir "Miau"
+                        </div>
+                    </div>
+
+                    <div class="stat-item" style="width: 45%; background: #1a1a2e; padding: 15px; border-radius: 8px; border-left: 5px solid #f80759; color: white;">
+                        <span class="stat-number" style="color: #f80759; font-size: 1.2rem;">Machine Learning</span>
+                        <p style="font-size: 0.8rem;">La máquina <em>aprende</em> las reglas.</p>
+                        <div style="font-family: 'Fira Code'; font-size: 0.6rem; background: #16213e; padding: 5px; margin-top: 5px; color: #00d2ff;">
+                            Analiza 1 millón de fotos de gatos -> Deduce qué es un gato.
+                        </div>
+                    </div>
+                </div>
+                <p class="highlight-text" style="color: #302b63;">"La IA es solo una calculadora de probabilidades muy rápida y elegante."</p>
+            </div>
+        </section>
+
+        
+
+[Image of artificial intelligence neural network diagram]
+
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: #1a1a2e;">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. El Cerebro Digital (Redes Neuronales)</h3>
+
+            <div class="focus-box" style="background: #0f0c29; border: 1px solid #00d2ff;">
+                <h4 style="color: #00d2ff;">🧠 Visualizando una Red Neuronal</h4>
+                <p style="color: #a0aec0;">Entradas (Datos) -> Capas Ocultas (Proceso) -> Salida (Resultado)</p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; height: 150px; position: relative; max-width: 300px; margin: 20px auto;">
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="neuron input-neuron"></div>
+                        <div class="neuron input-neuron"></div>
+                        <div class="neuron input-neuron"></div>
+                    </div>
+
+                    <div style="position: absolute; width: 100%; height: 100%; pointer-events: none;">
+                        <svg width="100%" height="100%">
+                            <line x1="10%" y1="20%" x2="50%" y2="50%" stroke="#3a7bd5" stroke-width="1" opacity="0.5" />
+                            <line x1="10%" y1="50%" x2="50%" y2="50%" stroke="#3a7bd5" stroke-width="1" opacity="0.5" />
+                            <line x1="10%" y1="80%" x2="50%" y2="50%" stroke="#3a7bd5" stroke-width="1" opacity="0.5" />
+                            <line x1="50%" y1="50%" x2="90%" y2="50%" stroke="#f80759" stroke-width="2" />
+                        </svg>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; z-index: 2;">
+                        <div class="neuron hidden-neuron" style="animation: pulse 2s infinite;"></div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; z-index: 2;">
+                        <div class="neuron output-neuron"></div>
+                    </div>
+
+                </div>
+
+                <style>
+                    .neuron { width: 20px; height: 20px; border-radius: 50%; border: 2px solid white; }
+                    .input-neuron { background: #3a7bd5; }
+                    .hidden-neuron { background: #7b4397; box-shadow: 0 0 10px #7b4397; }
+                    .output-neuron { background: #f80759; }
+                    @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; transform: scale(0.9); } }
+                </style>
+                <p style="font-size: 0.7rem; text-align: center; color: #a0aec0; margin-top: 10px;">Cada neurona decide si pasa la información a la siguiente.</p>
+            </div>
+
+            <div class="cards-container">
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #3a7bd5; border-bottom: 2px solid #3a7bd5;">📊 Big Data</h4>
+                    <p>La IA necesita "comida" para aprender. Esa comida son TUS datos.</p>
+                    <ul>
+                        <li>Tus Likes en Instagram.</li>
+                        <li>Tus búsquedas en Google.</li>
+                        <li>Tu ubicación GPS.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card" style="background: white; border: 1px solid #ddd; color: #333;">
+                    <h4 style="color: #f80759; border-bottom: 2px solid #f80759;">💬 Prompt Engineering</h4>
+                    <p>La nueva habilidad laboral: Saber pedirle cosas a la IA.</p>
+                    <p style="font-size: 0.8rem; background: #eee; padding: 5px;">Malo: "Hazme un ensayo."</p>
+                    <p style="font-size: 0.8rem; background: #e0f7fa; padding: 5px;">Bueno: "Actúa como un biólogo y escribe un ensayo de 300 palabras sobre..."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: #302b63;">
+            <div class="time-badge" style="background-color: #00d2ff; color: #000;">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Ética y Futuro</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Deepfakes</h5>
+                    <p>¿Podemos confiar en lo que vemos en video?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')" style="background-color: #302b63;">Ver Realidad</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Ya no.</strong> La IA puede cambiar caras y voces en tiempo real. La nueva alfabetización digital es <strong>verificar fuentes</strong>, no solo creer en imágenes.</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>¿La IA me quitará el trabajo?</h5>
+                    <p>La gran pregunta del siglo.</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')" style="background-color: #302b63;">Ver Respuesta</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>"La IA no te quitará el trabajo. Una persona QUE SEPA USAR IA te quitará el trabajo."</strong> Tu misión es ser esa persona.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought" style="background-color: #f0f9ff; border-left-color: #00d2ff;">
+                <p>🚀 <strong>Misión Final:</strong> Entra a una IA (como Gemini o ChatGPT) y pídele que te explique un tema difícil "como si tuvieras 5 años". Analiza si la explicación es buena.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer" style="border-top-color: #00d2ff;">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 37 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

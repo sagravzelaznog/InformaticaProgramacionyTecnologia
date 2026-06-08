@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S11 E41: Introducción a Linux para Redes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 11, Sesión 41: Introducción a Linux 🐧</h1>
+        <p class="subtitle">La Línea de Comandos (CLI) y su Importancia en Servidores de Red</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. ¿Por Qué Linux es Clave en Redes?</h2>
+            <p>**Linux** (y sus distribuciones como Ubuntu o CentOS) es el sistema operativo más utilizado para servidores web, firewalls, routers personalizados y servicios en la nube. Conocer su **Línea de Comandos (CLI)** es indispensable para la gestión de infraestructura de red.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Estabilidad y Seguridad</h3>
+                    <p>Linux es altamente estable, rara vez requiere reinicios y es menos propenso a virus que Windows, haciéndolo ideal para servicios críticos que deben estar siempre activos.</p>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Bajo Consumo de Recursos</h3>
+                    <p>Las versiones de servidor (sin interfaz gráfica) consumen muy poca RAM y CPU, permitiendo que el hardware se enfoque en la tarea de servidor (ej. servir archivos o enrutar tráfico).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Comandos Básicos de Navegación y Archivos</h2>
+            <p>El primer paso es familiarizarse con la estructura de directorios y los comandos básicos de manipulación de archivos:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Comandos de Navegación</h3>
+                    <ul>
+                        <li>**`pwd`** (Print Working Directory): Muestra dónde estás.</li>
+                        <li>**`ls`**: Lista el contenido del directorio actual.</li>
+                        <li>**`cd [directorio]`**: Cambia de directorio (ej. `cd /var/www`).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Comandos de Archivos</h3>
+                    <ul>
+                        <li>**`mkdir [nombre]`**: Crea un nuevo directorio.</li>
+                        <li>**`touch [archivo]`**: Crea un archivo vacío.</li>
+                        <li>**`cp [origen] [destino]`**: Copia archivos.</li>
+                        <li>**`mv [origen] [destino]`**: Mueve o renombra archivos.</li>
+                    </ul>
+                </div>
+            </div>
+            [Image of Linux command line interface (CLI)]
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Montando la Terminal Linux</h2>
+            <p><strong>Tarea Práctica (Preparación):</strong></p>
+            <ol>
+                <li>Si usas Windows 10/11, activa y configura **WSL (Windows Subsystem for Linux)**, instalando una distribución (ej. Ubuntu).</li>
+                <li>Si usas un OS diferente, instala una máquina virtual con **VirtualBox** o **VMware** y un Linux ligero.</li>
+                <li>Practica los comandos básicos: `pwd`, `ls`, `cd /`, `mkdir prueba`.</li>
+            </ol>
+            <button id="linuxSetupCheckBtn">Verificar Entorno Linux</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S11 E41</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion40.html" class="nav-button">Anterior</a>
+        <a href="sesion42.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

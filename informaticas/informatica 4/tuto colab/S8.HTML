@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8. Prácticas 15-16 U1: Funciones con Retorno y Módulos</title>
+    <style>
+        /* Prevención de selección y copiado */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* Mensaje al intentar copiar */
+        body::selection {
+            background: transparent;
+        }
+        
+        /* Prevención de captura de pantalla (soporte limitado) */
+        @media print {
+            body { display: none !important; }
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; }
+        header { background-color: #0c82f0; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .instructions { border: 2px solid #0c82f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .code-markdown { background-color: #f0f8ff; border-left: 5px solid #0c82f0; padding: 10px; margin: 10px 0; font-family: monospace; white-space: pre-wrap; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>8. Prácticas 15-16 U1: Funciones con Retorno y Módulos</h1>
+    <p>Funciones que calculan y devuelven resultados, e importación de librerías.</p>
+</header>
+
+<div class="instructions">
+    <h2>Instrucciones para la Actividad</h2>
+    <p><strong>Paso 1: Celda de Código</strong> | Añade una celda de <strong>Código</strong> para cada práctica.</p>
+    <p><strong>Paso 2: Valor de Retorno</strong> | En la Práctica 15, observa cómo la función `return` permite guardar el resultado en una nueva variable (`resultado_suma`).</p>
+    <p><strong>Paso 3: Módulo</strong> | En la Práctica 16, comprueba cómo se puede acceder a funciones predefinidas como `sqrt` (raíz cuadrada) después de importar la librería `math`.</p>
+</div>
+
+<section class="activity-section">
+    <h2>Práctica 15 U1: Funciones con Retorno (`return`)</h2>
+    <p>La palabra clave `return` permite que la función devuelva un valor, que puede ser utilizado en otra parte del programa.</p>
+    <pre class="code">
+# practica12 u2: Función con Retorno
+
+def sumar(a, b):
+    # La función calcula la suma y la devuelve
+    resultado = a + b
+    return resultado
+
+# Llamada a la función y almacenamiento del resultado
+num1 = 50
+num2 = 75
+resultado_suma = sumar(num1, num2)
+
+print(f"La suma de {num1} y {num2} es: {resultado_suma}")
+    </pre>
+</section>
+
+<section class="activity-section">
+    <h2>Práctica 16 U1: Módulos y Librerías</h2>
+    <p>Los módulos son archivos Python que contienen funciones y clases. La librería `math` contiene funciones matemáticas.</p>
+    <pre class="code">
+# practica13 u2: Módulos (Librería Math)
+# Se necesita importar el módulo para usar sus funciones.
+
+import math
+
+# Calcular la raíz cuadrada
+numero = 100
+raiz = math.sqrt(numero)
+print(f"La raíz cuadrada de {numero} es: {raiz}")
+
+# Calcular el valor de PI
+pi_val = math.pi
+print(f"El valor de Pi es: {pi_val}")
+
+# Calcular la potencia
+pot = math.pow(5, 3) # 5 elevado a la 3
+print(f"5 elevado a la 3 es: {pot}")
+    </pre>
+</section>
+
+</body>
+<footer>
+    <div style="text-align: center; margin-top: 20px; padding: 10px; border-top: 1px solid #ccc;">
+        <a href="S7.HTML" style="margin: 0 15px;">&larr; Anterior</a>
+        <a href="index.html" style="margin: 0 15px;">Volver al Índice</a>
+        <a href="S9.HTML" style="margin: 0 15px;">Siguiente &rarr;</a>
+    </div>
+	<p style="text-align: center; font-size: 0.8em; color: #666;">© 2025 JMGV-PTEL TUTORIAL GOOGLE COLAB. Todos los derechos reservados.</p>
+</footer>
+</html>

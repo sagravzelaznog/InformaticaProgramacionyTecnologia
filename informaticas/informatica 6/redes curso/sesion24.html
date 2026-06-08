@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S6 E24: Documentación y Diagramación de Redes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <header>
+        <h1>Semana 6, Sesión 24: Documentación y Diagramación de Redes</h1>
+        <p class="subtitle">Conceptos Básicos y Fundamentos Teóricos</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. La Importancia de la Documentación para el Técnico</h2>
+            <p>La documentación no es solo un papel, es una herramienta de diagnóstico. Sin un diagrama de red, resolver un fallo puede tomar horas; con él, minutos. Todo técnico debe documentar los siguientes aspectos:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Diagrama Físico</h3>
+                    <p>Muestra la ubicación real de cables, puertos de pared, racks y dispositivos.</p>
+                </div>
+                <div class="card">
+                    <h3>Diagrama Lógico</h3>
+                    <p>Muestra el esquema de direccionamiento IP, las subredes, los VLANs (futuro tema) y los servidores.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Símbolos Estándar de Redes (Cisco, AWS, etc.)</h2>
+            <p>Un diagrama debe ser comprensible para cualquier otro técnico. Para ello, usamos símbolos estandarizados para representar Routers, Switches, Firewalls, etc. Es importante familiarizarse con los iconos más usados, como los de Cisco o los usados en la nube (AWS, Azure).</p>
+            
+            <div class="image-container">
+                
+                <figcaption>El uso de símbolos estándar asegura que cualquier técnico entienda el diseño de la red.</figcaption>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Herramientas Gratuitas de Diagramación</h2>
+            <p>Existen varias herramientas que permiten crear diagramas de red profesionales de forma gratuita:</p>
+
+            <div class="advantage-list">
+                <div>
+                    <h3>Draw.io / Diagrams.net</h3>
+                    <p>Herramienta web gratuita y potente, con bibliotecas de símbolos de red, topología y AWS/Azure. Excelente para diagramas lógicos.</p>
+                </div>
+                <div>
+                    <h3>Packet Tracer</h3>
+                    <p>Aunque es un simulador, también sirve como una herramienta de diagramación física y lógica, ya que permite colocar y conectar los dispositivos visualmente.</p>
+                </div>
+            </div>
+
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <ol>
+                <li>Usando Draw.io o Packet Tracer, dibuja la topología de la red de tu casa/escuela (Router, Switch, PCs, Servidores).</li>
+                <li>Asegúrate de incluir las IPs del Gateway y de tu PC.</li>
+            </ol>
+            <button id="documentationCheckBtn">Finalizar Documentación</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S6 E24</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion23.html" class="nav-button">Anterior</a>
+        <a href="sesion25.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

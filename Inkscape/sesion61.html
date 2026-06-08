@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S61: Preparación del Proyecto Final: Maquetación y Exportación</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: #8B4513; }
+        .paso { background-color: #fff8e1; border-left: 5px solid #8B4513; padding: 10px; margin-bottom: 10px; }
+        .ejercicio { border: 2px solid #FFA500; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Sesión 61: Preparación del Proyecto Final: Maquetación y Exportación</h1>
+
+    <section>
+        <h2>1. Organización Maestra del Archivo</h2>
+        <p>Un archivo final de proyecto debe ser un ejemplo de organización y profesionalismo. Un desarrollador o un colega debe poder navegarlo sin esfuerzo.</p>
+        <div class="paso">
+            <strong>Jerarquía de Capas Definitiva</strong>
+            <p>Revisa y renombra todas tus capas para que sean claras (ej. `Logo_Principal`, `Iconos_Exportables`, `Arte_Fondo`, `Textos_Finales`). Oculta cualquier capa de boceto o referencia que ya no uses.</p>
+        </div>
+        <div class="paso">
+            <strong>Nomenclatura de Objetos</strong>
+            <p>Asigna IDs claros a todos los elementos que serán exportados o manipulados por código (ej. **Boton_CTA**, **Ilustracion_Hero**). Usa el panel **Objetos (Shift + Ctrl + O)**.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Exportación de Activos Múltiples (Batch Export)</h2>
+        <p>Genera todos los archivos de salida necesarios para el proyecto (web, móvil, impresión).</p>
+        <div class="paso">
+            <strong>Exportación de PNG Múltiple</strong>
+            <p>Selecciona todos los iconos y elementos de interfaz. Abre el diálogo de **Exportar (Shift + Ctrl + E)**. Asegúrate de que están nombrados correctamente (ej. **Icono_Menu@2x.png**). Usa la opción **Exportar lote** para generar todos los PNG a 1x, 2x y 3x de resolución de una sola vez.</p>
+        </div>
+        <div class="paso">
+            <strong>Archivos de Salida SVG (Optimizados)</strong>
+            <p>Guarda el logo y los iconos complejos como archivos **SVG Plano**. Aplica la extensión **SVG Optimizer (Scour)** antes de guardar para reducir el tamaño del archivo y limpiarlo de metadatos de Inkscape.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Estructura de Carpetas de Entrega</h2>
+        <p>Organiza todos los archivos finales en una estructura lógica.</p>
+        <div class="paso">
+            <strong>Estructura Estándar</strong>
+            <ul>
+                <li>`/Proyecto_Final/`
+                <li>`L /01_Fuentes/` (Archivos SVG fuente del proyecto)
+                <li>`L /02_Exportados/`
+                <li>`L / L /web/` (PNG @2x, SVG optimizados, Favicon)
+                <li>`L / L /impresion/` (PDF/X, Trazado de Corte)
+                <li>`L /03_Documentacion/` (Guía de Estilo, Notas)
+            </ul>
+        </div>
+        <div class="paso">
+            <strong>Archivos Readme</strong>
+            <p>Incluye un archivo de texto simple (`README.txt`) con notas clave: licencia de la fuente, breve descripción del proyecto, y contacto.</p>
+        </div>
+    </section>
+
+    <div class="ejercicio">
+        <h3>Ejercicio Sugerido: Creación de Carpeta de Entrega</h3>
+        <p><strong>Objetivo:</strong> Simular el proceso de entrega final.</p>
+        <ol>
+            <li>Crea la estructura de carpetas de entrega en tu sistema.</li>
+            <li>Guarda tu proyecto final como **SVG Plano** en la carpeta `01_Fuentes`.</li>
+            <li>Exporta 3 iconos a `@2x` de resolución y colócalos en `02_Exportados/web`.</li>
+            <li>Crea un `README.txt` con la nota "Todos los archivos de texto han sido convertidos a trayecto para impresión".</li>
+        </ol>
+    </div>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="sesion60.html">Anterior</a>
+    <a href="sesion62.html">Siguiente</a>
+</nav>
+</body>
+</html>

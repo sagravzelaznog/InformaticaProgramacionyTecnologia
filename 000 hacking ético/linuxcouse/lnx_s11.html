@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion11: Conexión Remota y Túneles</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 11: Criptografía y Control Remoto (SSH / SCP)</h1>
+            <p class="intro-text">Nunca analizamos una máquina comprometida sentándonos físicamente frente a ella; lo hacemos de forma remota para no alterar el entorno físico ni las memorias temporales. Hoy aprenderemos a establecer túneles encriptados de grado militar para controlar servidores y extraer evidencia sin que nadie pueda espiar la transferencia.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: El Puente Seguro (ssh)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><strong>SSH (Secure Shell)</strong> reemplazó a protocolos antiguos como Telnet porque encripta todo el tráfico. Para conectarte, necesitas saber el nombre del usuario y la IP del servidor objetivo. (Para este laboratorio, asumiremos que tienes otra máquina en la IP 192.168.1.50).</p>
+                    <div class="warning-box" style="border-left-color: #8b5cf6; color: #ddd6fe; background-color: rgba(139, 92, 246, 0.1);">
+                        <strong style="color: #a78bfa;">Primer Contacto (Fingerprint):</strong> La primera vez que te conectas, SSH te preguntará si confías en la huella criptográfica (fingerprint) del servidor. Un perito siempre la verifica antes de escribir "yes".
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="prompt">-(kali㉿kali)-[~]$</span> ssh investigador@192.168.1.50
+<span class="comment">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span></code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: Conciencia Espacial Remota</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>¡Peligro Psicológico! Una vez conectado, tu terminal se verá casi igual, pero <strong>ya no estás en tu máquina</strong>. Ejecutar <code>rm</code> aquí borrará archivos en el servidor remoto. Aprende a leer el <em>prompt</em> y usa comandos de ubicación.</p>
+                    <div class="code-encapsulated remote-theme">
+                        <pre><code><span class="comment"># Observa cómo cambió el usuario y el nombre de la máquina en el prompt</span>
+<span class="remote-prompt">investigador@servidor-comprometido:~$</span> hostname
+<span class="remote-prompt">investigador@servidor-comprometido:~$</span> pwd
+<span class="comment"># Para regresar a tu máquina segura (Kali), CIERRA la conexión</span>
+<span class="remote-prompt">investigador@servidor-comprometido:~$</span> exit
+<span class="prompt">-(kali㉿kali)-[~]$</span> <span class="comment"># Has vuelto a casa</span></code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Extracción Criptográfica (Simulador SSH/SCP)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Antes de usar el comando de copia segura, interactúa con el simulador. Observa cómo el texto plano se convierte en "basura" ilegible mientras viaja por el túnel de red. Esta es la magia de la encriptación asimétrica.</p>
+                    
+                    <div class="crypto-simulator">
+                        <div class="tunnel-container">
+                            <div class="machine local-machine">
+                                <h4>Máquina A (Local)</h4>
+                                <div id="local-data" class="data-block">evidencia.log</div>
+                            </div>
+                            <div class="tunnel">
+                                <div class="tunnel-pipe">
+                                    <button id="btn-transmit" class="btn btn-primary" style="position:absolute; top:-40px; left:50%; transform:translateX(-50%); font-size:0.8rem;">Transmitir SCP</button>
+                                    <div id="packet-container"></div>
+                                </div>
+                            </div>
+                            <div class="machine remote-machine">
+                                <h4>Máquina B (Remoto)</h4>
+                                <div id="remote-data" class="data-block empty-block">Esperando...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 4: Copia Segura (scp)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p><code>scp</code> (Secure Copy) usa el mismo túnel encriptado que SSH para transferir archivos. Su sintaxis requiere atención: <strong>scp [origen] [destino]</strong>. Si el destino es remoto, debes usar el formato <code>usuario@ip:/ruta/</code>.</p>
+                    <div class="tip-card" style="border-left-color: #8b5cf6; background-color: rgba(139, 92, 246, 0.08);">
+                        <strong style="color: #a78bfa;">Sintaxis Pericial:</strong> No olvides los DOS PUNTOS (:) después de la IP. Es lo que le indica a scp que lo que sigue es una ruta en el servidor remoto.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># EXTRAER del servidor remoto hacia tu máquina local (punto actual '.')</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> scp investigador@192.168.1.50:/var/log/auth.log .
+
+<span class="comment"># ENVIAR un script tuyo hacia el servidor remoto</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> scp script_auditoria.sh investigador@192.168.1.50:/tmp/</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #11. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

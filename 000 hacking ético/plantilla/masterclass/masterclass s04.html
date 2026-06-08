@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masterclass Sesión 4 - Hacking Ético Forense">
+    <title>Sesión 4: Recolección en la Escena | DFIR</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Módulo 1: Cadena de Custodia</h1>
+            <nav>
+                <div class="status-badge">Estado: Primer Respondedor en Escena</div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="chunk-content story-box">
+            <h2>Misión 04: Control de la Zona Cero</h2>
+            <p><strong>Situación:</strong> Has llegado a las oficinas de la empresa comprometida. Hay un servidor encendido y varios dispositivos USB esparcidos. Los abogados defensores están esperando que cometas un error de procedimiento para invalidar toda la investigación.</p>
+            <p>Si la evidencia no está correctamente fotografiada, etiquetada y registrada en el manifiesto desde el minuto cero, el caso está perdido antes de empezar. Es hora de digitalizar la escena física.</p>
+        </section>
+
+        <section class="chunk-content lab-box">
+            <h2>Laboratorio Hands-On: Documentación Digital de la Escena</h2>
+            <p>Abre tu máquina virtual con Kali Linux. Ejecuta los siguientes pasos para simular la recolección, el etiquetado y la creación de la cadena de custodia.</p>
+            
+            <div class="task-list">
+                <div class="task-item" id="task-1">
+                    <h3>1. Simular la Recolección de Evidencia</h3>
+                    <p>Establece un directorio seguro que actuará como tu contenedor de recolección digital y crea un inventario inicial (Manifiesto).</p>
+                    <div class="terminal">
+                        <code>mkdir -p ~/DFIR/Casos/Caso_001/Escena<br>
+                        cd ~/DFIR/Casos/Caso_001/Escena<br>
+                        echo "Evidencia 01: Servidor encendido | Evidencia 02: USB Kingston 32GB" > inventario_inicial.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(1)">Validar Recolección</button>
+                </div>
+
+                <div class="task-item" id="task-2">
+                    <h3>2. Etiquetar y Fotografiar la Evidencia</h3>
+                    <p>En el mundo real tomas fotos físicas. En el digital, generamos una etiqueta de tiempo inmutable vinculada al ID de la evidencia.</p>
+                    <div class="terminal">
+                        <code># Crear etiqueta criptográfica con marca de tiempo<br>
+                        date +"%Y-%m-%d %H:%M:%S" > etiqueta_EV01.txt<br>
+                        echo "ID: EV-01 | Tipo: Servidor | Analista: DFIR-Ops" >> etiqueta_EV01.txt<br>
+                        cat etiqueta_EV01.txt</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(2)">Validar Etiquetado</button>
+                </div>
+
+                <div class="task-item" id="task-3">
+                    <h3>3. Formulario de Cadena de Custodia Digital</h3>
+                    <p>Estructura un archivo de valores separados por comas (CSV) que servirá como tu registro maestro de custodia.</p>
+                    <div class="terminal">
+                        <code># Inicializar el formulario digital<br>
+                        echo "ID_Evidencia,Fecha_Recoleccion,Ubicacion,Recolectado_Por" > cadena_custodia.csv<br>
+                        # Rellenar la primera entrada<br>
+                        echo "EV-01,$(date +%F),Site Principal,Analista_DFIR" >> cadena_custodia.csv<br>
+                        cat cadena_custodia.csv</code>
+                    </div>
+                    <button class="btn-primary" onclick="AppController.completeTask(3)">Validar Custodia</button>
+                </div>
+            </div>
+            
+            <div id="success-message" class="hidden success-box">
+                <h3>¡Escena Asegurada y Documentada!</h3>
+                <p>Has establecido un puente legal perfecto entre el mundo físico y tu entorno digital. Tu cadena de custodia es sólida y resistirá el escrutinio de cualquier tribunal.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; jmgv-ptel. hacking ético sesion 4. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

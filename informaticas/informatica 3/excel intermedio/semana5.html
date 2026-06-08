@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 5: Gráficos Básicos en Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .sesion {
+            background-color: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .contenido {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .volver {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .volver:hover {
+            background-color: #2980b9;
+        }
+        .ejemplo {
+            background-color: #f0f7ff;
+            border-left: 3px solid #5d9cec;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .consejo {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .grafico {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .grafico img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+    <h1>Semana 5: Gráficos Básicos en Excel</h1>
+    
+    <div id="sesion5.1" class="sesion">
+        <h2>Sesión 5.1: Tipos de gráficos y cuándo usarlos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Identificar los diferentes tipos de gráficos disponibles en Excel</li>
+                <li>Comprender el propósito y uso adecuado de cada tipo de gráfico</li>
+                <li>Seleccionar el gráfico más apropiado según el tipo de datos</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Gráficos de columnas y barras:
+                    <ul>
+                        <li>Comparación de valores entre categorías</li>
+                        <li>Barras apiladas para mostrar la composición</li>
+                        <li>Barras 100% para comparar proporciones</li>
+                    </ul>
+                </li>
+                <li>Gráficos circulares y de anillo:
+                    <ul>
+                        <li>Mostrar proporciones de un todo</li>
+                        <li>Límite recomendado de categorías (máx. 7-8)</li>
+                        <li>Uso de gráficos de anillo para múltiples series</li>
+                    </ul>
+                </li>
+                <li>Gráficos de líneas y áreas:
+                    <ul>
+                        <li>Tendencias a lo largo del tiempo</li>
+                        <li>Múltiples series para comparación</li>
+                        <li>Áreas apiladas para mostrar contribución total</li>
+                    </ul>
+                </li>
+                <li>Gráficos de dispersión (XY):
+                    <ul>
+                        <li>Relaciones entre variables</li>
+                        <li>Identificación de correlaciones</li>
+                        <li>Líneas de tendencia</li>
+                    </ul>
+                </li>
+                <li>Otros tipos de gráficos:
+                    <ul>
+                        <li>Gráficos de radar</li>
+                        <li>Gráficos de superficie</n                        <li>Gráficos de cotizaciones</li>
+                        <li>Gráficos combinados</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplos de uso:</h4>
+                <p><strong>Ventas mensuales:</strong> Gráfico de columnas agrupadas</p>
+                <p><strong>Distribución de gastos:</strong> Gráfico circular o de anillo</p>
+                <p><strong>Tendencias anuales:</strong> Gráfico de líneas</p>
+                <p><strong>Relación entre variables:</strong> Gráfico de dispersión</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Analizar diferentes conjuntos de datos y seleccionar el tipo de gráfico más adecuado para cada uno, justificando la elección.</p>
+        </div>
+    </div>
+    
+    <div id="sesion5.2" class="sesion">
+        <h2>Sesión 5.2: Creación y formato de gráficos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Crear gráficos a partir de datos en Excel</li>
+                <li>Personalizar la apariencia de los gráficos</li>
+                <li>Agregar y modificar elementos del gráfico</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>Creación de un gráfico básico:
+                    <ul>
+                        <li>Selección de datos</li>
+                        <li>Inserción del gráfico</li>
+                        <li>Cambio de tipo de gráfico</li>
+                    </ul>
+                </li>
+                <li>Elementos del gráfico:
+                    <ul>
+                        <li>Título del gráfico y ejes</li>
+                        <li>Leyenda</li>
+                        <li>Etiquetas de datos</li>
+                        <li>Líneas de cuadrícula</li>
+                        <li>Ejes (formato, escala, unidades)</li>
+                    </ul>
+                </li>
+                <li>Formato de elementos:
+                    <ul>
+                        <li>Estilos y colores</li>
+                        <li>Efectos (sombras, reflejos, brillo)</li>
+                        <li>Rellenos y bordes</li>
+                    </ul>
+                </li>
+                <li>Herramientas de gráfico:
+                    <ul>
+                        <li>Diseño (agregar elementos, diseños rápidos)</li>
+                        <li>Formato (estilos de forma y texto)</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejercicio práctico:</h4>
+                <p>1. Crear una tabla con ventas trimestrales por región</p>
+                <p>2. Insertar un gráfico de columnas agrupadas</p>
+                <p>3. Agregar títulos y etiquetas</p>
+                <p>4. Aplicar un estilo de diseño</p>
+                <p>5. Cambiar colores y efectos</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear un informe de ventas con al menos tres gráficos diferentes que muestren la información de ventas desde diferentes perspectivas (por producto, por vendedor, por región).</p>
+        </div>
+    </div>
+    
+    <div id="sesion5.3" class="sesion">
+        <h2>Sesión 5.3: Minigráficos</h2>
+        <div class="contenido">
+            <h3>Objetivos de aprendizaje:</h3>
+            <ul>
+                <li>Comprender el propósito de los minigráficos</li>
+                <li>Crear y formatear minigráficos</li>
+                <li>Utilizar minigráficos para análisis rápido de datos</li>
+            </ul>
+            
+            <h3>Contenido detallado:</h3>
+            <ol>
+                <li>¿Qué son los minigráficos?
+                    <ul>
+                        <li>Gráficos en miniatura dentro de una celda</li>
+                        <li>Visualización rápida de patrones y tendencias</li>
+                        <li>Tipos: Línea, Columna y Ganancia/Pérdida</li>
+                    </ul>
+                </li>
+                <li>Creación de minigráficos:
+                    <ul>
+                        <li>Selección del rango de datos</li>
+                        <li>Configuración de ubicación</li>
+                        <li>Actualización automática</li>
+                    </ul>
+                </li>
+                <li>Personalización:
+                    <ul>
+                        <li>Estilos y colores</li>
+                        <li>Mostrar puntos altos/bajos</li>
+                        <li>Cambiar tipo de minigráfico</li>
+                        <li>Agrupar minigráficos</li>
+                    </ul>
+                </li>
+                <li>Usos avanzados:
+                    <ul>
+                        <li>Análisis comparativo en tablas</li>
+                        <li>Tableros de control</li>
+                        <li>Informes resumidos</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="ejemplo">
+                <h4>Ejemplo práctico:</h4>
+                <p>Crear una tabla de ventas mensuales por producto y agregar minigráficos de línea en la última columna para mostrar la tendencia de ventas de cada producto.</p>
+            </div>
+            
+            <h3>Actividad práctica:</h3>
+            <p>Crear un informe de rendimiento de acciones con minigráficos que muestren la tendencia de cada acción durante el último mes.</p>
+        </div>
+    </div>
+    
+    <div id="sesion5.4" class="sesion">
+        <h2>Sesión 5.4: Práctica guiada - Análisis de ventas</h2>
+        <div class="contenido">
+            <h3>Objetivos de la práctica:</h3>
+            <ul>
+                <li>Aplicar los conocimientos de gráficos en un caso real</li>
+                <li>Crear visualizaciones efectivas para el análisis de datos</li>
+                <li>Desarrollar un informe ejecutivo con múltiples gráficos</li>
+            </ul>
+            
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Crear un nuevo libro llamado "Analisis_Ventas"</li>
+                <li>En la primera hoja, crear un conjunto de datos con las ventas trimestrales de los últimos 3 años para al menos 5 productos diferentes</li>
+                <li>Crear las siguientes visualizaciones en hojas separadas:
+                    <ul>
+                        <li><strong>Ventas Totales:</strong> Gráfico de columnas mostrando las ventas totales por trimestre</li>
+                        <li><strong>Comparación de Productos:</strong> Gráfico de barras apiladas mostrando la contribución de cada producto por trimestre</li>
+                        <li><strong>Tendencias:</strong> Gráfico de líneas mostrando la evolución de ventas de cada producto a lo largo del tiempo</li>
+                        <li><strong>Distribución:</strong> Gráfico circular mostrando el porcentaje de ventas por producto en el último trimestre</li>
+                        <li><strong>Tablero de Control:</strong> Crear un resumen ejecutivo en una nueva hoja que incluya:
+                            <ul>
+                                <li>Métricas clave (ventas totales, crecimiento interanual, producto más vendido)</li>
+                                <li>Minigráficos mostrando tendencias por producto</li>
+                                <li>Un gráfico combinado que muestre ventas y crecimiento</li>
+                                <li>Filtros para seleccionar trimestre o producto</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Formatear profesionalmente cada gráfico:
+                    <ul>
+                        <li>Títulos descriptivos</li>
+                        <li>Etiquetas de datos cuando sea necesario</li>
+                        <li>Escalas apropiadas</li>
+                        <li>Colores consistentes para cada producto en todos los gráficos</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>Requisitos adicionales:</h3>
+            <ul>
+                <li>Usar al menos un gráfico combinado (columnas y líneas)</li>
+                <li>Incluir un minigráfico en la tabla de datos original</li>
+                <li>Agregar una segmentación de datos para filtrar por producto o período</li>
+                <li>Crear un diseño de página profesional para impresión</li>
+            </ul>
+            
+            <div class="consejo">
+                <h4>Consejo profesional:</h4>
+                <p>Usa las Herramientas de gráfico > Diseño > Seleccionar datos para ajustar el rango de datos de cada gráfico sin modificar la estructura de la tabla original.</p>
+            </div>
+            
+            <h3>Entrega:</h3>
+            <p>Guardar el archivo con el nombre "Apellido_Nombre_AnalisisVentas.xlsx" y asegurarse de que todos los gráficos se actualicen correctamente al modificar los datos.</p>
+        </div>
+    </div>
+    
+    <a href="plan_estudios_excel.html" class="volver">← Volver al plan de estudios</a>
+</body>
+</html>

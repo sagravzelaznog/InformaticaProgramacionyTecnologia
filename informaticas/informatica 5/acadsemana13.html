@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 13: Trabajo con imágenes y PDF</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .session {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .session h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .content {
+            margin: 15px 0;
+        }
+        .objectives {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .objectives h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .image-type {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .pdf-tools {
+            background-color: #f0f7ff;
+            border-left: 4px solid #64b5f6;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .image-format {
+            background-color: #f5f0ff;
+            border-left: 4px solid #673ab7;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Semana 13: Trabajo con imágenes y PDF</h1>
+            <p>4 sesiones - Plan de Estudios AutoCAD 2D</p>
+        </header>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+
+        <!-- Sesión 49 -->
+        <div id="sesion49" class="session">
+            <h2>Sesión 49: Introducción al trabajo con imágenes</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller Práctico: Manejo de Imágenes en AutoCAD (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Aprender a importar, ajustar y manipular imágenes raster en dibujos CAD para su uso como referencia o base de dibujo.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Importación y Escalado de Imágenes</h5>
+                        <ol>
+                            <li>Prepara una carpeta con imágenes de referencia (JPG, PNG, TIFF)</li>
+                            <li>Usa el comando <span class="command">IMAGEATTACH</span> para importar una imagen</li>
+                            <li>Especifica el punto de inserción y escala inicial</li>
+                            <li>Utiliza <span class="command">SCALE</span> con la opción de referencia para ajustar la escala</li>
+                            <li>Bloquea la capa de la imagen para evitar modificaciones accidentales</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">IMAGEATTACH</span> - Insertar imagen</p>
+                            <p><span class="command">IMAGEFRAME</span> - Mostrar/ocultar borde de imagen</p>
+                            <p><span class="command">SCALE</span> - Ajustar escala</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Recorte y Ajuste de Imágenes</h5>
+                        <ol>
+                            <li>Selecciona la imagen y abre el panel de propiedades</li>
+                            <li>Experimenta con los controles de brillo, contraste y desvanecimiento</li>
+                            <li>Usa <span class="command">IMAGECLIP</span> para recortar áreas innecesarias</li>
+                            <li>Prueba diferentes estilos de recorte: rectangular, poligonal o por polilínea</li>
+                            <li>Guarda los ajustes como perfiles preestablecidos</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Usa capas separadas para diferentes imágenes y desactiva las que no estés utilizando para mejorar el rendimiento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Proyecto: Digitalización de Plano en Papel</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Materiales Necesarios:</h5>
+                            <ul>
+                                <li>Imagen escaneada de un plano arquitectónico</li>
+                                <li>Archivo de AutoCAD con configuración inicial</li>
+                                <li>Biblioteca de bloques estándar</li>
+                                <li>Plantilla de capas predefinidas</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Parámetros Técnicos:</h5>
+                            <ul>
+                                <li>Resolución mínima: 200 DPI</li>
+                                <li>Formato preferido: TIFF sin compresión</li>
+                                <li>Escala objetivo: 1:100</li>
+                                <li>Sistema de coordenadas: UTM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación del Entorno</strong>
+                            <ul>
+                                <li>Crea una nueva capa llamada "IMAGEN_REF"</li>
+                                <li>Configura las unidades de dibujo según el sistema métrico</li>
+                                <li>Establece los límites del dibujo según las dimensiones del plano</li>
+                            </ul>
+                        </li>
+                        <li><strong>Importación y Ajuste</strong>
+                            <ul>
+                                <li>Importa la imagen usando <span class="command">IMAGEATTACH</span></li>
+                                <li>Escala la imagen usando referencias conocidas (ej. una medida de puerta estándar)</li>
+                                <li>Ajusta el brillo y contraste para mejorar la visibilidad</li>
+                            </ul>
+                        </li>
+                        <li><strong>Digitalización</strong>
+                            <ul>
+                                <li>Traza sobre la imagen usando polilíneas y arcos</li>
+                                <li>Utiliza snap a objetos para mayor precisión</li>
+                                <li>Asigna elementos a capas apropiadas</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos Digitales:</h5>
+                            <ul>
+                                <li>Archivo .dwg con la imagen de referencia</li>
+                                <li>Versión digitalizada del plano</li>
+                                <li>Archivo de configuración de estilos</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Informe de escalas utilizadas</li>
+                                <li>Lista de capas creadas</li>
+                                <li>Problemas encontrados y soluciones aplicadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad de la Digitalización (40 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión en el trazado (15pts)</li>
+                        <li>Uso adecuado de capas (10pts)</li>
+                        <li>Escala correcta (15pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Organización (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura de archivos (10pts)</li>
+                        <li>Nomenclatura clara (10pts)</li>
+                        <li>Documentación completa (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Técnicas Aplicadas (30 puntos)</strong>
+                    <ul>
+                        <li>Uso eficiente de comandos (10pts)</li>
+                        <li>Optimización de imágenes (10pts)</li>
+                        <li>Resolución de problemas (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea una biblioteca de imágenes de referencia frecuentemente utilizadas. Mantén un registro de las escalas y ajustes aplicados para futuros proyectos. Considera usar el espacio de papel para organizar múltiples imágenes de referencia.
+            </div>
+        </div>
+
+        <!-- Sesión 50 -->
+        <div id="sesion50" class="session">
+            <h2>Sesión 50: Trabajo avanzado con imágenes</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller Avanzado: Técnicas Profesionales con Imágenes (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Dominar técnicas avanzadas de manipulación de imágenes para proyectos profesionales de CAD.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Máscaras de Recorte Avanzadas</h5>
+                        <ol>
+                            <li>Crea una polilínea compleja sobre el área de interés</li>
+                            <li>Usa <span class="command">IMAGECLIP</span> con la opción de polilínea</li>
+                            <li>Experimenta con bordes suavizados en las máscaras</li>
+                            <li>Guarda configuraciones de recorte como bloques para uso futuro</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">IMAGECLIP</span> - Recorte de imagen</p>
+                            <p><span class="command">IMAGEFRAME</span> - Control de visualización</p>
+                            <p><span class="command">DRAWORDER</span> - Orden de visualización</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Optimización de Imagen</h5>
+                        <ol>
+                            <li>Analiza la resolución con <span class="command">IMAGEADJUST</span></li>
+                            <li>Aplica filtros de reducción de ruido</li>
+                            <li>Optimiza el balance de color para planos escaneados</li>
+                            <li>Configura perfiles de color específicos</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Para imágenes de gran tamaño, considera convertirlas a formatos más eficientes como JPG2000 o WebP.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Proyecto: Restauración de Planos Antiguos</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Materiales Necesarios:</h5>
+                            <ul>
+                                <li>Imagen escaneada de plano antiguo (mínimo 300 DPI)</li>
+                                <li>Plantilla de capas para restauración</li>
+                                <li>Biblioteca de símbolos históricos</li>
+                                <li>Guía de estilos de línea tradicionales</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Parámetros Técnicos:</h5>
+                            <ul>
+                                <li>Corrección de perspectiva: ±1° de precisión</li>
+                                <li>Balance de blancos: 5500K ± 200K</li>
+                                <li>Niveles de ruido: < 2%</li>
+                                <li>Conservación de marcas históricas: 100%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación de la Imagen</strong>
+                            <ul>
+                                <li>Corrige la perspectiva con <span class="command">IMAGECORRECT</span></li>
+                                <li>Elimina manchas y ruido digital</li>
+                                <li>Mejora el contraste de líneas débiles</li>
+                            </ul>
+                        </li>
+                        <li><strong>Vectorización</strong>
+                            <ul>
+                                <li>Traza elementos arquitectónicos con precisiión</li>
+                                <li>Utiliza capas específicas para diferentes elementos</li>
+                                <li>Preserva el estilo gráfico original</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentación</strong>
+                            <ul>
+                                <li>Registra las intervenciones realizadas</li>
+                                <li>Crea una lámina comparativa antes/después</li>
+                                <li>Genera un informe de metadatos</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos Digitales:</h5>
+                            <ul>
+                                <li>Imagen original y restaurada</li>
+                                <li>Archivo .dwg con la vectorización</li>
+                                <li>Biblioteca de estilos personalizados</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Procedimiento de restauración</li>
+                                <li>Fichas técnicas de las imágenes</li>
+                                <li>Informe de conservación</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad de la Restauración (40 puntos)</strong></p>
+                    <ul>
+                        <li>Fidelidad al original (15pts)</li>
+                        <li>Calidad de la limpieza (15pts)</li>
+                        <li>Precisión en la vectorización (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Organización (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura de capas (10pts)</li>
+                        <li>Documentación (10pts)</li>
+                        <li>Optimización de archivos (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Técnicas Avanzadas (30 puntos)</strong>
+                    <ul>
+                        <li>Uso de máscaras (10pts)</li>
+                        <li>Corrección de color (10pts)</li>
+                        <li>Manejo de formatos (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>Consejo Profesional:</strong> Crea acciones automatizadas para procesos repetitivos de edición de imágenes. Mantén un registro de los ajustes aplicados a cada imagen para consistencia en proyectos futuros. Considera el uso de software especializado como Adobe Photoshop o GIMP para tareas complejas de restauración antes de importar a AutoCAD.
+            </div>
+        </div>
+
+        <!-- Sesión 51 -->
+        <div id="sesion51" class="session">
+            <h2>Sesión 51: Trabajo con PDF en AutoCAD</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Taller Integral: Manejo Profesional de PDF en AutoCAD (120 min)</h4>
+                    <p><strong>Objetivo:</strong> Dominar el flujo de trabajo completo con archivos PDF en entornos profesionales de diseño CAD.</p>
+                    
+                    <div class="exercise">
+                        <h5>Ejercicio 1: Importación Avanzada de PDF</h5>
+                        <ol>
+                            <li>Prepara un archivo PDF con múltiples páginas y capas</li>
+                            <li>Usa <span class="command">PDFIMPORT</span> con diferentes configuraciones</li>
+                            <li>Compara resultados entre importar como geometría vs. como referencia</li>
+                            <li>Ajusta la escala usando referencias conocidas</li>
+                        </ol>
+                        
+                        <div class="code-command">
+                            <p><strong>Comandos clave:</strong></p>
+                            <p><span class="command">PDFIMPORT</span> - Importar PDF</p>
+                            <p><span class="command">PDFSHOWPAGES</span> - Navegar páginas</p>
+                            <p><span class="command">PDFLAYERS</span> - Gestionar capas</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise">
+                        <h5>Ejercicio 2: Vectorización y Optimización</h5>
+                        <ol>
+                            <li>Importa un plano escaneado en PDF</li>
+                            <li>Utiliza <span class="command">PDFSHXTEXT</span> para reconocer texto</li>
+                            <li>Vectoriza elementos gráficos con precisión</li>
+                            <li>Optimiza la geometría resultante</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Consejo:</strong> Para mejores resultados en la vectorización, ajusta la resolución del PDF a un mínimo de 300 DPI antes de importar.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-phase">
+                    <h4>Proyecto: Digitalización de Planos Existentes</h4>
+                    
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Materiales Necesarios:</h5>
+                            <ul>
+                                <li>Archivos PDF de planos existentes (mínimo 3)</li>
+                                <li>Plantilla de capas estandarizadas</li>
+                                <li>Biblioteca de bloques técnicos</li>
+                                <li>Guía de estilos de texto y cotas</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Parámetros Técnicos:</h5>
+                            <ul>
+                                <li>Precisión de vectorización: ±0.5mm</li>
+                                <li>Reconocimiento de texto: 98% de exactitud</li>
+                                <li>Conservación de capas: 100%</li>
+                                <li>Tamaño máximo de archivo: 20MB</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h5>Guía de Implementación:</h5>
+                    <ol>
+                        <li><strong>Preparación de Archivos</strong>
+                            <ul>
+                                <li>Verifica la calidad del PDF de origen</li>
+                                <li>Prepara la estructura de capas en AutoCAD</li>
+                                <li>Configura los estilos de texto y cotas</li>
+                            </ul>
+                        </li>
+                        <li><strong>Importación</strong>
+                            <ul>
+                                <li>Importa el PDF manteniendo capas</li>
+                                <li>Ajusta la escala usando referencias conocidas</li>
+                                <li>Corrige la orientación si es necesario</li>
+                            </ul>
+                        </li>
+                        <li><strong>Vectorización</strong>
+                            <ul>
+                                <li>Traza sobre los elementos principales</li>
+                                <li>Reconoce y convierte texto</li>
+                                <li>Verifica dimensiones y proporciones</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="deliverable">
+                    <h4>Entregables de la Sesión:</h4>
+                    <div class="requirements">
+                        <div class="col">
+                            <h5>Archivos Digitales:</h5>
+                            <ul>
+                                <li>Archivos .dwg con la vectorización</li>
+                                <li>PDFs de origen y resultado</li>
+                                <li>Biblioteca de bloques personalizados</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h5>Documentación:</h5>
+                            <ul>
+                                <li>Procedimiento de importación</li>
+                                <li>Informe de conversión</li>
+                                <li>Lista de problemas encontrados</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluation">
+                    <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                    
+                    <p><strong>1. Calidad de la Vectorización (40 puntos)</strong></p>
+                    <ul>
+                        <li>Precisión geométrica (15pts)</li>
+                        <li>Calidad del texto reconocido (15pts)</li>
+                        <li>Consistencia de capas (10pts)</li>
+                    </ul>
+                    
+                    <p><strong>2. Organización (30 puntos)</strong>
+                    <ul>
+                        <li>Estructura de archivos (10pts)</li>
+                        <li>Nomenclatura (10pts)</li>
+                        <li>Documentación (10pts)</li>
+                    </ul>
+
+                    <p><strong>3. Técnicas Avanzadas (30 puntos)</strong>
+                    <ul>
+                        <li>Uso de comandos (10pts)</li>
+                        <li>Optimización (10pts)</li>
+                        <li>Solución de problemas (10pts)</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>¡Importante!</strong> Verifica los derechos de autor antes de trabajar con archivos PDF. Usa siempre documentos de origen legítimos y respeta las restricciones de uso.
+            </div>
+        </div>
+
+        <!-- Sesión 52 -->
+        <div id="sesion52" class="session">
+            <h2>Sesión 52: Proyecto práctico de imágenes y PDF</h2>
+            <div class="content">
+                <div class="activity">
+                    <h4>Proyecto Integral: Documentación Técnica Profesional (180 min)</h4>
+                    <p><strong>Objetivo:</strong> Integrar técnicas avanzadas de manejo de imágenes y PDF para crear un conjunto completo de documentación técnica.</p>
+                    
+                    <div class="project-phase">
+                        <h4>Proyecto: Documentación de un Proyecto de Remodelación</h4>
+                        
+                        <div class="requirements">
+                            <div class="col">
+                                <h5>Materiales Necesarios:</h5>
+                                <ul>
+                                    <li>Plano existente en PDF (proporcionado)</li>
+                                    <li>Fotografías del sitio (mínimo 5 ángulos)</li>
+                                    <li>Catálogo de materiales en PDF</li>
+                                    <li>Plantilla de presentación corporativa</li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h5>Parámetros Técnicos:</h5>
+                                <ul>
+                                    <li>Formato de página: ISO A1 (841x594mm)</li>
+                                    <li>Escala principal: 1:50</li>
+                                    <li>Resolución mínima de imágenes: 300 DPI</li>
+                                    <li>Tamaño máximo de archivo: 15MB</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h5>Fase 1: Preparación de Documentos Base</h5>
+                        <ol>
+                            <li><strong>Importación del Plano Existente</strong>
+                                <ul>
+                                    <li>Importa el PDF del plano existente usando <span class="command">PDFIMPORT</span></li>
+                                    <li>Ajusta la escala usando una referencia conocida (ej. una puerta estándar)</li>
+                                    <li>Organiza en capas según tipo de elemento (muros, puertas, ventanas, etc.)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Procesamiento de Imágenes</strong>
+                                <ul>
+                                    <li>Importa las fotografías del sitio con <span class="command">IMAGEATTACH</span></li>
+                                    <li>Ajusta brillo, contraste y recorte según sea necesario</li>
+                                    <li>Crea máscaras para mostrar solo las áreas relevantes</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h5>Fase 2: Desarrollo del Diseño</h5>
+                        <ol start="3">
+                            <li><strong>Propuesta de Remodelación</strong>
+                                <ul>
+                                    <li>Dibuja sobre el plano existente usando capas nuevas</li>
+                                    <li>Incorpora elementos del catálogo de materiales</li>
+                                    <li>Añade acotaciones y etiquetas claras</li>
+                                </ul>
+                            </li>
+                            <li><strong>Composición de Láminas</strong>
+                                <ul>
+                                    <li>Crea un layout con múltiples ventanas de vista</li>
+                                    <li>Incluye detalles constructivos relevantes</li>
+                                    <li>Añade una escala gráfica y norte</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h5>Fase 3: Presentación Profesional</h5>
+                        <ol start="5">
+                            <li><strong>Preparación para Exportación</strong>
+                                <ul>
+                                    <li>Verifica que todas las referencias estén actualizadas</li>
+                                    <li>Configura los estilos de trazado para PDF de alta calidad</li>
+                                    <li>Revisa la legibilidad de textos y cotas</li>
+                                </ul>
+                            </li>
+                            <li><strong>Exportación Final</strong>
+                                <ul>
+                                    <li>Exporta a PDF con capas visibles</li>
+                                    <li>Verifica que el archivo cumpla con los requisitos de tamaño</li>
+                                    <li>Prepara una versión reducida para revisión en línea</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="deliverable">
+                        <h4>Entregables Requeridos:</h4>
+                        <div class="requirements">
+                            <div class="col">
+                                <h5>Archivos Digitales:</h5>
+                                <ul>
+                                    <li>Archivo .dwg con todo el proyecto</li>
+                                    <li>PDF de presentación (máx. 15MB)</li>
+                                    <li>Versión web optimizada (máx. 5MB)</li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h5>Documentación:</h5>
+                                <ul>
+                                    <li>Memoria descriptiva del proyecto</li>
+                                    <li>Especificaciones técnicas</li>
+                                    <li>Presupuesto resumido</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluation">
+                        <h4>Rúbrica de Evaluación (100 puntos)</h4>
+                        
+                        <p><strong>1. Calidad Técnica (40 puntos)</strong></p>
+                        <ul>
+                            <li>Precisión dimensional (10pts)</li>
+                            <li>Uso correcto de capas (10pts)</li>
+                            <li>Calidad de las imágenes (10pts)</li>
+                            <li>Optimización de archivos (10pts)</li>
+                        </ul>
+                        
+                        <p><strong>2. Presentación (30 puntos)</strong>
+                        <ul>
+                            <li>Organización de láminas (10pts)</li>
+                            <li>Legibilidad de textos (10pts)</li>
+                            <li>Consistencia gráfica (10pts)</li>
+                        </ul>
+
+                        <p><strong>3. Documentación (30 puntos)</strong>
+                        <ul>
+                            <li>Completitud de la memoria (10pts)</li>
+                            <li>Calidad de las especificaciones (10pts)</li>
+                            <li>Profesionalismo general (10pts)</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Consejo Profesional:</strong> Crea una carpeta de proyecto bien organizada con subcarpetas para referencias, archivos de trabajo y entregables. Usa nombres de archivo descriptivos y sigue un estándar de nomenclatura consistente. Guarda versiones incrementales de tu trabajo para poder volver atrás si es necesario.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al plan de estudios</a>
+    </div>
+</body>
+</html>

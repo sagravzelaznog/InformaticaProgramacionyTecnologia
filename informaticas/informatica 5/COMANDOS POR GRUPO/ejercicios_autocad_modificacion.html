@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de AutoCAD - Comandos de Modificación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        body {
+            color: var(--dark-text);
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"></path></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Main Content */
+        main {
+            padding-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-bg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        h2 i {
+            color: var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.75rem 0 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h4 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Code & Commands */
+        code, .command {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f5f7fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #c7254e;
+            font-size: 0.9em;
+            border: 1px solid #e1e1e1;
+            white-space: nowrap;
+        }
+        
+        .command {
+            display: inline-block;
+            margin: 0.25rem 0;
+            color: var(--dark-text);
+            background: #f0f4f8;
+            border-left: 3px solid var(--secondary-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+            white-space: pre-wrap;
+            width: 100%;
+        }
+        
+        .command-block {
+            margin: 0.5rem 0;
+        }
+        
+        /* Activity Sections */
+        .activity {
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .activity h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity h3 i {
+            font-size: 1.2em;
+        }
+        
+        .steps {
+            margin: 1.25rem 0 1.25rem 1.5rem;
+        }
+        
+        .steps li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .steps li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        /* Details/Summary */
+        details {
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        summary {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        summary:hover {
+            background: var(--secondary-color);
+        }
+        
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+        
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .solution {
+            background: white;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Command Badges */
+        .command-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.25rem 0;
+            font-weight: 600;
+        }
+        
+        .command-badge i {
+            margin-right: 0.5rem;
+            font-size: 0.9em;
+        }
+        
+        .copy-command {
+            background: var(--success-color);
+        }
+        
+        .trim-command {
+            background: var(--accent-color);
+        }
+        
+        .extend-command {
+            background: var(--warning-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            th, td {
+                min-width: 150px;
+            }
+            
+            .command {
+                white-space: pre-wrap;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: white !important;
+                color: black !important;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #eee;
+                page-break-inside: avoid;
+            }
+            
+            details {
+                page-break-inside: avoid;
+            }
+            
+            details[open] {
+                break-inside: avoid;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-tools"></i> Comandos de Modificación en AutoCAD</h1>
+            <p class="subtitle">Domina los comandos COPIAR, RECORTA y ALARGAR con estos ejercicios prácticos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+            <p>Esta sección cubre ejercicios para dominar los comandos de modificación más importantes en AutoCAD: COPIAR, RECORTA y ALARGAR. Cada comando incluye ejemplos prácticos y actividades sugeridas para reforzar el aprendizaje.</p>
+        </section>
+
+        <!-- Comando COPIAR -->
+        <section class="card" id="copiar">
+            <h2><i class="fas fa-copy"></i> I. Comando COPIAR (COPY)</h2>
+            <p>El comando <code>COPIAR</code> (CP o COPY) se utiliza para duplicar objetos existentes. Requiere un punto base (desde donde vas a tomar el objeto) y un punto de desplazamiento (donde lo vas a colocar).</p>
+            
+            <h3><i class="fas fa-clipboard-list"></i> Ejemplos Prácticos</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Instrucciones Paso a Paso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Repetición Uniforme</strong></td>
+                        <td>Copia un cuadrado de 10x10 unidades 3 veces, con una separación de 5 unidades entre ellos.</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja el cuadrado original (Punto inicial: 10,10).</li>
+                                <li>Activa <code>COPIAR</code>.</li>
+                                <li>Selecciona el cuadrado.</li>
+                                <li>Especifica el Punto Base (Ej: la esquina inferior izquierda del cuadrado, 10,10).</li>
+                                <li>Especifica el Punto de Desplazamiento (Ej: a 15 unidades a la derecha: @15,0).</li>
+                                <li>Repite el paso 5 dos veces más (AutoCAD te mantiene en el comando).</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Copia Simétrica</strong></td>
+                        <td>Copia un triángulo para crear su imagen reflejada, usando la mitad de su base como referencia.</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja un triángulo rectángulo (Puntos: 0,0, 10,0, 10,5).</li>
+                                <li>Activa <code>COPIAR</code>.</li>
+                                <li>Selecciona el triángulo.</li>
+                                <li>Especifica el Punto Base (Ej: el vértice superior, 10,5).</li>
+                                <li>Especifica el Punto de Desplazamiento (Ej: a 10 unidades a la izquierda del punto base: @-10,0).</li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Comando RECORTA -->
+        <section class="card" id="recorta">
+            <h2><i class="fas fa-cut"></i> II. Comando RECORTA (TRIM)</h2>
+            <p>El comando <code>RECORTA</code> (TR o TRIM) elimina partes de objetos que se extienden más allá de una línea de corte o límite definido.</p>
+            
+            <h3><i class="fas fa-clipboard-list"></i> Ejemplos Prácticos</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Instrucciones Paso a Paso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Agujero en Tubería</strong></td>
+                        <td>Recorta una línea horizontal que cruza una tubería (un círculo) para simular un agujero.</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja un Círculo (radio 10).</li>
+                                <li>Dibuja una Línea horizontal que cruce el centro del círculo.</li>
+                                <li>Activa <code>RECORTA</code> (TR).</li>
+                                <li>Método moderno: Haz clic en los dos segmentos de la línea dentro del círculo. (Los límites de corte se infieren automáticamente).</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Esquina de Muro</strong></td>
+                        <td>Recorta dos líneas que se cruzan en un ángulo para formar una esquina limpia (como en el dibujo arquitectónico).</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja dos líneas que se intersecan y se extienden más allá del punto de intersección.</li>
+                                <li>Activa <code>RECORTA</code> (TR).</li>
+                                <li>Haz clic en las partes externas de las líneas que deseas eliminar.</li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Comando ALARGAR -->
+        <section class="card" id="alargar">
+            <h2><i class="fas fa-arrows-alt-v"></i> III. Comando ALARGAR (EXTEND)</h2>
+            <p>El comando <code>ALARGAR</code> (EX o EXTEND) extiende líneas y arcos hasta que alcanzan un objeto de borde o límite definido.</p>
+            
+            <h3><i class="fas fa-clipboard-list"></i> Ejemplos Prácticos</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Descripción</th>
+                        <th>Instrucciones Paso a Paso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Proyección Simple</strong></td>
+                        <td>Extiende una línea corta hasta una línea de pared lejana.</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja una línea de pared larga (Límite).</li>
+                                <li>Dibuja una línea corta paralela que no la toque.</li>
+                                <li>Activa <code>ALARGAR</code> (EX).</li>
+                                <li>Método moderno: Haz clic en la línea corta que deseas extender (el límite se infiere automáticamente).</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Ensamble de Líneas</strong></td>
+                        <td>Extiende dos líneas cortas y paralelas a un círculo.</td>
+                        <td>
+                            <ol class="steps">
+                                <li>Dibuja un Círculo grande (Límite).</li>
+                                <li>Dibuja dos Líneas cortas a la izquierda del círculo.</li>
+                                <li>Activa <code>ALARGAR</code> (EX).</li>
+                                <li>Haz clic en ambas líneas cortas.</li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Actividades Sugeridas -->
+        <section class="card" id="actividades">
+            <h2><i class="fas fa-tasks"></i> IV. Actividades Sugeridas (Combinación de Modificación)</h2>
+            <p>Estas actividades combinan los comandos de COPIAR, RECORTA y ALARGAR para crear un dibujo más detallado.</p>
+            
+            <div class="activity">
+                <h3><i class="fas fa-building"></i> Actividad 1: El Conjunto de Columnas y Viga 🏗️</h3>
+                <p><strong>Objetivo:</strong> Crear una viga soportada por columnas y luego recortar los excedentes.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Dibuja la Viga (Límite):</strong> Dibuja una Línea horizontal de 100 unidades de largo. (Puntos: 0,50 a 100,50).</li>
+                    <li><strong>Dibuja la Columna 1:</strong> Dibuja una Línea vertical que cruce la viga. (Puntos: 10,0 a 10,70).</li>
+                    <li><strong>Copia la Columna 2:</strong> COPIA la Columna 1 a 80 unidades de distancia.
+                        <div class="command-block">
+                            <div class="command-badge copy-command"><i class="fas fa-copy"></i> Comando: CP</div>
+                            <div class="command">Selecciona Columna 1 → Punto Base: 10,0 → Desplazamiento: @80,0</div>
+                        </div>
+                    </li>
+                    <li><strong>Recorta Excedentes:</strong> RECORTA los segmentos de las columnas que se extienden por encima de la viga (a 50 unidades de altura).
+                        <div class="command-block">
+                            <div class="command-badge trim-command"><i class="fas fa-cut"></i> Comando: TR</div>
+                            <div class="command">Haz clic en el segmento superior de cada columna</div>
+                        </div>
+                    </li>
+                </ol>
+                
+                <p><strong>Resultado:</strong> Debe quedar una viga horizontal y dos columnas que terminan exactamente en el borde inferior de la viga.</p>
+                
+                <details>
+                    <summary><strong>Ver Solución (Descripción)</strong></summary>
+                    <div class="solution">
+                        <p>El comando RECORTA debe eliminar los segmentos verticales que van desde la altura Y=50 (el borde de la viga) hasta Y=70. Las columnas ahora miden exactamente 50 unidades de alto, y la viga permanece intacta.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="activity">
+                <h3><i class="fas fa-ruler-combined"></i> Actividad 2: El Desborde Arquitectónico 📏</h3>
+                <p><strong>Objetivo:</strong> Partir de una línea base y alargar un grupo de líneas cortas para que toquen un límite en ángulo.</p>
+                
+                <h4>Instrucciones Paso a Paso:</h4>
+                <ol class="steps">
+                    <li><strong>Dibuja el Límite (Línea de Ángulo):</strong> Dibuja una Línea inclinada de 50 unidades. (Ej: con Polares @50<135).</li>
+                    <li><strong>Dibuja las Proyecciones:</strong> Dibuja tres Líneas horizontales cortas (Ej: 10 unidades de largo) espaciadas verticalmente (Ej: en 10,10, 10,20, 10,30). Asegúrate de que no toquen la línea inclinada.</li>
+                    <li><strong>Alargar a Límite:</strong> ALARGAR las tres líneas cortas hasta que intercepten la línea inclinada.
+                        <div class="command-block">
+                            <div class="command-badge extend-command"><i class="fas fa-arrows-alt-v"></i> Comando: EX</div>
+                            <div class="command">Haz clic en la primera, segunda y tercera línea corta</div>
+                        </div>
+                    </li>
+                </ol>
+                
+                <p><strong>Resultado:</strong> Las tres líneas horizontales deben haberse extendido hasta chocar con el límite inclinado, creando tres puntos de intersección únicos.</p>
+                
+                <details>
+                    <summary><strong>Ver Solución (Comprobación de Geometría)</strong></summary>
+                    <div class="solution">
+                        <p>Si la línea inclinada comienza en el origen (0,0) y es @50<135, su ecuación es y = -x.</p>
+                        <ul>
+                            <li>Si la línea de proyección estaba en y=30, el punto de intersección (Punto final alargado) debe estar en x=-30.</li>
+                            <li>Si la línea de proyección estaba en y=20, el punto de intersección debe estar en x=-20.</li>
+                            <li>Si la línea de proyección estaba en y=10, el punto de intersección debe estar en x=-10.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2><i class="fas fa-lightbulb"></i> Consejos Adicionales</h2>
+            <ul class="steps">
+                <li>Usa <kbd>F8</kbd> para activar/desactivar el modo orto (líneas rectas perfectas).</li>
+                <li>Presiona <kbd>F3</kbd> para activar/desactivar el snap a la cuadrícula.</li>
+                <li>Utiliza <kbd>F12</kbd> para activar/desactivar la entrada dinámica (muy útil para coordenadas).</li>
+                <li>Para deshacer el último punto, escribe <code>U</code> y presiona Enter.</li>
+                <li>Usa <code>ZOOM</code> → <code>E</code> para ajustar la vista a los objetos dibujados.</li>
+                <li>Guarda tu trabajo frecuentemente con <kbd>CTRL</kbd> + <kbd>S</kbd>.</li>
+                <li>Para limpiar la pantalla de comandos, escribe <code>REDRAW</code> o <code>RE</code>.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© JMGV-PTEL 2025 - Ejercicios de AutoCAD - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Añadir animación de carga suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de aparición de las tarjetas
+            const cards = document.querySelectorAll('.card, .activity');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.animation = 'fadeIn 0.5s ease-out forwards';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                }, 0);
+            });
+            
+            // Mejorar la experiencia de los detalles/desplegables
+            const details = document.querySelectorAll('details');
+            details.forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    if (this.open) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+        });
+        
+        // Mejorar la impresión
+        window.onbeforeprint = function() {
+            // Abrir todos los detalles antes de imprimir
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass Sesión 11: Integración Multimedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <h1>MASTERCLASS: SESIÓN 11</h1>
+            <h2>Integración Multimedia y Portafolio</h2>
+        </div>
+        <div class="teacher-info">
+            <p class="name">José Manuel González Vargas</p>
+            <p class="titles">Pedagogo | Andragogo | Genio en Diseño</p>
+        </div>
+        <button onclick="printPlanner()" class="btn-print">🖨️ Guardar PDF</button>
+    </header>
+
+    <main class="content-wrapper masterclass-mode">
+        
+        <section class="intro-card phase-intro">
+            <div class="time-badge">⏱️ 00:00 - 10:00 min</div>
+            <h3>I. La Guerra de los Formatos</h3>
+            <p><strong>Objetivo:</strong> Entender que el "envase" (formato) es tan importante como el contenido. Un gran diseño en baja calidad no sirve.</p>
+            
+            <div class="interactive-box">
+                <h4>📦 Dime qué guardas y te diré qué usar</h4>
+                <p>El error más común es enviar un logo en JPG (con fondo blanco feo) o un texto en Word (que se mueve).</p>
+                
+                <div class="stats-grid" style="gap: 10px; flex-wrap: wrap;">
+                    <div class="stat-item" style="background:#fff; border: 2px solid #3182CE; color:#3182CE; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="font-size:1.5rem;">JPG</span>
+                        <span class="stat-label">Fotos (Ligero)</span>
+                        <p style="font-size: 0.7rem; color: #666;">⛔ No tiene transparencia.</p>
+                    </div>
+                    <div class="stat-item" style="background:#fff; border: 2px solid #805AD5; color:#805AD5; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="font-size:1.5rem;">PNG</span>
+                        <span class="stat-label">Logos (Calidad)</span>
+                        <p style="font-size: 0.7rem; color: #666;">✅ Fondo Transparente.</p>
+                    </div>
+                    <div class="stat-item" style="background:#fff; border: 2px solid #E53E3E; color:#E53E3E; padding:15px; border-radius:8px; width: 30%;">
+                        <span class="stat-number" style="font-size:1.5rem;">PDF</span>
+                        <span class="stat-label">Documentos (Pro)</span>
+                        <p style="font-size: 0.7rem; color: #666;">✅ Universal (No se mueve).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner-container phase-dev" style="padding: 2rem;">
+            <div class="time-badge" style="background-color: var(--primary-dark);">⏱️ 10:00 - 35:00 min</div>
+            <h3>II. Tu Portafolio Digital</h3>
+
+            <div class="cards-container">
+                <div class="concept-card teal-card">
+                    <h4>💼 ¿Qué es un Portafolio?</h4>
+                    <p>Es tu currículum visual. En la era digital, no dices "sé diseñar", <strong>muestras lo que diseñaste</strong>.</p>
+                    <ul>
+                        <li><strong>Curaduría:</strong> No subas todo. Sube solo tus 3 mejores trabajos.</li>
+                        <li><strong>Narrativa:</strong> Explica brevemente qué hiciste en cada proyecto.</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card coral-card">
+                    <h4>☁️ La Nube (Cloud Storage)</h4>
+                    <p>Tu mochila infinita. Google Drive o OneDrive.</p>
+                    <ul>
+                        <li><strong>Respaldo:</strong> Si tu PC explota, tu trabajo sigue vivo.</li>
+                        <li><strong>Colaboración:</strong> Trabajar en el mismo archivo a la vez.</li>
+                        <li><strong>Entrega:</strong> Ya no se envían archivos adjuntos pesados, se envían <em>Enlaces</em>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <h4>⚠️ Alerta Roja: Los Permisos de Acceso</h4>
+                <p>El error que reprueba materias: Enviar un link privado.</p>
+                
+                <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 15px;">
+                    <div style="border: 2px dashed #E53E3E; background: #FFF5F5; padding: 15px; border-radius: 8px; width: 45%;">
+                        <span style="font-size: 2rem;">🔒</span>
+                        <p style="color: #E53E3E; font-weight: bold;">Restringido</p>
+                        <p style="font-size: 0.8rem;">"Necesitas acceso". El profesor no puede ver nada. <br><strong>NOTA: 0</strong></p>
+                    </div>
+
+                    <div style="border: 2px dashed #38A169; background: #F0FFF4; padding: 15px; border-radius: 8px; width: 45%;">
+                        <span style="font-size: 2rem;">🌍</span>
+                        <p style="color: #38A169; font-weight: bold;">Cualquiera con el enlace</p>
+                        <p style="font-size: 0.8rem;">El archivo abre al instante. <br><strong>NOTA: 10</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro-card phase-close" style="border-left-color: var(--primary-dark);">
+            <div class="time-badge">⏱️ 35:00 - 45:00 min</div>
+            <h3>III. Compilación Final</h3>
+            
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h5>Organización de Carpetas</h5>
+                    <p>¿Cómo debes nombrar tu archivo final para que no se pierda?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans1')">Ver Formato</button>
+                    <div id="ans1" class="answer hidden">
+                        <p><strong>Apellido_Nombre_ProyectoFinal_V1.pdf</strong></p>
+                        <p>Nunca uses: "final.pdf", "final_final.pdf", "este_si.pdf".</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h5>Compresión</h5>
+                    <p>Tu video pesa 1GB y no sube. ¿Qué haces?</p>
+                    <button class="reveal-btn" onclick="toggleAnswer('ans2')">Ver Solución</button>
+                    <div id="ans2" class="answer hidden">
+                        <p><strong>Handbrake o Compresores Online.</strong> Baja la resolución de 4K a 1080p o baja el bitrate. La calidad en pantalla pequeña se mantiene.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-thought">
+                <p>🚀 <strong>Misión del Día:</strong> Crea una carpeta en Drive llamada "Portafolio_TuNombre", sube tu mejor diseño y tu podcast, cambia los permisos a "Público" y genera el enlace.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>copyright &copy;JMGV-PTEL-2026. sesion 11 taller de cultura digital 4 sem. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleAnswer(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.style.display = 'block';
+                element.style.animation = 'fadeIn 0.5s';
+            } else {
+                element.classList.add('hidden');
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

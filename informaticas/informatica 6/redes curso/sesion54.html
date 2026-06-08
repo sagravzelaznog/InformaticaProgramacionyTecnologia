@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S14 E54: Documentación del Proyecto (Tabla de Configuración)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 14, Sesión 54: Documentación Escrita 📋</h1>
+        <p class="subtitle">Elaboración de la Tabla de Direccionamiento y Registros de Seguridad</p>
+    </header>
+
+    <main>
+        <section class="topic-section">
+            <h2>1. La Tabla de Direccionamiento (El Registro de Inventario)</h2>
+            <p>La tabla de direccionamiento es la documentación formal y detallada que muestra el estado de cada dispositivo que tiene una IP fija. Esto es crucial para la referencia rápida del técnico.</p>
+            
+            <div class="image-container">
+                
+                <figcaption>Una tabla de direccionamiento debe ser legible y concisa para una referencia rápida.</figcaption>
+            </div>
+            
+            <p><strong>Elementos Mínimos de la Tabla:</strong></p>
+            <ul>
+                <li>Nombre del Dispositivo (ej. SRV-ARCHIVOS).</li>
+                <li>IP Asignada (ej. 192.168.10.2).</li>
+                <li>Máscara (ej. 255.255.255.0).</li>
+                <li>Gateway (ej. 192.168.10.1).</li>
+                <li>MAC Address (del dispositivo físico).</li>
+                <li>Función (Servidor, Gateway, Cliente, etc.).</li>
+            </ul>
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Registros de Servicios y Seguridad</h2>
+            <p>Además de las IPs, la documentación profesional incluye los registros de configuración de los servicios implementados:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Registro DHCP</h3>
+                    <p>Documentar el **Pool inicial** y **Pool final** del DHCP, el **tiempo de concesión** y cualquier **IP excluida** (las IPs estáticas).</p>
+                </div>
+                <div>
+                    <h3>Registro de Credenciales</h3>
+                    <p>Registrar las contraseñas cifradas del Router (SSH) y la clave Wi-Fi (WPA2/WPA3). **IMPORTANTE:** Estas contraseñas deben estar seguras y entregadas de forma responsable.</p>
+                </div>
+                <div>
+                    <h3>Registros de Puertos</h3>
+                    <p>Documentar si se habilitó algún **Port Forwarding** (ej. Puerto 80 redirigido al Servidor). Esto es una referencia vital para la seguridad futura.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea: Completar los Registros Escritos</h2>
+            <p><strong>Tarea Práctica (Documentación):</strong></p>
+            <ol>
+                <li>Crea la Tabla de Direccionamiento para el Router, Servidor e Impresora.</li>
+                <li>Crea el registro de DHCP con la IP inicial y final del Pool.</li>
+                <li>Documenta la configuración de seguridad del Router (SSH habilitado/Telnet deshabilitado).</li>
+            </ol>
+            <button id="configTableCheckBtn">Finalizar Documentación Escrita</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S14 E54</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion53.html" class="nav-button">Anterior</a>
+        <a href="sesion55.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

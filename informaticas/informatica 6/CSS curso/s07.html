@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass CSS: Hackeando el Diseño</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>🚀 Masterclass: Hackeando la Gravedad y el Espacio en CSS</h1>
+        <p>De aprendiz a Maestro del Diseño Web en 2 sesiones.</p>
+    </header>
+
+    <main>
+        <section class="lesson-module">
+            <h2>👾 SESIÓN 3: Posicionamiento (Rompiendo la Gravedad)</h2>
+            <p>Normalmente, las etiquetas HTML caen de arriba hacia abajo como si tuvieran gravedad. Hoy vamos a romper esas reglas.</p>
+            
+            <div class="theory-box">
+                <h3>1. El Comportamiento Natural (Display)</h3>
+                <ul>
+                    <li><strong>Block:</strong> Como un sillón VIP. Ocupan todo el ancho y no dejan que nadie se siente a su lado (ej. <code>&lt;h1&gt;</code>, <code>&lt;div&gt;</code>).</li>
+                    <li><strong>Inline:</strong> Como sillas plegables. Solo ocupan su espacio y se forman uno al lado del otro (ej. <code>&lt;a&gt;</code>, <code>&lt;span&gt;</code>).</li>
+                    <li><strong>Inline-block:</strong> Un híbrido. Se forman juntos, pero puedes controlar su ancho y alto.</li>
+                </ul>
+            </div>
+
+            <div class="theory-box">
+                <h3>2. Posicionamiento Mágico</h3>
+                <ul>
+                    <li><strong>Relative:</strong> Te mueves de tu silla original, pero dejas tu "fantasma" ahí. Nadie puede ocupar tu espacio.</li>
+                    <li><strong>Absolute:</strong> ¡Vuelas! Te sales de la fila y te mueves libremente dentro de tu contenedor padre (que debe ser relative).</li>
+                    <li><strong>Fixed:</strong> Te pegas a la pantalla de cristal del usuario. Aunque haga scroll, tú no te mueves.</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>🛠️ Ejemplo 1: El Sticker Perseguidor (Fixed)</h3>
+                <p><strong>Objetivo:</strong> Crear un botón de "Ayuda" que persiga al usuario.</p>
+                <div class="code-preview">
+                    <strong>HTML:</strong> <code>&lt;button class="sticker"&gt;💬 Ayuda&lt;/button&gt;</code><br><br>
+                    <strong>CSS:</strong>
+<pre><code>.sticker {
+    position: fixed; /* Te pegas a la pantalla */
+    bottom: 20px;    /* A 20px del suelo */
+    right: 20px;     /* A 20px de la derecha */
+    background: #ff0055;
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="lesson-module">
+            <h2>🧩 SESIÓN 4: Flexbox (El Layout Moderno)</h2>
+            <p>Antes, alinear cosas en la web era una tortura. Hoy tenemos Flexbox: una caja mágica de goma. Solo le das órdenes al "Padre" y los "Hijos" obedecen.</p>
+
+            <div class="theory-box">
+                <h3>Los Comandos Flex</h3>
+                <p>Primero, activas el poder en el contenedor padre: <code>display: flex;</code></p>
+                <ul>
+                    <li><strong>justify-content (Eje X):</strong> <code>center</code> (al centro), <code>space-between</code> (a los extremos).</li>
+                    <li><strong>align-items (Eje Y):</strong> <code>center</code> (centrado vertical perfecto).</li>
+                    <li><strong>flex-direction:</strong> <code>row</code> (fila, por defecto) o <code>column</code> (columna).</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>🛠️ Ejemplo 2: El Centrado Divino</h3>
+                <p><strong>Objetivo:</strong> Centrar una tarjeta perfecta en medio de una sección.</p>
+                <div class="code-preview">
+                    <strong>HTML:</strong> <code>&lt;div class="padre"&gt; &lt;div class="hijo"&gt;Soy el centro del universo&lt;/div&gt; &lt;/div&gt;</code><br><br>
+                    <strong>CSS:</strong>
+<pre><code>.padre {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 300px;           /* Le damos altura al padre */
+    background: #222;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h3>🛠️ Ejemplo 3: La Navbar Perfecta (Reto Final)</h3>
+                <p><strong>Objetivo:</strong> Logo a la izquierda, menú a la derecha.</p>
+                <div class="code-preview">
+                    <strong>HTML:</strong> <code>&lt;nav class="navbar"&gt; &lt;div class="logo"&gt;MiSitio&lt;/div&gt; &lt;div class="links"&gt;Inicio | Perfil&lt;/div&gt; &lt;/nav&gt;</code><br><br>
+                    <strong>CSS:</strong>
+<pre><code>.navbar {
+    display: flex;
+    justify-content: space-between; /* Uno a cada extremo */
+    align-items: center;            /* Centrados verticalmente */
+    background: #333;
+    padding: 15px 30px;
+    color: white;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <h2>🎮 Arena de Batalla: Demuestra tu Poder</h2>
+            <div id="quiz-container">
+                </div>
+            <div id="score-container" style="display: none;">
+                <h3>Puntuación Final: <span id="final-score">0</span>/10</h3>
+                <button onclick="location.reload()">Jugar de Nuevo</button>
+            </div>
+        </section>
+
+        <section class="teacher-zone">
+            <h2>🔐 Área Restringida</h2>
+            <p>Solo para el docente titular.</p>
+            <input type="password" id="teacher-password" placeholder="Contraseña...">
+            <button id="unlock-btn">Desbloquear</button>
+            
+            <div id="teacher-tips" style="display: none;">
+                <h3>🕵️‍♂️ Tips Pedagógicos para esta clase:</h3>
+                <ul>
+                    <li><strong>Psicología del Error:</strong> Los adolescentes se frustran rápido si la caja no se mueve a donde quieren. Antes de enseñarles código, haz que dibujen cajas de papel y las muevan con las manos simulando <code>space-between</code> o <code>fixed</code>.</li>
+                    <li><strong>Evita Float:</strong> No menciones la propiedad <code>float</code> a menos que pregunten. Es historia antigua y solo confunde la lógica limpia de Flexbox.</li>
+                    <li><strong>Gamificación:</strong> Al alumno que termine primero la Navbar, dale el título de "Arquitecto Web" de la sesión. El reconocimiento público a esta edad es un motor enorme.</li>
+                    <li><strong>El truco del borde rojo:</strong> Enséñales a poner <code>border: 1px solid red;</code> en todos sus contenedores cuando estén confundidos. Ver las líneas les ayuda a entender el "Modelo de Caja" instantáneamente.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

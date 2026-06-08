@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 02: Plantillas Inteligentes y Tipografía</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+				<link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            /* Paleta Canva Evolucionada */
+            --primary: #512DA8; /* Deep Purple - Concentración */
+            --secondary: #00C4CC; /* Turquoise - Creatividad */
+            --accent: #FFB300; /* Amber - Para resaltar (Highlight) */
+            --success: #00BA88; 
+            --error: #FF4D4F;
+            --bg-body: #F0F2F5;
+            --card-bg: #FFFFFF;
+            --text-main: #2D3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER: ARQUITECTURA VISUAL --- */
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, #7D2AE8 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 25px rgba(81, 45, 168, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Elemento decorativo abstracto en CSS */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .session-tag {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        main {
+            max-width: 900px;
+            margin: -2rem auto 2rem; /* Efecto flotante sobre el header */
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* TARJETAS DE CONTENIDO (NEUMORFISMO SUAVE) */
+        section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 6px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover { transform: translateY(-5px); }
+
+        h2 { color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        
+        /* --- ELEMENTOS INTERACTIVOS DE TEORÍA --- */
+        .font-demo-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .font-card {
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .font-card:hover { border-color: var(--secondary); box-shadow: 0 5px 15px rgba(0,196,204,0.15); }
+
+        /* Estilos específicos para demostración de fuentes */
+        .serif-demo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #333; }
+        .sans-demo { font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #333; }
+        
+        .font-explanation {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+            opacity: 0; /* Animación simple */
+            transform: translateY(10px);
+            transition: all 0.3s;
+        }
+
+        .font-card:hover .font-explanation { opacity: 1; transform: translateY(0); }
+
+        /* --- EJERCICIO PRÁCTICO --- */
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+        .step-list li {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+        }
+        .step-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0; top: -2px;
+            width: 35px; height: 35px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+        }
+
+        /* --- QUIZ KAHOOT STYLE --- */
+        #quiz-section {
+            background: var(--primary);
+            color: white;
+            border-left: none;
+            text-align: center;
+        }
+        #quiz-section h2 { color: white; justify-content: center; }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .quiz-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.1s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .quiz-btn:active { transform: translateY(4px); box-shadow: none; }
+        
+        /* Colores Kahoot */
+        .opt-0 { background-color: #E21B3C; } /* Rojo */
+        .opt-1 { background-color: #1368CE; } /* Azul */
+        .opt-2 { background-color: #D89E00; } /* Amarillo */
+        .opt-3 { background-color: #26890C; } /* Verde */
+
+        .feedback-message {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-height: 30px;
+        }
+
+        /* --- FOOTER OBLIGATORIO --- */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #8898AA;
+            font-size: 0.8rem;
+            background: white;
+            border-top: 1px solid #eee;
+            font-family: 'Roboto Mono', monospace; /* Toque técnico */
+        }
+								img{
+									width: 100%;
+								}
+
+        @media (max-width: 600px) {
+            .quiz-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.5rem; }
+        }
+								
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="session-tag">SESIÓN 02</span>
+        <h1>Plantillas y Tipografía</h1>
+        <p>Acelerando el flujo de trabajo y comunicando con letras.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 Objetivo de la Sesión</h2>
+            <p>Hoy aprenderás a no trabajar desde cero. Descubriremos cómo diseccionar las <strong>Plantillas Profesionales</strong> de Canva y entenderemos la psicología detrás de las fuentes (Tipografía) para transmitir emociones correctas.</p>
+        </section>
+
+        <section>
+            <h2>🎨 La Psicología de la Tipografía</h2>
+            <p>Las letras tienen personalidad. Pasa el mouse (o toca) las tarjetas abajo para ver cuándo usarlas:</p>
+            
+            <div class="font-demo-box">
+                <div class="font-card">
+                    <div class="serif-demo">Serif (Con remates)</div>
+                    <div class="font-explanation">
+                        <strong>Elegancia, Tradición, Seriedad.</strong><br>
+                        Úsala para: Invitaciones de boda, temas legales o moda de lujo.
+                    </div>
+                </div>
+
+                <div class="font-card">
+                    <div class="sans-demo">Sans Serif (Palo Seco)</div>
+                    <div class="font-explanation">
+                        <strong>Modernidad, Limpieza, Tecnología.</strong><br>
+                        Úsala para: Posts de redes sociales, startups y títulos rápidos.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Práctica: "Tu Frase Inspiradora"</h2>
+            <p>Vamos a aplicar la teoría editando una plantilla existente.</p>
+            <ul class="step-list">
+                <li>En el buscador de Canva, escribe <strong>"Frase Instagram"</strong>.</li>
+                <li>Selecciona una plantilla que te guste (evita las que tienen la corona "Pro" por ahora).</li>
+                <li>Haz clic en el texto predeterminado y escribe una frase que te motive.</li>
+                <li><strong><a href="#reto" id="retob" style="margin-left: 20px;">Reto:</a></strong> Cambia la tipografía. Si la plantilla tenía una fuente "Serif", cámbiala a una "Sans Serif" y observa cómo cambia la "vibra" del diseño.</li>
+                <li>Usa la herramienta <strong>"Espaciado"</strong> en la barra superior para ajustar el interlineado. <div>
+																	<img src="img/espaciado.png" alt="espaciado">
+																</div> </li>
+            </ul>
+        </section>
+
+        <section id="quiz-section">
+            <h2>🧠 Desafío de Conocimiento</h2>
+            <div id="question-container">
+                <p id="q-text" style="font-size: 1.3rem; margin-bottom: 20px;">Cargando...</p>
+                <div class="quiz-grid" id="options-area">
+                    </div>
+                <div id="feedback" class="feedback-message"></div>
+                <button id="next-btn" style="display:none; margin-top:20px; padding:10px 20px; background:white; color:var(--primary); border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Siguiente ➡</button>
+            </div>
+            <div id="final-score" style="display:none;">
+                <h3>🎉 ¡Sesión 02 Completada!</h3>
+                <p id="score-text"></p>
+                <button onclick="location.reload()" style="margin-top:15px; padding:10px; cursor:pointer;">Reiniciar Quiz</button>
+            </div>
+            
+        
+        </section>
+								<section id="reto">
+									<h2>🎯 Cambia la tipografía</h2>
+									<ol style="margin-left: 20px;">
+										<li>has click en el texto que se muestra en la pantalla <div><img src="img/tipografiatexto.png" alt="seleccionar tipografia"></div></li>
+										<li>de la barra de herramientas que aparece selecciona la tipografia que te gusta<img src="img/tipografia.png" alt="seleccionar tipografia"></li>
+										<li>Observa como cambia la "vibra" del diseño</li>
+										<li><h2><strong>¡Reto logrado!</strong></h2></li>
+									</ol>
+								</section>
+                                <div class="navegador">
+                                    <a href="masterclass_sesion01.html">sesion 1</a>
+                                    <a href="index.html">inicio</a>
+                                    <a href="masterclass_sesion03.html">sesion 3</a>
+                                </div>
+    </main>
+  
+    <footer>
+        copyright &copy;JMGV-PTEL-2026. sesion 02 taller de cultura digital 4 sem tuto canva. Todos los derechos reservados
+    </footer>
+
+    <script>
+        // --- BASE DE DATOS DEL QUIZ ---
+        const quizData = [
+            {
+                question: "¿Para qué sirve usar una Plantilla en Canva?",
+                options: [
+                    "Para copiar y no hacer nada",
+                    "Para ahorrar tiempo y tener una base profesional",
+                    "Para que Canva no se enoje",
+                    "Solo sirven para imprimirse"
+                ],
+                correct: 1 // Índice de la respuesta correcta
+            },
+            {
+                question: "¿Qué transmite generalmente una fuente 'Sans Serif' (sin remates)?",
+                options: [
+                    "Antigüedad y misterio",
+                    "Modernidad y minimalismo",
+                    "Terror y miedo",
+                    "Desorden y caos"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Cómo se llama la herramienta para separar las letras entre sí?",
+                options: [
+                    "Separador 3000",
+                    "Espaciado (o Kerning)",
+                    "Borrador Mágico",
+                    "Efecto Neón"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué debes hacer si el texto no se lee bien sobre una foto?",
+                options: [
+                    "Borrar la foto",
+                    "Gritarle a la pantalla",
+                    "Cambiar el color del texto o poner un recuadro detrás",
+                    "Usar una letra más pequeña"
+                ],
+                correct: 2
+            }
+        ];
+
+        // --- VARIABLES DE ESTADO ---
+        let currentQIndex = 0;
+        let score = 0;
+        
+        // --- REFERENCIAS DOM ---
+        const qText = document.getElementById('q-text');
+        const optionsArea = document.getElementById('options-area');
+        const feedback = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const quizContainer = document.getElementById('question-container');
+        const finalScoreDiv = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+
+        // --- AUDIO API (Feedback Sonoro Simple) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTone(type) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.1);
+            } else {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+            }
+            
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        // --- FUNCIONES DEL JUEGO ---
+        function loadQuestion() {
+            const data = quizData[currentQIndex];
+            qText.innerText = data.question;
+            optionsArea.innerHTML = '';
+            feedback.innerText = '';
+            nextBtn.style.display = 'none';
+
+            data.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.className = `quiz-btn opt-${index}`;
+                btn.onclick = () => checkAnswer(index, data.correct);
+                optionsArea.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct) {
+            const buttons = optionsArea.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true); // Bloquear botones
+
+            if (selected === correct) {
+                feedback.innerText = "¡Correcto! 🌟";
+                playTone('success');
+                score++;
+                buttons[selected].style.border = "4px solid white";
+                buttons[selected].innerText += " ✅";
+            } else {
+                feedback.innerText = "¡Incorrecto! La respuesta era la marcada.";
+                playTone('error');
+                buttons[selected].style.opacity = "0.5";
+                buttons[correct].style.border = "4px solid white";
+                buttons[correct].innerText += " 👈";
+            }
+
+            // Mostrar botón siguiente si no es la última
+            if (currentQIndex < quizData.length - 1) {
+                nextBtn.style.display = 'inline-block';
+            } else {
+                setTimeout(showResults, 2000);
+            }
+        }
+
+        nextBtn.onclick = () => {
+            currentQIndex++;
+            loadQuestion();
+        };
+
+        function showResults() {
+            quizContainer.style.display = 'none';
+            finalScoreDiv.style.display = 'block';
+            const percentage = (score / quizData.length) * 100;
+            scoreText.innerHTML = `Obtuviste <strong>${score}</strong> de ${quizData.length} aciertos.<br>Calificación: ${percentage}%`;
+        }
+
+        // Iniciar
+        loadQuestion();
+    </script>
+</body>
+/html>

@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 20: Módulos y la Biblioteca Estándar - Curso Básico de Python</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/session.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <style>
+        .modules-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .module-card {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #00cec9;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-card h4 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-card h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .module-card code {
+            background: #1e272e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #74b9ff;
+        }
+
+        .module-diagram {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .module-level {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #74b9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .module-level.main {
+            border-color: #00cec9;
+            background: rgba(0, 206, 201, 0.1);
+        }
+
+        .module-level.imported {
+            border-color: #fd79a8;
+            background: rgba(253, 121, 168, 0.1);
+        }
+
+        .module-level h5 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .function-box {
+            background: #636e72;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #74b9ff;
+            margin: 10px 0;
+        }
+
+        .code-comparison {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #e17055;
+        }
+
+        .comparison-item h5 {
+            margin-top: 0;
+            color: #fab1a0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box h4 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        .tip-box {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid #00b894;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip-box h4 {
+            margin-top: 0;
+            color: #00b894;
+        }
+
+        .practice-exercises {
+            margin: 30px 0;
+        }
+
+        .exercise-card {
+            background: #2d3436;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #a29bfe;
+        }
+
+        .exercise-card h4 {
+            margin-top: 0;
+            color: #a29bfe;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-card h4 i {
+            margin-right: 10px;
+        }
+
+        .exercise-card .difficulty {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .module-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+
+        .module-description {
+            margin-top: 20px;
+            color: #74b9ff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .library-showcase {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #fd79a8;
+        }
+
+        .library-showcase h3 {
+            margin-top: 0;
+            color: #fd79a8;
+            display: flex;
+            align-items: center;
+        }
+
+        .library-showcase h3 i {
+            margin-right: 10px;
+        }
+
+        .library-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .library-example h5 {
+            margin-top: 0;
+            color: #ff7675;
+        }
+
+        .module-creator {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00cec9;
+        }
+
+        .module-creator h3 {
+            margin-top: 0;
+            color: #00cec9;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-creator h3 i {
+            margin-right: 10px;
+        }
+
+        .creator-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .creator-example h5 {
+            margin-top: 0;
+            color: #55a3ff;
+        }
+
+        .multifile-project {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #74b9ff;
+        }
+
+        .multifile-project h3 {
+            margin-top: 0;
+            color: #74b9ff;
+            display: flex;
+            align-items: center;
+        }
+
+        .multifile-project h3 i {
+            margin-right: 10px;
+        }
+
+        .project-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .project-example h5 {
+            margin-top: 0;
+            color: #fdcb6e;
+        }
+
+        .namespace-demo {
+            background: #2d3436;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #00b894;
+        }
+
+        .namespace-demo h3 {
+            margin-top: 0;
+            color: #00b894;
+            display: flex;
+            align-items: center;
+        }
+
+        .namespace-demo h3 i {
+            margin-right: 10px;
+        }
+
+        .namespace-example {
+            background: #1e272e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .namespace-example h5 {
+            margin-top: 0;
+            color: #a29bfe;
+        }
+    </style>
+
+    <style>
+        .protected-content {
+            display: none;
+        }
+        .protected-content.authenticated {
+            display: block;
+        }
+    </style>
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sesión del Curso Básico de Python - Aprende programación desde cero">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Botón de volver al índice -->
+    <a href="index.html" class="back-to-index">
+        <i class="fas fa-arrow-left"></i> Volver al Índice
+    </a>
+
+    <!-- Encabezado de la sesión -->
+    <header class="session-header">
+        <div class="container">
+            <div class="session-info">
+                <h1>Sesión 20</h1>
+                <h2>Módulos y la Biblioteca Estándar</h2>
+                <div class="session-meta">
+                    <span><i class="far fa-clock"></i> Duración: 2-3 horas</span>
+                    <span><i class="fas fa-layer-group"></i> Módulo 3: Funciones y Módulos</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar progress-10-38"
+                     role="progressbar"
+                     aria-valuenow="10.38"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-label="Progreso del módulo">
+                </div>
+                <span class="progress-text">10.38% del Módulo 3 completado</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de la sesión -->
+    <nav class="session-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#objetivo" class="active"><i class="fas fa-bullseye"></i> Objetivo</a></li>
+                <li><a href="#conceptos"><i class="fas fa-lightbulb"></i> Conceptos Clave</a></li>
+                <li><a href="#ejemplos"><i class="fas fa-code"></i> Ejemplos Prácticos</a></li>
+                <li><a href="#actividades"><i class="fas fa-tasks"></i> Actividades</a></li>
+                <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Objetivo de la sesión -->
+        <section id="objetivo" class="session-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo de la Sesión</h2>
+            <div class="card">
+                <p>En esta sesión, descubrirás el poder de los módulos en Python y cómo aprovechar la extensa biblioteca estándar para potenciar tus programas. Aprenderás a organizar tu código en archivos separados, reutilizar funcionalidades existentes y crear bibliotecas personalizadas que faciliten el desarrollo de proyectos más complejos.</p>
+
+                <div class="learning-outcomes">
+                    <h4>Al finalizar esta sesión, podrás:</h4>
+                    <ul>
+                        <li>Importar y usar módulos de la biblioteca estándar</li>
+                        <li>Crear módulos personalizados organizados</li>
+                        <li>Comprender el manejo de espacios de nombres</li>
+                        <li>Desarrollar programas con múltiples archivos</li>
+                        <li>Aprovechar módulos como math, random y datetime</li>
+                        <li>Construir bibliotecas de funciones reutilizables</li>
+                    </ul>
+                </div>
+
+                <div class="module-diagram">
+                    <h3>Arquitectura de Módulos en Python</h3>
+                    <div class="module-diagram-container">
+                        <div class="module-level main">
+                            <h5>Programa Principal</h5>
+                            <div class="function-box">import math</div>
+                            <div class="function-box">import random</div>
+                            <div class="function-box">import datetime</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="module-level imported">
+                            <h5>Módulos Importados</h5>
+                            <div class="function-box">math.sqrt()</div>
+                            <div class="function-box">random.choice()</div>
+                            <div class="function-box">datetime.now()</div>
+                        </div>
+                    </div>
+                    <p class="module-description">
+                        Los módulos permiten organizar y reutilizar código, mientras que la biblioteca estándar proporciona funcionalidades pre-construidas para tareas comunes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conceptos clave -->
+        <section id="conceptos" class="session-section">
+            <h2><i class="fas fa-lightbulb"></i> Conceptos Clave</h2>
+
+            <!-- 1. Importación de módulos -->
+            <div class="concept-card">
+                <h3>1. Importación de Módulos</h3>
+                <p>Los módulos en Python son archivos que contienen código reutilizable. Puedes importar módulos de la biblioteca estándar o crear los tuyos propios para organizar mejor tu código.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Importación básica
+import math
+import random
+import datetime
+
+# Uso de funciones de módulos
+numero = 16
+raiz_cuadrada = math.sqrt(numero)
+print(f"La raíz cuadrada de {numero} es: {raiz_cuadrada}")
+
+# Número aleatorio
+aleatorio = random.randint(1, 100)
+print(f"Número aleatorio: {aleatorio}")
+
+# Fecha y hora actual
+ahora = datetime.datetime.now()
+print(f"Fecha y hora actual: {ahora}")
+
+# Importación con alias (más corto)
+import datetime as dt
+hora_actual = dt.datetime.now()
+print(f"Hora con alias: {hora_actual}")
+
+# Importación específica de funciones
+from math import sqrt, pi
+from random import choice
+
+# Uso directo sin prefijo
+resultado = sqrt(25)
+circunferencia = 2 * pi * 5
+elemento_aleatorio = choice(['rojo', 'verde', 'azul'])
+
+print(f"Sqrt(25) = {resultado}")
+print(f"Circunferencia = {circunferencia}")
+print(f"Color aleatorio = {elemento_aleatorio}")
+
+# Importación con alias específico
+from datetime import datetime as fecha_hora
+momento = fecha_hora.now()
+print(f"Momento actual: {momento}")
+
+# Ejemplo práctico: calculadora avanzada con módulos
+def calculadora_avanzada(operacion, a, b):
+    """Calculadora que usa funciones matemáticas avanzadas."""
+
+    if operacion == "potencia":
+        return math.pow(a, b)  # a elevado a b
+    elif operacion == "raiz":
+        return math.sqrt(a)    # raíz cuadrada de a
+    elif operacion == "logaritmo":
+        return math.log(a)     # logaritmo natural
+    elif operacion == "seno":
+        return math.sin(math.radians(a))  # seno en grados
+    elif operacion == "coseno":
+        return math.cos(math.radians(a))  # coseno en grados
+    elif operacion == "tangente":
+        return math.tan(math.radians(a))  # tangente en grados
+    else:
+        return "Operación no soportada"
+
+# Uso de la calculadora avanzada
+print("\n=== CALCULADORA AVANZADA ===")
+print(f"2^3 = {calculadora_avanzada('potencia', 2, 3)}")
+print(f"√16 = {calculadora_avanzada('raiz', 16)}")
+print(f"ln(10) = {calculadora_avanzada('logaritmo', 10)}")
+print(f"sin(90°) = {calculadora_avanzada('seno', 90)}")
+print(f"cos(0°) = {calculadora_avanzada('coseno', 0)}")
+print(f"tan(45°) = {calculadora_avanzada('tangente', 45)}")
+
+# Generador de números aleatorios útiles
+def generar_datos_aleatorios(tipo, cantidad=5):
+    """Genera diferentes tipos de datos aleatorios."""
+
+    if tipo == "enteros":
+        return [random.randint(1, 100) for _ in range(cantidad)]
+    elif tipo == "decimales":
+        return [round(random.uniform(0, 1), 2) for _ in range(cantidad)]
+    elif tipo == "colores":
+        colores = ['rojo', 'verde', 'azul', 'amarillo', 'naranja', 'morado']
+        return [random.choice(colores) for _ in range(cantidad)]
+    elif tipo == "nombres":
+        nombres = ['Ana', 'Carlos', 'María', 'José', 'Laura', 'David']
+        return [random.choice(nombres) for _ in range(cantidad)]
+    else:
+        return []
+
+# Uso del generador de datos
+print("\n=== GENERADOR DE DATOS ALEATORIOS ===")
+print(f"Enteros: {generar_datos_aleatorios('enteros')}")
+print(f"Decimales: {generar_datos_aleatorios('decimales')}")
+print(f"Colores: {generar_datos_aleatorios('colores')}")
+print(f"Nombres: {generar_datos_aleatorios('nombres')}")
+
+# Trabajando con fechas y horas
+def formatear_fecha(fecha, formato="completo"):
+    """Formatea fechas en diferentes estilos."""
+
+    if formato == "completo":
+        return fecha.strftime("%d/%m/%Y %H:%M:%S")
+    elif formato == "fecha_corta":
+        return fecha.strftime("%d/%m/%Y")
+    elif formato == "hora_corta":
+        return fecha.strftime("%H:%M")
+    elif formato == "dia_semana":
+        return fecha.strftime("%A, %d de %B de %Y")
+    else:
+        return str(fecha)
+
+# Uso del formateador de fechas
+print("\n=== FORMATEADOR DE FECHAS ===")
+fecha_actual = datetime.datetime.now()
+print(f"Formato completo: {formatear_fecha(fecha_actual, 'completo')}")
+print(f"Fecha corta: {formatear_fecha(fecha_actual, 'fecha_corta')}")
+print(f"Hora corta: {formatear_fecha(fecha_actual, 'hora_corta')}")
+print(f"Día de la semana: {formatear_fecha(fecha_actual, 'dia_semana')}")
+
+# Cálculo con fechas
+fecha_futura = fecha_actual + datetime.timedelta(days=30)
+fecha_pasada = fecha_actual - datetime.timedelta(days=7)
+
+print(f"\nDentro de 30 días: {formatear_fecha(fecha_futura, 'fecha_corta')}")
+print(f"Hace 7 días: {formatear_fecha(fecha_pasada, 'fecha_corta')}")
+
+# Diferencia entre fechas
+diferencia = fecha_futura - fecha_actual
+print(f"Días hasta fecha futura: {diferencia.days}")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h5>Importación Básica</h5>
+                        <ul>
+                            <li>Importa todo el módulo</li>
+                            <li>Usa prefijo: <code>math.sqrt()</code></li>
+                            <li>Más explícito y claro</li>
+                            <li>Evita conflictos de nombres</li>
+                        </ul>
+                        <pre><code class="language-python">import math
+resultado = math.sqrt(16)</code></pre>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h5>Importación Específica</h5>
+                        <ul>
+                            <li>Importa solo lo necesario</li>
+                            <li>Usa funciones directamente</li>
+                            <li>Más eficiente en memoria</li>
+                            <li>Cuidado con conflictos</li>
+                        </ul>
+                        <pre><code class="language-python">from math import sqrt
+resultado = sqrt(16)</code></pre>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Cuidado con los Nombres</h4>
+                    <p>Al usar importación específica, ten cuidado de no sobrescribir funciones integradas o crear conflictos:</p>
+                    <pre><code class="language-python"># ¡Peligroso! Sobrescribes la función integrada sum()
+from math import *
+sum = 42  # Ahora sum() ya no funciona como esperas
+
+# Mejor práctica: importar específicamente
+from math import sqrt, pi
+# O usar alias
+import math as matemáticas</code></pre>
+                </div>
+            </div>
+
+            <!-- 2. Módulos de la biblioteca estándar -->
+            <div class="concept-card">
+                <h3>2. Explorando la Biblioteca Estándar</h3>
+                <p>Python incluye una extensa biblioteca estándar con módulos para tareas comunes. Estos módulos están organizados por funcionalidad y cubren desde matemáticas hasta manejo de archivos.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Módulo math - Funciones matemáticas avanzadas
+import math
+
+# Constantes matemáticas
+print(f"Pi: {math.pi}")
+print(f"Euler: {math.e}")
+print(f"Tau: {math.tau}")
+print(f"Infinito: {math.inf}")
+
+# Funciones trigonométricas (trabajan con radianes)
+angulo_grados = 90
+angulo_radianes = math.radians(angulo_grados)
+
+print(f"\nSeno de {angulo_grados}°: {math.sin(angulo_radianes)}")
+print(f"Coseno de {angulo_grados}°: {math.cos(angulo_radianes)}")
+print(f"Tangente de {angulo_grados}°: {math.tan(angulo_radianes)}")
+
+# Funciones hiperbólicas
+print(f"Seno hiperbólico de 1: {math.sinh(1)}")
+print(f"Coseno hiperbólico de 1: {math.cosh(1)}")
+
+# Funciones matemáticas útiles
+print(f"Factorial de 5: {math.factorial(5)}")
+print(f"Combinaciones C(5,3): {math.comb(5, 3)}")
+print(f"Permutaciones P(5,3): {math.perm(5, 3)}")
+
+# Redondeo especial
+print(f"Techo de 4.3: {math.ceil(4.3)}")
+print(f"Piso de 4.7: {math.floor(4.7)}")
+print(f"Truncar 4.7: {math.trunc(4.7)}")
+
+# Potencias y raíces
+print(f"2^8: {math.pow(2, 8)}")
+print(f"√100: {math.sqrt(100)}")
+print(f"∛27: {math.pow(27, 1/3)}")
+
+# Módulo random - Generación de números aleatorios
+import random
+
+# Semilla para reproducibilidad
+random.seed(42)  # Siempre generará los mismos "aleatorios"
+
+# Números aleatorios básicos
+print("\n=== NÚMEROS ALEATORIOS ===")
+print(f"Entero aleatorio 1-100: {random.randint(1, 100)}")
+print(f"Decimal aleatorio 0-1: {random.random()}")
+print(f"Decimal aleatorio 10-20: {random.uniform(10, 20)}")
+
+# Selección aleatoria
+frutas = ['manzana', 'banana', 'naranja', 'uva', 'pera']
+print(f"Fruta aleatoria: {random.choice(frutas)}")
+
+# Muestreo sin reemplazo
+numeros = list(range(1, 11))
+muestra = random.sample(numeros, 3)
+print(f"Muestra de 3 números: {muestra}")
+
+# Barajar listas
+baraja = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] * 4
+random.shuffle(baraja)
+print(f"Carta al azar: {random.choice(baraja)}")
+
+# Módulo datetime - Manejo de fechas y horas
+import datetime
+
+# Fecha y hora actual
+ahora = datetime.datetime.now()
+print(f"\n=== FECHAS Y HORAS ===")
+print(f"Fecha y hora actual: {ahora}")
+print(f"Solo fecha: {ahora.date()}")
+print(f"Solo hora: {ahora.time()}")
+
+# Crear fechas específicas
+fecha_especifica = datetime.datetime(2024, 12, 25, 15, 30, 45)
+print(f"Fecha específica: {fecha_especifica}")
+
+# Operaciones con fechas
+hoy = datetime.date.today()
+mañana = hoy + datetime.timedelta(days=1)
+ayer = hoy - datetime.timedelta(days=1)
+semana_siguiente = hoy + datetime.timedelta(weeks=1)
+
+print(f"Hoy: {hoy}")
+print(f"Mañana: {mañana}")
+print(f"Ayer: {ayer}")
+print(f"Semana siguiente: {semana_siguiente}")
+
+# Diferencia entre fechas
+fecha1 = datetime.date(2024, 1, 1)
+fecha2 = datetime.date(2024, 12, 31)
+diferencia = fecha2 - fecha1
+print(f"Días entre fechas: {diferencia.days}")
+
+# Formateo de fechas
+formato_largo = ahora.strftime("Día: %A, %d de %B de %Y")
+formato_corto = ahora.strftime("%d/%m/%Y %H:%M")
+print(f"Formato largo: {formato_largo}")
+print(f"Formato corto: {formato_corto}")
+
+# Parseo de strings a fechas
+fecha_string = "25/12/2024"
+fecha_parseada = datetime.datetime.strptime(fecha_string, "%d/%m/%Y")
+print(f"Fecha parseada: {fecha_parseada}")
+
+# Otros módulos útiles de la biblioteca estándar
+import os      # Sistema operativo
+import sys     # Parámetros del sistema
+import json    # Trabajar con JSON
+import csv     # Leer archivos CSV
+import urllib  # Trabajar con URLs
+
+# Información del sistema
+print(f"\n=== INFORMACIÓN DEL SISTEMA ===")
+print(f"Directorio actual: {os.getcwd()}")
+print(f"Sistema operativo: {sys.platform}")
+print(f"Vesión de Python: {sys.version}")
+
+# Verificar si existe un archivo
+archivo = "readme.md"
+if os.path.exists(archivo):
+    print(f"El archivo {archivo} existe")
+    print(f"Tamaño: {os.path.getsize(archivo)} bytes")
+    print(f"Última modificación: {datetime.datetime.fromtimestamp(os.path.getmtime(archivo))}")
+
+# Crear datos JSON
+datos = {
+    "nombre": "Ana García",
+    "edad": 28,
+    "ciudad": "Madrid",
+    "habilidades": ["Python", "JavaScript", "SQL"]
+}
+
+json_string = json.dumps(datos, indent=2, ensure_ascii=False)
+print(f"\nDatos en JSON:\n{json_string}")
+
+# Información sobre módulos cargados
+print("
+Módulos principales cargados:")
+for modulo in ['math', 'random', 'datetime', 'os', 'sys']:
+    if modulo in sys.modules:
+        print(f"✅ {modulo} está cargado")
+    else:
+        print(f"❌ {modulo} no está cargado")</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Organización de la Biblioteca Estándar</h4>
+                    <p>La biblioteca estándar está organizada en módulos por funcionalidad:</p>
+                    <ul>
+                        <li><strong>Matemáticas:</strong> <code>math</code>, <code>cmath</code>, <code>decimal</code></li>
+                        <li><strong>Aleatoriedad:</strong> <code>random</code>, <code>secrets</code></li>
+                        <li><strong>Fechas/Horas:</strong> <code>datetime</code>, <code>time</code>, <code>calendar</code></li>
+                        <li><strong>Sistema:</strong> <code>os</code>, <code>sys</code>, <code>platform</code></li>
+                        <li><strong>Archivos:</strong> <code>io</code>, <code>csv</code>, <code>json</code>, <code>pickle</code></li>
+                        <li><strong>Red:</strong> <code>socket</code>, <code>urllib</code>, <code>http</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Creación de módulos personalizados -->
+            <div class="concept-card">
+                <h3>3. Creación de Módulos Personalizados</h3>
+                <p>Crear módulos personalizados te permite organizar tu código en archivos reutilizables, facilitando el mantenimiento y la colaboración en proyectos más grandes.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de módulo personalizado: calculadora.py
+
+# Función para suma
+def sumar(a, b):
+    """Suma dos números."""
+    return a + b
+
+# Función para resta
+def restar(a, b):
+    """Resta dos números."""
+    return a - b
+
+# Función para multiplicación
+def multiplicar(a, b):
+    """Multiplica dos números."""
+    return a * b
+
+# Función para división segura
+def dividir(a, b):
+    """Divide dos números con manejo de errores."""
+    if b == 0:
+        return "Error: No se puede dividir por cero"
+    return a / b
+
+# Función para calcular área de círculo
+def area_circulo(radio):
+    """Calcula el área de un círculo."""
+    import math
+    return math.pi * radio ** 2
+
+# Función para calcular área de triángulo
+def area_triangulo(base, altura):
+    """Calcula el área de un triángulo."""
+    return (base * altura) / 2
+
+# Función para calcular área de rectángulo
+def area_rectangulo(largo, ancho):
+    """Calcula el área de un rectángulo."""
+    return largo * ancho
+
+# Función para convertir temperaturas
+def celsius_a_fahrenheit(celsius):
+    """Convierte Celsius a Fahrenheit."""
+    return (celsius * 9/5) + 32
+
+def fahrenheit_a_celsius(fahrenheit):
+    """Convierte Fahrenheit a Celsius."""
+    return (fahrenheit - 32) * 5/9
+
+# Función para calcular promedio
+def calcular_promedio(numeros):
+    """Calcula el promedio de una lista de números."""
+    if not numeros:
+        return 0
+    return sum(numeros) / len(numeros)
+
+# Función para encontrar máximo
+def encontrar_maximo(numeros):
+    """Encuentra el máximo en una lista de números."""
+    if not numeros:
+        return None
+    return max(numeros)
+
+# Función para encontrar mínimo
+def encontrar_minimo(numeros):
+    """Encuentra el mínimo en una lista de números."""
+    if not numeros:
+        return None
+    return min(numeros)
+
+# Variable global para contador de operaciones
+operaciones_realizadas = 0
+
+# Función para contar operaciones
+def contar_operacion():
+    """Cuenta las operaciones realizadas."""
+    global operaciones_realizadas
+    operaciones_realizadas += 1
+    return operaciones_realizadas
+
+# Función para obtener estadísticas
+def obtener_estadisticas():
+    """Devuelve estadísticas del módulo."""
+    return {
+        "operaciones_realizadas": operaciones_realizadas,
+        "funciones_disponibles": [
+            "sumar", "restar", "multiplicar", "dividir",
+            "area_circulo", "area_triangulo", "area_rectangulo",
+            "celsius_a_fahrenheit", "fahrenheit_a_celsius",
+            "calcular_promedio", "encontrar_maximo", "encontrar_minimo"
+        ]
+    }
+
+# Ejemplo de uso del módulo
+if __name__ == "__main__":
+    print("=== PRUEBA DEL MÓDULO CALCULADORA ===")
+
+    # Operaciones básicas
+    resultado_suma = sumar(10, 5)
+    contar_operacion()
+    print(f"10 + 5 = {resultado_suma}")
+
+    resultado_resta = restar(20, 8)
+    contar_operacion()
+    print(f"20 - 8 = {resultado_resta}")
+
+    # Área de figuras
+    area_circ = area_circulo(5)
+    contar_operacion()
+    print(f"Área del círculo (radio=5): {area_circ:.2f}")
+
+    area_tri = area_triangulo(10, 6)
+    contar_operacion()
+    print(f"Área del triángulo (base=10, altura=6): {area_tri}")
+
+    # Estadísticas del módulo
+    stats = obtener_estadisticas()
+    print(f"\nOperaciones realizadas: {stats['operaciones_realizadas']}")
+    print(f"Funciones disponibles: {len(stats['funciones_disponibles'])}")
+
+    # Ejemplo de uso avanzado
+    temperaturas_celsius = [20, 25, 30, 15]
+    temperaturas_fahrenheit = [celsius_a_fahrenheit(temp) for temp in temperaturas_celsius]
+    contar_operacion()
+
+    promedio_temp = calcular_promedio(temperaturas_fahrenheit)
+    contar_operacion()
+
+    print(f"\nTemperaturas en Fahrenheit: {temperaturas_fahrenheit}")
+    print(f"Promedio de temperaturas: {promedio_temp:.1f}°F")
+
+    max_temp = encontrar_maximo(temperaturas_fahrenheit)
+    min_temp = encontrar_minimo(temperaturas_fahrenheit)
+    contar_operacion()
+    contar_operacion()
+
+    print(f"Temperatura máxima: {max_temp}°F")
+    print(f"Temperatura mínima: {min_temp}°F")
+
+    print(f"\nTotal de operaciones realizadas: {obtener_estadisticas()['operaciones_realizadas']}")</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Mejores Prácticas para Módulos</h4>
+                    <p>Sigue estas recomendaciones para crear módulos efectivos:</p>
+                    <ul>
+                        <li>Organiza funciones relacionadas en módulos temáticos</li>
+                        <li>Incluye documentación clara (docstrings)</li>
+                        <li>Maneja errores apropiadamente</li>
+                        <li>Usa la estructura <code>if __name__ == "__main__"</code> para pruebas</li>
+                        <li>Mantén módulos pequeños y enfocados</li>
+                        <li>Usa nombres descriptivos para funciones y módulos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Espacios de nombres -->
+            <div class="concept-card">
+                <h3>4. Manejo de Espacios de Nombres</h3>
+                <p>Los espacios de nombres permiten evitar conflictos entre nombres de funciones y variables. Python maneja automáticamente los espacios de nombres, pero es importante entender cómo funcionan.</p>
+
+                <div class="code-block">
+                    <pre><code class="language-python"># Ejemplo de espacios de nombres y conflictos potenciales
+
+# Módulo matemáticas.py
+def calcular_area(radio):
+    """Calcula área de un círculo."""
+    import math
+    return math.pi * radio ** 2
+
+def calcular_promedio(numeros):
+    """Calcula promedio de una lista."""
+    return sum(numeros) / len(numeros) if numeros else 0
+
+# Módulo estadísticas.py
+def calcular_promedio(datos):
+    """Calcula promedio con más precisión."""
+    import statistics
+    return statistics.mean(datos)
+
+def calcular_area(datos):
+    """Calcula área bajo una curva (integral aproximada)."""
+    return sum(datos) * 0.1  # Simplificación
+
+# Programa principal que importa ambos módulos
+import matemáticas
+import estadísticas
+
+# Uso correcto con prefijos
+datos_numeros = [1, 2, 3, 4, 5]
+radio_circulo = 5
+
+# Área del círculo usando el módulo matemáticas
+area_circulo = matemáticas.calcular_area(radio_circulo)
+print(f"Área del círculo: {area_circulo:.2f}")
+
+# Promedio usando el módulo matemáticas
+promedio_simple = matemáticas.calcular_promedio(datos_numeros)
+print(f"Promedio simple: {promedio_simple}")
+
+# Promedio usando el módulo estadísticas
+promedio_estadistico = estadísticas.calcular_promedio(datos_numeros)
+print(f"Promedio estadístico: {promedio_estadistico}")
+
+# Área usando el módulo estadísticas (diferente significado)
+datos_curva = [1, 4, 9, 16, 25]
+area_curva = estadísticas.calcular_area(datos_curva)
+print(f"Área bajo curva: {area_curva}")
+
+# Ejemplo de conflicto potencial resuelto con alias
+from matemáticas import calcular_area as area_circulo
+from estadísticas import calcular_area as area_curva
+
+# Ahora puedo usar las funciones directamente
+area1 = area_circulo(10)  # Área de círculo
+area2 = area_curva([1, 2, 3, 4])  # Área bajo curva
+
+print(f"\nCon alias:")
+print(f"Área círculo (radio=10): {area1:.2f}")
+print(f"Área curva: {area2}")
+
+# Inspección de espacios de nombres
+print("
+=== ESPACIOS DE NOMBRES ===")
+print(f"Funciones en matemáticas: {[name for name in dir(matemáticas) if not name.startswith('_')]}")
+print(f"Funciones en estadísticas: {[name for name in dir(estadísticas) if not name.startswith('_')]}")
+
+# Variables globales en cada módulo
+print(f"\nVariables globales en matemáticas: {[name for name in dir(matemáticas) if not name.startswith('_') and not callable(getattr(matemáticas, name))]}")
+
+# Ejemplo avanzado: módulo con clases
+class CalculadoraCientifica:
+    """Clase para cálculos científicos avanzados."""
+
+    def __init__(self):
+        self.historial = []
+
+    def calcular_seno(self, angulo_grados):
+        """Calcula seno de un ángulo en grados."""
+        import math
+        resultado = math.sin(math.radians(angulo_grados))
+        self.historial.append(f"sin({angulo_grados}°) = {resultado}")
+        return resultado
+
+    def calcular_logaritmo(self, numero, base=10):
+        """Calcula logaritmo en base especificada."""
+        import math
+        resultado = math.log(numero, base)
+        self.historial.append(f"log{base}({numero}) = {resultado}")
+        return resultado
+
+    def mostrar_historial(self):
+        """Muestra el historial de cálculos."""
+        print("\n=== HISTORIAL DE CÁLCULOS ===")
+        for i, calculo in enumerate(self.historial, 1):
+            print(f"{i}. {calculo}")
+        return len(self.historial)
+
+# Uso de la clase
+calc = CalculadoraCientifica()
+
+seno_30 = calc.calcular_seno(30)
+seno_60 = calc.calcular_seno(60)
+log_100 = calc.calcular_logaritmo(100, 10)
+log_8 = calc.calcular_logaritmo(8, 2)
+
+operaciones = calc.mostrar_historial()
+print(f"\nTotal de operaciones realizadas: {operaciones}")
+
+# Espacios de nombres con clases
+print("
+=== ANÁLISIS DE ESPACIOS DE NOMBRES ===")
+print(f"Nombre de la clase: {CalculadoraCientifica.__name__}")
+print(f"Módulo de la clase: {CalculadoraCientifica.__module__}")
+print(f"Archivo de la clase: {CalculadoraCientifica.__file__ if hasattr(CalculadoraCientifica, '__file__') else 'Built-in'}")
+
+# Funciones especiales de módulos
+print("
+Funciones especiales disponibles:")
+print(f"__name__: {matemáticas.__name__}")
+print(f"__file__: {matemáticas.__file__}")
+print(f"__doc__: {matemáticas.__doc__[:100] if matemáticas.__doc__ else 'Sin documentación'}...")
+
+# Ejemplo práctico: organización de proyecto
+print("
+=== ESTRUCTURA RECOMENDADA DE PROYECTO ===")
+estructura_proyecto = """
+mi_proyecto/
+├── main.py              # Programa principal
+├── calculadora.py       # Módulo de cálculos básicos
+├── estadisticas.py      # Módulo de análisis estadístico
+├── utils.py            # Utilidades generales
+├── config.py           # Configuración
+└── datos/
+    ├── entrada.csv     # Datos de entrada
+    └── resultados.txt  # Resultados
+"""
+
+print(estructura_proyecto)</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Conflictos de Nombres</h4>
+                    <p>Evita conflictos usando estrategias apropiadas:</p>
+                    <ul>
+                        <li>Usa prefijos descriptivos en nombres de funciones</li>
+                        <li>Emplea módulos separados para funcionalidades diferentes</li>
+                        <li>Usa alias al importar para resolver conflictos</li>
+                        <li>Documenta claramente el propósito de cada función</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ejemplos prácticos -->
+        <section id="ejemplos" class="session-section">
+            <h2><i class="fas fa-code"></i> Ejemplos Prácticos</h2>
+
+            <div class="card">
+                <h3>Ejemplo 1: Explorando Módulos de la Biblioteca Estándar</h3>
+                <p>Descubriremos las capacidades de diferentes módulos estándar y cómo combinarlos en aplicaciones prácticas.</p>
+
+                <div class="library-showcase">
+                    <h3><i class="fas fa-atom"></i> Aplicación: Analizador de Datos Científicos</h3>
+
+                    <div class="library-example">
+                        <h5>Análisis Estadístico Completo</h5>
+                        <pre><code class="language-python"># Importación de múltiples módulos estándar
+import math
+import random
+import statistics
+import datetime
+import os
+import json
+
+class AnalizadorCientifico:
+    """Clase para análisis científicos usando módulos estándar."""
+
+    def __init__(self, nombre="Análisis General"):
+        self.nombre = nombre
+        self.datos = []
+        self.resultados = {}
+        self.timestamp = datetime.datetime.now()
+
+    def cargar_datos(self, archivo=None, generar_aleatorio=False, cantidad=100):
+        """Carga datos desde archivo o genera datos aleatorios."""
+
+        if generar_aleatorio:
+            # Generar datos aleatorios con distribución normal
+            self.datos = [random.gauss(50, 15) for _ in range(cantidad)]
+            print(f"✅ Datos aleatorios generados: {len(self.datos)} elementos")
+        elif archivo and os.path.exists(archivo):
+            try:
+                with open(archivo, 'r') as f:
+                    self.datos = [float(line.strip()) for line in f if line.strip()]
+                print(f"✅ Datos cargados desde {archivo}: {len(self.datos)} elementos")
+            except Exception as e:
+                print(f"❌ Error al cargar archivo: {e}")
+                return False
+        else:
+            print("❌ Especifica archivo o genera datos aleatorios")
+            return False
+
+        return True
+
+    def analisis_estadistico_basico(self):
+        """Realiza análisis estadístico básico."""
+
+        if not self.datos:
+            return {"error": "No hay datos para analizar"}
+
+        datos_ordenados = sorted(self.datos)
+
+        self.resultados['estadisticas'] = {
+            'cantidad': len(self.datos),
+            'media': statistics.mean(self.datos),
+            'mediana': statistics.median(datos_ordenados),
+            'moda': statistics.mode(self.datos) if len(set(self.datos)) < len(self.datos) else None,
+            'desviacion': statistics.stdev(self.datos),
+            'varianza': statistics.variance(self.datos),
+            'minimo': min(self.datos),
+            'maximo': max(self.datos),
+            'rango': max(self.datos) - min(self.datos)
+        }
+
+        return self.resultados['estadisticas']
+
+    def analisis_matematico(self):
+        """Realiza análisis matemático avanzado."""
+
+        if not self.datos:
+            return {"error": "No hay datos para analizar"}
+
+        datos_array = [float(x) for x in self.datos]
+
+        self.resultados['matematicas'] = {
+            'suma_total': math.fsum(datos_array),  # Suma precisa para floats
+            'producto_total': math.prod([x for x in datos_array if x != 0]),  # Producto
+            'raiz_cuadrada_media': math.sqrt(statistics.mean([x**2 for x in datos_array])),
+            'logaritmo_promedio': statistics.mean([math.log(x) for x in datos_array if x > 0])
+        }
+
+        return self.resultados['matematicas']
+
+    def generar_grafico_ascii(self, ancho=50):
+        """Genera un gráfico ASCII simple de los datos."""
+
+        if not self.datos:
+            return "No hay datos para graficar"
+
+        # Crear histograma simple
+        histograma = {}
+        for dato in self.datos:
+            rango = int(dato // 10) * 10  # Agrupar por rangos de 10
+            histograma[rango] = histograma.get(rango, 0) + 1
+
+        grafico = ["Gráfico de Datos:"]
+        max_frecuencia = max(histograma.values()) if histograma else 1
+
+        for rango in sorted(histograma.keys()):
+            frecuencia = histograma[rango]
+            barras = '█' * int((frecuencia / max_frecuencia) * ancho)
+            grafico.append(f"{rango"3d"}: {barras} ({frecuencia})")
+
+        return "\n".join(grafico)
+
+    def generar_reporte(self, formato="texto"):
+        """Genera un reporte completo del análisis."""
+
+        if not self.resultados:
+            self.analisis_estadistico_basico()
+            self.analisis_matematico()
+
+        if formato == "texto":
+            reporte = [f"=== REPORTE DE ANÁLISIS: {self.nombre} ==="]
+            reporte.append(f"Generado: {self.timestamp.strftime('%d/%m/%Y %H:%M:%S')}")
+            reporte.append(f"Datos analizados: {len(self.datos)} elementos")
+            reporte.append("")
+
+            if 'estadisticas' in self.resultados:
+                reporte.append("📊 ESTADÍSTICAS BÁSICAS:")
+                stats = self.resultados['estadisticas']
+                reporte.append(f"  Media: {stats['media']:.2f}")
+                reporte.append(f"  Mediana: {stats['mediana']:.2f}")
+                reporte.append(f"  Desviación estándar: {stats['desviacion']:.2f}")
+                reporte.append(f"  Rango: {stats['minimo']:.2f} - {stats['maximo']:.2f}")
+                reporte.append("")
+
+            if 'matematicas' in self.resultados:
+                reporte.append("🔢 ANÁLISIS MATEMÁTICO:")
+                math_data = self.resultados['matematicas']
+                reporte.append(f"  Suma total: {math_data['suma_total']:.2f}")
+                reporte.append(f"  Raíz cuadrada de la media: {math_data['raiz_cuadrada_media']:.2f}")
+                reporte.append("")
+
+            reporte.append("📈 GRÁFICO ASCII:")
+            reporte.append(self.generar_grafico_ascii())
+
+            return "\n".join(reporte)
+
+        elif formato == "json":
+            return json.dumps({
+                "nombre": self.nombre,
+                "timestamp": self.timestamp.isoformat(),
+                "datos": len(self.datos),
+                "resultados": self.resultados
+            }, indent=2, ensure_ascii=False)
+
+    def guardar_resultados(self, archivo="resultados_analisis.txt"):
+        """Guarda los resultados en un archivo."""
+
+        try:
+            with open(archivo, 'w', encoding='utf-8') as f:
+                f.write(self.generar_reporte("texto"))
+            print(f"✅ Resultados guardados en {archivo}")
+            return True
+        except Exception as e:
+            print(f"❌ Error al guardar: {e}")
+            return False
+
+# Uso del analizador científico
+print("=== APLICACIÓN DE ANÁLISIS CIENTÍFICO ===")
+
+# Crear analizador y cargar datos aleatorios
+analizador = AnalizadorCientifico("Experimento de Temperaturas")
+analizador.cargar_datos(generar_aleatorio=True, cantidad=200)
+
+# Realizar análisis completo
+print("\n📊 Realizando análisis estadístico...")
+estadisticas = analizador.analisis_estadistico_basico()
+print(f"✅ Datos analizados: {estadisticas['cantidad']} elementos")
+print(f"   Media: {estadisticas['media']:.2f}")
+print(f"   Desviación: {estadisticas['desviacion']:.2f}")
+
+print("\n🔢 Realizando análisis matemático...")
+matematicas = analizador.analisis_matematico()
+print(f"✅ Suma total: {matematicas['suma_total']:.2f}")
+
+# Generar reporte completo
+print("\n📋 GENERANDO REPORTE...")
+reporte = analizador.generar_reporte()
+print(reporte[:500] + "...\n[Reporte truncado para brevedad]")
+
+# Guardar resultados
+analizador.guardar_resultados("analisis_temperaturas.txt")
+
+print("\n✅ Análisis completo terminado!")
+print(f"📁 Archivo de resultados creado: {os.path.exists('analisis_temperaturas.txt')}")</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplo 2: Creación de una Biblioteca Personal</h3>
+                <p>Desarrollaremos una biblioteca de funciones útiles que podemos reutilizar en múltiples proyectos.</p>
+
+                <div class="module-creator">
+                    <h3><i class="fas fa-boxes"></i> Biblioteca de Utilidades: Mi Biblioteca Personal</h3>
+
+                    <div class="creator-example">
+                        <h5>Biblioteca Completa de Funciones Útiles</h5>
+                        <pre><code class="language-python"># mi_biblioteca/__init__.py - Archivo vacío para hacer el directorio un paquete
+
+# mi_biblioteca/matematicas.py - Funciones matemáticas útiles
+"""
+Módulo de funciones matemáticas avanzadas.
+Proporciona herramientas para cálculos comunes y avanzados.
+"""
+
+import math
+from typing import List, Union
+
+def es_primo(numero: int) -> bool:
+    """Verifica si un número es primo."""
+    if numero < 2:
+        return False
+    for i in range(2, int(math.sqrt(numero)) + 1):
+        if numero % i == 0:
+            return False
+    return True
+
+def factores_primos(numero: int) -> List[int]:
+    """Devuelve la lista de factores primos de un número."""
+    factores = []
+    divisor = 2
+
+    while divisor <= numero:
+        if numero % divisor == 0:
+            factores.append(divisor)
+            numero //= divisor
+        else:
+            divisor += 1
+
+    return factores
+
+def calcular_fibonacci(n: int) -> List[int]:
+    """Calcula los primeros n números de Fibonacci."""
+    fibonacci = [0, 1]
+    for i in range(2, n):
+        fibonacci.append(fibonacci[i-1] + fibonacci[i-2])
+    return fibonacci[:n]
+
+def convertir_base(numero: int, base: int) -> str:
+    """Convierte un número decimal a otra base."""
+    if numero == 0:
+        return '0'
+
+    digitos = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    resultado = ''
+
+    while numero > 0:
+        resultado = digitos[numero % base] + resultado
+        numero //= base
+
+    return resultado
+
+# mi_biblioteca/texto.py - Funciones de manipulación de texto
+"""
+Módulo para manipulación avanzada de texto.
+Incluye formateo, análisis y transformación de cadenas.
+"""
+
+import re
+from collections import Counter
+
+def contar_palabras(texto: str) -> dict:
+    """Cuenta la frecuencia de cada palabra en un texto."""
+    # Limpiar texto y dividir en palabras
+    palabras = re.findall(r'\b\w+\b', texto.lower())
+    return dict(Counter(palabras))
+
+def es_palindromo(texto: str) -> bool:
+    """Verifica si un texto es un palíndromo."""
+    # Eliminar espacios y signos de puntuación
+    texto_limpio = re.sub(r'[^a-zA-Z0-9]', '', texto.lower())
+    return texto_limpio == texto_limpio[::-1]
+
+def formatear_titulo(texto: str) -> str:
+    """Convierte texto a formato de título inteligente."""
+    # Lista de palabras que no deben capitalizarse
+    palabras_menores = {
+        'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas',
+        'de', 'del', 'en', 'y', 'o', 'pero', 'que', 'como',
+        'a', 'ante', 'bajo', 'con', 'contra', 'desde', 'durante',
+        'entre', 'hacia', 'hasta', 'mediante', 'para', 'por',
+        'según', 'sin', 'sobre', 'tras', 'versus', 'vía'
+    }
+
+    palabras = texto.lower().split()
+    resultado = []
+
+    for i, palabra in enumerate(palabras):
+        if i == 0 or palabra not in palabras_menores:
+            resultado.append(palabra.capitalize())
+        else:
+            resultado.append(palabra)
+
+    return ' '.join(resultado)
+
+def generar_acronimo(texto: str) -> str:
+    """Genera un acrónimo a partir de un texto."""
+    palabras = re.findall(r'\b\w', texto.upper())
+    return ''.join(palabras)
+
+# mi_biblioteca/archivos.py - Funciones para manejo de archivos
+"""
+Módulo para operaciones comunes con archivos.
+Simplifica las tareas de lectura, escritura y análisis de archivos.
+"""
+
+import os
+import json
+from pathlib import Path
+
+def leer_archivo_seguro(archivo: str, encoding: str = 'utf-8') -> str:
+    """Lee un archivo de texto de forma segura."""
+    try:
+        with open(archivo, 'r', encoding=encoding) as f:
+            return f.read()
+    except FileNotFoundError:
+        return f"Error: Archivo '{archivo}' no encontrado"
+    except Exception as e:
+        return f"Error al leer archivo: {e}"
+
+def escribir_archivo_seguro(archivo: str, contenido: str, encoding: str = 'utf-8') -> bool:
+    """Escribe en un archivo de forma segura."""
+    try:
+        # Crear directorios si no existen
+        os.makedirs(os.path.dirname(archivo), exist_ok=True)
+
+        with open(archivo, 'w', encoding=encoding) as f:
+            f.write(contenido)
+        return True
+    except Exception as e:
+        print(f"Error al escribir archivo: {e}")
+        return False
+
+def analizar_archivo(archivo: str) -> dict:
+    """Analiza un archivo de texto y devuelve estadísticas."""
+    contenido = leer_archivo_seguro(archivo)
+
+    if contenido.startswith("Error"):
+        return {"error": contenido}
+
+    lineas = contenido.split('\n')
+    palabras = re.findall(r'\b\w+\b', contenido)
+
+    return {
+        "archivo": archivo,
+        "tamaño_bytes": len(contenido.encode('utf-8')),
+        "lineas": len(lineas),
+        "palabras": len(palabras),
+        "caracteres": len(contenido),
+        "lineas_vacias": sum(1 for linea in lineas if not linea.strip()),
+        "palabras_unicas": len(set(palabras))
+    }
+
+def buscar_archivos(extension: str, directorio: str = '.') -> List[str]:
+    """Busca archivos con una extensión específica."""
+    archivos_encontrados = []
+
+    for archivo in Path(directorio).rglob(f"*.{extension}"):
+        if archivo.is_file():
+            archivos_encontrados.append(str(archivo))
+
+    return archivos_encontrados
+
+# mi_biblioteca/validacion.py - Funciones de validación
+"""
+Módulo para validación de datos de entrada.
+Proporciona funciones para verificar diferentes tipos de datos.
+"""
+
+import re
+
+def validar_email(email: str) -> bool:
+    """Valida si un email tiene formato correcto."""
+    patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(patron, email) is not None
+
+def validar_telefono(telefono: str) -> bool:
+    """Valida si un teléfono tiene formato correcto."""
+    # Acepta formatos: (123) 456-7890, 123-456-7890, 123.456.7890, etc.
+    patron = r'^\(?(\d{3})\)?[.-]?(\d{3})[.-]?(\d{4})$'
+    return re.match(patron, telefono) is not None
+
+def validar_codigo_postal(cp: str) -> bool:
+    """Valida si un código postal tiene formato correcto."""
+    patron = r'^\d{5}(-\d{4})?$'  # 12345 o 12345-6789
+    return re.match(patron, cp) is not None
+
+def validar_tarjeta_credito(numero: str) -> bool:
+    """Valida si un número de tarjeta de crédito es válido (algoritmo de Luhn)."""
+    # Eliminar espacios y guiones
+    numero = re.sub(r'[\s-]', '', numero)
+
+    if not numero.isdigit() or len(numero) < 13 or len(numero) > 19:
+        return False
+
+    # Algoritmo de Luhn
+    digitos = [int(d) for d in reversed(numero)]
+    suma = 0
+
+    for i, digito in enumerate(digitos):
+        if i % 2 == 1:
+            digito *= 2
+            if digito > 9:
+                digito -= 9
+        suma += digito
+
+    return suma % 10 == 0
+
+# Programa principal de demostración
+if __name__ == "__main__":
+    print("=== DEMOSTRACIÓN DE LA BIBLIOTECA PERSONAL ===")
+
+    # Demostración del módulo matemáticas
+    print("\n🔢 MÓDULO MATEMÁTICAS:")
+    print(f"¿Es 17 primo? {es_primo(17)}")
+    print(f"¿Es 15 primo? {es_primo(15)}")
+    print(f"Factores primos de 84: {factores_primos(84)}")
+    print(f"Fibonacci (10 primeros): {calcular_fibonacci(10)}")
+    print(f"42 en base 16: {convertir_base(42, 16)}")
+
+    # Demostración del módulo texto
+    print("\n📝 MÓDULO TEXTO:")
+    texto = "radar es un palíndromo muy conocido"
+    print(f"¿Es '{texto}' un palíndromo? {es_palindromo(texto)}")
+    titulo = "el señor de los anillos"
+    print(f"Título formateado: '{formatear_titulo(titulo)}'")
+    acronimo = generar_acronimo("Instituto Tecnológico Superior")
+    print(f"Acrónimo: {acronimo}")
+
+    # Demostración del módulo validación
+    print("\n✅ MÓDULO VALIDACIÓN:")
+    emails = ["usuario@ejemplo.com", "email.invalido", "test@gmail.com"]
+    for email in emails:
+        print(f"¿Email '{email}' válido? {validar_email(email)}")
+
+    telefonos = ["(555) 123-4567", "555.123.4567", "123-456-7890"]
+    for telefono in telefonos:
+        print(f"¿Teléfono '{telefono}' válido? {validar_telefono(telefono)}")
+
+    tarjetas = ["4532015112830366", "4532015112830367", "1234567890123456"]
+    for tarjeta in tarjetas:
+        print(f"¿Tarjeta '{tarjeta}' válida? {validar_tarjeta_credito(tarjeta)}")
+
+    print("\n🎉 ¡Biblioteca personal funcionando correctamente!")
+    print("📚 Funciones disponibles:")
+    print("  - Matemáticas: es_primo, factores_primos, calcular_fibonacci, convertir_base")
+    print("  - Texto: contar_palabras, es_palindromo, formatear_titulo, generar_acronimo")
+    print("  - Archivos: leer_archivo_seguro, escribir_archivo_seguro, analizar_archivo, buscar_archivos")
+    print("  - Validación: validar_email, validar_telefono, validar_codigo_postal, validar_tarjeta_credito")</code></pre>
+                    </div>
+                </div>
+
+                <h3>Ejemplo 3: Programa Multiarchivo Profesional</h3>
+                <p>Crearemos un programa complejo organizado en múltiples archivos que demuestra las mejores prácticas de desarrollo modular.</p>
+
+                <div class="multifile-project">
+                    <h3><i class="fas fa-project-diagram"></i> Proyecto: Sistema de Gestión de Tareas</h3>
+
+                    <div class="project-example">
+                        <h5>Estructura de Archivos del Proyecto</h5>
+                        <pre><code class="language-python"># Proyecto: Sistema de Gestión de Tareas
+# Estructura de archivos recomendada:
+#
+# sistema_tareas/
+# ├── main.py              # Programa principal
+# ├── tareas.py           # Gestión de tareas
+# ├── usuarios.py         # Gestión de usuarios
+# ├── almacenamiento.py   # Manejo de archivos
+# ├── interfaz.py         # Interfaz de usuario
+# ├── config.py           # Configuración
+# ├── utils.py            # Utilidades generales
+# └── __init__.py         # Paquete Python
+
+# tareas.py - Gestión de tareas
+"""
+Módulo para gestión de tareas y proyectos.
+Proporciona funcionalidades CRUD para tareas.
+"""
+
+import datetime
+import json
+from typing import List, Dict, Optional
+
+class Tarea:
+    """Representa una tarea individual."""
+
+    def __init__(self, titulo: str, descripcion: str = "", prioridad: int = 1,
+                 fecha_limite: Optional[datetime.date] = None, categoria: str = "General"):
+        self.id = None  # Se asignará al agregar a la lista
+        self.titulo = titulo
+        self.descripcion = descripcion
+        self.prioridad = prioridad  # 1=baja, 2=media, 3=alta, 4=urgente
+        self.fecha_creacion = datetime.date.today()
+        self.fecha_limite = fecha_limite
+        self.fecha_completacion = None
+        self.categoria = categoria
+        self.completada = False
+        self.notas = []
+
+    def completar(self):
+        """Marca la tarea como completada."""
+        self.completada = True
+        self.fecha_completacion = datetime.date.today()
+
+    def agregar_nota(self, nota: str):
+        """Agrega una nota a la tarea."""
+        self.notas.append({
+            'texto': nota,
+            'fecha': datetime.date.today()
+        })
+
+    def a_dict(self) -> dict:
+        """Convierte la tarea a diccionario para serialización."""
+        return {
+            'id': self.id,
+            'titulo': self.titulo,
+            'descripcion': self.descripcion,
+            'prioridad': self.prioridad,
+            'fecha_creacion': self.fecha_creacion.isoformat(),
+            'fecha_limite': self.fecha_limite.isoformat() if self.fecha_limite else None,
+            'fecha_completacion': self.fecha_completacion.isoformat() if self.fecha_completacion else None,
+            'categoria': self.categoria,
+            'completada': self.completada,
+            'notas': self.notas
+        }
+
+    @classmethod
+    def desde_dict(cls, datos: dict) -> 'Tarea':
+        """Crea una tarea desde un diccionario."""
+        tarea = cls(
+            titulo=datos['titulo'],
+            descripcion=datos.get('descripcion', ''),
+            prioridad=datos.get('prioridad', 1),
+            categoria=datos.get('categoria', 'General')
+        )
+
+        tarea.id = datos.get('id')
+        tarea.fecha_creacion = datetime.date.fromisoformat(datos['fecha_creacion'])
+        tarea.fecha_limite = datetime.date.fromisoformat(datos['fecha_limite']) if datos.get('fecha_limite') else None
+        tarea.fecha_completacion = datetime.date.fromisoformat(datos['fecha_completacion']) if datos.get('fecha_completacion') else None
+        tarea.completada = datos.get('completada', False)
+        tarea.notas = datos.get('notas', [])
+
+        return tarea
+
+class ListaTareas:
+    """Gestiona una colección de tareas."""
+
+    def __init__(self):
+        self.tareas = []
+        self.siguiente_id = 1
+
+    def agregar_tarea(self, tarea: Tarea) -> int:
+        """Agrega una tarea y devuelve su ID."""
+        tarea.id = self.siguiente_id
+        self.tareas.append(tarea)
+        self.siguiente_id += 1
+        return tarea.id
+
+    def eliminar_tarea(self, tarea_id: int) -> bool:
+        """Elimina una tarea por su ID."""
+        for i, tarea in enumerate(self.tareas):
+            if tarea.id == tarea_id:
+                del self.tareas[i]
+                return True
+        return False
+
+    def obtener_tarea(self, tarea_id: int) -> Optional[Tarea]:
+        """Obtiene una tarea por su ID."""
+        for tarea in self.tareas:
+            if tarea.id == tarea_id:
+                return tarea
+        return None
+
+    def listar_tareas(self, filtro: str = "todas") -> List[Tarea]:
+        """Lista tareas con filtros opcionales."""
+        if filtro == "pendientes":
+            return [t for t in self.tareas if not t.completada]
+        elif filtro == "completadas":
+            return [t for t in self.tareas if t.completada]
+        elif filtro == "urgentes":
+            return [t for t in self.tareas if t.prioridad >= 3 and not t.completada]
+        elif filtro == "categoria":
+            return sorted(self.tareas, key=lambda x: x.categoria)
+        else:
+            return self.tareas.copy()
+
+    def estadisticas(self) -> dict:
+        """Devuelve estadísticas sobre las tareas."""
+        total = len(self.tareas)
+        completadas = sum(1 for t in self.tareas if t.completada)
+        pendientes = total - completadas
+
+        categorias = {}
+        for tarea in self.tareas:
+            categorias[tarea.categoria] = categorias.get(tarea.categoria, 0) + 1
+
+        return {
+            'total': total,
+            'completadas': completadas,
+            'pendientes': pendientes,
+            'porcentaje_completado': (completadas / total * 100) if total > 0 else 0,
+            'categorias': categorias
+        }
+
+# usuarios.py - Gestión de usuarios
+"""
+Módulo para gestión de usuarios del sistema.
+Maneja autenticación y perfiles de usuario.
+"""
+
+import hashlib
+
+class Usuario:
+    """Representa un usuario del sistema."""
+
+    def __init__(self, nombre: str, email: str, contrasena: str):
+        self.nombre = nombre
+        self.email = email
+        self.contrasena_hash = self._hash_contrasena(contrasena)
+        self.fecha_registro = datetime.date.today()
+        self.activo = True
+
+    def _hash_contrasena(self, contrasena: str) -> str:
+        """Genera hash seguro de la contraseña."""
+        return hashlib.sha256(contrasena.encode()).hexdigest()
+
+    def verificar_contrasena(self, contrasena: str) -> bool:
+        """Verifica si la contraseña es correcta."""
+        return self.contrasena_hash == self._hash_contrasena(contrasena)
+
+    def cambiar_contrasena(self, contrasena_actual: str, nueva_contrasena: str) -> bool:
+        """Cambia la contraseña si la actual es correcta."""
+        if self.verificar_contrasena(contrasena_actual):
+            self.contrasena_hash = self._hash_contrasena(nueva_contrasena)
+            return True
+        return False
+
+# almacenamiento.py - Manejo de archivos
+"""
+Módulo para operaciones de almacenamiento.
+Maneja la persistencia de datos en archivos.
+"""
+
+import os
+
+def guardar_datos(archivo: str, datos: any) -> bool:
+    """Guarda datos en un archivo JSON."""
+    try:
+        os.makedirs(os.path.dirname(archivo), exist_ok=True)
+        with open(archivo, 'w', encoding='utf-8') as f:
+            json.dump(datos, f, indent=2, ensure_ascii=False, default=str)
+        return True
+    except Exception as e:
+        print(f"Error al guardar: {e}")
+        return False
+
+def cargar_datos(archivo: str) -> any:
+    """Carga datos desde un archivo JSON."""
+    try:
+        if not os.path.exists(archivo):
+            return None
+
+        with open(archivo, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Error al cargar: {e}")
+        return None
+
+# interfaz.py - Interfaz de usuario
+"""
+Módulo para manejo de la interfaz de usuario.
+Proporciona funciones para interacción con el usuario.
+"""
+
+def mostrar_menu_principal() -> str:
+    """Muestra el menú principal y obtiene la opción del usuario."""
+    print("\n" + "="*50)
+    print("📋 SISTEMA DE GESTIÓN DE TAREAS")
+    print("="*50)
+    print("1. Ver todas las tareas")
+    print("2. Agregar nueva tarea")
+    print("3. Marcar tarea como completada")
+    print("4. Ver estadísticas")
+    print("5. Guardar datos")
+    print("6. Cargar datos")
+    print("0. Salir")
+    print("-"*50)
+
+    while True:
+        try:
+            opcion = input("Selecciona una opción (0-6): ").strip()
+            if opcion in ['0', '1', '2', '3', '4', '5', '6']:
+                return opcion
+            else:
+                print("❌ Opción no válida. Intenta de nuevo.")
+        except KeyboardInterrupt:
+            return '0'
+
+def mostrar_tareas(tareas: List[Tarea]):
+    """Muestra una lista de tareas formateada."""
+    if not tareas:
+        print("📭 No hay tareas para mostrar.")
+        return
+
+    print(f"\n📋 TAREAS ({len(tareas)}):")
+    print("-" * 80)
+
+    for tarea in tareas:
+        estado = "✅" if tarea.completada else "⏳"
+        prioridad = {1: "🟢", 2: "🟡", 3: "🟠", 4: "🔴"}.get(tarea.prioridad, "⚪")
+
+        print(f"{estado} [{tarea.id"3d"}] {prioridad} {tarea.titulo}")
+        print(f"      Categoría: {tarea.categoria}")
+        print(f"      Creada: {tarea.fecha_creacion}")
+        if tarea.fecha_limite:
+            print(f"      Límite: {tarea.fecha_limite}")
+        if tarea.descripcion:
+            print(f"      Descripción: {tarea.descripcion[:50]}{'...' if len(tarea.descripcion) > 50 else ''}")
+        print()
+
+# main.py - Programa principal
+"""
+Programa principal del Sistema de Gestión de Tareas.
+Coordina todos los módulos y proporciona la interfaz principal.
+"""
+
+from tareas import ListaTareas, Tarea
+from usuarios import Usuario
+from almacenamiento import guardar_datos, cargar_datos
+from interfaz import mostrar_menu_principal, mostrar_tareas
+
+def main():
+    """Función principal del programa."""
+    print("🚀 Iniciando Sistema de Gestión de Tareas...")
+
+    # Crear usuario administrador por defecto
+    admin = Usuario("Administrador", "admin@sistema.com", "admin123")
+
+    # Crear lista de tareas
+    lista_tareas = ListaTareas()
+
+    # Cargar datos si existen
+    datos_guardados = cargar_datos("datos_tareas.json")
+    if datos_guardados:
+        print("📂 Datos cargados desde archivo anterior.")
+
+    print("✅ Sistema iniciado correctamente!")
+    print(f"👤 Usuario conectado: {admin.nombre}")
+
+    while True:
+        opcion = mostrar_menu_principal()
+
+        if opcion == '0':
+            print("\n👋 ¡Gracias por usar el Sistema de Gestión de Tareas!")
+            break
+
+        elif opcion == '1':
+            # Ver todas las tareas
+            tareas = lista_tareas.listar_tareas("todas")
+            mostrar_tareas(tareas)
+
+        elif opcion == '2':
+            # Agregar nueva tarea
+            print("\n📝 NUEVA TAREA:")
+            titulo = input("Título: ").strip()
+            if not titulo:
+                print("❌ El título es obligatorio.")
+                continue
+
+            descripcion = input("Descripción: ").strip()
+            categoria = input("Categoría: ").strip() or "General"
+
+            print("Prioridad (1=baja, 2=media, 3=alta, 4=urgente):")
+            try:
+                prioridad = int(input("Selecciona (1-4): "))
+                if prioridad not in range(1, 5):
+                    raise ValueError()
+            except:
+                prioridad = 1
+                print("⚠️ Usando prioridad baja por defecto.")
+
+            tarea = Tarea(titulo, descripcion, prioridad, categoria=categoria)
+            tarea_id = lista_tareas.agregar_tarea(tarea)
+            print(f"✅ Tarea agregada con ID: {tarea_id}")
+
+        elif opcion == '3':
+            # Marcar tarea como completada
+            try:
+                tarea_id = int(input("ID de la tarea a completar: "))
+                tarea = lista_tareas.obtener_tarea(tarea_id)
+
+                if tarea:
+                    tarea.completar()
+                    print(f"✅ Tarea '{tarea.titulo}' marcada como completada.")
+                else:
+                    print("❌ Tarea no encontrada.")
+            except ValueError:
+                print("❌ ID debe ser un número válido.")
+
+        elif opcion == '4':
+            # Ver estadísticas
+            stats = lista_tareas.estadisticas()
+            print("
+📊 ESTADÍSTICAS:"            print(f"Total de tareas: {stats['total']}")
+            print(f"Tareas completadas: {stats['completadas']}")
+            print(f"Tareas pendientes: {stats['pendientes']}")
+            print(f"Porcentaje completado: {stats['porcentaje_completado']:.1f}%")
+
+            if stats['categorias']:
+                print("
+📂 POR CATEGORÍAS:"                for categoria, cantidad in stats['categorias'].items():
+                    print(f"  {categoria}: {cantidad}")
+
+        elif opcion == '5':
+            # Guardar datos
+            datos_a_guardar = {
+                'usuario': admin.nombre,
+                'fecha_backup': datetime.datetime.now().isoformat(),
+                'tareas': [tarea.a_dict() for tarea in lista_tareas.tareas]
+            }
+
+            if guardar_datos("datos_tareas.json", datos_a_guardar):
+                print("💾 Datos guardados correctamente.")
+
+        elif opcion == '6':
+            # Cargar datos
+            datos = cargar_datos("datos_tareas.json")
+            if datos and 'tareas' in datos:
+                lista_tareas = ListaTareas()
+                for tarea_data in datos['tareas']:
+                    tarea = Tarea.desde_dict(tarea_data)
+                    lista_tareas.agregar_tarea(tarea)
+
+                print(f"📂 Datos cargados: {len(lista_tareas.tareas)} tareas restauradas.")
+            else:
+                print("❌ No se pudieron cargar los datos.")
+
+# Ejecutar programa si se llama directamente
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\n👋 Programa interrumpido por el usuario.")
+    except Exception as e:
+        print(f"\n❌ Error inesperado: {e}")
+        print("💡 Reinicia el programa para continuar.")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividades prácticas -->
+        <section id="actividades" class="session-section">
+            <h2><i class="fas fa-tasks"></i> Actividades Prácticas</h2>
+
+            <div class="practice-exercises">
+                <div class="exercise-card">
+                    <h4><i class="fas fa-atom"></i> Actividad 1: Explorador de la Biblioteca Estándar</h4>
+                    <p class="difficulty">Nivel: Básico</p>
+                    <p>Crea un programa que explore y demuestre las capacidades de diferentes módulos de la biblioteca estándar.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Usar al menos 5 módulos diferentes de la biblioteca estándar</li>
+                            <li>Crear ejemplos prácticos para cada módulo</li>
+                            <li>Mostrar información útil sobre cada módulo</li>
+                            <li>Organizar el código en funciones claras</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-box"></i> Actividad 2: Constructor de Biblioteca Personal</h4>
+                    <p class="difficulty">Nivel: Intermedio</p>
+                    <p>Desarrolla una biblioteca personal con funciones útiles organizadas en módulos temáticos.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Crear al menos 3 módulos diferentes</li>
+                            <li>Incluir documentación clara (docstrings)</li>
+                            <li>Implementar manejo de errores apropiado</li>
+                            <li>Crear ejemplos de uso para cada módulo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-project-diagram"></i> Actividad 3: Proyecto Multiarchivo</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Construye un programa complejo organizado en múltiples archivos siguiendo las mejores prácticas.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Estructura de directorios clara y organizada</li>
+                            <li>Múltiples módulos con responsabilidades específicas</li>
+                            <li>Uso apropiado de espacios de nombres</li>
+                            <li>Programa principal que coordine todos los módulos</li>
+                            <li>Persistencia de datos opcional</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4><i class="fas fa-chart-line"></i> Actividad 4: Analizador de Datos Científicos</h4>
+                    <p class="difficulty">Nivel: Avanzado</p>
+                    <p>Crea una aplicación que combine múltiples módulos estándar para análisis científicos de datos.</p>
+
+                    <div class="expected-output">
+                        <h5>Características requeridas:</h5>
+                        <ul>
+                            <li>Usar módulos como math, statistics, random, datetime</li>
+                            <li>Implementar análisis estadístico completo</li>
+                            <li>Crear visualizaciones simples (texto/ASCII)</li>
+                            <li>Generar reportes en múltiples formatos</li>
+                            <li>Manejar diferentes tipos de datos de entrada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="session-section">
+            <h2><i class="fas fa-book"></i> Recursos Adicionales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/library/" target="_blank" rel="noopener noreferrer">Documentación oficial - Biblioteca Estándar</a></li>
+                        <li><a href="https://pymotw.com/3/" target="_blank" rel="noopener noreferrer">Python Module of the Week</a></li>
+                        <li><a href="https://realpython.com/python-modules-packages/" target="_blank" rel="noopener noreferrer">Real Python - Módulos y Paquetes</a></li>
+                        <li><a href="https://python101.pythonlibrary.org/" target="_blank" rel="noopener noreferrer">Python 101 - Tutoriales prácticos</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-video"></i> Videos recomendados</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=CqvZ3vGoGs0" target="_blank" rel="noopener noreferrer">Módulos en Python - Explicación completa</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=0oTh1CXRaUo" target="_blank" rel="noopener noreferrer">Biblioteca Estándar de Python - Guía práctica</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=5qQLETebUok" target="_blank" rel="noopener noreferrer">Creando módulos personalizados en Python</a></li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Lecturas adicionales</h3>
+                    <ul>
+                        <li>Capítulo 10 - "Python Crash Course" de Eric Matthes (Módulos y clases)</li>
+                        <li>Sección 6 - "Fluent Python" de Luciano Ramalho (Módulos y paquetes)</li>
+                        <li>"Effective Python" de Brett Slatkin (Ítem 15-20: Módulos y funciones)</li>
+                        <li>"Python Cookbook" - Módulos especializados según necesidades</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Navegación entre sesiones -->
+    <div class="session-navigation">
+        <div class="container">
+            <a href="s19.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+            <a href="s21.html" class="btn btn-primary">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="session-footer">
+        <div class="container">
+            <p>© JMGV-PTEL 2025 Curso Básico de Python - Todos los derechos reservados</p>
+            <div class="footer-links">
+                <a href="#">Términos de uso</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <a href="#" id="back-to-top" title="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+
+    <script src="js/auth-netlify.js"></script>
+    <!-- Script de manejo de errores para Netlify -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Error en sesión:', e.error);
+        });
+    </script>
+</body>
+</html>

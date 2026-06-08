@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Trabajando con Libros - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 8: Trabajando con Libros en Excel VBA</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a manejar archivos de Excel (libros) mediante VBA, incluyendo su apertura, cierre, guardado y manipulación básica.</p>
+            </header>
+
+            <div class="session-content">
+        
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>En esta sesión exploraremos cómo trabajar con libros completos en Excel usando VBA. Aprenderás a abrir, cerrar, guardar y manipular múltiples archivos de Excel de manera programática.</p>
+        
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-book"></i> 1. Objeto Workbook</h3>
+                    <p>El objeto Workbook representa un archivo de Excel completo. Es uno de los objetos más importantes en la jerarquía de objetos de Excel VBA.</p>
+        
+                    <div class="code-example">
+                        <h4>Referencias a libros:</h4>
+                        <pre><code>' Referencia al libro activo
+Dim wb As Workbook
+Set wb = ActiveWorkbook
+
+' Referencia a un libro específico por su nombre
+Set wb = Workbooks("MiLibro.xlsx")
+
+' Referencia al libro que contiene el código
+Set wb = ThisWorkbook</code></pre>
+                        
+                        <div class="tip">
+                            <h3>💡 Diferencia importante</h3>
+                            <p>Usa <code>ThisWorkbook</code> para referirte al libro que contiene el código, y <code>ActiveWorkbook</code> para el libro actualmente activo.</p>
+                        </div>
+                    </div>
+        
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-folder-open"></i> 2. Abrir y cerrar libros</h3>
+                    <p>Aprenderemos a abrir y cerrar archivos de Excel usando VBA.</p>
+        
+                    <div class="code-example">
+                        <h4>Manejo de archivos:</h4>
+                        <pre><code>' Abrir un libro existente
+Workbooks.Open "C:\\Ruta\\Al\\Archivo.xlsx"
+
+' Abrir con opciones adicionales
+Workbooks.Open Filename:="C:\\Ruta\\Al\\Archivo.xlsx", ReadOnly:=True
+
+' Cerrar un libro específico
+Workbooks("Archivo.xlsx").Close SaveChanges:=False
+
+' Cerrar todos los libros excepto el que contiene el código
+Dim wb As Workbook
+For Each wb In Workbooks
+    If Not wb Is ThisWorkbook Then
+        wb.Close SaveChanges:=False
+    End If
+Next wb</code></pre>
+                    </div>
+        
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-save"></i> 3. Guardar libros</h3>
+                    <p>Diferentes formas de guardar libros de Excel.</p>
+        
+                    <div class="code-example">
+                        <h4>Opciones de guardado:</h4>
+                        <pre><code>' Guardar el libro activo
+ActiveWorkbook.Save
+
+' Guardar como un nuevo archivo
+ActiveWorkbook.SaveAs "C:\\Ruta\\NuevoArchivo.xlsx"
+
+' Guardar una copia sin modificar el original
+ActiveWorkbook.SaveCopyAs "C:\\Ruta\\CopiaDeSeguridad.xlsx"
+
+' Verificar si el libro ha sido guardado previamente
+If ActiveWorkbook.Path = "" Then
+    ' El libro no ha sido guardado
+    MsgBox "Por favor guarde el archivo primero"
+End If</code></pre>
+                    </div>
+                    
+                    <div class="warning">
+                        <h3>⚠️ Precauciones al guardar</h3>
+                        <p>Siempre verifica si el archivo ya existe antes de sobrescribirlo para evitar pérdida de datos.</p>
+                    </div>
+        
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-plus-circle"></i> 4. Crear nuevos libros</h3>
+                    <p>Cómo crear nuevos libros de Excel mediante código.</p>
+                    
+                    <div class="code-example">
+                        <h4>Creación de libros:</h4>
+                        <pre><code>' Crear un nuevo libro
+Dim nuevoLibro As Workbook
+Set nuevoLibro = Workbooks.Add
+
+' Crear un libro basado en una plantilla
+Set nuevoLibro = Workbooks.Add("C:\\Ruta\\Plantilla.xltx")</code></pre>
+                    </div>
+        
+                </section>
+
+                <section class="concept">
+                    <h3><i class="fas fa-cog"></i> 5. Propiedades útiles de los libros</h3>
+                    <p>Algunas propiedades útiles del objeto Workbook.</p>
+                    
+                    <div class="code-example">
+                        <h4>Propiedades comunes:</h4>
+                        <pre><code>' Obtener el nombre del libro
+Dim nombreArchivo As String
+nombreArchivo = ActiveWorkbook.Name
+
+' Obtener la ruta completa del libro
+Dim rutaCompleta As String
+rutaCompleta = ActiveWorkbook.FullName
+
+' Obtener la ruta del directorio
+Dim directorio As String
+directorio = ActiveWorkbook.Path
+
+' Verificar si el libro está protegido por contraseña
+If ActiveWorkbook.HasPassword Then
+    MsgBox "Este archivo está protegido con contraseña"
+End If</code></pre>
+                    </div>
+        
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejemplo Práctico</h2>
+                    </div>
+                    <h3>Ejercicio: Crear un informe mensual</h3>
+                    <p>Vamos a crear una macro que:</p>
+                    <ol>
+                        <li>Crea un nuevo libro</li>
+                        <li>Agrega datos de ejemplo</li>
+                        <li>Formatea el informe</li>
+                        <li>Guarda el archivo con la fecha actual</li>
+                    </ol>
+                    
+                    <div class="code-example">
+                        <h4>Código del informe mensual:</h4>
+                        <pre><code>Sub CrearInformeMensual()
+    ' Declarar variables
+    Dim nuevoLibro As Workbook
+    Dim hoja As Worksheet
+    Dim rango As Range
+    Dim nombreArchivo As String
+    
+    ' Crear un nuevo libro
+    Set nuevoLibro = Workbooks.Add
+    
+    ' Referencia a la primera hoja
+    Set hoja = nuevoLibro.Worksheets(1)
+    hoja.Name = "Informe " & Format(Date, "mmmm yyyy")
+    
+    ' Agregar encabezados
+    hoja.Range("A1").Value = "Informe Mensual - " & Format(Date, "mmmm yyyy")
+    hoja.Range("A1").Font.Bold = True
+    hoja.Range("A1").Font.Size = 14
+    
+    ' Agregar datos de ejemplo
+    hoja.Range("A3").Value = "Producto"
+    hoja.Range("B3").Value = "Cantidad"
+    hoja.Range("C3").Value = "Precio Unitario"
+    hoja.Range("D3").Value = "Total"
+    
+    ' Formato de encabezados de columna
+    Set rango = hoja.Range("A3:D3")
+    rango.Font.Bold = True
+    rango.Interior.Color = RGB(200, 230, 255)
+    
+    ' Agregar datos de ejemplo
+    hoja.Range("A4").Value = "Producto A"
+    hoja.Range("B4").Value = 10
+    hoja.Range("C4").Value = 150
+    hoja.Range("D4").Formula = "=B4*C4"
+    
+    hoja.Range("A5").Value = "Producto B"
+    hoja.Range("B5").Value = 5
+    hoja.Range("C5").Value = 230
+    hoja.Range("D5").Formula = "=B5*C5"
+    
+    ' Ajustar el ancho de las columnas
+    hoja.Columns("A:D").AutoFit
+    
+    ' Agregar formato de moneda
+    hoja.Range("C4:D5").NumberFormat = "$#,##0.00"
+    
+    ' Agregar totales
+    hoja.Range("B6").Value = "Total:"
+    hoja.Range("D6").Formula = "=SUM(D4:D5)"
+    hoja.Range("D6").Font.Bold = True
+    hoja.Range("D6").NumberFormat = "$#,##0.00"
+    
+    ' Crear nombre de archivo con la fecha actual
+    nombreArchivo = "Informe_" & Format(Date, "yyyymm") & ".xlsx"
+    
+    ' Guardar el archivo en la misma ubicación que el libro actual
+    On Error Resume Next ' En caso de que la carpeta no exista
+    MkDir ThisWorkbook.Path & "\Informes"
+    On Error GoTo 0
+    
+    ' Guardar el archivo
+    nuevoLibro.SaveAs Filename:=ThisWorkbook.Path & "\Informes\" & nombreArchivo, _
+                     FileFormat:=xlOpenXMLWorkbook
+    
+    ' Cerrar el libro después de guardar
+    nuevoLibro.Close SaveChanges:=False
+    
+    MsgBox "Se ha creado el informe mensual: " & nombreArchivo, vbInformation
+    
+    ' Limpiar variables
+    Set hoja = Nothing
+    Set nuevoLibro = Nothing
+    Set rango = Nothing
+End Sub</code></pre>
+                        
+                        <div class="hint">
+                            <h3>💡 Consejo</h3>
+                            <p>Puedes personalizar este código agregando más formatos, gráficos o cálculos según tus necesidades específicas.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="summary">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Resumen de la Sesión</h2>
+                    </div>
+                    <ul>
+                        <li>El objeto <code>Workbook</code> es fundamental para trabajar con archivos de Excel en VBA</li>
+                        <li>Podemos abrir, cerrar, guardar y crear nuevos libros de forma programática</li>
+                        <li>Es importante manejar correctamente los errores al trabajar con archivos</li>
+                        <li>Podemos acceder a propiedades útiles como el nombre, ruta y estado de protección de los libros</li>
+                    </ul>
+
+                    <div class="challenge">
+                        <h3>🏆 Desafío Adicional</h3>
+                        <p>Mejora la macro del ejercicio práctico para que también cuente el número de hojas en cada Libre de Excel y muestre esa información en el resumen.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Jerarquía y Orden - Estructura de Textos y Listas en HTML</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- CSS para Animaciones -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+        
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="wrapper">
+        
+        <!-- SIDEBAR NAVEGACIÓN -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-book"></i> Sesiones HTML5</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="sesion01.html"><i class="fas fa-check-circle"></i> Sesión 1: El Génesis</a></li>
+                    <li class="active"><a href="#objetivo"><i class="fas fa-check-circle"></i> Sesión 2: Jerarquía y Orden</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 3: La Telaraña</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 4: Multimedia</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 5: Semántica</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 6: Tablas</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 7: Formularios</a></li>
+                    <li><a href="#" onclick="proximaSesion()"><i class="fas fa-lock"></i> Sesión 8: Proyecto Final</a></li>
+                </ul>
+            </nav>
+            <div class="progress-section">
+                <p class="progress-label">Progreso del Curso</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
+                </div>
+                <span class="progress-text">2 de 8</span>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- HEADER HERO -->
+            <header class="session-header">
+                <div class="header-content">
+                    <div class="header-icon">📜</div>
+                    <h1>Sesión 2: Jerarquía y Orden</h1>
+                    <p class="subtitle">Textos, Encabezados y Listas en HTML</p>
+                    <p class="session-number">Sesión 2 de 8</p>
+                </div>
+            </header>
+
+            <!-- SECCIÓN: OBJETIVO -->
+            <section class="content-section objective-section" id="objetivo">
+                <div class="section-header">
+                    <h2><i class="fas fa-target"></i> Objetivo de la Sesión</h2>
+                </div>
+                <div class="section-content">
+                    <p class="highlight-text">Aprender a estructurar información de manera jerárquica y ordenada utilizando encabezados, textos y listas en HTML.</p>
+                    <div class="objectives-list">
+                        <div class="objective-card">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>Jerarquía</h4>
+                            <p>Dominar los 6 niveles de encabezados</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-list"></i>
+                            <h4>Listas</h4>
+                            <p>Crear listas ordenadas y desordenadas</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-align-left"></i>
+                            <h4>Textos</h4>
+                            <p>Estructurar párrafos y formatos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: INTRODUCCIÓN TEÓRICA -->
+            <section class="content-section theory-section" id="teoria">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Introducción Teórica</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="theory-block">
+                        <h3>¿Qué es la Jerarquía de Contenidos?</h3>
+                        <p>La jerarquía de contenidos es la estructura lógica que organiza la información en niveles de importancia. En HTML, esto se logra mediante los encabezados (<strong>&lt;h1&gt;</strong> hasta <strong>&lt;h6&gt;</strong>).</p>
+                        
+                        <div class="hierarchy-diagram">
+                            <div class="hierarchy-level level-1">
+                                <span class="hierarchy-label">&lt;h1&gt; Título Principal</span>
+                                <p>El más importante - Uno por página</p>
+                            </div>
+                            <div class="hierarchy-level level-2">
+                                <span class="hierarchy-label">&lt;h2&gt; Sección Principal</span>
+                                <p>Temas principales dentro del documento</p>
+                            </div>
+                            <div class="hierarchy-level level-3">
+                                <span class="hierarchy-label">&lt;h3&gt; Subsección</span>
+                                <p>Subtemas dentro de una sección</p>
+                            </div>
+                            <div class="hierarchy-level level-4">
+                                <span class="hierarchy-label">&lt;h4&gt; Sub-subsección</span>
+                                <p>Detalles dentro de un subtema</p>
+                            </div>
+                            <div class="hierarchy-level level-5">
+                                <span class="hierarchy-label">&lt;h5&gt; Nivel 5</span>
+                                <p>Información muy específica</p>
+                            </div>
+                            <div class="hierarchy-level level-6">
+                                <span class="hierarchy-label">&lt;h6&gt; Nivel 6</span>
+                                <p>El nivel menos importante</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theory-block">
+                        <h3>Importancia de la Jerarquía Correcta</h3>
+                        <ul class="theory-list">
+                            <li><strong>SEO (Posicionamiento):</strong> Los motores de búsqueda usan los encabezados para entender la estructura</li>
+                            <li><strong>Accesibilidad:</strong> Los lectores de pantalla dependenden de la jerarquía</li>
+                            <li><strong>Mantenibilidad:</strong> Código más fácil de entender y modificar</li>
+                            <li><strong>Experiencia del Usuario:</strong> Interfaz visualmente clara y navegable</li>
+                        </ul>
+                    </div>
+
+                    <div class="theory-block">
+                        <h3>Estructura Correcta vs Incorrecta</h3>
+                        
+                        <div class="comparison-boxes">
+                            <div class="comparison-item correct">
+                                <h4 style="color: #10b981;"><i class="fas fa-check"></i> Estructura Correcta</h4>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-language">HTML</span>
+                                    </div>
+                                    <pre><code>&lt;h1&gt;Inicio&lt;/h1&gt;
+&lt;h2&gt;Sección 1&lt;/h2&gt;
+&lt;h3&gt;Subsección 1.1&lt;/h3&gt;
+&lt;h3&gt;Subsección 1.2&lt;/h3&gt;
+&lt;h2&gt;Sección 2&lt;/h2&gt;</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item incorrect">
+                                <h4 style="color: #ef4444;"><i class="fas fa-times"></i> Estructura Incorrecta</h4>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span class="code-language">HTML</span>
+                                    </div>
+                                    <pre><code>&lt;h1&gt;Inicio&lt;/h1&gt;
+&lt;h3&gt;Sección 1&lt;/h3&gt; ← Salta a h3
+&lt;h2&gt;Subsección&lt;/h2&gt; ← Saltea h2
+&lt;h6&gt;Pequeño Detalle&lt;/h6&gt; ← Demasiado salto</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: ELEMENTOS DE TEXTO -->
+            <section class="content-section text-section" id="texto">
+                <div class="section-header">
+                    <h2><i class="fas fa-font"></i> Elementos de Texto en HTML</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="syntax-block">
+                        <h3>Párrafos &lt;p&gt;</h3>
+                        <p>El elemento <code>&lt;p&gt;</code> define un bloque de texto. Los navegadores agregan automáticamente espacio (margin) antes y después.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;p&gt;Este es el primer párrafo del documento.&lt;/p&gt;
+&lt;p&gt;Este es el segundo párrafo, separado del anterior.&lt;/p&gt;
+&lt;p&gt;Los párrafos son fundamentales para la legibilidad.&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <div class="result-preview">
+                            <h4>📺 Resultado:</h4>
+                            <div class="browser-mockup">
+                                <div class="browser-header">
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-url">file:///parrafos.html</span>
+                                </div>
+                                <div class="browser-content">
+                                    <p>Este es el primer párrafo del documento.</p>
+                                    <p>Este es el segundo párrafo, separado del anterior.</p>
+                                    <p>Los párrafos son fundamentales para la legibilidad.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Saltos de Línea &lt;br&gt;</h3>
+                        <p>La etiqueta <code>&lt;br&gt;</code> inserta un salto de línea. Es una etiqueta <strong>autofrenada</strong> (no necesita cierre).</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;p&gt;Esta es una dirección:&lt;br&gt;
+Calle Principal 123&lt;br&gt;
+Ciudad, País&lt;br&gt;
+CP: 12345&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <p class="syntax-explanation">
+                            <i class="fas fa-info-circle"></i> <strong>Nota:</strong> Usa <code>&lt;br&gt;</code> ocasionalmente. Para espaciar contenido, es mejor usar CSS.
+                        </p>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Línea Horizontal &lt;hr&gt;</h3>
+                        <p>La etiqueta <code>&lt;hr&gt;</code> crea una línea divisoria temática. También es <strong>autofrenada</strong>.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;h2&gt;Sección 1&lt;/h2&gt;
+&lt;p&gt;Contenido de la sección 1...&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Sección 2&lt;/h2&gt;
+&lt;p&gt;Contenido de la sección 2...&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Énfasis y Importancia</h3>
+                        <p>Existen diferentes formas de destacar texto:</p>
+                        
+                        <div class="emphasis-table">
+                            <div class="emphasis-row">
+                                <div class="emphasis-code">&lt;strong&gt;</div>
+                                <div class="emphasis-desc">Indica importancia (generalmente en negrita)</div>
+                                <div class="emphasis-example"><strong>Texto importante</strong></div>
+                            </div>
+                            <div class="emphasis-row">
+                                <div class="emphasis-code">&lt;em&gt;</div>
+                                <div class="emphasis-desc">Énfasis (generalmente en itálica)</div>
+                                <div class="emphasis-example"><em>Texto con énfasis</em></div>
+                            </div>
+                            <div class="emphasis-row">
+                                <div class="emphasis-code">&lt;b&gt;</div>
+                                <div class="emphasis-desc">Negrita solo visual (no semántica)</div>
+                                <div class="emphasis-example"><b>Texto en negrita</b></div>
+                            </div>
+                            <div class="emphasis-row">
+                                <div class="emphasis-code">&lt;i&gt;</div>
+                                <div class="emphasis-desc">Itálica solo visual (no semántica)</div>
+                                <div class="emphasis-example"><i>Texto en itálica</i></div>
+                            </div>
+                            <div class="emphasis-row">
+                                <div class="emphasis-code">&lt;mark&gt;</div>
+                                <div class="emphasis-desc">Marca/resalta texto</div>
+                                <div class="emphasis-example"><mark>Texto marcado</mark></div>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;p&gt;Este es &lt;strong&gt;muy importante&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Este texto tiene &lt;em&gt;énfasis especial&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Debes &lt;mark&gt;recordar esto&lt;/mark&gt; para el examen.&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: LISTAS -->
+            <section class="content-section lists-section" id="listas">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Listas en HTML</h2>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="syntax-block">
+                        <h3>Listas Desordenadas &lt;ul&gt;</h3>
+                        <p>Usa <code>&lt;ul&gt;</code> (unordered list) cuando el <strong>orden no importa</strong>. Por ejemplo: lista de compras, características, elementos similares.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;h3&gt;Frutas Favoritas&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;Manzanas rojas&lt;/li&gt;
+    &lt;li&gt;Plátanos amarillos&lt;/li&gt;
+    &lt;li&gt;Naranjas jugosas&lt;/li&gt;
+    &lt;li&gt;Fresas dulces&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+
+                        <div class="result-preview">
+                            <h4>📺 Resultado:</h4>
+                            <div class="browser-mockup">
+                                <div class="browser-header">
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-url">file:///listas.html</span>
+                                </div>
+                                <div class="browser-content">
+                                    <h3>Frutas Favoritas</h3>
+                                    <ul>
+                                        <li>Manzanas rojas</li>
+                                        <li>Plátanos amarillos</li>
+                                        <li>Naranjas jugosas</li>
+                                        <li>Fresas dulces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Listas Ordenadas &lt;ol&gt;</h3>
+                        <p>Usa <code>&lt;ol&gt;</code> (ordered list) cuando el <strong>orden es importante</strong>. Por ejemplo: pasos, ranking, instrucciones.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;h3&gt;Pasos para Hacer Pasta&lt;/h3&gt;
+&lt;ol&gt;
+    &lt;li&gt;Hervir agua en una olla grande&lt;/li&gt;
+    &lt;li&gt;Agregar sal al agua&lt;/li&gt;
+    &lt;li&gt;Verter la pasta cuando el agua hierva&lt;/li&gt;
+    &lt;li&gt;Cocinar por 8-10 minutos&lt;/li&gt;
+    &lt;li&gt;Colar el agua y servir&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+
+                        <div class="result-preview">
+                            <h4>📺 Resultado:</h4>
+                            <div class="browser-mockup">
+                                <div class="browser-header">
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-url">file:///listas.html</span>
+                                </div>
+                                <div class="browser-content">
+                                    <h3>Pasos para Hacer Pasta</h3>
+                                    <ol>
+                                        <li>Hervir agua en una olla grande</li>
+                                        <li>Agregar sal al agua</li>
+                                        <li>Verter la pasta cuando el agua hierva</li>
+                                        <li>Cocinar por 8-10 minutos</li>
+                                        <li>Colar el agua y servir</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Listas Anidadas</h3>
+                        <p>Las listas pueden contener otras listas dentro. Esto es útil para crear estructuras jerárquicas complejas.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;ul&gt;
+    &lt;li&gt;Frutas
+        &lt;ul&gt;
+            &lt;li&gt;Manzanas&lt;/li&gt;
+            &lt;li&gt;Naranjas&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Vegetales
+        &lt;ul&gt;
+            &lt;li&gt;Zanahorias&lt;/li&gt;
+            &lt;li&gt;Brócoli&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+
+                        <div class="result-preview">
+                            <h4>📺 Resultado:</h4>
+                            <div class="browser-mockup">
+                                <div class="browser-header">
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-url">file:///listas-anidadas.html</span>
+                                </div>
+                                <div class="browser-content">
+                                    <ul>
+                                        <li>Frutas
+                                            <ul>
+                                                <li>Manzanas</li>
+                                                <li>Naranjas</li>
+                                            </ul>
+                                        </li>
+                                        <li>Vegetales
+                                            <ul>
+                                                <li>Zanahorias</li>
+                                                <li>Brócoli</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="syntax-block">
+                        <h3>Listas de Definición &lt;dl&gt;</h3>
+                        <p>Usa <code>&lt;dl&gt;</code> (definition list) para pares término-definición. Útil para glosarios, diccionarios, etc.</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">HTML</span>
+                                <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <pre><code>&lt;h3&gt;Glosario de Términos Web&lt;/h3&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Lenguaje de marcado para estructurar contenido web.&lt;/dd&gt;
+    
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Lenguaje para dar estilo y apariencia a las páginas web.&lt;/dd&gt;
+    
+    &lt;dt&gt;JavaScript&lt;/dt&gt;
+    &lt;dd&gt;Lenguaje de programación para hacer páginas interactivas.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                        </div>
+
+                        <div class="result-preview">
+                            <h4>📺 Resultado:</h4>
+                            <div class="browser-mockup">
+                                <div class="browser-header">
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-button">●</span>
+                                    <span class="browser-url">file:///definiciones.html</span>
+                                </div>
+                                <div class="browser-content">
+                                    <h3>Glosario de Términos Web</h3>
+                                    <dl>
+                                        <dt><strong>HTML</strong></dt>
+                                        <dd>Lenguaje de marcado para estructurar contenido web.</dd>
+                                        
+                                        <dt><strong>CSS</strong></dt>
+                                        <dd>Lenguaje para dar estilo y apariencia a las páginas web.</dd>
+                                        
+                                        <dt><strong>JavaScript</strong></dt>
+                                        <dd>Lenguaje de programación para hacer páginas interactivas.</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: EJEMPLO PRÁCTICO -->
+            <section class="content-section example-section" id="ejemplo">
+                <div class="section-header">
+                    <h2><i class="fas fa-lightbulb"></i> Ejemplo Práctico: Página de Receta</h2>
+                </div>
+                <div class="section-content">
+                    <p>Vamos a crear una página completa de receta usando todos los elementos aprendidos:</p>
+                    
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Crea el archivo receta.html</h4>
+                                <p>En tu editor de código, crea un nuevo archivo llamado <code>receta.html</code></p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Agrega la estructura básica</h4>
+                                <p>Usa la plantilla HTML5 estándar que aprendiste en la sesión anterior</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Copia este código completo</h4>
+                                <div class="code-example large">
+                                    <div class="code-header">
+                                        <span class="code-language">HTML</span>
+                                        <button class="copy-btn" onclick="window.pageInteractions.handleCopyCode(event)">
+                                            <i class="fas fa-copy"></i> Copiar
+                                        </button>
+                                    </div>
+                                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Receta: Pasta Carbonara&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Pasta Carbonara&lt;/h1&gt;
+    
+    &lt;h2&gt;Descripción&lt;/h2&gt;
+    &lt;p&gt;La Pasta Carbonara es un clásico de la cocina italiana, 
+    originaria de Roma. Es un plato simple pero delicioso, 
+    perfecto para cualquier ocasión.&lt;/p&gt;
+    
+    &lt;h2&gt;Ingredientes&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;400 gramos de pasta (preferentemente spaghetti)&lt;/li&gt;
+        &lt;li&gt;200 gramos de panceta o guanciale&lt;/li&gt;
+        &lt;li&gt;4 huevos grandes&lt;/li&gt;
+        &lt;li&gt;100 gramos de queso parmesano rallado&lt;/li&gt;
+        &lt;li&gt;Sal y pimienta negra al gusto&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;h2&gt;Instrucciones&lt;/h2&gt;
+    &lt;ol&gt;
+        &lt;li&gt;Hierve agua en una olla grande con suficiente sal&lt;/li&gt;
+        &lt;li&gt;Cocina la pasta según las instrucciones del paquete&lt;/li&gt;
+        &lt;li&gt;Mientras tanto, pica la panceta en cubos pequeños&lt;/li&gt;
+        &lt;li&gt;En una sartén, fríe la panceta hasta que esté crujiente&lt;/li&gt;
+        &lt;li&gt;En un tazón, bate los huevos con el queso parmesano&lt;/li&gt;
+        &lt;li&gt;Cuando la pasta esté al dente, cuélala (guarda agua)&lt;/li&gt;
+        &lt;li&gt;Agrega la pasta caliente a la panceta&lt;/li&gt;
+        &lt;li&gt;Retira del fuego y agrega la mezcla de huevo&lt;/li&gt;
+        &lt;li&gt;Mezcla rápidamente y sirve de inmediato&lt;/li&gt;
+    &lt;/ol&gt;
+    
+    &lt;h2&gt;Notas Importantes&lt;/h2&gt;
+    &lt;p&gt;&lt;strong&gt;��No hiervas los huevos!&lt;/strong&gt; Agrega la mezcla 
+    de huevo fuera del fuego para obtener una salsa cremosa.&lt;/p&gt;
+    
+    &lt;h2&gt;Variaciones&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Usa diferentes pastas (penne, rigatoni, etc.)&lt;/li&gt;
+        &lt;li&gt;Agrega pimienta roja para un toque picante&lt;/li&gt;
+        &lt;li&gt;Sustituye parte del queso por pecorino romano&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;p&gt;&lt;em&gt;¡Buen provecho!&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Guarda y visualiza</h4>
+                                <p>Guarda el archivo y abre en tu navegador para ver el resultado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: ACTIVIDAD PRÁCTICA -->
+            <section class="content-section activity-section" id="actividad">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> Actividad Práctica</h2>
+                </div>
+                <div class="section-content">
+                    <p class="activity-intro">Crea una página web sobre tu película, libro o videojuego favorito que incluya:</p>
+                    
+                    <div class="requirements-list">
+                        <div class="requirement-item">
+                            <div class="requirement-icon">1️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Título Principal</h4>
+                                <p>Un &lt;h1&gt; con el nombre de la película/libro/videojuego</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">2️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Descripción</h4>
+                                <p>Una sección &lt;h2&gt; "Sinopsis" con 2-3 párrafos describiendo la trama</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">3️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Personajes Principales</h4>
+                                <p>Una sección &lt;h2&gt; con una lista desordenada de al menos 5 personajes principales</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">4️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Top Momentos</h4>
+                                <p>Una lista ordenada con tus 5 momentos favoritos o más importantes</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">5️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Términos Clave</h4>
+                                <p>Una lista de definición con 3-4 términos importantes y sus explicaciones</p>
+                            </div>
+                        </div>
+
+                        <div class="requirement-item">
+                            <div class="requirement-icon">6️⃣</div>
+                            <div class="requirement-text">
+                                <h4>Formato de Texto</h4>
+                                <p>Usa &lt;strong&gt; y &lt;em&gt; para resaltar información importante</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-box">
+                        <h4><i class="fas fa-star"></i> Desafío Extra (Opcional):</h4>
+                        <p>Agrega una sección de "Banda Sonora" o "Curiosidades" con una lista anidada que incluya categorías y subcategorías.</p>
+                    </div>
+
+                    <div class="activity-submission">
+                        <button class="btn-submit" onclick="window.abrirEvaluador()">
+                            <i class="fas fa-check"></i> Verificar mi Actividad
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: RESUMEN -->
+            <section class="content-section summary-section" id="resumen">
+                <div class="section-header">
+                    <h2><i class="fas fa-bookmark"></i> Resumen de la Sesión</h2>
+                </div>
+                <div class="section-content">
+                    <div class="summary-items">
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Jerarquía de Encabezados:</strong> Usa &lt;h1&gt; a &lt;h6&gt; de forma lógica y consistente</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Párrafos:</strong> Usa &lt;p&gt; para bloques de texto, no para espaciado</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Listas Desordenadas:</strong> &lt;ul&gt; cuando el orden no importa</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Listas Ordenadas:</strong> &lt;ol&gt; para secuencias y pasos</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Listas de Definición:</strong> &lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt; para glosarios</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">✓</div>
+                            <p><strong>Énfasis Semántico:</strong> Usa &lt;strong&gt; e &lt;em&gt; en lugar de &lt;b&gt; e &lt;i&gt;</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: EVALUACIÓN (QUIZ) -->
+            <section class="content-section quiz-section" id="quiz">
+                <div class="section-header">
+                    <h2><i class="fas fa-gamepad"></i> 🎮 Quiz Interactivo - Kahoot Style</h2>
+                </div>
+                <div class="section-content">
+                    <div class="quiz-intro">
+                        <p>Pon a prueba tus conocimientos sobre jerarquía y listas en HTML.</p>
+                        <div class="quiz-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Preguntas:</span>
+                                <span class="stat-value">6</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Puntuación:</span>
+                                <span class="stat-value" id="score">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Progreso:</span>
+                                <span class="stat-value" id="progress">0/6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container" id="quiz-container">
+                        <!-- Las preguntas se generarán dinámicamente con JavaScript -->
+                    </div>
+
+                    <button class="btn-start-quiz" onclick="window.quizSession02.initialize(); window.iniciarQuiz02();">
+                        <i class="fas fa-play"></i> Comenzar Quiz
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: RECURSOS ADICIONALES -->
+            <section class="content-section resources-section" id="recursos">
+                <div class="section-header">
+                    <h2><i class="fas fa-link"></i> Recursos Adicionales</h2>
+                </div>
+                <div class="section-content">
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">📚</div>
+                            <h4>Referencia de Encabezados</h4>
+                            <p>MDN Web Docs - Guía completa de etiquetas h1-h6</p>
+                            <a href="https://developer.mozilla.org/es/docs/Web/HTML/Element/Heading_Elements" target="_blank" class="resource-link">Visitar →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">📋</div>
+                            <h4>Guía de Listas</h4>
+                            <p>Tutorial sobre listas en HTML con ejemplos prácticos</p>
+                            <a href="https://developer.mozilla.org/es/docs/Web/HTML/Element/ul" target="_blank" class="resource-link">Visitar →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">✍️</div>
+                            <h4>Semántica HTML</h4>
+                            <p>Aprende a usar etiquetas semánticas correctamente</p>
+                            <a href="https://developer.mozilla.org/es/docs/Glossary/Semantics" target="_blank" class="resource-link">Visitar →</a>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon">🔍</div>
+                            <h4>Validador HTML</h4>
+                            <p>Valida tu código HTML en línea</p>
+                            <a href="https://validator.w3.org/" target="_blank" class="resource-link">Visitar →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: NAVEGACIÓN DE SESIONES -->
+            <section class="session-navigation">
+                <button class="nav-btn prev-btn" onclick="window.location.href='sesion01.html'">
+                    <i class="fas fa-arrow-left"></i> Sesión Anterior
+                </button>
+                <div class="nav-info">
+                    <span class="session-indicator">Sesión 2 de 8</span>
+                </div>
+                <button class="nav-btn next-btn" onclick="window.pageInteractions.trackEvent('next-clicked'); alert('Completa el quiz para desbloquear la siguiente sesión')">
+                    Siguiente Sesión <i class="fas fa-arrow-right"></i>
+                </button>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Sobre este Curso</h4>
+                        <p>Un curso completo de HTML5 desde cero hasta dominio profesional.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Navegación Rápida</h4>
+                        <ul>
+                            <li><a href="#objetivo">Objetivo</a></li>
+                            <li><a href="#teoria">Teoría</a></li>
+                            <li><a href="#listas">Listas</a></li>
+                            <li><a href="#quiz">Quiz</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contacto</h4>
+                        <p>¿Preguntas? Contáctanos en support@htmlcourse.com</p>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; JMGV-PTEL-2026. Sesión 02 Curso HTML. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- ================================================================
+         SCRIPTS - ORDEN IMPORTANTE
+         ================================================================ -->
+    
+    <!-- Módulo de Quiz para Sesión 02 -->
+    <script src= " ../assets/js/quiz-session02.js"></script>
+    
+    <!-- Módulo de Interacciones -->
+    <script src="../assets/js/interactions.js"></script>
+    
+    <!-- Script Principal -->
+    <script src="../assets/js/script.js"></script>
+    
+    <!-- ================================================================
+         INICIALIZACIÓN MANUAL DEL QUIZ SESIÓN 02
+         ================================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📚 Sesión 02 completamente cargada');
+            
+            // Crear instancia del quiz para sesión 02
+            if (!window.quizSession02) {
+                window.quizSession02 = new QuizSession({
+                    sessionId: 2,
+                    sessionName: 'Jerarquía y Orden',
+                    enableSound: true,
+                    enableAnimations: true
+                });
+                window.quizSession02.initialize();
+                console.log('✓ Quiz Sesión 02 inicializado');
+            }
+        });
+        
+        // Función para iniciar el quiz de sesión 02
+        function iniciarQuiz02() {
+            const quizSession = window.quizSession02;
+            if (quizSession) {
+                quizSession.loadQuestions();
+                quizSession.reset();
+                
+                const container = document.getElementById('quiz-container');
+                container.innerHTML = '';
+                
+                mostrarPreguntaQuiz02();
+            }
+        }
+        
+        function mostrarPreguntaQuiz02() {
+            const quizSession = window.quizSession02;
+            const container = document.getElementById('quiz-container');
+            const pregunta = quizSession.getCurrentQuestion();
+            
+            if (!pregunta) {
+                console.error('No hay preguntas cargadas');
+                return;
+            }
+            
+            const progreso = quizSession.getProgress();
+            document.getElementById('progress').textContent = `${progreso.current}/${progreso.total}`;
+            
+            let html = `
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" style="width: ${progreso.percentage}%"></div>
+                </div>
+                
+                <div class="quiz-question active">
+                    <div class="quiz-question-number">Pregunta ${progreso.current} de ${progreso.total}</div>
+                    <div class="quiz-question-text">${pregunta.question}</div>
+                    <div class="quiz-options">
+            `;
+            
+            pregunta.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="seleccionarOpcionQuiz02(${index})">
+                        <div class="quiz-option-text">${option.text}</div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <button class="btn-next-question" onclick="siguientePreguntaQuiz02()" disabled>
+                        Siguiente Pregunta →
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function seleccionarOpcionQuiz02(optionIndex) {
+            const quizSession = window.quizSession02;
+            const resultado = quizSession.answerQuestion(optionIndex);
+            
+            if (!resultado.success) return;
+            
+            const opciones = document.querySelectorAll('.quiz-option');
+            const feedback = document.querySelector('.quiz-feedback');
+            const nextBtn = document.querySelector('.btn-next-question');
+            
+            opciones.forEach((option, i) => {
+                if (i === resultado.correctOption) {
+                    option.classList.add('correct');
+                } else if (i === optionIndex && !resultado.isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (resultado.isCorrect) {
+                document.getElementById('score').textContent = resultado.currentScore;
+                feedback.textContent = '✓ ¡Correcto! ' + quizSession.getCurrentQuestion().explanation;
+                feedback.classList.add('show', 'correct');
+            } else {
+                feedback.textContent = '✗ Incorrecto. ' + quizSession.getCurrentQuestion().explanation;
+                feedback.classList.add('show', 'incorrect');
+            }
+            
+            nextBtn.disabled = false;
+        }
+        
+        function siguientePreguntaQuiz02() {
+            const quizSession = window.quizSession02;
+            const siguiente = quizSession.nextQuestion();
+            
+            if (siguiente.hasNext) {
+                mostrarPreguntaQuiz02();
+            } else {
+                mostrarResultadosQuiz02();
+            }
+        }
+        
+        function mostrarResultadosQuiz02() {
+            const quizSession = window.quizSession02;
+            const stats = quizSession.finishQuiz();
+            const container = document.getElementById('quiz-container');
+            
+            let emoji = '💪';
+            if (stats.percentage === 100) emoji = '🏆';
+            else if (stats.percentage >= 80) emoji = '⭐';
+            else if (stats.percentage >= 60) emoji = '👍';
+            
+            const html = `
+                <div class="quiz-results show">
+                    <div class="quiz-results-score">${emoji} ${stats.percentage}%</div>
+                    <div class="quiz-results-message">${stats.message}</div>
+                    <div class="quiz-results-details">
+                        Acertaste ${stats.correctAnswers} de ${stats.totalQuestions} preguntas
+                    </div>
+                    <button class="btn-restart-quiz" onclick="reiniciarQuizSession02()">
+                        <i class="fas fa-redo"></i> Intentar de Nuevo
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            window.pageInteractions.launchConfetti();
+        }
+        
+        function reiniciarQuizSession02() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            document.getElementById('score').textContent = '0';
+            document.getElementById('progress').textContent = '0/6';
+            document.querySelector('.btn-start-quiz').style.display = 'inline-flex';
+        }
+        
+        // Función para próxima sesión
+        function proximaSesion() {
+            window.pageInteractions.showToast('Completa esta sesión para desbloquear la siguiente', 'info');
+        }
+    </script>
+</body>
+</html>

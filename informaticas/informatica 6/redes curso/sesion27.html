@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S7 E27: Introducción a la Seguridad de Red (Firewalls)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semana 7, Sesión 27: Seguridad Básica de Red 🛡️</h1>
+        <p class="subtitle">Firewalls, Contraseñas Fuertes y Gestión de Puertos</p>
+    </header>
+    <main>
+        <section class="topic-section">
+            <h2>1. El Firewall: El Guardia de Seguridad</h2>
+            <p>Un **Firewall** (Cortafuegos) es un sistema de seguridad que monitorea y controla el tráfico de red entrante y saliente, basándose en reglas de seguridad preestablecidas. Es la primera línea de defensa de cualquier red.</p>
+            
+            <div class="card-grid grid-2-col">
+                <div class="card card-style-light-blue">
+                    <h3>Tipos de Firewalls</h3>
+                    <ul>
+                        <li>**Basado en Host:** Software instalado en la PC (ej. Firewall de Windows Defender).</li>
+                        <li>**Basado en Red:** Dispositivo de hardware dedicado que protege toda la red (Router o Firewall dedicado).</li>
+                    </ul>
+                </div>
+                <div class="card card-style-light-emerald">
+                    <h3>Cómo Funciona</h3>
+                    <p>Trabaja inspeccionando el tráfico basándose en la IP, el Puerto y el Protocolo. Una regla simple es: "Permitir el tráfico saliente en el puerto 80 (HTTP), pero bloquear el tráfico entrante en ese puerto."</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="topic-section">
+            <h2>2. Reglas de Seguridad para el Técnico</h2>
+            <p>La seguridad de red comienza con buenas prácticas. Como técnico, debes promover y aplicar estos hábitos:</p>
+
+            <div class="advantage-list flex-col">
+                <div>
+                    <h3>Contraseñas Fuertes y Únicas</h3>
+                    <p>Nunca usar contraseñas por defecto. Combinar mayúsculas, minúsculas, números y símbolos. Usar una contraseña diferente para el Router, el Wi-Fi y el servidor.</p>
+                </div>
+                <div>
+                    <h3>Actualización de Firmware y Software</h3>
+                    <p>Las vulnerabilidades son fallos de seguridad que se corrigen con actualizaciones. Un router con firmware desactualizado es una invitación a la intrusión.</p>
+                </div>
+                <div>
+                    <h3>Puertos Abiertos (NAT/Port Forwarding)</h3>
+                    <p>Abrir puertos en el router debe ser el último recurso. Solo se deben abrir los puertos **estrictamente necesarios** para servicios específicos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="topic-section">
+            <h2>3. Tarea Práctica: Gestión del Firewall de Windows</h2>
+            <p><strong>Tarea Práctica (Windows):</strong></p>
+            <ol>
+                <li>Abre la configuración del **Firewall de Windows Defender** (o el firewall de tu sistema operativo).</li>
+                <li>Navega a la sección de "Reglas de entrada" y "Reglas de salida".</li>
+                <li>Identifica las reglas que permiten el tráfico a tu navegador web.</li>
+                <li>(Opcional): Intenta crear una regla simple para bloquear temporalmente el tráfico de un programa específico (¡Recuerda deshabilitarla después!).</li>
+            </ol>
+            <button id="firewallQuizBtn">Verificar Conceptos de Firewall</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy. JGMV-PTEL-2025. TODOS LOS DERECHOS RESERVADOS. <span id="footer-info">S7 E27</span></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="sesion26.html" class="nav-button">Anterior</a>
+        <a href="sesion28.html" class="nav-button">Siguiente</a>
+    </div>
+</body>
+</html>

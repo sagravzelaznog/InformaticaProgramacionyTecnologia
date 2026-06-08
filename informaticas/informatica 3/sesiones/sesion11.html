@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 11: Formularios y Controles de Usuario - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Sesión 11: Formularios y Controles de Usuario</h1>
+                <p class="objective"><strong>Objetivo:</strong> Aprender a crear y utilizar formularios y controles de
+                    usuario en Excel para mejorar la interacción con los usuarios.</p>
+            </header>
+
+            <div class="session-content">
+                <section class="introduction">
+                    <h2><i class="fas fa-info-circle"></i> Introducción</h2>
+                    <p>Los formularios y controles de usuario permiten crear interfaces amigables para que los usuarios
+                        interactúen con tus macros de manera más intuitiva. En esta sesión aprenderás a:</p>
+                    <ul>
+                        <li>Agregar controles de formulario a tus hojas de cálculo</li>
+                        <li>Crear formularios de usuario personalizados</li>
+                        <li>Validar datos de entrada</li>
+                        <li>Responder a eventos de los controles</li>
+                    </ul>
+
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-sliders-h"></i> 1. Controles de Formulario</h2>
+                    <p>Excel proporciona una variedad de controles que puedes agregar a tus hojas de cálculo:</p>
+
+                    <h3><i class="fas fa-hand-pointer"></i> 1.1 Botones de comando</h3>
+                    <p>Los botones permiten ejecutar macros con un solo clic.</p>
+                    <pre><code>Sub AsignarMacroABoton()
+    Dim btn As Button
+    Set btn = ActiveSheet.Buttons.Add(Left:=100, Top:=100, Width:=100, Height:=30)
+    btn.OnAction = "MiMacro"
+    btn.Caption = "Ejecutar"
+End Sub</code></pre>
+
+                    <h3><i class="fas fa-font"></i> 1.2 Cuadros de texto</h3>
+                    <p>Permiten al usuario ingresar texto.</p>
+                    <pre><code>Sub CrearCuadroTexto()
+    Dim txtBox As OLEObject
+    Set txtBox = ActiveSheet.OLEObjects.Add(ClassType:="Forms.TextBox.1", _
+        Left:=100, Top:=150, Width:=150, Height:=20)
+    txtBox.Name = "txtEntrada"
+End Sub</code></pre>
+
+                    <h3><i class="fas fa-list-ul"></i> 1.3 Listas desplegables</h3>
+                    <p>Útiles para que el usuario seleccione entre varias opciones.</p>
+                    <pre><code>Sub CrearListaDesplegable()
+    Dim lista As DropDown
+    Set lista = ActiveSheet.DropDowns.Add(Left:=100, Top:=200, Width:=150, Height:=20)
+    With lista
+        .List = Array("Opción 1", "Opción 2", "Opción 3")
+        .LinkedCell = "A1"
+    End With
+End Sub</code></pre>
+
+                </section>
+
+                <section class="concept">
+                    <h2><i class="fas fa-window-maximize"></i> 2. Formularios de Usuario</h2>
+                    <p>Los UserForms permiten crear ventanas personalizadas con múltiples controles.</p>
+
+                    <h3><i class="fas fa-plus-square"></i> 2.1 Crear un formulario básico</h3>
+                    <ol>
+                        <li>Presiona <kbd>Alt + F11</kbd> para abrir el Editor VBA</li>
+                        <li>Haz clic derecho en tu proyecto y selecciona <strong>Insertar > UserForm</strong></li>
+                        <li>Personaliza el formulario usando el cuadro de herramientas</li>
+                    </ol>
+
+                    <h3><i class="fas fa-window-restore"></i> 2.2 Mostrar un formulario</h3>
+                    <pre><code>Sub MostrarFormulario()
+    UserForm1.Show
+End Sub</code></pre>
+
+                    <h3><i class="fas fa-address-card"></i> 2.3 Ejemplo de formulario de registro</h3>
+                    <pre><code>' Código en el módulo del formulario
+Private Sub UserForm_Initialize()
+    ' Inicializar controles al cargar el formulario
+    With Me.cboPuesto
+        .AddItem "Gerente"
+        .AddItem "Analista"
+        .AddItem "Asistente"
+    End With
+    dtpFecha.Value = Date
+End Sub
+
+Private Sub btnGuardar_Click()
+    ' Validar datos
+    If txtNombre.Text = "" Then
+        MsgBox "Por favor ingrese un nombre", vbExclamation
+        txtNombre.SetFocus
+        Exit Sub
+    End If
+    
+    ' Procesar datos
+    Dim fila As Integer
+    fila = Hoja1.Cells(Rows.Count, 1).End(xlUp).Row + 1
+    
+    Hoja1.Cells(fila, 1).Value = txtNombre.Text
+    Hoje1.Cells(fila, 2).Value = txtEmail.Text
+    Hoja1.Cells(fila, 3).Value = cboPuesto.Value
+    Hoja1.Cells(fila, 4).Value = dtpFecha.Value
+    
+    ' Limpiar controles
+    txtNombre.Text = ""
+    txtEmail.Text = ""
+    cboPuesto.ListIndex = -1
+    
+    MsgBox "Registro guardado exitosamente", vbInformation
+End Sub</code></pre>
+
+                </section>
+
+                <section class="exercise">
+                    <div class="exercise-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Ejercicio Práctico</h2>
+                    </div>
+                    <p><strong>Objetivo:</strong> Crear un formulario de registro de productos.</p>
+                    <ol>
+                        <li>Crea un nuevo UserForm llamado <code>frmProducto</code></li>
+                        <li>Agrega los siguientes controles:
+                            <ul>
+                                <li>Etiquetas para cada campo</li>
+                                <li>Cuadros de texto para Código, Nombre y Precio</li>
+                                <li>Un ComboBox para la categoría (Electrónicos, Ropa, Alimentos, etc.)</li>
+                                <li>Un CheckBox para indicar si el producto está en oferta</li>
+                                <li>Dos botones: Aceptar y Cancelar</li>
+                            </ul>
+                        </li>
+                        <li>Programa el botón Aceptar para validar los datos y guardar en la hoja "Productos"</li>
+                        <li>Programa el botón Cancelar para cerrar el formulario</li>
+                    </ol>
+                    <p><strong>Pista:</strong> Usa el evento <code>UserForm_Initialize</code> para cargar las categorías
+                        en el ComboBox.</p>
+            </div>
+
+            </section>
+
+            <section class="summary">
+                <div class="summary-header">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h2>Resumen de la Sesión</h2>
+                    <ul>
+                        <li>Los controles de formulario permiten crear interfaces interactivas en Excel.</li>
+                        <li>Los UserForms ofrecen mayor flexibilidad para crear formularios personalizados.</li>
+                        <li>Es importante validar los datos ingresados por el usuario.</li>
+                        <li>Los eventos de los controles permiten responder a las acciones del usuario.</li>
+                    </ul>
+                </div>
+            </section>
+    </div>
+
+
+   
+    </div>
+    </main>
+    </div>
+
+    <footer>
+        <p>© JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

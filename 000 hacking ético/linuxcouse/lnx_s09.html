@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Forense - sesion09: Identidad de Red</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">Terminal Core <span>>_</span></div>
+        <div id="auth-container" class="auth-section">
+            <button id="btn-login" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="btn btn-secondary">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="course-progress" style="width: 0%;"></div>
+    </div>
+
+    <main class="container">
+        <article class="lesson-content">
+            <h1>Laboratorio 09: Anatomía de la Red y Conectividad</h1>
+            <p class="intro-text">Un equipo comprometido siempre intenta comunicarse con su creador (C2 - Command and Control). Para rastrear ese tráfico, primero debes dominar tu propia tarjeta de red dentro del Sandbox. Hoy aprenderemos a leer direcciones IP, MACs y a medir el pulso de la red.</p>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 1: Tu Identidad en la Red (ip a)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Históricamente se usaba <code>ifconfig</code>, pero en los sistemas modernos de Linux el estándar es <code>ip</code>. Este comando revela tus interfaces (como <em>eth0</em> para cable o <em>wlan0</em> para WiFi), tu dirección IP (inet) y tu dirección MAC física (link/ether).</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Listar todas las direcciones IP asignadas a tus interfaces</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ip a
+
+<span class="comment"># Si solo quieres ver un resumen limpio (muy útil)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ip -c a | grep inet</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 2: El Pulso Vital (Simulador Ping)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>El comando <code>ping</code> envía un paquete ICMP (Echo Request) a un objetivo. Si el objetivo está vivo y no tiene un firewall bloqueándolo, responde (Echo Reply). Juega con el simulador visual para entender la "latencia" (el tiempo que tarda en ir y volver) antes de ejecutar el comando.</p>
+                    
+                    <div class="network-radar">
+                        <div class="radar-controls">
+                            <button id="btn-sim-ping" class="btn btn-primary btn-cyber">Transmitir ICMP (Ping)</button>
+                            <span id="ping-target">Objetivo: 8.8.8.8 (Google DNS)</span>
+                        </div>
+                        <div class="radar-display">
+                            <div class="node source-node">TÚ</div>
+                            <div class="signal-path" id="signal-path"></div>
+                            <div class="node target-node">8.8.8.8</div>
+                        </div>
+                        <div class="ping-console" id="ping-console"></div>
+                    </div>
+
+                    <p style="margin-top: 1rem;">Ahora, hazlo en tu terminal real. <strong>Aviso:</strong> A diferencia de Windows que envía 4 paquetes y se detiene, Linux hace ping infinitamente. Presiona <strong>Ctrl + C</strong> para detenerlo.</p>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Hacemos ping con un límite estricto de 4 paquetes (-c 4)</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> ping -c 4 8.8.8.8</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="task-module">
+                <div class="task-header">
+                    <h2>Paso 3: Mapeo de la Ruta (traceroute)</h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="step-check">
+                        <span class="checkmark"></span> Completado
+                    </label>
+                </div>
+                <div class="task-body">
+                    <p>Un paquete no viaja mágicamente de tu máquina al objetivo. Salta a través de múltiples routers (hops). En forense, <code>traceroute</code> nos dice exactamente por qué países o nodos está pasando nuestra información. Si el tráfico interno está siendo desviado por un atacante (Ataque Man-In-The-Middle), aquí lo veremos.</p>
+                    <div class="tip-card" style="border-left-color: #0ea5e9; background-color: rgba(14, 165, 233, 0.08);">
+                        <strong style="color: #38bdf8;">Visión Pericial:</strong> Los asteriscos (* * *) en traceroute no siempre significan que la red esté caída; a menudo significan que un router intermedio está configurado para ignorar nuestras solicitudes por seguridad.
+                    </div>
+                    <div class="code-encapsulated kali-theme">
+                        <pre><code><span class="comment"># Trazar la ruta exacta hacia un servidor</span>
+<span class="prompt">-(kali㉿kali)-[~]$</span> traceroute 8.8.8.8</code></pre>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026, JMGVPTEL Curso Linux sesión #09. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

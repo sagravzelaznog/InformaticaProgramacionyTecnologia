@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Capturando Datos (Inputs) - Curso de JavaScript</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --border-radius: 5px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            margin: 1.5rem 0 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .demo {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .demo h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #3a5a8c;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .error {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .is-invalid {
+            border-color: var(--danger-color) !important;
+        }
+
+        .is-valid {
+            border-color: var(--success-color) !important;
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .feedback.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .challenge {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .challenge h3 {
+            color: #d39e00;
+            margin-top: 0;
+        }
+
+        .challenge .hint {
+            background: #fff3cd;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .challenge .hint.show {
+            display: block;
+        }
+
+        .hint-btn {
+            background-color: #ffc107;
+            color: #000;
+            margin-top: 0.5rem;
+        }
+
+        .hint-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .dola-ai {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .dola-btn {
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .dola-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dola-chat {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+        }
+
+        .dola-chat.active {
+            display: flex;
+        }
+
+        .dola-header {
+            background: #6c5ce7;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dola-messages {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .dola-message {
+            margin-bottom: 10px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .dola-message.user {
+            background: #f1f1f1;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .dola-message.bot {
+            background: #e9e5ff;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+
+        .dola-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .dola-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .dola-input button {
+            margin-left: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sesión 8: Capturando Datos (Inputs)</h1>
+        <p class="subtitle">Aprende a leer y validar la entrada del usuario</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>1. Introducción a los Inputs</h2>
+            <p>En esta sesión aprenderás a capturar datos que los usuarios ingresan en formularios web. Esto es esencial para crear aplicaciones interactivas que respondan a la entrada del usuario.</p>
+            
+            <h3>¿Por qué son importantes los inputs?</h3>
+            <p>Los inputs permiten a los usuarios interactuar con tu sitio web. Sin ellos, las páginas web serían estáticas y no podrías hacer cosas como:</p>
+            <ul>
+                <li>Iniciar sesión en sitios web</li>
+                <li>Realizar búsquedas</li>
+                <li>Enviar mensajes</li>
+                <li>Completar formularios de contacto</li>
+                <li>Y mucho más...</li>
+            </ul>
+
+            <div class="demo">
+                <h4>Demo: Input Básico</h4>
+                <div class="form-group">
+                    <label for="nombre">Escribe tu nombre:</label>
+                    <input type="text" id="nombre" placeholder="Ej: Juan Pérez">
+                    <button onclick="saludar()">Saludar</button>
+                </div>
+                <p id="saludo" style="margin-top: 1rem; font-weight: bold;"></p>
+                <script>
+                    function saludar() {
+                        const nombre = document.getElementById('nombre').value;
+                        const saludo = document.getElementById('saludo');
+                        
+                        if (nombre.trim() === '') {
+                            saludo.textContent = 'Por favor, escribe tu nombre';
+                            saludo.style.color = 'red';
+                        } else {
+                            saludo.textContent = `¡Hola, ${nombre}! Bienvenido al curso de JavaScript.`;
+                            saludo.style.color = 'green';
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Tipos de Inputs</h2>
+            <p>HTML5 ofrece varios tipos de inputs, cada uno diseñado para un tipo específico de datos. Aquí están los más comunes:</p>
+            
+            <div class="demo">
+                <h4>Diferentes tipos de inputs:</h4>
+                <div class="form-group">
+                    <label for="texto">Texto:</label>
+                    <input type="text" id="texto" placeholder="Escribe algo...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="usuario@ejemplo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="number" id="numero" min="1" max="100" placeholder="1-100">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha">
+                </div>
+                
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <input type="color" id="color" value="#4a6fa5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="rango">Rango:</label>
+                    <input type="range" id="rango" min="0" max="100" value="50">
+                    <span id="valor-rango">50</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" placeholder="Escribe una contraseña">
+                </div>
+                
+                <div class="form-group">
+                    <label for="area-texto">Área de texto:</label>
+                    <textarea id="area-texto" rows="3" placeholder="Escribe un mensaje..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="seleccion">Selecciona una opción:</label>
+                    <select id="seleccion">
+                        <option value="">-- Elige una opción --</option>
+                        <option value="opcion1">Opción 1</option>
+                        <option value="opcion2">Opción 2</option>
+                        <option value="opcion3">Opción 3</option>
+                    </select>
+                </div>
+                
+                <button onclick="mostrarValores()">Mostrar Valores</button>
+                <div id="valores" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; display: none;"></div>
+                
+                <script>
+                    // Actualizar el valor del rango en tiempo real
+                    document.getElementById('rango').addEventListener('input', function() {
+                        document.getElementById('valor-rango').textContent = this.value;
+                    });
+                    
+                    function mostrarValores() {
+                        const valoresDiv = document.getElementById('valores');
+                        let html = '<h4>Valores de los inputs:</h4>';
+                        
+                        // Obtener valores de todos los inputs
+                        html += `<p><strong>Texto:</strong> ${document.getElementById('texto').value || 'Vacío'}</p>`;
+                        html += `<p><strong>Email:</strong> ${document.getElementById('email').value || 'Vacío'}</p>`;
+                        html += `<p><strong>Número:</strong> ${document.getElementById('numero').value || 'Vacío'}</p>`;
+                        html += `<p><strong>Fecha:</strong> ${document.getElementById('fecha').value || 'No seleccionada'}</p>`;
+                        html += `<p><strong>Color:</strong> <span style="display: inline-block; width: 20px; height: 20px; background: ${document.getElementById('color').value};"></span> ${document.getElementById('color').value}</p>`;
+                        html += `<p><strong>Rango:</strong> ${document.getElementById('rango').value}</p>`;
+                        html += `<p><strong>Contraseña:</strong> ${'•'.repeat(document.getElementById('contrasena').value.length)}</p>`;
+                        html += `<p><strong>Mensaje:</strong> ${document.getElementById('area-texto').value || 'Vacío'}</p>`;
+                        html += `<p><strong>Opción seleccionada:</strong> ${document.getElementById('seleccion').value || 'Ninguna'}</p>`;
+                        
+                        valoresDiv.innerHTML = html;
+                        valoresDiv.style.display = 'block';
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Validación de Formularios</h2>
+            <p>La validación es crucial para asegurar que los datos ingresados por los usuarios sean correctos antes de enviarlos al servidor.</p>
+            
+            <h3>Validación con HTML5</h3>
+            <p>HTML5 incluye atributos de validación integrados:</p>
+            <ul>
+                <li><code>required</code> - El campo es obligatorio</li>
+                <li><code>minlength</code> - Longitud mínima del texto</li>
+                <li><code>maxlength</code> - Longitud máxima del texto</li>
+                <li><code>min</code> y <code>max</code> - Valores mínimo y máximo para números</li>
+                <li><code>pattern</code> - Expresión regular para validar el formato</li>
+                <li><code>type="email"</code> - Valida que sea un correo electrónico válido</li>
+            </ul>
+
+            <div class="demo">
+                <h4>Ejemplo de Validación con HTML5</h4>
+                <form id="formulario-validacion" novalidate>
+                    <div class="form-group">
+                        <label for="nombre-completo">Nombre completo (requerido):</label>
+                        <input type="text" id="nombre-completo" required minlength="3" maxlength="50">
+                        <div class="error" id="error-nombre">El nombre es obligatorio (mínimo 3 caracteres)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" id="correo" required>
+                        <div class="error" id="error-correo">Por favor, introduce un correo electrónico válido</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad (12-120):</label>
+                        <input type="number" id="edad" min="12" max="120" required>
+                        <div class="error" id="error-edad">La edad debe estar entre 12 y 120 años</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contrasena-validada">Contraseña (mínimo 8 caracteres):</label>
+                        <input type="password" id="contrasena-validada" minlength="8" required>
+                        <div class="error" id="error-contrasena">La contraseña debe tener al menos 8 caracteres</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmar-contrasena">Confirmar contraseña:</label>
+                        <input type="password" id="confirmar-contrasena" required>
+                        <div class="error" id="error-confirmacion">Las contraseñas no coinciden</div>
+                    </div>
+                    
+                    <button type="submit">Enviar</button>
+                    <button type="reset" class="btn-secondary">Limpiar</button>
+                </form>
+                
+                <div id="mensaje-exito" class="feedback success" style="display: none;">
+                    ¡Formulario enviado correctamente!
+                </div>
+                
+                <script>
+                    const formulario = document.getElementById('formulivo-validacion');
+                    const nombre = document.getElementById('nombre-completo');
+                    const correo = document.getElementById('correo');
+                    const edad = document.getElementById('edad');
+                    const contrasena = document.getElementById('contrasena-validada');
+                    const confirmarContrasena = document.getElementById('confirmar-contrasena');
+                    
+                    // Validación en tiempo real
+                    nombre.addEventListener('input', () => validarCampo(nombre, 'error-nombre', 
+                        nombre.value.trim().length >= 3 || nombre.value === ''));
+                        
+                    correo.addEventListener('input', () => validarCampo(correo, 'error-correo', 
+                        correo.validity.valid || correo.value === ''));
+                        
+                    edad.addEventListener('input', () => validarCampo(edad, 'error-edad', 
+                        (edad.value >= 12 && edad.value <= 120) || edad.value === ''));
+                        
+                    contrasena.addEventListener('input', () => {
+                        const valido = contrasena.value.length >= 8 || contrasena.value === '';
+                        validarCampo(contrasena, 'error-contrasena', valido);
+                        
+                        // Validar confirmación si ya hay valor
+                        if (confirmarContrasena.value) {
+                            validarCampo(confirmarContrasena, 'error-confirmacion', 
+                                confirmarContrasena.value === contrasena.value);
+                        }
+                    });
+                    
+                    confirmarContrasena.addEventListener('input', () => {
+                        validarCampo(confirmarContrasena, 'error-confirmacion', 
+                            confirmarContrasena.value === contrasena.value || confirmarContrasena.value === '');
+                    });
+                    
+                    function validarCampo(campo, idError, esValido) {
+                        const errorElement = document.getElementById(idError);
+                        
+                        if (esValido) {
+                            campo.classList.remove('is-invalid');
+                            campo.classList.add('is-valid');
+                            errorElement.style.display = 'none';
+                        } else {
+                            campo.classList.remove('is-valid');
+                            campo.classList.add('is-invalid');
+                            errorElement.style.display = 'block';
+                        }
+                        
+                        return esValido;
+                    }
+                    
+                    // Validación al enviar el formulario
+                    formulario.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // Validar todos los campos
+                        const esNombreValido = validarCampo(nombre, 'error-nombre', 
+                            nombre.value.trim().length >= 3);
+                            
+                        const esCorreoValido = validarCampo(correo, 'error-correo', 
+                            correo.validity.valid);
+                            
+                        const esEdadValida = validarCampo(edad, 'error-edad', 
+                            edad.value >= 12 && edad.value <= 120);
+                            
+                        const esContrasenaValida = validarCampo(contrasena, 'error-contrasena', 
+                            contrasena.value.length >= 8);
+                            
+                        const esConfirmacionValida = validarCampo(confirmarContrasena, 'error-confirmacion', 
+                            confirmarContrasena.value === contrasena.value);
+                        
+                        // Si todo es válido, mostrar mensaje de éxito
+                        if (esNombreValido && esCorreoValido && esEdadValida && 
+                            esContrasenaValida && esConfirmacionValida) {
+                            
+                            // Aquí normalmente enviarías el formulario al servidor
+                            document.getElementById('mensaje-exito').style.display = 'block';
+                            
+                            // Ocultar el mensaje después de 5 segundos
+                            setTimeout(() => {
+                                document.getElementById('mensaje-exito').style.display = 'none';
+                            }, 5000);
+                            
+                            // Limpiar el formulario
+                            formulario.reset();
+                            
+                            // Quitar clases de validación
+                            const inputs = formulario.querySelectorAll('input');
+                            inputs.forEach(input => {
+                                input.classList.remove('is-valid', 'is-invalid');
+                            });
+                        } else {
+                            // Desplazarse al primer error
+                            const primerError = document.querySelector('.is-invalid');
+                            if (primerError) {
+                                primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Eventos de Input</h2>
+            <p>JavaScript proporciona varios eventos para manejar la interacción del usuario con los inputs:</p>
+            <ul>
+                <li><code>input</code> - Se dispara cada vez que el valor de un input cambia</li>
+                <li><code>change</code> - Se dispara cuando el usuario termina de cambiar el valor (al quitar el foco)</li>
+                <li><code>focus</code> - Cuando el input recibe el foco</li>
+                <li><code>blur</code> - Cuando el input pierde el foco</li>
+                <li><code>keydown</code> / <code>keyup</code> - Cuando se presiona/suelta una tecla</li>
+            </ul>
+
+            <div class="demo">
+                <h4>Demo: Contador de Caracteres</h4>
+                <div class="form-group">
+                    <label for="mensaje">Escribe un mensaje (máx. 100 caracteres):</label>
+                    <textarea id="mensaje" rows="3" maxlength="100" placeholder="Escribe algo..."></textarea>
+                    <div id="contador">100 caracteres restantes</div>
+                </div>
+                
+                <h4>Demo: Búsqueda en tiempo real</h4>
+                <div class="form-group">
+                    <label for="busqueda">Buscar:</label>
+                    <input type="text" id="busqueda" placeholder="Escribe para buscar...">
+                    <div id="resultado-busqueda" style="margin-top: 1rem; min-height: 50px; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+                        Resultado de la búsqueda aparecerá aquí...
+                    </div>
+                </div>
+                
+                <script>
+                    // Contador de caracteres
+                    const mensaje = document.getElementById('mensaje');
+                    const contador = document.getElementById('contador');
+                    const maxLength = parseInt(mensaje.getAttribute('maxlength'));
+                    
+                    mensaje.addEventListener('input', function() {
+                        const caracteresRestantes = maxLength - this.value.length;
+                        contador.textContent = `${caracteresRestantes} caracteres restantes`;
+                        
+                        if (caracteresRestantes < 20) {
+                            contador.style.color = 'red';
+                        } else if (caracteresRestantes < 50) {
+                            contador.style.color = 'orange';
+                        } else {
+                            contador.style.color = 'green';
+                        }
+                    });
+                    
+                    // Búsqueda en tiempo real
+                    const busqueda = document.getElementById('busqueda');
+                    const resultadoBusqueda = document.getElementById('resultado-busqueda');
+                    
+                    // Datos de ejemplo para la búsqueda
+                    const productos = [
+                        'Laptop HP 15"',
+                        'Teclado Mecánico RGB',
+                        'Mouse Inalámbrico Logitech',
+                        'Monitor 24" Full HD',
+                        'Auriculares con Cancelación de Ruido',
+                        'Webcam 1080p',
+                        'Alfombrilla para Mouse XL',
+                        'Soporte para Laptop',
+                        'Cargador USB-C 65W',
+                        'Disco Duro Externo 1TB'
+                    ];
+                    
+                    busqueda.addEventListener('input', function() {
+                        const termino = this.value.toLowerCase();
+                        
+                        if (termino.length === 0) {
+                            resultadoBusqueda.innerHTML = 'Escribe algo para buscar...';
+                            return;
+                        }
+                        
+                        const resultados = productos.filter(producto => 
+                            producto.toLowerCase().includes(termino)
+                        );
+                        
+                        if (resultados.length === 0) {
+                            resultadoBusqueda.innerHTML = 'No se encontraron resultados.';
+                            return;
+                        }
+                        
+                        resultadoBusqueda.innerHTML = '<strong>Resultados:</strong><br>' + 
+                            resultados.join('<br>');
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge">
+        <h3>🏆 Reto: El Saludador VIP</h3>
+        <p>Crea un formulario con un campo para el nombre y un botón. Al hacer clic en el botón, debe aparecer un mensaje de bienvenida personalizado en un elemento de la página.</p>
+        
+        <h4>Requisitos:</h4>
+        <ol>
+            <li>Un campo de texto para que el usuario ingrese su nombre.</li>
+            <li>Un botón que diga "Saludar".</li>
+            <li>Un elemento donde se mostrará el mensaje de bienvenida.</li>
+            <li>El mensaje debe decir: "¡Bienvenido/a, [Nombre]! Esperamos que disfrutes el curso de JavaScript."</li>
+            <li>Si el campo está vacío, muestra un mensaje de error.</li>
+        </ol>
+        
+        <button class="hint-btn" onclick="document.querySelector('.hint').classList.toggle('show')">Mostrar Pista</button>
+        
+        <div class="hint">
+            <p><strong>Pista:</strong> Usa <code>document.getElementById()</code> para obtener los elementos del DOM, y el evento <code>click</code> en el botón para ejecutar una función que lea el valor del input y actualice el mensaje.</p>
+            <p>Ejemplo de cómo obtener el valor de un input:</p>
+            <pre><code>const nombre = document.getElementById('nombre-input').value;</code></pre>
+            <p>Y para actualizar el texto de un elemento:</p>
+            <pre><code>document.getElementById('mensaje').textContent = 'Nuevo mensaje';</code></pre>
+        </div>
+        
+        <div class="demo" style="margin-top: 1rem;">
+            <h4>Tu solución:</h4>
+            <!-- Espacio para que el estudiante implemente el reto -->
+            <div class="form-group">
+                <label for="nombre-vip">Tu nombre:</label>
+                <input type="text" id="nombre-vip" placeholder="Escribe tu nombre">
+                <button onclick="saludarVIP()">Saludar</button>
+            </div>
+            <div id="mensaje-vip" style="margin-top: 1rem; font-weight: bold;"></div>
+            
+            <script>
+                // Función de ejemplo - El estudiante debe implementar su propia solución
+                function saludarVIP() {
+                    // Obtener el valor del input
+                    const nombre = document.getElementById('nombre-vip').value.trim();
+                    const mensajeElemento = document.getElementById('mensaje-vip');
+                    
+                    // Validar que el nombre no esté vacío
+                    if (nombre === '') {
+                        mensajeElemento.textContent = 'Por favor, escribe tu nombre';
+                        mensajeElemento.style.color = 'red';
+                        return;
+                    }
+                    
+                    // Mostrar el mensaje de bienvenida
+                    mensajeElemento.textContent = `¡Bienvenido/a, ${nombre}! Esperamos que disfrutes el curso de JavaScript.`;
+                    mensajeElemento.style.color = 'green';
+                }
+            </script>
+        </div>
+    </div>
+
+    <!-- Dola AI Assistant -->
+    <div class="dola-ai">
+        <div class="dola-chat" id="dola-chat">
+            <div class="dola-header">
+                <span>Dola - Asistente de JavaScript</span>
+                <button onclick="document.getElementById('dola-chat').classList.remove('active')" style="background: none; border: none; color: white; cursor: pointer;">✕</button>
+            </div>
+            <div class="dola-messages" id="dola-messages">
+                <div class="dola-message bot">
+                    ¡Hola! Soy Dola, tu asistente de JavaScript. ¿En qué puedo ayudarte hoy con los formularios y la captura de datos?
+                </div>
+            </div>
+            <div class="dola-input">
+                <input type="text" id="dola-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key === 'Enter') enviarMensaje()">
+                <button onclick="enviarMensaje()">➤</button>
+            </div>
+        </div>
+        <button class="dola-btn" onclick="document.getElementById('dola-chat').classList.toggle('active')">
+            🤖
+        </button>
+    </div>
+
+    <script>
+        // Funcionalidad básica del chat Dola
+        function enviarMensaje() {
+            const input = document.getElementById('dola-input');
+            const mensaje = input.value.trim();
+            
+            if (mensaje === '') return;
+            
+            // Agregar mensaje del usuario
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeUsuario = document.createElement('div');
+            mensajeUsuario.className = 'dola-message user';
+            mensajeUsuario.textContent = mensaje;
+            mensajes.appendChild(mensajeUsuario);
+            
+            // Limpiar input
+            input.value = '';
+            
+            // Desplazarse al final de los mensajes
+            mensajes.scrollTop = mensajes.scrollHeight;
+            
+            // Simular respuesta después de un breve retraso
+            setTimeout(responderMensaje, 1000);
+        }
+        
+        function responderMensaje() {
+            const mensajes = document.getElementById('dola-messages');
+            const mensajeBot = document.createElement('div');
+            mensajeBot.className = 'dola-message bot';
+            
+            // Aquí podrías implementar lógica más avanzada de IA
+            mensajeBot.textContent = '¡Entendido! ¿En qué más puedo ayudarte con los formularios y la validación de datos en JavaScript?';
+            
+            mensajes.appendChild(mensajeBot);
+            mensajes.scrollTop = mensajes.scrollHeight;
+        }
+        
+        // Permitir enviar mensaje con Enter
+        document.getElementById('dola-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 15: Integración de Macros con Aplicaciones Externas - Curso de Macros en Excel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2><i class="fas fa-list-ul"></i> Sesiones</h2>
+            <ul id="session-links">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1><i class="fas fa-plug"></i> Sesión 15: Integración de Macros con Aplicaciones Externas</h1>
+                <p class="objective"><strong><i class="fas fa-bullseye"></i> Objetivo:</strong> Aprender a conectar macros de Excel con otras aplicaciones de Microsoft Office y servicios web.</p>
+            </header>
+            
+            <div class="session-content">
+                <div class="nav-buttons">
+                    <a href="sesion14.html" class="nav-button"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+                    <a href="index.html" class="nav-button"><i class="fas fa-home"></i> Volver al Inicio</a>
+                    <a href="#" class="nav-button disabled">Siguiente Sesión <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <section class="concept">
+                    <h2><i class="fas fa-question-circle"></i> ¿Por qué integrar Excel con otras aplicaciones?</h2>
+                    <p>La verdadera potencia de las macros se revela cuando aprendes a hacer que Excel se comunique con otras aplicaciones. Imagina poder enviar correos automáticamente desde Outlook, generar informes en Word o incluso interactuar con páginas web, ¡todo desde Excel!</p>
+                    
+                    <div class="example">
+                        <h3>Ejemplo práctico:</h3>
+                        <p>Piensa en un informe mensual que normalmente te toma horas: copiar datos de Excel, pegarlos en un correo, adjuntar archivos y enviarlo. Con la integración, podrías automatizar todo este proceso con un solo clic.</p>
+                    </div>
+                </section>
+
+                <section class="benefits">
+                    <h2><i class="fas fa-puzzle-piece"></i> Tipos de integración</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h3>📧 Con Outlook</h3>
+                            <p>Envío automático de correos con reportes adjuntos.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h3>📄 Con Word</h3>
+                            <p>Generación automática de documentos con datos de Excel.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h3>🌐 Con Navegadores Web</h3>
+                            <p>Extracción de datos de páginas web automáticamente.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tutorial">
+                    <h2><i class="fas fa-envelope"></i> Tutorial: Enviar correo desde Excel</h2>
+                    <div class="step">
+                        <h3>Paso 1: Habilitar la referencia a Outlook</h3>
+                        <ol>
+                            <li>Abre el Editor VBA (Alt + F11)</li>
+                            <li>Ve a <strong>Herramientas</strong> > <strong>Referencias</strong></li>
+                            <li>Busca y marca <strong>Microsoft Outlook XX.X Object Library</strong></li>
+                        </ol>
+                        <div class="code-block">
+                            <pre><code>Sub EnviarCorreo()
+    Dim OutApp As Object
+    Dim OutMail As Object
+    
+    ' Crear objeto de Outlook
+    Set OutApp = CreateObject("Outlook.Application")
+    Set OutMail = OutApp.CreateItem(0)
+    
+    ' Configurar el correo
+    With OutMail
+        .To = "destinatario@ejemplo.com"
+        .CC = ""
+        .BCC = ""
+        .Subject = "Reporte Mensual - " & Format(Date, "dd/mm/yyyy")
+        .Body = "Estimado equipo, adjunto encontrarán el reporte mensual."
+        .Attachments.Add ThisWorkbook.FullName
+        .Display ' Usar .Send para enviar directamente
+    End With
+    
+    ' Limpiar
+    Set OutMail = Nothing
+    Set OutApp = Nothing
+End Sub</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="activity">
+                    <h2><i class="fas fa-tasks"></i> Actividad Práctica</h2>
+                    <h3>Crear un generador de informes en Word</h3>
+                    <p><strong>Objetivo:</strong> Crear una macro que genere un informe en Word con datos de Excel.</p>
+                    
+                    <div class="step">
+                        <h4>Paso a paso:</h4>
+                        <ol>
+                            <li>Habilita la referencia a <strong>Microsoft Word XX.X Object Library</strong> en VBA</li>
+                            <li>Crea un botón en tu hoja de Excel</li>
+                            <li>Copia y pega el siguiente código:</li>
+                        </ol>
+                        <div class="code-block">
+                            <pre><code>Sub GenerarInformeWord()
+    Dim wdApp As Object
+    Dim wdDoc As Object
+    Dim rng As Range
+    
+    ' Crear instancia de Word
+    Set wdApp = CreateObject("Word.Application")
+    wdApp.Visible = True
+    
+    ' Crear nuevo documento
+    Set wdDoc = wdApp.Documents.Add
+    
+    ' Agregar título
+    With wdDoc
+        .Content.InsertAfter "Informe de Ventas" & vbNewLine
+        .Paragraphs(1).Range.Font.Bold = True
+        .Paragraphs(1).Range.Font.Size = 16
+        
+        ' Agregar fecha
+        .Content.InsertAfter "Fecha: " & Format(Date, "dd/mm/yyyy") & vbNewLine & vbNewLine
+        
+        ' Agregar tabla desde Excel
+        Set rng = ThisWorkbook.Sheets("Ventas").Range("A1:D10")
+        rng.Copy
+        .Content.PasteExcelTable False, False, False
+    End With
+    
+    ' Guardar documento
+    wdDoc.SaveAs2 ThisWorkbook.Path & "\\Informe_Ventas_" & Format(Date, "yyyymmdd") & ".docx"
+    
+    ' Limpiar
+    Set wdDoc = Nothing
+    wdApp.Quit
+    Set wdApp = Nothing
+    
+    MsgBox "Informe generado correctamente", vbInformation
+End Sub</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="web-integration">
+                    <h2><i class="fas fa-globe"></i> Integración con Navegadores Web</h2>
+                    <p>Podemos usar VBA para interactuar con Internet Explorer (o Edge en modo IE) para extraer datos de páginas web. Aquí tienes un ejemplo básico:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>Sub ExtraerDatosWeb()
+    Dim IE As Object
+    Dim elemento As Object
+    Dim i As Integer
+    
+    ' Crear instancia de Internet Explorer
+    Set IE = CreateObject("InternetExplorer.Application")
+    IE.Visible = True
+    
+    ' Navegar a la página
+    IE.Navigate "https://ejemplo.com/datos"
+    
+    ' Esperar a que cargue la página
+    Do While IE.Busy Or IE.readyState <> 4
+        DoEvents
+    Loop
+    
+    ' Extraer datos de una tabla
+    i = 1
+    For Each elemento In IE.document.getElementsByTagName("tr")
+        ' Procesar cada fila de la tabla
+        ThisWorkbook.Sheets("Datos").Cells(i, 1).Value = elemento.innerText
+        i = i + 1
+    Next elemento
+    
+    ' Cerrar navegador
+    IE.Quit
+    Set IE = Nothing
+    
+    MsgBox "Datos extraídos correctamente", vbInformation
+End Sub</code></pre>
+                    </div>
+                </section>
+
+                <section class="considerations">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Consideraciones Importantes</h2>
+                    <ul>
+                        <li><strong>Seguridad:</strong> Ten cuidado al ejecutar macros que interactúan con otras aplicaciones.</li>
+                        <li><strong>Versiones:</strong> Algunos códigos pueden variar según la versión de Office.</li>
+                        <li><strong>Permisos:</strong> Asegúrate de que Excel tenga los permisos necesarios.</li>
+                        <li><strong>Errores:</strong> Siempre incluye manejo de errores en tus macros.</li>
+                    </ul>
+                </section>
+
+                <section class="summary">
+                    <h2><i class="fas fa-clipboard-list"></i> Resumen de la Sesión</h2>
+                    <ul>
+                        <li>Las macros pueden interactuar con otras aplicaciones de Office como Outlook y Word</li>
+                        <li>Es posible automatizar el envío de correos directamente desde Excel</li>
+                        <li>Podemos generar documentos de Word con datos de Excel automáticamente</li>
+                        <li>La integración con navegadores web permite extraer datos de páginas web</li>
+                        <li>Es importante considerar aspectos de seguridad y versiones al integrar aplicaciones</li>
+                    </ul>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; JMGV-PTEL-2025, CURSO DE MACROS EN EXCEL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
