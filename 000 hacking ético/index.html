@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Ético - Curso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Marked.js para renderizar Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 30%);
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
+
+        .header-top {
+            padding: 1.5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(96, 165, 250, 0.5);
+            transform: translateX(-3px);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos Markdown */
+        .content-box h1, .content-box h2, .content-box h3 {
+            color: white;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-box h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0;
+        }
+
+        .content-box p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .content-box a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+
+        .content-box ul, .content-box ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            color: var(--text-muted);
+        }
+
+        .content-box code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #f8fafc;
+        }
+
+        .content-box pre {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .content-box pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .loader {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            padding: 3rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-top">
+        <a href="../" class="back-btn">← Volver al Portal</a>
+    </div>
+
+    <main>
+        <div class="content-box">
+            <div id="content">
+                <div class="loader">Cargando contenido del curso...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Cargar el archivo markdown principal del curso
+        fetch('curso_hacking_etico_forense.md')
+            .then(response => {
+                if (!response.ok) throw new Error('Archivo no encontrado');
+                return response.text();
+            })
+            .then(text => {
+                document.getElementById('content').innerHTML = marked.parse(text);
+            })
+            .catch(err => {
+                document.getElementById('content').innerHTML = `
+                    <h1>🛡️ Curso de Hacking Ético</h1>
+                    <p>Bienvenido al módulo. Puedes explorar los archivos disponibles:</p>
+                    <ul>
+                        <li><a href="curso_hacking_etico_forense.md">Ver documento principal (Markdown)</a></li>
+                        <li><a href="linuxcouse/">Curso de Linux</a></li>
+                        <li><a href="requisitos.txt">Ver Requisitos</a></li>
+                    </ul>
+                `;
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
