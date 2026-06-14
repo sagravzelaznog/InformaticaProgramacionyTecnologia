@@ -35,28 +35,6 @@ export default function DashboardPage() {
     fetchData();
   }, []);
 
-  const handleSeed = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch('/api/seed');
-      if (!res.ok) throw new Error('Error leyendo archivos .txt locales');
-      
-      const data = await res.json();
-      
-      // Escribimos a Firestore usando las credenciales del usuario logueado en el frontend
-      await setDoc(doc(db, 'courses', data.course.id), data.course);
-      for (const lesson of data.lessons) {
-        await setDoc(doc(db, 'lessons', lesson.id), lesson);
-      }
-      
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-      alert('Error inyectando base de datos: ' + err);
-      setLoading(false);
-    }
-  };
-
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-slate-950 text-white font-sans">
@@ -80,9 +58,6 @@ export default function DashboardPage() {
           ) : lessons.length === 0 ? (
             <div className="text-slate-400 text-center py-12 bg-slate-900/50 rounded-2xl border border-slate-800">
               <p className="mb-4">No hay lecciones en la base de datos.</p>
-              <button onClick={handleSeed} className="px-6 py-2 bg-blue-600 rounded-lg font-bold text-white hover:bg-blue-500 transition-colors">
-                Inyectar Curso a Firestore (Seed)
-              </button>
             </div>
           ) : (
             <>
