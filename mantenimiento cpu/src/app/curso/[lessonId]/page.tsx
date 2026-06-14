@@ -10,12 +10,6 @@ import CommandCard from '@/components/CommandCard';
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
 
-export async function generateStaticParams() {
-  return Array.from({ length: 10 }, (_, i) => ({
-    lessonId: `modulo-${i + 1}`,
-  }));
-}
-
 export default function LessonPage({ params }: { params: Promise<{ lessonId: string }> }) {
   const unwrappedParams = use(params);
   const lessonId = unwrappedParams.lessonId;
