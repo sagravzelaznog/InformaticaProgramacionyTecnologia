@@ -7,7 +7,7 @@ import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { parseLessonText, ParsedLesson } from '@/utils/lessonParser';
 import CommandCard from '@/components/CommandCard';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Trophy } from 'lucide-react';
 import KahootQuiz from '@/components/KahootQuiz';
 import { quizzes } from '@/data/quizzes';
@@ -18,6 +18,13 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   const [lesson, setLesson] = useState<any>(null);
   const [parsed, setParsed] = useState<ParsedLesson | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -47,6 +54,10 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-slate-950 text-slate-200">
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 origin-left z-[60]"
+          style={{ scaleX }}
+        />
         <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/dashboard" className="text-blue-400 hover:text-blue-300 font-medium flex items-center transition-colors">
