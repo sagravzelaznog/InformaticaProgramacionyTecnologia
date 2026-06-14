@@ -1,0 +1,107 @@
+================================================================================
+MÓDULO 8: ANÁLISIS FORENSE Y LOGS DEL SISTEMA (TROUBLESHOOTING)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+Cuando un avión sufre un accidente, los investigadores no adivinan qué pasó; buscan la "Caja Negra". En Windows, esta caja negra es el Visor de Eventos (Event Viewer). Cada vez que un programa se cuelga, un servicio no arranca, o alguien intenta adivinar una contraseña, el Kernel de Windows lo registra meticulosamente, sellándolo con fecha y hora exactas.
+El error de los técnicos novatos es intentar resolver un problema aplicando soluciones al azar desde internet. El ingeniero profesional, en cambio, lee los registros (logs), encuentra el código de error exacto (Event ID) y ataca la causa raíz. Este módulo te entrega las herramientas de un analista forense digital.
+
+A continuación, la disección pedagógica y técnica de los comandos 71 al 80.
+
+---
+
+71. WEVTUTIL EL (Windows Event Utility - Enum Logs)
+--------------------------------------------------
+* El Puente Cognitivo: Es entrar a la biblioteca gigante del edificio y pedirle al bibliotecario principal el índice de TODOS los libros de quejas y registros que existen en las estanterías.
+* Explicación Técnica: Enumera todos los nombres de los registros de eventos (Logs) disponibles en el sistema local.
+* Comando y Desglose:
+  > wevtutil el
+  - Devuelve una lista inmensa. Es el primer paso para saber qué diarios están siendo escritos por el sistema (ej. Application, System, Security).
+
+72. WEVTUTIL QE (Query Events)
+--------------------------------------------------
+* El Puente Cognitivo: Es pedirle al bibliotecario que te lea exactamente los últimos 3 renglones del "Libro de Quejas de Mantenimiento", en texto plano para que lo entiendas rápido.
+* Explicación Técnica: Consulta eventos de un registro específico o archivo de registro. Es extremadamente poderoso porque permite devolver resultados en formato XML o texto plano para análisis.
+* Comando y Desglose:
+  > wevtutil qe System /c:3 /rd:true /f:text
+  - qe System: Consulta (Query Events) el diario llamado "System".
+  - /c:3 : Extrae solo los últimos 3 eventos (Count).
+  - /rd:true : Los ordena desde el más reciente al más antiguo (Reverse Direction).
+  - /f:text : Muestra la salida en texto legible por humanos (en vez de XML).
+
+73. GET-EVENTLOG (PowerShell Clásico)
+--------------------------------------------------
+* El Puente Cognitivo: La terminal de búsqueda computarizada de la biblioteca. Te permite aplicar filtros inteligentes, como buscar solo eventos tipo "Error" en lugar de leer miles de eventos de "Información" inútiles.
+* Explicación Técnica: Cmdlet heredado que obtiene eventos y registros de eventos clásicos (Application, System, Security) del equipo local. 
+* Comando y Desglose:
+  > Get-EventLog -LogName Application -EntryType Error -Newest 5
+  - -EntryType Error: Filtra y muestra EXCLUSIVAMENTE los colapsos o fallas graves.
+  - -Newest 5: Trae solo los 5 más recientes. ¡Ideal para saber por qué se cerró tu programa hace un minuto!
+
+74. GET-WINEVENT -LISTLOG * (PowerShell Moderno)
+--------------------------------------------------
+* El Puente Cognitivo: La evolución de `wevtutil el`. Te muestra la lista de todos los diarios del sistema, pero además te dice exactamente cuántos megabytes pesa cada uno y cuántos registros tiene adentro.
+* Explicación Técnica: Cmdlet moderno que interactúa con la API de Registro de Eventos de Windows (ETW). Es más rápido y soporta los nuevos canales analíticos de Windows 10/11 que Get-EventLog no puede ver.
+* Comando y Desglose:
+  > Get-WinEvent -ListLog * | Where-Object {$_.RecordCount -gt 0}
+  - Filtra la lista para mostrar solo los registros que realmente contienen datos (RecordCount mayor que cero), ocultando los vacíos.
+
+75. GET-WINEVENT -LOGNAME SYSTEM (PowerShell Moderno)
+--------------------------------------------------
+* El Puente Cognitivo: El buscador holográfico avanzado. Es la versión moderna del comando 73, capaz de procesar miles de eventos en milisegundos utilizando filtros "hash" para un rendimiento extremo.
+* Explicación Técnica: Extrae los eventos directamente del canal "System", donde se registran los colapsos de drivers, problemas de disco y fallas críticas del Kernel.
+* Comando y Desglose:
+  > Get-WinEvent -LogName System -MaxEvents 10 | Format-List
+  - Format-List: Despliega el evento como un párrafo largo, permitiéndote leer el mensaje de error completo sin que se corte en la pantalla.
+
+76. CLEAR-EVENTLOG (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es la trituradora de papel del bibliotecario. Tras arreglar un problema, destruyes el historial antiguo para que, si el problema vuelve a ocurrir mañana, no te confundas leyendo los errores de ayer.
+* Explicación Técnica: Elimina todos los registros de los registros de eventos especificados en el equipo local. Requiere privilegios de Administrador.
+* Comando y Desglose:
+  > Clear-EventLog -LogName Application
+  - Limpia el registro de Aplicaciones dejándolo a cero.
+
+77. EVENTVWR (Invocación de la Interfaz Gráfica)
+--------------------------------------------------
+* El Puente Cognitivo: Es sentarse cómodamente en la silla del Director de Seguridad frente a un panel de monitores gráficos (GUI) ordenados por carpetas.
+* Explicación Técnica: Invoca el "Visor de Eventos" de Windows (Microsoft Management Console snap-in). Aunque esta es una guía de comandos, un profesional sabe que a veces la interfaz gráfica es más rápida para obtener una visión panorámica visual de los "Puntos Rojos" (Errores).
+* Comando y Desglose:
+  > eventvwr
+  - Presiona Enter y se abrirá la consola. Navega a "Registros de Windows -> Sistema".
+
+78. AUDITPOL
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Gerente de Políticas de Vigilancia". Tú decides si las cámaras de seguridad (Logs) van a grabar solo a la gente que entra (Logon) o también a la gente que intenta entrar y falla (Logon Fallido).
+* Explicación Técnica: Muestra o modifica las directivas de auditoría. Es vital para la seguridad informática, ya que Windows por defecto no registra ciertas actividades (como cuando alguien abre un archivo específico) para ahorrar espacio, a menos que tú se lo ordenes.
+* Comando y Desglose:
+  > auditpol /get /category:*
+  - Muestra una tabla con todas las categorías de auditoría y si están habilitadas para rastrear "Éxitos" (Success) o "Fallos" (Failure).
+
+79. GET-MPCOMPUTERSTATUS (PowerShell Defender)
+--------------------------------------------------
+* El Puente Cognitivo: Es pedirle un informe médico completo a los "glóbulos blancos" de tu sistema (El Antivirus Windows Defender) para saber si tus defensas están activas y actualizadas.
+* Explicación Técnica: Obtiene el estado actual del software antimalware, indicando si la protección en tiempo real está activa, cuándo fue el último escaneo y la versión del motor.
+* Comando y Desglose:
+  > Get-MpComputerStatus | Select-Object RealTimeProtectionEnabled, AntivirusSignatureLastUpdated
+  - Valida instantáneamente si un virus apagó maliciosamente tus defensas.
+
+80. UPDATE-MPSIGNATURE (PowerShell Defender)
+--------------------------------------------------
+* El Puente Cognitivo: Es obligar a los glóbulos blancos a ir a la farmacia (Servidores de Microsoft) e inyectarse la última vacuna disponible contra las nuevas amenazas mundiales en este mismo segundo.
+* Explicación Técnica: Fuerza la actualización de las definiciones de virus y spyware de Microsoft Defender de manera inmediata, saltándose las esperas de Windows Update.
+* Comando y Desglose:
+  > Update-MpSignature
+  - Si sospechas de un malware nuevo, ejecuta esto antes de hacer un escaneo profundo.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Vamos a abrir tu Caja Negra. ¿Alguna vez has dejado tu PC sola y cuando volviste se había reiniciado misteriosamente? Vamos a descubrir por qué la computadora se queja.
+Abre PowerShell y ejecuta esta consulta precisa:
+
+Get-WinEvent -LogName System -MaxEvents 15 | Where-Object {$_.LevelDisplayName -eq "Error"} | Format-List Message
+
+Este comando extraerá los últimos 15 eventos del núcleo (System), pero el filtro inteligente seleccionará SOLO los que estén marcados con la etiqueta roja de "Error" y te leerá el mensaje completo. ¿Qué encontraste? ¿Un driver de red que falló? ¿Una actualización que colapsó? ¡Ese es el primer paso de un verdadero troubleshooting forense!
+================================================================================

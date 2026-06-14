@@ -1,0 +1,92 @@
+================================================================================
+MÓDULO 7: SEGURIDAD, USUARIOS Y PERMISOS (CONTROL DE ACCESO)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+En el mundo corporativo, el principio de "Confianza Cero" (Zero Trust) y el "Mínimo Privilegio" son leyes de supervivencia. Un usuario no debería tener más acceso del estrictamente necesario para hacer su trabajo. Muchos ataques de Ransomware triunfan no por la sofisticación del virus, sino porque el empleado estaba usando la computadora con privilegios de "Administrador Global" para leer su correo, dándole al virus las llaves maestras del sistema. 
+En este módulo te convertirás en el "Jefe de Seguridad y Aduanas". Aprenderás a gestionar identidades (quién entra), grupos (a qué departamento pertenecen) y listas de control de acceso (ACLs, qué puertas pueden abrir). Dominar esto es cruzar la línea entre un usuario avanzado y un verdadero Administrador de Sistemas.
+
+A continuación, la disección pedagógica y técnica de los comandos 61 al 70.
+
+---
+
+61. NET USER
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Departamento de Recursos Humanos" clásico. Aquí puedes consultar el archivo de un empleado, emitirle un gafete nuevo, cambiar su contraseña o despedirlo (eliminar su cuenta).
+* Explicación Técnica: Es la herramienta fundamental de línea de comandos en Windows para la creación y modificación de cuentas de usuario locales.
+* Guía Práctica Segura: Requiere abrir CMD como Administrador para modificar, pero cualquier usuario puede usarlo para leer.
+* Comando y Desglose:
+  > net user Juan "P4ssw0rd!" /add
+  - Juan: Nombre de la nueva cuenta.
+  - "P4ssw0rd!": Establece la contraseña inicial.
+  - /add: Crea el usuario. (Si usaras /delete, lo eliminarías).
+
+62. NET LOCALGROUP
+--------------------------------------------------
+* El Puente Cognitivo: Son los "Gafetes de Departamento". No le das a Juan la llave de cada puerta individualmente; mejor lo metes al grupo "Mantenimiento" y le das a ese grupo una llave maestra.
+* Explicación Técnica: Administra los grupos de seguridad locales. Añadir un usuario al grupo "Administradores" le otorga un token de acceso privilegiado en el sistema operativo.
+* Comando y Desglose:
+  > net localgroup Administradores Juan /add
+  - Añade al usuario "Juan" al grupo de élite del sistema. Para quitarle el poder, simplemente cambias /add por /delete.
+
+63. ICACLS
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Cerrajero del Edificio". Si tienes una caja fuerte (carpeta) y quieres decidir exactamente quién puede leer, quién puede escribir y quién no puede ni acercarse, ICACLS graba esas reglas en el metal de la puerta.
+* Explicación Técnica: Muestra o modifica las Listas de Control de Acceso Discrecional (DACL) en archivos y carpetas del sistema de archivos NTFS. 
+* Guía Práctica Segura: Cuidado, denegar permisos a "SYSTEM" o "Administradores" en la unidad C: puede destruir el sistema operativo.
+* Comando y Desglose:
+  > icacls "C:\Datos_Sensibles" /grant Juan:(R,W)
+  - /grant: Otorga un permiso.
+  - Juan:(R,W): A Juan se le da permiso de Lectura (Read) y Escritura (Write).
+
+64. TAKEOWN
+--------------------------------------------------
+* El Puente Cognitivo: La "Ley de Expropiación". A veces, un usuario crea una carpeta privada, luego el usuario es borrado y la carpeta se queda bloqueada diciendo "Acceso Denegado" incluso para el Administrador. Takeown es el Juez que dice: "El Estado (Tú) retoma la propiedad absoluta de este terreno para poder cambiarle la cerradura".
+* Explicación Técnica: Permite a un administrador recuperar el acceso a un archivo del que se ha denegado el acceso reasignando el "Propietario" (Owner) del archivo al administrador actual.
+* Comando y Desglose:
+  > takeown /f "C:\Carpeta_Bloqueada" /r /d s
+  - /f: Archivo o carpeta objetivo (File/Folder).
+  - /r: Recursivo (aplica a todo lo que esté dentro de la carpeta).
+  - /d s: Responde "Sí" automáticamente a las confirmaciones de reemplazo de directorio.
+
+65 a 68. GET, NEW, ENABLE, DISABLE-LOCALUSER (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Sistema Biométrico Moderno" de Recursos Humanos. Mucho más limpio, programable e integrado que el antiguo `net user`.
+* Explicación Técnica: Son los cmdlets del módulo Microsoft.PowerShell.LocalAccounts. Devuelven objetos ricos en metadatos, permitiendo auditar si las cuentas están activadas, cuándo expirará su contraseña y su descripción exacta.
+* Comando y Desglose:
+  > Get-LocalUser
+  - Lista a todos los usuarios.
+  > Disable-LocalUser -Name "Invitado"
+  - Bloquea (desactiva) la cuenta del empleado sin borrar sus archivos.
+  > Enable-LocalUser -Name "Juan"
+  - Reactiva la cuenta.
+
+69. GET-ACL (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Auditor de Seguridad". Se para frente a una puerta y lee en voz alta el documento que explica todas las reglas de acceso actuales de esa habitación.
+* Explicación Técnica: Obtiene un objeto que representa el descriptor de seguridad de un archivo o directorio, mostrando el Propietario (Owner) y la matriz de Control de Acceso (AccessToString).
+* Comando y Desglose:
+  > Get-Acl -Path "C:\Windows" | Format-List
+  - Format-List: Formatea la salida para que sea legible por humanos, desglosando los permisos exactos que tiene el sistema sobre su carpeta principal.
+
+70. SET-ACL (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Notario Público". Toma las reglas redactadas por el auditor de seguridad y las legaliza e imprime oficialmente en una nueva puerta.
+* Explicación Técnica: Aplica un descriptor de seguridad modificado a un archivo o registro. Se suele usar copiando la ACL de un archivo "modelo" y aplicándola a un archivo "destino".
+* Comando y Desglose:
+  > $Reglas = Get-Acl "C:\Carpeta_Modelo"
+  > Set-Acl -Path "C:\Carpeta_Nueva" -AclObject $Reglas
+  - Esta genialidad de dos líneas copia exactamente los permisos de una carpeta y los "clona" en otra sin tener que configurarlos a mano.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Auditemos quién tiene llaves en tu sistema ahora mismo.
+Abre PowerShell y ejecuta:
+
+Get-LocalUser | Select-Object Name, Enabled, LastLogon
+
+Este comando no cambiará nada en tu sistema. Solo te mostrará tres columnas: el nombre del usuario, si la cuenta está habilitada (True/False) y cuándo fue la última vez que iniciaron sesión. 
+Frecuentemente, los administradores se sorprenden al encontrar cuentas como "WDAGUtilityAccount" o "DefaultAccount". (No te asustes, son cuentas ocultas del sistema operativo para virtualización). Pero si ves una cuenta que no reconoces habilitada en "True"... es hora de usar Disable-LocalUser.
+================================================================================

@@ -1,0 +1,118 @@
+================================================================================
+MÓDULO 2: GESTIÓN DE PROCESOS Y FUGAS DE MEMORIA (RENDIMIENTO)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+En tu entorno laboral, el tiempo de respuesta de tu equipo se traduce directamente en productividad. Cuando tu PC se congela, los ventiladores rugen sin razón aparente o el ratón se mueve a tirones, estás presenciando una crisis de recursos. Las aplicaciones compiten por los ciclos del procesador (CPU) y el espacio en la memoria (RAM). Este módulo te transforma en el "Director de la Fábrica": aprenderás a auditar quién está consumiendo tus recursos, identificar fugas de memoria (Memory Leaks) y aniquilar procesos rebeldes con precisión quirúrgica, yendo mucho más allá del simple "Administrador de Tareas".
+
+A continuación, la disección pedagógica y técnica de los 10 comandos del Paquete 2.
+
+---
+
+11. TASKLIST
+--------------------------------------------------
+* El Puente Cognitivo: Es la "Hoja de Asistencia" de tu fábrica. Te dice exactamente qué trabajadores (programas) entraron a laborar, qué número de identificación tienen y cuántos recursos de la empresa están gastando.
+* Explicación Técnica: Imprime en la consola una lista detallada de todas las aplicaciones y servicios ejecutándose actualmente en el sistema local o remoto, detallando el uso de memoria de cada hilo de ejecución.
+* Guía Práctica Segura:
+  1. Abre CMD.
+  2. Ejecuta el comando para una visión general.
+* Comando y Desglose:
+  > tasklist /fi "memusage gt 500000"
+  - /fi: Aplica un filtro (Filter).
+  - "memusage gt 500000": El filtro pide mostrar solo procesos con un uso de memoria mayor a (Greater Than) 500,000 KB (aprox. 500 MB).
+
+12. TASKKILL
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Equipo de Seguridad" de la fábrica. Si un trabajador (proceso) se volvió loco y no responde a razones, este comando lo escolta fuera del edificio por la fuerza.
+* Explicación Técnica: Envía una señal de terminación (SIGTERM o SIGKILL) a uno o varios procesos basados en su ID (PID) o nombre de imagen.
+* Guía Práctica Segura: Úsalo solo cuando un programa diga "No responde". No mates procesos vitales del sistema operativo (como `svchost.exe` al azar).
+* Comando y Desglose:
+  > taskkill /IM chrome.exe /F
+  - /IM chrome.exe: Especifica el Nombre de Imagen (Image Name) a terminar.
+  - /F: Fuerza el cierre (Force). Ignora la petición de guardar datos e interrumpe el proceso a nivel del Kernel de inmediato.
+
+13. GET-PROCESS (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Si Tasklist era una hoja de papel, Get-Process es un "Panel de Control Holográfico". Te da datos en vivo, organizados matemáticamente y listos para interactuar con otros sistemas.
+* Explicación Técnica: Cmdlet nativo de PowerShell que recupera objetos de proceso (System.Diagnostics.Process). Al devolver "objetos" y no simple texto, permite una manipulación avanzada mediante tuberías (pipes).
+* Guía Práctica Segura: Abre PowerShell y lánzalo.
+* Comando y Desglose:
+  > Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
+  - | (Pipe): Pasa el resultado del primer comando al segundo.
+  - Sort-Object CPU -Descending: Ordena los procesos de mayor a menor consumo de CPU.
+  - Select-Object -First 5: Muestra solo el "Top 5" de procesos más pesados.
+
+14. STOP-PROCESS (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el francotirador silencioso y preciso. En lugar de gritar por megáfono como Taskkill, apunta al objetivo exacto usando los datos del radar (Get-Process).
+* Explicación Técnica: Cmdlet de PowerShell para terminar un proceso. Acepta arrays de objetos y puede confirmar la acción antes de ejecutarla.
+* Comando y Desglose:
+  > Stop-Process -Name "notepad" -Confirm
+  - -Name "notepad": Busca todos los procesos llamados notepad.
+  - -Confirm: Pedagógicamente brillante; el sistema te preguntará "¿Estás seguro de que deseas detener este proceso?" antes de actuar.
+
+15. TYPEPERF
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Estetoscopio" del médico. Te permite escuchar los latidos (rendimiento) del corazón de tu ordenador en tiempo real sin abrir interfaces pesadas.
+* Explicación Técnica: Escribe datos de rendimiento a la consola de comandos o a un archivo de registro compatible. Evalúa contadores del sistema de manera continua.
+* Comando y Desglose:
+  > typeperf "\Processor(_Total)\% Processor Time" -si 2
+  - "\Processor(_Total)...": Apunta al contador que mide el porcentaje de uso total de la CPU.
+  - -si 2: Muestra el latido (Sample Interval) cada 2 segundos. Pulsa Ctrl+C para detener.
+
+16. SYSTEMINFO
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Expediente Clínico" del paciente. Antes de operar, necesitas saber su edad, historial médico, vacunas y arquitectura biológica.
+* Explicación Técnica: Muestra información detallada de configuración del sistema operativo, incluyendo la fecha de instalación original, el tiempo de arranque (Boot Time), la memoria física disponible y los parches de seguridad (Hotfixes) instalados.
+* Comando y Desglose:
+  > systeminfo | findstr /C:"Tiempo de arranque del sistema"
+  - | findstr /C:"...": Actúa como una lupa, buscando exclusivamente la línea exacta de texto para decirte cuándo fue la última vez que el PC se encendió realmente.
+
+17. LOGMAN
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Sistema de Cámaras de Seguridad (CCTV)". Lo dejas encendido durante la noche para grabar si alguien está saboteando la fábrica mientras no estás mirando.
+* Explicación Técnica: Crea y administra sesiones de seguimiento de eventos (ETW) y registros de rendimiento. Ideal para diagnosticar fugas de memoria que ocurren esporádicamente durante la madrugada.
+* Comando y Desglose:
+  > logman create counter MiRegistro -c "\Memory\Available MBytes" -si 15 -v mmddhhmm
+  - create counter: Crea una nueva recolección de datos.
+  - -c "\Memory\...": El contador a vigilar (Memoria RAM disponible).
+  - -si 15: Graba un fotograma cada 15 segundos.
+
+18. RELOG
+--------------------------------------------------
+* El Puente Cognitivo: Es la "Sala de Edición de Video". Toma las cintas de seguridad crudas (Logman) y las convierte en un formato que puedas leer en Excel para hacer gráficas.
+* Explicación Técnica: Extrae datos de rendimiento de archivos de registro (BLG) a otros formatos, como archivos de texto delimitados por comas (CSV).
+* Comando y Desglose:
+  > relog MiRegistro_01.blg -f csv -o ReporteMemoria.csv
+  - -f csv: Define el formato de salida a CSV.
+  - -o ReporteMemoria.csv: Establece el archivo donde se guardará el resultado.
+
+19. TRACERPT
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Analista Forense". Toma datos binarios incomprensibles dejados por el sistema tras un colapso de rendimiento y redacta un informe ejecutivo para humanos.
+* Explicación Técnica: Procesa registros de seguimiento de eventos (archivos ETL) generados por contadores del sistema y crea reportes en formato HTML o CSV.
+* Comando y Desglose:
+  > tracerpt archivo.etl -o informe.csv -of CSV
+  - Procesa la evidencia pura del sistema de eventos de Windows para encontrar picos de latencia.
+
+20. GET-COUNTER (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Centro de Telemetría" moderno, similar al panel de control de una nave espacial, combinando el poder del estetoscopio y el CCTV en una sola herramienta potente y flexible.
+* Explicación Técnica: Cmdlet que obtiene datos de rendimiento en tiempo real directamente desde la instrumentación de administración de Windows (WMI).
+* Guía Práctica Segura: Útil para ver cómo fluctúa tu RAM.
+* Comando y Desglose:
+  > Get-Counter -Counter "\Memory\Available MBytes" -Continuous
+  - -Counter: Especifica el métrico exacto a monitorear.
+  - -Continuous: Mantiene el flujo de datos actualizándose constantemente hasta que lo abortes con Ctrl+C.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Vamos a identificar al "Trabajador más costoso" de tu fábrica ahora mismo. 
+Abre PowerShell (no necesitas ser administrador para esto) y ejecuta el comando de diagnóstico:
+
+Get-Process | Sort-Object Memory -Descending | Select-Object -First 5
+
+Observa la columna "PM(K)" (Private Memory). El primer programa de la lista es la aplicación que más RAM te está consumiendo en este instante. ¿Es un navegador, un juego, o un proceso del sistema? Con esta información, ahora tienes el poder de decidir si ese recurso se está usando de manera eficiente o si debes usar Stop-Process.
+================================================================================

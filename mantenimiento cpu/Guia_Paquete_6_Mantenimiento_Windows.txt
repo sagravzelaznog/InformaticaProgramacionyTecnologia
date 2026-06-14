@@ -1,0 +1,95 @@
+================================================================================
+MÓDULO 6: AUDITORÍA DE HARDWARE Y CONTROLADORES (DRIVERS)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+Puedes tener el hardware más potente del mundo: la tarjeta gráfica más cara o la impresora más moderna. Sin embargo, para el sistema operativo, esas piezas son solo pedazos inanimados de silicio y plástico hasta que un "Controlador" (Driver) interviene. Los drivers son los "intérpretes" o "traductores" que enseñan al Kernel de Windows cómo hablar con ese hardware específico. 
+La mayoría de los pantallazos azules (BSOD) y fallos de rendimiento periférico ocurren porque estos traductores están obsoletos, corruptos o no son los adecuados. En este módulo, aprenderás a auditar las entrañas de tu equipo sin necesidad de un destornillador, y a gestionar el ecosistema Plug-and-Play (PnP) como un verdadero ingeniero.
+
+A continuación, la disección pedagógica y técnica de los comandos 51 al 60.
+
+---
+
+51. DRIVERQUERY /V
+--------------------------------------------------
+* El Puente Cognitivo: Es pedirle a Recursos Humanos el directorio completo de todos los "traductores" que trabajan en el edificio, detallando qué idioma hablan, quién los contrató y si están activos en este momento.
+* Explicación Técnica: Es una herramienta nativa de línea de comandos que enumera todos los controladores de dispositivo instalados en el sistema operativo, mostrando su nombre de módulo, nombre para mostrar, tipo de controlador y fecha de enlace (vital para saber si un driver es muy antiguo).
+* Comando y Desglose:
+  > driverquery /v | findstr "Audio"
+  - /v (Verbose): Muestra información detallada extendida.
+  - | findstr "Audio": Filtra la enorme lista para mostrarte solo los traductores encargados del sonido.
+
+52. PNPUTIL /ENUM-DRIVERS
+--------------------------------------------------
+* El Puente Cognitivo: Es revisar el "Almacén de Repuestos" (Driver Store) de Windows. Aquí guardas los instaladores de los traductores por si necesitas volver a contratarlos en el futuro.
+* Explicación Técnica: PnPUtil es la utilidad de línea de comandos que administra el Driver Store. Enumera los paquetes de controladores de terceros (OEM) instalados en el sistema, mostrando su nombre de archivo ".inf" y su proveedor.
+* Comando y Desglose:
+  > pnputil /enum-drivers
+  - Muestra la lista de controladores de terceros. Útil para identificar qué driver "oemXX.inf" pertenece a qué dispositivo antes de eliminarlo por fallos.
+
+53. GET-WMIOBJECT WIN32_COMPUTERSYSTEM
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Acta de Nacimiento" oficial de tu máquina. Te da la identidad global del equipo en un solo vistazo.
+* Explicación Técnica: Consulta el Instrumental de Administración de Windows (WMI) para extraer la configuración base del sistema, como el fabricante real, el modelo de la placa base y la memoria RAM física total instalada.
+* Comando y Desglose:
+  > Get-WmiObject Win32_ComputerSystem | Select-Object Manufacturer, Model, TotalPhysicalMemory
+
+54. GET-CIMINSTANCE WIN32_BIOS
+--------------------------------------------------
+* El Puente Cognitivo: Es leer la "mente subconsciente" de la placa base (el firmware). Si necesitas actualizarla para que reconozca un nuevo procesador, primero debes saber qué versión tiene.
+* Explicación Técnica: Cmdlet moderno (CIM) para extraer la información del Sistema Básico de Entrada/Salida (BIOS/UEFI), incluyendo la versión, el fabricante y el número de serie de la máquina (Service Tag en Dell/Lenovo).
+* Comando y Desglose:
+  > Get-CimInstance Win32_BIOS | Select-Object Manufacturer, Name, SerialNumber
+
+55. GET-PNPDEVICE (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es la máquina de Rayos X. El equivalente exacto y en código del "Administrador de Dispositivos". Te muestra absolutamente todo lo que está conectado a la placa base, tenga problemas o no.
+* Explicación Técnica: Devuelve información sobre los dispositivos Plug and Play (PnP) reconocidos por el árbol de dispositivos de Windows.
+* Comando y Desglose:
+  > Get-PnpDevice -PresentOnly
+  - -PresentOnly: Filtra los dispositivos "fantasma" (aquellos que fueron conectados en el pasado pero ahora no están físicamente en el equipo), mostrando solo el hardware actual.
+
+56 y 57. ENABLE-PNPDEVICE y DISABLE-PNPDEVICE
+--------------------------------------------------
+* El Puente Cognitivo: Es desenchufar y volver a enchufar el cable de la impresora, pero usando telequinesis desde tu silla.
+* Explicación Técnica: Permite habilitar o deshabilitar lógicamente un dispositivo en el Kernel. Requiere privilegios de administrador. Es la automatización de hacer clic derecho y seleccionar "Deshabilitar dispositivo" en la interfaz gráfica.
+* Guía Práctica Segura: Se debe identificar primero el "InstanceId" del dispositivo usando Get-PnpDevice.
+* Comando y Desglose:
+  > Disable-PnpDevice -InstanceId "ID_DEL_DISPOSITIVO" -Confirm:$false
+  > Enable-PnpDevice -InstanceId "ID_DEL_DISPOSITIVO" -Confirm:$false
+
+58. WMIC CPU GET NAME
+--------------------------------------------------
+* El Puente Cognitivo: Es preguntarle directamente al "Director de la Fábrica" (el Procesador) cuál es su título oficial y de qué generación proviene.
+* Explicación Técnica: Una consulta WMI ultrarrápida ejecutada desde CMD para extraer la cadena de identificación del hardware del procesador sin abrir herramientas pesadas.
+* Comando y Desglose:
+  > wmic cpu get name
+  - Imprimirá algo como: "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz" o "AMD Ryzen 5".
+
+59. WMIC MEMORYCHIP GET CAPACITY
+--------------------------------------------------
+* El Puente Cognitivo: Es abrir la caja de la computadora mentalmente y contar cuántas memorias RAM hay conectadas en las ranuras y de qué tamaño es cada una.
+* Explicación Técnica: Lee la tabla SMBIOS (System Management BIOS) para reportar la capacidad física individual de cada módulo DIMM de RAM en bytes.
+* Comando y Desglose:
+  > wmic memorychip get capacity, speed, manufacturer
+  - Añadir "speed" y "manufacturer" es el secreto pro para saber a qué frecuencia corren tus memorias y de qué marca son, vital si quieres comprar más RAM para ampliarlas.
+
+60. WMIC DISKDRIVE GET STATUS
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Monitor de Signos Vitales" del disco duro. Le pregunta directamente al disco: "¿Estás a punto de sufrir un infarto?".
+* Explicación Técnica: Consulta el estado de salud S.M.A.R.T. (Tecnología de Autocontrol, Análisis y Reportes) directamente del firmware físico de tus unidades de almacenamiento.
+* Comando y Desglose:
+  > wmic diskdrive get model, status
+  - Si el estado ("status") responde "OK", el disco está sano. Si dice "Pred Fail" (Fallo Predecible), debes hacer una copia de seguridad inmediatamente y apagar el equipo.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+¿Recuerdas el Administrador de Dispositivos y esos molestos triángulos amarillos que indican que un driver falló o falta? Vamos a buscarlos usando código puro.
+Abre PowerShell y ejecuta esta obra de arte del filtrado:
+
+Get-PnpDevice -PresentOnly | Where-Object {$_.Status -eq "Error"}
+
+Si el comando no te devuelve NADA (se queda en blanco), ¡felicidades! Significa que el 100% de los traductores (drivers) de tu hardware están operando correctamente sin conflictos. Si te arroja una lista roja, acabas de encontrar un componente en tu PC que no está funcionando y necesita tu atención médica inmediata.
+================================================================================

@@ -1,0 +1,88 @@
+================================================================================
+MÓDULO 5: CONTROL DE SERVICIOS Y TIEMPOS DE ARRANQUE
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+En la arquitectura de sistemas, no todo lo que corre en tu PC tiene una ventana visible. Gran parte del trabajo pesado lo realizan los "Servicios" (conocidos en el mundo Unix como Daemons). Son procesos silenciosos que operan en segundo plano: gestionan la cola de impresión, conectan el Bluetooth o buscan actualizaciones. 
+El problema radica en que muchas aplicaciones de terceros instalan sus propios servicios y los configuran para arrancar automáticamente junto con Windows, añadiendo "peso" a la mochila de tu ordenador cada vez que lo enciendes. Este módulo te enseñará a interactuar con el Gestor de Control de Servicios (SCM) para auditar, encender, apagar y reconfigurar estos motores silenciosos, recuperando el control absoluto de tu tiempo de arranque.
+
+A continuación, la disección pedagógica y técnica de los comandos 41 al 50.
+
+---
+
+41. SC QUERY (Service Control)
+--------------------------------------------------
+* El Puente Cognitivo: Es asomarse al cuarto de máquinas del edificio y preguntarle al supervisor: "¿En qué estado se encuentra la bomba de agua en este momento?".
+* Explicación Técnica: Se comunica directamente con el Service Control Manager (SCM) y la base de datos del registro para obtener información de estado de un servicio específico o enumerar los servicios activos.
+* Comando y Desglose:
+  > sc query wuauserv
+  - wuauserv: Es el nombre interno del servicio de Windows Update. El comando te dirá si su estado es RUNNING (Corriendo) o STOPPED (Detenido).
+
+42 y 43. SC START y SC STOP
+--------------------------------------------------
+* El Puente Cognitivo: Son los interruptores manuales de la caja de fusibles. Si la bomba de agua falló, bajas la palanca (stop) y la vuelves a subir (start) para reiniciarla sin tener que apagar todo el edificio.
+* Explicación Técnica: Envía peticiones de control START (Iniciar) o STOP (Detener) a la API del SCM para interactuar con el proceso del servicio.
+* Guía Práctica Segura: Requiere abrir CMD como Administrador.
+* Comando y Desglose:
+  > sc stop spooler
+  > sc start spooler
+  - spooler: Es la Cola de Impresión. Si un documento se queda "atascado" diciendo "Imprimiendo..." pero la impresora no hace nada, detener e iniciar este servicio resuelve el problema en el 99% de los casos.
+
+44. SC CONFIG
+--------------------------------------------------
+* El Puente Cognitivo: Es modificar el contrato del trabajador. Le dices: "A partir de mañana, ya no entras a trabajar automáticamente cuando se abre el edificio. Solo vendrás si yo te llamo (manual)".
+* Explicación Técnica: Modifica el valor "Start" en el registro del servicio, cambiando su tipo de inicio (Automático, Manual, o Deshabilitado).
+* Comando y Desglose:
+  > sc config "NombreDelServicio" start= demand
+  - start= demand: (Nota el espacio vital después del signo igual). Configura el servicio para inicio manual, ahorrando memoria y tiempo de CPU durante el arranque del sistema operativo.
+
+45. GET-SERVICE (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El panel de control holográfico moderno del cuarto de máquinas. En lugar de revisar las bombas una por una, tienes una pantalla que te muestra todos los estados en tiempo real, ordenados por colores.
+* Explicación Técnica: Cmdlet nativo que extrae un conjunto de objetos System.ServiceProcess.ServiceController. Permite auditar qué corre en tu sistema filtrando con lógica de programación.
+* Comando y Desglose:
+  > Get-Service | Where-Object {$_.Status -eq "Running"}
+  - Filtra la lista para mostrar EXCLUSIVAMENTE los servicios que están en estado de ejecución (Running).
+
+46 y 47. START-SERVICE y STOP-SERVICE (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El equivalente moderno e interactivo a "sc start" y "sc stop". Acepta múltiples objetivos a la vez.
+* Explicación Técnica: Controla el ciclo de vida del servicio. A diferencia de `sc`, estos cmdlets permiten confirmar la acción, pasar objetos por tubería e interactuar fluidamente en scripts complejos.
+* Comando y Desglose:
+  > Stop-Service -Name "wuauserv" -Force
+  - -Force: Obliga a detener el servicio incluso si tiene otros servicios "hijos" que dependen de él.
+
+48. RESTART-SERVICE (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el clásico "apágalo y vuélvelo a encender", pero ejecutado en una fracción de segundo en un solo movimiento fluido.
+* Explicación Técnica: Envía secuencialmente un mensaje de Stop y uno de Start al SCM. Fundamental para aplicar cambios tras modificar el archivo de configuración de un software.
+* Comando y Desglose:
+  > Restart-Service -Name "spooler"
+
+49. SET-SERVICE (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es el equivalente moderno a `sc config`. Modifica la naturaleza operativa del servicio sin tocar comandos de texto toscos.
+* Explicación Técnica: Modifica las propiedades de un servicio existente (tipo de inicio, descripción, nombre a mostrar).
+* Comando y Desglose:
+  > Set-Service -Name "SysMain" -StartupType Disabled
+  - SysMain: (Anteriormente SuperFetch). Si usas un HDD antiguo que está siempre al 100% de uso, deshabilitar (Disabled) este servicio es un paso técnico crucial para revivir la máquina.
+
+50. MSCONFIG (Invocación de Utilidad)
+--------------------------------------------------
+* El Puente Cognitivo: Es el panel de control del "Director de Tráfico" durante la hora pico de la mañana. Te permite organizar quién entra primero por la puerta y aislar problemas descartando invitados indeseados.
+* Explicación Técnica: Invoca la utilidad de "Configuración del Sistema". Aunque ha migrado funciones al Administrador de Tareas en versiones recientes, sigue siendo la herramienta definitiva para habilitar el "Arranque a Prueba de Errores" (Safe Mode) y desactivar de golpe todos los servicios de terceros para un arranque limpio.
+* Comando y Desglose:
+  > msconfig
+  - Presiona Enter. En la pestaña "Servicios", puedes marcar "Ocultar todos los servicios de Microsoft" y descubrir qué programas ajenos a Windows están consumiendo tus recursos al encender.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Vamos a identificar cuántos "motores silenciosos" están operando en tu equipo en este momento.
+Abre PowerShell y ejecuta esta tubería de comandos:
+
+Get-Service | Where-Object {$_.Status -eq "Running"} | Measure-Object
+
+Esto listará todos los servicios y los enviará a una "báscula" (Measure-Object) que los contará. El número que verás bajo la columna "Count" es la cantidad exacta de procesos vitales trabajando para ti. En un sistema optimizado, ronda los 80 a 120. Si tienes más de 150, es probable que haya mucho software de terceros sobrecargando tu arranque.
+================================================================================

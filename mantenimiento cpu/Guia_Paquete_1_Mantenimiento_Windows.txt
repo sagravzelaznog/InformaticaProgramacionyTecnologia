@@ -1,0 +1,109 @@
+================================================================================
+MÓDULO 1: REPARACIÓN DEL KERNEL Y SISTEMA DE ARCHIVOS (INTEGRIDAD)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+Como profesional, sabes que construir sobre cimientos inestables garantiza el colapso. En Windows, estos "cimientos" son los archivos del sistema (.dll, .sys, .exe) y la estructura del disco duro (NTFS/ReFS). Si tu equipo experimenta Pantallazos Azules (BSOD), reinicios repentinos o corrupciones de aplicaciones, no pierdas tiempo reinstalando programas; el problema está en el nivel base. Este módulo te entrega las herramientas de ingeniería para verificar y reparar la integridad estructural de tu sistema operativo.
+
+A continuación, la disección pedagógica y técnica de los 10 comandos del Paquete 1.
+
+---
+
+1. SFC (System File Checker)
+--------------------------------------------------
+* El Puente Cognitivo: Imagina a un Inspector de Calidad revisando el "ADN" de tu sistema. Si encuentra una cadena genética dañada, saca el plano original y la reconstruye idéntica a como salió de fábrica.
+* Explicación Técnica: SFC verifica las firmas digitales y la integridad de los archivos protegidos del sistema en el directorio %WinDir%. Si detecta discrepancias o reemplazos no autorizados (corrupción o malware), extrae una copia en caché de la carpeta oculta de Windows (WinSxS) para restaurarlos.
+* Guía Práctica Segura: 
+  1. Abre CMD o PowerShell como Administrador.
+  2. Ejecuta el comando. Tardará unos minutos.
+* Comando y Desglose:
+  > sfc /scannow
+  - /scannow: Le indica al inspector que no solo busque errores (scan), sino que aplique las correcciones de inmediato (now).
+
+2 y 3. DISM (Deployment Image Servicing and Management)
+--------------------------------------------------
+* El Puente Cognitivo: ¿Qué pasa si el Inspector de Calidad (SFC) encuentra que sus propios planos de fábrica están dañados? DISM es el Cirujano Especialista que llama directamente al "banco de órganos" (los servidores de Microsoft) para descargar un tejido completamente nuevo y sano, curando el almacén central de tu PC.
+* Explicación Técnica: DISM repara la imagen base de Windows y la carpeta WinSxS (Component Store). Siempre debe ejecutarse si SFC falla o arroja el error "Windows Resource Protection found corrupt files but was unable to fix some of them".
+* Guía Práctica Segura: Primero se diagnostica, luego se opera. (Requiere internet para la reparación profunda).
+* Comando y Desglose:
+  > dism /online /cleanup-image /scanhealth
+  > dism /online /cleanup-image /restorehealth
+  - /online: Indica que se aplique al sistema operativo que está actualmente en ejecución (no a una imagen offline).
+  - /cleanup-image: Entra al módulo de mantenimiento del almacén de componentes.
+  - /scanhealth: Hace una auditoría profunda en busca de corrupción (Diagnóstico).
+  - /restorehealth: Conecta con Windows Update, descarga los bloques dañados y los reemplaza (Tratamiento).
+
+4. CHKDSK (Check Disk)
+--------------------------------------------------
+* El Puente Cognitivo: Si los comandos anteriores curaban el "software", CHKDSK repara la "carretera" física y lógica por donde transita ese software. Es el equipo de topógrafos y obreros que busca baches en el pavimento y repara las líneas de tránsito.
+* Explicación Técnica: Escanea la integridad del sistema de archivos (MFT en NTFS) y la superficie física del disco duro. Es crucial tras un corte de energía brusco.
+* Guía Práctica Segura: Al afectar el disco del sistema, no puede ejecutarse mientras Windows lo usa. Pedirá programarse para el próximo reinicio.
+* Comando y Desglose:
+  > chkdsk C: /f /r
+  - C:: Especifica la unidad objetivo.
+  - /f (Fix): Repara errores lógicos en el sistema de archivos (ej. un archivo que quedó "abierto" tras un apagón).
+  - /r (Recover): Localiza sectores físicos defectuosos en el disco e intenta recuperar la información legible, moviéndola a un sector sano. (Advertencia: Toma mucho tiempo en HDD antiguos).
+
+5. CHKNTFS
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Panel de Control del Semáforo" que decide si el equipo de topógrafos (CHKDSK) debe salir a trabajar cada vez que enciendes la PC.
+* Explicación Técnica: Muestra o modifica la comprobación automática del disco al iniciar el sistema operativo.
+* Guía Práctica Segura: Útil si Windows se quedó en un bucle infinito de escaneo de disco al arrancar.
+* Comando y Desglose:
+  > chkntfs /x C:
+  - /x: Excluye la unidad especificada (C:) de ser comprobada automáticamente en el próximo arranque.
+
+6. FSUTIL DIRTY QUERY
+--------------------------------------------------
+* El Puente Cognitivo: Es como un "Termómetro" o una prueba rápida. No te cura, solo te dice al instante si el sistema "cree" que el disco está enfermo (marcado como "sucio").
+* Explicación Técnica: Consulta el bit de estado "Dirty" (Sucio) del volumen. Un volumen se marca como "sucio" por el kernel de Windows si hubo escrituras no completadas (apagones).
+* Comando y Desglose:
+  > fsutil dirty query C:
+  - dirty query: Pregunta al subsistema de archivos si la unidad C: requiere obligatoriamente un chkdsk. Si responde que sí, tu sistema está en riesgo inminente.
+
+7. VSSADMIN (Volume Shadow Copy Service)
+--------------------------------------------------
+* El Puente Cognitivo: Es la "Máquina del Tiempo" de Windows. Permite ver las fotos panorámicas invisibles que el sistema toma de sí mismo antes de que algo salga mal.
+* Explicación Técnica: Administra las Instantáneas de Volumen. Crucial para diagnosticar si un Ransomware ha borrado los puntos de restauración de tu sistema (una táctica común de los hackers).
+* Comando y Desglose:
+  > vssadmin list shadows
+  - list shadows: Enumera todos los puntos de restauración y copias de seguridad a nivel de bloque existentes en tu disco.
+
+8. BCDEDIT (Boot Configuration Data)
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Plan de Vuelo" del piloto. Le dice al hardware exactamente dónde encontrar el sistema operativo y cómo arrancarlo.
+* Explicación Técnica: Edita la base de datos de configuración de arranque. Vital para solucionar el infame error "BOOTMGR is missing".
+* Guía Práctica Segura: **ADVERTENCIA:** Tocar esto sin saber puede dejar la PC inarrancable. Solo para lectura y diagnóstico inicial.
+* Comando y Desglose:
+  > bcdedit /enum
+  - /enum: Lista pacíficamente las entradas actuales del gestor de arranque (Windows Boot Manager y Windows Boot Loader).
+
+9. REAGENTC
+--------------------------------------------------
+* El Puente Cognitivo: Es tu "Cápsula de Escape de Emergencia". Cuando todo falla, necesitas saber si tu nave tiene botes salvavidas disponibles.
+* Explicación Técnica: Configura la imagen de recuperación de Windows (WinRE). Permite acceder a las opciones avanzadas al presionar Shift+Reinicio.
+* Comando y Desglose:
+  > reagentc /info
+  - /info: Te dirá si el Entorno de Recuperación (WinRE) está "Enabled" (Habilitado) o "Disabled". Si está deshabilitado, estás volando sin paracaídas.
+
+10. REPAIR-VOLUME (PowerShell Exclusivo)
+--------------------------------------------------
+* El Puente Cognitivo: Es la versión moderna, quirúrgica y de alta tecnología de CHKDSK. Como pasar de los Rayos X clásicos a una Resonancia Magnética.
+* Explicación Técnica: Cmdlet de PowerShell para diagnosticar y reparar volúmenes NTFS y ReFS integrándose profundamente con WMI/CIM.
+* Guía Práctica Segura: Abrir PowerShell como administrador.
+* Comando y Desglose:
+  > Repair-Volume -DriveLetter C -Scan
+  - -DriveLetter C: Apunta a la unidad principal.
+  - -Scan: Realiza una auditoría rápida en busca de corrupciones lógicas sin desconectar la unidad (completamente seguro).
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Para anclar este conocimiento a tu corteza prefrontal, te reto a hacer un diagnóstico pasivo y 100% seguro de tu sistema ahora mismo.
+Abre CMD como Administrador y teclea:
+fsutil dirty query C:
+
+¿Qué te respondió el sistema? ¿El volumen está sucio o limpio? 
+Si está limpio, tu estructura de archivos base goza de buena salud. Si está sucio, es momento de programar un CHKDSK preventivo antes de que pierdas información.
+================================================================================

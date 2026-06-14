@@ -1,0 +1,114 @@
+================================================================================
+MÓDULO 9: ARQUITECTURA Y REGISTRO DE WINDOWS (EL ADN)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+Bienvenidos al "Sancta Sanctorum" del sistema operativo. El Registro de Windows (Registry) es la base de datos jerárquica central donde Windows y sus aplicaciones almacenan sus configuraciones de bajo nivel. Es, literalmente, el ADN de la computadora. Desde el color de la barra de tareas hasta qué controlador debe cargar el Kernel en el milisegundo 2 del arranque, todo está escrito aquí.
+Como profesional, intervenir el Registro te otorga un poder absoluto para optimizar el rendimiento (aplicar "Tweaks"), eliminar rastros de virus o reparar configuraciones corruptas. Sin embargo, un solo carácter mal escrito en la colmena equivocada puede provocar un colapso total (BSOD o imposibilidad de arrancar). Este módulo te enseña a leer, respaldar y editar este ADN con precisión quirúrgica, tanto desde la consola clásica como desde PowerShell.
+
+A continuación, la disección pedagógica y técnica de los comandos 81 al 90.
+
+---
+
+81. REG QUERY
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Microscopio". Te permite observar un cromosoma específico sin tocarlo ni alterarlo, solo para leer qué información genética contiene.
+* Explicación Técnica: Consulta y devuelve los valores y subclaves de una ruta específica dentro del Registro de Windows.
+* Guía Práctica Segura: 100% seguro, ya que es una operación de solo lectura.
+* Comando y Desglose:
+  > reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+  - HKLM: HKEY_LOCAL_MACHINE (La colmena maestra de la máquina).
+  - \...\Run: Una ruta crítica. Todo lo que esté listado aquí arrancará automáticamente al encender la PC. Es el primer lugar donde buscar virus.
+
+82. REG ADD
+--------------------------------------------------
+* El Puente Cognitivo: La "Ingeniería Genética". Es inyectar un nuevo rasgo en el ADN. Por ejemplo, forzar al sistema a que los menús se abran más rápido modificando el código base.
+* Explicación Técnica: Agrega una nueva subclave o una nueva entrada (valor) al registro.
+* Guía Práctica Segura: **ADVERTENCIA.** Requiere permisos de administrador. Siempre haz un respaldo antes (con reg export).
+* Comando y Desglose:
+  > reg add HKCU\Control Panel\Desktop /v MenuShowDelay /t REG_SZ /d 10 /f
+  - /v MenuShowDelay: Nombre del Valor (Value).
+  - /t REG_SZ: Tipo de dato (String/Texto).
+  - /d 10: Datos (Data). Cambia el retraso del menú a 10 milisegundos (super rápido).
+  - /f: Fuerza (Force) la sobreescritura sin preguntar si el valor ya existía.
+
+83. REG DELETE
+--------------------------------------------------
+* El Puente Cognitivo: El "Bisturí de Extirpación". Si un programa malicioso o mal desinstalado dejó un tumor genético en tu sistema, este comando lo recorta de raíz.
+* Explicación Técnica: Elimina una subclave o entradas de valor específicas del registro.
+* Comando y Desglose:
+  > reg delete HKLM\Software\ProgramaBasura /f
+  - /f: Fuerza la eliminación sin pedir confirmación. Un error de tipeo aquí y puedes borrar medio sistema. Precaución extrema.
+
+84. REG EXPORT
+--------------------------------------------------
+* El Puente Cognitivo: El "Clonado Preventivo". Antes de operar, extraes una copia exacta del órgano. Si algo sale mal en la cirugía, puedes volver a implantar la copia original.
+* Explicación Técnica: Exporta el contenido de una subclave, y todo lo que esté debajo de ella, a un archivo de texto con extensión .reg.
+* Guía Práctica Segura: El mandamiento #1 antes de usar REG ADD o REG DELETE.
+* Comando y Desglose:
+  > reg export HKCU\Software\Microsoft RespaldoMicrosoft.reg
+  - Crea un archivo físico llamado RespaldoMicrosoft.reg en tu carpeta actual.
+
+85. REG IMPORT
+--------------------------------------------------
+* El Puente Cognitivo: La "Restauración Genética". Tomas el archivo clonado y lo inyectas de vuelta al paciente, revirtiendo cualquier mutación que hayas causado por error.
+* Explicación Técnica: Combina el contenido de un archivo .reg con el Registro activo del sistema.
+* Comando y Desglose:
+  > reg import RespaldoMicrosoft.reg
+  - Sobrescribe la configuración actual con la del respaldo.
+
+86. GET-ITEMPROPERTY (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El microscopio avanzado con "Inteligencia Artificial" (PowerShell). A diferencia de reg query, trata al Registro exactamente igual que si fueran simples carpetas en un disco duro (PSDrive), devolviendo objetos estructurados.
+* Explicación Técnica: Obtiene las propiedades de un elemento. En el contexto de los proveedores de PowerShell, se usa para leer valores del Registro sin usar las herramientas legacy.
+* Comando y Desglose:
+  > Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name "ProductName"
+  - Te devolverá exactamente qué edición de Windows tienes instalada (Ej: Windows 10 Pro).
+
+87. SET-ITEMPROPERTY (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El editor genético del siglo XXI. Más limpio, predecible y programable que `reg add`.
+* Explicación Técnica: Cambia el valor de una propiedad de un elemento existente en el registro.
+* Comando y Desglose:
+  > Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Value 1
+  - Este código fuerza a Windows a mostrar los Archivos y Carpetas Ocultos.
+
+88. NEW-ITEM (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Construir una nueva "habitación" vacía en el plano de la casa (el Registro) para luego llenarla con muebles (Valores).
+* Explicación Técnica: Crea un nuevo elemento. En el registro, esto equivale a crear una Subclave (Key) que actúa como un contenedor (carpeta).
+* Comando y Desglose:
+  > New-Item -Path "HKCU:\Software\MiConfiguracionPersonal"
+  - Crea una carpeta en el Registro para guardar las configuraciones de tus propios scripts.
+
+89. REMOVE-ITEMPROPERTY (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: Es sacar un mueble específico de la habitación, pero dejando la habitación intacta. 
+* Explicación Técnica: Elimina una propiedad y su valor de un elemento (elimina un "Value" sin borrar la "Key" entera).
+* Comando y Desglose:
+  > Remove-ItemProperty -Path "HKCU:\Software\MiConfiguracionPersonal" -Name "VariableBasura"
+
+90. TEST-PATH (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El "Dron Explorador". Antes de enviar al equipo de demolición (Remove-Item) o a los constructores (New-Item), envías al dron a verificar si el terreno existe.
+* Explicación Técnica: Determina si todos los elementos de una ruta de acceso existen. Devuelve un simple booleano: True (Verdadero) o False (Falso). Es la piedra angular para crear scripts de mantenimiento que no arrojen errores rojos en la pantalla.
+* Comando y Desglose:
+  > Test-Path "HKLM:\Software\Microsoft\Windows"
+  - Si devuelve True, la ruta es válida y puedes proceder a editarla con seguridad.
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Vamos a hacer una consulta inofensiva y muy útil a tu ADN digital. Muchas veces queremos saber cuándo fue la última vez que instalamos realmente Windows en nuestro equipo.
+Abre PowerShell y ejecuta:
+
+Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object InstallDate
+
+El resultado será un número gigante en formato "Epoch/UNIX" (segundos desde 1970). 
+Para traducirlo a lenguaje humano como un verdadero ingeniero, ejecuta esto:
+
+[timezone]::CurrentTimeZone.ToLocalTime(([datetime]'1/1/1970').AddSeconds((Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").InstallDate))
+
+¡Felicidades! Acabas de extraer la fecha exacta (Día, Mes, Año, Hora) de nacimiento de tu sistema operativo leyendo su ADN directamente.
+================================================================================

@@ -1,0 +1,98 @@
+================================================================================
+MÓDULO 10: ACTUALIZACIONES Y DESPLIEGUE (GPOs)
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+Hemos llegado a la cúspide de la administración de sistemas: el despliegue corporativo. Como administrador, ya no configuras una sola computadora a mano; eso no es escalable. Utilizas "Políticas de Grupo" (GPOs) para dictar reglas automáticas a cientos de máquinas simultáneamente (ej: "Nadie puede usar memorias USB" o "El fondo de pantalla será el logo de la empresa"). 
+Además, debes garantizar que la flota de equipos reciba las "vacunas" (Actualizaciones/Parches) necesarias sin interrumpir el horario laboral. Este módulo final te enseña a forzar sincronizaciones con el Controlador de Dominio, auditar qué reglas se están aplicando a un usuario y gestionar el ciclo de vida de los parches de Windows Update a nivel de línea de comandos.
+
+A continuación, la disección pedagógica y técnica de los comandos 91 al 100.
+
+---
+
+91. GPUPDATE /FORCE
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Altavoz de la Fábrica". Si los directivos acaban de cambiar el reglamento interno, no esperas a que los empleados lean el boletín mañana; enciendes el altavoz y fuerzas a que todos escuchen y acaten la nueva regla en este mismo instante.
+* Explicación Técnica: Actualiza la configuración de directiva de grupo (Group Policy) local y basada en Active Directory, omitiendo las optimizaciones de procesamiento en segundo plano (que normalmente tardan hasta 90 minutos en sincronizar).
+* Comando y Desglose:
+  > gpupdate /force
+  - /force: Vuelve a aplicar todas las directivas, independientemente de si han cambiado o no desde la última lectura.
+
+92. GPRESULT /R
+--------------------------------------------------
+* El Puente Cognitivo: Es pedirle al empleado que te muestre su "Manual de Reglas Personal". Si Juan se queja de que no puede abrir el Panel de Control, revisas su manual para ver si hay una regla corporativa que se lo esté prohibiendo.
+* Explicación Técnica: Muestra el Conjunto resultante de directivas (RSOP) en la consola para un usuario y equipo de destino.
+* Comando y Desglose:
+  > gpresult /r
+  - /r (Resumen): Despliega qué servidor de Active Directory le está dando las órdenes a esta PC y lista los nombres exactos de los "Objetos de Directiva de Grupo" (GPOs) que se han aplicado exitosamente.
+
+93. GPRESULT /H
+--------------------------------------------------
+* El Puente Cognitivo: Es la "Auditoría Impresa". En lugar de leer un manual borroso en la consola, el auditor genera un documento visual, elegante y detallado en la oficina para analizarlo con calma.
+* Explicación Técnica: Genera un informe RSOP extremadamente detallado en formato de página web (HTML), ideal para el diagnóstico profundo de conflictos de políticas (ej: cuando dos GPOs se contradicen).
+* Comando y Desglose:
+  > gpresult /h C:\informe_gpo.html
+  - Guarda el reporte directamente en el disco C para que lo abras con tu navegador web.
+
+94 y 95. GET-WINDOWSUPDATE e INSTALL-WINDOWSUPDATE
+--------------------------------------------------
+* El Puente Cognitivo: El Director del Hospital y el Cirujano. Uno revisa el catálogo de vacunas mundiales para ver cuáles le faltan al paciente, y el otro se las inyecta de forma masiva y programada.
+* Explicación Técnica: Comandos del módulo especializado de PowerShell (PSWindowsUpdate). Permiten buscar, descargar e instalar actualizaciones del sistema operativo evadiendo la interfaz gráfica. (Nota: Este módulo debe instalarse previamente con `Install-Module PSWindowsUpdate`).
+* Comando y Desglose:
+  > Get-WindowsUpdate
+  - Lista los parches pendientes.
+  > Install-WindowsUpdate -AcceptAll -AutoReboot
+  - Instala todas las actualizaciones y autoriza un reinicio automático si el kernel lo requiere para ensamblar los archivos.
+
+96. WUAUCLT /DETECTNOW
+--------------------------------------------------
+* El Puente Cognitivo: El "Telégrafo" clásico. Es la forma antigua en la que las máquinas llamaban a la central de Microsoft (o al servidor WSUS de la empresa) pidiendo instrucciones.
+* Explicación Técnica: Era el cliente heredado de Windows Update (Windows Update AutoUpdate Client). Aunque está deprecado en Windows 10/11, sigue siendo vital conocerlo para entornos corporativos con Windows 7 o Windows Server antiguos.
+* Comando y Desglose:
+  > wuauclt /detectnow /reportnow
+  - Obliga al cliente a reportarse al servidor de actualizaciones en ese instante.
+
+97. USOCLIENT STARTSCAN
+--------------------------------------------------
+* El Puente Cognitivo: El "Radar Moderno". La evolución del telégrafo. Es el ejecutable de alta tecnología que Windows 10 y 11 utilizan silenciosamente por la noche para buscar actualizaciones.
+* Explicación Técnica: Update Session Orchestrator Client. Es el motor actual de Windows Update en línea de comandos. No arroja salida en la pantalla, opera 100% en segundo plano de forma silenciosa.
+* Comando y Desglose:
+  > usoclient StartScan
+  - Inicia la búsqueda de parches en los servidores de Microsoft. Otros comandos útiles son `StartDownload` o `StartInstall`.
+
+98. GET-HOTFIX (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: La "Cartilla de Vacunación" del paciente. Muestra exactamente qué inyecciones ha recibido la máquina a lo largo de su vida, quién se las puso y cuándo.
+* Explicación Técnica: Cmdlet que obtiene los parches rápidos (Hotfixes) y las actualizaciones de seguridad instaladas en el equipo local o remoto a través de WMI (Clase Win32_QuickFixEngineering).
+* Comando y Desglose:
+  > Get-HotFix | Sort-Object InstalledOn -Descending
+  - Muestra la lista de actualizaciones ordenadas desde la más reciente a la más antigua.
+
+99. WUSA (Windows Update Standalone Installer)
+--------------------------------------------------
+* El Puente Cognitivo: La "Cirugía de Extracción". A veces, una vacuna de Microsoft sale defectuosa y causa pantallazos azules. WUSA es la herramienta quirúrgica para extirpar ese parche defectuoso por su número de identificación.
+* Explicación Técnica: Instalador independiente de Windows Update. Se utiliza principalmente para instalar paquetes .msu manualmente o, más importante, para desinstalar actualizaciones problemáticas.
+* Comando y Desglose:
+  > wusa /uninstall /kb:5001234 /quiet /norestart
+  - Desinstala silenciosamente (/quiet) el parche defectuoso llamado "KB5001234" y prohíbe que la PC se reinicie sola hasta que el ingeniero lo decida (/norestart).
+
+100. SHUTDOWN
+--------------------------------------------------
+* El Puente Cognitivo: "El Cierre de Ciclo". Tras curar el ADN, instalar las vacunas, aplicar las nuevas reglas y expulsar a los procesos tóxicos, la fábrica necesita cerrar sus puertas, limpiar los engranajes y comenzar un nuevo día impecable.
+* Explicación Técnica: Herramienta de línea de comandos para apagar, reiniciar, cerrar sesión o hibernar el equipo local o en red. Es el comando final perfecto tras una jornada de mantenimiento.
+* Comando y Desglose:
+  > shutdown /r /t 0
+  - /r: Reinicia (Restart) el sistema.
+  - /t 0: El tiempo de espera (Time) es cero segundos. ¡Ejecución inmediata!
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO FINAL (LA GRADUACIÓN):
+--------------------------------------------------------------------------------
+Como prueba final de tu viaje para convertirte en Maestro de Windows, vamos a auditar qué actualizaciones tiene instaladas tu sistema.
+Abre PowerShell y ejecuta tu último diagnóstico:
+
+Get-HotFix | Select-Object HotFixID, Description, InstalledOn | Format-Table -AutoSize
+
+Observa la tabla. Cada "KB" (Knowledge Base) es un bloque de código inyectado en el ADN de tu Windows por Microsoft para tapar una brecha de seguridad o mejorar el rendimiento. Si eres capaz de leer esta tabla, ya no eres un espectador del sistema operativo; eres su administrador absoluto.
+================================================================================

@@ -1,0 +1,102 @@
+================================================================================
+MÓDULO 3: DIAGNÓSTICO DE REDES Y CONECTIVIDAD
+================================================================================
+Por: Tu IA Experta en Windows y Pedagogía / Andragogía
+
+INTRODUCCIÓN ANDRAGÓGICA:
+En la era del Cloud Computing y el trabajo remoto, un ordenador sin conexión a internet es, a efectos prácticos, un pisapapeles de alta tecnología. Cuando experimentas latencia extrema, cortes de conexión o la temida advertencia "Sin acceso a Internet", el instinto común es reiniciar el router compulsivamente. Como profesional, no puedes depender de la suerte. Este módulo te entrega las herramientas para hacer un diagnóstico de red estructurado (Troubleshooting Lógico). Aprenderás a rastrear el flujo de la información, desde tu tarjeta de red local (NIC) hasta los servidores al otro lado del planeta, identificando exactamente dónde se rompe la cadena.
+
+A continuación, la disección pedagógica y técnica de los comandos 21 al 30.
+
+---
+
+21. IPCONFIG /FLUSHDNS
+--------------------------------------------------
+* El Puente Cognitivo: Imagina que tienes una libreta de direcciones (caché DNS) donde anotas las direcciones de tus amigos. Si tu amigo se muda de casa pero tú no actualizas tu libreta, seguirás enviando cartas a la casa vacía. Este comando tira esa libreta vieja a la basura y te obliga a pedir las direcciones nuevas.
+* Explicación Técnica: Purga y restablece el contenido de la caché de resolución del cliente DNS. Es la solución número uno cuando una página web específica no carga, pero el resto de internet sí.
+* Guía Práctica Segura: Abre CMD y ejecuta. No afecta la conexión en curso.
+* Comando y Desglose:
+  > ipconfig /flushdns
+  - /flushdns: Ordena la limpieza (flush) de la tabla temporal de nombres de dominio (DNS).
+
+22 y 23. IPCONFIG /RELEASE e IPCONFIG /RENEW
+--------------------------------------------------
+* El Puente Cognitivo: Es como ir a la recepción de un hotel, devolver las llaves de tu habitación actual (/release) y solicitar que te asignen una habitación totalmente nueva (/renew) porque la anterior tenía problemas con la cerradura.
+* Explicación Técnica: Libera la concesión de la dirección IPv4 actual y luego envía un mensaje DHCPDISCOVER (broadcast) a la red local para solicitar al servidor DHCP una nueva configuración IP.
+* Guía Práctica Segura: **Advertencia:** Al usar /release te quedarás sin red local e internet por unos segundos.
+* Comando y Desglose:
+  > ipconfig /release
+  > ipconfig /renew
+  - /release: Suelta la IP actual.
+  - /renew: Negocia una nueva IP con el router/servidor.
+
+24. PING -T
+--------------------------------------------------
+* El Puente Cognitivo: Es el "Sonar" de un submarino. Envías un pulso sonoro ("Ping") hacia un objetivo y mides cuánto tiempo tarda en regresar el eco ("Pong").
+* Explicación Técnica: Envía paquetes de solicitud de eco del Protocolo de mensajes de control de Internet (ICMP) para verificar la conectividad a nivel de red (Capa 3 del modelo OSI).
+* Guía Práctica Segura: Excelente para dejarlo corriendo de fondo mientras reinicias un equipo remoto o un router para saber exactamente en qué segundo vuelve a estar en línea.
+* Comando y Desglose:
+  > ping 8.8.8.8 -t
+  - 8.8.8.8: La dirección de destino (en este caso, los servidores DNS públicos de Google).
+  - -t: Indica que los "latidos" se envíen indefinidamente (hasta presionar Ctrl+C) en lugar del límite estándar de 4 paquetes.
+
+25. TRACERT (Trace Route)
+--------------------------------------------------
+* El Puente Cognitivo: Es ponerle un rastreador GPS a una carta postal. Te dirá exactamente por qué ciudades y oficinas de correo (routers intermedios) pasó el paquete antes de llegar a su destino, y dónde se quedó atascado.
+* Explicación Técnica: Mide la ruta y la latencia de tránsito de los paquetes a través de una red IP. Utiliza el campo de Tiempo de Vida (TTL) de la cabecera IP para forzar a cada router en el camino a devolver un mensaje de error ICMP "Tiempo excedido".
+* Comando y Desglose:
+  > tracert google.com
+  - Muestra cada "salto" de red, ideal para saber si el problema de internet está en tu casa (salto 1) o en el proveedor de servicios de internet (ISP).
+
+26. PATHPING
+--------------------------------------------------
+* El Puente Cognitivo: Es un auditor de tráfico avanzado que combina el "Ping" y el "Tracert". No solo rastrea la ruta, sino que se queda acampando en cada parada durante varios minutos para ver cuántos paquetes de información "pierde" cada router.
+* Explicación Técnica: Realiza una prueba de conectividad y latencia exhaustiva, calculando estadísticamente la pérdida de paquetes (Packet Loss) en cada nodo individual a lo largo del tiempo.
+* Guía Práctica Segura: Tardará entre 5 y 10 minutos en finalizar. Ten paciencia.
+* Comando y Desglose:
+  > pathping 1.1.1.1
+
+27. NETSTAT -ANO
+--------------------------------------------------
+* El Puente Cognitivo: Es la "Central Telefónica de Espionaje". Te permite ver cada llamada entrante y saliente que está haciendo tu ordenador en este momento y con quién está hablando, incluso si la aplicación es invisible.
+* Explicación Técnica: Muestra las conexiones TCP activas, los puertos en los que el equipo está a la escucha, las estadísticas de Ethernet y la tabla de enrutamiento IP.
+* Guía Práctica Segura: Es vital para detectar malware, troyanos o aplicaciones legítimas que saturan tu ancho de banda.
+* Comando y Desglose:
+  > netstat -ano
+  - -a: Muestra todas (All) las conexiones y puertos de escucha.
+  - -n: Muestra direcciones y números de puerto en formato Numérico (más rápido).
+  - -o: Muestra el PID (Owner Process ID) asociado a cada conexión. ¡Crucial para combinarlo con el Paquete 2 y eliminar (Taskkill) procesos maliciosos!
+
+28. NSLOOKUP
+--------------------------------------------------
+* El Puente Cognitivo: Es llamar directamente al Operador de la Guía Telefónica Internacional para preguntarle "Oye, ¿qué número de teléfono (IP) tienes registrado para el nombre de esta empresa?".
+* Explicación Técnica: Herramienta para consultar directamente los servidores de Nombres de Dominio (DNS). Ayuda a diagnosticar si un sitio web no carga porque tu red no sabe cómo traducir su nombre a una dirección IP.
+* Comando y Desglose:
+  > nslookup microsoft.com
+
+29. TEST-NETCONNECTION (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El Dron de Exploración de Alta Tecnología. Una herramienta moderna que hace el trabajo del Ping, el Tracert y además verifica si las "puertas" (puertos) del edificio destino están abiertas.
+* Explicación Técnica: Cmdlet de PowerShell para diagnósticos integrales. Valida la conexión TCP, comprueba el ping ICMP y diagnostica la resolución de nombres en un solo reporte estructurado.
+* Comando y Desglose:
+  > Test-NetConnection google.com -Port 443
+  - -Port 443: Además de hacer ping, intenta establecer comunicación a través de un puerto específico (443 es el tráfico web seguro HTTPS). Si da "True", el servidor está escuchando.
+
+30. RESOLVE-DNSNAME (PowerShell)
+--------------------------------------------------
+* El Puente Cognitivo: El Detective Privado de registros de internet. La evolución moderna de nslookup; más organizado y fácil de procesar para scripts.
+* Explicación Técnica: Realiza resoluciones de nombres de dominio devolviendo objetos estructurados. Permite consultar tipos de registros específicos (IPv6, Correo electrónico, etc.).
+* Comando y Desglose:
+  > Resolve-DnsName bing.com -Type A
+  - -Type A: Solicita exclusivamente las direcciones IPv4 (Registro "A" en DNS).
+
+================================================================================
+EL DESAFÍO ANDRAGÓGICO DE CONSOLIDACIÓN (EJERCICIO PRÁCTICO):
+--------------------------------------------------------------------------------
+Es hora de auditar la comunicación de tu equipo.
+Abre CMD y ejecuta la siguiente combinación de comandos usando la técnica "Piping" (pasar la información por una tubería):
+
+netstat -ano | findstr ESTABLISHED
+
+Este comando filtrará el ruido y te mostrará SOLO las conexiones que están activas y transfiriendo datos en este exacto momento ("ESTABLISHED"). Observa la última columna de la derecha (el PID). Esa es la matrícula del programa. Si ves una IP sospechosa, ya sabes cómo usar "tasklist" (del Módulo 2) con ese número de PID para descubrir quién es el responsable.
+================================================================================
