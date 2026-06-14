@@ -9,6 +9,8 @@ import { parseLessonText, ParsedLesson } from '@/utils/lessonParser';
 import CommandCard from '@/components/CommandCard';
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
+import KahootQuiz from '@/components/KahootQuiz';
+import { quizzes } from '@/data/quizzes';
 
 export default function LessonPage({ params }: { params: Promise<{ lessonId: string }> }) {
   const unwrappedParams = use(params);
@@ -125,6 +127,11 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                     {parsed.challengeContent}
                   </div>
                 </motion.section>
+              )}
+
+              {/* Kahoot Quiz Section */}
+              {quizzes[lessonId] && quizzes[lessonId].length > 0 && (
+                <KahootQuiz questions={quizzes[lessonId]} />
               )}
 
             </>
