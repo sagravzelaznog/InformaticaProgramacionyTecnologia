@@ -5,6 +5,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import Link from 'next/link';
 import { BookOpen, CheckCircle, ChevronRight } from 'lucide-react';
 import { auth, db } from '@/lib/firebase';
+import ProgressBar from '@/components/ProgressBar';
 import { collection, getDocs, doc, getDoc, query, orderBy, setDoc } from 'firebase/firestore';
 
 export default function DashboardPage() {
@@ -38,6 +39,7 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-slate-950 text-white font-sans">
+        <ProgressBar />
         <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">

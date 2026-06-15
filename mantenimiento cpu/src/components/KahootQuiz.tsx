@@ -4,9 +4,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Triangle, Hexagon, Circle, Square, CheckCircle, XCircle, Trophy, RefreshCw } from 'lucide-react';
 import { QuizQuestion } from '@/data/quizzes';
+import { auth, db } from '@/lib/firebase';
+import { doc, setDoc, arrayUnion } from 'firebase/firestore';
 
 interface KahootQuizProps {
   questions: QuizQuestion[];
+  lessonId: string;
 }
 
 const SHAPE_ICONS = [Triangle, Hexagon, Circle, Square];
@@ -23,7 +26,7 @@ const SHADOW_COLORS = [
   'shadow-emerald-600/50'
 ];
 
-export default function KahootQuiz({ questions }: KahootQuizProps) {
+export default function KahootQuiz({ questions, lessonId }: KahootQuizProps) {
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -50,7 +53,15 @@ export default function KahootQuiz({ questions }: KahootQuizProps) {
         setSelectedAnswer(null);
         setIsChecked(false);
       } else {
+        // Quiz finished
         setCompleted(true);
+        const finalScore = score + (index === currentQuestion.correctAnswerIndex ? 1000 : 0);
+        const percentage = finalScore / (questions.length * 1000);
+        if (percentage >= 0.7 && auth.currentUser) {
+          // Save progress
+          const docRef = doc(db, 'user_progress', auth.currentUser.uid);
+          setDoc(docRef, { completedModules: arrayUnion(lessonId) }, { merge: true }).catch(err => console.error("Error saving progress", err));
+        }
       }
     }, 2500); // Wait 2.5 seconds before moving to next question
   };
